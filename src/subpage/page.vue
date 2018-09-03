@@ -14,7 +14,7 @@
             <img src="../../static/img/calculatorBe.png" ref="CaBe" class="Be" alt="" style="width:50%;height:50%;margin-right:25%;" >
             <img src="../../static/img/calculator.png" ref="CaAf" title="" class="Af" alt="" style="width:50%;height:50%;display:none;" />
           </li>
-          <li><p>法&nbsp;务</p><p>咨&nbsp;询</p></li>
+          <li><a style="text-decoration:none" href="tencent://message/?uin=1157785194&Site=&Menu=yes"><p>法&nbsp;务</p><p>咨&nbsp;询</p></a></li>
           <li @click="backTop()"><p>回&nbsp;到</p><p>顶&nbsp;部</p></li>
         </ul>
       </div>

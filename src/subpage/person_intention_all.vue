@@ -28,13 +28,14 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
+            <!--<button type="button" name="button">查看进度</button>-->
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span>张家湾****有限公司</span>
           <span class="pople">赵经理</span>
           <span>13240891337</span>
+          <a href="tencent://message/?uin=3300692561&Site=&Menu=yes"> 联系QQ</a>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
@@ -160,6 +161,7 @@ export default {
         'Content-Type':'application/json'
       }}
     ).then((res)=>{
+      console.log("get bill instensions ..........")
       console.log(res)
       _this.noteList=res.data;
     })

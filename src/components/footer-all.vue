@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="about_us">
-      <p>京&nbsp;ICP&nbsp;备&nbsp;200901001天津科技有限公司&nbsp;&nbsp;京ICP备2324354354号-1</p>
+      <p>琼&nbsp;ICP&nbsp;备&nbsp;<a href="http://www.miitbeian.gov.cn" style="color: white">18003430</a>号 格熙（海南）区块链科技有限公司 &nbsp;&nbsp;</p>
     </div>
   </div>
 </template>
