@@ -20,15 +20,15 @@
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.releaseDate}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.transacDate}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <!--<button type="button" name="button">查看进度</button>-->
+            <button type="button" name="button">查看进度</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -54,8 +54,8 @@
           <div class="message_right">
             <ul>
               <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{releaseDate}}</span></li>
-              <li>剩余天数：<span>99天</span></li>
+              <li>汇票到期日：<span>{{maturity}}</span></li>
+              <li>剩余天数：<span>{{remain_days}}天</span></li>
             </ul>
           </div>
         </div>
@@ -78,8 +78,8 @@
             <li><a href="">7天</a></li>
             <li>
               <a href="">年化:10%
-                <!--<p class="wrie_w"></p>-->
-                <!--<p class="san_w">每10W加:***</p>-->
+                <p class="wrie_w"></p>
+                <p class="san_w">每10W加:***</p>
               </a>
             </li>
             <li><a href="">已接单</a></li>
@@ -110,7 +110,7 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化：10%</a>
-            <!--<a href="">每10W加：***</a>-->
+            <a href="">每10W加：***</a>
           </li>
           <li><a href="">已接单</a></li>
           <li style="border-right: none;">
@@ -146,7 +146,9 @@ export default {
       xPerLakh:null,
       transacDate:null,
       bank:null,
-      releaseDate:null
+      releaseDate:null,
+      maturity:null,
+      remain_days:null
     }
   },
   methods:{
@@ -176,6 +178,8 @@ export default {
         _this.transacDate=_this.noteList[index].transacDate;
         _this.bank=_this.noteList[index].acceptor;
         _this.releaseDate=_this.noteList[index].releaseDate;
+        _this.maturity=_this.noteList[index].maturity;
+        _this.remain_days=_this.noteList[index].remain_days;
         _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.$refs.PaperIs.src=res.data[0].pic1;

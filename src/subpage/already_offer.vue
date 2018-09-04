@@ -25,6 +25,7 @@
             </div>
           </div></el-col>
         </el-row>
+
         <p class="company">
           <span style="margin-left:3%;">张家湾****贸易有限公司</span>
           <span style="margin-left:8%;">赵总</span>
@@ -34,6 +35,8 @@
       </div>
     </div>
   </div>
+
+
 </template>
 <script>
 export default {
