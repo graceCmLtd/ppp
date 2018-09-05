@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="person_intention">
     <div class="person_intention_pic">
-      <img src="../../static/img/intention.png" alt="">
+      <img src="../../static/img/tie.png" alt="">
     </div>
     <div class="person_intention_con">
       <div class="person_intention_title_external">

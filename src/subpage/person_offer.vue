@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="person_offer">
     <div class="offer_pic">
-      <img src="../../static/img/offer.png" alt="">
+        <img src="../../static/img/offer2.png" alt="">
     </div>
     <div class="offer_title_external">
       <p class="offer_title">
@@ -16,14 +16,14 @@
              <span class="person_offer_add"></span>
              <span class="person_offer_triangle"></span>
            </router-link></el-col>
-          <el-col :span="6"><router-link to="/release/offer/offerAccepted"
-            tag="div" class="offer_tit offer_choes"
-            @click.native="offerAcc()"
-            :class="{offer:color==2}"
-            >卖家接收的报价
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle"></span>
-          </router-link></el-col>
+          <!--<el-col :span="6"><router-link to="/release/offer/offerAccepted"-->
+            <!--tag="div" class="offer_tit offer_choes"-->
+            <!--@click.native="offerAcc()"-->
+            <!--:class="{offer:color==2}"-->
+            <!--&gt;卖家接收的报价-->
+            <!--<span class="person_offer_add"></span>-->
+            <!--<span class="person_offer_triangle"></span>-->
+          <!--</router-link></el-col>-->
           <el-col :span="6"><router-link to="/release/offer/offerPrices"
             tag="div" class="offer_tit"
             @click.native="offerPri()"
@@ -36,7 +36,7 @@
             tag="div" class="offer_tit offer_choesT"
             @click.native="offerCan()"
             :class="{offer:color==4}"
-            >失效报价
+            >已失效报价
             <span class="person_offer_add"></span>
             <span class="person_offer_triangle" ref="person_offer_triangle_cancel"></span>
           </router-link></el-col>
@@ -82,13 +82,12 @@ export default {
   height:100%;
   .offer_pic{
     width: 100%;
-    height:10%;
-    margin-top: 5%;
+    height: 8%;
+    margin-top: 2%;
     text-align: left;
-    padding-left:18%;
-    margin-bottom:3%;
+    margin-left: 1%;
     img{
-      width:75%;
+      width:100%;
       height:80%;
     }
   }
@@ -101,7 +100,7 @@ export default {
       min-height: 36px;
       line-height: 36px;
       margin-left: 4%;
-      border-bottom:1px solid #ccc;
+      border-bottom: 1px solid #F15749;
       background: white;
       position: absolute;
       bottom:0;

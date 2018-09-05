@@ -16,7 +16,7 @@
               <el-submenu index="1">
                 <template slot="title">
                   <i class="el-icon-location"></i>
-                  <span>我是卖家</span>
+                  <span>我是买家</span>
                 </template>
                 <el-menu-item index="1-1"  @click="data()" text-color="#ffd04b">我的求贴</el-menu-item>
                 <el-menu-item index="1-2" @click="offer()">求贴意向</el-menu-item>
@@ -24,10 +24,10 @@
               <el-submenu index="2">
                 <template slot="title">
                   <i class="el-icon-location"></i>
-                  <span>我是买家</span>
+                  <span>我是卖家</span>
                 </template>
                 <el-menu-item index="1-2" @click="order()">我的报价</el-menu-item>
-                <el-menu-item index="1-2">我的接单</el-menu-item>
+                <el-menu-item index="1-2" @click="jie()">我的接单</el-menu-item>
                 <el-menu-item index="1-2" @click="releaseOffer()">发布/修改资源池报价</el-menu-item>
               </el-submenu>
               <el-submenu index="3">
@@ -98,6 +98,9 @@ export default {
     },
     order(){//买家资源池票据
       this.$router.push('/release/offer')
+    },
+    jie(){//我的接单
+      this.$router.push('/release/Receipt')
     },
     releaseOffer(){  //发布/修改报价
       this.$router.push('/release/template')

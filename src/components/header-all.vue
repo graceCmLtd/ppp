@@ -76,7 +76,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .active{
-  background: #FF452C;
+  background: #F15749;
   color:white;
 }
 .header_all{

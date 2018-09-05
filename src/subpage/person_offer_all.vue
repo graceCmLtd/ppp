@@ -8,7 +8,7 @@
         <el-col :span="3"><div class="mes_title">金额</div></el-col>
         <el-col :span="3"><div class="mes_title">到期日</div></el-col>
         <el-col :span="3"><div class="mes_title">剩余天数</div></el-col>
-        <el-col :span="3"><div class="mes_title">报价</div></el-col>
+        <el-col :span="3"><div class="mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="mes_title">状态</div></el-col>
         <el-col :span="3"><div class="mes_title">操作</div></el-col>
       </el-row>
@@ -22,11 +22,11 @@
           <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="mes">{{day}}</div></el-col>
           <el-col :span="3"><div class="mes amount mes_chose">
-            <div class="rate">
-              <p>利率：{{item.interest}}%</p>
-            </div>
+            <!--<div class="rate">-->
+              <!--<p>利率：{{item.interest}}%</p>-->
+            <!--</div>-->
             <div class="premium">
-              <p>每10w加：{{item.xPerLakh}}</p>
+              <p>{{item.xPerLakh}}W</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -47,7 +47,40 @@
         </div>
       </div>
     </div>
+
+    <!--票据图片-->
+    <div class="bill_w">
+      <div class="type_w">
+        <span class="type_w_1">票据图片</span>
+      </div>
+      <img src="/static/img/bill.png" alt="" style="margin-top: 37px;">
+      <div class="bill_footer_w">
+        <ul>
+          <li>
+            <p class="silver_w">电银</p>
+            <p class="silver_w_2">105,343,00</p>
+            <p class="silver_w_3">报价金额</p>
+          </li>
+          <li>
+            <p class="silver_w_4">每10W加：3%</p>
+            <p class="silver_w_5">报价</p>
+          </li>
+          <li>
+            <p class="silver_w_4">2018-07-30</p>
+            <p class="silver_w_5">出票日期</p>
+          </li>
+
+          <li style="border-right: none;">
+            <p class="last_w">承兑方     <i>中国银行 **支行</i> </p>
+            <p class="last_w">汇票到期    <i>2019-03-30</i> </p>
+            <p class="last_w" style="margin-left: -52px;">剩余天数    <i>98 </i>  </p>
+          </li>
+
+        </ul>
+      </div>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -121,10 +154,11 @@ export default {
     margin-left: 4%;
     margin-top: 4%;
     .mes_title{
-      background: #eff8ff;
+      background: #F15749;
       min-width: 36px;
       line-height: 36px;
       font-weight: bold;
+      color: #fff;
     }
     .lineHeight{
       line-height: 35px!important;
@@ -175,7 +209,7 @@ export default {
         height:50%;
         p{
           width: 100%;
-          line-height: 35px;
+          line-height: 72px;
           font-size: 14px;
         }
       }
@@ -193,15 +227,16 @@ export default {
           min-width: 60px;
           height:30px;
           border-radius: 3px;
-          background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+          background: #F15749;
           color:white;
         }
       }
       p:nth-child(2){
         button{
           background: white;
-          border:1px solid #FE452C;
-          color:#FE452C;
+          border:1px solid #F15749;
+          color:#F15749;
+
         }
       }
     }
@@ -210,6 +245,7 @@ export default {
       line-height: 36px;
       font-size: 14px;
       position: relative;
+      background: #EFF8FF;
       p{
         width: 60%;
         margin: 0 auto;
@@ -219,7 +255,7 @@ export default {
           width:105px;
           height:30px;
           border-radius:3px;
-          background:linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+          background: #F15749;
           color:white;
           position: absolute;
           right:2%;
@@ -229,5 +265,107 @@ export default {
     }
 
   }
+
 }
+  .bill_w{
+    width:1049px;
+    height:774px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
+    margin-top: 35px;
+    .type_w{
+      width:1049px;
+      height:52px;
+      border-bottom: 1px solid #F15749;
+      .type_w_1{
+        width:157px;
+        height:52px;
+        background:rgba(241,87,73,1);
+        color: #fff;
+        line-height: 52px;
+        font-weight: bold;
+        float: left;
+      }
+    }
+    .bill_footer_w{
+      width:1049px;
+      height:138px;
+      /*border:1px solid black;*/
+
+      li{
+        float: left;
+        border-right: 1px solid #979797;
+        padding: 0px 50px;
+        line-height: 41px;
+        margin-top: 16px;
+      }
+      .silver_w{
+        width:58px;
+        height:35px;
+        background:rgba(241,87,73,1);
+        border-radius:4px;
+        color: #fff;
+        font-size: 14px;
+      }
+      .silver_w_2{
+        width:146px;
+        height:26px;
+        font-size:20px;
+        font-family:"微软雅黑";
+        font-weight:bold;
+        color:rgba(241,87,73,1);
+        line-height:26px;
+      }
+      .silver_w_3{
+        width: 73px;
+        height: 19px;
+        font-size: 14px;
+        font-family:"微软雅黑";
+        color: silver;
+        line-height: 72px;
+        margin-left: 31px;
+      }
+      .silver_w_4{
+        width:153px;
+        height:26px;
+        font-size:20px;
+        font-family:"微软雅黑";
+        font-weight:bold;
+        color:rgba(51,51,51,1);
+        line-height:96px;
+      }
+      .silver_w_5{
+        width: 73px;
+        height: 19px;
+        font-size: 14px;
+        font-family:"微软雅黑";
+        color: silver;
+        line-height: 72px;
+        margin-left: 31px;
+        margin-top: 35px;
+      }
+      /*.honour_w{*/
+        /*width:63px;*/
+        /*height:16px;*/
+        /*font-size:12px;*/
+        /*font-family:MicrosoftYaHei;*/
+        /*color:rgba(192,192,192,1);*/
+        /*line-height:16px;*/
+        /*float: left;*/
+      /*}*/
+      .last_w{
+        /*width:63px;*/
+        /*height:16px;*/
+        font-size:12px;
+        font-family:MicrosoftYaHei;
+        color:rgba(192,192,192,1);
+        line-height: 41px;
+      }
+      i{
+        font-style:normal;
+        color: #333333;
+        font-weight: bold;
+      }
+    }
+  }
 </style>

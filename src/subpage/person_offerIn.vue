@@ -1,13 +1,35 @@
 <!-- 用户报价中的票据 -->
 <template lang="html">
   <div class="person_offerIn">
-    <el-row>
-      <el-col :span="5"><div class="person_offerIn_title">公司名称</div></el-col>
-      <el-col :span="4"><div class="person_offerIn_title limit">成交额</div></el-col>
-      <el-col :span="5"><div class="person_offerIn_title">剩余天数</div></el-col>
-      <el-col :span="5"><div class="person_offerIn_title time">到期日</div></el-col>
-      <el-col :span="5"><div class="person_offerIn_title">交易时间</div></el-col>
-    </el-row>
+    <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2); border-top: none; margin-bottom: 15px;">
+      <el-row>
+        <el-col><div class="person_offerIn_title" id="name_w">恒大****************集团</div></el-col>
+        <el-col><div class="person_offerIn_title limit" id="name_w_limit">100w</div></el-col>
+        <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
+        <el-col><div class="person_offerIn_title time">到期日:2018.3.24</div></el-col>
+        <el-col><div class="person_offerIn_title">07/19 13：38:00</div></el-col>
+      </el-row>
+    </div>
+    <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2); margin-bottom: 15px;">
+      <el-row>
+        <el-col><div class="person_offerIn_title" id="name_w">恒大****************集团</div></el-col>
+        <el-col><div class="person_offerIn_title limit" id="name_w_limit">100w</div></el-col>
+        <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
+        <el-col><div class="person_offerIn_title time">到期日:2018.3.24</div></el-col>
+        <el-col><div class="person_offerIn_title">07/19 13：38:00</div></el-col>
+      </el-row>
+    </div>
+    <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
+      <el-row>
+        <el-col><div class="person_offerIn_title" id="name_w">恒大****************集团</div></el-col>
+        <el-col><div class="person_offerIn_title limit" id="name_w_limit">100w</div></el-col>
+        <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
+        <el-col><div class="person_offerIn_title time">到期日:2018.3.24</div></el-col>
+        <el-col><div class="person_offerIn_title">07/19 13：38:00</div></el-col>
+      </el-row>
+    </div>
+
+
     <el-row v-for="(item,index) in noteList" :key="index">
       <el-col :span="5"><div class="person_offerIn_mes"
         :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
@@ -55,15 +77,10 @@ export default {
 
 <style lang="scss" scoped>
 .person_offerIn{
-  width: 80%;
-  height:100%;
-  margin-top: 4%;
-  margin-left: 4%;
-  .person_offerIn_title{
-    min-height: 36px;
-    line-height: 36px;
-    background: #eff8ff;
-  }
+  width: 300px;
+  height: 100%;
+  margin-top: 1%;
+  margin-left: 1%;
   .person_offerIn_mes{
     min-height: 70px;
     line-height: 70px;
@@ -88,4 +105,21 @@ export default {
     }
   }
 }
+  #name_w{
+    font-weight:bold;
+    color: #666666;
+    font-size:20px;
+    letter-spacing: 1px;
+
+  }
+#name_w_limit{
+  font-weight: bold;
+  color: #F15749;
+  letter-spacing: 1px;
+  position: relative;
+  top: 48px;
+  left: -100px;
+  font-size: 24px;
+}
+
 </style>
