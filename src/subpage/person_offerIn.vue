@@ -1,33 +1,7 @@
 <!-- 用户报价中的票据 -->
 <template lang="html">
   <div class="person_offerIn">
-    <!-- <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2); border-top: none; margin-bottom: 15px;">
-      <el-row>
-        <el-col><div class="person_offerIn_title" id="name_w">恒大集团</div></el-col>
-        <el-col><div class="person_offerIn_title limit" id="name_w_limit">100w</div></el-col>
-        <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
-        <el-col><div class="person_offerIn_title time">到期日:2018.3.24</div></el-col>
-        <el-col><div class="person_offerIn_title">07/19 13：38:00</div></el-col>
-      </el-row>
-    </div>
-    <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2); margin-bottom: 15px;">
-      <el-row>
-        <el-col><div class="person_offerIn_title" id="name_w">恒大****************集团</div></el-col>
-        <el-col><div class="person_offerIn_title limit" id="name_w_limit">100w</div></el-col>
-        <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
-        <el-col><div class="person_offerIn_title time">到期日:2018.3.24</div></el-col>
-        <el-col><div class="person_offerIn_title">07/19 13：38:00</div></el-col>
-      </el-row>
-    </div>
-    <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
-      <el-row>
-        <el-col><div class="person_offerIn_title" id="name_w">恒大****************集团</div></el-col>
-        <el-col><div class="person_offerIn_title limit" id="name_w_limit">100w</div></el-col>
-        <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
-        <el-col><div class="person_offerIn_title time">到期日:2018.3.24</div></el-col>
-        <el-col><div class="person_offerIn_title">07/19 13：38:00</div></el-col>
-      </el-row>
-    </div> -->
+
     <el-row  v-for="(item,index) in noteList" :key = "index">
       <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
         <el-row>

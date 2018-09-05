@@ -8,7 +8,7 @@
         <el-col :span="3"><div class="mes_title">金额</div></el-col>
         <el-col :span="3"><div class="mes_title">到期日</div></el-col>
         <el-col :span="3"><div class="mes_title">剩余天数</div></el-col>
-        <el-col :span="3"><div class="mes_title">实付金额</div></el-col>
+        <el-col :span="3"><div class="mes_title">实付付金额</div></el-col>
         <el-col :span="3"><div class="mes_title">状态</div></el-col>
         <el-col :span="3"><div class="mes_title">操作</div></el-col>
       </el-row>
@@ -33,8 +33,9 @@
             <span>已被卖家接受</span>
           </div></el-col>
           <el-col :span="3"><div class="mes operaMes">
-            <p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>
-            <p><button type="button" name="button">放弃</button></p>
+            <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
+            <!--<p><button type="button" name="button">放弃</button></p>-->
+            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">下一步</button></p>
           </div></el-col>
         </el-row>
         <div class="mes_bot">
@@ -42,7 +43,7 @@
             <span>张家湾****贸易有限公司</span>
             <span>赵总</span>
             <span>13240891337</span>
-            <button type="button" name="button">查看详情</button>
+            <button type="button" name="button">票据详情</button>
           </p>
         </div>
       </div>

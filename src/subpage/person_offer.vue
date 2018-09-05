@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="person_offer">
     <div class="offer_pic">
-      <img src="../../static/img/offer.png" alt="">
+        <img src="../../static/img/offer2.png" alt="">
     </div>
     <div class="offer_title_external">
       <p class="offer_title">
@@ -82,13 +82,12 @@ export default {
   height:100%;
   .offer_pic{
     width: 100%;
-    height:10%;
-    margin-top: 5%;
+    height: 8%;
+    margin-top: 2%;
     text-align: left;
-    padding-left:18%;
-    margin-bottom:3%;
+    margin-left: 1%;
     img{
-      width:75%;
+      width:100%;
       height:80%;
     }
   }

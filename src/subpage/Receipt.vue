@@ -2,36 +2,49 @@
 <template lang="html">
   <div class="person_offer">
     <div class="offer_pic">
-      <img src="../../static/img/offer.png" alt="">
+      <img src="../../static/img/receipt.png" alt="">
     </div>
     <div class="offer_title_external">
       <p class="offer_title">
         <el-row>
-          <el-col :span="6"><router-link to="/release/Receipt/ReceiptAll"
-                                         tag="div" class="offer_tit" @click.native="ReceiptAll()" :class="{offer:color== 1}" ref="one"
-          >全部报价
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle"></span>
-          </router-link></el-col>
-          <!--<el-col :span="6"><router-link to="/release/offer/offerAccepted"-->
-          <!--tag="div" class="offer_tit offer_choes"-->
-          <!--@click.native="offerAcc()"-->
-          <!--:class="{offer:color==2}"-->
-          <!--&gt;卖家接收的报价-->
-          <!--<span class="person_offer_add"></span>-->
-          <!--<span class="person_offer_triangle"></span>-->
-          <!--</router-link></el-col>-->
-          <el-col :span="6"><router-link to="/release/Receipt/offerPrices" tag="div"
-                                         class="offer_tit" @click.native="offerPri()" :class="{offer:color==3}"
-          >&nbsp;&nbsp;&nbsp;报价中
+          <el-col :span="7">
+            <router-link to="/release/Receipt/ReceiptAll"
+                         tag="div" class="offer_tit" @click.native="ReceiptAll()" :class="{offer:color==1}" ref="one"
+            >全部资源池交易
+              <span class="person_offer_add"></span>
+              <span class="person_offer_triangle"></span>
+            </router-link></el-col>
+
+          <el-col :span="4"><router-link to="/release/Receipt/offerPrices" tag="div"
+                                         class="offer_tit" @click.native="offerPri()" :class="{offer:color==2}"
+          >&nbsp;&nbsp;&nbsp;已接单
             <span class="person_offer_add"></span>
             <span class="person_offer_triangle" ref="Receipt_triangle_prices"></span>
           </router-link></el-col>
 
-          <el-col :span="6"><router-link to="/release/Receipt/offerCancel" tag="div"
-                                         class="offer_tit offer_choesT" @click.native="offerCan()" :class="{offer:color==4}"
-          >已失效报价
 
+
+          <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
+                                         :class="{offer:color==3}"
+          >待接单
+
+            <span class="person_offer_add"></span>
+            <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
+          </router-link></el-col>
+
+
+
+          <el-col :span="5"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
+                                         :class="{offer:color==4}"
+          >卖家已确认
+            <span class="person_offer_add"></span>
+            <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
+          </router-link></el-col>
+
+
+          <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan2()"
+                                         :class="{offer:color==5}"
+          >已失效
             <span class="person_offer_add"></span>
             <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
           </router-link></el-col>
@@ -57,15 +70,23 @@
         this.color=1;
         console.log(this)
       },
-      offerAcc(){
-        this.color=2;
-      },
+      // offerAcc(){
+      //   this.color=2;
+      // },
       offerPri(){
-        this.color=3;
-        this.$refs.Receipt_triangle_prices.style.right='-9%'
+        this.color=2;
+        // this.$refs.Receipt_triangle_prices.style.right='-9%'
       },
       offerCan(){
+        this.color=3;
+        this.$refs.Receipt_triangle_cancel.style.right='-9%'
+      },
+      offerCan1(){
         this.color=4;
+        this.$refs.Receipt_triangle_cancel.style.right='-9%'
+      },
+      offerCan2(){
+        this.color=5;
         this.$refs.Receipt_triangle_cancel.style.right='-9%'
       }
     }
@@ -78,13 +99,12 @@
     height:100%;
     .offer_pic{
       width: 100%;
-      height:10%;
-      margin-top: 5%;
+      height: 8%;
+      margin-top: 2%;
       text-align: left;
-      padding-left:18%;
-      margin-bottom:3%;
+      margin-left: 1%;
       img{
-        width:75%;
+        width:100%;
         height:80%;
       }
     }

@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="person_paper">
     <div class="person_paper_pic">
-      <img src="../../static/img/fff.png" alt="">
+      <img src="../../static/img/qiu.png" alt="">
     </div>
     <p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>
     <p class="person_paper_table">
@@ -20,6 +20,7 @@
     <div class="hadRelease">
       <router-view></router-view>
     </div>
+
 
     <div class="yibao_w" v-if="color == 1">
     <p class="person_paper_tableB">
@@ -150,10 +151,10 @@ export default {
   height:100%;
   .person_paper_pic{
     width: 100%;
-    height:8%;
-    margin-top: 5%;
+    height: 8%;
+    margin-top: 2%;
     text-align: left;
-    padding-left:8%;
+    margin-left: 1%;
     img{
       width: 100%;
       height: 80%;
