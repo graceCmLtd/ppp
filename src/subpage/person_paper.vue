@@ -10,7 +10,7 @@
       to="/release/paper/offerIn" tag="span"
       @click.native="offerIn()"
       :class="{paperAc:color==1}"
-      >报价中</router-link>
+      >全部报价</router-link>
       <router-link
       to="/release/paper/offerBe" tag="span"
       @click.native="offerBe()"
@@ -20,9 +20,11 @@
     <div class="hadRelease">
       <router-view></router-view>
     </div>
+
+    <div class="yibao_w" v-if="color == 1">
     <p class="person_paper_tableB">
-      <span :class="{HadAc:colorB==3}" @click="havOffer()">已报价（<span></span>）</span>
-      <span :class="{HadAc:colorB==4}" @click="notOffer()">未报价（<span></span>）</span>
+      <span :class="{HadAc:colorB==3}" @click="havOffer">已报价<span></span></span>
+      <span :class="{HadAc:colorB==4}" @click="notOffer">未报价<span></span></span>
     </p>
     <div class="hadOffer" v-show="hadOffer">
       <el-row>
@@ -35,11 +37,11 @@
       </el-row>
       <div class="">
         <el-row class="oferMes">
-          <el-col :span="4"><div class="hadOffer_mes">票据类型</div></el-col>
-          <el-col :span="4"><div class="hadOffer_mes">承兑银行</div></el-col>
-          <el-col :span="4"><div class="hadOffer_mes">金额</div></el-col>
-          <el-col :span="4"><div class="hadOffer_mes">到期日</div></el-col>
-          <el-col :span="4"><div class="hadOffer_mes">剩余天数</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">纸银</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">中国银行</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">644w</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">2018-07-30</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">7天</div></el-col>
           <el-col :span="4"><div class="hadOffer_mes limit">
             <span>年化：</span>
             <span>每10w加：</span>
@@ -60,6 +62,7 @@
         <el-col :span="7"><div class="didOffer_title">19895425446</div></el-col>
       </el-row>
     </div>
+  </div>
   </div>
 </template>
 
@@ -124,11 +127,24 @@ export default {
 
 <style lang="scss" scoped>
 .paperAc{
-  border-bottom:4px solid #FF452C;
+  color:#ffffff;
+  width:141px;
+  height:50px;
+  background:#F15749;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
 }
 .HadAc{
-  border-bottom:4px solid #FF452C;
+  background: #F15749;
+  color: #fff;
+  width: 171px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-weight: bold;
 }
+
 .person_paper{
   width: 100%;
   height:100%;
@@ -139,8 +155,9 @@ export default {
     text-align: left;
     padding-left:8%;
     img{
-      width:75%;
-      height:80%;
+      width: 100%;
+      height: 80%;
+      margin-left: -54px;
     }
   }
   .person_paper_num{
@@ -148,46 +165,52 @@ export default {
     color:#FF0000;
     margin-top: 4%;
     font-size: 17px;
+    position: relative;
+    top: 48px;
+    left: 203px;
   }
   .person_paper_table{
-    width:80%;
-    margin-left: 4%;
+    width: 300px;
+    margin-left: 1%;
     text-align: left;
-    border-bottom:1px solid #ccc;
-    margin-top:5%;
+    border-bottom: 1px solid #F15749;
+    margin-top: 2%;
     span{
-      color:#FF452C;
+      /*color:#3C3C3C;*/
       font-size: 17px;
       cursor:pointer;
     }
     span:nth-child(2){
-      margin-left:20px;
+      margin-left:66px;
     }
   }
   .person_paper_tableB{
-    width:90%;
+    width: 90%;
     margin-left: 4%;
     text-align: left;
-    border-bottom:1px solid #ccc;
-    margin-top:5%;
+    border-bottom: 1px solid #F15749;
+    /*margin-top: 12%;*/
+
     span{
-      color:#FF452C;
       font-size: 17px;
       cursor:pointer;
     }
     span:nth-child(2){
-      margin-left:20px;
+      margin-left: 86px;
     }
   }
   .hadOffer{
     width: 90%;
     margin-left:4%;
     margin-top:4%;
+
     .hadOffer_title{
       min-height: 34px;
       line-height: 34px;
       font-size: 16px;
-      background: #ebebeb;
+      background: #F15749;
+      color: #fff;
+      font-family: bold;
     }
     .oferMes:nth-of-type(even){
       background: #f7f7f7;
@@ -210,14 +233,15 @@ export default {
     }
     .hadOffer_opera{
       width: 100%;
-      height:34px;
-      line-height: 34px;
+      height: 51px;
+      line-height: 57px;
       font-size: 14px;
       text-align: center;
-      background: #f7f7f7;
+      background: #EFF8FF;
       position: relative;
+      margin-top: 8px;
       span:nth-child(1){
-        margin-left:-150px;
+        margin-left: -80px;
       }
       span:nth-child(2){
         margin-left:50px;
@@ -228,8 +252,8 @@ export default {
         min-height: 26px;
         position: absolute;
         right:2%;
-        top:10%;
-        background: #FF452C;
+        top:30%;
+        background: #F15749;
         border-radius: 5px;
         color:white;
       }
@@ -250,4 +274,12 @@ export default {
     }
   }
 }
+.yibao_w{
+  position: relative;
+  top: -413px;
+  left: 309px;
+  /*border: 1px solid;*/
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+}
+
 </style>
