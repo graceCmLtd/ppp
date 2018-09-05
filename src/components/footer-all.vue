@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="about_us">
-      <p>琼&nbsp;ICP&nbsp;备&nbsp;<a href="http://www.miitbeian.gov.cn" style="color: white">18003430</a>号 格熙（海南）区块链科技有限公司 &nbsp;&nbsp;</p>
+      <p>琼&nbsp;ICP&nbsp;备&nbsp;<a href="http://www.miitbeian.gov.cn" style="color: white;">18003430</a>号 格熙（海南）区块链科技有限公司</p>
     </div>
   </div>
 </template>

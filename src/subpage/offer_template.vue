@@ -22,8 +22,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td width="100" height="40" bgcolor="red" color="#fff" >修改报价</td>
-        <td>置顶首页显示</td>
+        <td>修改报价</td>
+        <td style="color: #F15749;">○置顶首页显示</td>
       </tr>
       <tr class="style-w1">
         <td>10w-50w</td>
@@ -33,7 +33,7 @@
         <td></td>
         <td></td>
         <td>修改报价</td>
-        <td>置顶首页显示</td>
+        <td>○置顶首页显示</td>
       </tr>
       <tr class="style-w1">
         <td>10w-50w</td>
@@ -43,7 +43,7 @@
         <td>3.7%</td>
         <td></td>
         <td>修改报价</td>
-        <td>置顶首页显示</td>
+        <td>○置顶首页显示</td>
       </tr>
       <tr class="style-w1">
         <td>10w-50w</td>
@@ -53,7 +53,7 @@
         <td></td>
         <td>3.54%</td>
         <td>修改报价</td>
-        <td>置顶首页显示</td>
+        <td>○置顶首页显示</td>
       </tr>
       <tr class="style-w1">
         <td>10w-50w</td>
@@ -63,12 +63,12 @@
         <td>2.67%</td>
         <td></td>
         <td>修改报价</td>
-        <td>置顶首页显示</td>
+        <td>○置顶首页显示</td>
       </tr>
-      <!--   <div class="bottom_w">
-                    <p>备注：详细价格联系方式详谈</p>
-                    <p>修改备注</p>
-                </div> -->
+       <div class="bottom_w">
+                    <p style="float:left;">备注：详细价格联系方式详谈</p>
+                    <button class="btn-w_w">修改备注</button>
+                </div>
 
     </table>
   </div>
@@ -297,11 +297,11 @@ export default {
   .content_w1_title span{
     width:190px;
     height:61px;
-    font-size:20px;
+    font-size: 16px;
     font-family:"微软雅黑";
     font-weight:bold;
     color:rgba(255,255,255,1);
-    line-height:26px;
+    /*line-height:26px;*/
     display: block;
     background: rgba(243,86,67,1);
     line-height: 61px;
@@ -312,7 +312,7 @@ export default {
     height: 100px;
     /*border: 1px solid black;*/
     border-collapse: collapse;
-    /*background: red;*/
+    /*background: #F15749;*/
 
   }
   .content_w1 .style_w{
@@ -341,6 +341,27 @@ export default {
     position: absolute;
     bottom: 0px;
     background: #FFFDEF;
+    width: 745px;
+    line-height: 50px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 15px;
 
   }
+  .btn-w_w{
+    float: right;
+    width: 140px;
+    height: 40px;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(241,87,73,0.5);
+    box-shadow: 0px 2px 4px 0px rgba(241,87,73,0.5);
+    border-radius: 3px;
+    margin-top: 20px;
+    background: #F15749;
+    position: relative;
+    top: -8px;
+    left: -9px;
+    color: #fff;
+  }
+
 </style>

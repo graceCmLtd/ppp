@@ -46,6 +46,12 @@ const router = new Router({
           name:'Audit',
           component:resolve=>require(['@/subpage/person_audit'],resolve)
         },
+
+
+
+
+
+
         {
           path:'/release/offer',//用户发布的报价
           name:'ReOffer',
@@ -74,6 +80,45 @@ const router = new Router({
           ],
           redirect:'/release/offer/offerAll'
         },
+
+
+
+
+
+
+        {
+          path:'/release/Receipt',//接单
+          name:'Receipt',
+          component:resolve=>require(['@/subpage/Receipt'],resolve),
+          children:[
+            {
+              path:'/release/Receipt/ReceiptAll',//用户全部报价
+              name:'ReceiptAll',
+              component:resolve=>require(['@/subpage/Receipt_all'],resolve)
+            },
+            {
+              path:'/release/Receipt/offerAccepted',//已被卖家接受的报价
+              name:'Accepted',
+              component:resolve=>require(['@/subpage/Receipt_accepted'],resolve)
+            },
+            {
+              path:'/release/Receipt/offerPrices',//报价中
+              name:'Prrices',
+              component:resolve=>require(['@/subpage/Receipt_prices'],resolve)
+            },
+            {
+              path:'/release/Receipt/offerCancel',//已失效的报价
+              name:'Cancel',
+              component:resolve=>require(['@/subpage/Receipt_cancel'],resolve)
+            }
+          ],
+          redirect:'/release/Receipt/ReceiptAll'
+        },
+
+
+
+
+
         {
           path:'/release/intention',//求贴意向
           name:'Intention',
@@ -107,6 +152,9 @@ const router = new Router({
           ],
           redirect:'/release/intention/all'
         },
+
+
+
         {
           path:'/release/mes',//用户消息
           name:'Mes',
