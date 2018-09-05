@@ -3,7 +3,7 @@
   <div class="person_offerIn">
 
     <el-row  v-for="(item,index) in noteList" :key = "index">
-      <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
+      <div @click="getDetail(index)" style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
         <el-row>
           <el-col><div class="person_offerIn_title" id="name_w">{{item.acceptor}}</div></el-col>
           <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000}}w</div></el-col>
@@ -51,6 +51,9 @@ export default {
       console.log(res)
       this.noteList=res.data;
     })
+    },
+    getDetail(index){
+      console.log("see details .......")
     }
   },
   created(){

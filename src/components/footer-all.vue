@@ -9,10 +9,10 @@
           <li>企业文化</li>
         </ul>
         <ul>
-          <li style="color:black;font-size:17px;">规则协议</li>
+          <li style="color:black;font-size:17px;">平台协议</li>
           <li>平台服务协议</li>
-          <li>红利圈注册协议</li>
-          <li>保证金协议</li>
+          <li>碰碰票平台交易协议</li>
+          <li>协议</li>
         </ul>
         <ul>
           <li style="color:black;font-size:17px;">帮助中心</li>
@@ -26,9 +26,9 @@
       <div class="contact_us_right">
         <ul>
           <li  style="color:black;font-size:17px;">联系我们</li>
-          <li>邮箱：tonightCta@gmail.com</li>
-          <li>邮编：518000</li>
-          <li>地址：深圳市南山区深圳湾科技生态园11栋A座14楼</li>
+          <li>邮箱：info@pengpengpiao.com</li>
+          <li> </li>
+          <li> </li>
         </ul>
       </div>
     </div>

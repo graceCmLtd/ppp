@@ -165,12 +165,13 @@ export default {
   width: 100%;
   height:100%;
   min-width: 1378px;
+  z-index:999;
   .page_con{
     width: 70%;
     height:auto;
     margin:0 auto;
     position:relative;
-    z-index: 5;
+    z-index: 999;
     .page_release{
       width: 300px;
       height:142px;
