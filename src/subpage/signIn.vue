@@ -2,7 +2,7 @@
   <div class="sgin_in">
     <!-- <Header/> -->
     <div class="sgin_in_con">
-      <p class="sgin_in_title">用户信息</p>
+      <p class="sgin_in_title">免费注册</p>
       <div class="signIn_mes">
         <ul class="signIn_title">
           <!--<li><span style="color:red;">*</span>用户名</li>-->
@@ -67,7 +67,7 @@ export default {
         _this.loadingSginIn=true;
           _this.axios.post(_this.oUrl+'/register',
           {
-            "login_name":name,
+            "login_name":"default",
             "user_phone":phone,
             "user_passwd":pass,
             "code":phoneCode
@@ -108,13 +108,13 @@ export default {
   width: 100%;
   height:100%;
   min-width: 1378px;
-  background:rgba(242,242,242,1);
+
   .sgin_in_con{
     width: 26%;
     height: 52%;
     margin: 0 auto;
     margin-top: 1% !important;
-    border: 1px solid red;
+    box-shadow: 0px 0px 30px 0px rgba(188, 188, 188, 0.5);
     border-radius: 4px;
     min-height: 750px;
     min-width: 1208px;
@@ -125,7 +125,6 @@ export default {
       font-size: 20px;
       margin-top: 0;
       margin-bottom: 2%;
-      /*background: linear-gradient(180deg,rgba(0,165,255,1),rgba(0,108,253,1));*/
       height:70px;
       line-height: 70px;
       border-top-left-radius: 12px;
