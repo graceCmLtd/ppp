@@ -73,7 +73,7 @@
 
 <script>
 import {getCookie} from '@/assets/util'
-//import personOfferIn from '@/subpage/person_offerIn'
+import personOfferIn from '@/subpage/person_offerIn'
 export default {
   data(){
     return{

@@ -2,7 +2,7 @@
   <div class="sgin_in">
     <!-- <Header/> -->
     <div class="sgin_in_con">
-      <p class="sgin_in_title">用户信息</p>
+      <p class="sgin_in_title">免费注册</p>
       <div class="signIn_mes">
         <ul class="signIn_title">
           <!--<li><span style="color:red;">*</span>用户名</li>-->
@@ -108,13 +108,13 @@ export default {
   width: 100%;
   height:100%;
   min-width: 1378px;
-  background:rgba(242,242,242,1);
+  /*background:rgba(242,242,242,1);*/
   .sgin_in_con{
     width: 26%;
     height: 52%;
     margin: 0 auto;
     margin-top: 1% !important;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     border-radius: 4px;
     min-height: 750px;
     min-width: 1208px;

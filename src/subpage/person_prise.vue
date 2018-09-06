@@ -32,6 +32,7 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
+          <span>去选中你的营业执照吧</span>
           <input type="file" accept="image/jpeg" name="" value="">
         </div>
       </div>
@@ -51,10 +52,8 @@
           <li><input type="text" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" placeholder="请输入你的银行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" placeholder="请输入你的卡号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-
         </ul>
       </div>
-
       <button style="width: 200px;height: 30px; background: #F15749; color: #fff; margin-top: 20px;">提交验证</button>
     </div>
   </div>
