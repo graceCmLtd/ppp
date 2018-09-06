@@ -130,7 +130,7 @@ export default {
       font-size: 14px;
       line-height: 22px;
       height:22px;
-      width: 36px;
+      width: 56px;
       /*margin-right: 14%;*/
     }
     .enter{

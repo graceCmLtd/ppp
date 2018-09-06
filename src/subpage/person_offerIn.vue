@@ -16,7 +16,7 @@
       </div>
     </el-row>
 
-    <el-row v-for="(item,index) in noteList" :key="index">
+    <!--<el-row v-for="(item,index) in noteList" :key="index">
       <el-col :span="5"><div class="person_offerIn_mes"
                              :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
       >{{item.acceptor}}</div></el-col>
@@ -27,7 +27,7 @@
         <span>2018-07-22</span>
         <span>00:00:00</span>
       </div></el-col>
-    </el-row>
+    </el-row>-->
     <person-paper  :noteL = 'noteDetail' ></person-paper>
   </div>
 
