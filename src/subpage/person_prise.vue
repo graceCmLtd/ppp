@@ -54,6 +54,8 @@
 
         </ul>
       </div>
+
+      <button style="width: 200px;height: 30px; background: #F15749; color: #fff; margin-top: 20px;">提交验证</button>
     </div>
   </div>
 </template>
