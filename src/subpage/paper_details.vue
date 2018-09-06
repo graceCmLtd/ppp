@@ -141,7 +141,7 @@ export default {
       width: 100%;
       text-align: left;
       font-size: 20px;
-      letter-spacing:1px
+      letter-spacing:1px;
     }
     .paper_mes{
       width: 100%;
@@ -165,31 +165,42 @@ export default {
         }
       }
       .place{
-        width: 50%;
-        height:100%;
+        /*width: 50%;*/
+        /*height:100%;*/
+        width: 450px;
+        height: 350px;
         min-height: 300px;
         position: relative;
-        background: #ff540c;
+        background: url("../../static/img/jigou.png");
         padding-left:10%;
         padding-top:3%;
         .num{
           font-size: 20px;
           width: 80%;
-          text-align: left;
           color:white;
+          font-weight: bold;
+          margin-left: -9px;
         }
         .table{
-          width: 60%;
-          height:60%;
+          width: 400px;
+          height: 260px;
           min-height: 170px;
           min-width: 388px;
           position: absolute;
           background: white;
-          top:25%;
-          padding-left:10%;
+          top: 23%;
+          left: 8%;
+          padding-left: 10%;
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
           flex-direction: column;
           justify-content: space-around;
+          box-shadow:0px 2px 10px 0px rgba(241,87,73,0.5);
+          border-radius:4px;
+
           p{
             width: 80%;
             font-size: 14px;
@@ -201,11 +212,16 @@ export default {
               font-size: 16px;
             }
             button{
-              width: 90%;
-              height:32px;
-              border-radius: 5px;
-              background: #ff452c;
-              color:white;
+              width:348px;
+              height:50px;
+              background:rgba(241,87,73,1);
+              box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
+              border-radius:4px;
+              font-weight:bold;
+              color:rgba(255,255,255,1);
+              line-height:26px;
+              font-size: 18px;
+              margin-left: -16px;
             }
           }
         }
