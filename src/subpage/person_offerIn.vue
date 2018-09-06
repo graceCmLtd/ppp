@@ -3,8 +3,8 @@
   <div class="person_offerIn">
 
     <el-row  v-for="(item,index) in noteList" :key = "index">
-      <div style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
-        <el-row>
+      <div @click="onSelect(index)" style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 142px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
+        <el-row >
           <el-col><div class="person_offerIn_title" id="name_w">{{item.acceptor}}</div></el-col>
           <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000}}w</div></el-col>
           <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
@@ -26,16 +26,27 @@
         <span>00:00:00</span>
       </div></el-col>
     </el-row> -->
+    <person-paper  :noteL = 'noteDetail' ></person-paper>
   </div>
+
+   <!--  <person-paper noteList = 666></person-paper> -->
+
+  
 </template>
 
 <script>
 import {getCookie} from '@/assets/util'
+import personPaper from '@/subpage/person_paper'
 export default {
   data(){
     return{
-      noteList:[]
+      noteList:[],
+      index:0,
+      noteDetail:[]
     }
+  },
+  components: {
+    personPaper
   },
   methods:{
     getPaper(){
@@ -51,6 +62,15 @@ export default {
       console.log(res)
       this.noteList=res.data;
     })
+    },
+    onSelect(index){
+      console.log("on select the item ....")
+      console.log(index)
+      this.index = index
+      var arr = new Array(this.noteList[index])
+      this.noteDetail = arr
+      console.log(this.noteList[index])
+
     }
   },
   created(){

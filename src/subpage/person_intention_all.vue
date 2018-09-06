@@ -20,8 +20,8 @@
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.releaseDate}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.transacDate}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
@@ -35,6 +35,7 @@
           <span>张家湾****有限公司</span>
           <span class="pople">赵经理</span>
           <span>13240891337</span>
+          <a href="tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes" style="text-decoration:none">qq咨询</a>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
@@ -53,8 +54,8 @@
           <div class="message_right">
             <ul>
               <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{releaseDate}}</span></li>
-              <li>剩余天数：<span>99天</span></li>
+              <li>汇票到期日：<span>{{maturity}}</span></li>
+              <li>剩余天数：<span>{{remain_days}}天</span></li>
             </ul>
           </div>
         </div>
@@ -145,7 +146,9 @@ export default {
       xPerLakh:null,
       transacDate:null,
       bank:null,
-      releaseDate:null
+      releaseDate:null,
+      maturity:null,
+      remain_days:null
     }
   },
   methods:{
@@ -174,6 +177,8 @@ export default {
         _this.transacDate=_this.noteList[index].transacDate;
         _this.bank=_this.noteList[index].acceptor;
         _this.releaseDate=_this.noteList[index].releaseDate;
+        _this.maturity = _this.noteList[index].maturity;
+        _this.remain_days = _this.noteList[index].remain_days;
         _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.$refs.PaperIs.src=res.data[0].pic1;
