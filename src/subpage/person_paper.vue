@@ -6,11 +6,14 @@
     </div>
     <p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>
     <p class="person_paper_table">
-      <router-link
+      <!-- <router-link
       to="/release/paper/offerIn" tag="span"
       @click.native="offerIn()"
       :class="{paperAc:color==1}"
-      >全部报价</router-link>
+      >全部报价</router-link> -->
+      <!-- <person-offerIn @click.native="offerIn()"
+      :class="{paperAc:color==1}"
+      >报价</person-offerIn> -->
       <router-link
       to="/release/paper/offerBe" tag="span"
       @click.native="offerBe()"
@@ -36,12 +39,12 @@
         <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
         <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
       </el-row>
-      <div class="">
+      <div class="person-offerIn" v-for = "item in noteL ">
         <el-row class="oferMes">
-          <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">纸银</div></el-col>
-          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">中国银行</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}}</div></el-col>
           <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">644w</div></el-col>
-          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">2018-07-30</div></el-col>
+          <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}}</div></el-col>
           <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">7天</div></el-col>
           <el-col :span="4"><div class="hadOffer_mes limit">
             <span>年化：</span>
@@ -65,10 +68,12 @@
     </div>
   </div>
   </div>
+
 </template>
 
 <script>
 import {getCookie} from '@/assets/util'
+//import personOfferIn from '@/subpage/person_offerIn'
 export default {
   data(){
     return{
@@ -76,9 +81,13 @@ export default {
       colorB:3,
       hadOffer:true,
       didOffer:false,
-      billN:null
+      billN:null,
+      billDetail:null
     }
   },
+    props:{
+      'noteL':[Array]
+    },
   methods:{
     offerIn(){
       this.color=1;
@@ -276,9 +285,9 @@ export default {
   }
 }
 .yibao_w{
-  /*position: relative;
+  position: relative;
   top: -413px;
-  left: 309px;*/
+  left: 309px;
   /*border: 1px solid;*/
   box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
 }
