@@ -6,11 +6,11 @@
     </div>
     <!--<p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>-->
     <p class="person_paper_table">
-      <!-- <router-link
+      <router-link
       to="/release/paper/offerIn" tag="span"
       @click.native="offerIn()"
       :class="{paperAc:color==1}"
-      >全部报价</router-link> -->
+      >全部报价</router-link>
       <!-- <person-offerIn @click.native="offerIn()"
       :class="{paperAc:color==1}"
       >报价</person-offerIn> -->
@@ -73,7 +73,7 @@
 
 <script>
 import {getCookie} from '@/assets/util'
-//import personOfferIn from '@/subpage/person_offerIn'
+import personOfferIn from '@/subpage/person_offerIn'
 export default {
   data(){
     return{

@@ -36,7 +36,7 @@
       <div class="prise_pic">
         <div class="prise_upload">
           <span style="color:#ccc;">去选中你的营业执照吧</span>
-          <img src="">
+
           <input type="file" accept="image/jpeg" name="" value="">
         </div>
       </div>

@@ -16,7 +16,7 @@
           <li><input type="text" value="" ref="UserName"/></li>
           <li><input type="text" value="" ref="Phone"/></li>
           <li><input type="text" value="" ref="Code"/></li>
-          <li><input type="text" value="" ref="PhoneCode"/><span>获取短信验证码</span></li>
+          <li><input type="text" value="" ref="PhoneCode"/><span @click="getPhoneSms()">获取短信验证码</span></li>
           <li><input type="text" value=""/></li>
           <li><input type="text" value="" ref="pass"/></li>
         </ul>
@@ -48,7 +48,8 @@ export default {
     return{
       signInMaskShow:false,
       loadingSginIn:false,
-      siginInText:'同意协议并注册'
+      siginInText:'同意协议并注册',
+      userPhone:null
     }
   },
   methods:{
@@ -89,7 +90,23 @@ export default {
         })
       }
     },
-
+    getPhoneSms(){
+      //let Phone = this.phone
+      let _this = this
+      let Phone=_this.$refs.Phone.value;
+      console.log("the phone number is ")
+      console.log(Phone)
+      this.axios.post(this.oUrl+'/getPhoneSms',{
+        "phone":Phone
+      },
+      {headers:{
+        'Content-Type':'application/json'
+      }}
+    ).then((res)=>{
+      console.log(res)
+      //this.noteList=res.data;
+    })
+    },
     sginUp(){
       this.$router.push({
         name:'Password',
@@ -108,13 +125,15 @@ export default {
   width: 100%;
   height:100%;
   min-width: 1378px;
-
+  /*background:rgba(242,242,242,1);*/
   .sgin_in_con{
     width: 26%;
     height: 52%;
     margin: 0 auto;
     margin-top: 1% !important;
     box-shadow: 0px 0px 30px 0px rgba(188, 188, 188, 0.5);
+    /*border: 1px solid red;*/
+
     border-radius: 4px;
     min-height: 750px;
     min-width: 1208px;
