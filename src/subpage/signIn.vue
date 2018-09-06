@@ -21,7 +21,10 @@
           <li><input type="text" value="" ref="pass"/></li>
         </ul>
       </div>
-      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:red;">《碰碰票协议》</span></p>
+      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">
+        我已阅读
+        <span style="color:red;" class="amgrent_w" ref="alert">《碰碰票协议》</span></p>
+
       <p class="turnSignin"><button @click="sginIn()"
         v-loading="loadingSginIn"
         element-loading-text=""
@@ -56,7 +59,8 @@ export default {
       let code=_this.$refs.Code.value;//图形验证码
       let phoneCode=_this.$refs.PhoneCode.value;//手机验证码
       let pass=_this.$refs.pass.value;//密码
-      if(name==''||phone==''||phone==''||phoneCode==''||pass==''){
+      let amgrent_w=_this.$refs.amgrent_w.value;
+      if(name==''||phone==''||phone==''||phoneCode==''||pass==''||amgrent_w==''){
         alert('请先完善您的个人信息！')
       }else{
         _this.siginInText='';
@@ -85,6 +89,7 @@ export default {
         })
       }
     },
+
     sginUp(){
       this.$router.push({
         name:'Password',
@@ -92,9 +97,10 @@ export default {
           back:true
         }
       })
-    }
+    },
   }
 }
+
 </script>
 
 <style lang="scss" scoped>

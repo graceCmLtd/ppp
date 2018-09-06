@@ -41,9 +41,9 @@
         <div class="mes_bot">
           <p>
             <span>张家湾****贸易有限公司</span>
-            <span>赵总</span>
-            <span>13240891337</span>
-            <button type="button" name="button">查看详情</button>
+            <span>{{item.companyName}}</span>
+            <span>{{item.companyId}}</span>
+            <button type="button" name="button" >查看详情11</button>
           </p>
         </div>
       </div>

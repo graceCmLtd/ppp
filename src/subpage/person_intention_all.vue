@@ -126,7 +126,7 @@
           <li><a href="">赵总</a></li>
           <li><a href="">13900323434</a></li>
           <li>
-            <button class="btn_w">详情</button>
+            <button class="btn_w" >详情</button>
           </li>
         </ul>
       </div>
