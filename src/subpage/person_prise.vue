@@ -13,17 +13,20 @@
           <li>公司名称</li>
           <li>联系人姓名</li>
           <li>联系人电话</li>
+          <li>联系人QQ</li>
           <li>联系人邮箱</li>
         </ul>
         <ul class="right">
           <!--<li>****科技有限公司</li>-->
-          <li><input type="text" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
+          <li><input type="text" ref="companyName" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
           <!--<li>范冰冰</li>-->
-          <li><input type="text" placeholder="请输入你的姓名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="contactsName" placeholder="请输入你的姓名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <!--<li>139****0099</li>-->
-          <li><input type="text" placeholder="请输入你的手机号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="contactsPhone" placeholder="请输入你的手机号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <!--<li>64564647@qq.com</li>-->
-          <li><input type="text" placeholder="请输入你的QQ号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="contactsEmail" placeholder="请输入你的邮箱" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="contactsQQ" placeholder="请输入你的QQ号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          
 
         </ul>
       </div>
@@ -32,7 +35,8 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <span>去选中你的营业执照吧</span>
+          <span style="color:#ccc;">去选中你的营业执照吧</span>
+
           <input type="file" accept="image/jpeg" name="" value="">
         </div>
       </div>
@@ -49,18 +53,56 @@
           <!--<li>****科技有限公司</li>-->
           <!--<li>中国建设银行**分行</li>-->
           <!--<li>6217000783248325845</li>-->
-          <li><input type="text" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" placeholder="请输入你的银行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" placeholder="请输入你的卡号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="bankAccountName" placeholder="请输入你的账户名称" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="bankName" placeholder="请输入你的开户行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" ref="bankAccount" placeholder="请输入你的账号（卡号）" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+
         </ul>
       </div>
-      <button style="width: 200px;height: 30px; background: #F15749; color: #fff; margin-top: 20px;">提交验证</button>
+
+      <button @click="submitInfo()"  style="width: 200px;height: 30px; background: #F15749; color: #fff; margin-top: 20px;">提交验证</button>
     </div>
   </div>
 </template>
 <script>
+import {getCookie} from '@/assets/util'
 export default {
 
+    methods:{
+      submitInfo(){
+        let contactsId = getCookie("Iud");
+        console.log(contactsId)
+        this.axios.post(this.oUrl+'/addCompany',{
+        "companyInfo":{
+              "companyName":this.$refs.companyName.value,
+              "contactsId":contactsId,
+              "contactsPhone":this.$refs.contactsPhone.value,
+              "contactsEmail":this.$refs.contactsEmail.value,
+              "contactsQQ":this.$refs.contactsQQ.value,
+              "bankAccountName":this.$refs.bankAccountName.value,
+              "bankAccount":this.$refs.bankAccount.value,
+              "bankName":this.$refs.bankName.value,
+              "picId":4342424,
+              "signUpAddr":"双井支行",
+              "updateDate":"2018-07-29"
+        },
+        "companyPics":{
+          
+          "picContent":"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+          "updateDate":"2018-08-02",
+          "contactsId":contactsId
+        }
+      },
+      {headers:{
+        'Content-Type':'application/json'
+      }}
+      ).then((res)=>{
+        this.noteListLed=res.data;
+        console.log("add company info ......")
+        console.log(this.noteListLed)
+      })
+      }
+    }
 }
 </script>
 

@@ -17,7 +17,18 @@ Vue.prototype.axios=Axios;
 
 // Vue.prototype.oUrl='http://localhost:8080/ppp'
 
+<<<<<<< HEAD
+ Vue.prototype.oUrl='http://localhost:8080/ppp'
+
+
+
+//Vue.prototype.oUrl='http://39.104.140.40/ppp'
+//Vue.prototype.oUrl='http://pengpengpiao.cn/ppp'
+
+
+=======
 Vue.prototype.oUrl='http://39.104.140.40/ppp'
+>>>>>>> 8b9cbece1021f9f0aab29939a193f81cd89d7cf5
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

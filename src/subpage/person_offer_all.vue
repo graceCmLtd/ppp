@@ -15,9 +15,10 @@
       <div class="" v-for="(item,index) in noteList" :key="index">
         <el-row >
           <el-col :span="3"><div class="mes">{{item.billType}}</div></el-col>
-          <el-col :span="3"><div class="mes bank" ref="person_offer_all_bank"
+          <!-- <el-col :span="3"><div class="mes bank" ref="person_offer_all_bank"
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
-            >{{item.acceptor}}</div></el-col>
+            >{{item.acceptor}}</div></el-col> -->
+            <el-col :span="3"><div class="mes">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.amount}}</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="mes">{{day}}</div></el-col>
@@ -40,9 +41,15 @@
         <div class="mes_bot">
           <p>
             <span>张家湾****贸易有限公司</span>
+<<<<<<< HEAD
+            <span>{{item.companyName}}</span>
+            <span>{{item.companyId}}</span>
+            <button type="button" name="button" >查看详情11</button>
+=======
             <span>赵经理</span>
             <span>12756937850</span>
             <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+>>>>>>> 8b9cbece1021f9f0aab29939a193f81cd89d7cf5
           </p>
         </div>
       </div>

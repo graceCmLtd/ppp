@@ -3,9 +3,11 @@
   <div class="person_offerIn" style="overflow-y: scroll;">
 
     <el-row  v-for="(item,index) in noteList" :key = "index">
+
       <div @click="onSelect(index)" style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 150px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
         <el-row >
           <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;">{{item.acceptor}}</div></el-col>
+
           <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000}}w</div></el-col>
           <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
           <el-col><div class="person_offerIn_title time">到期日:{{item.maturity}}</div></el-col>
@@ -75,6 +77,7 @@
     },
     created(){
       this.getPaper()
+
     }
   }
 </script>

@@ -14,9 +14,9 @@
         </ul>
         <ul class="signIn_message">
           <li><input type="text" value="" ref="UserName"/></li>
-          <li><input type="text" value="" ref="Phone"/></li>
+          <li><input type="text" value="" v-model="Phone"/></li>
           <li><input type="text" value="" ref="Code"/></li>
-          <li><input type="text" value="" ref="PhoneCode"/><span>获取短信验证码</span></li>
+          <li><input type="text" value="" ref="PhoneCode"/><span @click="getPhoneSms()">获取短信验证码</span></li>
           <li><input type="text" value=""/></li>
           <li><input type="text" value="" ref="pass"/></li>
         </ul>
@@ -46,7 +46,8 @@ export default {
     return{
       signInMaskShow:false,
       loadingSginIn:false,
-      siginInText:'同意协议并注册'
+      siginInText:'同意协议并注册',
+      Phone:null
     }
   },
   methods:{
@@ -65,7 +66,7 @@ export default {
         _this.loadingSginIn=true;
           _this.axios.post(_this.oUrl+'/register',
           {
-            "login_name":name,
+            "login_name":"default",
             "user_phone":phone,
             "user_passwd":pass,
             "code":phoneCode
@@ -87,7 +88,23 @@ export default {
         })
       }
     },
-
+    getPhoneSms(){
+      //let Phone = this.phone
+      let _this = this
+      let Phone=_this.Phone;
+      console.log("the phone number is ")
+      console.log(Phone)
+      this.axios.post(this.oUrl+'/getPhoneSms',{
+        "phone":Phone
+      },
+      {headers:{
+        'Content-Type':'application/json'
+      }}
+    ).then((res)=>{
+      console.log(res)
+      //this.noteList=res.data;
+    })
+    },
     sginUp(){
       this.$router.push({
         name:'Password',
@@ -117,7 +134,9 @@ export default {
     height: 52%;
     margin: 0 auto;
     margin-top: 1% !important;
+    box-shadow: 0px 0px 30px 0px rgba(188, 188, 188, 0.5);
     /*border: 1px solid red;*/
+
     border-radius: 4px;
     min-height: 750px;
     min-width: 1208px;
@@ -128,7 +147,6 @@ export default {
       font-size: 20px;
       margin-top: 0;
       margin-bottom: 2%;
-      /*background: linear-gradient(180deg,rgba(0,165,255,1),rgba(0,108,253,1));*/
       height:70px;
       line-height: 70px;
       border-top-left-radius: 12px;
