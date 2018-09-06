@@ -7,15 +7,15 @@
         <ul class="signIn_title">
             <!--<li><span style="color:red;">*</span>用户名</li>-->
           <li><span style="color:red;">*</span>手机号码</li>
-          <li><span style="color:red;">*</span>验证码</li>
+          <!-- <li><span style="color:red;">*</span>验证码</li> -->
           <li><span style="color:red;">*</span>手机验证码</li>
           <li><span style="color:red;">*</span>登录密码</li>
           <li><span style="color:red;">*</span>再次输入密码</li>
         </ul>
         <ul class="signIn_message">
-          <li><input type="text" value="" ref="UserName"/></li>
+          <!-- <li><input type="text" value="" ref="UserName"/></li> -->
           <li><input type="text" value="" v-model="Phone"/></li>
-          <li><input type="text" value="" ref="Code"/></li>
+          <!-- <li><input type="text" value="" ref="Code"/></li> -->
           <li><input type="text" value="" ref="PhoneCode"/><span @click="getPhoneSms()">获取短信验证码</span></li>
           <li><input type="text" value=""/></li>
           <li><input type="text" value="" ref="pass"/></li>
@@ -53,13 +53,14 @@ export default {
   methods:{
     sginIn(){
       let _this=this;
-      let name=_this.$refs.UserName.value;//用户名
-      let phone=_this.$refs.Phone.value;//手机号码
-      let code=_this.$refs.Code.value;//图形验证码
+      //let name=_this.$refs.UserName.value;//用户名
+      let phone=_this.Phone;//手机号码
+      //let code=_this.$refs.Code.value;//图形验证码
       let phoneCode=_this.$refs.PhoneCode.value;//手机验证码
       let pass=_this.$refs.pass.value;//密码
-      let amgrent_w=_this.$refs.amgrent_w.value;
-      if(name==''||phone==''||phone==''||phoneCode==''||pass==''||amgrent_w==''){
+      //let amgrent_w=_this.$refs.amgrent_w.value;
+      //||amgrent_w==''
+      if(phone==''||phoneCode==''||pass==''){
         alert('请先完善您的个人信息！')
       }else{
         _this.siginInText='';
@@ -76,26 +77,35 @@ export default {
           }},
         ).then((res)=>{
           console.log(res)
-          _this.siginInText='同意协议并注册';
-          _this.loadingSginIn=false;
-          _this.loadingSginIn=false;
-          _this.signInMaskShow=true;
-          _this.$refs.signIn_prompt.style.display='block';
-          setTimeout(()=>{
-            _this.$refs.signIn_prompt.style.opacity='1';
-            _this.$refs.signIn_prompt.style.top='15%';
-          })
+          if (res.data.status == 'success') {
+              _this.siginInText='同意协议并注册';
+              _this.loadingSginIn=false;
+              _this.loadingSginIn=false;
+              _this.signInMaskShow=true;
+              _this.$refs.signIn_prompt.style.display='block';
+              setTimeout(()=>{
+                _this.$refs.signIn_prompt.style.opacity='1';
+                _this.$refs.signIn_prompt.style.top='15%';
+              })
+          }else if(res.data.errorMsg == "the phone sms is wrong"){
+            alert("手机验证码错误")
+          }else{
+            alert("注册失败")
+          }
+          
+
+
         })
       }
     },
     getPhoneSms(){
       //let Phone = this.phone
-      let _this = this
-      let Phone=_this.Phone;
+      /*let _this = this
+      let Phone=_this.Phone;*/
       console.log("the phone number is ")
-      console.log(Phone)
+      console.log(this.Phone)
       this.axios.post(this.oUrl+'/getPhoneSms',{
-        "phone":Phone
+        "phone":this.Phone
       },
       {headers:{
         'Content-Type':'application/json'
