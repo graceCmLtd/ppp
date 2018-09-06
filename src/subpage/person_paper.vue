@@ -276,9 +276,9 @@ export default {
   }
 }
 .yibao_w{
-  position: relative;
+  /*position: relative;
   top: -413px;
-  left: 309px;
+  left: 309px;*/
   /*border: 1px solid;*/
   box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
 }

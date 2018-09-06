@@ -27,6 +27,7 @@
       </div></el-col>
     </el-row> -->
   </div>
+  
 </template>
 
 <script>
@@ -54,6 +55,7 @@ export default {
     },
     getDetail(index){
       console.log("see details .......")
+      console.log(index)
     }
   },
   created(){

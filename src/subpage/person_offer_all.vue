@@ -15,9 +15,10 @@
       <div class="" v-for="(item,index) in noteList" :key="index">
         <el-row >
           <el-col :span="3"><div class="mes">{{item.billType}}</div></el-col>
-          <el-col :span="3"><div class="mes bank" ref="person_offer_all_bank"
+          <!-- <el-col :span="3"><div class="mes bank" ref="person_offer_all_bank"
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
-            >{{item.acceptor}}</div></el-col>
+            >{{item.acceptor}}</div></el-col> -->
+            <el-col :span="3"><div class="mes">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.amount}}</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="mes">{{day}}</div></el-col>
