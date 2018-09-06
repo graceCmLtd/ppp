@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="person_prise">
     <div class="person_prise_pic">
-      <img src="../../static/img/process.png" alt="">
+      <img src="../../static/img/Authentication.png" alt="">
     </div>
     <div class="person_prise_con">
       <p class="prise_title">
@@ -16,10 +16,15 @@
           <li>联系人邮箱</li>
         </ul>
         <ul class="right">
-          <li>****科技有限公司</li>
-          <li>范冰冰</li>
-          <li>139****0099</li>
-          <li>64564647@qq.com</li>
+          <!--<li>****科技有限公司</li>-->
+          <li><input type="text" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
+          <!--<li>范冰冰</li>-->
+          <li><input type="text" placeholder="请输入你的姓名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <!--<li>139****0099</li>-->
+          <li><input type="text" placeholder="请输入你的手机号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <!--<li>64564647@qq.com</li>-->
+          <li><input type="text" placeholder="请输入你的QQ号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+
         </ul>
       </div>
       <p class="prise_title">
@@ -40,9 +45,13 @@
           <li>银行账号</li>
         </ul>
         <ul class="bank_right">
-          <li>****科技有限公司</li>
-          <li>中国建设银行**分行</li>
-          <li>6217000783248325845</li>
+          <!--<li>****科技有限公司</li>-->
+          <!--<li>中国建设银行**分行</li>-->
+          <!--<li>6217000783248325845</li>-->
+          <li><input type="text" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" placeholder="请输入你的银行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" placeholder="请输入你的卡号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+
         </ul>
       </div>
     </div>
@@ -62,8 +71,10 @@ export default {
     width: 100%;
     height:30%;
     img{
-      width:100%;
-      height:100%;
+      width: 100%;
+      height: 100%;
+      margin-left: 10px;
+      margin-top: 10px;
     }
   }
   .person_prise_con{
@@ -89,9 +100,10 @@ export default {
         width: 50%;
         text-align: left;
         li{
-          padding-left:70%;
+          padding-left: 70%;
           margin-bottom: 4%;
           font-size: 14px;
+          line-height: 36px;
         }
       }
       .right{
@@ -100,6 +112,7 @@ export default {
         li{
           font-size: 14px;
           margin-bottom: 3.8%;
+
         }
         li:nth-child(2){
           margin-bottom: 4.5%;
@@ -138,7 +151,7 @@ export default {
         width: 50%;
         li{
           padding-left: 70%;
-          margin-bottom: 4%;
+          margin-bottom: 4%;line-height: 35px;
         }
       }
       .bank_right{

@@ -25,8 +25,8 @@
         <ul>
           <li  style="color:black;font-size:17px;">联系我们</li>
           <li>邮箱：tonightCta@gmail.com</li>
-          <li>邮编：518000</li>
-          <li>地址：深圳市南山区深圳湾科技生态园11栋A座14楼</li>
+          <!--<li>邮编：518000</li>-->
+          <!--<li>地址：深圳市南山区深圳湾科技生态园11栋A座14楼</li>-->
         </ul>
       </div>
     </div>

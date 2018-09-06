@@ -4,7 +4,7 @@
     <div class="person_paper_pic">
       <img src="../../static/img/qiu.png" alt="">
     </div>
-    <p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>
+    <!--<p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>-->
     <p class="person_paper_table">
       <router-link
       to="/release/paper/offerIn" tag="span"
@@ -276,11 +276,10 @@ export default {
   }
 }
 .yibao_w{
-  position: relative;
-  top: -413px;
-  left: 309px;
-  /*border: 1px solid;*/
-  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  /* position: relative;
+   top: -413px;
+   left: 309px;
+   border: 1px solid;*/
+   box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
 }
-
 </style>
