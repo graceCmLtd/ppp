@@ -291,11 +291,12 @@ export default {
     }
   }
   .person_intention_contact{
-    width:100%;
+    width: 100%;
     min-height: 40px;
-    line-height: 40px;
+    line-height: 61px;
     font-size: 14px;
     position: relative;
+    background: #f3fbff;
     button{
       position: absolute;
       right:2%;

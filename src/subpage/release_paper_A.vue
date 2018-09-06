@@ -5,6 +5,14 @@
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
+          <p style="position: relative;">票据类型<input type="text" vlaue="" placeholder="" ref="paperNumbers"/></p>
+          <select  class="select_w" style="position: absolute; top: 20px; left: 283px; border: none; outline: none;width: 198px;">
+            <option value ="">电银</option>
+            <option value ="">纸银</option>
+            <option value="">电商</option>
+            <option value="">纸商</option>
+          </select>
+
           <p>票据号码<input type="text" vlaue="" placehoder="" ref="paperNumber"/></p>
           <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
           <p class="release_paper_date">票据到期日
@@ -17,6 +25,7 @@
               >
             </el-date-picker>
             <span class="time">剩余期限{{dayRe}}天</span>
+
             </p>
           <p>承兑人全称<input type="text" vlaue="" placehoder="" ref="acceptor"/></p>
           <p>是否可签转<input type="text" vlaue="" placehoder=""/></p>
@@ -313,6 +322,7 @@ export default {
       height:100%;
       display: flex;
       margin-top: 3%;
+      position: relative;
       .mes_left{
         width: 70%;
         height:100%;
@@ -324,6 +334,9 @@ export default {
             font-size: 15px;
             top: 15%;
             color: red;
+          }
+          .select_w{
+            position: absolute;
           }
         }
         p{
