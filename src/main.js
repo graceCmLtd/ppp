@@ -10,7 +10,7 @@ import Axios from 'axios'
 import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 Vue.config.productionTip = false
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;
 Vue.prototype.axios=Axios;
 
@@ -18,7 +18,14 @@ Vue.prototype.axios=Axios;
 // Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 
-Vue.prototype.oUrl='http://39.104.140.40/ppp'
+// Vue.prototype.oUrl='http://39.104.140.40/ppp'
+
+ Vue.prototype.oUrl='http://localhost:8080/ppp'
+
+//Vue.prototype.oUrl='http://39.104.140.40/ppp'
+//Vue.prototype.oUrl='http://pengpengpiao.cn/ppp'
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
