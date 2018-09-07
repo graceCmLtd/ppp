@@ -13,15 +13,20 @@
         <ul class="signIn_message" style="margin-top: 30px;">
           <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="UserName"/></li>
           <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="Phone"/><span v-show="show" @click="getCode" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">获取短信验证码</span><span v-show="!show" class="count"  style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer;">{{count}} S</span></li>
-          <li style="margin-top: 20px; position: relative;"><i style="font-style:normal;color: #FF0000;">*</i>登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
+          <!--<li style="margin-top: 20px;  position: relative;"><i style="font-style:normal;color: #FF0000;">*</i>登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="password" maxlength="16" @on-change="password" value="" ref="Code"/>
             　<img :src="this.registration_data.src" @click="changeType()" style="position: absolute; top: 15px; right:20px;"/>
-          </li>
-          <li style="margin-top: 20px; position: relative;">
+          </li>-->
+
+          <li style="margin-top: 20px;">
             <i style="font-style:normal;color: #FF0000;">*</i>
-            再次输入密码:<input type="password" maxlength="16" value="" ref="PhoneCode" />
-            　<img :src="this.registration_data.src" @click="changeType()" style="position: absolute; top: 15px; right:20px;"/>
+            登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;
+            <input type="text" v-if="pwdType" v-model="eyetxt" >
+            <input type="password" placeholder="" v-model="eyetxt" v-else >
+            <img :src="seen ? seenImg : unseenImg" @click="changeType()" class="eye_img" style="position: absolute; top: 60%; left: 65%;"/>
           </li>
+
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>再次输入密码:<input type="password" maxlength="16" value="" ref="PhoneCode" /></li>
 
         </ul>
       </div>
@@ -43,9 +48,11 @@
     </div>
   </div>
 </template>
+
 <script>
   export default {
     data(){
+
       return{
         signInMaskShow:false,
         loadingSginIn:false,
@@ -54,10 +61,11 @@
         show: true,
         count: '',
         timer: null,
-        registration_data:{
-          pwdType:"password",
-          src:require("../../static/img/open.png")
-        }
+
+        unseenImg:"../../static/img/close.png",//看不见
+        seenImg:"../../static/img/open.png",//看得见密码
+        eyetxt:"",
+        pwdType:false //此时文本框隐藏，显示密码框
       }
     },
     methods:{
@@ -155,10 +163,10 @@
           }, 1000)
         }
       },
-      changeType(){
-        this.registration_data.pwdType = this.registration_data.pwdType==='password'?'text':'password';
-        this.registration_data.src=this.registration_data.src==require("../../static/img/close.png")?require("../../static/img/open.png"):require("../../static/img/close.png");
-      },
+      changeType:function(){
+        this.seen = !this.seen;//小眼睛的变化
+        this.pwdType=!this.pwdType;//跟着小眼睛变化，密码框隐藏显示文本框，内容就显示了
+      }
     }
   }
 
