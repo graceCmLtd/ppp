@@ -20,10 +20,10 @@
         <li><span style="color:red;">*</span>再次输入密码</li>-->
         <!--</ul>-->
         <ul class="signIn_message" style="margin-top: 30px;">
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="UserName"/></li>
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="Phone"/><span style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: orangered; color: #fff; margin-left: 20px;">获取短信验证码</span></li>
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="Code"/></li>
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>再次输入密码:<input type="text" value="" ref="PhoneCode"/></li>
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" v-model="Phone"/></li>
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="PhoneCode"/><span @click = "getPhoneSms()" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: orangered; color: #fff; margin-left: 20px;">获取短信验证码</span></li>
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" /></li>
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>再次输入密码:<input type="text" value="" ref="pass"/></li>
           <!--<li><input type="text" value=""/></li>
           <li><input type="text" value="" ref="pass"/></li>-->
 
