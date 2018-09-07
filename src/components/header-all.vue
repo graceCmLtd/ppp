@@ -9,15 +9,18 @@
       <router-link to="/resources" tag="li" @click.native="resources()" :class="{active:color==3}">资源市场</router-link>
       <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==4}">我要贴现</router-link>
       <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==5}">我要买票</router-link>
+      <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" :class="{active:color==6}">个人中心</router-link>-->
     </ul>
     <div class="header_oper">
       <p class="enter" v-show="enter">
         <router-link to="/signIn" tag="span" class="signIn">注册</router-link>
         <router-link to="/signUp" tag="span" class="signUp">登录</router-link>
       </p>
+
       <p class="signSucc" v-show="signSucc">欢迎您,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}},</span>
-        <span style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()">注销</span>
+        <span style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()">退出</span>
       </p>
+
       <!-- <span class="user_icon"><img src="../../static/img/user.png" alt="" title="" /></span>
       <span class="mes_icon"><img src="../../static/img/mes.png" alt="" title="" /></span> -->
     </div>
@@ -36,6 +39,8 @@
         nick:null
       }
     },
+
+
     methods:{
       page(){
         this.$router.push('/page')
@@ -55,13 +60,19 @@
       buypaper(){
         this.color=5;
       },
+      buypaper_w(){
+        this.color=6;
+      },
       cancellation(){//注销
         delCookie('Iud');
         delCookie('Too');
         delCookie('Nick');
         delCookie('isAu');
         window.location.reload();
-      }
+      },
+      // cancellation_q(){//注销
+      //   delCookie('Iud');
+      // }
     },
     watch:{
       $route(to,from){
