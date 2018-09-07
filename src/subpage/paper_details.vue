@@ -8,8 +8,8 @@
           <p>汇票到期日:<span>{{billDate}}</span></p>
           <p>票据金额:<span>{{amount}}</span></p>
           <p>出票日期:<span>{{billTime}}</span></p>
-          <p>剩余天数:<span></span></p>
-          <p>期望利率:<span></span></p>
+          <p>剩余天数:<span>{{remainDays}}</span></p>
+          <!-- <p>期望利率:<span></span></p> -->
         </div>
         <div class="place">
           <p class="num">已有23家机构报价</p>
@@ -55,7 +55,8 @@ export default {
       billDate:'',
       amount:'',
       billTime:'',
-      day:''
+      day:'',
+      remainDays:null
     }
   },
   components:{
@@ -103,16 +104,19 @@ export default {
     },
     getBill(){//获取票号
       this.bill=this.$route.query.bills;
-      this.axios.get(this.oUrl+'/bills/getbill?billNumber='+this.bill).then((res)=>{
+      this.axios.get(this.oUrl+'/bills/getbillr?billNumber='+this.bill).then((res)=>{
+        console.log(res)
         this.billType=res.data[0].billNumber;
         this.billDate=res.data[0].maturity;
         this.amount=res.data[0].amount;
         this.billTime=res.data[0].releaseDate;
+        this.remainDays=res.data[0].remain_days
       })
     },
     getPics(){
       let _this=this;
       _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+_this.bill).then((res)=>{
+        console.log(_this)
         _this.$refs.billPic.src=res.data[0].pic1;
       })
     }
