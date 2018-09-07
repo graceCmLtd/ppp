@@ -51,12 +51,15 @@
               <span>每10w加：</span>
             </div></el-col>
           </el-row>
+
           <p class="hadOffer_opera">
             <span>北京海世界有限公司</span>
             <span>赵总</span>
             <span>13240891337</span>
             <button type="button" name="button" @click="paperMesper()">查看</button>
           </p>
+
+
         </div>
       </div>
       <div class="didOffer" v-show="didOffer">
@@ -112,7 +115,8 @@
             "uuid":Id,
             "filter":1
           },
-          {headers:{
+          {
+            headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
@@ -165,7 +169,7 @@
       text-align: left;
       margin-left: 1%;
       img{
-        width: 100%;
+        width: 1096px;
         height: 80%;
         margin-left: -54px;
       }

@@ -16,14 +16,6 @@
              <span class="person_offer_add"></span>
              <span class="person_offer_triangle"></span>
            </router-link></el-col>
-          <!--<el-col :span="6"><router-link to="/release/offer/offerAccepted"-->
-            <!--tag="div" class="offer_tit offer_choes"-->
-            <!--@click.native="offerAcc()"-->
-            <!--:class="{offer:color==2}"-->
-            <!--&gt;卖家接收的报价-->
-            <!--<span class="person_offer_add"></span>-->
-            <!--<span class="person_offer_triangle"></span>-->
-          <!--</router-link></el-col>-->
           <el-col :span="6"><router-link to="/release/offer/offerPrices"
             tag="div" class="offer_tit"
             @click.native="offerPri()"

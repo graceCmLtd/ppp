@@ -35,7 +35,7 @@
           </div></el-col>
           <el-col :span="3"><div class="mes operaMes">
             <p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>
-            <p><button type="button" name="button">放弃</button></p>
+            <p><button type="button" name="button" class="wow hinge"> 放弃</button></p>
           </div></el-col>
         </el-row>
         <div class="mes_bot">

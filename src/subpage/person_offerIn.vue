@@ -125,7 +125,7 @@
     letter-spacing: 1px;
     position: relative;
     top: 48px;
-    left: -100px;
+    left: -104px;
     font-size: 24px;
   }
 

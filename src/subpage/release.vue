@@ -125,7 +125,7 @@ export default {
   .release_con{
     width: 70%;
     height:100%;
-    margin-left: 15%;
+    margin-left: 138px;
     display: flex;
     .release_con_table{
       width: 22%;
