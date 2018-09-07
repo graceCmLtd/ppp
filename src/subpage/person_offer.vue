@@ -63,7 +63,7 @@ export default {
     offerCan(){
       this.color=4;
       this.$refs.person_offer_triangle_cancel.style.right='-9%'
-    }
+    },
   }
 }
 </script>

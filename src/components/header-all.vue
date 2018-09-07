@@ -17,6 +17,11 @@
         <router-link to="/signUp" tag="span" class="signUp">登录</router-link>
       </p>
 
+      <router-link to="/release/offer/offerAll">
+        <span style="font-size:8px;">个人中心</span>
+      </router-link>
+
+
       <p class="signSucc" v-show="signSucc">欢迎您,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}},</span>
         <span style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()">退出</span>
       </p>
@@ -60,9 +65,6 @@
       buypaper(){
         this.color=5;
       },
-      buypaper_w(){
-        this.color=6;
-      },
       cancellation(){//注销
         delCookie('Iud');
         delCookie('Too');
@@ -70,9 +72,6 @@
         delCookie('isAu');
         window.location.reload();
       },
-      // cancellation_q(){//注销
-      //   delCookie('Iud');
-      // }
     },
     watch:{
       $route(to,from){
