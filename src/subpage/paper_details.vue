@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="paper_details">
     <div class="paper_details_con">
-      <p class="paper_details_title">海绵海绵我是大星科技有限公司</p>
+      <p class="paper_details_title">{{acceptor}}</p>
       <div class="paper_mes">
         <div class="mes">
           <p>票据编号:<span>{{billType}}</span></p>
@@ -56,7 +56,10 @@ export default {
       amount:'',
       billTime:'',
       day:'',
-      remainDays:null
+      remainDays:null,
+      companyName:"",
+      releaserId:null,
+      acceptor:null
     }
   },
   components:{
@@ -110,17 +113,27 @@ export default {
         this.billDate=res.data[0].maturity;
         this.amount=res.data[0].amount;
         this.billTime=res.data[0].releaseDate;
-        this.remainDays=res.data[0].remain_days
+        this.remainDays=res.data[0].remain_days;
+        this.releaserId = res.data[0].releaserId;
+        this.acceptor = res.data[0].acceptor;
       })
     },
     getPics(){
       let _this=this;
       _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+_this.bill).then((res)=>{
-        console.log(_this)
+        console.log()
         _this.$refs.billPic.src=res.data[0].pic1;
+      })
+    },
+    getCompanyInfo(){
+      let _this=this;
+      _this.axios.get(_this.oUrl+'/bills/getCompany?contactsId='+_this.releaserId).then((res)=>{
+        console.log(res)
+        
       })
     }
   },
+
   created(){
     this.getBill()
   },
