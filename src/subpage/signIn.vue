@@ -35,7 +35,6 @@
         </ul>
       </div>
       <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:red; cursor: pointer;"  @click="open">《碰碰票协议》</span></p>
-
       <p class="turnSignin"><button @click="sginIn()"
                                     v-loading="loadingSginIn"
                                     element-loading-text=""
@@ -114,8 +113,6 @@
             }else{
               alert("注册失败")
             }
-
-
 
           })
         }

@@ -92,7 +92,6 @@ export default {
           })
         })
       }
-
     },
     closeSprompt(){
       this.$refs.success_mes.style.top="15%";
