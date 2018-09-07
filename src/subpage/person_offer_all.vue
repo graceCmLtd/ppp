@@ -18,13 +18,13 @@
           <!-- <el-col :span="3"><div class="mes bank" ref="person_offer_all_bank"
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
             >{{item.acceptor}}</div></el-col> -->
-            <el-col :span="3"><div class="mes">{{item.acceptor}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.amount}}</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="mes">{{day}}</div></el-col>
           <el-col :span="3"><div class="mes amount mes_chose">
             <!--<div class="rate">-->
-              <!--<p>利率：{{item.interest}}%</p>-->
+            <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
               <p>{{item.xPerLakh}}W</p>
@@ -34,8 +34,9 @@
             <span>已被卖家接受</span>
           </div></el-col>
           <el-col :span="3"><div class="mes operaMes">
-            <p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>
-            <p><button type="button" name="button" class="wow hinge"> 放弃</button></p>
+            <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
+            <!--<p><button type="button" name="button" class="wow hinge"> 放弃</button></p>-->
+            <span style="margin-top: 30px; color: #ccc;">不可操作</span>
           </div></el-col>
         </el-row>
         <div class="mes_bot">
@@ -44,8 +45,8 @@
 
             <span>{{item.companyName}}</span>
             <span>{{item.companyId}}</span>
-            <button type="button" name="button" >查看详情11</button>
-<!--
+            <button type="button" name="button" @click="slit">查看详情</button>
+            <!--
             <span>赵经理</span>
             <span>12756937850</span>
             <button type="button" name="button" @click="paperMes(index)">查看详情</button>-->
@@ -56,7 +57,7 @@
     </div>
 
     <!--票据图片-->
-    <div class="bill_w">
+    <!--<div class="bill_w">
       <div class="type_w">
         <span class="type_w_1">票据图片</span>
       </div>
@@ -85,195 +86,201 @@
 
         </ul>
       </div>
-    </div>
+    </div>-->
   </div>
 
 </template>
 
 <script>
-import {getCookie} from '@/assets/util'
-export default {
-  data(){
-    return{
-      noteList:[],
-      day:null,
-      marDay:[]
-    }
-  },
-  methods:{
-    getOfferAll(){
-      let Id=getCookie('Iud');
-      this.axios.post(this.oUrl+'/quote/getMyQuote',{
-        "uuid":Id,
-        "filter":"1"
+  import {getCookie} from '@/assets/util'
+  export default {
+    data(){
+      return{
+        noteList:[],
+        day:null,
+        marDay:[]
+      }
+    },
+    methods:{
+      getOfferAll(){
+        let Id=getCookie('Iud');
+        this.axios.post(this.oUrl+'/quote/getMyQuote',{
+            "uuid":Id,
+            "filter":"1"
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          let _this=this;
+          console.log(res)
+          _this.noteList=res.data;
+          for(let v in res.data){
+            // console.log(res.data[v].maturity)
+            // _this.marDay=res.data[v].maturity;
+            let date=new Date();
+            let year=date.getFullYear();
+            let month=date.getMonth()+1;
+            let day=date.getDate();
+            if(month>=1&&month<9){
+              month='0'+month
+            }
+            let secDay=year+'/'+month+'/'+day;
+            let secDayStamp=new Date(secDay).getTime()
+            let timeAll=new Date(res.data[v].maturity).getTime();
+            let lastDay=timeAll-secDayStamp;
+            _this.day=Math.floor(lastDay/86400000)
+            console.log(_this.day)
+            _this.marDay.push(_this.day)
+          }
+          console.log(_this.marDay)
+        })
       },
-      {headers:{
-          'Content-Type':'application/json'
-      }}
-    ).then((res)=>{
-      let _this=this;
-      console.log(res)
-      _this.noteList=res.data;
-      for(let v in res.data){
-        // console.log(res.data[v].maturity)
-        // _this.marDay=res.data[v].maturity;
-        let date=new Date();
-        let year=date.getFullYear();
-        let month=date.getMonth()+1;
-        let day=date.getDate();
-        if(month>=1&&month<9){
-          month='0'+month
-        }
-        let secDay=year+'/'+month+'/'+day;
-        let secDayStamp=new Date(secDay).getTime()
-        let timeAll=new Date(res.data[v].maturity).getTime();
-        let lastDay=timeAll-secDayStamp;
-        _this.day=Math.floor(lastDay/86400000)
-        console.log(_this.day)
-        _this.marDay.push(_this.day)
+      turnPlace(index){
+        let _this=this;
+        let billNum=_this.noteList[index].billNumber;
+        _this.$router.push({
+          name:'Detailed',
+          query:{
+            bills:billNum
+          }
+        })
+      },
+      slit(){
+        this.$alert(
+          '<div class="intention_mes_details" ref="intention_mes_details"><div class="intention_mes_pic" ref="intention_mes_pic"><img src="../../static/img/banner1.jpg" alt="" ref="PaperIs"></div><div class="intention_mes_message"><div class="message_left"><ul><li>票据金额：<span>100w</span></li><li>每10w加：<span>2</span></li><li>出票日期：<span>2018-09-05</span></li></ul></div><div class="message_right"><ul><li>承对方：<span>天津商业银行</span></li><li>汇票到期日：<span>2018-11-30</span></li><li>剩余天数：<span>84天</span></li></ul></div></div></div>',
+          '票据详情',
+          { dangerouslyUseHTMLString: true });
       }
-      console.log(_this.marDay)
-    })
-  },
-  turnPlace(index){
-    let _this=this;
-    let billNum=_this.noteList[index].billNumber;
-    _this.$router.push({
-      name:'Detailed',
-      query:{
-        bills:billNum
-      }
-    })
+    },
+    mounted(){
+      this.getOfferAll();
+    }
   }
-  },
-  mounted(){
-    this.getOfferAll();
-  }
-}
 </script>
 
 <style lang="scss" scoped>
-.person_offer_all{
-  width: 100%;
-  height:100%;
-  .offer_mes{
+  .person_offer_all{
     width: 100%;
-    margin-left: 4%;
-    margin-top: 4%;
-    .mes_title{
-      background: #F15749;
-      min-width: 36px;
-      line-height: 36px;
-      font-weight: bold;
-      color: #fff;
-    }
-    .lineHeight{
-      line-height: 35px!important;
-      font-size: 13px!important;
-    }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .mes{
-      margin-top:8px;
-      margin-bottom:8px;
-      min-height: 70px;
-      line-height: 70px;
-      font-size: 14px;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
-    .mes_chose{
-      display: flex;
-      flex-direction: column;
-      margin-top:8px;
-      margin-bottom:8px;
-      .rate{
-        width: 100%;
-        height:50%;
-        margin-top: -3px;
-        p{
-          width: 100%;
-          text-align: center;
-          border-bottom:1px solid #ccc;
-          height:100%;
-          line-height: 35px;
-          font-size: 14px;
-        }
+    height:100%;
+    .offer_mes{
+      width: 100%;
+      margin-left: 4%;
+      margin-top: 4%;
+      .mes_title{
+        background: #F15749;
+        min-width: 36px;
+        line-height: 36px;
+        font-weight: bold;
+        color: #fff;
       }
-      .premium{
-        width: 100%;
-        height:50%;
-        p{
-          width: 100%;
-          line-height: 72px;
-          font-size: 14px;
-        }
+      .lineHeight{
+        line-height: 35px!important;
+        font-size: 13px!important;
       }
-    }
-    .operaMes{
-      border-left:1px solid #ccc;
-      line-height: 0;
-      display: flex;
-      flex-direction: column;
-      p{
-        width: 100%;
-        height:35px;
-        line-height: 35px;
-        button{
-          min-width: 60px;
-          height:30px;
-          border-radius: 3px;
-          background: #F15749;
-          color:white;
-        }
+      .bank{
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
       }
-      p:nth-child(2){
-        button{
-          background: white;
-          border:1px solid #F15749;
-          color:#F15749;
-
-        }
+      .date{
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
       }
-    }
-    .mes_bot{
-      min-height: 36px;
-      line-height: 36px;
-      font-size: 14px;
-      position: relative;
-      background: #EFF8FF;
-      p{
-        width: 60%;
-        margin: 0 auto;
+      .amount{
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
+      }
+      .mes{
+        margin-top:8px;
+        margin-bottom:8px;
+        min-height: 70px;
+        line-height: 70px;
+        font-size: 14px;
+      }
+      .opera{
+        border-left:1px solid #ccc;
+      }
+      .mes_chose{
         display: flex;
-        justify-content: space-around;
-        button{
-          width:105px;
-          height:30px;
-          border-radius:3px;
-          background: #F15749;
-          color:white;
-          position: absolute;
-          right:2%;
-          top:12%;
+        flex-direction: column;
+        margin-top:8px;
+        margin-bottom:8px;
+        .rate{
+          width: 100%;
+          height:50%;
+          margin-top: -3px;
+          p{
+            width: 100%;
+            text-align: center;
+            border-bottom:1px solid #ccc;
+            height:100%;
+            line-height: 35px;
+            font-size: 14px;
+          }
+        }
+        .premium{
+          width: 100%;
+          height:50%;
+          p{
+            width: 100%;
+            line-height: 72px;
+            font-size: 14px;
+          }
         }
       }
+      .operaMes{
+        border-left:1px solid #ccc;
+        line-height: 0;
+        display: flex;
+        flex-direction: column;
+        p{
+          width: 100%;
+          height:35px;
+          line-height: 35px;
+          button{
+            min-width: 60px;
+            height:30px;
+            border-radius: 3px;
+            background: #F15749;
+            color:white;
+          }
+        }
+        p:nth-child(2){
+          button{
+            background: white;
+            border:1px solid #F15749;
+            color:#F15749;
+
+          }
+        }
+      }
+      .mes_bot{
+        min-height: 36px;
+        line-height: 36px;
+        font-size: 14px;
+        position: relative;
+        background: #EFF8FF;
+        p{
+          width: 60%;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-around;
+          button{
+            width:105px;
+            height:30px;
+            border-radius:3px;
+            background: #F15749;
+            color:white;
+            position: absolute;
+            right:2%;
+            top:12%;
+          }
+        }
+      }
+
     }
 
   }
-
-}
   .bill_w{
     width:1049px;
     height:774px;
@@ -352,13 +359,13 @@ export default {
         margin-top: 35px;
       }
       /*.honour_w{*/
-        /*width:63px;*/
-        /*height:16px;*/
-        /*font-size:12px;*/
-        /*font-family:MicrosoftYaHei;*/
-        /*color:rgba(192,192,192,1);*/
-        /*line-height:16px;*/
-        /*float: left;*/
+      /*width:63px;*/
+      /*height:16px;*/
+      /*font-size:12px;*/
+      /*font-family:MicrosoftYaHei;*/
+      /*color:rgba(192,192,192,1);*/
+      /*line-height:16px;*/
+      /*float: left;*/
       /*}*/
       .last_w{
         /*width:63px;*/
