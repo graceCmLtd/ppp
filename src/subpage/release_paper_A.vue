@@ -5,11 +5,11 @@
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
-          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px;height: 27.97px;">
-            <option value ="">电银</option>
-            <option value ="">纸银</option>
-            <option value="">电商</option>
-            <option value="">纸商</option>
+          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px;height: 27.97px;">
+            <option value ="电银">电银</option>
+            <option value ="纸银">纸银</option>
+            <option value="电商">电商</option>
+            <option value="纸商">纸商</option>
           </select>
           </p>
           <p>票据号码<input type="text" vlaue="" placehoder="" ref="paperNumber"/></p>
@@ -95,7 +95,8 @@
         PaperMaskShow:false,
         loadingRele:false,
         releText:'发布',
-        dayRe:'？'
+        dayRe:'？',
+        typeSelect:''
       }
     },
     components:{
@@ -223,6 +224,9 @@
           let Is=window.localStorage.getItem('Is');//票据正面图片
           let The=window.localStorage.getItem('The');//票据反面图片
           let Id=getCookie('Iud');
+          let typeSelect = _this.$refs.typeSelect.value;
+          console.log("this  refs  aldfjkad")
+          console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
             alert('请先完善票面信息！')
           }else if(!Is){
@@ -235,7 +239,7 @@
             _this.axios.post(this.oUrl+'/bills/addbill',{
                 "billInfo":{
                   "billNumber":paperNumber,
-                  "billType":"国票",
+                  "billType":typeSelect,
                   "acceptor":acceptor,
                   "amount":amount,
                   "maturity":_this.time,
@@ -243,7 +247,8 @@
                   "releaseDate":"2018-08-08",
                   "releaserId":Id,
                   "billPicsId":11111,
-                  "transferable":true
+                  "transferable":true,
+                  "billReferer":"traditional"
                 },
                 "billPics":{
                   "billNumber":paperNumber,
@@ -283,7 +288,7 @@
 
 <style lang="scss">
   .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 220px;
+    width: 205px;
   }
 
   .el-input__inner{
