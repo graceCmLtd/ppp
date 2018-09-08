@@ -33,8 +33,10 @@
         <el-row v-for="(item,index) in roteList" :key="index" class="page_mark_title">
           <el-col :span="4"><div class="tableMes time">{{item.releaseDate}}</div></el-col>
           <el-col :span="3"><div class="tableMes type">
-            <span style="color:#ff823f;" v-show="item.billType=='纸银'">银票</span>
-            <span style="color:#3d83c8;" v-show="item.billType=='国票'">国票</span>
+            <span style="color:#ff823f;" v-show="item.billType=='电银'">电银</span>
+            <span style="color:#3d83c8;" v-show="item.billType=='纸银'">纸银</span>
+            <span style="color:#ff333f;" v-show="item.billType=='电商'">电商</span>
+            <span style="color:#3d13c8;" v-show="item.billType=='纸商'">纸商</span>
           </div></el-col>
           <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
           <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
