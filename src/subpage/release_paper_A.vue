@@ -283,7 +283,7 @@
 
 <style lang="scss">
   .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 205px;
+    width: 220px;
   }
 
   .el-input__inner{
