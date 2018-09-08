@@ -128,7 +128,7 @@ export default {
       let _this=this;
       _this.axios.get(_this.oUrl+'/bills/getCompany?contactsId='+_this.releaserId).then((res)=>{
         console.log(res)
-        
+
       })
     }
   },
@@ -145,7 +145,6 @@ export default {
 <style lang="scss" scoped>
 .paper_details{
   width: 100%;
-  min-width: 1631px;
   height:100%;
   min-height: 900px;
   .paper_details_con{
@@ -246,12 +245,17 @@ export default {
     .paper_pic_title{
       width: 100%;
       text-align: left;
-      border-bottom: 1px solid #979797;
+      border-bottom: 2px solid #F15749;
       margin-top:3%;
       span{
-        color:#ff452c;
-        border-bottom: 4px solid #ff452c;
-        padding-bottom:.5%;
+        width: 150px;
+        height: 48px;
+        background: #f15749;
+        line-height: 48px;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+      
       }
     }
     .paper_pic{
@@ -298,6 +302,7 @@ export default {
       }
       button:nth-child(1){
         margin-right:10px;
+        width:102px;
       }
       button:nth-child(2){
         margin-left: 20px;

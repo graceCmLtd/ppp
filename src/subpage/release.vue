@@ -128,7 +128,7 @@ export default {
     margin-left: 138px;
     display: flex;
     .release_con_table{
-      width: 22%;
+    
       height:100%;
       background: white;
     }

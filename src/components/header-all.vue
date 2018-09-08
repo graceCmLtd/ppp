@@ -10,6 +10,9 @@
       <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==4}">我要贴现</router-link>
       <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==5}">我要买票</router-link>
       <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" :class="{active:color==6}">个人中心</router-link>-->
+          <router-link to="/release/offer/offerAll">
+            <span  style="font-size:14px; width:100px; line-height:76px;">个人中心</span>
+          </router-link>
     </ul>
     <div class="header_oper">
       <p class="enter" v-show="enter">
@@ -17,9 +20,7 @@
         <router-link to="/signUp" tag="span" class="signUp">登录</router-link>
       </p>
 
-      <router-link to="/release/offer/offerAll">
-        <span style="font-size:8px;">个人中心</span>
-      </router-link>
+
 
 
       <p class="signSucc" v-show="signSucc">欢迎您,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}},</span>
@@ -117,7 +118,7 @@
       height:100%;
       display: flex;
       position: absolute;
-      left:34%;
+      left: 30%;
       top:0;
       li{
         cursor:pointer;

@@ -119,7 +119,7 @@ export default {
       _this.$refs.CaBe.style.display='block';
       _this.$refs.CaAf.style.display='none';
     },
-    backTop(){
+    backTop(){//返回顶部
       document.documentElement.scrollTop-=150;
       if (document.documentElement.scrollTop>0) {
         var c=setTimeout(()=>this.backTop(150),16);
@@ -217,11 +217,6 @@ export default {
       font-size: 14px;
       .page_mark_title:nth-of-type(even){
         background:#f7f7f7;
-      }
-      .page_mark_title:hover{
-        // background: #fffbee;
-        box-shadow: 0 0 15px rgba(0,0,0,.2);
-        z-index: 1;
 
       }
       .tableMes{

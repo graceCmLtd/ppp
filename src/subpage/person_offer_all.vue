@@ -36,7 +36,7 @@
           <el-col :span="3"><div class="mes operaMes">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
             <!--<p><button type="button" name="button" class="wow hinge"> 放弃</button></p>-->
-            <span style="margin-top: 30px; color: #ccc;">不可操作</span>
+            <span style="margin-top: 30px; color: #ccc;">...</span>
           </div></el-col>
         </el-row>
         <div class="mes_bot">

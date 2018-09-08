@@ -243,7 +243,7 @@ export default {
       for (let v in this.$refs.acceptor){
         let than=this.$refs.acceptor[v].innerText
         if(than.length>8){
-          this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,10)+'...'
+          this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,7)+'...'
         }
       }
     }
@@ -286,9 +286,10 @@ export default {
     }
     .market_paper_table_title{
       width: 100%;
-      height:40px;
-      background: #f2f6f9;
+      height: 40px;
+      background: #F15749;
       font-weight: bold;
+      color: #fff;
       .table{
         min-height: 40px;
         line-height: 40px;
