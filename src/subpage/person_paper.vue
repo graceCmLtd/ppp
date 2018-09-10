@@ -294,5 +294,6 @@
     left: 315px;
     /*border: 1px solid;*/
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    width: 119%;
   }
 </style>

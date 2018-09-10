@@ -2,21 +2,21 @@
   <div class="market_paper">
   <div class="market_paper_con">
     <p>
-      <span>票据类型:</span>
+      <span style="font-weight:bold;">票据类型:</span>
       <span class="option" :class="{markAc:color==1}" @click="infinite()">不限</span>
       <span class="option" :class="{markAc:color==2}" @click="silver()">纸银</span>
       <span class="option" :class="{markAc:color==3}" @click="electric()">电银</span>
       <span class="option" :class="{markAc:color==4}" @click="makers()">纸商</span>
       <span class="option" :class="{markAc:color==5}" @click="electricity()">电商</span>
     <p>
-      <span>票据金额:</span>
+      <span style="font-weight:bold;">票据金额:</span>
       <span class="option" :class="{markAc:colorTwo==1}" @click="infiniteAmount()">不限</span>
       <span class="option" :class="{markAc:colorTwo==2}" @click="thanOne()">小于100万</span>
       <span class="option" :class="{markAc:colorTwo==3}" @click="thanFive()">100万-500万</span>
       <span class="option" :class="{markAc:colorTwo==4}" @click="aboveFive()">500万以上</span>
     </p>
     <p>
-      <span>到期期限:</span>
+      <span style="font-weight:bold;">到期期限:</span>
       <span class="option" :class="{markAc:colorThr==1}" @click="infiniteDate()">不限</span>
       <span class="option" :class="{markAc:colorThr==2}" @click="silverDay()">小于30天</span>
       <span class="option" :class="{markAc:colorThr==3}" @click="thanDay()">1-3个月</span>
@@ -243,7 +243,7 @@ export default {
       for (let v in this.$refs.acceptor){
         let than=this.$refs.acceptor[v].innerText
         if(than.length>8){
-          this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,7)+'...'
+          this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,10)+'...'
         }
       }
     }
@@ -273,7 +273,6 @@ export default {
     p{
       width: 100%;
       text-align: left;
-      padding-left:20%;
       margin-bottom: 2%;
       min-width: 1166px;
       .option{
@@ -290,6 +289,8 @@ export default {
       background: #F15749;
       font-weight: bold;
       color: #fff;
+      min-width: 1300px;
+      margin-left: -110px;
       .table{
         min-height: 40px;
         line-height: 40px;
@@ -299,6 +300,9 @@ export default {
       width: 100%;
       height:42px;
       font-size: 14px;
+      width: 1300px;
+      margin-left: -112px;
+
       .table{
         min-height: 42px;
         line-height: 40px;

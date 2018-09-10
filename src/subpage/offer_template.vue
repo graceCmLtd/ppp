@@ -288,6 +288,7 @@ export default {
     position: relative;
     margin-left: 13px;
     margin-top: 14px;
+    min-width: 1189px;
   }
   .content_w1_title{
     height: 61px;

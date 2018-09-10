@@ -34,22 +34,22 @@ export default {
 
 <style lang="scss" scoped>
 .active{
-  background: linear-gradient(180deg,rgba(255,120,81,1),rgba(255,67,40,1));
+  background: #F15749;
   color:white;
 }
 .signUp{
   width: 100%;
   height:100%;
-  min-width: 1631px;
   background: url('../../static/img/sginUpBg.png');
   background-size: 100% 100%;
+  margin-top: 30px;
   .signup_con{
     width: 40%;
     height:50%;
     position: absolute;
     left:55%;
     top:30%;
-    padding-left:8%;
+    padding-left:5%;
     .sginU{
       width: 456px;
       height:305px;

@@ -13,6 +13,8 @@
       element-loading-background="rgba(0,0,0,0.1)"
       >{{sginUpText}}</button>
     </p>
+
+      <a href="" style="font-size:13px; color: #3a83e8;text-decoration:none; float: right; margin-left：10px;margin-right: 99px;">忘记密码?</a>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
     return{
       back:false,
       loadingSginUp:false,
-      sginUpText:'登入'
+      sginUpText:'登录'
     }
   },
   methods:{
@@ -112,7 +114,7 @@ created(){
       min-height:35px;
       border-radius:5px;
       font-size: 15px;
-      background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+      background: #F15749;
       color:white;
     }
   }

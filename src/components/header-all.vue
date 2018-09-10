@@ -1,5 +1,25 @@
 <template lang="html">
-  <div class="header_all">
+ <div>
+     <!-- 最顶部 -->
+  <div id="mall_header">
+    <div class="topbar">
+    <div class="w1180">
+        <div class="toplink">
+            <a href="http://pengpengpiao.cn"><img style="width:15px;height:11px;" src="../../static/img/home.png">  碰碰票首页</a>
+            <span id="topbar_greet" style="font-size:14px;">欢迎来到碰碰票</span>
+         <!--    <a href="" id="topbar_login_btn">请登录</a>
+            <a href="" id="topbar_register">免费注册</a> -->
+        </div>
+        <div class="topmenu">
+            <a target="_blank" href="" id="topbar_my_top">个人中心</a>
+            <a target="_blank" href="">我的消息</a>
+            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">40078398</i></a>
+        </div>
+    </div>
+</div>
+</div>
+<!-- 头部 -->
+  <div class="header_all" style="background-color:#fff;">
     <div class="logo">
       <img src="../../static/img/Logo.png" alt="" @click="page()">
     </div>
@@ -9,7 +29,7 @@
       <router-link to="/resources" tag="li" @click.native="resources()" :class="{active:color==3}">资源市场</router-link>
       <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==4}">我要贴现</router-link>
       <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==5}">我要买票</router-link>
-      <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" :class="{active:color==6}">个人中心</router-link>-->
+      <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" </div>:class="{active:color==6}">个人中心</router-link>-->
           <router-link to="/release/offer/offerAll">
             <span  style="font-size:14px; width:100px; line-height:76px;">个人中心</span>
           </router-link>
@@ -20,9 +40,6 @@
         <router-link to="/signUp" tag="span" class="signUp">登录</router-link>
       </p>
 
-
-
-
       <p class="signSucc" v-show="signSucc">欢迎您,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}},</span>
         <span style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()">退出</span>
       </p>
@@ -31,6 +48,7 @@
       <span class="mes_icon"><img src="../../static/img/mes.png" alt="" title="" /></span> -->
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -194,4 +212,74 @@
       }
     }
   }
+
+
+
+
+#mall_header .topbar {
+    background-color: #f2f2f2;
+    height: 30px;
+    line-height: 30px;
+    color: #9a9a9a;
+}
+#mall_header a{
+  text-decoration:none;
+  font-size:14px;
+  color:#323232;
+}
+#mall_footer .w1180, #mall_header .w1180 {
+    width: 1180px;
+    margin: 0 auto;
+    overflow: visible;
+}
+#mall_header .w1180 .toplink {
+    float: left;
+}
+#mall_header .w1180 .toplink a, #mall_header .toplink span {
+    color: #9a9a9a;
+    margin-right: 10px;
+}
+#mall_header .w1180 .toplink a, #mall_header .toplink span {
+    color: #9a9a9a;
+    margin-right: 10px;
+}
+#mall_header .w1180 .toplink a, #mall_header .toplink span {
+    color: #9a9a9a;
+    margin-right: 10px;
+}
+#mall_header .w1180 .toplink a, #mall_header .toplink span {
+    color: #9a9a9a;
+    margin-right: 10px;
+}
+#mall_header .w1180 .toplink {
+    float: left;
+}
+#mall_header .w1180 .topmenu {
+    float: right;
+    text-align: right;
+    color: #ccc;
+}
+#mall_header .topmenu a, #mall_header .topmenu span {
+    color: #9a9a9a;
+    margin: 0 10px;
+}
+#mall_header .topmenu a, #mall_header .topmenu span {
+    color: #9a9a9a;
+    margin: 0 10px;
+}
+#mall_header .topbar i.tel {
+    width: 16px;
+    height: 16px;
+    background-position: -336px -16px;
+}
+
+#mall_header .topbar i {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+
+
 </style>

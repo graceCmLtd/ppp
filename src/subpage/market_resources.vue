@@ -230,9 +230,11 @@ export default {
       margin-left: 70%;
     }
     .market_resources_list{
-      width: 75%;
-      margin:0 auto;
-      margin-top:3%;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 3%;
+        min-width: 1330px;
+        margin-left: -123px;
       .market_resources_box{
         transition: all .5s;
         position: relative;
