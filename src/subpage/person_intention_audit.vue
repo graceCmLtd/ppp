@@ -114,7 +114,7 @@
           </li>
           <li><a href="">已接单</a></li>
           <li style="border-right: none;">
-            <a href="" class="no-color">不能操作</a>
+            <a href="" class="no-color">...</a>
           </li>
         </ul>
       </div>

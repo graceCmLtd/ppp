@@ -33,10 +33,10 @@
         <el-row v-for="(item,index) in roteList" :key="index" class="page_mark_title">
           <el-col :span="4"><div class="tableMes time">{{item.releaseDate}}</div></el-col>
           <el-col :span="3"><div class="tableMes type">
-            <span style="color:#ff823f;" v-show="item.billType=='电银'">电银</span>
-            <span style="color:#3d83c8;" v-show="item.billType=='纸银'">纸银</span>
-            <span style="color:#ff333f;" v-show="item.billType=='电商'">电商</span>
-            <span style="color:#3d13c8;" v-show="item.billType=='纸商'">纸商</span>
+            <span v-show="item.billType=='电银'">电银</span>
+            <span v-show="item.billType=='纸银'">纸银</span>
+            <span v-show="item.billType=='电商'">电商</span>
+            <span v-show="item.billType=='纸商'">纸商</span>
           </div></el-col>
           <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
           <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
@@ -168,6 +168,7 @@ export default {
   height:100%;
   min-width: 1378px;
   z-index:999;
+  margin-top:30px;
   .page_con{
     width: 70%;
     height:auto;
@@ -206,6 +207,9 @@ export default {
     }
     .page_table{
       width: 100%;
+      min-width:1300px;
+      margin:0 auto;
+      margin-left:-116px;
       .table{
         min-height: 40px;
         background: #f45643;
@@ -217,6 +221,9 @@ export default {
     .page_table_mes{
       width: 100%;
       font-size: 14px;
+      min-width:1300px;
+      margin:0 auto;
+      margin-left:-116px;
       .page_mark_title:nth-of-type(even){
         background:#f7f7f7;
 

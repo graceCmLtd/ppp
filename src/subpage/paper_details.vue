@@ -4,20 +4,21 @@
       <p class="paper_details_title">{{acceptor}}</p>
       <div class="paper_mes">
         <div class="mes">
-          <p>票据编号:<span>{{billType}}</span></p>
-          <p>汇票到期日:<span>{{billDate}}</span></p>
-          <p>票据金额:<span>{{amount}}</span></p>
-          <p>出票日期:<span>{{billTime}}</span></p>
-          <p>剩余天数:<span>{{remainDays}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>票据编号</i>:<span>{{billType}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>汇票到期日</i>:<span>{{billDate}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>票据金额</i>:<span>{{amount}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>出票日期</i>:<span>{{billTime}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>剩余天数</i>:<span>{{remainDays}}</span></p>
           <!-- <p>期望利率:<span></span></p> -->
         </div>
         <div class="place">
           <p class="num">已有23家机构报价</p>
           <div class="table">
-            <p>报价利率:<input type="text" value="" alt="" ref="interest"/>%</p>
-            <p>每10万加:<input type="text" value="" ref="xPerLakh"/>元</p>
+            <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" value="" alt="" ref="interest"/>%</p>
+            <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" value="" ref="xPerLakh"/>元</p>
+            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" value="" ref="xPerLakh"/>天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
-            <p ref="amount">计算金额:{{amount}}&nbsp;&nbsp;&nbsp;</p>
+            <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{amount}}W</i> &nbsp;&nbsp;&nbsp;</p>
             <p><button type="button" @click="detailSprompt()">确认报价</button></p>
           </div>
         </div>
@@ -255,7 +256,7 @@ export default {
         text-align: center;
         color: #fff;
         font-weight: bold;
-      
+
       }
     }
     .paper_pic{

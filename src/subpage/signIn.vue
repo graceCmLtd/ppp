@@ -21,8 +21,8 @@
           <li style="margin-top: 20px; position: relative;">
             <i style="font-style:normal;color: #FF0000;">*</i>
             登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;
-            <input type="text" v-if="pwdType" v-model="eyetxt" >
-            <input type="password" placeholder="" v-model="eyetxt" v-else >
+            <input type="text" v-if="pwdType" v-model="eyetxt">
+            <input type="password" placeholder="" v-model="eyetxt" v-else maxlength="16">
             <img src="" alt="">
             <img :src="seen ? seenImg : unseenImg" @click="changeType()" class="eye_img" style="position: absolute; top: 25%; left: 90%;"/>
           </li>
@@ -34,7 +34,7 @@
 
         </ul>
       </div>
-      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:red; cursor: pointer;"  @click="open">《碰碰票协议》</span></p>
+      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:#F15749; cursor: pointer;"  @click="open">《碰碰票协议》</span></p>
       <p class="turnSignin"><button @click="sginIn()"
                                     v-loading="loadingSginIn"
                                     element-loading-text=""
@@ -201,7 +201,7 @@
       width: 26%;
       height: 52%;
       margin: 0 auto;
-      margin-top: 1% !important;
+      margin-top: 3% !important;
       /*border: 1px solid red;*/
       border-radius: 4px;
       min-height: 750px;
@@ -289,7 +289,7 @@
           width: 341px;
           height:38px;
           border-radius:5px;
-          background: #ff462c;
+          background: rgb(241, 87, 73);
           color:white;
         }
       }
