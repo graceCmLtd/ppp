@@ -46,6 +46,7 @@ export default {
         }}
       ).then((res)=>{
         console.log(res)
+        console.log(this)
         _this.sginUpText='登录';
         _this.loadingSginUp=false;
         let token=res.data.ticket;
@@ -57,11 +58,17 @@ export default {
         setCookie('Nick',nick);
         setCookie('isAu',isau);
         if(_this.back){
+          console.log("_this  back     ")
+          console.log(window.history)
+          console.log(this.$route)
           window.history.back()
           setTimeout(()=>{
           window.history.back()
           },0)
         }else{
+          console.log("else ,,,,,")
+          console.log(this.$route)
+          console.log(window.history)
           window.history.back()
           }
         })

@@ -192,6 +192,9 @@ export default {
             _this.pagePaper=res.data.length
           }
         })
+      console.log("show route 1 ")
+      console.log(this.$route)
+      console.log(window.history)
     },
     SeeDetails(index){  //查看详情
       let bill=this.noteList[index].billNumber;

@@ -28,7 +28,7 @@
         <span>00:00:00</span>
       </div></el-col>
     </el-row>-->
-    <person-paper  :noteL = 'noteDetail' ></person-paper>
+    <!-- <person-paper  :noteL = 'noteDetail' ></person-paper> -->
   </div>
 
   <!--  <person-paper noteList = 666></person-paper> -->
@@ -38,19 +38,27 @@
 
 <script>
   import {getCookie} from '@/assets/util'
-  import personPaper from '@/subpage/person_paper'
+  /*import personPaper from '@/subpage/person_paper'*/
   export default {
     data(){
       return{
         noteList:[],
         index:0,
+        billNumber:'',
         noteDetail:[]
       }
     },
-    components: {
+    /*components: {
       personPaper
-    },
+    },*/
     methods:{
+
+      getBillNum(){
+        //this.billN = this.billN+1;
+      console.log("get billNumber in 11.....")
+      this.$emit("transb",this.billNumber)
+      //console.log(res)
+    },
       getPaper(){
         let Id=getCookie('Iud');
         this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
@@ -61,6 +69,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          console.log("我的求贴 全部报价 ")
           console.log(res)
           this.noteList=res.data;
         })
@@ -71,8 +80,11 @@
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
-        console.log(this.noteList[index])
-
+        //console.log(this.noteList[index])
+        this.billNumber=this.noteList[index].billNumber;
+        console.log(this.noteList[index].billNumber)
+        this.getBillNum()
+        //this.$emit("transb")
       }
     },
     created(){

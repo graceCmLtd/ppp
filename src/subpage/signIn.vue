@@ -53,6 +53,7 @@
 </template>
 
 <script>
+ import {getCookie} from '@/assets/util'
   export default {
     data(){
 
@@ -64,11 +65,12 @@
         show: true,
         count: '',
         timer: null,
-
+        seen:'',
         unseenImg:"../../static/img/close.png",//看不见
         seenImg:"../../static/img/open.png",//看得见密码
         eyetxt:"",
         pwdType:false //此时文本框隐藏，显示密码框
+
       }
     },
     methods:{
@@ -169,6 +171,15 @@
       changeType:function(){
         this.seen = !this.seen;//小眼睛的变化
         this.pwdType=!this.pwdType;//跟着小眼睛变化，密码框隐藏显示文本框，内容就显示了
+      }
+    },
+    created(){
+      let token = getCookie("Too");
+      if (token) {
+      console.log("else ,,,,,")
+          console.log(this.$route)
+          console.log(window.history)
+          window.history.back()
       }
     }
   }
