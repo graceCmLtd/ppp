@@ -145,7 +145,7 @@
         })*/
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
-            "filter":2
+            "filter":1
           },
           {
             headers:{

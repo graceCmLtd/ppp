@@ -25,6 +25,7 @@
 
       <p class="signSucc" v-show="signSucc">欢迎您,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}},</span>
         <span style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()">退出</span>
+        <!-- <router-link style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()" to="/signUp">另一个退出</router-link> -->
       </p>
 
       <!-- <span class="user_icon"><img src="../../static/img/user.png" alt="" title="" /></span>
@@ -71,7 +72,9 @@
         delCookie('Too');
         delCookie('Nick');
         delCookie('isAu');
-        window.location.reload();
+       // window.location.reload();
+       this.$router.push('/signUp')
+       window.location.reload();
       },
     },
     watch:{
