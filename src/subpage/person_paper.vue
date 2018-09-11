@@ -137,7 +137,7 @@
         let Id=getCookie('Iud');
         console.log("billnumer is :")
         console.log(_this.billNum)
-        console.log(billNum)
+        
         /*this.axios.get(this.oUrl+'/quote/getByBillNumber?billNumber='+_this.billNum).then((res)=>{
           console.log("yibaojia")
           console.log(res)
@@ -185,11 +185,11 @@
           }
         })
       },
-      getBillNum(billNum){
+      getBillNum(billNumber){
         //this.billN = this.billN+1;
       console.log("get billNumber in .....")
-      console.log(billNum)
-      this.billNum = billNum
+      console.log(billNumber)
+      this.billNum = billNumber
       this.havOffer()
     }
     },
