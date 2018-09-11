@@ -6,7 +6,7 @@
         <div class="mes">
           <p><i style="font-weight:bold; font-style:normal;">票据编号</i>:<span>{{billType}}</span></p>
           <p><i style="font-weight:bold; font-style:normal;">汇票到期日</i>:<span>{{billDate}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;">票据金额</i>:<span>{{amount}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">票据金额</i>:<span>{{amount}}元</span></p>
           <p><i style="font-weight:bold; font-style:normal;">出票日期</i>:<span>{{billTime}}</span></p>
           <p><i style="font-weight:bold; font-style:normal;">剩余天数</i>:<span>{{remainDays}}</span></p>
           <!-- <p>期望利率:<span></span></p> -->
@@ -14,13 +14,13 @@
         <div class="place">
           <p class="num">已有23家机构报价</p>
           <div class="table">
-            <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" value="" alt="" ref="interest"/>%</p>
-            <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" value="" ref="xPerLakh"/>元</p>
-            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" value="" ref="xPerLakh"/>天</p>
+            <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" v-model:value="rate" alt="" ref="interest"/>%</p>
+            <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" v-model:value="add_amount" ref="xPerLakh"/>元</p>
+            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" v-model:value="adjustDays" ref="xPerLakh"/>天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
             <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">
-              实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{amount}}W</i> &nbsp;&nbsp;&nbsp;
-                <i style="background:#f15749;width:100px;height:30px;display:inline-block;font-style:normal;color:white;line-height:30px;text-align:center;border-radius:5px;">计算</i>
+              实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{interest_rate}}元</i> &nbsp;&nbsp;&nbsp;
+                <i style="background:#f15749;width:100px;height:30px;display:inline-block;font-style:normal;color:white;line-height:30px;text-align:center;border-radius:5px;"><button @click="calculate()" style="background:#f15749;width:100px;height:30px;">计算</button></i>
             </p>
             <p><button type="button" @click="detailSprompt()">确认报价</button></p>
           </div>
@@ -63,7 +63,11 @@ export default {
       remainDays:null,
       companyName:"",
       releaserId:null,
-      acceptor:null
+      acceptor:null,
+      rate : '',
+      add_amount : '',
+      adjustDays : 0 ,
+      interest_rate : 0
     }
   },
   components:{
@@ -72,6 +76,16 @@ export default {
     }
   },
   methods:{
+    calculate(){
+      let amount = this.amount;
+      let remainDay = this.remainDays;
+      let rate = this.rate;
+      let add_amount = this.add_amount;
+      let adjustDays = this.adjustDays;
+      let interest = (amount*(rate/100)*(remainDay+adjustDays))/360+(amount/100000*add_amount);
+      let realValue = Number(amount - interest).toFixed(2);
+      this.interest_rate = realValue;
+    },
     detailSprompt(){
       let _this=this;
       let amount=this.$refs.amount.value;

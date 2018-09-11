@@ -197,7 +197,7 @@ export default {
       console.log(window.history)
     },
     SeeDetails(index){  //查看详情
-      let bill=this.noteList[index].billNumber;
+      let bill=this.noteList[index].billNumber
       this.$router.push({
         name:'Details',
         query:{
