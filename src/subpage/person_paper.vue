@@ -105,7 +105,7 @@
         billNum:'',
         noteL:[Array],
         currentTab: 'offerin',
-        tabs: ['offerin', 'offerbe']
+        tabs: ['全部报价', '审核中']
       }
     },
     components:{

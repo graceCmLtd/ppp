@@ -83,8 +83,8 @@
             </a>
           </li>
           <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <button class="btn_w">确定交易</button>
+          <li style="border-right: none;">...
+            <!-- <button class="btn_w">确定交易</button> -->
           </li>
         </ul>
       </div>
@@ -114,7 +114,7 @@
           </li>
           <li><a href="">已接单</a></li>
           <li style="border-right: none;">
-            <a href="" class="no-color">不能操作</a>
+            <a href="" class="no-color">...</a>
           </li>
         </ul>
       </div>
@@ -383,11 +383,11 @@
         margin-top: 3px;
       }
       li{
-        float: left;
-        width: 13.5%;
-        line-height: 71px;
-        border-right:1px solid rgba(151,151,151,1);
-        margin-right: -13px;
+         float: left;
+          width: 12.5%;
+          line-height: 71px;
+          border-right: 1px solid #979797;
+          margin-right: -3px;
 
       }
       .btn_w{

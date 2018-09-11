@@ -382,10 +382,10 @@
       }
       li{
         float: left;
-        width: 13.5%;
+        width: 12.5%;
         line-height: 71px;
         border-right:1px solid rgba(151,151,151,1);
-        margin-right: -13px;
+        margin-right: -1px;
 
       }
       .btn_w{
