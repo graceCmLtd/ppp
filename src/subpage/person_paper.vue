@@ -58,13 +58,13 @@
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
             <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">644w</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">7天</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes limit">
-              <span>年化：</span>
-              <span>每10w加：</span>
+              <span>年化：{{item.interest}}</span>
+              <span>每10w加：{{item.xPerLakh}}</span>
             </div></el-col>
           </el-row>
 
@@ -145,14 +145,16 @@
         })*/
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
-            "filter":1
+            "filter":2,
+            "billNumber":_this.billNum
           },
           {
             headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          //console.log(res)
+          console.log(res)
+          this.noteL = res.data
           _this.billN=res.data[0].billNumber;
         })
       },
