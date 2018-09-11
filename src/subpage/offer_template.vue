@@ -62,7 +62,7 @@
         <td></td>
         <td>2.67%</td>
         <td></td>
-        <td>修改报价</td>
+        <td>增加报价</td>
         <td>○置顶首页显示</td>
       </tr>
        <div class="bottom_w">
@@ -139,137 +139,7 @@ export default {
 }
 </script>
 
-<!--<style lang="scss" scoped>-->
-<!--.offer_template{-->
-  <!--width: 100%;-->
-  <!--height:100%;-->
-  <!--padding-top:10%;-->
-  <!--.template_mes{-->
-    <!--width: 80%;-->
-    <!--margin-left: 6%;-->
-    <!--border:1px solid #ccc;-->
-    <!--border-bottom:0;-->
-    <!--.template_title{-->
-      <!--min-height: 36px;-->
-      <!--line-height: 36px;-->
-      <!--border-bottom:1px solid #ccc;-->
-    <!--}-->
-    <!--.limit{-->
-      <!--border-left:1px solid #ccc;-->
-      <!--border-right:1px solid #ccc;-->
-    <!--}-->
-    <!--.city{-->
-      <!--border-left:1px solid #ccc;-->
-      <!--border-right:1px solid #ccc;-->
-    <!--}-->
-    <!--.oper{-->
-      <!--border-left:1px solid #ccc;-->
-    <!--}-->
-    <!--.template_message{-->
-      <!--min-height: 70px;-->
-      <!--line-height: 70px;-->
-      <!--font-size: 14px;-->
-      <!--border-bottom:1px solid #ccc;-->
-    <!--}-->
-  <!--}-->
-  <!--.add_offer{-->
-    <!--width: 80%;-->
-    <!--margin-left: 6%;-->
-    <!--text-align: left;-->
-    <!--margin-top:2%;-->
-    <!--button{-->
-      <!--width: 80px;-->
-      <!--height:26px;-->
-      <!--border-radius:5px;-->
-      <!--background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));-->
-      <!--color:white;-->
-    <!--}-->
-  <!--}-->
-  <!--.oper_offer{-->
-    <!--width: 80%;-->
-    <!--margin-left:6%;-->
-    <!--text-align: center;-->
-    <!--margin-top: 4%;-->
-    <!--button{-->
-      <!--width: 110px;-->
-      <!--min-height: 28px;-->
-      <!--border-radius:5px;-->
-      <!--background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));-->
-      <!--color:white;-->
-    <!--}-->
-    <!--button:nth-child(2){-->
-      <!--width: 150px;-->
-    <!--}-->
-  <!--}-->
-  <!--.template_mask{-->
-    <!--width: 100%;-->
-    <!--height:100%;-->
-    <!--position: fixed;-->
-    <!--top:0;-->
-    <!--left:0;-->
-    <!--background: rgba(0,0,0,.5);-->
-    <!--z-index: 600;-->
-  <!--}-->
-  <!--.template_oper{-->
-    <!--width: 800px;-->
-    <!--height:200px;-->
-    <!--background: white;-->
-    <!--position: absolute;-->
-    <!--top:15%;-->
-    <!--left:50%;-->
-    <!--margin-left: -400px;-->
-    <!--z-index: 601;-->
-    <!--padding-top:1.5%;-->
-    <!--transition: all .5s;-->
-    <!--opacity: 0;-->
-    <!--display: none;-->
-    <!--.message_box{-->
-      <!--width: 80%;-->
-      <!--margin-left: 10%;-->
-      <!--.oper_title{-->
-        <!--min-height: 40px;-->
-        <!--line-height: 40px;-->
-        <!--background: #ebebeb;-->
-      <!--}-->
-      <!--.oper_mes{-->
-        <!--min-height: 50px;-->
-        <!--line-height: 50px;-->
-        <!--font-size: 14px;-->
-      <!--}-->
-      <!--input{-->
-        <!--width: 80%;-->
-        <!--margin:0 auto;-->
-        <!--height:26px;-->
-        <!--font-size: 16px;-->
-        <!--text-align: center;-->
-      <!--}-->
-      <!--input::-webkit-input-placeholder{-->
-        <!--font-size: 14px;-->
-      <!--}-->
-    <!--}-->
-    <!--.place_oper{-->
-      <!--width: 100%;-->
-      <!--text-align: center;-->
-      <!--margin-top: 3%;-->
-      <!--button{-->
-        <!--min-height: 34px;-->
-        <!--min-width: 60px;-->
-        <!--font-size: 12px;-->
-        <!--border-radius:5px;-->
-      <!--}-->
-      <!--button:nth-child(1){-->
-        <!--background: white;-->
-        <!--border:1px solid rgba(254,68,43,1);-->
-        <!--margin-right: 20px;-->
-      <!--}-->
-      <!--button:nth-child(2){-->
-        <!--background: rgba(254,68,43,1);-->
-        <!--margin-left: 20px;-->
-        <!--color:white;-->
-      <!--}-->
-    <!--}-->
-  <!--}-->
-<!--}-->
+
 
 
   <!---->
@@ -278,7 +148,7 @@ export default {
 
 <style type="text/css">
   .content_w1{
-    width: 100%;
+    width: 99%;
     height: 487px;
     background: rgba(255,255,255,1);
     -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
@@ -331,13 +201,6 @@ export default {
     height: 60px;
     background:  #EFF8FF;
   }
-  /*		td:nth-child(7){
-                width:120px;
-                height:40px;
-                background:rgba(241,87,73,1);
-                border-radius:3px;
-                color:#fff;
-            }*/
   .bottom_w{
     position: absolute;
     bottom: 0px;
@@ -348,6 +211,7 @@ export default {
     font-size: 14px;
     font-weight: bold;
     padding: 0 15px;
+    width:100%;
 
   }
   .btn-w_w{

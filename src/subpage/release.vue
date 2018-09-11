@@ -121,12 +121,10 @@ export default {
 .release{
   width: 100%;
   height:auto;
-  min-width: 1378px;
   margin-top: 30px;
   .release_con{
-    width: 70%;
+    width: 99%;
     height:100%;
-    margin-left: 50px;
     display: flex;
     .release_con_table{
     
@@ -134,7 +132,7 @@ export default {
       background: white;
     }
     .release_con_mes{
-      width: 70%;
+      width: 100%;
       height:100%;
     }
   }

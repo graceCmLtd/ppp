@@ -475,7 +475,7 @@ export default {
     text-align: center;
     margin-bottom:5%;;
     button{
-      width: 60%;
+      width: 35%;
       height:100%;
       background: #FF452C;
       font-size: 14px;

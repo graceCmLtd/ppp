@@ -269,7 +269,7 @@ export default {
   width: 100%;
   height:100%;
   .market_paper_con{
-    width: 70%;
+    width: 100%;
     height:774px;
     margin:0 auto;
     padding-top:6%;
@@ -277,7 +277,7 @@ export default {
       width: 100%;
       text-align: left;
       margin-bottom: 2%;
-      min-width: 1166px;
+    
       .option{
         font-size: 15px;
         margin-left: 5%;
@@ -292,8 +292,7 @@ export default {
       background: #F15749;
       font-weight: bold;
       color: #fff;
-      min-width: 1300px;
-      margin-left: -110px;
+
       .table{
         min-height: 40px;
         line-height: 40px;
@@ -303,8 +302,6 @@ export default {
       width: 100%;
       height:42px;
       font-size: 14px;
-      width: 1300px;
-      margin-left: -112px;
 
       .table{
         min-height: 42px;

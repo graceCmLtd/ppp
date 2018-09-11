@@ -161,10 +161,10 @@
 
 <style lang="scss" scoped>
   .person_offer_all{
-    width: 100%;
+    width: 97%;
     height:100%;
     .offer_mes{
-      width: 152%;
+      width: 100%;
       margin-left: 4%;
       margin-top: 4%;
       .mes_title{
