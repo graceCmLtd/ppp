@@ -16,7 +16,7 @@
           <div class="table">
             <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" v-model:value="rate" alt="" ref="interest"/>%</p>
             <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" v-model:value="add_amount" ref="xPerLakh"/>元</p>
-            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" v-model:value="adjustDays" ref="xPerLakh"/>天</p>
+            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" v-model:value="adjustDays" />天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
             <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">
               实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{interest_rate}}元</i> &nbsp;&nbsp;&nbsp;
@@ -90,7 +90,7 @@ export default {
       let _this=this;
       let amount=this.$refs.amount.value;
       let interest=this.$refs.interest.value;
-      let xPerLakh=this.$refs.xPerLakh.value;
+      let xPerLakh=this.add_amount;
       let Id=getCookie('Iud')
       if(amount==''||interest==''||xPerLakh==''){
         alert('请完善报价信息')
@@ -101,7 +101,7 @@ export default {
         	"quoteAmount":amount,
         	"interest":interest,//利率
         	"xPerLakh":xPerLakh,//每10w加
-        	"status":"ok",
+        	"status":"报价中",
         	"quoteDate":"2018-08-09"//报价时间
         }).then((res)=>{
           console.log(res)

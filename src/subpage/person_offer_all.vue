@@ -21,7 +21,7 @@
           <el-col :span="3"><div class="mes">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.amount}}</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{day}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col>
           <el-col :span="3"><div class="mes amount mes_chose">
             <!--<div class="rate">-->
             <!--<p>利率：{{item.interest}}%</p>-->
@@ -31,7 +31,7 @@
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
-            <span>已被卖家接受</span>
+            <span>{{item.quoteStatus}}</span>
           </div></el-col>
           <el-col :span="3"><div class="mes operaMes">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
@@ -113,6 +113,7 @@
             }}
         ).then((res)=>{
           let _this=this;
+          console.log("get all quotes")
           console.log(res)
           _this.noteList=res.data;
           for(let v in res.data){

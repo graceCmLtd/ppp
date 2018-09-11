@@ -10,7 +10,7 @@
           <el-col :span="7">
             <router-link to="/release/Receipt/ReceiptAll"
                          tag="div" class="offer_tit" @click.native="ReceiptAll()" :class="{offer:color==1}" ref="one"
-            >全部资源池交易
+            >全部
               <span class="person_offer_add"></span>
               <span class="person_offer_triangle"></span>
             </router-link></el-col>
