@@ -23,7 +23,7 @@
                            tag="div" class="intention_title confirmed"
                            @click.native="intentionConFirmed()"
                            :class="{intentionAc:color==2}"
-              >待买家确认
+              >待买家接单
                 <span class="person_intention_add"></span>
                 <span class="person_intention_triangle"></span>
               </router-link>

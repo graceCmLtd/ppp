@@ -1,7 +1,10 @@
 <!-- 报价模板 -->
 <template lang="html">
   <div class="content_w1">
-    <div class="content_w1_title">
+    <div class="person_paper_pic">
+      <img src="../../static/img/qiu.png" alt="">
+    </div>
+    <div class="content_w1_title" style="margin-top:125px;">
       <span>发布/修改资源池报价</span>
     </div>
     <table>
@@ -24,26 +27,6 @@
         <td></td>
         <td>修改报价</td>
         <td style="color: #F15749;">○置顶首页显示</td>
-      </tr>
-      <tr class="style-w1">
-        <td>10w-50w</td>
-        <td>3个月以下</td>
-        <td></td>
-        <td>5.34%</td>
-        <td></td>
-        <td></td>
-        <td>修改报价</td>
-        <td>○置顶首页显示</td>
-      </tr>
-      <tr class="style-w1">
-        <td>10w-50w</td>
-        <td>3个月以下</td>
-        <td></td>
-        <td></td>
-        <td>3.7%</td>
-        <td></td>
-        <td>修改报价</td>
-        <td>○置顶首页显示</td>
       </tr>
       <tr class="style-w1">
         <td>10w-50w</td>
@@ -158,8 +141,20 @@ export default {
     position: relative;
     margin-left: 13px;
     margin-top: 14px;
-    min-width: 1189px;
+    min-width: 1189px; 
   }
+    .person_paper_pic{
+      width: 100%;
+      height: 8%;
+      margin-top: 2%;
+      text-align: left;
+      margin-left: 1px;;
+    }
+      .person_paper_pic img{
+          height:150px;
+          width: 99%;
+      }
+
   .content_w1_title{
     height: 61px;
     border-bottom:3px solid rgba(252,213,208);

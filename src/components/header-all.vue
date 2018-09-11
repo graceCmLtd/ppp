@@ -11,7 +11,11 @@
             <a href="" id="topbar_register">免费注册</a> -->
         </div>
         <div class="topmenu">
-            <a target="_blank" href="" id="topbar_my_top">个人中心</a>
+          <a href=""  id="topbar_my_top">
+            <router-link to="/release/offer/offerAll">
+              个人中心
+            </router-link>
+          </a>
             <a target="_blank" href="">我的消息</a>
             <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">40078398</i></a>
         </div>
@@ -30,9 +34,7 @@
       <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==4}">我要贴现</router-link>
       <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==5}">我要买票</router-link>
       <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" </div>:class="{active:color==6}">个人中心</router-link>-->
-          <router-link to="/release/offer/offerAll">
-            <span  style="font-size:14px; width:100px; line-height:76px;">个人中心</span>
-          </router-link>
+      
     </ul>
     <div class="header_oper">
       <p class="enter" v-show="enter">
