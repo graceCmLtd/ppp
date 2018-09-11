@@ -4,11 +4,11 @@
       <p class="paper_details_title">{{acceptor}}</p>
       <div class="paper_mes">
         <div class="mes">
-          <p><i style="font-weight:bold; font-style:normal;";>票据编号</i>:<span>{{billType}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;";>汇票到期日</i>:<span>{{billDate}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;";>票据金额</i>:<span>{{amount}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;";>出票日期</i>:<span>{{billTime}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;";>剩余天数</i>:<span>{{remainDays}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">票据编号</i>:<span>{{billType}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">汇票到期日</i>:<span>{{billDate}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">票据金额</i>:<span>{{amount}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">出票日期</i>:<span>{{billTime}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">剩余天数</i>:<span>{{remainDays}}</span></p>
           <!-- <p>期望利率:<span></span></p> -->
         </div>
         <div class="place">
@@ -18,7 +18,10 @@
             <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" value="" ref="xPerLakh"/>元</p>
             <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" value="" ref="xPerLakh"/>天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
-            <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{amount}}W</i> &nbsp;&nbsp;&nbsp;</p>
+            <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">
+              实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{amount}}W</i> &nbsp;&nbsp;&nbsp;
+                <i style="background:#f15749;width:100px;height:30px;display:inline-block;font-style:normal;color:white;line-height:30px;text-align:center;border-radius:5px;">计算</i>
+            </p>
             <p><button type="button" @click="detailSprompt()">确认报价</button></p>
           </div>
         </div>

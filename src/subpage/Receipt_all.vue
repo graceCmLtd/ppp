@@ -121,7 +121,6 @@
     width: 100%;
     height:100%;
     .offer_mes{
-      width: 153%;
       margin-left: 4%;
       margin-top: 4%;
       .mes_title{

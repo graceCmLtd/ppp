@@ -230,9 +230,9 @@
       text-align: left;
       margin-left: 1%;
       img{
-        width: 1096px;
-        height: 80%;
-        margin-left: -54px;
+          width: 1096px;
+          height: 80%;
+          width: 99%;
       }
     }
     .person_paper_num{
@@ -355,7 +355,7 @@
     left: 315px;
     /*border: 1px solid;*/
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
-    width: 119%;
+    width: 75%;
   }
   .tab-button {
   padding: 6px 10px;

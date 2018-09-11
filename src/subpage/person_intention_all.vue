@@ -217,7 +217,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-    width: 136%;
+  
     margin-top: 3%;
     .intention_mes_title{
       background: #F15749;
@@ -319,7 +319,6 @@
     background: white;
     position: absolute;
     left:50%;
-    margin-left:-286px;
     top:15%;
     z-index: 501;
     opacity: 0;
@@ -364,7 +363,6 @@
   }
   .content_w{
     height: 306px;
-    width: 136%;
     margin: 0 auto;
     background: #fff;
     .content_w_first {

@@ -105,8 +105,8 @@
       text-align: left;
       margin-left: 1%;
       img{
-        width: 1000px;
-        height: 100px;
+          height: 80%;
+          width: 99%;
         }
     }
     .offer_title_external{
@@ -114,14 +114,14 @@
       height:50px;
       position: relative;
       .offer_title{
-        width: 152%;
         min-height: 36px;
         line-height: 36px;
-        margin-left: 4%;
+        margin-left: 1%;
         border-bottom: 1px solid #F15749;
         background: white;
         position: absolute;
         bottom:0;
+        width:96%;
         .offer{
           background: #F15749;
           color:white;

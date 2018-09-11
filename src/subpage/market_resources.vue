@@ -210,9 +210,8 @@ export default {
 .market_resources{
   width: 100%;
   height:100%;
-  min-width: 1376px;
   .market_resources_con{
-    width: 70%;
+    width: 100%;
     margin:0 auto;
     height:100%;
     padding-top:3%;
@@ -227,14 +226,12 @@ export default {
       padding-top:1.2%;
       box-sizing: border-box;
       min-width: 180px;
-      margin-left: 70%;
+    
     }
     .market_resources_list{
         width: 100%;
         margin: 0 auto;
         margin-top: 3%;
-        min-width: 1330px;
-        margin-left: -123px;
       .market_resources_box{
         transition: all .5s;
         position: relative;

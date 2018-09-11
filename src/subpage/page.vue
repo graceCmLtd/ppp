@@ -44,12 +44,15 @@
           <el-col :span="2"><div class="tableMes status">{{item.status}}</div></el-col>
         </el-row>
       </div>
+
       <p class="page_opera_one">
         <router-link to="/marketpa" tag="button">查看更多>></router-link>
         </p>
+
       <div class="page_title_l">      <!--实时利率标题 -->
         <img src="../../static/img/page_title2.png" alt="">
         </div>
+
       <div class="page_table">
         <el-row>
           <el-col :span="4"><div class="table time">票据类型</div></el-col>
@@ -60,6 +63,7 @@
           <el-col :span="4"><div class="table status">状态</div></el-col>
         </el-row>
       </div>
+
       <div class="page_table_mes">
         <el-row v-for="(item,index) in roteListLimit" :key="index" class="page_mark_title">
           <el-col :span="4"><div class="tableMes time">
@@ -77,6 +81,7 @@
           </div></el-col>
         </el-row>
       </div>
+
       <p class="page_opera_one">
         <router-link to="/resources" tag="button">查看更多>></router-link>
         </p>
@@ -166,11 +171,11 @@ export default {
 .page{
   width: 100%;
   height:100%;
-  min-width: 1378px;
   z-index:999;
+  margin: 0 auto;
   margin-top:30px;
   .page_con{
-    width: 70%;
+    width: 100%;
     height:auto;
     margin:0 auto;
     position:relative;
@@ -205,11 +210,10 @@ export default {
         height:100%;
       }
     }
+
     .page_table{
-      width: 100%;
-      min-width:1300px;
-      margin:0 auto;
-      margin-left:-116px;
+    width: 100%;
+    margin: 0 auto;
       .table{
         min-height: 40px;
         background: #f45643;
@@ -221,9 +225,7 @@ export default {
     .page_table_mes{
       width: 100%;
       font-size: 14px;
-      min-width:1300px;
       margin:0 auto;
-      margin-left:-116px;
       .page_mark_title:nth-of-type(even){
         background:#f7f7f7;
 
