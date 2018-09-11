@@ -79,8 +79,8 @@ export default {
     text-align: left;
     margin-left: 1%;
     img{
-      width:100%;
-      height:80%;
+      width: 1000px;
+      height: 100px;
     }
   }
   .offer_title_external{
@@ -88,7 +88,7 @@ export default {
     height:50px;
     position: relative;
     .offer_title{
-      width: 60%;
+      width:152%;
       min-height: 36px;
       line-height: 36px;
       margin-left: 4%;

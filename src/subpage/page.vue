@@ -33,8 +33,10 @@
         <el-row v-for="(item,index) in roteList" :key="index" class="page_mark_title">
           <el-col :span="4"><div class="tableMes time">{{item.releaseDate}}</div></el-col>
           <el-col :span="3"><div class="tableMes type">
-            <span style="color:#ff823f;" v-show="item.billType=='纸银'">银票</span>
-            <span style="color:#3d83c8;" v-show="item.billType=='国票'">国票</span>
+            <span v-show="item.billType=='电银'">电银</span>
+            <span v-show="item.billType=='纸银'">纸银</span>
+            <span v-show="item.billType=='电商'">电商</span>
+            <span v-show="item.billType=='纸商'">纸商</span>
           </div></el-col>
           <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
           <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
@@ -119,7 +121,7 @@ export default {
       _this.$refs.CaBe.style.display='block';
       _this.$refs.CaAf.style.display='none';
     },
-    backTop(){
+    backTop(){//返回顶部
       document.documentElement.scrollTop-=150;
       if (document.documentElement.scrollTop>0) {
         var c=setTimeout(()=>this.backTop(150),16);
@@ -166,6 +168,7 @@ export default {
   height:100%;
   min-width: 1378px;
   z-index:999;
+  margin-top:30px;
   .page_con{
     width: 70%;
     height:auto;
@@ -204,6 +207,9 @@ export default {
     }
     .page_table{
       width: 100%;
+      min-width:1300px;
+      margin:0 auto;
+      margin-left:-116px;
       .table{
         min-height: 40px;
         background: #f45643;
@@ -215,13 +221,11 @@ export default {
     .page_table_mes{
       width: 100%;
       font-size: 14px;
+      min-width:1300px;
+      margin:0 auto;
+      margin-left:-116px;
       .page_mark_title:nth-of-type(even){
         background:#f7f7f7;
-      }
-      .page_mark_title:hover{
-        // background: #fffbee;
-        box-shadow: 0 0 15px rgba(0,0,0,.2);
-        z-index: 1;
 
       }
       .tableMes{

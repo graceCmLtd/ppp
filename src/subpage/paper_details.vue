@@ -1,23 +1,24 @@
 <template lang="html">
   <div class="paper_details">
     <div class="paper_details_con">
-      <p class="paper_details_title">海绵海绵我是大星科技有限公司</p>
+      <p class="paper_details_title">{{acceptor}}</p>
       <div class="paper_mes">
         <div class="mes">
-          <p>票据编号:<span>{{billType}}</span></p>
-          <p>汇票到期日:<span>{{billDate}}</span></p>
-          <p>票据金额:<span>{{amount}}</span></p>
-          <p>出票日期:<span>{{billTime}}</span></p>
-          <p>剩余天数:<span>{{remainDays}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>票据编号</i>:<span>{{billType}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>汇票到期日</i>:<span>{{billDate}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>票据金额</i>:<span>{{amount}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>出票日期</i>:<span>{{billTime}}</span></p>
+          <p><i style="font-weight:bold; font-style:normal;";>剩余天数</i>:<span>{{remainDays}}</span></p>
           <!-- <p>期望利率:<span></span></p> -->
         </div>
         <div class="place">
           <p class="num">已有23家机构报价</p>
           <div class="table">
-            <p>报价利率:<input type="text" value="" alt="" ref="interest"/>%</p>
-            <p>每10万加:<input type="text" value="" ref="xPerLakh"/>元</p>
+            <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" value="" alt="" ref="interest"/>%</p>
+            <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" value="" ref="xPerLakh"/>元</p>
+            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" value="" ref="xPerLakh"/>天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
-            <p ref="amount">计算金额:{{amount}}&nbsp;&nbsp;&nbsp;</p>
+            <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">实付金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{amount}}W</i> &nbsp;&nbsp;&nbsp;</p>
             <p><button type="button" @click="detailSprompt()">确认报价</button></p>
           </div>
         </div>
@@ -56,7 +57,10 @@ export default {
       amount:'',
       billTime:'',
       day:'',
-      remainDays:null
+      remainDays:null,
+      companyName:"",
+      releaserId:null,
+      acceptor:null
     }
   },
   components:{
@@ -92,7 +96,6 @@ export default {
           })
         })
       }
-
     },
     closeSprompt(){
       this.$refs.success_mes.style.top="15%";
@@ -110,17 +113,27 @@ export default {
         this.billDate=res.data[0].maturity;
         this.amount=res.data[0].amount;
         this.billTime=res.data[0].releaseDate;
-        this.remainDays=res.data[0].remain_days
+        this.remainDays=res.data[0].remain_days;
+        this.releaserId = res.data[0].releaserId;
+        this.acceptor = res.data[0].acceptor;
       })
     },
     getPics(){
       let _this=this;
       _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+_this.bill).then((res)=>{
-        console.log(_this)
+        console.log()
         _this.$refs.billPic.src=res.data[0].pic1;
+      })
+    },
+    getCompanyInfo(){
+      let _this=this;
+      _this.axios.get(_this.oUrl+'/bills/getCompany?contactsId='+_this.releaserId).then((res)=>{
+        console.log(res)
+
       })
     }
   },
+
   created(){
     this.getBill()
   },
@@ -133,7 +146,6 @@ export default {
 <style lang="scss" scoped>
 .paper_details{
   width: 100%;
-  min-width: 1631px;
   height:100%;
   min-height: 900px;
   .paper_details_con{
@@ -234,12 +246,17 @@ export default {
     .paper_pic_title{
       width: 100%;
       text-align: left;
-      border-bottom: 1px solid #979797;
+      border-bottom: 2px solid #F15749;
       margin-top:3%;
       span{
-        color:#ff452c;
-        border-bottom: 4px solid #ff452c;
-        padding-bottom:.5%;
+        width: 150px;
+        height: 48px;
+        background: #f15749;
+        line-height: 48px;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+
       }
     }
     .paper_pic{
@@ -286,6 +303,7 @@ export default {
       }
       button:nth-child(1){
         margin-right:10px;
+        width:102px;
       }
       button:nth-child(2){
         margin-left: 20px;

@@ -5,16 +5,16 @@
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
-          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px;height: 27.97px;">
-            <option value ="">电银</option>
-            <option value ="">纸银</option>
-            <option value="">电商</option>
-            <option value="">纸商</option>
+          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px;height: 27.97px;">
+            <option value ="电银">电银</option>
+            <option value ="纸银">纸银</option>
+            <option value="电商">电商</option>
+            <option value="纸商">纸商</option>
           </select>
           </p>
           <p>票据号码<input type="text" vlaue="" placehoder="" ref="paperNumber"/></p>
           <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
-          <p class="release_paper_date">票据到期日
+          <p class="release_paper_date" style="margin-left:15px;">票据到期日
             <el-date-picker
               v-model="time"
               type="date"
@@ -45,7 +45,7 @@
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
-            <span><img src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
+            <span><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
@@ -95,7 +95,8 @@
         PaperMaskShow:false,
         loadingRele:false,
         releText:'发布',
-        dayRe:'？'
+        dayRe:'？',
+        typeSelect:''
       }
     },
     components:{
@@ -223,6 +224,9 @@
           let Is=window.localStorage.getItem('Is');//票据正面图片
           let The=window.localStorage.getItem('The');//票据反面图片
           let Id=getCookie('Iud');
+          let typeSelect = _this.$refs.typeSelect.value;
+          console.log("this  refs  aldfjkad")
+          console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
             alert('请先完善票面信息！')
           }else if(!Is){
@@ -235,7 +239,7 @@
             _this.axios.post(this.oUrl+'/bills/addbill',{
                 "billInfo":{
                   "billNumber":paperNumber,
-                  "billType":"国票",
+                  "billType":typeSelect,
                   "acceptor":acceptor,
                   "amount":amount,
                   "maturity":_this.time,
@@ -243,7 +247,8 @@
                   "releaseDate":"2018-08-08",
                   "releaserId":Id,
                   "billPicsId":11111,
-                  "transferable":true
+                  "transferable":true,
+                  "billReferer":"traditional"
                 },
                 "billPics":{
                   "billNumber":paperNumber,
@@ -282,9 +287,6 @@
 </script>
 
 <style lang="scss">
-  .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 205px;
-  }
 
   .el-input__inner{
     width: 200px;
@@ -306,14 +308,21 @@
       padding-top:5%;
       .release_paper_title{
         width: 100%;
-        border-bottom: 1px solid #999;
+        border-bottom: 2px solid #F15749;
         text-align: left;
         span{
           font-size: 16px;
-          padding-bottom:.5%;
+          padding-bottom: .5%;
           font-weight: bold;
-          border-bottom: 4px solid #ff462c;
-          letter-spacing:2px;
+          background: #F15749;
+          letter-spacing: 2px;
+          color: #fff;
+          font-weight: bold;
+          width: 110px;
+          height: 37px;
+          text-align: center;
+          line-height: 37px;
+
         }
       }
       .release_paper_mes{
@@ -342,6 +351,7 @@
             width: 65%;
             text-align: right;
             margin-top: 2%;
+            font-weight: bold;
             input{
               width: 200px;
               height:24px;
@@ -362,15 +372,16 @@
             }
           }
           .obtain{
-            width: 100%;
-            text-align: center;
-            height:40px;
-            margin-top: 15%;
-            position: relative;
+              width: 100%;
+              text-align: center;
+              height: 40px;
+              margin-top: 9%;
+              position: relative;
+              margin-left: -76px;
             button{
               width:120px;
               height:40px;
-              background: #fc4027;
+              background: #F15749;
               color:white;
               font-size: 16px;
               border-radius: 5px;
@@ -391,7 +402,6 @@
           .paper_is{
             width: 50%;
             height:40%;
-            background: #f7f7f7;
             padding-top:13%;
             position: relative;
             img{
@@ -414,7 +424,6 @@
           .paper_the{
             width: 50%;
             height:40%;
-            background: #f7f7f7;
             padding-top:13%;
             margin-top: 10%;
             position: relative;
@@ -544,7 +553,7 @@
         button:nth-child(2){
           margin-left: 10px;
           margin-right: 10px;
-        }
+        } 
       }
     }
   }

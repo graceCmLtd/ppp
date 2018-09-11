@@ -11,8 +11,8 @@
       <p class="sgin_in_title" style="font-size: 30px;">免费注册</p>
       <div class="signIn_mes">
         <ul class="signIn_message" style="margin-top: 30px;">
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="UserName"/></li>
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="Phone"/><span v-show="show" @click="getCode" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">获取短信验证码</span><span v-show="!show" class="count"  style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer;">{{count}} S</span></li>
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" v-model="Phone"/></li>
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="PhoneCode"/><span v-show="show" @click="getCode()" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">获取短信验证码</span><span v-show="!show" class="count"  style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer;">{{count}} S</span></li>
           <!--<li style="margin-top: 20px;  position: relative;"><i style="font-style:normal;color: #FF0000;">*</i>登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="password" maxlength="16" @on-change="password" value="" ref="Code"/>
             　<img :src="this.registration_data.src" @click="changeType()" style="position: absolute; top: 15px; right:20px;"/>
@@ -21,21 +21,20 @@
           <li style="margin-top: 20px; position: relative;">
             <i style="font-style:normal;color: #FF0000;">*</i>
             登&nbsp;录&nbsp;密&nbsp;码:&nbsp;&nbsp;&nbsp;
-            <input type="text" v-if="pwdType" v-model="eyetxt" >
-            <input type="password" placeholder="" v-model="eyetxt" v-else >
+            <input type="text" v-if="pwdType" v-model="eyetxt">
+            <input type="password" placeholder="" v-model="eyetxt" v-else maxlength="16">
             <img src="" alt="">
             <img :src="seen ? seenImg : unseenImg" @click="changeType()" class="eye_img" style="position: absolute; top: 25%; left: 90%;"/>
           </li>
 
           <li style="margin-top: 20px; position: relative;"><i style="font-style:normal;color: #FF0000;">*</i>再次输入密码:
-            <input type="password" maxlength="16" value="" ref="PhoneCode" />
+            <input type="password" maxlength="16" value="" ref="pass" />
             <!--<img :src="seen ? seenImg : unseenImg" @click="changeType()" class="eye_img" style="position: absolute; top: 25%; left: 90%;"/>-->
           </li>
 
         </ul>
       </div>
-      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:red; cursor: pointer;"  @click="open">《碰碰票协议》</span></p>
-
+      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:#F15749; cursor: pointer;"  @click="open">《碰碰票协议》</span></p>
       <p class="turnSignin"><button @click="sginIn()"
                                     v-loading="loadingSginIn"
                                     element-loading-text=""
@@ -54,6 +53,7 @@
 </template>
 
 <script>
+ import {getCookie} from '@/assets/util'
   export default {
     data(){
 
@@ -65,11 +65,12 @@
         show: true,
         count: '',
         timer: null,
-
+        seen:'',
         unseenImg:"../../static/img/close.png",//看不见
         seenImg:"../../static/img/open.png",//看得见密码
         eyetxt:"",
         pwdType:false //此时文本框隐藏，显示密码框
+
       }
     },
     methods:{
@@ -115,8 +116,6 @@
               alert("注册失败")
             }
 
-
-
           })
         }
       },
@@ -152,6 +151,8 @@
           { dangerouslyUseHTMLString: true });
       },
       getCode(){
+        console.log("get code xxxxxxxxxxxxxx")
+        this.getPhoneSms();
         const TIME_COUNT = 60;
         if (!this.timer) {
           this.count = TIME_COUNT;
@@ -170,6 +171,15 @@
       changeType:function(){
         this.seen = !this.seen;//小眼睛的变化
         this.pwdType=!this.pwdType;//跟着小眼睛变化，密码框隐藏显示文本框，内容就显示了
+      }
+    },
+    created(){
+      let token = getCookie("Too");
+      if (token) {
+      console.log("else ,,,,,")
+          console.log(this.$route)
+          console.log(window.history)
+          window.history.back()
       }
     }
   }
@@ -191,7 +201,7 @@
       width: 26%;
       height: 52%;
       margin: 0 auto;
-      margin-top: 1% !important;
+      margin-top: 3% !important;
       /*border: 1px solid red;*/
       border-radius: 4px;
       min-height: 750px;
@@ -279,7 +289,7 @@
           width: 341px;
           height:38px;
           border-radius:5px;
-          background: #ff462c;
+          background: rgb(241, 87, 73);
           color:white;
         }
       }

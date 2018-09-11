@@ -13,6 +13,8 @@
       element-loading-background="rgba(0,0,0,0.1)"
       >{{sginUpText}}</button>
     </p>
+
+      <a href="" style="font-size:13px; color: #3a83e8;text-decoration:none; float: right; margin-left：10px;margin-right: 99px;">忘记密码?</a>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
     return{
       back:false,
       loadingSginUp:false,
-      sginUpText:'登入'
+      sginUpText:'登录'
     }
   },
   methods:{
@@ -46,6 +48,7 @@ export default {
         }}
       ).then((res)=>{
         console.log(res)
+        console.log(this)
         _this.sginUpText='登录';
         _this.loadingSginUp=false;
         let token=res.data.ticket;
@@ -57,11 +60,17 @@ export default {
         setCookie('Nick',nick);
         setCookie('isAu',isau);
         if(_this.back){
+          console.log("_this  back     ")
+          console.log(window.history)
+          console.log(this.$route)
           window.history.back()
           setTimeout(()=>{
           window.history.back()
           },0)
         }else{
+          console.log("else ,,,,,")
+          console.log(this.$route)
+          console.log(window.history)
           window.history.back()
           }
         })
@@ -112,7 +121,7 @@ created(){
       min-height:35px;
       border-radius:5px;
       font-size: 15px;
-      background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+      background: #F15749;
       color:white;
     }
   }

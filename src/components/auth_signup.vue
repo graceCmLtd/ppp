@@ -9,6 +9,7 @@
     <p class="code"><span style="color:red;">*</span>验证码：&nbsp;&nbsp;<input type="text" value="" placeholder="" /></p>
     <p class="turn">
       <button type="button" name="button">登录</button>
+      <a href="" style="font-size:13px; color: #3a83e8;text-decoration:none; float: right;">忘记密码?</a>
     </p>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
       top:16%;
       right:0;
       cursor:pointer;
-      background: linear-gradient(180deg,rgba(255,124,87,1),rgba(255,70,44,1));;
+      background: #F15749;
       padding:.5%;
       border-radius:5px;
       color:white;
@@ -64,7 +65,7 @@ export default {
       min-height:35px;
       border-radius:5px;
       font-size: 15px;
-      background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+      background: #F15749;
       color:white;
     }
   }

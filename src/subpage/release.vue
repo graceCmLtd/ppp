@@ -122,13 +122,14 @@ export default {
   width: 100%;
   height:auto;
   min-width: 1378px;
+  margin-top: 30px;
   .release_con{
     width: 70%;
     height:100%;
-    margin-left: 138px;
+    margin-left: 50px;
     display: flex;
     .release_con_table{
-      width: 22%;
+    
       height:100%;
       background: white;
     }

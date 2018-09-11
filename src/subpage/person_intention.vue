@@ -137,13 +137,14 @@
       margin-top:2%;
       text-align: left;
       margin-left: 1%;
+
       img{
-        width:100%;
-        height:80%;
+      width: 1000px;
+      height: 100px;
       }
     }
     .person_intention_con{
-      width: 96%;
+      width: 114%;
       margin-left:4%;
       margin-top:3%;
       min-height: 500px;
@@ -154,7 +155,7 @@
         .person_intention_title{
           position: absolute;
           bottom:-1px;
-          width: 125%;
+          width: 136%; 
           border-bottom:3px solid #F15749;
           .intention_title{
             min-height: 36px;
