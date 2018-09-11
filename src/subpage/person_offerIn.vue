@@ -9,7 +9,7 @@
           <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;">{{item.acceptor}}</div></el-col>
 
           <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000}}w</div></el-col>
-          <el-col><div class="person_offerIn_title">剩余天数:124天</div></el-col>
+          <el-col><div class="person_offerIn_title">剩余天数:{{item.remain_days}}天</div></el-col>
           <el-col><div class="person_offerIn_title time">到期日:{{item.maturity}}</div></el-col>
           <el-col><div class="person_offerIn_title">发布日期:{{item.releaseDate}}</div></el-col>
         </el-row>

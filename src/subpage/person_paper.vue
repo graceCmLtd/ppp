@@ -5,22 +5,22 @@
       <img src="../../static/img/qiu.png" alt="">
     </div>
     <!--<p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>-->
-    <p class="person_paper_table">
-      <!-- <router-link
+ <!--    <p class="person_paper_table">
+      <router-link
         to="/release/paper/offerIn" tag="span"
         @click.native="offerIn()"
         :class="{paperAc:color==1}"
-      >全部报价</router-link> -->
-      <!-- <person-offerIn @click.native="offerIn()"
+      >全部报价</router-link>
+      <person-offerIn @click.native="offerIn()"
       :class="{paperAc:color==1}"
-      >报价</person-offerIn> -->
-      <!-- <person-offerin v-bind:billNum = "billNum" tag="span" @transb="getBillNum" :class="{paperAc:color==1}" >全部报价</person-offerin> -->
-      <!-- <router-link
+      >报价</person-offerIn>
+      <person-offerin v-bind:billNum = "billNum" tag="span" @transb="getBillNum" :class="{paperAc:color==1}" >全部报价</person-offerin>
+      <router-link
         to="/release/paper/offerBe" tag="span"
         @click.native="offerBe()"
         :class="{paperAc:color==2}"
-      >审核中</router-link> -->
-    </p>
+      >审核中</router-link>
+    </p> -->
     <!-- <div class="hadRelease">
       <router-view></router-view>
     </div> -->
@@ -30,15 +30,19 @@
         v-bind:key="tab"
         v-bind:class="['tab-button', { active: currentTab === tab }]"
         v-on:click="currentTab = tab"
-      >{{ tab }}</button>
+      >{{ names[tab] }}</button>
 
       <person-offerin
         v-bind:is="currentTabComponent"
         class="tab"  v-bind:billNum = "billNum" @transb="getBillNum"
       ></person-offerin>
+
+      <!-- <person-offerbe v-bind:is="currentTabComponent" 
+        class="tab" v-bind:billNum = "billNum" @transb = "getBillNum" ></person-offerbe>
+         -->
     </div>
     
-    <div class="yibao_w" v-if="color == 1" >
+    <div class="yibao_w" v-if="color == 1 && currentTab == 'offerin' " >
       <!-- <personOfferIn></personOfferIn> -->
       <p class="person_paper_tableB">
         <span :class="{HadAc:colorB==3}" @click="havOffer()">已报价<span></span></span>
@@ -86,6 +90,58 @@
         </el-row>
       </div>
     </div>
+
+     <div class="yibao_w" v-if="color == 1 && currentTab == 'offerbe' " >
+      <!-- <personOfferIn></personOfferIn> -->
+     <!--  <p class="person_paper_tableB">
+        <span :class="{HadAc:colorB==3}" @click="havOffer()">已报价<span></span></span>
+        <span :class="{HadAc:colorB==4}" @click="notOffer">未报价<span></span></span>
+      </p> -->
+      <div class="hadOffer" v-show="hadOffer">
+        <el-row>
+          <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">承兑银行</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
+          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
+          
+        </el-row>
+        <div class="person-offerIn" v-for = "item in noteL ">
+          <el-row class="oferMes">
+            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes limit">
+              <span>年化：{{item.interest}}</span>
+              <span>每10w加：{{item.xPerLakh}}</span>
+            </div></el-col>
+          </el-row>
+
+          <p class="hadOffer_opera">
+            <span>北京海世界有限公司</span>
+            <span>赵总</span>
+            <span>13240891337</span>
+            <button type="button" name="button" @click="paperMesper()">查看</button>
+          </p>
+
+
+        </div>
+      </div>
+      <div class="didOffer" v-show="didOffer">
+        <el-row>
+          <el-col :span="10"><div class="didOffer_title company">北京憧憬实业有限公司</div></el-col>
+          <el-col :span="7"><div class="didOffer_title">尧经理</div></el-col>
+          <el-col :span="7"><div class="didOffer_title">19895425446</div></el-col>
+        </el-row>
+      </div>
+    </div>
+
+
+
   </div>
 
 </template>
@@ -93,6 +149,7 @@
 <script>
   import {getCookie} from '@/assets/util'
   import personOfferin from '@/subpage/person_offerIn'
+  import personOfferbe from '@/subpage/person_offerBe'
   export default {
     data(){
       return{
@@ -105,17 +162,23 @@
         billNum:'',
         noteL:[Array],
         currentTab: 'offerin',
-        tabs: ['全部报价', '审核中']
+        tabs: ['offerin', 'offerbe'],
+        names:[]
       }
     },
     components:{
-      personOfferin
+      personOfferin,
+      personOfferbe
     },
     /*props:{
       'noteL':[Array]
     },*/
     computed: {
     currentTabComponent: function () {
+      /*"offerin":"全部报价","offerbe":"审核中"*/
+      this.names["offerin"] = "全部报价"
+      this.names["offerbe"] = "审核中"
+      
       return 'person-' + this.currentTab.toLowerCase()
     }
   },
@@ -138,11 +201,6 @@
         console.log("billnumer is :")
         console.log(_this.billNum)
         
-        /*this.axios.get(this.oUrl+'/quote/getByBillNumber?billNumber='+_this.billNum).then((res)=>{
-          console.log("yibaojia")
-          console.log(res)
-          //_this.billN=res.data[0].billNumber;
-        })*/
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":2,
@@ -161,7 +219,26 @@
       notOffer(){
         this.colorB=4;
         this.hadOffer=false;
-        this.didOffer=true
+        this.didOffer=true;
+        let _this=this;
+        let Id=getCookie('Iud');
+        console.log("billnumer is :")
+        console.log(_this.billNum)
+        
+        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+            "uuid":Id,
+            "filter":4,
+            "billNumber":_this.billNum
+          },
+          {
+            headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log(res)
+          this.noteL = res.data
+          _this.billN=res.data[0].billNumber;
+        })
       },
       getBills(){
         let _this=this;
@@ -197,6 +274,8 @@
     },
     
     created(){
+      this.names["offerin"] = "全部报价"
+      this.names["offerbe"] = "审核中"
       this.getBills()
     }
   }
@@ -353,7 +432,7 @@
   }
   .yibao_w{
     position: relative;
-    top: -294px;
+    /*top: -294px;*/
     left: 315px;
     /*border: 1px solid;*/
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
