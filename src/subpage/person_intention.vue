@@ -134,13 +134,11 @@
     .person_intention_pic{
       width: 100%;
       height: 8%;
-      margin-top:2%;
       text-align: left;
-      margin-left: 1%;
 
       img{
         width: 1281px;
-        height: 155px;
+        height: 80px;
       }
     }
     .person_intention_con{

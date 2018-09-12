@@ -228,12 +228,9 @@
     .person_paper_pic{
       width: 100%;
       height: 8%;
-      margin-top: 2%;
       text-align: left;
-      margin-left: 1%;
       img{
-          width: 1096px;
-          height: 80%;
+          height: 80px;
           width: 99%;
       }
     }

@@ -52,7 +52,7 @@
         </el-row>
       </div>
       <div class="release_con_mes">
-        <router-view></router-view>
+        <router-view></router-view>   
       </div>
     </div>
     <Footer :height="minHeight"/>

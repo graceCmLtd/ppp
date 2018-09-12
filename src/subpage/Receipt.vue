@@ -25,7 +25,7 @@
 
 
           <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
-                                         :class="{offer:color==3}"
+                                         :class="{offer:color==3}" 
           >待接单
 
             <span class="person_offer_add"></span>
@@ -101,12 +101,10 @@
     .offer_pic{
       width: 100%;
       height: 8%;
-      margin-top: 2%;
       text-align: left;
-      margin-left: 1%;
       img{
-          height: 80%;
-          width: 99%;
+          height: 80px;
+          width: 100%;
         }
     }
     .offer_title_external{

@@ -4,7 +4,7 @@
     <div class="person_paper_pic">
       <img src="../../static/img/qiu.png" alt="">
     </div>
-    <div class="content_w1_title" style="margin-top:125px;">
+    <div class="content_w1_title" style="margin-top:68px;">
       <span>发布/修改资源池报价</span>
     </div>
     <table>
@@ -139,20 +139,16 @@ export default {
     /*border: 1px solid black;*/
     margin: 0 auto;
     position: relative;
-    margin-left: 13px;
-    margin-top: 14px;
-    min-width: 1189px; 
+ 
   }
     .person_paper_pic{
       width: 100%;
       height: 8%;
-      margin-top: 2%;
       text-align: left;
-      margin-left: 1px;;
     }
       .person_paper_pic img{
-          height:150px;
-          width: 99%;
+          height:100px;
+          width: 100%;
       }
 
   .content_w1_title{
