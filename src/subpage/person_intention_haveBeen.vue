@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
+            <button type="button" name="button">确认交易</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
