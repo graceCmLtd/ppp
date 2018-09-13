@@ -51,6 +51,7 @@ export default {
   methods:{
     offerAll(){
       this.color=1;
+      console.log("this  object :")
       console.log(this)
     },
     offerAcc(){

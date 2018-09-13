@@ -37,7 +37,7 @@
         <el-col :span="3"><div class="table status">操作</div></el-col>
       </el-row>
     </div>
-    <div class="market_paper_table">
+    <div class="market_paper_table" >
       <el-row v-for="(item,index) in noteList" :key="index" class="aa">
         <el-col :span="4"><div class="table time">{{item.billType}}</div></el-col>
         <el-col :span="3"><div class="table type" ref="acceptor">{{item.acceptor}}</div></el-col>
