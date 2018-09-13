@@ -17,7 +17,12 @@ const router = new Router({
       }
     },
     {
-      path:'/release',//急速发票
+        path:'/invoice',//急速发票
+        name:'Invoice',
+        component:resolve=>require(['@/subpage/invoice'],resolve)
+        },
+    {
+      path:'/release',
       name:'Release',
       component:resolve=>require(['@/subpage/release'],resolve),
       children:[
@@ -26,6 +31,8 @@ const router = new Router({
           name:'Data',
           component:resolve=>require(['@/subpage/person_data'],resolve)
         },
+
+   
         {
           path:'/release/trad',//平台担保交易
           name:'Trad',

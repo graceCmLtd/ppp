@@ -75,11 +75,10 @@ export default {
   .offer_pic{
     width: 100%;
     height: 8%;
-    margin-top: 2%;
     text-align: left;
-    margin-left: 1%;
     img{
        width: 99%;
+       height:80px;
     }
   }
   .offer_title_external{

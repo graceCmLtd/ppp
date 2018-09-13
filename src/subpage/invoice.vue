@@ -2,35 +2,36 @@
 <template lang="html">
   <div class="release_paper">
     <div class="release_paper_con">
-      <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
-          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px;height: 27.97px;">
+          <p style="position: relative;">
+            票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px; height: 27.97px;">
             <option value ="电银">电银</option>
             <option value ="纸银">纸银</option>
             <option value="电商">电商</option>
             <option value="纸商">纸商</option>
           </select>
           </p>
-          <p>票据号码<input type="text" vlaue="" placehoder="" ref="paperNumber" maxlength="31" minlength="31"/></p>
-          <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
-          <p class="release_paper_date" style="margin-left:15px;">票据到期日
-            <el-date-picker
-              v-model="time"
-              type="date"
-              placeholder="选择日期"
-              value-format="timestamp"
-              @change="choseDate()"
-            >
-            </el-date-picker>
-            <span class="time">剩余期限{{dayRe}}天</span>
+          <div class="mes_right" style="margin-top:13px;margin-bottom:13px;">
+              <div class="paper_is">
+                <span style="position:absolute; top:-3px; left: 21px; font-weight:bold;">票据正面</span><br>
+                <span style="margin-right:50px;"><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span><br>
+                <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
+              </div>
+              <div class="paper_the">
+                <span style="position:absolute; top:-3px; left: 21px; font-weight:bold;">票据反面</span>
+                <span><img src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>  
+                <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
+              </div>
+          </div>
 
+          <p>手机号<input type="text" vlaue="" placehoder="" maxlength="11" ref="PhoneCode" style="padding-right:30px;" /></p>
+
+          <p>短信验证码<input type="text" vlaue="" placehoder="" style="width:130px; margin-left:10px;" />
+            <span v-show="show" @click="getCode()" class="get_w" >获取验证码</span>
+            <span v-show="!show" class="count"  style="">{{count}} s</span>
           </p>
-          <p>承兑人全称<input type="text" vlaue="" placehoder="" ref="acceptor"/></p>
-          <!--<p>是否可签转<input type="text" vlaue="" placehoder=""/></p>-->
           <p class="obtain">
-            <!-- 保存 -->
-            <!-- <button type="button" name="button" @click="PaperSave()">保存</button> -->
             <button type="button" name="button" @click="submitMes()"
                     v-loading="loadingRele"
                     element-loading-text=""
@@ -39,24 +40,7 @@
             >{{releText}}</button>
           </p>
         </div>
-        <div class="mes_right">
-          <div class="paper_is">
-            <span><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
-            <span>上传票据正面</span>
-            <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
-          </div>
-          <div class="paper_the">
-            <span><img src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
-            <span>上传票据反面</span>
-            <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
-          </div>
-        </div>
       </div>
-      <!-- <p class="service">
-        <input type="radio" style="width:20px;height:20px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"/>
-        <input type="radio" style="width:20px;height:20px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />
-        同意平台担保交易协议
-      </p> -->
     </div>
     <div class="release_paper_mask" v-show="PaperMaskShow" @click="closeSave()">
 
@@ -90,6 +74,8 @@
       return{
         minHeight:'10%',
         time:null,
+        show: true,
+        count: '',
         radioT:true,
         radioB:false,
         checked:false,
@@ -97,7 +83,8 @@
         loadingRele:false,
         releText:'发布',
         dayRe:'？',
-        typeSelect:''
+        typeSelect:'',
+     
       }
     },
     components:{
@@ -114,6 +101,7 @@
         let year=date.getFullYear();
         let month=date.getMonth()+1;
         let day=date.getDate();
+        let phoneCode=_this.$refs.PhoneCode.value;//手机验证码
         if(month>=1&&month<=9){
           month='0'+month
         };
@@ -157,6 +145,43 @@
           this.$refs.release_prompt.style.top='30%'
         })
       },
+// 获取验证码
+     getPhoneSms(){
+        //let Phone = this.phone
+        /*let _this = this
+        let Phone=_this.Phone;*/
+        console.log("the phone number is ")
+        console.log(this.Phone)
+        this.axios.post(this.oUrl+'/getPhoneSms',{
+            "phone":this.Phone
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log(res)
+          //this.noteList=res.data;
+        })
+      },
+      getCode(){
+        console.log("get code xxxxxxxxxxxxxx")
+        this.getPhoneSms();
+        const TIME_COUNT = 60;
+        if (!this.timer) {
+          this.count = TIME_COUNT;
+          this.show = false;
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--;
+            } else {
+              this.show = true;
+              clearInterval(this.timer);
+              this.timer = null;
+            }
+          }, 1000)
+        }
+      },
+
       upLoadIs(e){
         let _this=this;
         if (e.target.files[0]) {
@@ -205,15 +230,6 @@
           }
         }
       },
-      // radioTC($event){
-      //   this.radioT=false;
-      //   this.radioB=true;
-      //   $event.target.checked=false
-      // },
-      // radioBC(){
-      //   this.radioT=true;
-      //   this.radioB=false;
-      // },
       submitMes(){
         let _this=this;
         if(!getCookie('Iud')){
@@ -376,36 +392,35 @@
               width: 100%;
               text-align: center;
               height: 40px;
-              margin-top: 9%;
+              margin-top: 6%;
               position: relative;
               margin-left: -76px;
             button{
-              width:120px;
-              height:40px;
+              width: 296px;
+              height: 40px;
               background: #F15749;
-              color:white;
+              color: white;
               font-size: 16px;
               border-radius: 5px;
-              margin-left:80px;
+              margin-left: -30px;
             }
             button:nth-child(1){
               position: absolute;
               top:0;
               left:40%;
             }
-            button:nth-child(2){
+            button:nth-child(2){  
               margin-left: 250px;
             }
           }
         }
         .mes_right{
-          width: 30%;
-          height:100%;
           .paper_is{
             width: 50%;
             height:40%;
-            padding-top:13%;
+            padding-top:18%;
             position: relative;
+            margin:0 auto;
             img{
               width: 100%;
               height:100%;
@@ -426,9 +441,11 @@
           .paper_the{
             width: 50%;
             height:40%;
-            padding-top:13%;
-            margin-top: 10%;
+            padding-top: 19%;
+            margin-top: 19%;
             position: relative;
+            margin:0 auto;
+            margin-top: 10px;
             img{
               width: 100%;
               height:100%;
@@ -559,4 +576,31 @@
       }
     }
   }
+  .get_w{
+      width:88px;
+      height:30px;
+      border-radius:3px;
+      font-style: normal;
+      background:#F15749;
+      color:#fff;
+      display:inline-block; 
+      line-height:30px;
+      font-weight:normal;
+      margin-left:2px;
+      font-size:12px;
+      text-align:center;
+      cursor:pointer;
+    }
+    .count{
+      width: 88px;
+      height: 30px; 
+      display: inline-block; 
+      text-align: center;
+      line-height: 30px; 
+      background: #ccc; 
+      color: #fff; 
+      margin-left: 20px;
+      border-radius: 5px; 
+      cursor: pointer;
+    }
 </style>

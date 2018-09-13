@@ -226,6 +226,7 @@ export default {
       padding-top:1.2%;
       box-sizing: border-box;
       min-width: 180px;
+      
     
     }
     .market_resources_list{

@@ -2,7 +2,7 @@
   <div class="page" ref="page">
     <Swiper/>
     <div class="page_con">
-      <router-link to="/release" tag="p" class="page_release">
+      <router-link to="/invoice" tag="p" class="page_release">
         <img src="../../static/img/page_button_top.png" alt="">
       </router-link>
       <div class="page_title_f">          <!--票据行情标题 -->

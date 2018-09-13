@@ -1,28 +1,30 @@
 <template lang="html">
   <div class="market_paper">
   <div class="market_paper_con">
-    <p>
-      <span style="font-weight:bold;">票据类型:</span>
-      <span class="option" :class="{markAc:color==1}" @click="infinite()">不限</span>
-      <span class="option" :class="{markAc:color==2}" @click="silver()">纸银</span>
-      <span class="option" :class="{markAc:color==3}" @click="electric()">电银</span>
-      <span class="option" :class="{markAc:color==4}" @click="makers()">纸商</span>
-      <span class="option" :class="{markAc:color==5}" @click="electricity()">电商</span>
-    <p>
-      <span style="font-weight:bold;">票据金额:</span>
-      <span class="option" :class="{markAc:colorTwo==1}" @click="infiniteAmount()">不限</span>
-      <span class="option" :class="{markAc:colorTwo==2}" @click="thanOne()">小于100万</span>
-      <span class="option" :class="{markAc:colorTwo==3}" @click="thanFive()">100万-500万</span>
-      <span class="option" :class="{markAc:colorTwo==4}" @click="aboveFive()">500万以上</span>
-    </p>
-    <p>
-      <span style="font-weight:bold;">到期期限:</span>
-      <span class="option" :class="{markAc:colorThr==1}" @click="infiniteDate()">不限</span>
-      <span class="option" :class="{markAc:colorThr==2}" @click="silverDay()">小于30天</span>
-      <span class="option" :class="{markAc:colorThr==3}" @click="thanDay()">1-3个月</span>
-      <span class="option" :class="{markAc:colorThr==4}" @click="thanThe()">3-6个月</span>
-      <span class="option" :class="{markAc:colorThr==5}" @click="thanSix()">6个月以上</span>
-    </p>
+    <div style=" margin-left:100px; ">
+        <p>
+          <span style="font-weight:bold;">票据类型:</span>
+          <span class="option" :class="{markAc:color==1}" @click="infinite()">不限</span>
+          <span class="option" :class="{markAc:color==2}" @click="silver()">纸银</span>
+          <span class="option" :class="{markAc:color==3}" @click="electric()">电银</span>
+          <span class="option" :class="{markAc:color==4}" @click="makers()">纸商</span>
+          <span class="option" :class="{markAc:color==5}" @click="electricity()">电商</span>
+        <p>
+          <span style="font-weight:bold;">票据金额:</span>
+          <span class="option" :class="{markAc:colorTwo==1}" @click="infiniteAmount()">不限</span>
+          <span class="option" :class="{markAc:colorTwo==2}" @click="thanOne()">小于100万</span>
+          <span class="option" :class="{markAc:colorTwo==3}" @click="thanFive()">100万-500万</span>
+          <span class="option" :class="{markAc:colorTwo==4}" @click="aboveFive()">500万以上</span>
+        </p>
+        <p>
+          <span style="font-weight:bold;">到期期限:</span>
+          <span class="option" :class="{markAc:colorThr==1}" @click="infiniteDate()">不限</span>
+          <span class="option" :class="{markAc:colorThr==2}" @click="silverDay()">小于30天</span>
+          <span class="option" :class="{markAc:colorThr==3}" @click="thanDay()">1-3个月</span>
+          <span class="option" :class="{markAc:colorThr==4}" @click="thanThe()">3-6个月</span>
+          <span class="option" :class="{markAc:colorThr==5}" @click="thanSix()">6个月以上</span>
+        </p>
+</div>
     <div class="market_paper_table_title">
       <el-row>
         <el-col :span="4"><div class="table time">票据类型</div></el-col>
