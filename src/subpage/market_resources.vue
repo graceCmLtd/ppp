@@ -1,10 +1,19 @@
 <template lang="html">
   <div class="market_resources">
     <div class="market_resources_con">
+
+  
+
+    <router-link to="/batch" tag="p">
       <p class="resources_title">
         <span>批量收票请去我的报价</span><br>
         <span>模版发布收票价格</span>
       </p>
+      </router-link>
+
+
+
+
       <div class="market_resources_list">
         <el-row>
           <el-col :span="4"><div class="market_resources_title">票据类型</div></el-col>

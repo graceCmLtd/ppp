@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="content_w1">
     <div class="person_paper_pic">
-      <img src="../../static/img/qiu.png" alt="">
+      <img src="../../static/img/ziyuan.png" alt="">
     </div>
     <div class="content_w1_title" style="margin-top:68px;">
       <span>发布/修改资源池报价</span>

@@ -10,6 +10,7 @@
       </div>
       <div class="page_options">
         <ul class="list">
+          
           <li @mouseenter="Be()" @mouseleave="Af()">
             <img src="../../static/img/calculatorBe.png" ref="CaBe" class="Be" alt="" style="width:50%;height:50%;margin-right:25%;" >
             <img src="../../static/img/calculator.png" ref="CaAf" title="" class="Af" alt="" style="width:50%;height:50%;display:none;" />

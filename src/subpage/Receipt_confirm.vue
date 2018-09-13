@@ -218,7 +218,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-  
+    margin-left:1%;
     margin-top: 3%;
     .intention_mes_title{
       background: #F15749;
