@@ -57,7 +57,8 @@ export default {
       releaseDate:null,
       billAmount:null,
       maturityDay:null,
-      billN:null
+      billN:null,
+      quoterId:''
     }
   },
   methods:{
@@ -76,7 +77,7 @@ export default {
       if(!this.TypeAgShowT){
         alert('请先接收担保交易条款')
       }else{
-        _this.axios.post(this.oUrl+'/quote/submitIntention',{
+        /*_this.axios.post(this.oUrl+'/quote/submitIntention',{
           "billNumber":_this.billN,
           "quoteStatus":'卖家确认'
         },
@@ -86,13 +87,40 @@ export default {
       ).then((res)=>{
         console.log(res)
         window.history.back()
+      })*/
+      /*sop1 买家操作1 提交意向，等待买家接单*/
+      _this.axios.post(this.oUrl+'/transaction/updateIntentionStatus',{
+            "operate":"sop1",
+            "InvalidateBody":{
+              "billNumber":_this.billN,
+              "quoterId":_this.quoterId,
+              "quoteStatus":"报价失效"
+            },
+            "validateBody":{
+              "billNumber":_this.billN,
+              "quoterId":_this.quoterId,
+              "quoteStatus":"报价完成,ok，进入意向"
+            },
+            "transactionBody":{
+              "billNumber":_this.billN,
+              "intentionStatus":"待接单"
+            }
+          },
+        {headers:{
+          'Content-Type':'application/json'
+        }}
+      ).then((res)=>{
+        console.log(res)
+        window.history.back()
       })
+
       }
     },
     receiveBills(){
       let _this=this;
       let bill=this.$route.query.bills
       _this.billN=this.$route.query.bills;
+      _this.quoterId = this.$route.query.quoterId;
       _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+bill).then((res)=>{
         console.log(res)
         _this.billType=res.data[0].billType;
@@ -107,6 +135,7 @@ export default {
     }
   },
   mounted(){
+
     this.receiveBills()
   }
 }

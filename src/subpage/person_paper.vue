@@ -76,7 +76,7 @@
             <span>北京海世界有限公司</span>
             <span>赵总</span>
             <span>13240891337</span>
-            <button type="button" name="button" @click="paperMesper()">查看</button>
+            <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
 
 
@@ -99,25 +99,26 @@
       </p> -->
       <div class="hadOffer" v-show="hadOffer">
         <el-row>
-          <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">承兑银行</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">票据类型</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">票号</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">承兑银行</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">金额</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">到期日</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">剩余天数</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title_short">失败原因</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
           
         </el-row>
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
-            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes limit">
+            <el-col :span="4"><div class="hadOffer_validate_normal" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_validate_normal" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col>
+hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_validate_normal" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
+            <el-col :span="4"><div class="hadOffhadOffer_validate_normalr_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
+            <el-col :span="4"><div class="hadOffer_validate_normal limit">
               <span>年化：{{item.interest}}</span>
-              <span>每10w加：{{item.xPerLakh}}</span>
+              <span>{{item.failReason}}</span>
             </div></el-col>
           </el-row>
 
@@ -187,7 +188,6 @@
         this.color=1;
         console.log("offerin ")
         console.log(this.noteL)
-        //this.getBillNumber()
       },
       offerBe(){
         this.color=2;
@@ -256,11 +256,14 @@
           _this.billN=res.data[0].billNumber;
         })
       },
-      paperMesper(){//查看票据详情
+      paperMesper(item){//查看票据详情
+        console.log("paper detail info  item")
+        console.log(item)
         this.$router.push({
           name:'choseType',
           query:{
-            bills:this.billN
+            bills:this.billN,
+            quoterId:item.quoterId
           }
         })
       },
@@ -368,6 +371,15 @@
         color: #fff;
         font-family: bold;
       }
+      .hadOffer_title_short{
+        min-height: 34px;
+        line-height: 34px;
+        font-size: 12px;
+        width:60px;
+        background: #F15749;
+        color: #fff;
+        font-family: bold;
+      }
       .oferMes:nth-of-type(even){
         background: #f7f7f7;
       }
@@ -375,6 +387,13 @@
         height:70px;
         min-height: 70px;
         line-height: 70px;
+        font-size: 14px;
+      }
+      .hadOffer_validate_normal{
+        height:40px;
+
+        min-height: 50px;
+        line-height: 50px;
         font-size: 14px;
       }
       .limit{

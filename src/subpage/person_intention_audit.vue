@@ -16,8 +16,9 @@
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}</div></el-col>
           <el-col :span="3">
+            <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
-                 :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
+                 
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
@@ -67,8 +68,8 @@
     </div>
 
     <!--内容-->
-    <div class="content_w">
-      <!--1-->
+   <!--  <div class="content_w">
+      
       <div class="content_w_first">
         <ul>
           <li><a href="">电银</a></li>
@@ -78,17 +79,17 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化:10%
-              <!--<p class="wrie_w"></p>-->
-              <!--<p class="san_w">每10W加:***</p>-->
+              <p class="wrie_w"></p>
+              <p class="san_w">每10W加:***</p>
             </a>
           </li>
           <li><a href="">已接单</a></li>
           <li style="border-right: none;">...
-            <!-- <button class="btn_w">确定交易</button> -->
+            <button class="btn_w">确定交易</button>
           </li>
         </ul>
       </div>
-      <!--2-->
+      
       <div class="content_w_second">
         <ul>
           <li><a href="">张家湾****贸易有限公司</a></li>
@@ -100,7 +101,6 @@
         </ul>
       </div>
 
-      <!--3-->
       <div class="content_w_first">
         <ul>
           <li><a href="">电银</a></li>
@@ -110,7 +110,7 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化：10%</a>
-            <!--<a href="">每10W加：***</a>-->
+            <a href="">每10W加：***</a>
           </li>
           <li><a href="">已接单</a></li>
           <li style="border-right: none;">
@@ -119,7 +119,7 @@
         </ul>
       </div>
 
-      <!--4-->
+      
       <div class="content_w_second">
         <ul>
           <li><a href="">张家湾****贸易有限公司</a></li>
@@ -131,7 +131,10 @@
         </ul>
       </div>
 
-    </div>
+    </div> -->
+
+
+    
   </div>
 </template>
 
