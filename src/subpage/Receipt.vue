@@ -22,8 +22,6 @@
             <span class="person_offer_triangle" ref="Receipt_triangle_prices"></span>
           </router-link></el-col>
 
-
-
           <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
                                          :class="{offer:color==3}" 
           >待接单
@@ -34,19 +32,19 @@
 
 
 
-          <el-col :span="5"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
+          <el-col :span="5"><router-link to="/release/Receipt/offerConfirm" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
                                          :class="{offer:color==4}"
           >卖家已确认
             <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
+            <span class="person_offer_triangle" ref="Receipt_triangle_confirm"></span>
           </router-link></el-col>
 
 
-          <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan2()"
+          <el-col :span="4"><router-link to="/release/Receipt/offerInvalid" tag="div" class="offer_tit offer_choesT" @click.native="offerCan2()"
                                          :class="{offer:color==5}"
           >已失效
             <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
+            <span class="person_offer_triangle" ref="Receipt_triangle_invalid"></span>
           </router-link></el-col>
 
         </el-row>
@@ -84,11 +82,11 @@
       },
       offerCan1(){
         this.color=4;
-        this.$refs.Receipt_triangle_cancel.style.right='-9%'
+        this.$refs.Receipt_triangle_confirm.style.right='-9%'
       },
       offerCan2(){
         this.color=5;
-        this.$refs.Receipt_triangle_cancel.style.right='-9%'
+        this.$refs.Receipt_triangle_invalid.style.right='-9%'
       }
     }
   }
@@ -115,11 +113,11 @@
         min-height: 36px;
         line-height: 36px;
         margin-left: 1%;
-        border-bottom: 1px solid #F15749;
+        border-bottom: 3px solid #F15749;
         background: white;
         position: absolute;
-        bottom:0;
-        width:96%;
+        bottom: 0;
+        width: 49%;
         .offer{
           background: #F15749;
           color:white;

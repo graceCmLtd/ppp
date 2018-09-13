@@ -87,11 +87,11 @@ export default {
     height:50px;
     position: relative;
     .offer_title{
-          width: 100%;
+          width: 49%;
           min-height: 36px;
           line-height: 36px;
           margin-left: 1%;
-          border-bottom: 1px solid #F15749;
+          border-bottom: 3px solid #F15749;
           background: white;
           position: absolute;
           bottom: 0;

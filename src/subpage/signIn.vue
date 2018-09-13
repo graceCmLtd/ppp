@@ -2,7 +2,12 @@
   <div class="sgin_in">
     <div class="box" style="width: 400px; height: 300px;">
       <p style="font-weight: bold; color: #000000; float: left; margin-top: 30px; margin-left: 25px;">已有碰碰账号?</p>
-      <p style="float: left; margin-top: 70px; margin-left: -100px; width: 52px;height: 29px; background: orangered; text-align: center;line-height: 28px; color: #fff; border-radius: 5px; cursor:pointer;">登陆</p>
+<!-- 
+      <p style="float: left; margin-top: 70px; margin-left: -100px; width: 52px;height: 29px; background: orangered; text-align: center;line-height: 28px; color: #fff; border-radius: 5px; cursor:pointer;">登陆</p> -->
+
+      <p style="float: left; margin-top: 70px; margin-left: -100px; width: 52px;height: 29px; background: #F15749; text-align: center;line-height: 28px; color: #fff; border-radius: 5px; cursor:pointer;"><router-link to="/signUp" tag="span" class="signUp">登录</router-link></p>
+
+
       <p style="margin-top: 170px; float: left; margin-left: -100px; font-weight: bold;">有任何问题请联系客服</p>
       <p style="margin-top: 210px; float: left; margin-left: -155px;">电话:<i style="color: orangered;">15101699799</i><span style="margin-left: 30px; display: inline-block; width: 70px; height: 25px; font-weight: bold; text-align: center; line-height: 25px; color: #FFF; background: orange; border-radius: 5px;">QQ客服</span></p>
     </div>
@@ -86,7 +91,7 @@
         let _this=this;
         //let name=_this.$refs.UserName.value;//用户名
         let phone=_this.Phone;//手机号码
-        //let code=_this.$refs.Code.value;//图形验证码
+        //let code=_this.$refs.Code.value;//图形验证码k
         let phoneCode=_this.$refs.PhoneCode.value;//手机验证码
         let pass=_this.$refs.pass.value;//密码
         //let amgrent_w=_this.$refs.amgrent_w.value;

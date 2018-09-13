@@ -111,7 +111,7 @@
       height:14px;
       background: #F15749;
       position: absolute;
-      top:-40%;
+      top: -39%;
       left:0;
     }
     .person_intention_triangle{
@@ -153,7 +153,7 @@
           position: absolute;
           bottom:-1px;
           border-bottom:3px solid #F15749;
-          width: 97%;
+          width: 49%;
           .intention_title{
             min-height: 36px;
             line-height: 36px;
