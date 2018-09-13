@@ -16,8 +16,9 @@
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}</div></el-col>
           <el-col :span="3">
+            <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
-                 :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
+                 
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
@@ -26,14 +27,14 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3" v-if="item.intentionStatus == '已接单'"><div class="intention_mes operaMes">
+            <button type="button" name="button">确认交易</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span>张家湾****有限公司</span>
-          <span class="pople">赵经理</span>
+          <span class="pople">赵经理11</span>
           <span>13240891337</span>
           <a href="tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes" style="text-decoration:none">qq咨询</a>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
@@ -66,72 +67,7 @@
 
     </div>
 
-    <!--内容-->
-    <div class="content_w">
-      <!--1-->
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <!--<p class="wrie_w"></p>-->
-              <!--<p class="san_w">每10W加:***</p>-->
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <!-- <button class="btn_w">确定交易</button> -->
-          </li>
-        </ul>
-      </div>
-      <!--2-->
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <!-- <button class="btn_w">详情</button> -->
-          </li>
-        </ul>
-      </div>
-
-      <!--3-->
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <!--<a href="">每10W加：***</a>-->
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-      <!--4-->
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div>
+   
   </div>
 </template>
 
@@ -163,6 +99,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          console.log("intention dada sssss")
           console.log(res)
           _this.noteList=res.data;
         })

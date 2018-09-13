@@ -22,7 +22,7 @@
       </div>
       <div class="page_table">
         <el-row>
-          <el-col :span="4"><div class="table time">成交时间</div></el-col>
+          <el-col :span="4"><div class="table time">发布时间</div></el-col>
           <el-col :span="3"><div class="table type">票据类型</div></el-col>
           <el-col :span="8"><div class="table acce">承兑人</div></el-col>
           <el-col :span="4"><div class="table amount">票据金额</div></el-col>
@@ -42,7 +42,7 @@
           <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
           <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="tableMes data">{{item.releaseDate}}</div></el-col>
-          <el-col :span="2"><div class="tableMes status">{{item.status}}</div></el-col>
+          <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
         </el-row>
       </div>
 
@@ -150,6 +150,8 @@ export default {
         }
       }
       ).then((res)=>{
+        console.log("filterbill  .....")
+        console.log(res)
         _this.roteList=res.data;
       })
     },

@@ -14,7 +14,6 @@
                            @click.native="intentionAll()"
                            :class="{intentionAc:color==1}"
               >全部
-                <span class="person_intention_add"></span>
                 <span class="person_intention_triangle"></span>
               </router-link>
             </el-col>
@@ -24,7 +23,7 @@
                            @click.native="intentionConFirmed()"
                            :class="{intentionAc:color==2}"
               >待买家接单
-                <span class="person_intention_add"></span>
+                
                 <span class="person_intention_triangle"></span>
               </router-link>
             </el-col>
@@ -34,7 +33,7 @@
                            @click.native="intentionHaveBeen()"
                            :class="{intentionAc:color==3}"
               >买家已接单
-                <span class="person_intention_add"></span>
+                
                 <span class="person_intention_triangle"></span>
               </router-link>
             </el-col>
@@ -44,7 +43,7 @@
                            @click.native="IntentionRefused()"
                            :class="{intentionAc:color==4}"
               >买家已拒绝/失效
-                <span class="person_intention_add"></span>
+                
                 <span class="person_intention_triangle" ref="person_intention_triangle_c"></span>
               </router-link>
             </el-col>
@@ -54,7 +53,7 @@
                            @click.native="IntentionAudit()"
                            :class="{intentionAc:color==5}"
               >审核中
-                <span class="person_intention_add"></span>
+                
                 <span class="person_intention_triangle" ref="person_intention_triangle_s"></span>
               </router-link>
             </el-col>

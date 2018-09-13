@@ -116,7 +116,7 @@
           console.log("get all quotes")
           console.log(res)
           _this.noteList=res.data;
-          for(let v in res.data){
+          /*for(let v in res.data){
             // console.log(res.data[v].maturity)
             // _this.marDay=res.data[v].maturity;
             let date=new Date();
@@ -133,7 +133,7 @@
             _this.day=Math.floor(lastDay/86400000)
             console.log(_this.day)
             _this.marDay.push(_this.day)
-          }
+          }*/
           console.log(_this.marDay)
         })
       },
