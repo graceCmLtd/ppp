@@ -41,7 +41,7 @@
           <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
           <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="tableMes data">{{item.releaseDate}}</div></el-col>
-          <el-col :span="2"><div class="tableMes status">{{item.status}}</div></el-col>
+          <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
         </el-row>
       </div>
 
@@ -149,6 +149,8 @@ export default {
         }
       }
       ).then((res)=>{
+        console.log("filterbill  .....")
+        console.log(res)
         _this.roteList=res.data;
       })
     },
