@@ -94,7 +94,7 @@ const router = new Router({
 
 
         {
-          path:'/release/Receipt',//接单
+          path:'/release/Receipt',//我的接单
           name:'Receipt',
           component:resolve=>require(['@/subpage/Receipt'],resolve),
           children:[
@@ -104,19 +104,24 @@ const router = new Router({
               component:resolve=>require(['@/subpage/Receipt_all'],resolve)
             },
             {
-              path:'/release/Receipt/offerAccepted',//已被卖家接受的报价
-              name:'Accepted',
-              component:resolve=>require(['@/subpage/Receipt_accepted'],resolve)
-            },
-            {
-              path:'/release/Receipt/offerPrices',//报价中
-              name:'Prrices',
+              path:'/release/Receipt/offerPrices',//已被卖家接受的报价
+              name:'offerPrices',
               component:resolve=>require(['@/subpage/Receipt_prices'],resolve)
             },
-            {
-              path:'/release/Receipt/offerCancel',//已失效的报价
-              name:'Cancel',
+             {
+              path:'/release/Receipt/offerCancel',//已被卖家接受的报价
+              name:'offerCancel',
               component:resolve=>require(['@/subpage/Receipt_cancel'],resolve)
+            },
+            {
+              path:'/release/Receipt/offerConfirm',//报价中
+              name:'offerConfirm',
+              component:resolve=>require(['@/subpage/Receipt_confirm'],resolve)
+            },
+            {
+              path:'/release/Receipt/offerInvalid',//已失效的报价
+              name:'offerInvalid',
+              component:resolve=>require(['@/subpage/Receipt_invalid'],resolve)
             }
           ],
           redirect:'/release/Receipt/ReceiptAll'

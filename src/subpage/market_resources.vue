@@ -226,13 +226,13 @@ export default {
       padding-top:1.2%;
       box-sizing: border-box;
       min-width: 180px;
-      
-    
+      float:right;
+      margin-right:30px;   
     }
     .market_resources_list{
         width: 100%;
         margin: 0 auto;
-        margin-top: 3%;
+        margin-top: 6%;
       .market_resources_box{
         transition: all .5s;
         position: relative;

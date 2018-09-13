@@ -1,7 +1,7 @@
 <!-- 已失效的报价 -->
 <template lang="html">
   <div class="person_offer_prices">
-    <h2>已失效的报价</h2>
+   <!--  <h2>已失效的报价</h2> -->
   <div class="offer_mes">
       <el-row>
         <el-col :span="3"><div class="mes_title">票据类型</div></el-col>

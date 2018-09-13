@@ -82,7 +82,7 @@
               <!--<p class="san_w">每10W加:***</p>-->
             </a>
           </li>
-          <li><a href="">已接单</a></li>
+          <li><a href="">卖家已确认</a></li>
           <li style="border-right: none;">
             <button class="btn_w">下一步</button>
           </li>
@@ -95,7 +95,7 @@
           <li><a href="">赵总</a></li>
           <li><a href="">13900323434</a></li>
           <li>
-            <!-- <button class="btn_w">详情</button> -->
+            <button class="btn_w">票据详情</button>
           </li>
         </ul>
       </div>
@@ -112,10 +112,10 @@
             <a href="">年化：10%</a>
             <!--<a href="">每10W加：***</a>-->
           </li>
-          <li><a href="">已接单</a></li>
+          <li><a href="">卖家已确认</a></li>
           <li style="border-right: none;">
-            <!-- <a href="" class="no-color">下一步</a> -->
-             <button class="btn_w">下一步</button>
+            <!-- <a href="" class="no-color">...</a> -->
+                <button class="btn_w">下一步</button>
           </li>
         </ul>
       </div>
