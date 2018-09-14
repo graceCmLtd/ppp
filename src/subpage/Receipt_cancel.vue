@@ -33,7 +33,7 @@
             <button type="button" name="button" v-on:click = "acceptOrder(index)">接单</button>
           </div>
           <div class="intention_mes operaMes">
-            <button type="button" name="button">修改报价</button>
+            <button type="button" name="button" @click="open">修改报价</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -160,9 +160,11 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        console.log("待接单userid")
+        console.log(Id)
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'3',
+            "IntentionType":'6',
             "filter_str":"待接单"
           },
           {headers:{
@@ -224,8 +226,14 @@
           _this.getIntenTionList();
           /*_this.noteList=res.data;*/
         })
-      }
+      },
+      open(){
+        this.$alert(
+          '<div id="calculator"></div>',
 
+          { dangerouslyUseHTMLString: true });
+        console.log(open);
+      }
       /*end of methods*/
     },
     created(){
@@ -463,6 +471,15 @@
 
 
     }
+
+  }
+  .el-message-box{
+    width:500px !important;
+    #calculator{
+    width:450px;
+    height:350px;
+    background:url("../../static/img/jigou.png");
+  }
 
   }
 

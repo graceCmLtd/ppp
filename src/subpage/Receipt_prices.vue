@@ -150,7 +150,7 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'2',
+            "IntentionType":'7',
             "filter_str":"已接单"
           },
           {headers:{

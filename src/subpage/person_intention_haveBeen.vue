@@ -209,8 +209,8 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberLoca,
-            "intentionStatus":"卖家已确认",
-            "quoterId":Id
+            "intentionStatus":"卖家已确认"/*,
+            "quoterId":Id*/
           },
           {headers:{
               'Content-Type':'application/json'
