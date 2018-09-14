@@ -1,4 +1,5 @@
 <!-- 用户全部报价 -->
+<!-- 卖家已确认 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -151,7 +152,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'2',
+            "filter_str":"卖家已确认"
           },
           {headers:{
               'Content-Type':'application/json'
