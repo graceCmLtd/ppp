@@ -32,7 +32,7 @@
             <button type="button" name="button">接单</button>
           </div>
           <div class="intention_mes operaMes">
-            <button type="button" name="button">修改报价</button>
+            <button type="button" name="button" @click="open">修改报价</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -203,7 +203,14 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      }
+      },
+      open(){
+        this.$alert(
+          '<div id="calculator"></div>',
+
+          { dangerouslyUseHTMLString: true });
+        console.log(open);
+      },
     },
     created(){
       this.getIntenTionList()
@@ -440,6 +447,15 @@
 
 
     }
+
+  }
+  .el-message-box{
+    width:500px !important;
+    #calculator{
+    width:450px;
+    height:350px;
+    background:url("../../static/img/jigou.png");
+  }
 
   }
 

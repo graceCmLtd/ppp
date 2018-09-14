@@ -69,6 +69,7 @@
         <button type="button" name="button">查看审核状态</button>
       </p>
     </div>
+
     <div class="release_prompt" ref="release_prompt">
       <img src="../../static/img/rele_icon.png" alt="">
       <p class="release_title">发布成功</p>
@@ -79,6 +80,7 @@
         <router-link to="/release/paper" tag="button">查看已发布的票据</router-link>
       </p>
     </div>
+    
     <Footer :height="minHeight"/>
   </div>
 </template>

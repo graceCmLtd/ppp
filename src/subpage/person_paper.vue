@@ -447,12 +447,13 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
     }
   }
   .yibao_w{
-    position: relative;
-    /*top: -294px;*/
-    left: 315px;
-    /*border: 1px solid;*/
-    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
-    width: 75%;
+    position: fixed;
+    top: 250px;
+    left: 528px;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+    width: 65%;
+    z-index: 999;
   }
   .tab-button {
   padding: 6px 10px;
