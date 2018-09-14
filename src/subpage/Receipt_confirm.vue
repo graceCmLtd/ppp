@@ -16,8 +16,9 @@
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}</div></el-col>
           <el-col :span="3">
+            <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
-                 :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
+                 
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
@@ -26,9 +27,9 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
+            <button type="button" name="button">下一步</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -67,8 +68,7 @@
     </div>
 
     <!--内容-->
-    <div class="content_w">
-      <!--1-->
+    <!-- <div class="content_w">
       <div class="content_w_first">
         <ul>
           <li><a href="">电银</a></li>
@@ -78,8 +78,6 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化:10%
-              <!--<p class="wrie_w"></p>-->
-              <!--<p class="san_w">每10W加:***</p>-->
             </a>
           </li>
           <li><a href="">卖家已确认</a></li>
@@ -88,7 +86,6 @@
           </li>
         </ul>
       </div>
-      <!--2-->
       <div class="content_w_second">
         <ul>
           <li><a href="">张家湾****贸易有限公司</a></li>
@@ -100,7 +97,6 @@
         </ul>
       </div>
 
-      <!--3-->
       <div class="content_w_first">
         <ul>
           <li><a href="">电银</a></li>
@@ -110,17 +106,14 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化：10%</a>
-            <!--<a href="">每10W加：***</a>-->
           </li>
           <li><a href="">卖家已确认</a></li>
           <li style="border-right: none;">
-            <!-- <a href="" class="no-color">...</a> -->
                 <button class="btn_w">下一步</button>
           </li>
         </ul>
       </div>
 
-      <!--4-->
       <div class="content_w_second">
         <ul>
           <li><a href="">张家湾****贸易有限公司</a></li>
@@ -132,7 +125,7 @@
         </ul>
       </div>
 
-    </div>
+    </div> -->
   </div>
 </template>
 
