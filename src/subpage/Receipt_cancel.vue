@@ -16,8 +16,9 @@
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}</div></el-col>
           <el-col :span="3">
+            <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
-                 :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
+                 
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
@@ -26,9 +27,12 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
+            <button type="button" name="button">接单</button>
+          </div>
+          <div class="intention_mes operaMes">
+            <button type="button" name="button">修改报价</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
