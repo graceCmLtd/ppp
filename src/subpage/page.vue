@@ -8,18 +8,19 @@
       <div class="page_title_f">          <!--票据行情标题 -->
         <img src="../../static/img/page_title1.png" alt="">
       </div>
+<!-- 计算器 -->
       <div class="page_options">
-        <ul class="list">
-          
-          <li @mouseenter="Be()" @mouseleave="Af()">
-            <img src="../../static/img/calculatorBe.png" ref="CaBe" class="Be" alt="" style="width:50%;height:50%;margin-right:25%;" >
+        <ul class="list">         
+          <li @mouseenter="Be()" @mouseleave="Af()" @click="open">
+            <img src="../../static/img/calculatorBe.png" ref="CaBe" class="Be" alt="" style="width:50%;height:50%;margin-right:25%;"  >
             <img src="../../static/img/calculator.png" ref="CaAf" title="" class="Af" alt="" style="width:50%;height:50%;display:none;" />
           </li>
-
           <li><a href="tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes" style="text-decoration:none"><p>法&nbsp;务</p><p>咨&nbsp;询</p></a></li>
           <li @click="backTop()"><p>回&nbsp;到</p><p>顶&nbsp;部</p></li>
         </ul>
       </div>
+
+
       <div class="page_table">
         <el-row>
           <el-col :span="4"><div class="table time">发布时间</div></el-col>
@@ -161,7 +162,14 @@ export default {
         console.log(res)
         _this.roteListLimit=res.data;
       })
-    }
+    },
+    
+    open(){
+        this.$alert(
+          '<div id="calculator" style="width:200px;height:30px;border:1px solid black;">贴现计算器 <button>ww</button> </div>',
+          { dangerouslyUseHTMLString: true });
+        console.log(open);
+      },
   },
   created(){
     this.getListTop();
@@ -317,4 +325,5 @@ export default {
     }
   }
 }
+
 </style>
