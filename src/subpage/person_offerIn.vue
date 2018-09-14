@@ -31,8 +31,6 @@
     <!-- <person-paper  :noteL = 'noteDetail' ></person-paper> -->
   </div>
 
-  <!--  <person-paper noteList = 666></person-paper> -->
-
 
 </template>
 

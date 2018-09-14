@@ -12,7 +12,7 @@
             <option value="纸商">纸商</option>
           </select>
           </p>
-          <p>票据号码<input type="text" v-model:vlaue="billNum" placehoder="" ref="" maxlength="31" minlength="31"/></p>
+          <p>票据号码<input type="text" v-model:vlaue="billNum" placehoder="" ref="paperNumber" oninput="if(value.length > 30)value = value.slice(0, 30)" /></p>
           <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
           <p class="release_paper_date" style="margin-left:15px;">票据到期日
             <el-date-picker

@@ -12,7 +12,7 @@
             <option value="纸商">纸商</option>
           </select>
           </p>
-          <div class="mes_right" style="margin-top:13px;margin-bottom:13px;">
+       <!--    <div class="mes_right" style="margin-top:13px;margin-bottom:13px;">
               <div class="paper_is">
                 <span style="position:absolute; top:-3px; left: 21px; font-weight:bold;">票据正面</span><br>
                 <span style="margin-right:50px;"><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span><br>
@@ -23,10 +23,9 @@
                 <span><img src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>  
                 <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
               </div>
-          </div>
+          </div> -->
 
-          <p>手机号<input type="text" vlaue="" placehoder="" maxlength="11" ref="PhoneCode" style="padding-right:30px;" /></p>
-
+          <p>手机号<input type="text" vlaue="" placehoder="" maxlength="11" ref="PhoneCode"/></p>
           <p>短信验证码<input type="text" vlaue="" placehoder="" style="width:130px; margin-left:10px;" />
             <span v-show="show" @click="getCode()" class="get_w" >获取验证码</span>
             <span v-show="!show" class="count"  style="">{{count}} s</span>
@@ -316,17 +315,15 @@
   .release_paper{
     width: 100%;
     height:100%;
-    min-width: 1166px;
-    min-height: 900px;
+    margin:0 auto;
     .release_paper_con{
-      width: 70%;
+      width: 100%;
       height:60%;
       margin:0 auto;
       padding-top:5%;
       .release_paper_title{
         width: 100%;
         border-bottom: 2px solid #F15749;
-        text-align: left;
         span{
           font-size: 16px;
           padding-bottom: .5%;
@@ -339,7 +336,6 @@
           height: 37px;
           text-align: center;
           line-height: 37px;
-
         }
       }
       .release_paper_mes{
@@ -349,7 +345,7 @@
         margin-top: 3%;
         position: relative;
         .mes_left{
-          width: 70%;
+          width: 100%;
           height:100%;
           .release_paper_date{
             position: relative;
@@ -394,7 +390,7 @@
               height: 40px;
               margin-top: 6%;
               position: relative;
-              margin-left: -76px;
+              margin: 0 auto;
             button{
               width: 296px;
               height: 40px;

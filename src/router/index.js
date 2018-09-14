@@ -22,6 +22,11 @@ const router = new Router({
         component:resolve=>require(['@/subpage/invoice'],resolve)
         },
     {
+        path:'/batch',//批量修改
+        name:'Batch',
+        component:resolve=>require(['@/subpage/batch'],resolve)
+        },
+    {
       path:'/release',
       name:'Release',
       component:resolve=>require(['@/subpage/release'],resolve),

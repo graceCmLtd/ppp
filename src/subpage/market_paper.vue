@@ -37,14 +37,14 @@
         <el-col :span="3"><div class="table status">操作</div></el-col>
       </el-row>
     </div>
-    <div class="market_paper_table">
+    <div class="market_paper_table" >
       <el-row v-for="(item,index) in noteList" :key="index" class="aa">
         <el-col :span="4"><div class="table time">{{item.billType}}</div></el-col>
         <el-col :span="3"><div class="table type" ref="acceptor">{{item.acceptor}}</div></el-col>
         <el-col :span="3"><div class="table acce">{{item.amount}}</div></el-col>
         <el-col :span="3"><div class="table amount">{{item.maturity}}</div></el-col>
         <el-col :span="2"><div class="table data">{{item.remain_days}}天</div></el-col>
-        <el-col :span="2"><div class="table status">{{item.status}}</div></el-col>
+        <el-col :span="2"><div class="table status">{{item.quoteStatus}}</div></el-col>
         <el-col :span="4"><div class="table status">{{item.count}}</div></el-col>
         <el-col :span="3"><div class="table status">
           <span style="color:#089e0b;cursor:pointer;" @click="SeeDetails(index)">查看>></span>
@@ -194,9 +194,7 @@ export default {
             _this.pagePaper=res.data.length
           }
         })
-      console.log("show route 1 ")
-      console.log(this.$route)
-      console.log(window.history)
+      
     },
     SeeDetails(index){  //查看详情
       let bill=this.noteList[index].billNumber

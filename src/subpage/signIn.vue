@@ -16,8 +16,12 @@
       <p class="sgin_in_title" style="font-size: 30px;">免费注册</p>
       <div class="signIn_mes">
         <ul class="signIn_message" style="margin-top: 30px;">
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" v-model="Phone"/></li>
-          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value=""  maxlength="11" ref="PhoneCode"/>
+
+          <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>
+            手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" maxlength="11" value="" v-model="Phone"/></li>
+
+          <li style="margin-top: 20px;"><i style="font-style:normal; color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="PhoneCode" maxlength="6"/>
 
             <span v-show="show" @click="getCode()" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">
             获取短信验证码</span>

@@ -136,7 +136,7 @@ export default {
     }
     .prise_mes{
       width: 96%;
-      margin-left: 6%;
+      margin-left: 1%;
       display: flex;
       padding-top:3%;
       .left{
