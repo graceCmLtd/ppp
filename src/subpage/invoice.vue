@@ -12,7 +12,7 @@
             <option value="纸商">纸商</option>
           </select>
           </p>
-       <!--    <div class="mes_right" style="margin-top:13px;margin-bottom:13px;">
+<!--           <div class="mes_right" style="margin-top:13px;margin-bottom:13px;">
               <div class="paper_is">
                 <span style="position:absolute; top:-3px; left: 21px; font-weight:bold;">票据正面</span><br>
                 <span style="margin-right:50px;"><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span><br>

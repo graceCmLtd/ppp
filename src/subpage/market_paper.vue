@@ -28,24 +28,24 @@
     <div class="market_paper_table_title">
       <el-row>
         <el-col :span="4"><div class="table time">票据类型</div></el-col>
-        <el-col :span="3"><div class="table type">兑换方</div></el-col>
+        <el-col :span="5"><div class="table type" style="text-align:left;">兑换方</div></el-col>
         <el-col :span="3"><div class="table acce">金额</div></el-col>
         <el-col :span="3"><div class="table amount">到期日</div></el-col>
         <el-col :span="2"><div class="table data">剩余天数</div></el-col>
         <el-col :span="2"><div class="table status">状态</div></el-col>
-        <el-col :span="4"><div class="table status">已有报价数</div></el-col>
+        <el-col :span="2"><div class="table status">已有报价数</div></el-col>
         <el-col :span="3"><div class="table status">操作</div></el-col>
       </el-row>
     </div>
     <div class="market_paper_table" >
       <el-row v-for="(item,index) in noteList" :key="index" class="aa">
         <el-col :span="4"><div class="table time">{{item.billType}}</div></el-col>
-        <el-col :span="3"><div class="table type" ref="acceptor">{{item.acceptor}}</div></el-col>
+        <el-col :span="5"><div class="table type" style="text-align:left;" ref="acceptor">{{item.acceptor}}</div></el-col>
         <el-col :span="3"><div class="table acce">{{item.amount}}</div></el-col>
         <el-col :span="3"><div class="table amount">{{item.maturity}}</div></el-col>
         <el-col :span="2"><div class="table data">{{item.remain_days}}天</div></el-col>
         <el-col :span="2"><div class="table status">{{item.quoteStatus}}</div></el-col>
-        <el-col :span="4"><div class="table status">{{item.count}}</div></el-col>
+        <el-col :span="2"><div class="table status">{{item.count}}</div></el-col>
         <el-col :span="3"><div class="table status">
           <span style="color:#089e0b;cursor:pointer;" @click="SeeDetails(index)">查看>></span>
           </div></el-col>
@@ -242,14 +242,14 @@ export default {
       console.log(_this.starterPaper)
       _this.postPaper()
     },
-    acceptor(){//字符超过长度省略
-      for (let v in this.$refs.acceptor){
-        let than=this.$refs.acceptor[v].innerText
-        if(than.length>8){
-          this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,10)+'...'
-        }
-      }
-    }
+    // acceptor(){//字符超过长度省略
+    //   for (let v in this.$refs.acceptor){
+    //     let than=this.$refs.acceptor[v].innerText
+    //     if(than.length>8){
+    //       this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,10)+'...'
+    //     }
+    //   }
+    // }
   },
   created(){
     this.getList()

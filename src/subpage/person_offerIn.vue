@@ -94,8 +94,8 @@
 
 <style lang="scss" scoped>
   .person_offerIn{
-    width: 300px;
-    height: 284px;
+    width: 290px;
+    height: 424px;
     margin-top: 1%;
     margin-left: 1%;
     .person_offerIn_mes{
