@@ -1,4 +1,5 @@
 <!-- 用户全部报价 -->
+<!-- 买家待接单 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -29,7 +30,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">接单</button>
+            <button type="button" name="button" v-on:click = "acceptOrder(index)">接单</button>
           </div>
           <div class="intention_mes operaMes">
             <button type="button" name="button" @click="open">修改报价</button>
@@ -71,8 +72,8 @@
     </div>
 
     <!--内容-->
-    <div class="content_w">
-      <!--1-->
+    <!-- <div class="content_w">
+      
       <div class="content_w_first">
         <ul>
           <li><a href="">电银</a></li>
@@ -82,8 +83,7 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化:10%
-              <!--<p class="wrie_w"></p>-->
-              <!--<p class="san_w">每10W加:***</p>-->
+             
             </a>
           </li>
           <li><a href="">待接单</a></li>
@@ -92,7 +92,7 @@
           </li>
         </ul>
       </div>
-      <!--2-->
+      
       <div class="content_w_second">
         <ul>
           <li><a href="">张家湾****贸易有限公司</a></li>
@@ -104,7 +104,7 @@
         </ul>
       </div>
 
-      <!--3-->
+      
       <div class="content_w_first">
         <ul>
           <li><a href="">电银</a></li>
@@ -114,17 +114,17 @@
           <li><a href="">7天</a></li>
           <li>
             <a href="">年化：10%</a>
-            <!--<a href="">每10W加：***</a>-->
+            
           </li>
           <li><a href="">待接单</a></li>
           <li style="border-right: none;">
-            <!-- <a href="" class="no-color">...</a> -->
+            
                 <button class="btn_w">下一步</button>
           </li>
         </ul>
       </div>
 
-      <!--4-->
+      
       <div class="content_w_second">
         <ul>
           <li><a href="">张家湾****贸易有限公司</a></li>
@@ -136,7 +136,7 @@
         </ul>
       </div>
 
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -160,9 +160,12 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        console.log("待接单userid")
+        console.log(Id)
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'6',
+            "filter_str":"待接单"
           },
           {headers:{
               'Content-Type':'application/json'
@@ -204,13 +207,34 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
+      /*接单操作*/
+      acceptOrder(index){
+        let _this=this;
+        let Id=getCookie('Iud');
+        let billNumberLoca=_this.noteList[index].billNumber;
+        _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+            "billNumber":billNumberLoca,
+            "intentionStatus":"已接单",
+            "quoterId":Id
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log("接单操作返回值：")
+          console.log(res)
+          _this.getIntenTionList();
+          /*_this.noteList=res.data;*/
+        })
+      },
       open(){
         this.$alert(
           '<div id="calculator"></div>',
 
           { dangerouslyUseHTMLString: true });
         console.log(open);
-      },
+      }
+      /*end of methods*/
     },
     created(){
       this.getIntenTionList()

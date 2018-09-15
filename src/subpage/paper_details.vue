@@ -95,6 +95,8 @@ export default {
       if(amount==''||interest==''||xPerLakh==''){
         alert('请完善报价信息')
       }else{
+        console.log("报价用户id：")
+        console.log(Id)
         _this.axios.post(_this.oUrl+'/quote/addQuote',{
           "billNumber":_this.bill,//票号
         	"quoterId":Id,//用户Id

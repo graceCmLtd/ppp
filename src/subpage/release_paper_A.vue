@@ -12,7 +12,7 @@
             <option value="纸商">纸商</option>
           </select>
           </p>
-          <p>票据号码<input type="text" vlaue="" placehoder="" ref="paperNumber" oninput="if(value.length > 30)value = value.slice(0, 30)" /></p>
+          <p>票据号码<input type="text" v-model:vlaue="billNum" placehoder="" ref="paperNumber" oninput="if(value.length > 30)value = value.slice(0, 30)" /></p>
           <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
           <p class="release_paper_date" style="margin-left:-72px;">票据到期日
             <el-date-picker
@@ -92,6 +92,7 @@
       return{
         minHeight:'10%',
         time:null,
+        billNum: '',
         radioT:true,
         radioB:false,
         checked:false,
@@ -110,6 +111,14 @@
         require(['@/components/footer-all'],resolve)
       }
     },
+    watch:{//这里创建一个监听，当time发生变化时就调用choseDate()方法
+      time(val,oldVal){
+        //console.log("time"+val,oldVal);
+        if(val != null){
+          this.choseDate();
+        }
+      }
+    },
     methods:{
       choseDate(){
         let date=new Date();
@@ -119,7 +128,7 @@
         if(month>=1&&month<=9){
           month='0'+month
         };
-        let rele=year+'/'+month+'/'+day
+        let rele=year+'-'+month+'-'+day
         let timeRe = new Date(rele).getTime();
         let remaining=this.time-timeRe;
         this.dayRe=Math.floor(remaining/86400000)
@@ -178,9 +187,14 @@
             drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
             let base64 = canvas.toDataURL("image/jpeg", quality); //压缩后的base64图片
             _this.$refs.Is.src=base64;
-            window.localStorage.setItem('Is',base64)
+            window.localStorage.setItem('Is',base64);
+            _this.ocrImage(base64);
+
           }
         }
+        if(_this.time != null){
+              _this.choseDate();
+          }
       },
       upLoadThe(e){
         let _this=this;
@@ -220,7 +234,8 @@
         if(!getCookie('Iud')){
           this.$router.push('/signUp/password')
         }else{
-          let paperNumber=_this.$refs.paperNumber.value;
+          //let paperNumber=_this.$refs.paperNumber.value;
+          let paperNumber=_this.billNum;
           let amount=_this.$refs.amount.value;
           let acceptor=_this.$refs.acceptor.value;
           let Is=window.localStorage.getItem('Is');//票据正面图片
@@ -283,7 +298,22 @@
             })
           }
         }
+      },
+      ocrImage(path){
+          let _this = this;
+          var url = this.oUrl + "/bills/ocrImage";
+          var data = {"image":path};
+          _this.axios.post(url,data).then(function(res){
+              if(res.data.time == ""){
+                  _this.time = null;
+              }
+              var date = new Date(res.data.time); //时间对象
+              _this.time = date.getTime(); //转换成时间戳
+              _this.billNum = res.data.billNumber;
+          });
+          
       }
+
     }
   }
 </script>

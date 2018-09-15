@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import {getCookie} from '@/assets/util'
 export default {
   data(){
     return{
@@ -89,6 +90,9 @@ export default {
         window.history.back()
       })*/
       /*sop1 买家操作1 提交意向，等待买家接单*/
+      console.log("quoterId ........")
+      console.log(_this.quoterId)
+      console.log(getCookie('Iud'))
       _this.axios.post(this.oUrl+'/transaction/updateIntentionStatus',{
             "operate":"sop1",
             "InvalidateBody":{
@@ -102,6 +106,7 @@ export default {
               "quoteStatus":"报价完成,ok，进入意向"
             },
             "transactionBody":{
+              "quoterId":_this.quoterId,
               "billNumber":_this.billN,
               "intentionStatus":"待接单"
             }

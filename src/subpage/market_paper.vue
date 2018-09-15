@@ -182,8 +182,8 @@ export default {
         "billType":_this.billType,
       	"amountType":_this.amount,
       	"maturityType":_this.date,
-      	"starter":_this.starterPaper,
-      	"number":10
+      	"starter":0,
+      	"number":100
       },
       {headers:{
         'Content-Type':'application/json'
@@ -249,6 +249,7 @@ export default {
         }
       }
     }
+
   },
   created(){
     this.getList()
