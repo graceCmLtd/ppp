@@ -5,7 +5,7 @@
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
-          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 201.99px;height: 27.97px;">
+          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 287px;height: 27.97px;">
             <option value ="电银">电银</option>
             <option value ="纸银">纸银</option>
             <option value="电商">电商</option>
@@ -14,7 +14,7 @@
           </p>
           <p>票据号码<input type="text" v-model:vlaue="billNum" placehoder="" ref="paperNumber" oninput="if(value.length > 30)value = value.slice(0, 30)" /></p>
           <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
-          <p class="release_paper_date" style="margin-left:15px;">票据到期日
+          <p class="release_paper_date" style="margin-left:-72px;">票据到期日
             <el-date-picker
               v-model="time"
               type="date"
@@ -132,7 +132,6 @@
         let timeRe = new Date(rele).getTime();
         let remaining=this.time-timeRe;
         this.dayRe=Math.floor(remaining/86400000)
-
       },
       PaperSave(){
         if(!getCookie('Iud')){
@@ -371,7 +370,7 @@
             position: relative;
             .time{
               position: absolute;
-              right: -122px;
+              right: -173px;
               font-size: 15px;
               top: 15%;
               color: red;
@@ -386,7 +385,7 @@
             margin-top: 2%;
             font-weight: bold;
             input{
-              width: 200px;
+              width: 287px;
               height:24px;
               border:1px solid black;
               font-size: 16px;
