@@ -164,7 +164,7 @@
         console.log(Id)
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'6',
+            "IntentionType":'4',
             "filter_str":"待接单"
           },
           {headers:{
@@ -212,6 +212,9 @@
         let _this=this;
         let Id=getCookie('Iud');
         let billNumberLoca=_this.noteList[index].billNumber;
+        console.log("接单操作订单号和用户id：")
+        console.log(billNumberLoca)
+        console.log(Id)
         _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberLoca,
             "intentionStatus":"已接单",
