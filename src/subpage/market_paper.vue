@@ -194,7 +194,6 @@ export default {
             _this.pagePaper=res.data.length
           }
         })
-      
     },
     SeeDetails(index){  //查看详情
       let bill=this.noteList[index].billNumber
@@ -242,14 +241,14 @@ export default {
       console.log(_this.starterPaper)
       _this.postPaper()
     },
-    // acceptor(){//字符超过长度省略
-    //   for (let v in this.$refs.acceptor){
-    //     let than=this.$refs.acceptor[v].innerText
-    //     if(than.length>8){
-    //       this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,10)+'...'
-    //     }
-    //   }
-    // }
+    acceptor(){//字符超过长度省略
+      for (let v in this.$refs.acceptor){
+        let than=this.$refs.acceptor[v].innerText
+        if(than.length>8){
+          this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,15)+''
+        }
+      }
+    }
   },
   created(){
     this.getList()
@@ -269,7 +268,7 @@ export default {
   width: 100%;
   height:100%;
   .market_paper_con{
-    width: 100%;
+    width: 80%;
     height:774px;
     margin:0 auto;
     padding-top:6%;
