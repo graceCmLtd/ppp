@@ -45,7 +45,11 @@
 
             <span>{{item.companyName}}</span>
             <span>{{item.companyId}}</span>
+
+           
+
             <button type="button" name="button"  @click="paperMes(index)">查看详情</button>
+
             <!--
             <span>赵经理</span>
             <span>12756937850</span>
@@ -116,7 +120,10 @@
         </ul>
       </div>
     </div>-->
+    
   </div>
+
+  
 
 </template>
 
@@ -138,11 +145,13 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+
       }
     },
     methods:{
       getOfferAll(){
         let Id=getCookie('Iud');
+        let _this=this;
         this.axios.post(this.oUrl+'/quote/getMyQuote',{
             "uuid":Id,
             "filter":"1"
@@ -151,7 +160,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          let _this=this;
+          
           console.log("get all quotes")
           console.log(res)
           _this.noteList=res.data;

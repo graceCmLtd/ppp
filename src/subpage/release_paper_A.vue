@@ -284,7 +284,8 @@
               console.log(res)
               if(res.data.statusCode==='fail'){
                 _this.releText='发布';
-                alert('该票已有发布记录！')
+                alert('该票已有发布记录！');
+                window.location.reload();
               }else{
                 _this.loadingRele=false;
                 _this.releText='发布';
