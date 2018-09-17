@@ -44,9 +44,18 @@
       <p class="warning_alt">强烈建议选择平台担保交易</p>
       <i class="el-icon-close" @click="closeWarning()"></i>
     </div>
+    <div class="time_w">
+      <div class="time_a">
+        <p>倒计时<i> 00:10:00</i>,过时将 取消交易</p>
+        <span style="text-align:left;color:#999999; font-size:14px;">请尽快选择平台担保交易，<br> 超时未选择将影响您的平台信用等级，<br> 之后交易将受到限制</span>
+      </div>
+    </div>
     <div class="person_detailed_mask" v-show="detailedMaskShow" @click="closeWarning()">
 
     </div>
+
+ 
+
   </div>
 </template>
 
@@ -119,6 +128,7 @@ export default {
     font-size: 15px;
     background:rgba(255,255,255,1);
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    position:relative;
     .alt{
         text-align: right;
         position: relative;
@@ -170,7 +180,7 @@ export default {
         }
       }
       li:last-child{
-        margin-top:75%;
+        margin-top: 89%;
         position:relative;
         padding-left:10%;
         input{
@@ -253,4 +263,33 @@ export default {
     }
   }
 }
+.time_w{
+  width:310px;
+  height:193px;
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  background:url(../../static/img/jigou.png);
+  border-radius:4px;
+  position:absolute;
+  right: 236px;
+  top: 157px;
+  .time_a{
+    width:290px;
+    height:160px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    border-radius:4px;
+    margin:18px auto;
+    p{
+       font-weight:bold;
+       padding: 26px 2px;
+      i{
+       font-style:normal;
+       color:#F15749;
+    }
+    }
+    
+
+  }
+}
+
 </style>

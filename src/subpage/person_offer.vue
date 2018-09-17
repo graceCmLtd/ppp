@@ -7,42 +7,44 @@
     <span style="color:#F15749; position:relative; top:37px; left:110px; font-weight:bold; z-index: 999;" >如买家已接收你的报价，请去我的接单里查看 
       <router-link to="/release/Receipt/ReceiptAll" tag="span"><img style="width:100px; height:30px; position:relative; top:10px;" src="../../static/img/9.14.png">   </router-link>
     </span>
-    <div class="offer_title_external">
-      <p class="offer_title">
-        <el-row>
-          <el-col :span="6"><router-link to="/release/offer/offerAll"
-             tag="div" class="offer_tit"
-             @click.native="offerAll()"
-             :class="{offer:color==1}"
-             ref="one"
-             >全部报价
-             <span class="person_offer_add"></span>
-             <span class="person_offer_triangle"></span>
-           </router-link></el-col>
-          <el-col :span="6"><router-link to="/release/offer/offerPrices"
-            tag="div" class="offer_tit"
-            @click.native="offerPri()"
-            :class="{offer:color==3}"
-            >&nbsp;&nbsp;&nbsp;报价中
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="person_offer_triangle_prices"></span>
-          </router-link></el-col>
-          <el-col :span="6"><router-link to="/release/offer/offerCancel"
-            tag="div" class="offer_tit offer_choesT"
-            @click.native="offerCan()"
-            :class="{offer:color==4}"
-            >已失效报价
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="person_offer_triangle_cancel"></span>
-          </router-link></el-col>
-        </el-row>
 
-      </p>
-    </div>
+    <div class="offer_w_con">
+      <div class="offer_title_external">
+        <p class="offer_title">
+          <el-row>
+            <el-col :span="6"><router-link to="/release/offer/offerAll"
+               tag="div" class="offer_tit"
+               @click.native="offerAll()"
+               :class="{offer:color==1}"
+               ref="one"
+               >全部报价
+               <span class="person_offer_add"></span>
+               <span class="person_offer_triangle"></span>
+             </router-link></el-col>
+            <el-col :span="6"><router-link to="/release/offer/offerPrices"
+              tag="div" class="offer_tit"
+              @click.native="offerPri()"
+              :class="{offer:color==3}"
+              >&nbsp;&nbsp;&nbsp;报价中
+              <span class="person_offer_add"></span>
+              <span class="person_offer_triangle" ref="person_offer_triangle_prices"></span>
+            </router-link></el-col>
+            <el-col :span="6"><router-link to="/release/offer/offerCancel"
+              tag="div" class="offer_tit offer_choesT"
+              @click.native="offerCan()"
+              :class="{offer:color==4}"
+              >已失效报价
+              <span class="person_offer_add"></span>
+              <span class="person_offer_triangle" ref="person_offer_triangle_cancel"></span>
+            </router-link></el-col>
+          </el-row>
+
+        </p>
+      </div>
     <div class="person_offer_view">
       <router-view></router-view>
     </div>
-
+</div>
   </div>
 </template>
 
@@ -87,6 +89,9 @@ export default {
        height:80px;
     }
   }
+  .offer_w_con{
+    background:#fff;
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
   .offer_title_external{
     width: 100%;
     height:50px;
@@ -133,5 +138,6 @@ export default {
   .person_offer_view{
     min-height: 500px;
   }
+ }
 }
 </style>

@@ -12,7 +12,7 @@
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
       </el-row>
-      <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
+      <div class="" style="min-width:216px; background:#fff;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}</div></el-col>
           <el-col :span="3">
@@ -41,9 +41,6 @@
         </p>
       </div>
       <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
-        </div>
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
@@ -60,6 +57,10 @@
             </ul>
           </div>
         </div>
+        <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+        </div>
+
       </div>
 
     </div>
@@ -238,7 +239,7 @@
         position: absolute;
         right:2%;
         min-height: 28px;
-        width: 12%;
+        width: 7%;
         top:14%;
         color:white;
         border-radius:3px;
@@ -274,7 +275,7 @@
     .intention_mes_message{
       width: 100%;
       display: flex;
-      height:300px;
+      height:200px;
       .message_left{
         width: 50%;
         height:100%;
