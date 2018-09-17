@@ -16,16 +16,8 @@ const router = new Router({
         default:resolve=>require(['@/subpage/page'],resolve)
       }
     },
-    {
-        path:'/invoice',//急速发票
-        name:'Invoice',
-        component:resolve=>require(['@/subpage/invoice'],resolve)
-        },
-    {
-        path:'/batch',//批量修改
-        name:'Batch',
-        component:resolve=>require(['@/subpage/batch'],resolve)
-        },
+
+ 
     {
       path:'/release',
       name:'Release',
@@ -36,7 +28,16 @@ const router = new Router({
           name:'Data',
           component:resolve=>require(['@/subpage/person_data'],resolve)
         },
-
+        {
+        path:'/batch',//批量修改
+        name:'Batch',
+        component:resolve=>require(['@/subpage/batch'],resolve)
+        },
+        {
+        path:'/invoice',//急速发票
+        name:'Invoice',
+        component:resolve=>require(['@/subpage/invoice'],resolve)
+        },
    
         {
           path:'/release/trad',//平台担保交易

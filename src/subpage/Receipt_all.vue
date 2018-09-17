@@ -1,4 +1,5 @@
 <!-- 用户所有报价 -->
+<!-- 全部接单 -->
 <template lang="html">
   <div class="person_offer_all">
     <div class="offer_mes">
@@ -68,9 +69,11 @@
     methods:{
       getReceiptAll(){
         let Id=getCookie('Iud');
-        this.axios.post(this.oUrl+'/quote/getMyQuote',{
+        console.log("我的接单，所有接单")
+        console.log(Id)
+        this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "filter":"1"
+            "IntentionType":"2"
           },
           {headers:{
               'Content-Type':'application/json'

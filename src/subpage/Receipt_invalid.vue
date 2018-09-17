@@ -1,4 +1,5 @@
 <!-- 用户全部报价 -->
+<!-- 已失效 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -149,7 +150,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'4',
+            "filter_str":"已拒绝"
           },
           {headers:{
               'Content-Type':'application/json'

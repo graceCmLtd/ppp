@@ -156,6 +156,7 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',

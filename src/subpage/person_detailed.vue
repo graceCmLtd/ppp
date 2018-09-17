@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="person_detailed">
     <div class="person_detailed_pic">
-      <img src="../../static/img/process.png" alt="">
+      <img src="../../static/img/ping.png" alt="">
     </div>
     <div class="person_detailed_mes">
       <ul class="alt">
@@ -10,14 +10,20 @@
         <li>票据总额</li>
         <li>承兑方</li>
         <li>卖方</li>
+        <li>贴现利率</li>
+        <li>实付金额</li>
         <li>票据图片</li>
       </ul>
       <ul class="me">
         <li>62394893080495804985</li>
         <li>010-05968596/13456950695</li>
-        <li><input type="text" value=""></li>
-        <li><input type="text" value=""></li>
+       <!--  <li><input type="text" value=""></li>
+        <li><input type="text" value=""></li> -->
+        <li>100W</li>
+        <li>中国工商银行****支行</li>
         <li>中景实业有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;135883299890</li>
+        <li>2.34%+</li>
+        <li>3233.4</li>
         <li>
           <span class="Is"></span>
           <span class="The"></span>
@@ -28,8 +34,8 @@
       </ul>
     </div>
     <p class="havelook">
-      <button type="button" name="button" @click="showWarning()">开始支付</button>
-      <button type="button" name="button">查看交易进度</button>
+      <button type="button" name="button" @click="showWarning()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">平台担保支付</button>
+      <!-- <button type="button" name="button">查看交易进度</button> -->
     </p>
     <div class="person_detailed_prompt" ref="detailedPrompt">
       <img src="../../static/img/warning.png" alt="">
@@ -105,50 +111,62 @@ export default {
     }
   }
   .person_detailed_mes{
-    width: 95%;
-    margin-left: 5%;
+    width: 92%;
+    min-height: 851px;
+    margin-left: 2%;
+    margin-top: 1%;
     display: flex;
     font-size: 15px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .alt{
-      text-align: right;
+        text-align: right;
+        position: relative;
+        left: 16%;
+        top: 80px;
       li{
         margin-bottom: 10%;
+        font-weight:bold;
       }
     }
     .me{
-      text-align: left;
-      margin-left: 5%;
-      padding-top:.15%;
-      font-size: 14px;
+       text-align: left;
+        margin-left: 5%;
+        padding-top: .15%;
+        font-size: 14px;
+        position: relative;
+        left: 16%;
+        top: 80px;
       li{
         margin-bottom: 10.5%;
         input{
-          width: 60%;
+          width: 96%;
           border:1px solid #ccc;
           height:22px;
         }
       }
-      li:nth-child(3){
+      li:nth-child(5){
         margin-top:-4%;
       }
-      li:nth-child(4){
+      li:nth-child(6){
         margin-top:-5%;
       }
-      li:nth-child(5){
+      li:nth-child(7){
         margin-top:-3.5%;
       }
-      li:nth-child(6){
+      li:nth-child(8){
         background-color: red;
         margin-top: -1%;
         position: relative;
         span{
           position: absolute;
-          width: 130px;
-          height:130px;
+          width: 230px;
+          height: 160px;
           background-color: #ccc;
         }
         span:nth-child(2){
-          left:70%;
+            right: -112%;
+
         }
       }
       li:last-child{
@@ -165,7 +183,9 @@ export default {
   .havelook{
     width: 72%;
     text-align: center;
-    margin-left: 5%;
+    margin-left: 8%;
+    position: relative;
+    bottom: 278px;
     button{
       min-width: 25%;
       min-height: 40px;

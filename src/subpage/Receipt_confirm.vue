@@ -1,4 +1,5 @@
 <!-- 用户全部报价 -->
+<!-- 卖家已确认 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -149,9 +150,12 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        console.log("买家查询卖家已确认订单，买家id为：")
+        console.log(Id)
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'4',
+            "filter_str":"卖家已确认"
           },
           {headers:{
               'Content-Type':'application/json'

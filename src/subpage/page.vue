@@ -166,7 +166,7 @@ export default {
     
     open(){
         this.$alert(
-          '<div id="calculator" style="width:200px;height:30px;border:1px solid black;">贴现计算器 <button>ww</button> </div>',
+          '<div style="width:480px;height:600px;border:1px solid black;margin:0 auto;background:rgba(255,255,255,1);box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);border-radius:4px; "><div style="width:480px;height:50px;border-bottom:2px solid #F15749;line-height:50px;"><span style="width:106px;height:50px;display:inline-block; background:#F15749;color:#fff;text-align:center;  font-weight:bold;font-size:18px;">贴现计算器</span></div> <span>票面金额（万元）：<input type="text" name="" ></span></div>',
           { dangerouslyUseHTMLString: true });
         console.log(open);
       },
@@ -176,6 +176,7 @@ export default {
     this.getListBot()
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -186,7 +187,7 @@ export default {
   margin: 0 auto;
   margin-top:30px;
   .page_con{
-    width: 100%;
+    width: 80%;
     height:auto;
     margin:0 auto;
     position:relative;
@@ -325,5 +326,7 @@ export default {
     }
   }
 }
+#calculator{
 
+}
 </style>

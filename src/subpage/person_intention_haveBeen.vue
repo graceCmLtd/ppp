@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">确认交易</button>
+            <button type="button" name="button" v-on:click = "confirmTransaction(index)">确认交易</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -158,7 +158,7 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'2',
+            "IntentionType":'3',
             "filter_str":'已接单'
           },
           {headers:{
@@ -200,7 +200,30 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
+      },
+      /*卖家确认交易操作
+      */
+      confirmTransaction(index){
+        let _this=this;
+        let Id=getCookie('Iud');
+        let billNumberLoca=_this.noteList[index].billNumber;
+        _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+            "billNumber":billNumberLoca,
+            "intentionStatus":"卖家已确认"/*,
+            "quoterId":Id*/
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log("卖家确认交易操作 返回值：")
+          console.log(res)
+          _this.getIntenTionList();
+          /*_this.noteList=res.data;*/
+        })
       }
+
+      /*end of methods*/
     },
     created(){
       this.getIntenTionList()
