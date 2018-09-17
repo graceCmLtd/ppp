@@ -18,12 +18,6 @@ Vue.prototype.axios=Axios;
  //Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 
- Vue.prototype.oUrl='http://39.104.140.40/ppp'
-
-
-<<<<<<< HEAD
-// Vue.prototype.oUrl='http://39.104.140.40/ppp'
-=======
    // Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 
@@ -32,8 +26,6 @@ Vue.prototype.axios=Axios;
 
 
 //Vue.prototype.oUrl='http://39.104.140.40/ppp'
-
->>>>>>> 1db32443006e9c080e557742e497f374a354037f
 //Vue.prototype.oUrl='http://pengpengpiao.cn/ppp'
 
 
