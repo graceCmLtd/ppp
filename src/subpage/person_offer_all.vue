@@ -50,7 +50,7 @@
             <span>赵经理</span>
             <span>12756937850</span>
             <button type="button" name="button" @click="paperMes(index)">查看详情</button>-->
-
+            <!--weertyhgfghjhgfddfghjhgvfx-->
           </p>
         </div>
 
