@@ -454,6 +454,7 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
     width: 65%;
     z-index: 999;
+    background: #fff;
   }
   .tab-button {
   padding: 6px 10px;
@@ -472,7 +473,6 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
   background: #e0e0e0;
 }
 .tab {
-  border: 1px solid #ccc;
   padding: 10px;
 }
 </style>

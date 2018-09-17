@@ -4,55 +4,57 @@
     <div class="offer_pic">
       <img src="../../static/img/receipt.png" alt="">
     </div>
-    <div class="offer_title_external">
-      <p class="offer_title">
-        <el-row>
-          <el-col :span="7">
-            <router-link to="/release/Receipt/ReceiptAll"
-                         tag="div" class="offer_tit" @click.native="ReceiptAll()" :class="{offer:color==1}" ref="one"
-            >全部
+    <div class="offer_w_con">
+      <div class="offer_title_external">
+        <p class="offer_title">
+          <el-row>
+            <el-col :span="7">
+              <router-link to="/release/Receipt/ReceiptAll"
+                           tag="div" class="offer_tit" @click.native="ReceiptAll()" :class="{offer:color==1}" ref="one"
+              >全部
+                <span class="person_offer_add"></span>
+                <span class="person_offer_triangle"></span>
+              </router-link></el-col>
+
+            <el-col :span="4"><router-link to="/release/Receipt/offerPrices" tag="div"
+                                           class="offer_tit" @click.native="offerPri()" :class="{offer:color==2}"
+            >&nbsp;&nbsp;&nbsp;已接单
               <span class="person_offer_add"></span>
-              <span class="person_offer_triangle"></span>
+              <span class="person_offer_triangle" ref="Receipt_triangle_prices"></span>
             </router-link></el-col>
 
-          <el-col :span="4"><router-link to="/release/Receipt/offerPrices" tag="div"
-                                         class="offer_tit" @click.native="offerPri()" :class="{offer:color==2}"
-          >&nbsp;&nbsp;&nbsp;已接单
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="Receipt_triangle_prices"></span>
-          </router-link></el-col>
+            <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
+                                           :class="{offer:color==3}" 
+            >待接单
 
-          <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
-                                         :class="{offer:color==3}" 
-          >待接单
-
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
-          </router-link></el-col>
+              <span class="person_offer_add"></span>
+              <span class="person_offer_triangle" ref="Receipt_triangle_cancel"></span>
+            </router-link></el-col>
 
 
 
-          <el-col :span="5"><router-link to="/release/Receipt/offerConfirm" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
-                                         :class="{offer:color==4}"
-          >卖家已确认
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="Receipt_triangle_confirm"></span>
-          </router-link></el-col>
+            <el-col :span="5"><router-link to="/release/Receipt/offerConfirm" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
+                                           :class="{offer:color==4}"
+            >卖家已确认
+              <span class="person_offer_add"></span>
+              <span class="person_offer_triangle" ref="Receipt_triangle_confirm"></span>
+            </router-link></el-col>
 
 
-          <el-col :span="4"><router-link to="/release/Receipt/offerInvalid" tag="div" class="offer_tit offer_choesT" @click.native="offerCan2()"
-                                         :class="{offer:color==5}"
-          >已失效
-            <span class="person_offer_add"></span>
-            <span class="person_offer_triangle" ref="Receipt_triangle_invalid"></span>
-          </router-link></el-col>
+            <el-col :span="4"><router-link to="/release/Receipt/offerInvalid" tag="div" class="offer_tit offer_choesT" @click.native="offerCan2()"
+                                           :class="{offer:color==5}"
+            >已失效
+              <span class="person_offer_add"></span>
+              <span class="person_offer_triangle" ref="Receipt_triangle_invalid"></span>
+            </router-link></el-col>
 
-        </el-row>
-      </p>
-    </div>
+          </el-row>
+        </p>
+      </div>
     <div class="person_offer_view">
       <router-view></router-view>
     </div>
+  </div>
   </div>
 </template>
 
@@ -105,6 +107,9 @@
           width: 100%;
         }
     }
+    .offer_w_con{
+      background:rgba(255,255,255,1);
+      box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .offer_title_external{
       width: 100%;
       height:50px;
@@ -152,4 +157,5 @@
       min-height: 500px;
     }
   }
+}
 </style>
