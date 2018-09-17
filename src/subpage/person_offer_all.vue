@@ -45,7 +45,7 @@
 
             <span>{{item.companyName}}</span>
             <span>{{item.companyId}}</span>
-            <button type="button" name="button" @click="slit">查看详情</button>
+            <button type="button" name="button" @click="slit(index)">查看详情</button>
             <!--
             <span>赵经理</span>
             <span>12756937850</span>
@@ -87,7 +87,10 @@
         </ul>
       </div>
     </div>-->
+    
   </div>
+
+  
 
 </template>
 
@@ -98,12 +101,15 @@
       return{
         noteList:[],
         day:null,
-        marDay:[]
+        marDay:[],
+        pic1 : '',
+        acceptor : ''
       }
     },
     methods:{
       getOfferAll(){
         let Id=getCookie('Iud');
+        let _this=this;
         this.axios.post(this.oUrl+'/quote/getMyQuote',{
             "uuid":Id,
             "filter":"1"
@@ -112,7 +118,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          let _this=this;
+          
           console.log("get all quotes")
           console.log(res)
           _this.noteList=res.data;
@@ -147,11 +153,20 @@
           }
         })
       },
-      slit(){
-        this.$alert(
-          '<div class="intention_mes_details" ref="intention_mes_details"><div class="intention_mes_pic" ref="intention_mes_pic"><img src="../../static/img/banner1.jpg" alt="" ref="PaperIs"></div><div class="intention_mes_message"><div class="message_left"><ul><li>票据金额：<span>100w</span></li><li>每10w加：<span>2</span></li><li>出票日期：<span>2018-09-05</span></li></ul></div><div class="message_right"><ul><li>承对方：<span>天津商业银行</span></li><li>汇票到期日：<span>2018-11-30</span></li><li>剩余天数：<span>84天</span></li></ul></div></div></div>',
+      slit(index){
+        /*this.$alert(
+          '<div class="intention_mes_details" ref="intention_mes_details"><div class="intention_mes_pic" ref="intention_mes_pic"><img v-bind:src="pic1" alt="" ref="PaperIs"></div><div class="intention_mes_message"><div class="message_left"><ul><li>票据金额：<span>100w</span></li><li>每10w加：<span>2</span></li><li>出票日期：<span>2018-09-05</span></li></ul></div><div class="message_right"><ul><li>承对方：<span>{{acceptor}}</span></li><li>汇票到期日：<span>2018-11-30</span></li><li>剩余天数：<span>84天</span></li></ul></div></div></div>',
           '票据详情',
-          { dangerouslyUseHTMLString: true });
+          { dangerouslyUseHTMLString: true });*/
+        this.show = true;
+        let billNumber=this.noteList[index].billNumber;
+        //let _this = this;
+        this.axios.get(this.oUrl+"/quote/getDetail?billNumber="+'1313205010023201712191393858').then((res)=>{
+          console.log(123);
+          /*var pic = res.data[0].pic1;
+          this.pic1 = "data:image/jpeg;base64,"+pic;
+          this.acceptor = res.data[0].acceptor;*/
+        });
       }
     },
     mounted(){
