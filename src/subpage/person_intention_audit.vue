@@ -160,7 +160,7 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'3'
           },
           {headers:{
               'Content-Type':'application/json'
