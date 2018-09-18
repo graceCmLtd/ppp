@@ -25,32 +25,34 @@
           <span class="option" :class="{markAc:colorThr==5}" @click="thanSix()">6个月以上</span>
         </p>
 </div>
-    <div class="market_paper_table_title">
-      <el-row>
-        <el-col :span="4"><div class="table time">票据类型</div></el-col>
-        <el-col :span="5"><div class="table type" style="text-align:left;">兑换方</div></el-col>
-        <el-col :span="3"><div class="table acce">金额</div></el-col>
-        <el-col :span="3"><div class="table amount">到期日</div></el-col>
-        <el-col :span="2"><div class="table data">剩余天数</div></el-col>
-        <el-col :span="2"><div class="table status">状态</div></el-col>
-        <el-col :span="2"><div class="table status">已有报价数</div></el-col>
-        <el-col :span="3"><div class="table status">操作</div></el-col>
-      </el-row>
-    </div>
-    <div class="market_paper_table" >
-      <el-row v-for="(item,index) in noteList" :key="index" class="aa">
-        <el-col :span="4"><div class="table time">{{item.billType}}</div></el-col>
-        <el-col :span="5"><div class="table type" style="text-align:left;" ref="acceptor">{{item.acceptor}}</div></el-col>
-        <el-col :span="3"><div class="table acce">{{item.amount}}</div></el-col>
-        <el-col :span="3"><div class="table amount">{{item.maturity}}</div></el-col>
-        <el-col :span="2"><div class="table data">{{item.remain_days}}天</div></el-col>
-        <el-col :span="2"><div class="table status">{{item.quoteStatus}}</div></el-col>
-        <el-col :span="2"><div class="table status">{{item.count}}</div></el-col>
-        <el-col :span="3"><div class="table status">
-          <span style="color:#089e0b;cursor:pointer;" @click="SeeDetails(index)">查看>></span>
-          </div></el-col>
-      </el-row>
-    </div>
+  <div class="pager_w_table">
+      <div class="market_paper_table_title">
+        <el-row>
+          <el-col :span="4"><div class="table time">票据类型</div></el-col>
+          <el-col :span="5"><div class="table type" style="text-align:left;">兑换方</div></el-col>
+          <el-col :span="3"><div class="table acce">金额</div></el-col>
+          <el-col :span="3"><div class="table amount">到期日</div></el-col>
+          <el-col :span="2"><div class="table data">剩余天数</div></el-col>
+          <el-col :span="2"><div class="table status">状态</div></el-col>
+          <el-col :span="2"><div class="table status">已有报价数</div></el-col>
+          <el-col :span="3"><div class="table status">操作</div></el-col>
+        </el-row>
+      </div>
+      <div class="market_paper_table" >
+        <el-row v-for="(item,index) in noteList" :key="index" class="aa">
+          <el-col :span="4"><div class="table time">{{item.billType}}</div></el-col>
+          <el-col :span="5"><div class="table type" style="text-align:left;" ref="acceptor">{{item.acceptor}}</div></el-col>
+          <el-col :span="3"><div class="table acce">{{item.amount}}</div></el-col>
+          <el-col :span="3"><div class="table amount">{{item.maturity}}</div></el-col>
+          <el-col :span="2"><div class="table data">{{item.remain_days}}天</div></el-col>
+          <el-col :span="2"><div class="table status">{{item.quoteStatus}}</div></el-col>
+          <el-col :span="2"><div class="table status">{{item.count}}</div></el-col>
+          <el-col :span="3"><div class="table status">
+            <span style="color:#089e0b;cursor:pointer;" @click="SeeDetails(index)">查看>></span>
+            </div></el-col>
+        </el-row>
+      </div>
+  </div>
   </div>
   <p class="paging_paper">
     <el-pagination
@@ -286,6 +288,9 @@ export default {
         border-radius: 5px;
       }
     }
+  .pager_w_table{
+     background:rgba(255,255,255,1);
+     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .market_paper_table_title{
       width: 100%;
       height: 40px;
@@ -312,5 +317,6 @@ export default {
        }
     }
   }
+ }
 }
 </style>

@@ -11,16 +11,43 @@
 <!-- 计算器 -->
       <div class="page_options">
         <ul class="list">         
-          <li @mouseenter="Be()" @mouseleave="Af()" @click="open">
+          <li @mouseenter="Be()" @mouseleave="Af()">
             <img src="../../static/img/calculatorBe.png" ref="CaBe" class="Be" alt="" style="width:50%;height:50%;margin-right:25%;"  >
             <img src="../../static/img/calculator.png" ref="CaAf" title="" class="Af" alt="" style="width:50%;height:50%;display:none;" />
           </li>
+<!-- 票据详情的弹窗 -->
+<!--           <div class="intention_mes_details" ref="intention_mes_details">
+            <div class="intention_mes_message">
+              <div class="message_left">
+                <ul>
+                  <li>票据金额：<span>{{amount/10000}}w</span></li>
+                  <li>每10w加：<span>{{xPerLakh}}</span></li>
+                  <li>出票日期：<span>{{transacDate}}</span></li>
+                </ul>
+              </div>
+              <div class="message_right">
+                <ul>
+                  <li>承对方：<span>{{bank}}</span></li>
+                  <li>汇票到期日：<span>{{maturity}}</span></li>
+                  <li>剩余天数：<span>{{remain_days}}天</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="intention_mes_pic" ref="intention_mes_pic">
+              <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+            </div>
+
+          </div> -->
+
           <li><a href="tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes" style="text-decoration:none"><p>法&nbsp;务</p><p>咨&nbsp;询</p></a></li>
           <li @click="backTop()"><p>回&nbsp;到</p><p>顶&nbsp;部</p></li>
         </ul>
+        <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(indx)">
+
+    </div>
       </div>
 
-
+   <div class="page_w_table">
       <div class="page_table">
         <el-row>
           <el-col :span="4"><div class="table time">发布时间</div></el-col>
@@ -46,14 +73,14 @@
           <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
         </el-row>
       </div>
-
+  </div>
       <p class="page_opera_one">
         <router-link to="/marketpa" tag="button">查看更多>></router-link>
         </p>
 
       <div class="page_title_l">      <!--实时利率标题 -->
         <img src="../../static/img/page_title2.png" alt="">
-        </div>
+      </div>
 
       <div class="page_table">
         <el-row>
@@ -100,7 +127,16 @@ export default {
     return{
       minHeight:'10%',
       roteList:[],
-      roteListLimit:[]
+      roteListLimit:[],
+      noteList:[],
+      intentionMaskShow:false,
+      amount:null,
+      xPerLakh:null,
+      transacDate:null,
+      bank:null,
+      releaseDate:null,
+      maturity:null,
+      remain_days:null
     }
   },
   components:{
@@ -163,13 +199,47 @@ export default {
         _this.roteListLimit=res.data;
       })
     },
+    // paperMes(){
+    //     let _this=this;
+        //let billNumberLoca=_this.noteList[].billNumber;
+       /* _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
+          console.log(res)
+          _this.amount=_this.noteList[index].amount;
+          _this.xPerLakh=_this.noteList[index].xPerLakh;
+          _this.transacDate=_this.noteList[index].transacDate;
+          _this.bank=_this.noteList[index].acceptor;
+          _this.releaseDate=_this.noteList[index].releaseDate;
+          _this.maturity = _this.noteList[index].maturity;
+          _this.remain_days = _this.noteList[index].remain_days;
+          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
+            console.log(res)
+            _this.$refs.PaperIs.src=res.data[0].pic1;
+            _this.intentionMaskShow=true;
+            _this.$refs.intention_mes_details[index].style.display='block';
+            setTimeout(()=>{
+              _this.$refs.intention_mes_details[index].style.top='20%';
+              _this.$refs.intention_mes_details[index].style.opacity='1';
+            })
+          })
+        })*/
+      //   console.log("first page ")
+      //   console.log(_this)
+      //   _this.$refs.intention_mes_details.style.display='block';
+      //   setTimeout(()=>{
+      //         _this.$refs.intention_mes_details.style.top='20%';
+      //         _this.$refs.intention_mes_details.style.opacity='1';
+      //          _this.$refs.PaperIs.src=res.data[0].pic1;
+      //       })
+      // },
+    // closePics(){
+    //     this.$refs.intention_mes_details.style.top='15%';
+    //     this.$refs.intention_mes_details.style.opacity='0';
+    //     setTimeout(()=>{
+    //       this.intentionMaskShow=false;
+    //       this.$refs.intention_mes_details.style.display='none';
+    //     },200)
+    //   }
     
-    open(){
-        this.$alert(
-          '<div style="width:480px;height:600px;border:1px solid black;margin:0 auto;background:rgba(255,255,255,1);box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);border-radius:4px; "><div style="width:480px;height:50px;border-bottom:2px solid #F15749;line-height:50px;"><span style="width:106px;height:50px;display:inline-block; background:#F15749;color:#fff;text-align:center;  font-weight:bold;font-size:18px;">贴现计算器</span></div> <span>票面金额（万元）：<input type="text" name="" ></span></div>',
-          { dangerouslyUseHTMLString: true });
-        console.log(open);
-      },
   },
   created(){
     this.getListTop();
@@ -222,7 +292,9 @@ export default {
         height:100%;
       }
     }
-
+.page_w_table{
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .page_table{
     width: 100%;
     margin: 0 auto;
@@ -257,6 +329,7 @@ export default {
         }
       }
     }
+  }
     .page_opera_one{
       width: 100%;
       height:34px;
@@ -326,7 +399,64 @@ export default {
     }
   }
 }
-#calculator{
 
-}
+
+    .intention_mes_details{
+    width: 670px;
+    height:540px;
+    background: white;
+    position: absolute;
+    left:50%;
+    top:15%;
+    z-index: 501;
+    opacity: 0;
+    display: none;
+    transition: all .5s;
+    overflow: hidden;
+    .intention_mes_pic{
+      width: 670px;
+      height:340px;
+      background: white;
+      img{
+        width: 100%;
+        height:100%;
+      }
+    }
+    .intention_mes_message{
+      width: 100%;
+      display: flex;
+      height:200px;
+      .message_left{
+        width: 50%;
+        height:100%;
+        border-right:1px solid #ccc;
+        ul{
+          padding-top:12%;
+          li{
+            margin-bottom: 5%;
+          }
+        }
+      }
+      .message_right{
+        width: 50%;
+        height:100%;
+        ul{
+          padding-top:12%;
+          li{
+            margin-bottom: 5%;
+          }
+        }
+      }
+    }
+  }
+  .intention_mes_mask{
+    width: 100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 500;
+  }
+
 </style>

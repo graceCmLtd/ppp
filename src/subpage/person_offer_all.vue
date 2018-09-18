@@ -227,7 +227,7 @@
           })
         })
       },
-      closePics(index){
+     closePics(index){
         console.log(this);
         this.$refs.intention_mes_details[index].style.top='15%';
         this.$refs.intention_mes_details[index].style.opacity='0';
