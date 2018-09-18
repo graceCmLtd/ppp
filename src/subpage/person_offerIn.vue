@@ -43,7 +43,8 @@
         noteList:[],
         index:0,
         billNumber:'',
-        noteDetail:[]
+        noteDetail:[],
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
     },
     /*components: {
