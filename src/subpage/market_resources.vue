@@ -37,6 +37,9 @@
             <span v-show="item.status=='2'">收票中</span>
           </div></el-col> -->
           <!-- <div class="led" ref="led"  v-loading="loading">
+          </div></el-col>
+       
+         <div class="led" ref="led"  v-loading="loading">
             <el-row v-for="(itemLed,index) in noteListLed" :key="index">
               <el-col :span="4"><div class="led_mes">{{itemLed.billType}}</div></el-col>
               <el-col :span="4"><div class="led_mes">{{itemLed.acceptor}}</div></el-col>
@@ -45,10 +48,14 @@
               <el-col :span="2"><div class="led_mes">王总</div></el-col>
               <el-col :span="3"><div class="led_mes"></div></el-col>
               <el-col :span="3"><div class="led_mes">
+
                 <button type="button" name="button">我要贴</button>
+
               </div></el-col>
             </el-row>
           </div>
+
+          </div> -->
           <p class="paging">
             <el-pagination
               background

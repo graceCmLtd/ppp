@@ -5,7 +5,7 @@
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
-          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 287px;height: 27.97px;">
+          <p style="position: relative;">票据类别&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 287px;height: 27.97px;">
             <option value ="电银">电银</option>
             <option value ="纸银">纸银</option>
             <option value="电商">电商</option>
@@ -28,6 +28,8 @@
           </p>
           <p>承兑人全称<input type="text" vlaue="" placehoder="" ref="acceptor"/></p>
           <!--<p>是否可签转<input type="text" vlaue="" placehoder=""/></p>-->
+           <span style="font-size:17px;font-weight:400;color:rgba(51,51,51,1);line-height:25px;color:#F35643;font-weight:bold; margin-top:70px;">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</span>
+           <p style="position:relative;left:-14%;"><input  type="radio" name="" value="" style="width: 15px; height: 15px;">同意平台担保交易协议</p>
           <p class="obtain">
             <!-- 保存 -->
             <!-- <button type="button" name="button" @click="PaperSave()">保存</button> -->
@@ -81,6 +83,7 @@
       </p>
     </div>
     
+
     <Footer :height="minHeight"/>
   </div>
 </template>
@@ -98,7 +101,7 @@
         checked:false,
         PaperMaskShow:false,
         loadingRele:false,
-        releText:'发布',
+        releText:'提交意向',
         dayRe:'？',
         typeSelect:''
       }
@@ -283,12 +286,12 @@
             ).then((res)=>{
               console.log(res)
               if(res.data.statusCode==='fail'){
-                _this.releText='发布';
+                _this.releText='提交意向';
                 alert('该票已有发布记录！');
                 window.location.reload();
               }else{
                 _this.loadingRele=false;
-                _this.releText='发布';
+                _this.releText='提交意向';
                 _this.loadingRele=false;
                 _this.PaperRele();
                 window.localStorage.clear();
@@ -342,7 +345,6 @@
       background: rgba(255,255,255,1);
       box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
       margin-top: 100px;
-
       .release_paper_title{
         width: 100%;
         border-bottom: 2px solid #F15749;
@@ -416,18 +418,19 @@
               position: relative;
               margin-left: -76px;
             button{
-              width:120px;
-              height:40px;
+              width:360px;
+              height:50px;
               background: #F15749;
               color:white;
               font-size: 16px;
               border-radius: 5px;
               margin-left:80px;
+              font-weight:bold;
             }
             button:nth-child(1){
-              position: absolute;
-              top:0;
-              left:40%;
+             position: absolute;
+             top: -26px;
+             left: 15%;
             }
             button:nth-child(2){
               margin-left: 250px;
