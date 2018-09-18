@@ -16,7 +16,11 @@ const router = new Router({
         default:resolve=>require(['@/subpage/page'],resolve)
       }
     },
-
+    {
+      path:'/stick',//我要贴
+      name:'Stick',
+      component:resolve=>require(['@/subpage/stick'],resolve)
+      },
  
     {
       path:'/release',
@@ -38,6 +42,7 @@ const router = new Router({
         name:'Invoice',
         component:resolve=>require(['@/subpage/invoice'],resolve)
         },
+    
    
         {
           path:'/release/trad',//平台担保交易
