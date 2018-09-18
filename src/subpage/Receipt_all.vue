@@ -28,7 +28,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.xPerLakh}}W</p>
+              <p>{{item.real_money/10000}}W</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+          <img v-bind:src="pic" alt="" ref="">
         </div>
       </div>
 
@@ -99,7 +99,8 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
-        marDay:[]
+        marDay:[],
+        pic : ''
       }
     },
     methods:{
@@ -164,7 +165,7 @@
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
             console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+            _this.pic=res.data[0].pic1;
             _this.intentionMaskShow=true;
             console.log(_this)
             _this.$refs.intention_mes_details[index].style.display='block';
