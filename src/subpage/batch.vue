@@ -3,7 +3,7 @@
     <div class="batch_w">
       <div class="box_w">
         <ul>
-          <li>
+          <li style="margin-left:13px;">
             <a href="#"><img src="../../static/img/1.png"></a>
             <p class="p_1">等待买家付款</p>
             <div class="p_2">
@@ -13,6 +13,7 @@
               <p>买家电话：<i style="color:#F15749;  font-style:normal;  font-weight:normal;">17600651266</i></p>
             </div>
           </li>
+          <li><a href="#"><img src="../../static/img/arrow.png"></a></li>
           <li>
             <a href="#"><img src="../../static/img/2.png"></a>
             <p class="p_1">等待买家付款</p>
@@ -22,6 +23,7 @@
               <p style="width:100px;height:30px;background:#F15749;box-shadow:0px 2px 4px 0px #F15749;border-radius:4px; color:#fff; text-align:center;margin:0 auto;margin-top:20px;">我已背书</p>
             </div>
           </li>
+           <li><a href="#"><img src="../../static/img/arrow.png"></a></li>
           <li>
             <a href="#"><img src="../../static/img/3.png"></a>
             <p class="p_1">等待买家付款</p>
@@ -38,6 +40,7 @@
               <p>请卖家确认收款</p>
             </div>
           </li>  
+           <li><a href="#"><img src="../../static/img/arrow.png"></a></li>
           <li style="margin-left:256px;">
             <a href="#"><img src="../../static/img/5.png"></a>
             <p class="p_1">等待买家付款</p>
@@ -69,10 +72,10 @@ export default {
       background:url(../../static/img/bg_color.png);
       li{
         float:left;
-        margin: 43px 35px;
+        margin: 43px -5px;
         .p_2{
           margin-top:10px;
-          width:260px;
+          width:256px;
           height:110px;
           background:rgba(255,255,255,1);
           box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);

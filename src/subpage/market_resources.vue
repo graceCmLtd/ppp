@@ -1,52 +1,43 @@
 <template lang="html">
   <div class="market_resources">
     <div class="market_resources_con">
-
-  
-
-    <router-link to="/batch" tag="p">
       <p class="resources_title">
         <span>批量收票请去我的报价</span><br>
         <span>模版发布收票价格</span>
       </p>
-      </router-link>
-
-
-
-
       <div class="market_resources_list">
         <el-row>
-          <el-col :span="4"><div class="market_resources_title">票据类型</div></el-col>
+          <el-col :span="3"><div class="market_resources_title">票据类型</div></el-col>
+          <el-col :span="2"><div class="market_resources_title">期限</div></el-col>
           <el-col :span="4"><div class="market_resources_title acceptance">承兑方</div></el-col>
-          <el-col :span="4"><div class="market_resources_title">金额</div></el-col>
+          <el-col :span="2"><div class="market_resources_title">金额</div></el-col>
           <el-col :span="4"><div class="market_resources_title rate">利率</div></el-col>
-          <el-col :span="2"><div class="market_resources_title">联系人</div></el-col>
-          <el-col :span="3"><div class="market_resources_title status">状态</div></el-col>
+          <el-col :span="3"><div class="market_resources_title">联系人</div></el-col>
           <el-col :span="3"><div class="market_resources_title">操作</div></el-col>
+          <el-col :span="3"><div class="market_resources_title status">备注</div></el-col>
+          
         </el-row>
+
         <el-row class="market_resources_box" v-for="(item,index) in noteList" :key="index" ref="market_resources_box">
-          <el-col :span="4"><div class="market_resources_mes">{{item.billType}}</div></el-col>
+          <el-col :span="3"><div class="market_resources_mes">{{item.billType}}</div></el-col>
+          <el-col :span="2"><div class="market_resources_mes">三个月以下</div></el-col>
           <el-col :span="4"><div class="market_resources_mes acceptance">{{item.acceptor}}</div></el-col>
-          <el-col :span="4"><div class="market_resources_mes">{{item.amountRange/10000}}w</div></el-col>
+          <el-col :span="2"><div class="market_resources_mes">{{item.amountRange/10000}}w</div></el-col>
           <el-col :span="4"><div class="market_resources_mes rate" ref="rateL">
             {{item.interest}}{{sy}}
             <router-link to="/signUp" style="color:#f45643;text-decoration:none;" v-show="isLogin">登陆后可见</router-link>
           </div>
             </el-col>
-          <el-col :span="2"><div class="market_resources_mes">王总</div></el-col>
+          <el-col :span="3"><div class="market_resources_mes">王总</div></el-col>
+          <el-col :span="3"><div class="market_resources_mes opera">
+            <button type="button" name="button">我要贴</button>
+          </div></el-col>
           <el-col :span="3"><div class="market_resources_mes status">
             <span v-show="item.status=='1'">已成交</span>
             <span v-show="item.status=='2'">收票中</span>
           </div></el-col>
-          <el-col :span="3"><div class="market_resources_mes opera">
-            <button type="button" name="button"
-            @click="showTurn(index)" ref="showTurn"
-            >我要贴</button>
-            <button type="button" name="button"
-            @click="hideTurn(index)" ref="hideTurn"
-            style="display:none;"
-            >我要贴</button>
-          </div></el-col>
+       
+
           <div class="led" ref="led"  v-loading="loading">
             <el-row v-for="(itemLed,index) in noteListLed" :key="index">
               <el-col :span="4"><div class="led_mes">{{itemLed.billType}}</div></el-col>
@@ -60,6 +51,8 @@
               </div></el-col>
             </el-row>
           </div>
+
+
           <p class="paging">
             <el-pagination
               background
@@ -71,6 +64,7 @@
               :total="pageNum">
             </el-pagination>
           </p>
+
         </el-row>
       </div>
       <div class="market_resources_loadig" v-loading="true" v-show="marketResourcesLoadig">
@@ -160,33 +154,13 @@ export default {
       }else{
         _this.axios.post(this.oUrl+'/resourceMarket/getByBuyerIdOfResoucePool',{
           "buyerId":Id,
-        	"start":_this.layout,
-        	"page":4
+          "start":_this.layout,
+          "page":4
         },
         {headers:{
           'Content-Type':'application/json'
         }}
-        ).then((res)=>{
-          if(res.data.length>4){
-            _this.pageNum=res.data.length/4*10
-          }
-            _this.noteListLed=res.data;
-            for(let v in _this.$refs.market_resources_box){
-              if(_this.$refs.market_resources_box[v].$el.style.height=='240px'){
-                _this.$refs.market_resources_box[v].$el.style.height='40px';
-              }
-            }
-            for(let x in _this.$refs.hideTurn){
-              _this.$refs.hideTurn[x].style.display='none';
-            }
-            for(let x in _this.$refs.showTurn){
-              _this.$refs.showTurn[x].style.display='block';
-            }
-            _this.$refs.market_resources_box[index].$el.style.height='240px';
-            _this.$refs.showTurn[index].style.display='none';
-            _this.$refs.hideTurn[index].style.display='block';
-            _this.$refs.led[index].style.display='block';
-          })
+        )
       }
     },
     hideTurn(index){
@@ -220,7 +194,7 @@ export default {
   width: 100%;
   height:100%;
   .market_resources_con{
-    width: 100%;
+    width: 80%;
     margin:0 auto;
     height:100%;
     padding-top:3%;

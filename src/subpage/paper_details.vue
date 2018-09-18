@@ -104,7 +104,8 @@ export default {
         	"interest":interest,//利率
         	"xPerLakh":xPerLakh,//每10w加
         	"status":"报价中",
-        	"quoteDate":"2018-08-09"//报价时间
+        	"quoteDate":"2018-08-09",//报价时间
+          "real_money" : _this.interest_rate
         }).then((res)=>{
           console.log(res)
           this.detailsMaskShow=true;

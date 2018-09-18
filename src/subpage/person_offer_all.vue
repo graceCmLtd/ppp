@@ -27,7 +27,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.xPerLakh}}W</p>
+              <p>{{item.real_money/10000}}W</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -47,14 +47,48 @@
           
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
             <span>{{item.companyId}}</span>
-            <button type="button" name="button" @click="slit">查看详情</button>
+
+           
+
+            <button type="button" name="button"  @click="paperMes(index)">查看详情</button>
+
             <!--
             <span>赵经理</span>
             <span>12756937850</span>
             <button type="button" name="button" @click="paperMes(index)">查看详情</button>-->
+
           </p>
         </div>
+
+      <!-- 票据详情的弹窗 -->
+       <div class="intention_mes_details" ref="intention_mes_details">
+        <div class="intention_mes_message">
+          <div class="message_left">
+            <ul>
+              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>每10w加：<span>{{xPerLakh}}</span></li>
+              <li>出票日期：<span>{{transacDate}}</span></li>
+            </ul>
+          </div>
+          <div class="message_right">
+            <ul>
+              <li>承对方：<span>{{bank}}</span></li>
+              <li>汇票到期日：<span>{{maturity}}</span></li>
+              <li>剩余天数：<span>{{remain_days}}天</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img v-bind:src="pic" alt="" ref="">
+        </div>
       </div>
+
+
+
+      </div>
+         <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)">
+
+    </div>
     </div>
 
     <!--票据图片-->
@@ -88,7 +122,10 @@
         </ul>
       </div>
     </div>-->
+    
   </div>
+
+  
 
 </template>
 
@@ -100,12 +137,25 @@
         noteList:[],
         day:null,
         marDay:[],
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        intentionMaskShow:false,
+        xPerLakh:null,
+        transacDate:null,
+        bank:null,
+        day:null,
+        current_index:'',
+        amount:null,
+        releaseDate:null,
+        maturity:null,
+        remain_days:null,
+        real_money:null ,
+        pic:''
       }
     },
     methods:{
       getOfferAll(){
         let Id=getCookie('Iud');
+        let _this=this;
         this.axios.post(this.oUrl+'/quote/getMyQuote',{
             "uuid":Id,
             "filter":"1"
@@ -114,7 +164,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          let _this=this;
+          
           console.log("get all quotes")
           console.log(res)
           _this.noteList=res.data;
@@ -156,11 +206,46 @@
           }
         })
       },
-      slit(){
-        this.$alert(
-          '<div class="intention_mes_details" ref="intention_mes_details"><div class="intention_mes_pic" ref="intention_mes_pic"><img src="../../static/img/banner1.jpg" alt="" ref="PaperIs"></div><div class="intention_mes_message"><div class="message_left"><ul><li>票据金额：<span>100w</span></li><li>每10w加：<span>2</span></li><li>出票日期：<span>2018-09-05</span></li></ul></div><div class="message_right"><ul><li>承对方：<span>天津商业银行</span></li><li>汇票到期日：<span>2018-11-30</span></li><li>剩余天数：<span>84天</span></li></ul></div></div></div>',
-          '票据详情',
-          { dangerouslyUseHTMLString: true });
+      // slit(){
+      //   this.$alert(
+      //     '<div class="intention_mes_details" ref="intention_mes_details"><div class="intention_mes_pic" ref="intention_mes_pic"><img src="../../static/img/banner1.jpg" alt="" ref="PaperIs"></div><div class="intention_mes_message"><div class="message_left"><ul><li>票据金额：<span>100w</span></li><li>每10w加：<span>2</span></li><li>出票日期：<span>2018-09-05</span></li></ul></div><div class="message_right"><ul><li>承对方：<span>天津商业银行</span></li><li>汇票到期日：<span>2018-11-30</span></li><li>剩余天数：<span>84天</span></li></ul></div></div></div>',
+      //     '票据详情',
+      //     { dangerouslyUseHTMLString: true });
+      // }
+     paperMes(index){
+        let _this=this;
+        _this.current_index = index;
+        let billNumber=_this.noteList[index].billNumber;
+        _this.axios.get(_this.oUrl+'/quote/getDetail?billNumber=' + billNumber).then((res)=>{
+          console.log(res)
+          _this.amount=_this.noteList[index].amount;
+          _this.xPerLakh=_this.noteList[index].xPerLakh;
+          _this.transacDate=_this.noteList[index].transacDate;
+          _this.bank=_this.noteList[index].acceptor;
+          _this.releaseDate=_this.noteList[index].releaseDate;
+          _this.maturity = _this.noteList[index].maturity;
+          _this.remain_days = _this.noteList[index].remain_days;
+          _this.real_money = _this.noteList[index].real_money;
+          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber=' + billNumber).then((res)=>{
+            _this.pic=res.data[0].pic1;
+            _this.intentionMaskShow=true;
+            console.log(_this)
+            _this.$refs.intention_mes_details[index].style.display='block';
+            setTimeout(()=>{
+              _this.$refs.intention_mes_details[index].style.top='20%';
+              _this.$refs.intention_mes_details[index].style.opacity='1';
+            })
+          })
+        })
+      },
+     closePics(index){
+        console.log(this);
+        this.$refs.intention_mes_details[index].style.top='15%';
+        this.$refs.intention_mes_details[index].style.opacity='0';
+        setTimeout(()=>{
+          this.intentionMaskShow=false;
+          this.$refs.intention_mes_details[index].style.display='none';
+        },200)
       }
     },
     mounted(){
@@ -391,5 +476,65 @@
         font-weight: bold;
       }
     }
+  }
+
+
+
+    .intention_mes_details{
+    width: 670px;
+    height:540px;
+    background: white;
+    position: absolute;
+    left:50%;
+    top:15%;
+    z-index: 501;
+    opacity: 0;
+    display: none;
+    transition: all .5s;
+    overflow: hidden;
+    .intention_mes_pic{
+      width: 670px;
+      height:340px;
+      background: white;
+      img{
+        width: 100%;
+        height:100%;
+      }
+    }
+    .intention_mes_message{
+      width: 100%;
+      display: flex;
+      height:200px;
+      .message_left{
+        width: 50%;
+        height:100%;
+        border-right:1px solid #ccc;
+        ul{
+          padding-top:12%;
+          li{
+            margin-bottom: 5%;
+          }
+        }
+      }
+      .message_right{
+        width: 50%;
+        height:100%;
+        ul{
+          padding-top:12%;
+          li{
+            margin-bottom: 5%;
+          }
+        }
+      }
+    }
+  }
+  .intention_mes_mask{
+    width: 100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 500;
   }
 </style>

@@ -28,7 +28,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.xPerLakh}}W</p>
+              <p>{{item.real_money/10000}}W</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -50,9 +50,36 @@
             <button type="button" name="button">票据详情</button>
           </p>
         </div>
+
+        <!-- 票据详情的弹窗 -->
+       <div class="intention_mes_details" ref="intention_mes_details">
+        <div class="intention_mes_message">
+          <div class="message_left">
+            <ul>
+              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>每10w加：<span>{{xPerLakh}}</span></li>
+              <li>出票日期：<span>{{transacDate}}</span></li>
+            </ul>
+          </div>
+          <div class="message_right">
+            <ul>
+              <li>承对方：<span>{{bank}}</span></li>
+              <li>汇票到期日：<span>{{maturity}}</span></li>
+              <li>剩余天数：<span>{{remain_days}}天</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img v-bind:src="pic" alt="" ref="">
+        </div>
+      </div>
+
+
       </div>
     </div>
+    <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)">
 
+    </div>
 
   </div>
 
@@ -64,9 +91,19 @@
     data(){
       return{
         noteList:[],
+        intentionMaskShow:false,
+        xPerLakh:null,
+        transacDate:null,
+        bank:null,
         day:null,
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        current_index:'',
+        amount:null,
+        releaseDate:null,
+        maturity:null,
+        remain_days:null,
         marDay:[],
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        pic : ''
       }
     },
     methods:{
@@ -122,6 +159,41 @@
             bills:billNum
           }
         })
+      },
+      paperMes(index){
+        let _this=this;
+        _this.current_index = index;
+        let billNumberLoca=_this.noteList[index].billNumber;
+        _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
+          console.log(res)
+          _this.amount=_this.noteList[index].amount;
+          _this.xPerLakh=_this.noteList[index].xPerLakh;
+          _this.transacDate=_this.noteList[index].transacDate;
+          _this.bank=_this.noteList[index].acceptor;
+          _this.releaseDate=_this.noteList[index].releaseDate;
+          _this.maturity = _this.noteList[index].maturity;
+          _this.remain_days = _this.noteList[index].remain_days;
+          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
+            console.log(res)
+            _this.pic=res.data[0].pic1;
+            _this.intentionMaskShow=true;
+            console.log(_this)
+            _this.$refs.intention_mes_details[index].style.display='block';
+            setTimeout(()=>{
+              _this.$refs.intention_mes_details[index].style.top='20%';
+              _this.$refs.intention_mes_details[index].style.opacity='1';
+            })
+          })
+        })
+      },
+      closePics(index){
+        console.log(this);
+        this.$refs.intention_mes_details[index].style.top='15%';
+        this.$refs.intention_mes_details[index].style.opacity='0';
+        setTimeout(()=>{
+          this.intentionMaskShow=false;
+          this.$refs.intention_mes_details[index].style.display='none';
+        },200)
       }
     },
     mounted(){
@@ -250,5 +322,64 @@
 
     }
 
+  }
+
+
+  .intention_mes_details{
+    width: 670px;
+    height:540px;
+    background: white;
+    position: absolute;
+    left:50%;
+    top:15%;
+    z-index: 501;
+    opacity: 0;
+    display: none;
+    transition: all .5s;
+    overflow: hidden;
+    .intention_mes_pic{
+      width: 670px;
+      height:340px;
+      background: white;
+      img{
+        width: 100%;
+        height:100%;
+      }
+    }
+    .intention_mes_message{
+      width: 100%;
+      display: flex;
+      height:200px;
+      .message_left{
+        width: 50%;
+        height:100%;
+        border-right:1px solid #ccc;
+        ul{
+          padding-top:12%;
+          li{
+            margin-bottom: 5%;
+          }
+        }
+      }
+      .message_right{
+        width: 50%;
+        height:100%;
+        ul{
+          padding-top:12%;
+          li{
+            margin-bottom: 5%;
+          }
+        }
+      }
+    }
+  }
+  .intention_mes_mask{
+    width: 100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 500;
   }
 </style>
