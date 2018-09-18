@@ -136,7 +136,7 @@
       text-align: left;
 
       img{
-        width: 1281px;
+        width: 100%;
         height: 80px;
       }
     }
