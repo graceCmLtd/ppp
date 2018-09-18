@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="market_resources">
     <div class="market_resources_con">
-      <p class="resources_title">
+      <p class="resources_title" @click="isAudit">
         <span>批量收票请去我的报价</span><br>
         <span>模版发布收票价格</span>
       </p>
@@ -30,15 +30,13 @@
             </el-col>
           <el-col :span="3"><div class="market_resources_mes">王总</div></el-col>
           <el-col :span="3"><div class="market_resources_mes opera">
-            <button type="button" name="button">我要贴</button>
+            <button type="button" name="button" @click="isReg">我要贴</button>
           </div></el-col>
-          <el-col :span="3"><div class="market_resources_mes status">
+          <!-- <el-col :span="3"><div class="market_resources_mes status">
             <span v-show="item.status=='1'">已成交</span>
             <span v-show="item.status=='2'">收票中</span>
-          </div></el-col>
-       
-
-          <div class="led" ref="led"  v-loading="loading">
+          </div></el-col> -->
+          <!-- <div class="led" ref="led"  v-loading="loading">
             <el-row v-for="(itemLed,index) in noteListLed" :key="index">
               <el-col :span="4"><div class="led_mes">{{itemLed.billType}}</div></el-col>
               <el-col :span="4"><div class="led_mes">{{itemLed.acceptor}}</div></el-col>
@@ -51,8 +49,6 @@
               </div></el-col>
             </el-row>
           </div>
-
-
           <p class="paging">
             <el-pagination
               background
@@ -63,7 +59,7 @@
               :current-page="pageN"
               :total="pageNum">
             </el-pagination>
-          </p>
+          </p> -->
 
         </el-row>
       </div>
@@ -77,6 +73,7 @@
 
 <script>
 import {getCookie} from '@/assets/util'
+
 export default {
   data(){
     return{
@@ -95,7 +92,44 @@ export default {
     Footer:resolve=>require(['@/components/footer-all'],resolve)
   },
   methods:{
-    current(index){//页码跳转
+    getList(){
+      this.axios.get(this.oUrl+'/resourceMarket/getPriorityItem').then((res)=>{
+        this.noteList=res.data;
+        this.marketResourcesLoadig=false;
+        if(!getCookie('Iud')){
+          for(let v in this.noteList){
+            this.noteList[v].interest='';
+            this.sy='';
+          }
+          this.isLogin=true;
+        }
+      })
+    },
+    isReg(){
+      console.log("123");
+      let isAu = getCookie('isAu');//从cookie中获取用户是否认证
+      console.log(isAu);
+      if(isAu=='true'){
+        //this.$router.push('/');
+      }else{
+        alert("您还未通过审核，已为您跳转......");
+        this.$router.push('/release/data');
+      }
+    },
+    isAudit(){
+      console.log("12345");
+      let isAu = getCookie('Iud');
+      this.axios.get(this.oUrl+"/getCompany?contactsId="+isAu).then((res)=>{
+        console.log(res.data);
+        if(res.data[0].role == "包装户"){
+          this.$router.push();
+        }else{
+          alert("您还未开通此权限！");
+          this.$router.push();
+        }
+      });
+    }
+    /*current(index){//页码跳转
       let sta=index*4;
       let Id=getCookie('Iud');
       this.axios.post(this.oUrl+'/resourceMarket/getByBuyerIdOfResoucePool',{
@@ -145,8 +179,8 @@ export default {
         _this.loading=false;
         _this.noteListLed=res.data;
       })
-    },
-    showTurn(index){
+    },*/
+    /*showTurn(index){
       let _this=this;
       let Id=_this.noteList[index].buyerId;
       if(!getCookie('Iud')){
@@ -168,20 +202,8 @@ export default {
       _this.$refs.market_resources_box[index].$el.style.height='40px';
       _this.$refs.showTurn[index].style.display='block';
       _this.$refs.hideTurn[index].style.display='none';
-    },
-    getList(){
-      this.axios.get(this.oUrl+'/resourceMarket/getPriorityItem').then((res)=>{
-        this.noteList=res.data;
-        this.marketResourcesLoadig=false;
-        if(!getCookie('Iud')){
-          for(let v in this.noteList){
-            this.noteList[v].interest='';
-            this.sy='';
-          }
-          this.isLogin=true;
-        }
-      })
-    }
+    },*/
+    
   },
   created(){
     this.getList()
