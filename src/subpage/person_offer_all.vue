@@ -27,7 +27,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.xPerLakh}}W</p>
+              <p>{{item.real_money/10000}}W</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -145,6 +145,7 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        real_money:null ,
         pic:''
 
       }
@@ -215,6 +216,7 @@
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
+          _this.real_money = _this.noteList[index].real_money;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber=' + billNumber).then((res)=>{
             _this.pic=res.data[0].pic1;
             _this.intentionMaskShow=true;

@@ -28,7 +28,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.xPerLakh}}W</p>
+              <p>{{item.real_money/10000}}W</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
