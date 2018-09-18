@@ -30,13 +30,7 @@
             </el-col>
           <el-col :span="3"><div class="market_resources_mes">王总</div></el-col>
           <el-col :span="3"><div class="market_resources_mes opera">
-            <button type="button" name="button"
-            @click="showTurn(index)" ref="showTurn"
-            >我要贴</button>
-            <button type="button" name="button"
-            @click="hideTurn(index)" ref="hideTurn"
-            style="display:none;"
-            >我要贴</button>
+            <button type="button" name="button">我要贴</button>
           </div></el-col>
           <el-col :span="3"><div class="market_resources_mes status">
             <span v-show="item.status=='1'">已成交</span>
@@ -166,27 +160,7 @@ export default {
         {headers:{
           'Content-Type':'application/json'
         }}
-        ).then((res)=>{
-          if(res.data.length>4){
-            _this.pageNum=res.data.length/4*10
-          }
-            _this.noteListLed=res.data;
-            for(let v in _this.$refs.market_resources_box){
-              if(_this.$refs.market_resources_box[v].$el.style.height=='240px'){
-                _this.$refs.market_resources_box[v].$el.style.height='40px';
-              }
-            }
-            for(let x in _this.$refs.hideTurn){
-              _this.$refs.hideTurn[x].style.display='none';
-            }
-            for(let x in _this.$refs.showTurn){
-              _this.$refs.showTurn[x].style.display='block';
-            }
-            _this.$refs.market_resources_box[index].$el.style.height='240px';
-            _this.$refs.showTurn[index].style.display='none';
-            _this.$refs.hideTurn[index].style.display='block';
-            _this.$refs.led[index].style.display='block';
-          })
+        )
       }
     },
     hideTurn(index){
