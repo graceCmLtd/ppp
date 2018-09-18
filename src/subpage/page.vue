@@ -81,7 +81,7 @@
       <div class="page_title_l">      <!--实时利率标题 -->
         <img src="../../static/img/page_title2.png" alt="">
       </div>
-
+<div class="page_w_table">
       <div class="page_table">
         <el-row>
           <el-col :span="4"><div class="table time">票据类型</div></el-col>
@@ -110,7 +110,7 @@
           </div></el-col>
         </el-row>
       </div>
-
+</div>
       <p class="page_opera_one">
         <router-link to="/resources" tag="button">查看更多>></router-link>
         </p>
