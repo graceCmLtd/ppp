@@ -1,4 +1,5 @@
 <!-- 用户发布的票据 -->
+<!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
     <div class="person_paper_pic">
@@ -73,9 +74,12 @@
           </el-row>
 
           <p class="hadOffer_opera">
-            <span>北京海世界有限公司</span>
-            <span>赵总</span>
-            <span>13240891337</span>
+            <span>{{item.companyName}}</span>
+          <span class="pople">{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
+            <span>{{item.companyId}}</span>
             <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
 
@@ -123,9 +127,12 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
           </el-row>
 
           <p class="hadOffer_opera">
-            <span>北京海世界有限公司</span>
-            <span>赵总</span>
-            <span>13240891337</span>
+            <span>{{item.companyName}}</span>
+          <span class="pople">{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
+            <span>{{item.companyId}}</span>
             <button type="button" name="button" @click="paperMesper()">查看</button>
           </p>
 
@@ -164,7 +171,8 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
         noteL:[Array],
         currentTab: 'offerin',
         tabs: ['offerin', 'offerbe'],
-        names:[]
+        names:[],
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
     },
     components:{

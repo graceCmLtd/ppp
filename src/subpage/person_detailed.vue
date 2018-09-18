@@ -87,6 +87,8 @@ export default {
         _this.detailedMaskShow=false;
         _this.$refs.detailedPrompt.style.display='none';
       },200)
+      /*跳转到最终线下交易流程页面*/
+      _this.$router.push({name:'Batch'})
     },
     getBill(){
       this.bills=this.$route.query.bills;
