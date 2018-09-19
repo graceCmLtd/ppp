@@ -84,7 +84,7 @@
 <div class="page_w_table">
       <div class="page_table">
         <el-row>
-          <el-col :span="3"><div class="table time">票据类型</div></el-col>
+          <el-col :span="3"><div class="table time">票据类别</div></el-col>
           <el-col :span="3"><div class="table term">期限</div></el-col>
           <el-col :span="3"><div class="table type">承兑方</div></el-col>
           <el-col :span="3"><div class="table acce">金额</div></el-col>

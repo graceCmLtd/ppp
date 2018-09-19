@@ -19,51 +19,123 @@
         </el-row>
       </div>
     </div>
-<!-- 内容 -->
-     <div class="" v-for="(item,index) in noteList" :key="index">
-        <el-row >
-          <el-col :span="4"><div class="mes">{{item.billType}}</div></el-col>
+    <!-- 内容 -->
+     <div class="color_w" v-for="(item,index) in noteList" :key="index">
+        <el-row style="height:77px; line-height:77px;">
+          <el-col :span="4"><div class="mes">10w-50w</div></el-col>
           <el-col :span="4"><div class="mes bank" ref="person_offer_all_bank"                                
-          >{{item.acceptor}}</div></el-col>
-          <el-col :span="4"><div class="mes">{{item.amount}}</div></el-col>
-          <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col>
-          <el-col :span="3"><div class="mes amount mes_chose">
-            <div class="premium">
-              <p>{{item.real_money/10000}}W</p>
-            </div>
-          </div></el-col>
+          >3个月以下</div></el-col>
+          <el-col :span="4"><div class="mes">4.5</div></el-col>
+          <el-col :span="3"><div class="mes date">5.34%</div></el-col>
+          <el-col :span="3"><div class="mes">3.7%</div></el-col>
+          <el-col :span="3"><div class="mes">4.52%</div></el-col>
           <el-col :span="3"><div class="mes pula">
-            <span>{{item.intentionStatus}}</span>
-          </div></el-col>
-          <el-col :span="3"><div class="mes operaMes">
-            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">下一步</button></p>
+            <p>
+              <a style="font-style: normal;width:120px;height:50px;background:#F15749;border-radius:4px;color:#fff;display:inline;">修改</a>
+              <a style="font-style: normal;width:120px;height:50px;background:#53C0FF;border-radius:4px;color:#fff;display:inline;">删除</a>
+            </p>
           </div></el-col>
         </el-row>
 
-        <div class="mes_bot">
-          <p>
-            <span>{{item.companyName}}</span>
-          <span class="pople">{{item.contactsName}}</span>
-          <span>电话:{{item.contactsPhone}}</span>
-          
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
-            <button type="button" name="button">票据详情</button>
-          </p>
-        </div>
       </div>
+    <div class="add_w">
+      <span>增加报价</span>
+    </div>
+    <div class="edit_w">
+      <a class="note_w">默认备注：详细价格联系方式详谈</a>
+      <a class="edit_wq">编辑备注</a>
+    </div>
 
-    <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)">
-
+    <div class="bottom_foot">
+      <a>回到资源市场</a>
+      <a>查看我的资源池报价</a>
     </div>
 
   </div>
-  </div>
 </template>
 <script>
-  
+  import {getCookie} from '@/assets/util'
+  export default {
+    data(){
+      return{
+        noteList:[],
+        day:null,
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        current_index:'',
+        remain_days:null,
+        marDay:[],
+        pic : ''
+      }
+    },
+    methods:{
+      getReceiptAll(){
+        let Id=getCookie('Iud');
+        console.log(Id)
+        this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+            "uuid":Id,
+            "IntentionType":"2"
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          let _this=this;
+          console.log(res);
+          _this.noteList=res.data;
+          for(let v in res.data){
+            // console.log(res.data[v].maturity)
+            // _this.marDay=res.data[v].maturity;
+            let date=new Date();
+            let year=date.getFullYear();
+            let month=date.getMonth()+1;
+            let day=date.getDate();
+            if(month>=1&&month<9){
+              month='0'+month
+            }
+            let secDay=year+'/'+month+'/'+day;
+            let secDayStamp=new Date(secDay).getTime()
+            let timeAll=new Date(res.data[v].maturity).getTime();
+            let lastDay=timeAll-secDayStamp;
+            _this.day=Math.floor(lastDay/86400000)
+            console.log(_this.day)
+            _this.marDay.push(_this.day)
+          }
+          console.log(_this.marDay)
+        })
+      },
+      linkToA(index){
+        /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
+        let _this=this;
+        let Id=getCookie('Iud');
+        _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
+        //alert(index)
+      },
+      turnPlace(index){
+        let _this=this;
+        let billNum=_this.noteList[index].billNumber;
+        _this.$router.push({
+          name:'Detailed',
+          query:{
+            bills:billNum
+          }
+        })
+      },
+
+    },
+    mounted(){
+      this.getReceiptAll();
+    }
+  }
 </script>
 <style lang="scss" scoped>
+color_w span:nth-child(odd){background:#F4F4F4;}
+color_w span:nth-child(even){background:#C00;}
+.color_w:hover{
+        background: #fffbee;
+        box-shadow: 0 0 15px rgba(0,0,0,.2);
+        z-index: 1;
+        cursor: pointer;
+}
   .content{
     width: 100%;
     height:100%;
@@ -85,16 +157,16 @@
         line-height: 61px;
       }
    } 
-     .person_offer_all{
+  .person_offer_all{
     width: 100%;
     height:100%;
     .offer_mes{
-      margin-left: 1%;
+      margin-left: 0%;
       margin-top: 1%;
       .mes_title{
         background: #F15749;
         min-width: 36px;
-        line-height: 36px;
+        line-height: 50px;
         font-weight: bold;
         color: #fff;
       }
@@ -139,15 +211,6 @@
             border-bottom:1px solid #ccc;
             height:100%;
             line-height: 35px;
-            font-size: 14px;
-          }
-        }
-        .premium{
-          width: 100%;
-          height:50%;
-          p{
-            width: 100%;
-            line-height: 72px;
             font-size: 14px;
           }
         }
@@ -204,6 +267,70 @@
 
     }
 
+  }
+}
+.add_w{
+  width:100%;
+  height:77px;
+  background:#EFF8FF;
+  text-align: right;
+  line-height:77px;
+  padding:0 40px;
+  span{
+    width:120px;
+    height:50px;
+    background:rgba(83,192,255,1);
+    box-shadow:0px 2px 4px 0px rgba(83,192,255,0.4);
+    border-radius:4px 3px 3px 3px;
+    color:#fff;
+    line-height:50px;
+    text-align:center;
+
+  }
+}
+.edit_w{
+  width:100%;
+  height:77px;
+  background:#FFFDEF;
+  line-height:77px;
+  margin: 0 auto;
+
+  .note_w{
+   width:280px;
+    font-size:16px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color: #333333;
+    float:left;
+  }
+  .edit_wq{
+    width:120px;
+    height:50px;
+    background:rgba(83,192,255,1);
+    box-shadow:0px 2px 4px 0px rgba(83,192,255,0.4);
+    border-radius:4px 3px 3px 3px;
+    color:#fff;
+    line-height:50px;
+    float:right;
+    margin-right: 36px;
+    margin-top: 10px;
+    background:#F15749;
+
+  }
+}
+.bottom_foot{
+  height:77px;
+  line-height:77px;
+  a{
+    width:210px;
+    height:50px;
+    background:rgba(241,87,73,1);
+    box-shadow:0px 2px 10px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    color:#fff;
+    display:inline-block;
+    line-height:50px;
+   margin:0 20px;
   }
 }
 </style>
