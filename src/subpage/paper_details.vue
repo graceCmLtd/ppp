@@ -65,7 +65,7 @@ export default {
       releaserId:null,
       acceptor:null,
       rate : '',
-      add_amount : '',
+      add_amount : 0,
       adjustDays : 0 ,
       interest_rate : 0
     }

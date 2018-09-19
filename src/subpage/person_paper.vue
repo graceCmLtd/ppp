@@ -1,4 +1,4 @@
-<!-- 用户发布的票据 -->
+  <!-- 用户发布的票据 -->
 <!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
@@ -101,6 +101,8 @@
         <span :class="{HadAc:colorB==3}" @click="havOffer()">已报价<span></span></span>
         <span :class="{HadAc:colorB==4}" @click="notOffer">未报价<span></span></span>
       </p> -->
+      <p class="person_paper_tableB">
+        <span :class="{HadBc:colorB==3}">票据还未通过审核，请联系客服进行审核。客服电话：4008888888</span></p>
       <div class="hadOffer" v-show="hadOffer">
         <el-row>
           <el-col :span="4"><div class="hadOffer_title_short">票据类型</div></el-col>
@@ -189,6 +191,7 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
       this.names["offerbe"] = "审核中"
       
       return 'person-' + this.currentTab.toLowerCase()
+      
     }
   },
     methods:{
@@ -311,7 +314,15 @@ hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" 
     text-align: center;
     font-weight: bold;
   }
-
+  .HadBc{
+    background: #F15749;
+    color: #fff;
+    width: 540px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-weight: bold;
+  }
   .person_paper{
     width: 100%;
     height:100%;
