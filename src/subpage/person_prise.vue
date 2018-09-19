@@ -76,6 +76,7 @@ export default {
         "companyInfo":{
               "companyName":this.$refs.companyName.value,
               "contactsId":contactsId,
+              "contactsName":this.$refs.contactsName.value,
               "contactsPhone":this.$refs.contactsPhone.value,
               "contactsEmail":this.$refs.contactsEmail.value,
               "contactsQQ":this.$refs.contactsQQ.value,

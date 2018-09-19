@@ -84,7 +84,6 @@
 <div class="page_w_table">
       <div class="page_table">
         <el-row>
-          
           <el-col :span="4"><div class="table type">承兑行类型</div></el-col>
           <el-col :span="4"><div class="table time">期限</div></el-col>
           <el-col :span="4"><div class="table acce">金额</div></el-col>
@@ -109,6 +108,7 @@
             <!-- <button type="button" name="button">收票中</button> -->
           </div></el-col>
         </el-row>
+         
       </div>
 </div>
       <p class="page_opera_one">
