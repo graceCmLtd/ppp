@@ -62,7 +62,7 @@
         </el-row>
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
-            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
@@ -103,24 +103,24 @@
       </p> -->
       <div class="hadOffer" v-show="hadOffer">
         <el-row>
-          <el-col :span="4"><div class="hadOffer_title_short">票据类型</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title_short">票号</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title_short">承兑银行</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title_short">金额</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title_short">到期日</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title_short">剩余天数</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title_short">失败原因</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">票号</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">承兑银行</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">失败原因</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
           
         </el-row>
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
-            <el-col :span="4"><div class="hadOffer_validate_normal" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_validate_normal" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col>
-hadOffer_validate_normal            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_validate_normal" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
-            <el-col :span="4"><div class="hadOffhadOffer_validate_normalr_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
-            <el-col :span="4"><div class="hadOffer_validate_normal limit">
+            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}</span>
               <span>{{item.failReason}}</span>
             </div></el-col>

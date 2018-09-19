@@ -14,7 +14,7 @@
       </el-row>
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
-          <el-col :span="3"><div class="intention_mes">{{item.billType}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
           <el-col :span="3">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
