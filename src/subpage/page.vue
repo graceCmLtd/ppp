@@ -84,34 +84,29 @@
 <div class="page_w_table">
       <div class="page_table">
         <el-row>
-          <el-col :span="3"><div class="table time">票据类别</div></el-col>
-          <el-col :span="3"><div class="table term">期限</div></el-col>
-          <el-col :span="3"><div class="table type">承兑方</div></el-col>
-          <el-col :span="3"><div class="table acce">金额</div></el-col>
-          <el-col :span="3"><div class="table amount">利率</div></el-col>
-          <el-col :span="3"><div class="table data">联系人</div></el-col>
-          <el-col :span="3"><div class="table status">操作</div></el-col>
-          <el-col :span="3"><div class="table bz">备注</div></el-col>
+          <el-col :span="4"><div class="table type">承兑行类型</div></el-col>
+          <el-col :span="4"><div class="table time">期限</div></el-col>
+          <el-col :span="4"><div class="table acce">金额</div></el-col>
+          <el-col :span="4"><div class="table amount">利率</div></el-col>
+          <el-col :span="4"><div class="table data">联系人</div></el-col>
+          <el-col :span="4"><div class="table status">状态</div></el-col>
         </el-row>
       </div>
 
       <div class="page_table_mes">
         <el-row v-for="(item,index) in roteListLimit" :key="index" class="page_mark_title">
-          <el-col :span="3"><div class="tableMes time">
+          <!-- <el-col :span="4"><div class="tableMes time">
             <span style="color:#ff823f;" v-show="item.billType=='电银'">电银</span>
             <span style="color:#3d83c8;" v-show="item.billType=='纸银'">纸银</span>
+          </div></el-col> -->
+          <el-col :span="4"><div class="tableMes type">{{item.acceptor}}</div></el-col>
+          <el-col :span="4"><div class="tableMes time">{{item.timeLimit}}</div></el-col>
+          <el-col :span="4"><div class="tableMes acce">{{item.amountRange}}</div></el-col>
+          <el-col :span="4"><div class="tableMes amount">{{item.interest}}%</div></el-col>
+          <el-col :span="4"><div class="tableMes data">{{item.contactsName}}</div></el-col>
+          <el-col :span="4"><div class="tableMes status">收票中
+            <!-- <button type="button" name="button">收票中</button> -->
           </div></el-col>
-          <el-col :span="3"><div class="tableMes term">3个月以下</div></el-col>
-          <el-col :span="3"><div class="tableMes type">{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="tableMes acce">{{item.amountRange/10000}}w</div></el-col>
-          <el-col :span="3"><div class="tableMes amount">{{item.interest}}%</div></el-col>
-          <el-col :span="3"><div class="tableMes data">王总</div></el-col>
-          <el-col :span="3"><div class="tableMes status">
-          <router-link to="stick">
-               <button type="button" name="button">我要贴</button>
-          </router-link>
-          </div></el-col>
-          <el-col :span="3"><div class="tableMes bz">备注</div></el-col>
         </el-row>
          
       </div>
@@ -199,7 +194,7 @@ export default {
     },
     getListBot(){//资源列表
       let _this=this;
-      _this.axios.post(_this.oUrl+'/resourceMarket/getPriorityItem').then((res)=>{
+      _this.axios.post(_this.oUrl+'/resourceMarket/getAllInfo').then((res)=>{
         console.log(res)
         _this.roteListLimit=res.data;
       })
