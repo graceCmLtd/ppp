@@ -9,30 +9,30 @@
     <div class="person_offer_all">
       <div class="offer_mes">
         <el-row>
-          <el-col :span="4"><div class="mes_title">票面金额</div></el-col>
+          <el-col :span="3"><div class="mes_title">票面金额</div></el-col>
           <el-col :span="4"><div class="mes_title">期限</div></el-col>
-          <el-col :span="4"><div class="mes_title">国有+国股</div></el-col>
+          <el-col :span="3"><div class="mes_title">国有+国股</div></el-col>
           <el-col :span="3"><div class="mes_title">大商</div></el-col>
           <el-col :span="3"><div class="mes_title">授信城商</div></el-col>
           <el-col :span="3"><div class="mes_title">村镇银行</div></el-col>
-          <el-col :span="3"><div class="mes_title">操作</div></el-col>
+          <el-col :span="5"><div class="mes_title">操作</div></el-col>
         </el-row>
       </div>
     </div>
     <!-- 内容 -->
      <div class="color_w" v-for="(item,index) in noteList" :key="index">
         <el-row style="height:77px; line-height:77px;">
-          <el-col :span="4"><div class="mes">10w-50w</div></el-col>
+          <el-col :span="3"><div class="mes">10w-50w</div></el-col>
           <el-col :span="4"><div class="mes bank" ref="person_offer_all_bank"                                
           >3个月以下</div></el-col>
-          <el-col :span="4"><div class="mes">4.5</div></el-col>
+          <el-col :span="3"><div class="mes">4.5</div></el-col>
           <el-col :span="3"><div class="mes date">5.34%</div></el-col>
           <el-col :span="3"><div class="mes">3.7%</div></el-col>
           <el-col :span="3"><div class="mes">4.52%</div></el-col>
-          <el-col :span="3"><div class="mes pula">
-            <p>
-              <a style="font-style: normal;width:120px;height:50px;background:#F15749;border-radius:4px;color:#fff;display:inline;">修改</a>
-              <a style="font-style: normal;width:120px;height:50px;background:#53C0FF;border-radius:4px;color:#fff;display:inline;">删除</a>
+          <el-col :span="5"><div class="mes pula">
+            <p class="xs_w">
+              <a style="background: #F15749;">修改</a>
+              <a style="background: #53C0FF;">删除</a>
             </p>
           </div></el-col>
         </el-row>
@@ -128,8 +128,21 @@
   }
 </script>
 <style lang="scss" scoped>
-color_w span:nth-child(odd){background:#F4F4F4;}
-color_w span:nth-child(even){background:#C00;}
+.xs_w{
+  height:77px;
+  line-height:77px;
+  a{
+    width: 93px;
+    height: 38px;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    margin-top: 19px;
+    line-height:38px;
+  }
+}
+.color_w:nth-of-type(odd){ background:#FFFFFF;}
+.color_w:nth-of-type(even){ background:#EFF8FF;}
 .color_w:hover{
         background: #fffbee;
         box-shadow: 0 0 15px rgba(0,0,0,.2);
