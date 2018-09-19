@@ -34,10 +34,11 @@
           </div> --></el-col>
         </el-row>
         <p class="person_intention_contact">
-          <span>张家湾****有限公司</span>
-          <span class="pople">赵经理</span>
-          <span>13240891337</span>
-          <a href="tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes" style="text-decoration:none">qq咨询</a>
+          <span>{{item.companyName}}</span>
+          <span class="pople">{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
@@ -141,7 +142,8 @@
         bank:null,
         releaseDate:null,
         maturity:null,
-        remain_days:null
+        remain_days:null,
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
     },
     methods:{
@@ -160,6 +162,13 @@
           console.log(res)
           _this.noteList=res.data;
         })
+      },
+      linkToA(index){
+        /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
+        let _this=this;
+        let Id=getCookie('Iud');
+        _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
+        //alert(index)
       },
       paperMes(index){
         let _this=this;

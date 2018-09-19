@@ -67,7 +67,8 @@ export default {
   data(){
     return{
       orderShow:false,
-      noteList:[]
+      noteList:[],
+      linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
     }
   },
   methods:{

@@ -41,9 +41,11 @@
         </el-row>
         <div class="mes_bot">
           <p>
-            <span>张家湾****贸易有限公司</span>
-
             <span>{{item.companyName}}</span>
+          <span class="pople">{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
             <span>{{item.companyId}}</span>
 
            
@@ -54,7 +56,7 @@
             <span>赵经理</span>
             <span>12756937850</span>
             <button type="button" name="button" @click="paperMes(index)">查看详情</button>-->
-            <!--weertyhgfghjhgfddfghjhgvfx-->
+
           </p>
         </div>
 
@@ -135,6 +137,7 @@
         noteList:[],
         day:null,
         marDay:[],
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         intentionMaskShow:false,
         xPerLakh:null,
         transacDate:null,
@@ -147,7 +150,6 @@
         remain_days:null,
         real_money:null ,
         pic:''
-
       }
     },
     methods:{
@@ -186,6 +188,13 @@
           }*/
           console.log(_this.marDay)
         })
+      },
+      linkToA(index){
+        /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
+        let _this=this;
+        let Id=getCookie('Iud');
+        _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
+        //alert(index)
       },
       turnPlace(index){
         let _this=this;
