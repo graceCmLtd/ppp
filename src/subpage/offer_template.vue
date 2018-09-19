@@ -1,223 +1,209 @@
-<!-- 报价模板 -->
+<!-- 发布资源池报价 -->
 <template lang="html">
-  <div class="content_w1">
-    <div class="person_paper_pic">
-      <img src="../../static/img/ziyuan.png" alt="">
-    </div>
+  <div class="content">
     <div class="content_w1_title" style="margin-top:68px;">
       <span>发布/修改资源池报价</span>
     </div>
-    <table>
-      <tr class="style_w">
-        <td>票面金额</td>
-        <td>期限</td>
-        <td>国有+国股</td>
-        <td>大商</td>
-        <td>授信城商</td>
-        <td>村镇银行</td>
-        <td>操作</td>
-        <td>选中资源市场预览显示</td>
-      </tr>
-      <tr class="style-w1">
-        <td>10w-50w</td>
-        <td>3个月以下</td>
-        <td>4.5%</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>修改报价</td>
-        <td style="color: #F15749;">○置顶首页显示</td>
-      </tr>
-      <tr class="style-w1">
-        <td>10w-50w</td>
-        <td>3个月以下</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>3.54%</td>
-        <td>修改报价</td>
-        <td>○置顶首页显示</td>
-      </tr>
-      <tr class="style-w1">
-        <td>10w-50w</td>
-        <td>3个月以下</td>
-        <td></td>
-        <td></td>
-        <td>2.67%</td>
-        <td></td>
-        <td>增加报价</td>
-        <td>○置顶首页显示</td>
-      </tr>
-       <div class="bottom_w">
-                    <p style="float:left;">备注：详细价格联系方式详谈</p>
-                    <button class="btn-w_w">修改备注</button>
-                </div>
 
-    </table>
+    <!-- 导航内容 -->
+    <div class="person_offer_all">
+      <div class="offer_mes">
+        <el-row>
+          <el-col :span="4"><div class="mes_title">票面金额</div></el-col>
+          <el-col :span="4"><div class="mes_title">期限</div></el-col>
+          <el-col :span="4"><div class="mes_title">国有+国股</div></el-col>
+          <el-col :span="3"><div class="mes_title">大商</div></el-col>
+          <el-col :span="3"><div class="mes_title">授信城商</div></el-col>
+          <el-col :span="3"><div class="mes_title">村镇银行</div></el-col>
+          <el-col :span="3"><div class="mes_title">操作</div></el-col>
+        </el-row>
+      </div>
+    </div>
+<!-- 内容 -->
+     <div class="" v-for="(item,index) in noteList" :key="index">
+        <el-row >
+          <el-col :span="4"><div class="mes">{{item.billType}}</div></el-col>
+          <el-col :span="4"><div class="mes bank" ref="person_offer_all_bank"                                
+          >{{item.acceptor}}</div></el-col>
+          <el-col :span="4"><div class="mes">{{item.amount}}</div></el-col>
+          <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="mes amount mes_chose">
+            <div class="premium">
+              <p>{{item.real_money/10000}}W</p>
+            </div>
+          </div></el-col>
+          <el-col :span="3"><div class="mes pula">
+            <span>{{item.intentionStatus}}</span>
+          </div></el-col>
+          <el-col :span="3"><div class="mes operaMes">
+            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">下一步</button></p>
+          </div></el-col>
+        </el-row>
+
+        <div class="mes_bot">
+          <p>
+            <span>{{item.companyName}}</span>
+          <span class="pople">{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
+            <button type="button" name="button">票据详情</button>
+          </p>
+        </div>
+      </div>
+
+    <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)">
+
+    </div>
+
+  </div>
   </div>
 </template>
-
 <script>
-import {getCookie} from '@/assets/util'
-export default {
-  data(){
-    return{
-      templateShow:false
-    }
-  },
-  methods:{
-    showOper(){
-      this.templateShow=true;
-      this.$refs.template_oper.style.display="block"
-      setTimeout(()=>{
-        this.$refs.template_oper.style.top="30%";
-        this.$refs.template_oper.style.opacity="1";
-      },200)
-    },
-    hideTemplate(){
-      setTimeout(()=>{
-        this.$refs.template_oper.style.display="none";
-        this.templateShow=false;
-      },300)
-      this.$refs.template_oper.style.top="15%";
-      this.$refs.template_oper.style.opacity="0";
-    },
-    postList(){
-      let _this=this;
-      let Id=getCookie('Iud');
-      let amount=_this.$refs.amount.value;
-      let date=_this.$refs.date.value;
-      let cun=_this.$refs.interestCun.value;//国股利率
-      let city=_this.$refs.interestCity.value;//城商利率
-      let di=_this.$refs.interestDi.value;//电商利率
-      let towns=_this.$refs.interestTowns.value;//村镇银行利率
-      if(amount==''||date==''||cun==''||city==''||di==''||towns==''){
-        alert('请先完善报价信息！')
-      }else{
-        _this.axios.post(_this.oUrl+'/resourceMarket/add',{
-          "resourceMarketInfo":{
-            "orderId":"ewrewrwwewr11were2654",
-            "buyerId":Id,
-            "amountRange":amount,
-            "timeLimit":date,
-            "type1":cun,
-            "type2":city,
-            "type3":di,
-            "type4":towns,
-            "billType":"电银",
-            "priority":"2",
-            "updateDate":"2018-08-20",
-            "note":"Surprise MontherFuck!"
-          }
-        },
-        {headers:{
-          'Content-Type':'application/json'
-        }}
-        ).then((res)=>{
-            console.log(res)
-          })
+  
+</script>
+<style lang="scss" scoped>
+  .content{
+    width: 100%;
+    height:100%;
+     background:rgba(255,255,255,1);
+      box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    .content_w1_title{
+      height: 61px;
+      border-bottom:3px solid #F15749;
+      span{
+        width:190px;
+        height:61px;
+        font-size: 16px;
+        font-family:"微软雅黑";
+        font-weight:bold;
+        color:#fff;
+        /*line-height:26px;*/
+        display: block;
+        background: #F15749;
+        line-height: 61px;
       }
+   } 
+     .person_offer_all{
+    width: 100%;
+    height:100%;
+    .offer_mes{
+      margin-left: 1%;
+      margin-top: 1%;
+      .mes_title{
+        background: #F15749;
+        min-width: 36px;
+        line-height: 36px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .lineHeight{
+        line-height: 35px!important;
+        font-size: 13px!important;
+      }
+      .bank{
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
+      }
+      .date{
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
+      }
+      .amount{
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
+      }
+      .mes{
+        margin-top:8px;
+        margin-bottom:8px;
+        min-height: 70px;
+        line-height: 70px;
+        font-size: 14px;
+      }
+      .opera{
+        border-left:1px solid #ccc;
+      }
+      .mes_chose{
+        display: flex;
+        flex-direction: column;
+        margin-top:8px;
+        margin-bottom:8px;
+        .rate{
+          width: 100%;
+          height:50%;
+          margin-top: -3px;
+          p{
+            width: 100%;
+            text-align: center;
+            border-bottom:1px solid #ccc;
+            height:100%;
+            line-height: 35px;
+            font-size: 14px;
+          }
+        }
+        .premium{
+          width: 100%;
+          height:50%;
+          p{
+            width: 100%;
+            line-height: 72px;
+            font-size: 14px;
+          }
+        }
+      }
+      .operaMes{
+        border-left:1px solid #ccc;
+        line-height: 0;
+        display: flex;
+        flex-direction: column;
+        p{
+          width: 100%;
+          height:35px;
+          line-height: 35px;
+          button{
+            min-width: 60px;
+            height:30px;
+            border-radius: 3px;
+            background: #F15749;
+            color:white;
+          }
+        }
+        p:nth-child(2){
+          button{
+            background: white;
+            border:1px solid #F15749;
+            color:#F15749;
+
+          }
+        }
+      }
+      .mes_bot{
+        min-height: 36px;
+        line-height: 36px;
+        font-size: 14px;
+        position: relative;
+        background: #EFF8FF;
+        p{
+          width: 60%;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-around;
+          button{
+            width:105px;
+            height:30px;
+            border-radius:3px;
+            background: #F15749;
+            color:white;
+            position: absolute;
+            right:2%;
+            top:12%;
+          }
+        }
+      }
+
     }
+
   }
 }
-</script>
-
-
-
-
-  <!---->
-
-<!--</style>-->
-
-<style type="text/css">
-  .content_w1{
-    width: 99%;
-    height: 487px;
-    background: rgba(255,255,255,1);
-    -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
-    /*border: 1px solid black;*/
-    margin: 0 auto;
-    position: relative;
- 
-  }
-    .person_paper_pic{
-      width: 100%;
-      height: 8%;
-      text-align: left;
-    }
-      .person_paper_pic img{
-          height:100px;
-          width: 100%;
-      }
-
-  .content_w1_title{
-    height: 61px;
-    border-bottom:3px solid rgba(252,213,208);
-
-  }
-  .content_w1_title span{
-    width:190px;
-    height:61px;
-    font-size: 16px;
-    font-family:"微软雅黑";
-    font-weight:bold;
-    color:rgba(255,255,255,1);
-    /*line-height:26px;*/
-    display: block;
-    background: rgba(243,86,67,1);
-    line-height: 61px;
-  }
-  .content_w1 table{
-    margin-top: 13px;
-    width: 100%;
-    height: 100px;
-    /*border: 1px solid black;*/
-    border-collapse: collapse;
-    /*background: #F15749;*/
-
-  }
-  .content_w1 .style_w{
-    color: #fff;
-    background: #F15749;
-    height: 50px;
-  }
-
-  tr:nth-child(2n){
-    height: 60px;
-    background: #fff;
-  }
-  /* 单行颜色 */
-  tr:nth-child(2n+1){
-    height: 60px;
-    background:  #EFF8FF;
-  }
-  .bottom_w{
-    position: absolute;
-    bottom: 0px;
-    background: #FFFDEF;
-    width: 745px;
-    line-height: 50px;
-    color: #333333;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 0 15px;
-    width:100%;
-
-  }
-  .btn-w_w{
-    float: right;
-    width: 140px;
-    height: 40px;
-    -webkit-box-shadow: 0px 2px 4px 0px rgba(241,87,73,0.5);
-    box-shadow: 0px 2px 4px 0px rgba(241,87,73,0.5);
-    border-radius: 3px;
-    margin-top: 20px;
-    background: #F15749;
-    position: relative;
-    top: -8px;
-    left: -9px;
-    color: #fff;
-  }
-
 </style>
