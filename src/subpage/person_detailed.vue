@@ -32,6 +32,7 @@
           <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
         </li>
       </ul>
+       <div style="position: absolute;top: 33%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png"></div>
     </div>
     <p class="havelook">
       <button type="button" name="button" @click="showWarning()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">平台担保支付</button>
@@ -50,6 +51,7 @@
         <span style="text-align:left;color:#999999; font-size:14px;">请尽快选择平台担保交易，<br> 超时未选择将影响您的平台信用等级，<br> 之后交易将受到限制</span>
       </div>
     </div>
+
     <div class="person_detailed_mask" v-show="detailedMaskShow" @click="closeWarning()">
 
     </div>
