@@ -47,10 +47,11 @@
     </div>
 
     <div class="bottom_foot">
-      <a>回到资源市场</a>
-      <a>查看我的资源池报价</a>
+      <router-link to="/resources">
+         <a>回到资源市场</a>
+      </router-link>
+        <a>查看我的资源池报价</a>
     </div>
-
   </div>
 </template>
 <script>
@@ -147,7 +148,6 @@
         background: #fffbee;
         box-shadow: 0 0 15px rgba(0,0,0,.2);
         z-index: 1;
-        cursor: pointer;
 }
   .content{
     width: 100%;

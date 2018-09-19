@@ -134,7 +134,7 @@ export default {
           this.$router.push("/release/template");
         }else{
           alert("您还未开通此权限！");
-          //this.$router.push();
+          this.$router.push('servicer');
         }
       });
     }

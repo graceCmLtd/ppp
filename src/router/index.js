@@ -43,6 +43,11 @@ const router = new Router({
         component:resolve=>require(['@/subpage/invoice'],resolve)
         },
     
+      {
+        path:'/servicer',//联系客服
+        name:'Servicer',
+        component:resolve=>require(['@/subpage/servicer'],resolve)
+        },
    
         {
           path:'/release/trad',//平台担保交易
