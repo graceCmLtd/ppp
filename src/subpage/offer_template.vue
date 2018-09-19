@@ -31,15 +31,117 @@
           <el-col :span="3"><div class="mes">4.52%</div></el-col>
           <el-col :span="5"><div class="mes pula">
             <p class="xs_w">
-              <a style="background: #F15749;">修改</a>
+
+              <a style="background: #F15749;" @click="dialogUpdateFormVisible = true" >修改</a>
               <a style="background: #53C0FF;">删除</a>
             </p>
           </div></el-col>
         </el-row>
+        <!-- Table -->
+        <!-- <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
+
+        <el-dialog title="收货地址" :visible.sync="dialogTableVisible">
+          <el-table :data="gridData">
+            <el-table-column property="date" label="日期" width="150"></el-table-column>
+            <el-table-column property="name" label="姓名" width="200"></el-table-column>
+            <el-table-column property="address" label="地址"></el-table-column>
+          </el-table>
+        </el-dialog>
+ -->
+        <!-- Form -->
+       <!--  <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
+ -->
+ <!-- update form 修改报价 -->
+        <el-dialog title="修改资源池报价" :visible.sync="dialogUpdateFormVisible">
+          <el-form :inline = "true" :model="updateForm">
+            <el-form-item label="票面金额" :label-width="formLabelWidth">
+              <el-select v-model="updateForm.amountRange" placeholder="请选择票面金额范围">
+                <el-option label="10-49.9w" value="10-49.9w"></el-option>
+                <el-option label="50-99.9w" value="50-99.9w"></el-option>
+                <el-option label="100-300w" value="100-300w"></el-option>
+                <el-option label="300w+" value="300w+"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="期限" :label-width="formLabelWidth">
+              <el-select v-model="updateForm.timeLimit" placeholder="请选择期限">
+                <el-option label="3个月以下" value="3个月以下"></el-option>
+                <el-option label="3-6个月" value="3-6个月"></el-option>
+                <el-option label="6个月以上" value="6个月以上"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
+              <el-input v-model="updateForm.type1" autocomplete="off" placeholder="利率 / 利率+每十万加" ></el-input>
+            </el-form-item>
+            <el-form-item label="大商" :label-width="formLabelWidth">
+              <el-input v-model="updateForm.type2" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            <el-form-item label="授信城商" :label-width="formLabelWidth">
+              <el-input v-model="updateForm.type3" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            <el-form-item label="村镇银行" :label-width="formLabelWidth">
+              <el-input v-model="updateForm.type4" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogUpdateFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogUpdateFormVisible = false">确 定</el-button>
+          </div>
+        </el-dialog>
+<!-- add form 增加报价 -->
+        <el-dialog title="增加资源池报价" :visible.sync="dialogAddFormVisible">
+          <el-form :inline = "true" :model="addForm">
+            <el-form-item label="票面金额" :label-width="formLabelWidth">
+              <el-select v-model="addForm.amountRange" placeholder="请选择票面金额范围">
+                <el-option label="10-49.9w" value="10-49.9w"></el-option>
+                <el-option label="50-99.9w" value="50-99.9w"></el-option>
+                <el-option label="100-300w" value="100-300w"></el-option>
+                <el-option label="300w+" value="300w+"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="期限" :label-width="formLabelWidth">
+              <el-select v-model="addForm.timeLimit" placeholder="请选择期限">
+                <el-option label="3个月以下" value="3个月以下"></el-option>
+                <el-option label="3-6个月" value="3-6个月"></el-option>
+                <el-option label="6个月以上" value="6个月以上"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.type1" autocomplete="off" placeholder="利率 / 利率+每十万加" ></el-input>
+            </el-form-item>
+            <el-form-item label="大商" :label-width="formLabelWidth">
+              <el-input v-model="addForm.type2" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            <el-form-item label="授信城商" :label-width="formLabelWidth">
+              <el-input v-model="addForm.type3" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            <el-form-item label="村镇银行" :label-width="formLabelWidth">
+              <el-input v-model="addForm.type4" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="addFormCancle">取 消</el-button>
+            <el-button type="primary" @click="addFormSubmit">确 定</el-button>
+          </div>
+        </el-dialog>
+
+          <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="30%"
+            :before-close="handleClose">
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+          </el-dialog>
 
       </div>
     <div class="add_w">
-      <span>增加报价</span>
+
+      <span><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
     </div>
     <div class="edit_w">
       <a class="note_w">默认备注：详细价格联系方式详谈</a>
@@ -65,10 +167,37 @@
         current_index:'',
         remain_days:null,
         marDay:[],
-        pic : ''
+        pic : '',
+        dialogVisible: false,
+        dialogAddFormVisible: false,
+        dialogUpdateFormVisible:false,
+        addForm:{
+          amountRange:'',
+          timeLimit:'',
+          type1:'',
+          type2:'',
+          type3:'',
+          type4:''
+        },
+        updateForm: {
+          amountRange:'',
+          timeLimit:'',
+          type1:'',
+          type2:'',
+          type3:'',
+          type4:''
+        },
+        formLabelWidth: '120px'
       }
     },
     methods:{
+       handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
       getReceiptAll(){
         let Id=getCookie('Iud');
         console.log(Id)
@@ -121,8 +250,48 @@
           }
         })
       },
+      addFormSubmit(){
+          let Id = getCookie("Iud");
+          this.dialogAddFormVisible = false;
+          alert(this.addForm.amountRange)
+          if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
+            alert("金额、期限必填，四种类型至少填写一种")
+          }else{
+              this.axios.post(this.oUrl+'/resourceMarket/add',{
+                "buyerId":Id,
+                "amountRange":this.addForm.amountRange,
+                "timeLimit":this.addForm.timeLimit,
+                "type1":this.addForm.type1,
+                "type2":this.addForm.type2,
+                "type3":this.addForm.type3,
+                "type4":this.addForm.type4,
+                "billType":"电银",
+                "priority":"2",
+                "updateDate":"2018-08-20",
+                "note":"实际交易价格"
+              },
+              {headers:{
+                  'Content-Type':'application/json'
+                }}
+            ).then((res)=>{
+              console.log("addForm 返回值");
+              console.log(res);
+            })
+          }
+      },
+      addFormCancle(){
+      this.dialogAddFormVisible = false;
+      this.addForm.amountRange = '';
+      this.addForm.timeLimit = '';
+      this.addForm.type1 = '';
+      this.addForm.type2 = '';
+      this.addForm.type3 = '';
+      this.addForm.type4 = ''
+    }
 
+    /*end of methods*/
     },
+    
     mounted(){
       this.getReceiptAll();
     }
