@@ -7,31 +7,32 @@
       </p>
       <div class="market_resources_list">
         <el-row>
-          <el-col :span="3"><div class="market_resources_title">票据类型</div></el-col>
+          <!-- <el-col :span="3"><div class="market_resources_title">票据类型</div></el-col> -->
+          <el-col :span="4"><div class="market_resources_title acceptance">承兑行类型</div></el-col>
           <el-col :span="2"><div class="market_resources_title">期限</div></el-col>
-          <el-col :span="4"><div class="market_resources_title acceptance">承兑方</div></el-col>
           <el-col :span="2"><div class="market_resources_title">金额</div></el-col>
           <el-col :span="4"><div class="market_resources_title rate">利率</div></el-col>
           <el-col :span="3"><div class="market_resources_title">联系人</div></el-col>
           <el-col :span="3"><div class="market_resources_title">操作</div></el-col>
-          <el-col :span="3"><div class="market_resources_title status">备注</div></el-col>
+          <el-col :span="6"><div class="market_resources_title status">备注</div></el-col>
           
         </el-row>
 
         <el-row class="market_resources_box" v-for="(item,index) in noteList" :key="index" ref="market_resources_box">
-          <el-col :span="3"><div class="market_resources_mes">{{item.billType}}</div></el-col>
-          <el-col :span="2"><div class="market_resources_mes">三个月以下</div></el-col>
+          <!--  <el-col :span="3"><div class="market_resources_mes">{{item.billType}}</div></el-col> -->
           <el-col :span="4"><div class="market_resources_mes acceptance">{{item.acceptor}}</div></el-col>
-          <el-col :span="2"><div class="market_resources_mes">{{item.amountRange/10000}}w</div></el-col>
+          <el-col :span="2"><div class="market_resources_mes">{{item.timeLimit}}</div></el-col>
+          <el-col :span="2"><div class="market_resources_mes">{{item.amountRange}}</div></el-col>
           <el-col :span="4"><div class="market_resources_mes rate" ref="rateL">
             {{item.interest}}{{sy}}
             <router-link to="/signUp" style="color:#f45643;text-decoration:none;" v-show="isLogin">登陆后可见</router-link>
           </div>
             </el-col>
-          <el-col :span="3"><div class="market_resources_mes">王总</div></el-col>
+          <el-col :span="3"><div class="market_resources_mes">{{item.contactsName}}</div></el-col>
           <el-col :span="3"><div class="market_resources_mes opera">
             <button type="button" name="button" @click="isReg">我要贴</button>
           </div></el-col>
+          <el-col :span="6"><div class="market_resources_mes acceptance">{{item.note}}</div></el-col>
           <!-- <el-col :span="3"><div class="market_resources_mes status">
             <span v-show="item.status=='1'">已成交</span>
             <span v-show="item.status=='2'">收票中</span>
@@ -56,7 +57,7 @@
           </div>
 
           </div> -->
-          <p class="paging">
+          <!-- <p class="paging">
             <el-pagination
               background
               layout="prev, pager, next"
@@ -100,8 +101,9 @@ export default {
   },
   methods:{
     getList(){
-      this.axios.get(this.oUrl+'/resourceMarket/getPriorityItem').then((res)=>{
+      this.axios.get(this.oUrl+'/resourceMarket/getAllInfo').then((res)=>{
         this.noteList=res.data;
+        console.log(res.data);
         this.marketResourcesLoadig=false;
         if(!getCookie('Iud')){
           for(let v in this.noteList){
@@ -117,7 +119,7 @@ export default {
       let isAu = getCookie('isAu');//从cookie中获取用户是否认证
       console.log(isAu);
       if(isAu=='true'){
-        //this.$router.push('/');
+        this.$router.push('/stick');
       }else{
         alert("您还未通过审核，已为您跳转......");
         this.$router.push('/release/data');
@@ -129,10 +131,10 @@ export default {
       this.axios.get(this.oUrl+"/getCompany?contactsId="+isAu).then((res)=>{
         console.log(res.data);
         if(res.data[0].role == "包装户"){
-          this.$router.push();
+          this.$router.push("/release/template");
         }else{
           alert("您还未开通此权限！");
-          this.$router.push();
+          //this.$router.push();
         }
       });
     }
