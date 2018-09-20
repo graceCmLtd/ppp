@@ -139,7 +139,16 @@
       <a class="note_w">默认备注：详细价格联系方式详谈</a>
       <a class="edit_wq">编辑备注</a>
     </div>
+    <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
 
+        </el-pagination>
+      </div>
     <div class="bottom_foot">
       <router-link to="/resources">
          <a>回到资源市场</a>
@@ -153,6 +162,9 @@
   export default {
     data(){
       return{
+        pageSize : 10,
+        currentPage : 1,
+        total : 0,
         noteList:[],
         day:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
@@ -192,11 +204,18 @@
       getReceiptAll(){
         let Id=getCookie('Iud');
         console.log(Id)
-        this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId?buyerId='+Id).then((res)=>{
+        this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId?buyerId='+Id+'&pageSize='+this.pageSize+'&currentPage='+this.currentPage).then((res)=>{
           let _this=this;
           console.log(res);
           _this.noteList=res.data;
-        })
+        });
+        this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
+            this.total = res.data;
+        });
+      },
+      current_change(currentPage){
+          this.currentPage = currentPage;
+          this.getReceiptAll();
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
