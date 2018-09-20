@@ -84,12 +84,13 @@
 <div class="page_w_table">
       <div class="page_table">
         <el-row>
-          <el-col :span="4"><div class="table type">承兑行类型</div></el-col>
-          <el-col :span="4"><div class="table time">期限</div></el-col>
-          <el-col :span="4"><div class="table acce">金额</div></el-col>
-          <el-col :span="4"><div class="table amount">利率</div></el-col>
+          <el-col :span="3"><div class="table type">承兑行类型</div></el-col>
+          <el-col :span="3"><div class="table time">期限</div></el-col>
+          <el-col :span="3"><div class="table acce">金额</div></el-col>
+          <el-col :span="3"><div class="table amount">利率</div></el-col>
           <el-col :span="4"><div class="table data">联系人</div></el-col>
-          <el-col :span="4"><div class="table status">状态</div></el-col>
+          <el-col :span="4"><div class="table status">操作</div></el-col>
+          <el-col :span="4"><div class="table status">备注</div></el-col>
         </el-row>
       </div>
 
@@ -99,14 +100,15 @@
             <span style="color:#ff823f;" v-show="item.billType=='电银'">电银</span>
             <span style="color:#3d83c8;" v-show="item.billType=='纸银'">纸银</span>
           </div></el-col> -->
-          <el-col :span="4"><div class="tableMes type">{{item.acceptor}}</div></el-col>
-          <el-col :span="4"><div class="tableMes time">{{item.timeLimit}}</div></el-col>
-          <el-col :span="4"><div class="tableMes acce">{{item.amountRange}}</div></el-col>
-          <el-col :span="4"><div class="tableMes amount">{{item.interest}}%</div></el-col>
+          <el-col :span="3"><div class="tableMes type">{{item.acceptor}}</div></el-col>
+          <el-col :span="3"><div class="tableMes time">{{item.timeLimit}}</div></el-col>
+          <el-col :span="3"><div class="tableMes acce">{{item.amountRange}}</div></el-col>
+          <el-col :span="3"><div class="tableMes amount">{{item.interest}}%</div></el-col>
           <el-col :span="4"><div class="tableMes data">{{item.contactsName}}</div></el-col>
-          <el-col :span="4"><div class="tableMes status">收票中
-            <!-- <button type="button" name="button">收票中</button> -->
+          <el-col :span="4"><div class="tableMes status">
+            <button type="button" name="button" @click="isReg">我要贴</button>
           </div></el-col>
+          <el-col :span="4"><div class="table status">{{item.note}}</div></el-col>
         </el-row>
          
       </div>
@@ -122,6 +124,7 @@
 </template>
 
 <script>
+  import {getCookie} from '@/assets/util'
 export default {
   data(){
     return{
@@ -198,6 +201,17 @@ export default {
         console.log(res)
         _this.roteListLimit=res.data;
       })
+    },
+    isReg(){
+      console.log("123");
+      let isAu = getCookie('isAu');//从cookie中获取用户是否认证
+      console.log(isAu);
+      if(isAu=='true'){
+        this.$router.push('/stick');
+      }else{
+        alert("您还未通过审核，已为您跳转......");
+        this.$router.push('/release/data');
+      }
     },
     // paperMes(){
     //     let _this=this;

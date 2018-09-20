@@ -136,7 +136,7 @@ export default {
           alert("您还未开通此权限！");
           this.$router.push('servicer');
         }
-      });
+      }); 
     }
     /*current(index){//页码跳转
       let sta=index*4;
