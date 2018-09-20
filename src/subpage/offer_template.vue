@@ -32,8 +32,8 @@
           <el-col :span="5"><div class="mes pula">
             <p class="xs_w">
 
-              <a style="background: #F15749;" @click="dialogUpdateFormVisible = true" >修改</a>
-              <a style="background: #53C0FF;" @click="dialogDeleteQuoteSubmit( index )" >删除</a>
+              <a style="background: #F15749;" @click="dialogUpdateQuote(index)" >修改</a>
+              <a style="background: #53C0FF;" @click="dialogDeleteQuote( index )" >删除</a>
             </p>
           </div></el-col>
         </el-row>
@@ -71,12 +71,12 @@
             
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogUpdateFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogUpdateFormVisible = false">确 定</el-button>
+            <el-button @click="updateFormCancle">取 消</el-button>
+            <el-button type="primary" @click="dialogUpdateQuoteSubmit">确 定</el-button>
           </div>
         </el-dialog>
 
-        <!-- 删除报价 -->
+  <!-- 删除报价 -->
           <el-dialog
             title="删除报价"
             :visible.sync="dialogDeleteVisible"
@@ -85,7 +85,7 @@
             <span>确定删除该条报价？</span>
             <span slot="footer" class="dialog-footer">
               <el-button @click="dialogDeleteVisible = false">取 消</el-button>
-              <el-button type="primary" >确 定</el-button>
+              <el-button type="primary" @click="dialogDeleteQuoteSubmit" >确 定</el-button>
             </span>
           </el-dialog>
 
@@ -171,6 +171,7 @@
           type4:''
         },
         updateForm: {
+          orderId:'',
           amountRange:'',
           timeLimit:'',
           type1:'',
@@ -218,7 +219,7 @@
       addFormSubmit(){
           let Id = getCookie("Iud");
           this.dialogAddFormVisible = false;
-          alert(this.addForm.amountRange)
+          //alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
           }else{
@@ -246,8 +247,59 @@
             })
           }
       },
-      dialogDeleteQuoteSubmit(index){
+      dialogUpdateQuote(index){
+        this.dialogUpdateFormVisible = true;
+        this.updateForm.orderId = this.noteList[index].orderId;
+        this.updateForm.amountRange = this.noteList[index].amountRange;
+        this.updateForm.timeLimit = this.noteList[index].timeLimit;
+        this.updateForm.type1 = this.noteList[index].type1;
+        this.updateForm.type2 = this.noteList[index].type2;
+        this.updateForm.type3 = this.noteList[index].type3;
+        this.updateForm.type4 = this.noteList[index].type4;
         
+      },
+      dialogUpdateQuoteSubmit(){
+          this.dialogUpdateFormVisible = false;
+          let Id = getCookie("Iud");
+          this.axios.post(this.oUrl+'/resourceMarket/updateByOrderId',{
+                "orderId":this.updateForm.orderId,
+                "buyerId":Id,
+                "amountRange":this.updateForm.amountRange,
+                "timeLimit":this.updateForm.timeLimit,
+                "type1":this.updateForm.type1,
+                "type2":this.updateForm.type2,
+                "type3":this.updateForm.type3,
+                "type4":this.updateForm.type4,
+                "billType":"电银",
+                "priority":"2",
+                "updateDate":"2018-08-20",
+                "note":"实际交易价格"
+              },
+              {headers:{
+                  'Content-Type':'application/json'
+                }}
+            ).then((res)=>{
+              console.log("update quote pool")
+              console.log(res);
+              this.getReceiptAll();
+            })
+      },
+      updateFormCancle(){
+        this.dialogUpdateFormVisible = false;
+        this.updateForm.orderId = '';
+        this.updateForm.amountRange = '';
+        this.updateForm.timeLimit = '';
+        this.updateForm.type1 = '';
+        this.updateForm.type2 = '';
+        this.updateForm.type3 = '';
+        this.updateForm.type4 = '';
+      },
+      dialogDeleteQuote(index){
+        this.dialogDeleteVisible = true;
+        this.current_index = index
+      },
+      dialogDeleteQuoteSubmit(){
+        let index = this.current_index;
         this.dialogDeleteVisible = false;
         console.log("dialogDeleteQuoteSubmit")
         this.axios.get(this.oUrl+'/resourceMarket/deleteByOrderId?orderId='+this.noteList[index].orderId).then((res)=>{
