@@ -1,7 +1,7 @@
 <!-- 发布资源池报价 -->
 <template lang="html">
   <div class="content">
-    <div class="content_w1_title" style="margin-top:68px;">
+    <div class="content_w1_title" style="margin-top:20px;">
       <span>发布/修改资源池报价</span>
     </div>
 
@@ -32,8 +32,10 @@
           <el-col :span="5"><div class="mes pula">
             <p class="xs_w">
 
-              <a style="background: #F15749;" @click="dialogUpdateFormVisible = true" >修改</a>
-              <a style="background: #53C0FF;" @click="dialogDeleteQuoteSubmit( index )" >删除</a>
+
+              <a style="background: #F15749;cursor: pointer;" @click="dialogUpdateFormVisible = true" >修改</a>
+              <a style="background: #53C0FF;cursor: pointer;"  @click="dialogDeleteQuoteSubmit( index )">删除</a>
+
             </p>
           </div></el-col>
         </el-row>
@@ -130,8 +132,12 @@
         </el-dialog>
 
 
+
     <div class="add_w">
-      <span><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
+
+      <span style="cursor: pointer;"><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
+
+
     </div>
 
 
@@ -139,6 +145,7 @@
       <a class="note_w">默认备注：详细价格联系方式详谈</a>
       <a class="edit_wq">编辑备注</a>
     </div>
+
     <div class="block">
         <el-pagination
           background
@@ -146,6 +153,7 @@
           :total="total"
           :page-size="pageSize"
           @current-change="current_change">
+
 
         </el-pagination>
       </div>
@@ -494,6 +502,7 @@
     margin-right: 36px;
     margin-top: 10px;
     background:#F15749;
+    cursor: pointer;
 
   }
 }
