@@ -21,7 +21,7 @@
     </div>
     <!-- 内容 -->
      <div class="color_w" v-for="(item,index) in noteList" :key="index">
-        <el-row style="height:77px; line-height:77px;">
+        <el-row style="height:77px; line-height:77px;" >
           <el-col :span="3"><div class="mes">{{item.amountRange}}</div></el-col>
           <el-col :span="4"><div class="mes bank" ref="person_offer_all_bank"                                
           >{{item.timeLimit}}</div></el-col>
@@ -33,24 +33,11 @@
             <p class="xs_w">
 
               <a style="background: #F15749;" @click="dialogUpdateFormVisible = true" >修改</a>
-              <a style="background: #53C0FF;">删除</a>
+              <a style="background: #53C0FF;" @click="dialogDeleteQuoteSubmit( index )" >删除</a>
             </p>
           </div></el-col>
         </el-row>
-        <!-- Table -->
-        <!-- <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
-
-        <el-dialog title="收货地址" :visible.sync="dialogTableVisible">
-          <el-table :data="gridData">
-            <el-table-column property="date" label="日期" width="150"></el-table-column>
-            <el-table-column property="name" label="姓名" width="200"></el-table-column>
-            <el-table-column property="address" label="地址"></el-table-column>
-          </el-table>
-        </el-dialog>
- -->
-        <!-- Form -->
-       <!--  <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
- -->
+   
  <!-- update form 修改报价 -->
         <el-dialog title="修改资源池报价" :visible.sync="dialogUpdateFormVisible">
           <el-form :inline = "true" :model="updateForm">
@@ -70,16 +57,16 @@
               </el-select>
             </el-form-item>
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
-              <el-input v-model="updateForm.type1" autocomplete="off" placeholder="利率 / 利率+每十万加" ></el-input>
+              <el-input v-model="updateForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
             </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
-              <el-input v-model="updateForm.type2" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="updateForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
-              <el-input v-model="updateForm.type3" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="updateForm.type3"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
-              <el-input v-model="updateForm.type4" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="updateForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             
           </el-form>
@@ -88,6 +75,20 @@
             <el-button type="primary" @click="dialogUpdateFormVisible = false">确 定</el-button>
           </div>
         </el-dialog>
+
+        <!-- 删除报价 -->
+          <el-dialog
+            title="删除报价"
+            :visible.sync="dialogDeleteVisible"
+            width="30%"
+            :before-close="handleClose">
+            <span>确定删除该条报价？</span>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogDeleteVisible = false">取 消</el-button>
+              <el-button type="primary" >确 定</el-button>
+            </span>
+          </el-dialog>
+
 
       </div>
 <!-- add form 增加报价 -->
@@ -109,16 +110,16 @@
               </el-select>
             </el-form-item>
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
-              <el-input v-model="addForm.type1" autocomplete="off" placeholder="利率 / 利率+每十万加" ></el-input>
+              <el-input v-model="addForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
             </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type2" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type3" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type3" placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type4" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             
           </el-form>
@@ -127,18 +128,6 @@
             <el-button type="primary" @click="addFormSubmit">确 定</el-button>
           </div>
         </el-dialog>
-
-          <el-dialog
-            title="提示"
-            :visible.sync="dialogVisible"
-            width="30%"
-            :before-close="handleClose">
-            <span>这是一段信息</span>
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="dialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-            </span>
-          </el-dialog>
 
 
     <div class="add_w">
@@ -170,7 +159,7 @@
         current_index:'',
         remain_days:null,
         pic : '',
-        dialogVisible: false,
+        dialogDeleteVisible: false,
         dialogAddFormVisible: false,
         dialogUpdateFormVisible:false,
         addForm:{
@@ -256,6 +245,17 @@
               this.getReceiptAll();
             })
           }
+      },
+      dialogDeleteQuoteSubmit(index){
+        
+        this.dialogDeleteVisible = false;
+        console.log("dialogDeleteQuoteSubmit")
+        this.axios.get(this.oUrl+'/resourceMarket/deleteByOrderId?orderId='+this.noteList[index].orderId).then((res)=>{
+          let _this=this;
+          console.log("delete the quote ")
+
+          this.getReceiptAll();
+        })
       },
       addFormCancle(){
       this.dialogAddFormVisible = false;
