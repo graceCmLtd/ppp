@@ -265,7 +265,7 @@
                   "releaserId":Id,
                   "billPicsId":11111,
                   "transferable":true,
-                  "billReferer":"traditional"
+                  "billReferer":"传统渠道"
                 },
                 "billPics":{
                   "billNumber":paperNumber,
