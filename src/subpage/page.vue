@@ -197,7 +197,7 @@ export default {
     },
     getListBot(){//资源列表
       let _this=this;
-      _this.axios.post(_this.oUrl+'/resourceMarket/getAllInfo').then((res)=>{
+      _this.axios.post(_this.oUrl+'/resourceMarket/getAllInfo?pageSize=8&currentPage=1').then((res)=>{
         console.log(res)
         _this.roteListLimit=res.data;
       })
