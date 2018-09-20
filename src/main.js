@@ -20,7 +20,7 @@ Vue.prototype.axios=Axios;
 
 
 
-      // Vue.prototype.oUrl='http://localhost:8080/ppp'
+      //Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 
 
