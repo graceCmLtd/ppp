@@ -36,7 +36,10 @@
     <div class="success_mes" ref="success_mes">
       <p class="success_mes_title">您已成功报价</p>
       <p class="success_mes_oper">
-        <button type="button" name="button" @click="closeSprompt()">继续报价</button>
+        <button type="button" name="button" @click="closeSprompt()">
+          <router-link to="/marketpa"> 继续报价
+         </router-link>
+        </button>
         <router-link to="/release/offer" tag="button">查看我的报价</router-link>
       </p>
     </div>
@@ -164,6 +167,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a{
+   text-decoration: none; 
+   color:#fff;
+}
 .paper_details{
   width: 100%;
   height:100%;

@@ -1,7 +1,7 @@
 <!-- 发布资源池报价 -->
 <template lang="html">
   <div class="content">
-    <div class="content_w1_title" style="margin-top:68px;">
+    <div class="content_w1_title" style="margin-top:20px;">
       <span>发布/修改资源池报价</span>
     </div>
 
@@ -32,8 +32,15 @@
           <el-col :span="5"><div class="mes pula">
             <p class="xs_w">
 
-              <a style="background: #F15749;" @click="dialogUpdateQuote(index)" >修改</a>
-              <a style="background: #53C0FF;" @click="dialogDeleteQuote( index )" >删除</a>
+
+              <a style="background: #F15749;cursor: pointer;" @click="dialogUpdateQuote(index)" >修改</a>
+              <a style="background: #53C0FF;cursor: pointer;" @click="dialogDeleteQuote( index )" >删除</a>
+
+<!-- 
+              <a style="background: #F15749;cursor: pointer;" @click="dialogUpdateFormVisible = true" >修改</a>
+              <a style="background: #53C0FF;cursor: pointer;"  @click="dialogDeleteQuoteSubmit( index )">删除</a>
+ -->
+
             </p>
           </div></el-col>
         </el-row>
@@ -130,15 +137,28 @@
         </el-dialog>
 
 
+
     <div class="add_w">
-      <span><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
+
+      <span style="cursor: pointer;"><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
+
+
     </div>
 
 
     <div class="edit_w">
-      <a class="note_w">默认备注：详细价格联系方式详谈</a>
-      <a class="edit_wq">编辑备注</a>
+      <a class="note_w">默认备注：{{noteInfo}}</a>
+      <a class="edit_wq" @click="dialogEditNoteVisible =  true">编辑备注</a>
     </div>
+
+    <el-dialog  title="修改备注信息"  :visible.sync="dialogEditNoteVisible" width="30%"
+            :before-close="handleClose">
+            <el-input type="textarea" v-model="noteInfo"></el-input>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogEditNoteVisible = false">取 消</el-button>
+              <el-button type="primary" @click="editeNoteSubmit" >确 定</el-button>
+            </span>
+          </el-dialog>
     <div class="block">
         <el-pagination
           background
@@ -146,6 +166,7 @@
           :total="total"
           :page-size="pageSize"
           @current-change="current_change">
+
 
         </el-pagination>
       </div>
@@ -174,6 +195,8 @@
         dialogDeleteVisible: false,
         dialogAddFormVisible: false,
         dialogUpdateFormVisible:false,
+        dialogEditNoteVisible:false,
+        noteInfo:'',
         addForm:{
           amountRange:'',
           timeLimit:'',
@@ -209,6 +232,7 @@
           let _this=this;
           console.log(res);
           _this.noteList=res.data;
+          _this.noteInfo = res.data[0].note
         });
         this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
             this.total = res.data;
@@ -336,6 +360,23 @@
       this.addForm.type2 = '';
       this.addForm.type3 = '';
       this.addForm.type4 = ''
+    },
+    editeNoteSubmit(){
+      this.dialogEditNoteVisible = false;
+      //alert(this.noteInfo)
+      let Id = getCookie("Iud");
+      this.axios.post(this.oUrl+'/resourceMarket/updateNoteByUserId',{
+                "buyerId":Id,
+                "note":this.noteInfo
+              },
+              {headers:{
+                  'Content-Type':'application/json'
+                }}
+            ).then((res)=>{
+              console.log("update note ")
+              console.log(res);
+              //this.getReceiptAll();
+            })
     }
 
     /*end of methods*/
@@ -546,6 +587,7 @@
     margin-right: 36px;
     margin-top: 10px;
     background:#F15749;
+    cursor: pointer;
 
   }
 }
