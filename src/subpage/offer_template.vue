@@ -258,6 +258,7 @@
             alert("金额、期限必填，四种类型至少填写一种")
           }else{
               this.axios.post(this.oUrl+'/resourceMarket/add',{
+                  "resourceMarketInfo":{
                 "buyerId":Id,
                 "amountRange":this.addForm.amountRange,
                 "timeLimit":this.addForm.timeLimit,
@@ -269,7 +270,7 @@
                 "priority":"2",
                 "updateDate":"2018-08-20",
                 "note":"实际交易价格"
-              },
+              }},
               {headers:{
                   'Content-Type':'application/json'
                 }}
