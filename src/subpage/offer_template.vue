@@ -154,7 +154,7 @@
       <router-link to="/resources">
          <a>回到资源市场</a>
       </router-link>
-        <a>查看我的资源池报价</a>
+<!--         <a>查看我的资源池报价</a> -->
     </div>
   </div>
 </template>
