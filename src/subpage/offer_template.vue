@@ -139,6 +139,8 @@
           </el-dialog>
 
       </div>
+
+      
     <div class="add_w">
 
       <span><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
@@ -152,7 +154,7 @@
       <router-link to="/resources">
          <a>回到资源市场</a>
       </router-link>
-        <!-- <a>查看我的资源池报价</a> -->
+        <a>查看我的资源池报价</a>
     </div>
   </div>
 </template>
@@ -252,7 +254,7 @@
       },
       addFormSubmit(){
           let Id = getCookie("Iud");
-          this.dialogAddFormVisible = false;
+          //this.dialogAddFormVisible = false;
           alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
