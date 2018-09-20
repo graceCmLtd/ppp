@@ -10,34 +10,37 @@
       </div>
 <!-- 计算器 -->
       <div class="page_options">
-        <ul class="list">         
-          <li @mouseenter="Be()" @mouseleave="Af()">
+        <ul class="list" style="position:relative;">         
+          <li @mouseenter="Be()" @mouseleave="Af()"  v-on:click="toggle()">
             <img src="../../static/img/calculatorBe.png" ref="CaBe" class="Be" alt="" style="width:50%;height:50%;margin-right:25%;"  >
             <img src="../../static/img/calculator.png" ref="CaAf" title="" class="Af" alt="" style="width:50%;height:50%;display:none;" />
           </li>
-<!-- 票据详情的弹窗 -->
-<!--           <div class="intention_mes_details" ref="intention_mes_details">
-            <div class="intention_mes_message">
-              <div class="message_left">
-                <ul>
-                  <li>票据金额：<span>{{amount/10000}}w</span></li>
-                  <li>每10w加：<span>{{xPerLakh}}</span></li>
-                  <li>出票日期：<span>{{transacDate}}</span></li>
-                </ul>
-              </div>
-              <div class="message_right">
-                <ul>
-                  <li>承对方：<span>{{bank}}</span></li>
-                  <li>汇票到期日：<span>{{maturity}}</span></li>
-                  <li>剩余天数：<span>{{remain_days}}天</span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="intention_mes_pic" ref="intention_mes_pic">
-              <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
-            </div>
 
-          </div> -->
+           <div class="show_w" v-show="isShow">
+             <div class="cal">
+               <a class="cal_1">贴现计算器</a>
+               <a class="cal_2" @click="hiddenShow()">X</a>
+             </div>
+             <div class="content_c">
+               <p>票面金额（万元）：<input type="" name="" placeholder="请输入金额"></p>
+               <p>年利率（%）：<input type="" name="" placeholder="%"></p>
+               <p>贴现日期：<input type="" name="" placeholder="2018-09-05"></p>
+               <p>到期日期：<input type="" name="" placeholder="请选择日期"></p>
+               <p class="day_1">调整天数：<input type="" name="" placeholder="异地通常为3天" style="width:143px; height:28px;">
+                <a style="line-height">电银</a>
+                <a style="background:#40C0F5;">纸银</a>
+               </p>
+               <p>每十万手续费：<input type="" name="" placeholder="0"></p>
+               <p class="enpty">
+                 <a>清空</a>
+                 <a style="background:#F15749;">计算</a>
+               </p>
+               <p>计息天数：<input type="" name="" placeholder="0"></p>
+               <p>每十万贴息：<input type="" name="" placeholder="0.00元"></p>
+               <p>贴息利息：<input type="" name="" placeholder="0.00元"></p>
+               <p>贴息金额：<input type="" name="" placeholder="0.00元"></p>
+             </div>
+           </div>
 
           <li><a href="tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes" style="text-decoration:none"><p>法&nbsp;务</p><p>咨&nbsp;询</p></a></li>
           <li @click="backTop()"><p>回&nbsp;到</p><p>顶&nbsp;部</p></li>
@@ -127,6 +130,7 @@
   import {getCookie} from '@/assets/util'
 export default {
   data(){
+
     return{
       minHeight:'10%',
       roteList:[],
@@ -139,7 +143,8 @@ export default {
       bank:null,
       releaseDate:null,
       maturity:null,
-      remain_days:null
+      remain_days:null,
+      isShow:false,
     }
   },
   components:{
@@ -213,47 +218,13 @@ export default {
         this.$router.push('/release/data');
       }
     },
-    // paperMes(){
-    //     let _this=this;
-        //let billNumberLoca=_this.noteList[].billNumber;
-       /* _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
-          console.log(res)
-          _this.amount=_this.noteList[index].amount;
-          _this.xPerLakh=_this.noteList[index].xPerLakh;
-          _this.transacDate=_this.noteList[index].transacDate;
-          _this.bank=_this.noteList[index].acceptor;
-          _this.releaseDate=_this.noteList[index].releaseDate;
-          _this.maturity = _this.noteList[index].maturity;
-          _this.remain_days = _this.noteList[index].remain_days;
-          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
-            console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
-            _this.intentionMaskShow=true;
-            _this.$refs.intention_mes_details[index].style.display='block';
-            setTimeout(()=>{
-              _this.$refs.intention_mes_details[index].style.top='20%';
-              _this.$refs.intention_mes_details[index].style.opacity='1';
-            })
-          })
-        })*/
-      //   console.log("first page ")
-      //   console.log(_this)
-      //   _this.$refs.intention_mes_details.style.display='block';
-      //   setTimeout(()=>{
-      //         _this.$refs.intention_mes_details.style.top='20%';
-      //         _this.$refs.intention_mes_details.style.opacity='1';
-      //          _this.$refs.PaperIs.src=res.data[0].pic1;
-      //       })
-      // },
-    // closePics(){
-    //     this.$refs.intention_mes_details.style.top='15%';
-    //     this.$refs.intention_mes_details.style.opacity='0';
-    //     setTimeout(()=>{
-    //       this.intentionMaskShow=false;
-    //       this.$refs.intention_mes_details.style.display='none';
-    //     },200)
-    //   }
-    
+    toggle:function(){
+            this.isShow = !this.isShow;
+          },
+    hiddenShow:function () {
+                var that = this;
+                that.isShow = false;
+            }, 
   },
   created(){
     this.getListTop();
@@ -264,6 +235,90 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.show_w{
+    width: 480px;
+    height: 600px;
+    background: white;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    position: absolute;
+    right: 89px;
+    bottom: -96%;
+    .cal{
+      height:50px;
+      width:480px;
+      border-bottom:2px solid #F15749;
+      line-height:50px;
+      text-align:left;
+      .cal_1{
+        width:90px;
+        height:50px;
+        font-size:15px;
+        font-weight:bold;
+        color:rgba(255,255,255,1);
+        line-height:51px;
+        background:#F15749;
+        text-align:center;
+        display: inline-block;
+      }
+      .cal_2{
+        width:22px;
+        height:22px;
+        background:rgba(249,108,108,1);
+        color:rgba(255,255,255,1);
+        line-height:22px;
+        background:#F15749;
+        text-align:center;
+        border-radius:50px;
+        font-size:14px;
+        float:right;
+        margin-top:10px;
+        margin-right:5px;
+        cursor:pointer;
+      }
+    }
+    .content_c{
+      p{
+        font-size:18px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(102,102,102,1);
+        line-height:45px;
+      }
+      .day_1{
+        a{
+          width:40px;
+          height:24px;
+          background:rgba(241,87,73,1);
+          border-radius:4px;
+          font-size:10px;
+          color:#fff;
+          display:inline-block;
+          line-height:24px;
+        }
+      }
+      .enpty{
+        a{
+          width:170px;
+          height:40px;
+          background:rgba(64,192,245,1);
+          border-radius:4px;
+          display:inline-block;
+          line-height:40px;
+          color:#fff;
+          letter-spacing:1.3px;
+        }
+      }
+      input{
+        width:240px;
+        height:28px;
+        border-radius:4px;
+        border:1px solid rgba(151,151,151,1);
+      }
+    }
+}
+
 .page{
   width: 100%;
   height:100%;
@@ -415,7 +470,7 @@ export default {
 }
 
 
-    .intention_mes_details{
+  .intention_mes_details{
     width: 670px;
     height:540px;
     background: white;
