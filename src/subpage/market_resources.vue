@@ -57,19 +57,18 @@
           </div>
 
           </div> -->
-          <!-- <p class="paging">
-            <el-pagination
-              background
-              layout="prev, pager, next"
-              @next-click="next(index)"
-              @prev-click="prev(index)"
-              @current-change="current"
-              :current-page="pageN"
-              :total="pageNum">
-            </el-pagination>
-          </p> -->
 
         </el-row>
+      </div>
+      <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+
+        </el-pagination>
       </div>
       <div class="market_resources_loadig" v-loading="true" v-show="marketResourcesLoadig">
 
@@ -93,7 +92,10 @@ export default {
       loading:false,
       pageN:null,
       pageNum:10,
-      marketResourcesLoadig:true
+      marketResourcesLoadig:true,
+      currentPage : 1,
+      pageSize : 15,
+      total : 0,
     }
   },
   components:{
@@ -101,7 +103,7 @@ export default {
   },
   methods:{
     getList(){
-      this.axios.get(this.oUrl+'/resourceMarket/getAllInfo').then((res)=>{
+      this.axios.get(this.oUrl+'/resourceMarket/getAllInfo?pageSize='+this.pageSize+"&currentPage="+this.currentPage).then((res)=>{
         this.noteList=res.data;
         console.log(res.data);
         this.marketResourcesLoadig=false;
@@ -112,7 +114,18 @@ export default {
           }
           this.isLogin=true;
         }
-      })
+      });
+      this.axios.get(this.oUrl+'/resourceMarket/getCount').then((res)=>{
+        //console.log(res.data);
+        this.total = res.data;
+      });
+    },
+    current_change:function(currentPage){
+      this.currentPage = currentPage;
+      this.getList();
+    },
+    handleSizeChange:function(pageSize){
+      this.pageSize = pageSize;
     },
     isReg(){
       console.log("123");
@@ -138,80 +151,7 @@ export default {
         }
       }); 
     }
-    /*current(index){//页码跳转
-      let sta=index*4;
-      let Id=getCookie('Iud');
-      this.axios.post(this.oUrl+'/resourceMarket/getByBuyerIdOfResoucePool',{
-        "buyerId":Id,
-        "start":sta,
-        "page":4
-      },
-      {headers:{
-        'Content-Type':'application/json'
-      }}
-      ).then((res)=>{
-        this.noteListLed=res.data;
-      })
-    },
-    next(index){//下一页数据
-      let _this=this;
-      _this.loading=true;
-      _this.layout=_this.layout+4;
-      let Id=_this.noteList[index].buyerId;
-      _this.axios.post(this.oUrl+'/resourceMarket/getByBuyerIdOfResoucePool',{
-        "buyerId":Id,
-        "start":_this.layout,
-        "page":4
-      },
-      {headers:{
-        'Content-Type':'application/json'
-      }}
-      ).then((res)=>{
-        _this.loading=false;
-        _this.noteListLed=res.data;
-      })
-    },
-    prev(index){//上一页数据
-      let _this=this;
-      _this.loading=true;
-      _this.layout=_this.layout-4;
-      let Id=_this.noteList[index].buyerId;
-      _this.axios.post(_this.oUrl+'/resourceMarket/getByBuyerIdOfResoucePool',{
-        "buyerId":Id,
-        "start":_this.layout,
-        "page":4
-      },
-      {headers:{
-        'Content-Type':'application/json'
-      }}
-      ).then((res)=>{
-        _this.loading=false;
-        _this.noteListLed=res.data;
-      })
-    },*/
-    /*showTurn(index){
-      let _this=this;
-      let Id=_this.noteList[index].buyerId;
-      if(!getCookie('Iud')){
-        _this.$router.push('/signUp/password')
-      }else{
-        _this.axios.post(this.oUrl+'/resourceMarket/getByBuyerIdOfResoucePool',{
-          "buyerId":Id,
-          "start":_this.layout,
-          "page":4
-        },
-        {headers:{
-          'Content-Type':'application/json'
-        }}
-        )
-      }
-    },
-    hideTurn(index){
-      let _this=this;
-      _this.$refs.market_resources_box[index].$el.style.height='40px';
-      _this.$refs.showTurn[index].style.display='block';
-      _this.$refs.hideTurn[index].style.display='none';
-    },*/
+    
     
   },
   created(){

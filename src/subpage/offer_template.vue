@@ -21,36 +21,25 @@
     </div>
     <!-- 内容 -->
      <div class="color_w" v-for="(item,index) in noteList" :key="index">
-        <el-row style="height:77px; line-height:77px;">
-          <el-col :span="3"><div class="mes">10w-50w</div></el-col>
+        <el-row style="height:77px; line-height:77px;" >
+          <el-col :span="3"><div class="mes">{{item.amountRange}}</div></el-col>
           <el-col :span="4"><div class="mes bank" ref="person_offer_all_bank"                                
-          >3个月以下</div></el-col>
-          <el-col :span="3"><div class="mes">4.5</div></el-col>
-          <el-col :span="3"><div class="mes date">5.34%</div></el-col>
-          <el-col :span="3"><div class="mes">3.7%</div></el-col>
-          <el-col :span="3"><div class="mes">4.52%</div></el-col>
+          >{{item.timeLimit}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.type1}}</div></el-col>
+          <el-col :span="3"><div class="mes date">{{item.type2}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.type3}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.type4}}</div></el-col>
           <el-col :span="5"><div class="mes pula">
             <p class="xs_w">
 
+
               <a style="background: #F15749;cursor: pointer;" @click="dialogUpdateFormVisible = true" >修改</a>
-              <a style="background: #53C0FF;cursor: pointer;">删除</a>
+              <a style="background: #53C0FF;cursor: pointer;"  @click="dialogDeleteQuoteSubmit( index )">删除</a>
+
             </p>
           </div></el-col>
         </el-row>
-        <!-- Table -->
-        <!-- <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
-
-        <el-dialog title="收货地址" :visible.sync="dialogTableVisible">
-          <el-table :data="gridData">
-            <el-table-column property="date" label="日期" width="150"></el-table-column>
-            <el-table-column property="name" label="姓名" width="200"></el-table-column>
-            <el-table-column property="address" label="地址"></el-table-column>
-          </el-table>
-        </el-dialog>
- -->
-        <!-- Form -->
-       <!--  <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
- -->
+   
  <!-- update form 修改报价 -->
         <el-dialog title="修改资源池报价" :visible.sync="dialogUpdateFormVisible">
           <el-form :inline = "true" :model="updateForm">
@@ -70,16 +59,16 @@
               </el-select>
             </el-form-item>
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
-              <el-input v-model="updateForm.type1" autocomplete="off" placeholder="利率 / 利率+每十万加" ></el-input>
+              <el-input v-model="updateForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
             </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
-              <el-input v-model="updateForm.type2" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="updateForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
-              <el-input v-model="updateForm.type3" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="updateForm.type3"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
-              <el-input v-model="updateForm.type4" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="updateForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             
           </el-form>
@@ -88,6 +77,22 @@
             <el-button type="primary" @click="dialogUpdateFormVisible = false">确 定</el-button>
           </div>
         </el-dialog>
+
+        <!-- 删除报价 -->
+          <el-dialog
+            title="删除报价"
+            :visible.sync="dialogDeleteVisible"
+            width="30%"
+            :before-close="handleClose">
+            <span>确定删除该条报价？</span>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogDeleteVisible = false">取 消</el-button>
+              <el-button type="primary" >确 定</el-button>
+            </span>
+          </el-dialog>
+
+
+      </div>
 <!-- add form 增加报价 -->
         <el-dialog title="增加资源池报价" :visible.sync="dialogAddFormVisible">
           <el-form :inline = "true" :model="addForm">
@@ -107,16 +112,16 @@
               </el-select>
             </el-form-item>
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
-              <el-input v-model="addForm.type1" autocomplete="off" placeholder="利率 / 利率+每十万加" ></el-input>
+              <el-input v-model="addForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
             </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type2" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type3" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type3" placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type4" autocomplete="off" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
             
           </el-form>
@@ -126,25 +131,16 @@
           </div>
         </el-dialog>
 
-          <el-dialog
-            title="提示"
-            :visible.sync="dialogVisible"
-            width="30%"
-            :before-close="handleClose">
-            <span>这是一段信息</span>
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="dialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-            </span>
-          </el-dialog>
-
-      </div>
 
 
     <div class="add_w">
 
       <span style="cursor: pointer;"><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
+
+
     </div>
+
+
     <div class="edit_w">
       <a class="note_w">默认备注：详细价格联系方式详谈</a>
       <a class="edit_wq">编辑备注</a>
@@ -159,7 +155,7 @@
       <router-link to="/resources">
          <a>回到资源市场</a>
       </router-link>
-<!--         <a>查看我的资源池报价</a> -->
+        <!-- <a>查看我的资源池报价</a> -->
     </div>
   </div>
 </template>
@@ -173,9 +169,8 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         current_index:'',
         remain_days:null,
-        marDay:[],
         pic : '',
-        dialogVisible: false,
+        dialogDeleteVisible: false,
         dialogAddFormVisible: false,
         dialogUpdateFormVisible:false,
         addForm:{
@@ -208,36 +203,10 @@
       getReceiptAll(){
         let Id=getCookie('Iud');
         console.log(Id)
-        this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
-            "uuid":Id,
-            "IntentionType":"2"
-          },
-          {headers:{
-              'Content-Type':'application/json'
-            }}
-        ).then((res)=>{
+        this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId?buyerId='+Id).then((res)=>{
           let _this=this;
           console.log(res);
           _this.noteList=res.data;
-          for(let v in res.data){
-            // console.log(res.data[v].maturity)
-            // _this.marDay=res.data[v].maturity;
-            let date=new Date();
-            let year=date.getFullYear();
-            let month=date.getMonth()+1;
-            let day=date.getDate();
-            if(month>=1&&month<9){
-              month='0'+month
-            }
-            let secDay=year+'/'+month+'/'+day;
-            let secDayStamp=new Date(secDay).getTime()
-            let timeAll=new Date(res.data[v].maturity).getTime();
-            let lastDay=timeAll-secDayStamp;
-            _this.day=Math.floor(lastDay/86400000)
-            console.log(_this.day)
-            _this.marDay.push(_this.day)
-          }
-          console.log(_this.marDay)
         })
       },
       linkToA(index){
@@ -259,7 +228,7 @@
       },
       addFormSubmit(){
           let Id = getCookie("Iud");
-          //this.dialogAddFormVisible = false;
+          this.dialogAddFormVisible = false;
           alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
@@ -284,8 +253,20 @@
             ).then((res)=>{
               console.log("addForm 返回值");
               console.log(res);
+              this.getReceiptAll();
             })
           }
+      },
+      dialogDeleteQuoteSubmit(index){
+        
+        this.dialogDeleteVisible = false;
+        console.log("dialogDeleteQuoteSubmit")
+        this.axios.get(this.oUrl+'/resourceMarket/deleteByOrderId?orderId='+this.noteList[index].orderId).then((res)=>{
+          let _this=this;
+          console.log("delete the quote ")
+
+          this.getReceiptAll();
+        })
       },
       addFormCancle(){
       this.dialogAddFormVisible = false;
