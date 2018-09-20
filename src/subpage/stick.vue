@@ -268,7 +268,7 @@
                   "releaserId":Id,
                   "billPicsId":11111,
                   "transferable":true,
-                  "billReferer":"traditional"
+                  "billReferer":"资源池"
                 },
                 "billPics":{
                   "billNumber":paperNumber,
