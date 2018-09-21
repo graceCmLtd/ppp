@@ -94,7 +94,7 @@ export default {
       pageNum:10,
       marketResourcesLoadig:true,
       currentPage : 1,
-      pageSize : 15,
+      pageSize : 10,
       total : 0,
     }
   },
@@ -128,7 +128,6 @@ export default {
       this.pageSize = pageSize;
     },
     isReg(){
-      console.log("123");
       let isAu = getCookie('isAu');//从cookie中获取用户是否认证
       console.log(isAu);
       if(isAu=='true'){
