@@ -29,17 +29,11 @@
           <el-col :span="3"><div class="mes date">{{item.type2}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.type3}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.type4}}</div></el-col>
-          <el-col :span="5"><div class="mes pula">
-            <p class="xs_w">
 
-
-              <a style="background: #F15749;cursor: pointer;" @click="dialogUpdateQuote(index)" >修改</a>
-              <a style="background: #53C0FF;cursor: pointer;" @click="dialogDeleteQuote( index )" >删除</a>
-
-<!-- 
+          <el-col :span="5"><div class="mes pula" style="position:relative;">
+            <p class="xs_w" style="position:absolute;right: 20px;top:10px;">
               <a style="background: #F15749;cursor: pointer;" @click="dialogUpdateFormVisible = true" >修改</a>
-              <a style="background: #53C0FF;cursor: pointer;"  @click="dialogDeleteQuoteSubmit( index )">删除</a>
- -->
+              <a style="background: #53C0FF;cursor: pointer;" @click="dialogDeleteQuoteSubmit( index )">删除</a>
 
             </p>
           </div></el-col>
@@ -77,9 +71,9 @@
             </el-form-item>
             
           </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="updateFormCancle">取 消</el-button>
-            <el-button type="primary" @click="dialogUpdateQuoteSubmit">确 定</el-button>
+          <div slot="footer" class="dialog-footer" style="text-align:center;">
+            <el-button type="primary" @click="dialogUpdateFormVisible = false" style="background:#F15749; border:none; width:130px;">确认修改</el-button>
+            <el-button @click="dialogUpdateFormVisible = false" style="background:#E4E4E4; border:none; width:130px;">取 消</el-button>
           </div>
         </el-dialog>
 
@@ -130,9 +124,9 @@
             </el-form-item>
             
           </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="addFormCancle">取 消</el-button>
-            <el-button type="primary" @click="addFormSubmit">确 定</el-button>
+          <div slot="footer" class="dialog-footer" style="text-align:center;">
+            <el-button type="primary" @click="addFormSubmit" style="background:#F15749; border:none; width:130px;">确认增加</el-button>
+            <el-button @click="addFormCancle"  style="background:#E4E4E4; border:none; width:130px;">取 消</el-button>
           </div>
         </el-dialog>
 

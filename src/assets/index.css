@@ -93,3 +93,8 @@ input{
   bottom: 5%;
   left: 46%;
 }
+
+.el-dialog__title{
+  color:#F15749 !important;
+  font-weight:bold;
+}
