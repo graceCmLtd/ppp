@@ -238,7 +238,7 @@
       // },
       authCheck(){
         let _this = this;
-        if (getCookie('isAu')) {
+        if (!getCookie('isAu')) {
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
