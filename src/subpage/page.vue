@@ -248,7 +248,7 @@ export default {
       ).then((res)=>{
         console.log("filterbill  .....")
         console.log(res)
-        _this.roteList=res.data;
+        _this.roteList=res.data.list;
       })
     },
     getListBot(){//资源列表
