@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '已接单'"><div class="intention_mes operaMes">
-            <button type="button" name="button">确认交易</button>
+            <button type="button" name="button" v-on:click="toggle()">确认交易</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -64,11 +64,23 @@
 
       </div>
 
+
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
     </div>
-
+    <div class="show_w" v-show="isShow">
+      <div class="show_w1">
+      <p>买家已将价格由之前95W(94.5W)</p>
+      <p>修改为94.9W除去平台担保费500</p>
+      <p>实收金额为94.85W</p>
+      <p class="cr_w">
+      
+        <a><router-link to="/batch">确认</router-link> </a>
+        <a  @click="hiddenShow()">拒绝</a>    
+      </p>
+      </div>
+    </div>
    
   </div>
 </template>
@@ -87,6 +99,7 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        isShow:false,
         theHref :"tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes",
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
@@ -108,6 +121,13 @@
           _this.noteList=res.data;
         })
       },
+        toggle:function(){
+            this.isShow = !this.isShow;
+          },
+      hiddenShow:function () {
+                var that = this;
+                that.isShow = false;
+            }, 
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
@@ -151,11 +171,56 @@
     created(){
       this.getIntenTionList()
       //.linkToA(0)
-    }
+    },
+   
+
   }
 </script>
 
 <style lang="scss" scoped>
+.show_w{
+    width:450px;
+    height:350px;
+    background: white;
+    background:url("../../static/img/jigou.png");
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    position: fixed;
+    top: 26%;
+    left: 37%;
+    z-index: 999;
+    padding-left:57px;
+     padding-top:15px;
+    .show_w1{
+      width:350px;
+      height:250px;
+      background:#fff;
+      border-radius:5px; 
+    }
+    p{
+        margin-top: 35px;
+        line-height: 10px;
+        font-size: 14px;
+        font-family: MicrosoftYaHei-Bold;
+        font-weight: bold;
+        color: #666666;
+        padding-top: 16px;
+    
+    }
+    .cr_w{
+      a{
+        width:156px;
+        height:35px;
+        background:rgba(241,87,73,1);
+        border-radius:4px;
+        color:#fff;
+        display: inline-block;
+        line-height:35px;
+        cursor: pointer;
+        text-decoration:none;
+      }
+    }
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;

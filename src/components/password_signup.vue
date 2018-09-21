@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="password_signup">
     <p class="phone">
-      <span style="color:red;">*</span>手机号：&nbsp;&nbsp;<input  type="text" value="" placeholder="" ref="phoneNumber"/>
+      <span style="color:red;">*</span>手机号：&nbsp;&nbsp;<input  type="text" value="" placeholder="" ref="phoneNumber" maxlength="11" />
     </p>
     <p class="code"><span style="color:red;">*</span>密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
     <p class="turn">
