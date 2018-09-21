@@ -54,16 +54,16 @@
       </div>
   </div>
   </div>
-  <p class="paging_paper">
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      @next-click="nextPaper()"
-      @prev-click="prevPaper()"
-      @current-change="currentPaper"
-      :total="pagePaper">
-    </el-pagination>
-    </p>
+    <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+
+        </el-pagination>
+    </div>
   <Footer :height="minHeight"/>
   </div>
 </template>
@@ -82,8 +82,9 @@ export default {
       date:'',
       minHeight:'10%',
       pageP:null,
-      starterPaper:0,
-      pagePaper:10
+      pageSize : 10,
+      currentPage : 1,
+      total : 0
     }
   },
   components:{
@@ -95,107 +96,95 @@ export default {
     infinite(){//类型不限
       this.color=1;
       this.billType=0;
-      this.screening();
+      this.getList();
     },
     silver(){//纸银
       this.color=2;
       this.billType=1;
-      this.screening();
+      this.getList();
     },
     electric(){//电银
       this.color=3;
       this.billType=2;
-      this.screening();
+      this.getList();
     },
     makers(){//纸商
       this.color=4;
       this.billType=3;
-      this.screening();
+      this.getList();
     },
     electricity(){//电银
       this.color=5;
       this.billType=4;
-      this.screening();
+      this.getList();
     },
     infiniteAmount(){//价格不限
       this.colorTwo=1;
       this.amount=0;
-      this.screening();
+      this.getList();
     },
     thanOne(){//小于100万
       this.colorTwo=2;
       this.amount=1;
-      this.screening();
+      this.getList();
     },
     thanFive(){//小于500万
       this.colorTwo=3;
       this.amount=2;
-      this.screening();
+      this.getList();
     },
     aboveFive(){//500万以上
       this.colorTwo=4;
       this.amount=3;
-      this.screening();
+      this.getList();
     },
     infiniteDate(){//不限日期
       this.colorThr=1;
       this.date=0;
-      this.screening();
+      this.getList();
     },
     silverDay(){//小于30天
       this.colorThr=2;
       this.date=1;
-      this.screening();
+      this.getList();
     },
     thanDay(){//1-3个月
       this.colorThr=3;
       this.date=2;
-      this.screening();
+      this.getList();
     },
     thanThe(){//3-6个月
       this.colorThr=4;
       this.date=3;
-      this.screening();
+      this.getList();
     },
     thanSix(){//6个月以上
       this.colorThr=5;
       this.date=4;
-      this.screening();
+      this.getList();
     },
-    screening(){
-      let _this=this;
-      _this.axios.post(_this.oUrl+'/bills/filterbill',{
-        "billType":_this.billType,
-      	"amountType":_this.amount,
-      	"maturityType":_this.date,
-      	"starter":0,
-      	"number":10
-      },
-      {headers:{
-        'Content-Type':'application/json'
-      }}
-      ).then((res)=>{
-        _this.noteList=res.data;
-      })
-    },
+    
     getList(){
       let _this=this;
       _this.axios.post(_this.oUrl+'/bills/filterbill',{
         "billType":_this.billType,
       	"amountType":_this.amount,
       	"maturityType":_this.date,
-      	"starter":0,
-      	"number":100
+      	"starter":(_this.currentPage-1)*_this.pageSize,
+      	"number":_this.pageSize
       },
       {headers:{
         'Content-Type':'application/json'
       }}
       ).then((res)=>{
-          _this.noteList=res.data;
-          if(res.data.length>10){
-            _this.pagePaper=res.data.length
-          }
+          _this.noteList=res.data.list;
+          _this.total = res.data.count;
+          
         })
+    },
+    current_change(currentPage){
+      this.currentPage = currentPage;
+      this.getList();
     },
     SeeDetails(index){  //查看详情
       let bill=this.noteList[index].billNumber
@@ -205,43 +194,6 @@ export default {
           bills:bill
         }
       })
-    },
-    currentPaper(index){
-      let _this=this;
-      console.log(typeof(index))
-      if(index==1){
-        _this.starterPaper=_this.starterPaper-10;
-      }else{
-        _this.starterPaper=index*10;
-      }
-      _this.postPaper()
-    },
-    postPaper(){
-      let _this=this;
-      _this.axios.post(this.oUrl+'/bills/filterbill',{
-        "billType":_this.billType,
-        "amountType":_this.amount,
-        "maturityType":_this.date,
-        "starter":_this.starterPaper,
-        "number":10
-      },
-      {headers:{
-        'Content-Type':'application/json'
-      }}
-      ).then((res)=>{
-        this.noteList=res.data
-      })
-    },
-    nextPaper(){  //下一页
-      let _this=this;
-      _this.starterPaper=_this.starterPaper+10;
-      _this.postPaper()
-    },
-    prevPaper(){  //上一页
-      let _this=this;
-      _this.starterPaper=_this.starterPaper-10;
-      console.log(_this.starterPaper)
-      _this.postPaper()
     },
     acceptor(){//字符超过长度省略
       for (let v in this.$refs.acceptor){
