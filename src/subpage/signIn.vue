@@ -236,6 +236,7 @@
           console.log(this.$route)
           console.log(window.history)
           window.history.back()
+           window.history.back()
       }
     }
   }

@@ -147,7 +147,8 @@
 
 
     <div class="edit_w">
-      <a class="note_w">默认备注：{{noteInfo}}</a>
+      <!-- <a class="note_w">默认备注：{{noteInfo}}</a> -->
+      <textarea>默认备注：{{noteInfo}}</textarea>
       <a class="edit_wq" @click="dialogEditNoteVisible =  true">编辑备注</a>
     </div>
 

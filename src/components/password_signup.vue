@@ -20,6 +20,7 @@
 
 <script>
 import {setCookie} from '@/assets/util'
+import {getCookie} from '@/assets/util'
 export default {
   data(){
     return{
