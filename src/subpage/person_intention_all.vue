@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '已接单'"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click="toggle()">确认交易</button>
+            <button type="button" name="button" v-on:click="confirmTransaction(index)">确认交易</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -121,8 +121,25 @@
           _this.noteList=res.data;
         })
       },
-        toggle:function(){
-            this.isShow = !this.isShow;
+        confirmTransaction:function(index){
+            let _this=this;
+            let Id=getCookie('Iud');
+            _this.isShow = !_this.isShow;
+            let billNumberLoca=_this.noteList[index].billNumber;
+            _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+                "billNumber":billNumberLoca,
+                "intentionStatus":"卖家已确认"/*,
+                "quoterId":Id*/
+              },
+              {headers:{
+                  'Content-Type':'application/json'
+                }}
+            ).then((res)=>{
+              console.log("卖家确认交易操作 返回值：")
+              console.log(res)
+              _this.getIntenTionList();
+              /*_this.noteList=res.data;*/
+            })
           },
       hiddenShow:function () {
                 var that = this;
