@@ -10,14 +10,20 @@
          <!--    <a href="" id="topbar_login_btn">请登录</a>
             <a href="" id="topbar_register">免费注册</a> -->
         </div>
-        <div class="topmenu">
-          <a href=""  id="topbar_my_top">
+        <div >
+          <div class="topmenu">
+            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">40078398</i></a>
+          </div>
+          <div class="topmenu" v-if="isSinIn" >
+            <a href=""  id="topbar_my_top">
             <router-link to="/release/offer/offerAll">
               个人中心
             </router-link>
           </a>
             <a target="_blank" href="">我的消息</a>
-            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">40078398</i></a>
+          </div>
+          
+            
         </div>
     </div>
 </div>
@@ -63,7 +69,8 @@
         color:1,
         enter:true,
         signSucc:false,
-        nick:null
+        nick:null,
+        isSinIn:false
       }
     },
 
@@ -97,12 +104,21 @@
        window.location.reload();
       },
     },
+    created(){
+      if (getCookie("Iud")) {
+        this.isSinIn = true;
+      }
+      
+    },
     watch:{
       $route(to,from){
         if(getCookie('Iud')){
           this.nick=getCookie('Nick')
           this.enter=false;
           this.signSucc=true;
+          if (getCookie("Iud")) {
+        this.isSinIn = true;
+      }
         }
       }
     }
