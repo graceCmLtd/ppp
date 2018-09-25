@@ -272,7 +272,7 @@
                 "type4":this.addForm.type4,
                 "billType":"电银",
                 "priority":"2",
-                "updateDate":"2018-08-20",
+                "updateDate":this.getNowTime(),
                 "note":"实际交易价格"
               }},
               {headers:{
@@ -310,7 +310,7 @@
                 "type4":this.updateForm.type4,
                 "billType":"电银",
                 "priority":"2",
-                "updateDate":"2018-08-20",
+                "updateDate":this.getNowTime(),
                 "note":"实际交易价格"
               },
               {headers:{
@@ -372,6 +372,20 @@
               console.log(res);
               //this.getReceiptAll();
             })
+    },
+    getNowTime(){//获取当前时间,赋值给updateDate，用于资源市场的排序
+          var date = new Date();
+          var month = date.getMonth() + 1;
+          var strDate = date.getDate();
+          if (month >= 1 && month <= 9) {
+              month = "0" + month;
+          }
+          if (strDate >= 0 && strDate <= 9) {
+              strDate = "0" + strDate;
+          }
+          var currentDate = date.getFullYear() + "-" + month + "-" + strDate
+                  + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+          return currentDate;
     }
 
     /*end of methods*/
