@@ -33,9 +33,10 @@
             <button type="button" name="button" v-on:click = "acceptOrder(index)">接单</button>
           </div>
           <div class="intention_mes operaMes">
-            <button type="button" name="button" @click="open">修改报价</button>
+            <button type="button" name="button"  v-on:click="toggle()">修改报价</button>
           </div></el-col>
         </el-row>
+
         <p class="person_intention_contact">
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
@@ -45,6 +46,16 @@
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
+      <!-- 修改价格的弹窗 -->
+      <div class="show_w" v-show="isShow">
+        <div class="center_w">
+            <p>修改付款金额</p>
+            <p>原实付金额：78.45W</p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:100px; color:#F15749; font-weight:bold;font-size:20px;"> W</p>
+            <p>确认修改</p>
+        </div>
+      </div>
+
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
@@ -66,11 +77,13 @@
           </div>
         </div>
       </div>
-
+ 
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
     </div>
+
+
 
     <!--内容-->
     <!-- <div class="content_w">
@@ -155,6 +168,7 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        isShow:false,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
     },
@@ -177,6 +191,9 @@
           _this.noteList=res.data;
         })
       },
+      toggle:function(){
+            this.isShow = !this.isShow;
+     },
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
@@ -239,13 +256,7 @@
           /*_this.noteList=res.data;*/
         })
       },
-      open(){
-        this.$alert(
-          '<div id="calculator"></div>',
 
-          { dangerouslyUseHTMLString: true });
-        console.log(open);
-      }
       /*end of methods*/
     },
     created(){
@@ -255,6 +266,61 @@
 </script>
 
 <style lang="scss" scoped>
+.show_w{
+  width:500px;
+  height:450px;
+  background:linear-gradient(180deg,rgba(255,125,85,1) 0%,rgba(255,111,77,1) 100%);
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position:fixed;
+  bottom: 3%;
+  left: 31%;
+  z-index: 999;
+  .center_w{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
+
+     p:nth-child(1){
+        font-size:22px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(246,85,60,1);
+        line-height: 93px;
+   } 
+
+      p:nth-child(2){
+        font-size:16px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(102,102,102,1);
+        line-height: 60px;
+   } 
+     p:nth-child(3){
+      font-size:16px;
+      font-family:MicrosoftYaHei-Bold;
+      font-weight:bold;
+      color:rgba(51,51,51,1);
+      line-height: 89px;
+   } 
+      p:nth-child(4){
+        width:220px;
+        height:40px;
+        background:rgba(241,87,73,1);
+        box-shadow:0px 2px 4px 0px rgba(249,108,108,0.5);
+        border-radius:4px;
+        color:#fff;
+        line-height:40px;
+        font-weight:bold;
+        margin:0 auto;
+        cursor: pointer;
+    }
+  }
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;

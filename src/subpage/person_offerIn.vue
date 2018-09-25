@@ -126,7 +126,7 @@
   #name_w{
     font-weight:bold;
     color: #666666;
-    font-size:20px;
+    font-size:16px;
     letter-spacing: 1px;
 
   }

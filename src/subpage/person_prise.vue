@@ -2,9 +2,10 @@
 <template lang="html">
   <div class="person_prise">
     <div class="person_prise_pic">
-      <img src="../../static/img/Authentication.png" alt="">
+      <img src="../../static/img/qiye.png" alt="">
     </div>
     <div class="person_prise_con">
+      <p style="color:#FF0000;font-size:24px;font-weight:400;">您的信息正在认证中，请耐心等待</p>
       <p class="prise_title">
         <span>企业信息</span>
       </p>
@@ -35,7 +36,7 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <span style="color:#ccc;">去选中你的营业执照吧</span>
+          <span style="color:#ccc; cursor:pointer;">点击上传营业执照</span>
 
           <input type="file" accept="image/jpeg" name="" value="">
         </div>
@@ -60,7 +61,7 @@
         </ul>
       </div>
 
-      <button @click="submitInfo()"  style="width: 200px;height: 30px; background: #F15749; color: #fff; margin-top: 20px;">提交验证</button>
+      <button @click="submitInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">提交验证</button>
     </div>
   </div>
 </template>
@@ -115,15 +116,16 @@ export default {
     width: 100%;
     height:30%;
     img{
-      width: 100%;
-      height: 100%;
-      margin-left: 10px;
-      margin-top: 10px;
+     width: 99%;
+     height: 80px;
     }
   }
   .person_prise_con{
-    width: 100%;
+    width: 75%;
     height:100%;
+    margin: 0 auto;
+    background: rgba(255,255,255,1);
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
     .prise_title{
       width: 94%;
       margin-left: 6%;
@@ -172,8 +174,8 @@ export default {
       height:30%;
       padding-top:4%;
       .prise_upload{
-        width: 35%;
-        height:80%;
+        width: 360px;
+        height: 240px;
         margin: 0 auto;
         border:1px solid #ccc;
         input{

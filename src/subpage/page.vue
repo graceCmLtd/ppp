@@ -67,7 +67,7 @@
         <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(indx)">
 
     </div>
-      </div>
+  </div>
 
    <div class="page_w_table">
       <div class="page_table">
