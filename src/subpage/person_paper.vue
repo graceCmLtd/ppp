@@ -111,8 +111,8 @@
           <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">失败原因</div></el-col>
-          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
+    <!--       <el-col :span="4"><div class="hadOffer_title">失败原因</div></el-col>
+ -->          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
           
         </el-row>
         <div class="person-offerIn" v-for = "item in noteL ">
@@ -360,8 +360,8 @@
       }
     }
     .person_paper_tableB{
-      width: 90%;
-      margin-left: 4%;
+      width: 100%;
+     
       text-align: left;
       border-bottom: 1px solid #F15749;
       /*margin-top: 12%;*/
@@ -375,8 +375,7 @@
       }
     }
     .hadOffer{
-      width: 90%;
-      margin-left:4%;
+      width: 100%;
       margin-top:4%;
 
       .hadOffer_title{
@@ -466,7 +465,6 @@
     }
   }
   .yibao_w{
-    position: fixed;
     top: 250px;
     left: 528px;
     -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);

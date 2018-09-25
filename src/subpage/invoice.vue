@@ -160,11 +160,12 @@
         height:800px;
         margin:0 auto;
         margin-top: 30px;
+        padding-top: 30px;
         p{
           font-size:18px;
           font-weight:bold;
           color:rgba(51,51,51,1);
-          line-height:49px;
+          line-height:44px;
           i{
            font-style: normal;
            text-align:left;
