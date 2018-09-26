@@ -66,7 +66,11 @@
       <p class="save_title">保存成功</p>
       <p class="save_alt">您可以在我的票据-草稿里对该票据编辑发布</p>
       <p>
-        <button type="button" name="button">查看审核状态</button>
+        <button type="button" name="button">
+          <router-link to="/release/offer/offerAll">
+             查看审核状态
+            </router-link>
+          </button>
       </p>
     </div>
     <el-dialog title="温馨提示" :visible.sync="authVisible"

@@ -18,13 +18,9 @@
           <li>联系人邮箱</li>
         </ul>
         <ul class="right">
-          <!--<li>****科技有限公司</li>-->
           <li><input type="text" ref="companyName" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
-          <!--<li>范冰冰</li>-->
           <li><input type="text" ref="contactsName" placeholder="请输入你的姓名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <!--<li>139****0099</li>-->
           <li><input type="text" ref="contactsPhone" placeholder="请输入你的手机号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <!--<li>64564647@qq.com</li>-->
           <li><input type="text" ref="contactsEmail" placeholder="请输入你的邮箱" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" ref="contactsQQ" placeholder="请输入你的QQ号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           
@@ -51,9 +47,6 @@
           <li>银行账号</li>
         </ul>
         <ul class="bank_right">
-          <!--<li>****科技有限公司</li>-->
-          <!--<li>中国建设银行**分行</li>-->
-          <!--<li>6217000783248325845</li>-->
           <li><input type="text" ref="bankAccountName" placeholder="请输入你的账户名称" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" ref="bankName" placeholder="请输入你的开户行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" ref="bankAccount" placeholder="请输入你的账号（卡号）" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>

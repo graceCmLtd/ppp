@@ -104,6 +104,7 @@
       <p class="person_paper_tableB">
         <span :class="{HadBc:colorB==3}">票据还未通过审核，请联系客服进行审核。客服电话：4008888888</span></p>
       <div class="hadOffer" v-show="hadOffer">
+        
         <el-row>
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">票号</div></el-col>
@@ -474,20 +475,21 @@
     background: #fff;
   }
   .tab-button {
-  padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: #f0f0f0;
-  margin-bottom: -1px;
-  margin-right: -1px;
-}
-.tab-button:hover {
-  background: #e0e0e0;
+    width: 125px;
+    height: 45px;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-bottom: -1px;
+    margin-right: -1px;
+    background:#fff;
+    color:#333;
+    border-bottom:1px solid #F15749;
 }
 .tab-button.active {
-  background: #e0e0e0;
+  background: #F15749;
+  font-size:18px;
+  font-weight:bold;
+  color:#fff;
 }
 .tab {
   padding: 10px;
