@@ -254,7 +254,7 @@
             _this.$router.push({name:"Prise"})
           },5000)
         }else{
-
+          return true;
         }
       },
       getCode(){

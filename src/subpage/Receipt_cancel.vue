@@ -7,10 +7,11 @@
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+        <el-col :span="2"><div class="intention_mes_title">到期日</div></el-col>
+        <el-col :span="2"><div class="intention_mes_title">剩余天数</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">利率</div></el-col>
+        <el-col :span="2"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
       </el-row>
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
@@ -22,13 +23,15 @@
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="2"><div class="intention_mes date">{{item.maturity}}</div></el-col>
+          <el-col :span="2"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
+
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="2"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button" v-on:click = "acceptOrder(index)">接单</button>
           </div>
@@ -45,16 +48,17 @@
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
-      </div>
-      <!-- 修改价格的弹窗 -->
+        <!-- 修改价格的弹窗 -->
       <div class="show_w" v-show="isShow">
         <div class="center_w">
             <p>修改付款金额</p>
-            <p>原实付金额：78.45W</p>
-            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:100px; color:#F15749; font-weight:bold;font-size:20px;"> W</p>
-            <p>确认修改</p>
+            <p>原实付金额：{{item.real_money/10000}}W</p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
+            <p @click="changeSubmit(item)">确认修改</p>
         </div>
       </div>
+      </div>
+      
 
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_pic" ref="intention_mes_pic">
@@ -169,7 +173,8 @@
         maturity:null,
         remain_days:null,
         isShow:false,
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        new_money:null
       }
     },
     methods:{
@@ -256,6 +261,53 @@
           /*_this.noteList=res.data;*/
         })
       },
+      /*修改价格*/
+      changeSubmit(param){
+        this.isShow = false;
+        let billNumberC = param.billNumber
+        let Id = getCookie("Iud")
+        let _this = this;
+        /*两次请求应为一个事物进行处理*/
+        _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+            "billNumber":billNumberC,
+            "intentionStatus":"已接单",
+            "quoterId":Id
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log("修改价格操作返回值：")
+          console.log(res)
+          /*_this.getIntenTionList();*/
+          /*_this.noteList=res.data;*/
+        })
+/*修改quote表中实付金额*/
+        if (_this.new_money) {
+          _this.axios.post(this.oUrl+'/quote/updateRealMoney',{
+            "billNumber":billNumberC,
+            "new_money":_this.new_money,
+            "quoterId":Id
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log("更改quote表中实际价格操作返回值：")
+          console.log(res)
+          _this.new_money = null;
+          _this.getIntenTionList();
+          
+          /*_this.noteList=res.data;*/
+        })
+        }else{
+          alert("请填写修改金额")
+        }
+        
+
+
+
+      }
 
       /*end of methods*/
     },

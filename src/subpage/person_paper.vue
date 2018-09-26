@@ -100,7 +100,7 @@
         </el-row>
       </div>
     </div>
-
+        <!-- 待审核 -->
      <div class="yibao_w" v-if="color == 1 && currentTab == 'offerbe' " >
       <!-- <personOfferIn></personOfferIn> -->
      <!--  <p class="person_paper_tableB">
@@ -119,8 +119,11 @@
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
+          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
+
     <!--       <el-col :span="4"><div class="hadOffer_title">失败原因</div></el-col>
  -->          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
+
           
         </el-row>
 
@@ -128,8 +131,13 @@
           <el-row class="oferMes">
 
             <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
+
+            <!-- <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col> -->
+            <!-- <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col> -->
+
            <!--  <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col> -->
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
+
 
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
 
@@ -150,7 +158,7 @@
           
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
             <span>{{item.companyId}}</span>
-            <button type="button" name="button" @click="paperMesper()">查看</button>
+            <button type="button" name="button" @click="getBillDetail(item)">查看1</button>
           </p>
         </div>
 
@@ -163,7 +171,19 @@
         </el-row>
       </div>
     </div>
-
+    <div>
+      <el-dialog title="票据详情" :visible.sync="dialogBillDetailVisual">
+        <img  src="../../static/img/bill.png" alt="" width="90%" height="98%"  ref="billDetailPic">
+        <el-table :data="billD">
+          <el-table-column  property="billType" label="票据类型" width="150" ></el-table-column>
+          <el-table-column property="billReferer" label="发布渠道" width="150"></el-table-column>
+          <el-table-column property="amount" label="票面金额" width="150"></el-table-column>
+          <el-table-column property="acceptor" label="承兑银行" width="150"></el-table-column>
+          <el-table-column property="maturity" label="到期日" width="150"></el-table-column>
+          <el-table-column property="remain_days" label="剩余天数" width="150"></el-table-column>
+        </el-table>
+      </el-dialog>
+    </div>
 
 
   </div>
@@ -188,7 +208,11 @@
         currentTab: 'offerin',
         tabs: ['offerin', 'offerbe'],
         names:[],
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        dialogBillDetailVisual : false,
+        billD:[],
+        billDPic:null,
+        billDetailPic:null
       }
     },
     components:{
@@ -288,8 +312,22 @@
           name:'choseType',
           query:{
             bills:this.billN,
-            quoterId:item.quoterId
+            quoterId:item.quoterId,
+            noteL:item
           }
+        })
+      },
+      getBillDetail(item){
+        console.log("get bill detail")
+        console.log(item)
+        let _this = this;
+        _this.billD[0] = item
+        
+        _this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+item.billNumber).then((res)=>{
+          console.log(res)
+          console.log(this)
+          _this.billDetailPic=res.data[0].pic1;
+          _this.dialogBillDetailVisual = true;
         })
       },
       getBillNum(billNumber){

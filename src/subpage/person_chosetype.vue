@@ -1,13 +1,13 @@
 <!-- 选择交易 -->
 <template lang="html">
   <div class="person_choseType">
-    <p class="choseType_company">恒大地产集团广东房地产开发有限公司</p>
+    <p class="choseType_company">{{billData.acceptor}}</p>
     <p>票据类型：&nbsp;&nbsp;&nbsp;<span>{{billType}}</span></p>
     <p>汇票到期日：&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}</span></p>
-    <p>票据金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}w</span>w</p>
+    <p>票据金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
     <p>出票日期：&nbsp;&nbsp;&nbsp;<span>{{maturityDay}}</span></p>
-    <p>剩余天数：&nbsp;&nbsp;&nbsp;<span>113</span>天</p>
-    <p>期望利率：&nbsp;&nbsp;&nbsp;<span>10</span>%</p>
+    <p>剩余天数：&nbsp;&nbsp;&nbsp;<span>{{billData.remain_days}}</span>天</p>
+    <!-- <p>期望利率：&nbsp;&nbsp;&nbsp;<span>10</span>%</p> -->
     <p class="pic_title">
       <span>汇票图片</span>
     </p>
@@ -18,17 +18,17 @@
       <div class="mes_left">
         <ul>
           <li>支付方式：<span>买卖双方协商，银行转账</span></li>
-          <li>买家联系人：<span>范冰冰</span></li>
-          <li>贴现利率：<span>9</span>%</li>
-          <li>每十万加：<span>2000</span></li>
+          <li>买家联系人：<span>{{billData.contactsName}}</span></li>
+          <li>贴现利率：<span>{{billData.interest}}</span>%</li>
+          <li>每十万加：<span>{{billData.xPerLakh}}</span></li>
         </ul>
       </div>
       <div class="mes_right">
         <ul>
           <li>交易方式：<span>买卖双方协商</span></li>
-          <li>联系方式：<span>13240891337</span></li>
-          <li>实收金额：<span>94.32</span>w</li>
-          <li>总额：<span>95</span>w</li>
+          <li>联系方式：<span>{{billData.contactsPhone}}</span></li>
+          <li>实收金额：<span>{{billData.real_money/10000}}</span>w</li>
+          <li>总额：<span>{{billData.amount/10000}}</span>w</li>
         </ul>
       </div>
     </div>
@@ -58,7 +58,9 @@ export default {
       releaseDate:null,
       billAmount:null,
       maturityDay:null,
+      remain_days:'',
       billN:null,
+      billData:[],
       quoterId:''
     }
   },
@@ -124,10 +126,15 @@ export default {
     receiveBills(){
       let _this=this;
       let bill=this.$route.query.bills
+      this.billData = this.$route.query.noteL;
+      console.log("billData")
+      console.log(this.billData)
       _this.billN=this.$route.query.bills;
       _this.quoterId = this.$route.query.quoterId;
       _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+bill).then((res)=>{
+        console.log("获取票据信息")
         console.log(res)
+        //_this.billData = res.data[0];
         _this.billType=res.data[0].billType;
         _this.releaseDate=res.data[0].releaseDate;
         _this.billAmount=res.data[0].amount;

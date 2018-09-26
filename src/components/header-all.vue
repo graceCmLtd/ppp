@@ -99,6 +99,7 @@
         delCookie('Too');
         delCookie('Nick');
         delCookie('isAu');
+        delCookie('role');
        // window.location.reload();
        this.$router.push('/signUp')
        window.location.reload();
