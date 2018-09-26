@@ -91,9 +91,9 @@ export default {
     },
     prise(){//用户企业认证信息
       if(getCookie('isAu')=='false'){
-        this.$router.push('/release/data')
-      }else{
         this.$router.push('/release/prise')
+      }else{
+        this.$router.push('/release/data')
       }
     },
     order(){//买家资源池票据

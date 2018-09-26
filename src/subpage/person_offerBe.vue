@@ -1,6 +1,6 @@
 <!-- 用户审核中的票据 -->
 <template lang="html">
-  <div class="person_offerBe" style="overflow-y: scroll;">
+  <div class="person_offerBe">
     <!-- <h2 style="height: 142px; margin-left: -427px;">用户审核中的票据</h2> -->
   <el-row  v-for="(item,index) in noteList" :key = "index">
 
@@ -8,10 +8,12 @@
         <el-row >
           <el-col><div id="name_w" style="margin-top: 5px;">{{item.acceptor}}</div></el-col>
 
-          <el-col><div  id="name_w_limit">{{item.amount/10000}}w</div></el-col>
-          <el-col><div >剩余天数:{{item.remain_days}}天</div></el-col>
-          <el-col><div >到期日:{{item.maturity}}</div></el-col>
-          <el-col><div >发布日期:{{item.releaseDate}}</div></el-col>
+          <el-col><div  id="name_w_limit" >{{item.amount/10000}}w</div></el-col>
+          <p style="float:right;width:120px; font-size:14px; height:50px; line-height:25px; padding-top:-5px;">
+          <el-col><div class="person_offerIn_title">剩余天数:<i style="font-style:normal; color:#F15749; font-size:15px;">{{item.remain_days}}天</i></div></el-col>
+          <el-col><div class="person_offerIn_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
+          </p>
+           <el-col><div class="person_offerIn_title" style="text-align:center; font-size:13px;color:#666; line-height:32px;">{{item.releaseDate}}</div></el-col>
         </el-row>
       </div>
     </el-row>
@@ -97,11 +99,13 @@
 
 
 <style lang="scss" scoped>
-  .person_offerIn{
-    width: 300px;
-    height: 284px;
-    margin-top: 1%;
-    margin-left: 1%;
+  .person_offerBe{
+    width: 290px;
+    height: 424px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    margin-top: -1%;
+    margin-left: -4%;  
     .person_offerIn_mes{
       min-height: 70px;
       line-height: 70px;
@@ -126,22 +130,25 @@
       }
     }
   }
+
   #name_w{
     font-weight:bold;
     color: #666666;
-    font-size:20px;
+    font-size:16px;
     letter-spacing: 1px;
-
+    text-align:center;
   }
   #name_w_limit{
     font-weight: bold;
     color: #F15749;
     letter-spacing: 1px;
     position: relative;
-    top: 48px;
-    left: -104px;
+    top: 38px;
+    left: 4px;
     font-size: 24px;
   }
-
+#person_offerIn_title_w{
+  text-align:right;
+}
 </style>
 
