@@ -242,7 +242,10 @@
       // },
       authCheck(){
         let _this = this;
-        if (!getCookie('isAu')) {
+        if (getCookie('role')=="vip" || getCookie('role') == "normal") {
+          
+          return true;
+        }else{
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
@@ -253,8 +256,6 @@
             
             _this.$router.push({name:"Prise"})
           },5000)
-        }else{
-          return true;
         }
       },
       getCode(){
@@ -280,6 +281,7 @@
         if(!getCookie('Iud')){
           this.$router.push('/signUp/password')
         }else{
+          this.authCheck();
           //let paperNumber=_this.$refs.paperNumber.value;
           let paperNumber=_this.billNum;
           let amount=_this.$refs.amount.value;
