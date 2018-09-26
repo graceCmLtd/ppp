@@ -2,11 +2,12 @@
 <!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
+    <!-- banner图 -->
     <div class="person_paper_pic">
       <img src="../../static/img/qiu.png" alt="">
     </div>
     <!--<p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>-->
- <!--    <p class="person_paper_table">
+    <!--<p class="person_paper_table">
       <router-link
         to="/release/paper/offerIn" tag="span"
         @click.native="offerIn()"
@@ -25,13 +26,17 @@
     <!-- <div class="hadRelease">
       <router-view></router-view>
     </div> -->
+
+    <!-- 切换全部报价和审核中 -->
     <div  class="person_paper_table" >
-      <button
-        v-for="tab in tabs"
-        v-bind:key="tab"
-        v-bind:class="['tab-button', { active: currentTab === tab }]"
-        v-on:click="currentTab = tab"
-      >{{ names[tab] }}</button>
+      <div class="table_w_1">
+        <button
+          v-for="tab in tabs"
+          v-bind:key="tab"
+          v-bind:class="['tab-button', { active: currentTab === tab }]"
+          v-on:click="currentTab = tab"
+        >{{ names[tab] }}</button>
+        </div>
 
       <person-offerin
         v-bind:is="currentTabComponent"
@@ -43,6 +48,8 @@
          -->
     </div>
     
+
+    <!-- 右边的已报价和未报价的 -->
     <div class="yibao_w" v-if="color == 1 && currentTab == 'offerin' " >
       <!-- <personOfferIn></personOfferIn> -->
       <p class="person_paper_tableB">
@@ -60,6 +67,7 @@
           <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
           
         </el-row>
+
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
             <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
@@ -72,20 +80,18 @@
               <span>每10w加：{{item.xPerLakh}}</span>
             </div></el-col>
           </el-row>
-
           <p class="hadOffer_opera">
-            <span>{{item.companyName}}</span>
+          <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
-          
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
-            <span>{{item.companyId}}</span>
-            <button type="button" name="button" @click="paperMesper(item)">查看</button>
+          <span>{{item.companyId}}</span>
+          <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
-
-
         </div>
+
       </div>
+
       <div class="didOffer" v-show="didOffer">
         <el-row>
           <el-col :span="10"><div class="didOffer_title company">北京憧憬实业有限公司</div></el-col>
@@ -107,25 +113,33 @@
         
         <el-row>
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">票号</div></el-col>
+          <!-- <el-col :span="4"><div class="hadOffer_title">票号</div></el-col> -->
           <el-col :span="4"><div class="hadOffer_title">承兑银行</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
     <!--       <el-col :span="4"><div class="hadOffer_title">失败原因</div></el-col>
  -->          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
           
         </el-row>
+
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
+
             <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col>
+           <!--  <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col> -->
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
+
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
+
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
+
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
+
             <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}</span>
-              <span>{{item.failReason}}</span>
+              <span>每10w加：{{item.failReason}}</span>
             </div></el-col>
           </el-row>
 
@@ -138,9 +152,8 @@
             <span>{{item.companyId}}</span>
             <button type="button" name="button" @click="paperMesper()">查看</button>
           </p>
-
-
         </div>
+
       </div>
       <div class="didOffer" v-show="didOffer">
         <el-row>
@@ -297,6 +310,7 @@
 </script>
 
 <style lang="scss" scoped>
+ 
   .paperAc{
     color:#ffffff;
     width:141px;
@@ -318,11 +332,12 @@
   .HadBc{
     background: #F15749;
     color: #fff;
-    width: 540px;
     height: 45px;
     line-height: 45px;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
+    width: 99%;
+    padding-left: 10px;
   }
   .person_paper{
     width: 100%;
@@ -349,7 +364,6 @@
       width: 300px;
       margin-left: 1%;
       text-align: left;
-      border-bottom: 1px solid #F15749;
       margin-top: 2%;
       span{
         /*color:#3C3C3C;*/
@@ -466,14 +480,16 @@
     }
   }
   .yibao_w{
-    top: 250px;
-    left: 528px;
-    -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
-    width: 65%;
+    width: 75%;
     z-index: 999;
     background: #fff;
-  }
+    float: right;
+    position: relative;
+    top: -452px;
+    left: -1%;
+}
+
   .tab-button {
     width: 125px;
     height: 45px;
@@ -487,11 +503,17 @@
 }
 .tab-button.active {
   background: #F15749;
-  font-size:18px;
+  font-size:17px;
   font-weight:bold;
   color:#fff;
 }
 .tab {
   padding: 10px;
+}
+.table_w_1{
+  width: 253px;
+   border-bottom:4px solid #F15749;
+   margin-bottom:2px;
+   z-index:999;
 }
 </style>

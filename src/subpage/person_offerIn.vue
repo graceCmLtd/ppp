@@ -1,25 +1,28 @@
 <!-- 用户报价中的票据 -->
 <template lang="html">
-  <div class="person_offerIn" style="overflow-y: scroll; overflow-x: hidden;">
+  <div class="person_offerIn" style="overflow-y:auto; overflow-x:hidden;">
 
     <el-row  v-for="(item,index) in noteList" :key = "index">
-
       <div @click="onSelect(index)" style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 150px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
         <el-row >
           <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;">{{item.acceptor}}</div></el-col>
 
           <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000}}w</div></el-col>
-          <el-col><div class="person_offerIn_title">剩余天数:{{item.remain_days}}天</div></el-col>
-          <el-col><div class="person_offerIn_title time">到期日:{{item.maturity}}</div></el-col>
-          <el-col><div class="person_offerIn_title" style="text-align:center;">{{item.releaseDate}}</div></el-col>
+          <p style="float:right;width:120px; font-size:14px; height:50px; line-height:25px; padding-top:-5px;">
+          <el-col><div class="person_offerIn_title">剩余天数:<i style="font-style:normal; color:#F15749; font-size:15px;">{{item.remain_days}}天</i></div></el-col>
+          <el-col><div class="person_offerIn_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
+          </p>
+          <el-col><div class="person_offerIn_title" style="text-align:center; font-size:13px;color:#666; line-height:32px;">{{item.releaseDate}}</div></el-col>
         </el-row>
       </div>
     </el-row>
+
 
     <!--<el-row v-for="(item,index) in noteList" :key="index">
       <el-col :span="5"><div class="person_offerIn_mes"
                              :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
       >{{item.acceptor}}</div></el-col>
+
       <el-col :span="4"><div class="person_offerIn_mes limit">{{item.amount/10000}}w</div></el-col>
       <el-col :span="5"><div class="person_offerIn_mes">{{item.releaseDate}}</div></el-col>
       <el-col :span="5"><div class="person_offerIn_mes time">{{item.maturity}}</div></el-col>
@@ -68,7 +71,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("我的求贴 全部报价 ")
+          // console.log("我的求贴 全部报价 ")
           console.log(res)
           this.noteList=res.data;
         })
@@ -97,8 +100,8 @@
   .person_offerIn{
     width: 290px;
     height: 424px;
-    margin-top: -2%;
-    margin-left: -4%;
+    margin-top: -1%;
+    margin-left: -4%;  
     .person_offerIn_mes{
       min-height: 70px;
       line-height: 70px;
@@ -128,6 +131,7 @@
     color: #666666;
     font-size:16px;
     letter-spacing: 1px;
+    text-align:center;
 
   }
   #name_w_limit{
@@ -135,9 +139,11 @@
     color: #F15749;
     letter-spacing: 1px;
     position: relative;
-    top: 48px;
-    left: 16px;
+    top: 38px;
+    left: 4px;
     font-size: 24px;
   }
-
+#person_offerIn_title_w{
+  text-align:right;
+}
 </style>
