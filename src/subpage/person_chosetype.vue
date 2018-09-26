@@ -185,8 +185,8 @@ export default {
     width: 80%;
     min-height: 336px;
     img{
-      width: 100%;
-      height:100%;
+      width: 750px;
+      height:460px;
     }
   }
   .choseType_payMes{
