@@ -124,9 +124,6 @@ export default {
       this.currentPage = currentPage;
       this.getList();
     },
-    handleSizeChange:function(pageSize){
-      this.pageSize = pageSize;
-    },
     isReg(){
       let isAu = getCookie('isAu');//从cookie中获取用户是否认证
       console.log(isAu);
