@@ -226,7 +226,7 @@ export default {
   .choseType_alt{
     width: 80%;
     text-align: center;
-    color:red;
+    color:red;  
   }
   .choseType_agreement{
     width: 80%;
