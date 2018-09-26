@@ -158,7 +158,7 @@
           
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
             <span>{{item.companyId}}</span>
-            <button type="button" name="button" @click="getBillDetail(item)">查看1</button>
+            <button type="button" name="button" @click="getBillDetail(item)">查看</button>
           </p>
         </div>
 

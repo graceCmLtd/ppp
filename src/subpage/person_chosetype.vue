@@ -237,7 +237,7 @@ export default {
       width: 15px;
       height:15px;
       position: absolute;
-      left:35%;
+      left:41%;
     }
   }
   .choseType_turn{
