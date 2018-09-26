@@ -104,6 +104,7 @@
       <p class="person_paper_tableB">
         <span :class="{HadBc:colorB==3}">票据还未通过审核，请联系客服进行审核。客服电话：4008888888</span></p>
       <div class="hadOffer" v-show="hadOffer">
+        
         <el-row>
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">票号</div></el-col> -->
@@ -113,6 +114,10 @@
           <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
+
+    <!--       <el-col :span="4"><div class="hadOffer_title">失败原因</div></el-col>
+ -->          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
+
           
         </el-row>
 
@@ -392,8 +397,8 @@
       }
     }
     .person_paper_tableB{
-      width: 90%;
-      margin-left: 4%;
+      width: 100%;
+     
       text-align: left;
       border-bottom: 1px solid #F15749;
       /*margin-top: 12%;*/
@@ -407,8 +412,7 @@
       }
     }
     .hadOffer{
-      width: 90%;
-      margin-left:4%;
+      width: 100%;
       margin-top:4%;
 
       .hadOffer_title{
@@ -498,7 +502,6 @@
     }
   }
   .yibao_w{
-    position: fixed;
     top: 250px;
     left: 528px;
     -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
@@ -508,20 +511,21 @@
     background: #fff;
   }
   .tab-button {
-  padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: #f0f0f0;
-  margin-bottom: -1px;
-  margin-right: -1px;
-}
-.tab-button:hover {
-  background: #e0e0e0;
+    width: 125px;
+    height: 45px;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-bottom: -1px;
+    margin-right: -1px;
+    background:#fff;
+    color:#333;
+    border-bottom:1px solid #F15749;
 }
 .tab-button.active {
-  background: #e0e0e0;
+  background: #F15749;
+  font-size:18px;
+  font-weight:bold;
+  color:#fff;
 }
 .tab {
   padding: 10px;

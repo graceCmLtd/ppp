@@ -67,7 +67,7 @@
         <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(indx)">
 
     </div>
-      </div>
+  </div>
 
    <div class="page_w_table">
       <div class="page_table">
@@ -210,7 +210,7 @@ export default {
         clearTimeout(c);
       }
     },
-    calculate(){//计算
+    calculate(){//贴现计算器计算操作
       let days = Math.floor((this.time2-this.time1)/86400000)+parseInt(this.adjustDays);
       let interests2 = (this.money*10000*(this.rate/100)*(days))/360+(this.money/10*this.poundage);
       let interests1 = interests2/this.money*10;
@@ -219,7 +219,7 @@ export default {
       this.interests2 = Number(interests2).toFixed(2);
       this.sumMoney = Number(this.money*10000-interests2).toFixed(2);
     },
-    empty(){//清空
+    empty(){//贴现计算器清空操作
       this.money = 0;
       this.rate = null;
       this.time1 = null;
@@ -246,15 +246,12 @@ export default {
         }
       }
       ).then((res)=>{
-        console.log("filterbill  .....")
-        console.log(res)
         _this.roteList=res.data.list;
       })
     },
     getListBot(){//资源列表
       let _this=this;
       _this.axios.post(_this.oUrl+'/resourceMarket/getAllInfo?pageSize=8&currentPage=1').then((res)=>{
-        console.log(res)
         _this.roteListLimit=res.data;
       })
     },

@@ -99,6 +99,7 @@
         delCookie('Too');
         delCookie('Nick');
         delCookie('isAu');
+        delCookie('role');
        // window.location.reload();
        this.$router.push('/signUp')
        window.location.reload();
@@ -145,7 +146,7 @@
       padding-top: 1%;
       cursor:pointer;
       position: absolute;
-      left:15%;
+      left:12%;
       top:-3%;
       img{
         width: 100%;

@@ -2,9 +2,10 @@
 <template lang="html">
   <div class="person_prise">
     <div class="person_prise_pic">
-      <img src="../../static/img/Authentication.png" alt="">
+      <img src="../../static/img/qiye.png" alt="">
     </div>
     <div class="person_prise_con">
+      <p style="color:#FF0000;font-size:24px;font-weight:400;">您的信息正在认证中，请耐心等待</p>
       <p class="prise_title">
         <span>企业信息</span>
       </p>
@@ -17,13 +18,9 @@
           <li>联系人邮箱</li>
         </ul>
         <ul class="right">
-          <!--<li>****科技有限公司</li>-->
           <li><input type="text" ref="companyName" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
-          <!--<li>范冰冰</li>-->
           <li><input type="text" ref="contactsName" placeholder="请输入你的姓名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <!--<li>139****0099</li>-->
           <li><input type="text" ref="contactsPhone" placeholder="请输入你的手机号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <!--<li>64564647@qq.com</li>-->
           <li><input type="text" ref="contactsEmail" placeholder="请输入你的邮箱" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" ref="contactsQQ" placeholder="请输入你的QQ号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           
@@ -35,7 +32,7 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <span style="color:#ccc;">去选中你的营业执照吧</span>
+          <span style="color:#ccc; cursor:pointer;">点击上传营业执照</span>
 
           <input type="file" accept="image/jpeg" name="" value="">
         </div>
@@ -50,9 +47,6 @@
           <li>银行账号</li>
         </ul>
         <ul class="bank_right">
-          <!--<li>****科技有限公司</li>-->
-          <!--<li>中国建设银行**分行</li>-->
-          <!--<li>6217000783248325845</li>-->
           <li><input type="text" ref="bankAccountName" placeholder="请输入你的账户名称" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" ref="bankName" placeholder="请输入你的开户行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" ref="bankAccount" placeholder="请输入你的账号（卡号）" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
@@ -60,7 +54,7 @@
         </ul>
       </div>
 
-      <button @click="submitInfo()"  style="width: 200px;height: 30px; background: #F15749; color: #fff; margin-top: 20px;">提交验证</button>
+      <button @click="submitInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">提交验证</button>
     </div>
   </div>
 </template>
@@ -115,15 +109,16 @@ export default {
     width: 100%;
     height:30%;
     img{
-      width: 100%;
-      height: 100%;
-      margin-left: 10px;
-      margin-top: 10px;
+     width: 99%;
+     height: 80px;
     }
   }
   .person_prise_con{
-    width: 100%;
+    width: 75%;
     height:100%;
+    margin: 0 auto;
+    background: rgba(255,255,255,1);
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
     .prise_title{
       width: 94%;
       margin-left: 6%;
@@ -172,8 +167,8 @@ export default {
       height:30%;
       padding-top:4%;
       .prise_upload{
-        width: 35%;
-        height:80%;
+        width: 360px;
+        height: 240px;
         margin: 0 auto;
         border:1px solid #ccc;
         input{

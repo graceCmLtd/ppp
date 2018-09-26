@@ -1,6 +1,6 @@
 <!-- 用户报价中的票据 -->
 <template lang="html">
-  <div class="person_offerIn" style="overflow-y: scroll;">
+  <div class="person_offerIn" style="overflow-y: scroll; overflow-x: hidden;">
 
     <el-row  v-for="(item,index) in noteList" :key = "index">
 
@@ -11,7 +11,7 @@
           <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000}}w</div></el-col>
           <el-col><div class="person_offerIn_title">剩余天数:{{item.remain_days}}天</div></el-col>
           <el-col><div class="person_offerIn_title time">到期日:{{item.maturity}}</div></el-col>
-          <el-col><div class="person_offerIn_title">发布日期:{{item.releaseDate}}</div></el-col>
+          <el-col><div class="person_offerIn_title" style="text-align:center;">{{item.releaseDate}}</div></el-col>
         </el-row>
       </div>
     </el-row>
@@ -97,8 +97,8 @@
   .person_offerIn{
     width: 290px;
     height: 424px;
-    margin-top: 1%;
-    margin-left: 1%;
+    margin-top: -2%;
+    margin-left: -4%;
     .person_offerIn_mes{
       min-height: 70px;
       line-height: 70px;
@@ -126,17 +126,17 @@
   #name_w{
     font-weight:bold;
     color: #666666;
-    font-size:20px;
+    font-size:16px;
     letter-spacing: 1px;
 
   }
   #name_w_limit{
-    font-weight: bold;
+   font-weight: bold;
     color: #F15749;
     letter-spacing: 1px;
     position: relative;
     top: 48px;
-    left: -104px;
+    left: 16px;
     font-size: 24px;
   }
 
