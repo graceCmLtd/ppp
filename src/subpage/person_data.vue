@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="person_data">
     <div class="person_data_process">
-      <img src="../../static/img/process.png" alt="">
+      <img src="../../static/img/qiye.png" alt="">
       <p style="color:#FF0000;font-size:24px;font-weight:400;">企业信息认证中心</p>
     </div>
     <p class="person_data_company">

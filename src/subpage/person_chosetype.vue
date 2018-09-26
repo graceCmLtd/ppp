@@ -249,6 +249,7 @@ export default {
       background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
       border-radius:5px;
       color:white;
+      background: #F15749;
     }
   }
 }
