@@ -2,22 +2,23 @@
   <div class="person_data">
     <div class="person_data_process">
       <img src="../../static/img/process.png" alt="">
+      <p style="color:#FF0000;font-size:24px;font-weight:400;">企业信息认证中心</p>
     </div>
     <p class="person_data_company">
       <span>企业信息</span>
     </p>
     <div class="company_mes">
       <p style="">
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;公司名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="companyName"/></span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;公司名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="companyName" ref="companyName"/></span>
       </p>
       <p class="">
-        <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="contactName"/></span>
+        <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsName" ref="contactName"/></span>
       </p>
       <p class="">
-        <span>联系人电话&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="contactPhone"/></span>
+        <span>联系人电话&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsPhone" ref="contactPhone"/></span>
       </p>
       <p class="">
-        <span>联系人邮箱&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="contactEmail"/></span>
+        <span>联系人邮箱&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsEmail" ref="contactEmail"/></span>
       </p>
     </div>
     <p class="person_data_company">
@@ -28,7 +29,7 @@
         <img src="../../static/img/pic_icon.png" alt="">
         <p>点击上传营业执照</p>
         <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusiness">
-        <img src="" alt=""  class="showPic"  ref="Business">
+        <img v-bind:src="pic" alt=""  class="showPic"  ref="Business">
       </div>
     </div>
     <p class="person_data_company">
@@ -36,7 +37,7 @@
       </p>
     <div class="company_mes">
       <p>
-        <span>账户名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="bankId"></span>
+        <span>账户名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="bankAccountName" ref="bankId"></span>
         </p>
       <p class="">
         <span>开户银行&nbsp;&nbsp;&nbsp;
@@ -46,7 +47,7 @@
             separator="/"
             change-on-select
           ></el-cascader> -->
-          <input type="text" name="" value="" ref="bankName" />
+          <input type="text" name="" v-model:value="banksName" ref="bankName" />
         </span>
       </p>
       <p class="">
@@ -57,11 +58,11 @@
             separator="/"
             change-on-select
           ></el-cascader> -->
-          <input type="text" name="" value="" ref="bankAddress" />
+          <input type="text" name="" v-model:value="bankAddr" ref="bankAddress" />
         </span>
       </p>
       <p class="">
-        <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" ref="bankNumber"/></span>
+        <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="bankAccount" ref="bankNumber"/></span>
       </p>
     </div>
     <p class="person_data_company">
@@ -69,7 +70,7 @@
       </p>
     <div class="company_mes">
       <p>
-        <span>请输入QQ号码&nbsp;&nbsp;<input type="text" value="" ref="QQ"/></span>
+        <span>请输入QQ号码&nbsp;&nbsp;<input type="text" v-model:value="contactsQQ" ref="QQ"/></span>
       </p>
     </div>
     <p class="saveMes">
@@ -83,202 +84,16 @@ import {getCookie} from '@/assets/util'
 export default {
   data(){
     return{
-      options: [{
-          value: 'zhinan',
-          label: '指南',
-          children: [{
-            value: 'shejiyuanze',
-            label: '设计原则',
-            children: [{
-              value: 'yizhi',
-              label: '一致'
-            }, {
-              value: 'fankui',
-              label: '反馈'
-            }, {
-              value: 'xiaolv',
-              label: '效率'
-            }, {
-              value: 'kekong',
-              label: '可控'
-            }]
-            }, {
-              value: 'daohang',
-              label: '导航',
-              children: [{
-                value: 'cexiangdaohang',
-                label: '侧向导航'
-              }, {
-                value: 'dingbudaohang',
-                label: '顶部导航'
-              }]
-            }]
-          }, {
-            value: 'zujian',
-            label: '组件',
-            children: [{
-              value: 'basic',
-              label: 'Basic',
-              children: [{
-                value: 'layout',
-                label: 'Layout 布局'
-              }, {
-                value: 'color',
-                label: 'Color 色彩'
-              }, {
-                value: 'typography',
-                label: 'Typography 字体'
-              }, {
-                value: 'icon',
-                label: 'Icon 图标'
-              }, {
-                value: 'button',
-                label: 'Button 按钮'
-              }]
-            }, {
-              value: 'form',
-              label: 'Form',
-              children: [{
-                value: 'radio',
-                label: 'Radio 单选框'
-              }, {
-                value: 'checkbox',
-                label: 'Checkbox 多选框'
-              }, {
-                value: 'input',
-                label: 'Input 输入框'
-              }, {
-                value: 'input-number',
-                label: 'InputNumber 计数器'
-              }, {
-                value: 'select',
-                label: 'Select 选择器'
-              }, {
-                value: 'cascader',
-                label: 'Cascader 级联选择器'
-              }, {
-                value: 'switch',
-                label: 'Switch 开关'
-              }, {
-                value: 'slider',
-                label: 'Slider 滑块'
-              }, {
-                value: 'time-picker',
-                label: 'TimePicker 时间选择器'
-              }, {
-                value: 'date-picker',
-                label: 'DatePicker 日期选择器'
-              }, {
-                value: 'datetime-picker',
-                label: 'DateTimePicker 日期时间选择器'
-              }, {
-                value: 'upload',
-                label: 'Upload 上传'
-              }, {
-                value: 'rate',
-                label: 'Rate 评分'
-              }, {
-                value: 'form',
-                label: 'Form 表单'
-              }]
-            }, {
-              value: 'data',
-              label: 'Data',
-              children: [{
-                value: 'table',
-                label: 'Table 表格'
-              }, {
-                value: 'tag',
-                label: 'Tag 标签'
-              }, {
-                value: 'progress',
-                label: 'Progress 进度条'
-              }, {
-                value: 'tree',
-                label: 'Tree 树形控件'
-              }, {
-                value: 'pagination',
-                label: 'Pagination 分页'
-              }, {
-                value: 'badge',
-                label: 'Badge 标记'
-              }]
-            }, {
-              value: 'notice',
-              label: 'Notice',
-              children: [{
-                value: 'alert',
-                label: 'Alert 警告'
-              }, {
-                value: 'loading',
-                label: 'Loading 加载'
-              }, {
-                value: 'message',
-                label: 'Message 消息提示'
-              }, {
-                value: 'message-box',
-                label: 'MessageBox 弹框'
-              }, {
-                value: 'notification',
-                label: 'Notification 通知'
-              }]
-            }, {
-              value: 'navigation',
-              label: 'Navigation',
-              children: [{
-                value: 'menu',
-                label: 'NavMenu 导航菜单'
-              }, {
-                value: 'tabs',
-                label: 'Tabs 标签页'
-              }, {
-                value: 'breadcrumb',
-                label: 'Breadcrumb 面包屑'
-              }, {
-                value: 'dropdown',
-                label: 'Dropdown 下拉菜单'
-              }, {
-                value: 'steps',
-                label: 'Steps 步骤条'
-              }]
-            }, {
-              value: 'others',
-              label: 'Others',
-              children: [{
-                value: 'dialog',
-                label: 'Dialog 对话框'
-              }, {
-                value: 'tooltip',
-                label: 'Tooltip 文字提示'
-              }, {
-                value: 'popover',
-                label: 'Popover 弹出框'
-              }, {
-                value: 'card',
-                label: 'Card 卡片'
-              }, {
-                value: 'carousel',
-                label: 'Carousel 走马灯'
-              }, {
-                value: 'collapse',
-                label: 'Collapse 折叠面板'
-              }]
-            }]
-          }, {
-            value: 'ziyuan',
-            label: '资源',
-            children: [{
-              value: 'axure',
-              label: 'Axure Components'
-            }, {
-              value: 'sketch',
-              label: 'Sketch Templates'
-            }, {
-              value: 'jiaohu',
-              label: '组件交互文档'
-            }]
-          }],
-      valueCom:null
+      pic : '',
+      companyName:'',
+      contactsName:'',
+      contactsPhone:'',
+      contactsEmail:'',
+      contactsQQ:'',
+      bankAccountName:'',
+      banksName:'',
+      bankAccount:'',
+      bankAddr:''
     }
   },
   methods:{
@@ -307,53 +122,102 @@ export default {
       }
     },
     submitCom(){
-      let _this=this;
-      let comName=_this.$refs.companyName.value;//公司名称
-      let contactName=_this.$refs.contactName.value;//联系人姓名
-      let contactPhone=_this.$refs.contactPhone.value;//联系人电话
-      let contactEmail=_this.$refs.contactEmail.value;//联系人邮箱
-      let bankId=_this.$refs.bankId.value;//银行账户名称
-      let banNumber=_this.$refs.bankId.value;//银行账号
-      let bankName=_this.$refs.bankName.value;//银行名称
-      let bankRess=_this.$refs.bankAddress.value;//开户地址
-      let qq=_this.$refs.QQ.value;//联系人QQ
-      let busPic=window.localStorage.getItem('Business');//营业执照
       let id=getCookie('Iud');
-      if(comName==''||contactName==''||contactPhone==''||contactEmail==''||bankId==''||banNumber==''||qq==''){
-        alert('请先完善公司信息! ')
-      }else if(busPic==''){
-        alert('请先上传营业执照！')
-      }else{
-        _this.axios.post(this.oUrl+'/addCompany',{
-          "companyInfo":{
-          	"companyName":comName,
-          	"contactsId":id,
-          	"contactsPhone":contactPhone,
-          	"contactsEmail":contactEmail,
-          	"contactsQQ":qq,
-          	"bankAccountName":bankId,
-          	"bankAccount":banNumber,
-            'banName':bankName,
-          	"updateDate":"2008-12-29",
-          	"signUpAddr":bankRess,
-            'picId':123
-          },
-          "companyPics":{
-          	"picContent":busPic,
-          	"updateDate":"2018-08-02",
-          	"contactsId":id
-          	}
-        },{
-          headers:{
-            'Content-Type':'application/json'
+      if(this.pic==''){
+        let _this=this;
+        let comName=_this.$refs.companyName.value;//公司名称
+        let contactName=_this.$refs.contactName.value;//联系人姓名
+        let contactPhone=_this.$refs.contactPhone.value;//联系人电话
+        let contactEmail=_this.$refs.contactEmail.value;//联系人邮箱
+        let bankId=_this.$refs.bankId.value;//银行账户名称
+        let banNumber=_this.$refs.bankNumber.value;//银行账号
+        let bankName=_this.$refs.bankName.value;//银行名称
+        let bankRess=_this.$refs.bankAddress.value;//开户地址
+        let qq=_this.$refs.QQ.value;//联系人QQ
+        let busPic=window.localStorage.getItem('Business');//营业执照
+        if(comName==''||contactName==''||contactPhone==''||contactEmail==''||bankId==''||banNumber==''||qq==''){
+          alert('请先完善公司信息! ')
+        }else if(busPic==''){
+          alert('请先上传营业执照！')
+        }else{
+          _this.axios.post(this.oUrl+'/addCompany',{
+            "companyInfo":{
+              "companyName":comName,
+              "contactsId":id,
+              "contactsName":contactName,
+              "contactsPhone":contactPhone,
+              "contactsEmail":contactEmail,
+              "contactsQQ":qq,
+              "bankAccountName":bankId,
+              "bankAccount":banNumber,
+              'bankName':bankName,
+              "signUpAddr":bankRess,
+              'picId':123
+            },
+            "companyPics":{
+              "picContent":busPic,
+              "contactsId":id
+              }
+          },{
+            headers:{
+              'Content-Type':'application/json'
+            }
           }
+        ).then((res)=>{
+          console.log(res)
+          window.localStorage.clear()
+          alert("认证成功！");
+          _this.$router.push('/release/prise'); 
+        })
         }
-      ).then((res)=>{
-        console.log(res)
-        window.localStorage.clear()
-      })
+      }else{
+        console.log("---123");
+        let busPic=window.localStorage.getItem('Business');
+        this.axios.post(this.oUrl+'/updateCompany',{
+            "companyInfo":{
+              "companyName":this.companyName,
+              "contactsId":id,
+              "contactsName":this.contactsName,
+              "contactsPhone":this.contactsPhone,
+              "contactsEmail":this.contactsEmail,
+              "contactsQQ":this.contactsQQ,
+              "bankAccountName":this.bankAccountName,
+              "bankAccount":this.bankAccount,
+              'bankName':this.banksName,
+              "signUpAddr":this.bankAddr,
+            },
+            "companyPics":{
+              "picContent":busPic,
+              "contactsId":id
+              }
+          },{
+            headers:{
+              'Content-Type':'application/json'
+            }
+          }
+        ).then((res)=>{
+          console.log(res)
+          window.localStorage.clear()
+          alert("修改完成！");
+          this.$router.push('/release/prise'); 
+        });
       }
+    },
+    loadInfo(){
+        this.pic = this.$route.query.data.pic;
+        this.companyName = this.$route.query.data.companyName;
+        this.contactsName = this.$route.query.data.contactsName;
+        this.contactsPhone = this.$route.query.data.contactsPhone;
+        this.contactsEmail = this.$route.query.data.contactsEmail;
+        this.contactsQQ = this.$route.query.data.contactsQQ;
+        this.bankAccountName = this.$route.query.data.bankAccountName;
+        this.banksName = this.$route.query.data.bankName;
+        this.bankAccount = this.$route.query.data.bankAccount;
+        this.bankAddr = this.$route.query.data.bankAddr;
     }
+  },
+  created(){
+      this.loadInfo();
   }
 }
 </script>

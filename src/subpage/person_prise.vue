@@ -5,7 +5,7 @@
       <img src="../../static/img/qiye.png" alt="">
     </div>
     <div class="person_prise_con">
-      <p style="color:#FF0000;font-size:24px;font-weight:400;">您的信息正在认证中，请耐心等待</p>
+      <p style="color:#FF0000;font-size:24px;font-weight:400;">我的企业信息</p>
       <p class="prise_title">
         <span>企业信息</span>
       </p>
@@ -19,14 +19,14 @@
         </ul>
         <ul class="right">
           <!--<li>****科技有限公司</li>-->
-          <li><input type="text" ref="companyName" placeholder="请输入你的公司名" style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
           <!--<li>范冰冰</li>-->
-          <li><input type="text" ref="contactsName" placeholder="请输入你的姓名" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <!--<li>139****0099</li>-->
-          <li><input type="text" ref="contactsPhone" placeholder="请输入你的手机号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="contactsPhone" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <!--<li>64564647@qq.com</li>-->
-          <li><input type="text" ref="contactsEmail" placeholder="请输入你的邮箱" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" ref="contactsQQ" placeholder="请输入你的QQ号" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="contactsEmail" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           
 
         </ul>
@@ -36,9 +36,9 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <span style="color:#ccc; cursor:pointer;">点击上传营业执照</span>
-
-          <input type="file" accept="image/jpeg" name="" value="">
+          <!-- <span style="color:#ccc; cursor:pointer;"></span> -->
+          <img v-bind:src="pic" style="width:360px;height:240px;">
+          <!-- <input type="file" accept="image/jpeg" name="" value=""> -->
         </div>
       </div>
       <p class="prise_title" style="margin-top:-2%;">
@@ -54,14 +54,14 @@
           <!--<li>****科技有限公司</li>-->
           <!--<li>中国建设银行**分行</li>-->
           <!--<li>6217000783248325845</li>-->
-          <li><input type="text" ref="bankAccountName" placeholder="请输入你的账户名称" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" ref="bankName" placeholder="请输入你的开户行" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" ref="bankAccount" placeholder="请输入你的账号（卡号）" style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="bankName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
 
         </ul>
       </div>
 
-      <button @click="submitInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">提交验证</button>
+      <button @click="updateInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">修改企业信息</button>
     </div>
   </div>
 </template>
@@ -69,8 +69,61 @@
 import {getCookie} from '@/assets/util'
 export default {
 
+    data(){
+    return{
+      pic : '',
+      companyName : '',
+      contactsName : '',
+      contactsPhone : '',
+      contactsEmail : '',
+      contactsQQ : '',
+      bankAccountName : '',
+      bankName : '',
+      bankAccount : '',
+      bankAddr : ''
+    }
+  },
+
     methods:{
-      submitInfo(){
+      getCompany(){
+        let contactsId = getCookie("Iud");
+        this.axios.get(this.oUrl+"/getCompany?contactsId="+contactsId).then((res)=>{
+            console.log(res.data);
+            if(res.data != ''){
+              this.companyName=res.data[0].companyName;
+              this.contactsName=res.data[0].contactsName;
+              this.contactsPhone=res.data[0].contactsPhone;
+              this.contactsEmail=res.data[0].contactsEmail;
+              this.contactsQQ=res.data[0].contactsQQ;
+              this.bankAccountName=res.data[0].bankAccountName;
+              this.bankName=res.data[0].bankName;
+              this.bankAccount=res.data[0].bankAccount;
+              this.bankAddr = res.data[0].signUpAddr;
+            }
+        });
+        this.axios.get(this.oUrl+"/getPicsOfCom?contactsId="+contactsId).then((res)=>{
+            console.log(res.data);
+            if(res.data != ''){
+              this.pic = res.data[0].picContent;
+            }
+        });
+      },
+      updateInfo(){
+        var data = {
+          "companyName":this.companyName,
+          "contactsName":this.contactsName,
+          "contactsPhone":this.contactsPhone,
+          "contactsEmail":this.contactsEmail,
+          "contactsQQ":this.contactsQQ,
+          "bankAccountName":this.bankAccountName,
+          "bankName":this.bankName,
+          "bankAccount":this.bankAccount,
+          "pic":this.pic,
+          "bankAddr":this.bankAddr
+        };
+        this.$router.push({path:"/release/data",query:{"data":data}});
+      }
+      /*submitInfo(){
         let contactsId = getCookie("Iud");
         console.log(contactsId)
         this.axios.post(this.oUrl+'/addCompany',{
@@ -103,7 +156,10 @@ export default {
         console.log("add company info ......")
         console.log(this.noteListLed)
       })
-      }
+      }*/
+    },
+    created(){
+      this.getCompany()
     }
 }
 </script>
