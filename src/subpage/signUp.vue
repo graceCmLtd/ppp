@@ -16,18 +16,19 @@
          <!--  <router-link to="/signUp/auth" @click.native="auth()" :class="{active:color==2}" tag="li">手机登入</router-link> -->
         </ul>
         
-        <template>
+        <div class="way_mes">
+
             <div v-if="color == 1 ">
                 <byPassword>密码登入</byPassword>
             </div>
             <div v-else-if="color == 2 ">
                 <bySms>手机登入</bySms>
             </div>
-        </template>
-
-        <div class="way_mes">
-          <!-- <router-view></router-view> -->
         </div>
+
+        <!-- <div class="way_mes">
+          <router-view></router-view>
+        </div> -->
       </div>
     </div>
   </div>
