@@ -3,11 +3,30 @@
     <div class="signup_con">
       <div class="sginU">
         <ul class="signup_way">
-          <router-link to="/signUp/password" @click.native="pass()" :class="{active:color==1}" tag="li">密码登入</router-link>
-          <router-link to="/signUp/auth" @click.native="auth()" :class="{active:color==2}" tag="li">手机登入</router-link>
+          <li @click="pass()" :class="{active:color==1}">密码登录</li>
+          <li @click="auth()" :class="{active:color==2}">手机登录</li>
+
+          <!-- <router-link to="/signUp/password" @click.native="pass()" :class="{active:color==1}" tag="li">密码登入</router-link> -->
+          <!-- <li @click.native="pass()" :class="{active:color==1}" tag="li">
+            <byPassword>密码登入</byPassword>
+          </li> -->
+          <!-- <li @click.native="pass()" :class="{active:color==1}" tag="li">
+            <byPassword>密码登入</byPassword>
+          </li> -->
+         <!--  <router-link to="/signUp/auth" @click.native="auth()" :class="{active:color==2}" tag="li">手机登入</router-link> -->
         </ul>
+        
+        <template>
+            <div v-if="color == 1 ">
+                <byPassword>密码登入</byPassword>
+            </div>
+            <div v-else-if="color == 2 ">
+                <bySms>手机登入</bySms>
+            </div>
+        </template>
+
         <div class="way_mes">
-          <router-view></router-view>
+          <!-- <router-view></router-view> -->
         </div>
       </div>
     </div>
@@ -15,11 +34,17 @@
 </template>
 
 <script>
+import byPassword from '@/components/password_signup.vue'
+import bySms from '@/components/auth_signup.vue'
 export default {
   data(){
     return{
       color:1
     }
+  },
+  components:{
+    byPassword,
+    bySms
   },
   methods:{
     pass(){
