@@ -32,7 +32,7 @@
           </div></el-col>
           <el-col :span="2"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button" @click="nextStep">下一步</button>
+            <button type="button" name="button" @click="nextStep(item)">下一步</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -240,9 +240,10 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
-      nextStep(){
+      nextStep(item){
         let _this = this;
-        
+        console.log("nextStep")
+        console.log(item)
         _this.$router.push({name:'Detailed'})
       }
       /*end of methods*/
