@@ -308,14 +308,14 @@
           display: flex;
           justify-content: space-around;
           button{
-            width:105px;
-            height:30px;
-            border-radius:3px;
+            width: 85px;
+            height: 30px;
+            border-radius: 3px;
             background: #F15749;
-            color:white;
+            color: white;
             position: absolute;
-            right:2%;
-            top:12%;
+            right: 3%;
+            top: 12%;
           }
         }
       }

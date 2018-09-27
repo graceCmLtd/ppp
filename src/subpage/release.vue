@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="release">
-    <!-- <Header/> -->
     <div class="release_con">
       <div class="release_con_table">
         <el-row>
@@ -128,7 +127,6 @@ export default {
     height:100%;
     display: flex;
     .release_con_table{
-    
       height:100%;
       background: white;
     }

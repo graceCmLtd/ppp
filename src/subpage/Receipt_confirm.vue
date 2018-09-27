@@ -296,13 +296,15 @@
       min-width: 95px;
       border-left:1px solid #ccc;
       button{
-        width: 70%;
-        min-height: 20px;
+        width: 53%;
+        min-height: 32px;
         font-size: 12px;
-        border:1px solid #FE442B;
-        color:#FE442B;
-        background:white;
-        border-radius:3px;
+        border: 1px solid #F15749;
+        color: #F15749;
+        background: white;
+        border-radius: 3px;
+        background: #F15749;
+        color: #fff;
       }
     }
     .person_intention_contact{
@@ -314,13 +316,13 @@
       background: #f3fbff;
       button{
         position: absolute;
-        right:2%;
-        min-height: 28px;
-        width: 12%;
-        top:14%;
-        color:white;
-        border-radius:3px;
-        background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+        right: 2.5%;
+        min-height: 31px;
+        width: 7%;
+        top: 14%;
+        color: white;
+        border-radius: 3px;
+        background: #F15749;
       }
       .pople{
         margin-left: 80px;
