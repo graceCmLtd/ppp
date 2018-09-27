@@ -93,7 +93,16 @@
           <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
         </div>
-
+        <!-- 分页 -->
+        <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change1">
+        </el-pagination>
+      </div>
       </div>
 <!-- 未报价 -->
       <div class="didOffer" v-show="didOffer">
@@ -167,6 +176,16 @@
             <button type="button" name="button" @click="getBillDetail(item)">查看</button>
           </p>
         </div>
+        <!-- 分页 -->
+        <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change2">
+        </el-pagination>
+      </div>
 
       </div>
       <div class="didOffer" v-show="didOffer">
@@ -219,7 +238,10 @@
         billD:[],
         billDPic:null,
         billDetailPic:null,
-        haveQuote:false
+        haveQuote:false,
+        currentPage : 1,
+        pageSize : 5,
+        total : 0
       }
     },
     components:{
@@ -260,7 +282,9 @@
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":2,
-            "billNumber":_this.billNum
+            "billNumber":_this.billNum,
+            "pageSize" : _this.pageSize,
+            "currentPage" : _this.currentPage
           },
           {
             headers:{
@@ -276,7 +300,25 @@
           }else{
             _this.haveQuote = false;
           }
-        })
+        });
+        _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
+            "uuid":Id,
+            "filter":2,
+            "billNumber":_this.billNum
+          },
+          {
+            headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+            _this.total = res.data;
+          }
+        });
+      },
+      current_change1(currentPage){
+        this.currentPage = currentPage;
+        this.havOffer();
       },
       notOffer(){
         this.colorB=4;
@@ -290,7 +332,9 @@
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":3,
-            "billNumber":_this.billNum
+            "billNumber":_this.billNum,
+            "pageSize" : _this.pageSize,
+            "currentPage" : _this.currentPage
           },
           {
             headers:{
@@ -300,7 +344,25 @@
           console.log(res)
           this.noteL = res.data
           _this.billN=res.data[0].billNumber;
-        })
+        });
+        _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
+            "uuid":Id,
+            "filter":3,
+            "billNumber":_this.billNum
+          },
+          {
+            headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+            _this.total = res.data;
+          }
+        });
+      },
+      current_change2(currentPage){
+        this.currentPage = currentPage;
+        this.notOffer();
       },
       getBills(){
         let _this=this;
