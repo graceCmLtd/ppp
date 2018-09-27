@@ -1,6 +1,6 @@
 <!-- 正常发布票据 -->
 <template lang="html">
-  <div class="release_paper">
+  <div class="release_paper" @click="authCheck">
     <div class="release_paper_con">
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
@@ -72,6 +72,12 @@
       </p>
     </div>
 
+
+    <el-dialog title="温馨提示" :visible.sync="authVisible"
+      width="30%"  >
+      <span v-model='count'>您还未进行企业认证，{{count}}秒后将自动跳转到认证页面</span>
+    </el-dialog>
+
     <div class="release_prompt" ref="release_prompt">
       <img src="../../static/img/rele_icon.png" alt="">
       <p class="release_title">发布成功</p>
@@ -103,7 +109,10 @@
         loadingRele:false,
         releText:'提交意向',
         dayRe:'？',
-        typeSelect:''
+        typeSelect:'',
+        authVisible:false,
+        count: '',
+        timer: null,
       }
     },
     components:{
@@ -232,6 +241,43 @@
       //   this.radioT=true;
       //   this.radioB=false;
       // },
+      authCheck(){
+        let _this = this;
+        if (getCookie('role')=="vip" || getCookie('role') == "normal") {
+          
+          return true;
+        }else{
+          this.authVisible = true;
+          //this.$router.push({name:"Prise"})
+          _this.getCode();
+          var t;
+          clearTimeout(t);
+          t = setTimeout(function(){
+            _this.authVisible = false;
+            
+            _this.$router.push({name:"Prise"})
+          },5000)
+        }
+      },
+      getCode(){
+        console.log("get code xxxxxxxxxxxxxx")
+        //this.getPhoneSms();
+        const TIME_COUNT = 5;
+        if (!this.timer) {
+          this.count = TIME_COUNT;
+          this.show = false;
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--;
+            } else {
+              this.show = true;
+              clearInterval(this.timer);
+              this.timer = null;
+            }
+          }, 1000)
+        }
+      },
+
       submitMes(){
         let _this=this;
         if(!getCookie('Iud')){
@@ -248,12 +294,12 @@
           console.log("this  refs  aldfjkad")
           console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
-            alert('请先完善票面信息！')
-          }else if(!Is){
+            // alert('请先完善票面信息！')
+          }else if(!Is&& !The){
             alert('请先上传票据正面图片！')
-          }else if(!The){
-            alert('请先上传票据反面图片！')
-          }else{
+          }/*else if(!The){
+            // alert('请先上传票据反面图片！')
+          }*/else{
             _this.loadingRele=true;
             _this.releText=''
             _this.axios.post(this.oUrl+'/bills/addbill',{
@@ -268,7 +314,7 @@
                   "releaserId":Id,
                   "billPicsId":11111,
                   "transferable":true,
-                  "billReferer":"资源池"
+                  "billReferer":"传统渠道"
                 },
                 "billPics":{
                   "billNumber":paperNumber,

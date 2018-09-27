@@ -225,7 +225,7 @@ export default {
   .choseType_alt{
     width: 80%;
     text-align: center;
-    color:red;
+    color:red;  
   }
   .choseType_agreement{
     width: 80%;
@@ -236,7 +236,7 @@ export default {
       width: 15px;
       height:15px;
       position: absolute;
-      left:35%;
+      left:41%;
     }
   }
   .choseType_turn{
@@ -248,6 +248,7 @@ export default {
       background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
       border-radius:5px;
       color:white;
+      background: #F15749;
     }
   }
 }
