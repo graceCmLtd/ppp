@@ -15,8 +15,8 @@
           </li> -->
          <!--  <router-link to="/signUp/auth" @click.native="auth()" :class="{active:color==2}" tag="li">手机登入</router-link> -->
         </ul>
-        
-        <div class="way_mes">
+
+          <div class="way_mes">
 
             <div v-if="color == 1 ">
                 <byPassword>密码登入</byPassword>

@@ -4,11 +4,13 @@
     <p class="phone">
       <span style="color:red;">*</span>手机号：&nbsp;&nbsp;<input  type="text" value="" placeholder="" v-model="Phone" maxlength="11" />
     </p>
-    <p class="code"><span style="color:red;">*</span>验证码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
+    <p class="code"><span style="color:red;">*</span>验证码：&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
+
      <!-- <button @click="getCode">获取验证码</button> -->
-     <span v-show="show" @click="getCode()" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">
+
+     <span v-show="show" @click="getCode()" style="width: 130px; height: 30px; display: inline-block; text-align: center; line-height: 30px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">
             获取短信验证码</span>
-      <span v-show="!show" class="count"  style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer;">{{count}} S</span></li>
+      <span v-show="!show" class="count"  style="width: 130px; height: 30px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer;">{{count}} S</span>
 
 
     <p class="turn">
