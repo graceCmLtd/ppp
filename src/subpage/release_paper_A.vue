@@ -242,9 +242,22 @@
       // },
       authCheck(){
         let _this = this;
+        console.log("authCheck....")
         if (getCookie('role')=="vip" || getCookie('role') == "normal") {
           
           return true;
+        }else if(getCookie("isAu")){
+          this.authVisible = true;
+          //this.$router.push({name:"Prise"})
+          _this.getCode();
+          var t;
+          clearTimeout(t);
+          t = setTimeout(function(){
+            _this.authVisible = false;
+            
+            _this.$router.push({name:"Servicer"})
+          },5000)
+          
         }else{
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
@@ -280,8 +293,7 @@
         let _this=this;
         if(!getCookie('Iud')){
           this.$router.push('/signUp/password')
-        }else{
-          this.authCheck();
+        }else if(this.authCheck()){
           //let paperNumber=_this.$refs.paperNumber.value;
           let paperNumber=_this.billNum;
           let amount=_this.$refs.amount.value;

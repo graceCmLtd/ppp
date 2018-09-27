@@ -48,9 +48,13 @@
          -->
     </div>
     
+    <div class="yibao_w" v-if=" haveQuote == false " >
+      <p >尚无报价信息</p>
+    </div>
+    
 
     <!-- 右边的已报价和未报价的 -->
-    <div class="yibao_w" v-if="color == 1 && currentTab == 'offerin' " >
+    <div class="yibao_w" v-if="color == 1 && currentTab == 'offerin' && haveQuote == true " >
       <!-- <personOfferIn></personOfferIn> -->
       <p class="person_paper_tableB">
         <span :class="{HadAc:colorB==3}" @click="havOffer()">已报价<span></span></span>
@@ -91,8 +95,9 @@
         </div>
 
       </div>
-
+<!-- 未报价 -->
       <div class="didOffer" v-show="didOffer">
+
         <el-row>
           <el-col :span="10"><div class="didOffer_title company">北京憧憬实业有限公司</div></el-col>
           <el-col :span="7"><div class="didOffer_title">尧经理</div></el-col>
@@ -100,6 +105,7 @@
         </el-row>
       </div>
     </div>
+    <!-- 未报价end -->
         <!-- 待审核 -->
      <div class="yibao_w" v-if="color == 1 && currentTab == 'offerbe' " >
       <!-- <personOfferIn></personOfferIn> -->
@@ -212,7 +218,8 @@
         dialogBillDetailVisual : false,
         billD:[],
         billDPic:null,
-        billDetailPic:null
+        billDetailPic:null,
+        haveQuote:false
       }
     },
     components:{
@@ -260,9 +267,15 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          console.log("get quoted bills ...")
           console.log(res)
           this.noteL = res.data
           _this.billN=res.data[0].billNumber;
+          if (res.data[0].interest) {
+            _this.haveQuote = true;
+          }else{
+            _this.haveQuote = false;
+          }
         })
       },
       notOffer(){
@@ -276,7 +289,7 @@
         
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
-            "filter":4,
+            "filter":3,
             "billNumber":_this.billNum
           },
           {
