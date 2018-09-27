@@ -76,6 +76,16 @@
 
 
       </div>
+      <!--分页-->
+      <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+        </el-pagination>
+      </div>
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)">
 
@@ -103,7 +113,10 @@
         maturity:null,
         remain_days:null,
         marDay:[],
-        pic : ''
+        pic : '',
+        currentPage : 1,
+        pageSize : 5,
+        total : 0
       }
     },
     methods:{
@@ -113,7 +126,9 @@
         console.log(Id)
         this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":"2"
+            "IntentionType":"2",
+            "currentPage" : this.currentPage,
+            "pageSize" : this.pageSize
           },
           {headers:{
               'Content-Type':'application/json'
@@ -141,7 +156,23 @@
             _this.marDay.push(_this.day)
           }
           console.log(_this.marDay)
-        })
+        });
+        this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+            "uuid":Id,
+            "IntentionType":"2",
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+            this.total = res.data;
+          }
+        });
+      },
+      current_change(currentPage){
+        this.currentPage = currentPage;
+        this.getReceiptAll();
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/

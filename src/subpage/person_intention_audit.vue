@@ -40,6 +40,16 @@
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
+      <!--分页-->
+      <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+        </el-pagination>
+      </div>
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
@@ -152,7 +162,10 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        currentPage : 1,
+        pageSize : 5,
+        total : 0
       }
     },
     methods:{
@@ -161,7 +174,9 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'3'
+            "IntentionType":'3',
+            "currentPage" : _this.currentPage,
+            "pageSize" : _this.pageSize
           },
           {headers:{
               'Content-Type':'application/json'
@@ -169,7 +184,23 @@
         ).then((res)=>{
           console.log(res)
           _this.noteList=res.data;
+        });
+        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+            "uuid":Id,
+            "IntentionType":'3'
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+            _this.noteList=res.data;
+          }
         })
+      },
+      current_change(currentPage){
+        this.currentPage = currentPage;
+        this.getIntenTionList();
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
