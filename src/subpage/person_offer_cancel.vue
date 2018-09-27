@@ -57,6 +57,17 @@
           </p>
         </div>
       </div>
+      <!--分页-->
+      <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+
+        </el-pagination>
+      </div>
     </div>
 
 
@@ -74,7 +85,10 @@ import {getCookie} from '@/assets/util'
         noteList:[],
         day:null,
         marDay:[],
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        currentPage : 1,
+        pageSize : 5,
+        total : 0
       }
     },
     methods:{
@@ -82,7 +96,9 @@ import {getCookie} from '@/assets/util'
         let Id=getCookie('Iud');
         this.axios.post(this.oUrl+'/quote/getMyQuote',{
             "uuid":Id,
-            "filter":"4"
+            "filter":"4",
+            "currentPage":this.currentPage,
+            "pageSize":this.pageSize
           },
           {headers:{
               'Content-Type':'application/json'
@@ -111,7 +127,23 @@ import {getCookie} from '@/assets/util'
             _this.marDay.push(_this.day)
           }
           console.log(_this.marDay)
-        })
+        });
+        this.axios.post(this.oUrl+'/quote/getQuoteCount',{
+            "uuid":Id,
+            "filter":"4"
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+              this.total = res.data; 
+          }
+        });
+      },
+      current_change(currentPage){
+        this.currentPage = currentPage;
+        this.getOfferAll();
       },
       turnPlace(index){
         let _this=this;

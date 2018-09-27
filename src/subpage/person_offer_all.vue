@@ -210,7 +210,9 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          _this.total=res.data;
+          if(res.data != ''){
+              this.total = res.data; 
+          }
 
         });
       },
