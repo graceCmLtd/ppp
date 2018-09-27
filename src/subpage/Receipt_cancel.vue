@@ -58,8 +58,16 @@
         </div>
       </div>
       </div>
-      
-
+      <!--分页-->
+      <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+        </el-pagination>
+      </div>
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
@@ -174,7 +182,10 @@
         remain_days:null,
         isShow:false,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
-        new_money:null
+        new_money:null,
+        currentPage : 1,
+        pageSize : 5,
+        total : 0
       }
     },
     methods:{
@@ -186,7 +197,9 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"待接单"
+            "filter_str":"待接单",
+            "currentPage" : _this.currentPage,
+            "pageSize" : _this.pageSize
           },
           {headers:{
               'Content-Type':'application/json'
@@ -194,7 +207,24 @@
         ).then((res)=>{
           console.log(res)
           _this.noteList=res.data;
+        });
+        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+            "uuid":Id,
+            "IntentionType":'4',
+            "filter_str":"待接单"
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+              _this.total = res.data;
+          }
         })
+      },
+      current_change(currentPage){
+          this.currentPage = currentPage;
+          this.getIntenTionList();
       },
       toggle:function(){
             this.isShow = !this.isShow;

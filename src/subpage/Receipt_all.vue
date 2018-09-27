@@ -164,7 +164,7 @@
           }
           console.log(_this.marDay)
         });
-        this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":"2",
           },
