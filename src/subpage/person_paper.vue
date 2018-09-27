@@ -49,7 +49,7 @@
     </div>
     
     <div class="yibao_w" v-if=" haveQuote == false && currentTab == 'offerin' " >
-      <p >尚无报价信息1</p>
+      <p style="color:#666;font-size:30px;background-color:#F2F2F2; box-shadow:0px 0px 0px 35px #F2F2F2"> <i style="font-style:normal; color:red;font-size:33px;">!</i> 尚无报价信息,请耐心等待别人报价   ヽ(^_−)ﾉ</p>
     </div>
     
 
@@ -74,7 +74,7 @@
 
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
-            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>哦
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
