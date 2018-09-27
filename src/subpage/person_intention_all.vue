@@ -41,6 +41,16 @@
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
+      <!--分页-->
+      <div class="block">
+        <el-pagination
+          background
+          layout="prev,pager, next"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="current_change">
+        </el-pagination>
+      </div>
       <div class="intention_mes_details" ref="intention_mes_details">
           <div class="top_w">
             <p>票据详情</p>
@@ -123,7 +133,10 @@
         remain_days:null,
         isShow:false,
         theHref :"tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes",
-        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
+        linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        currentPage : 1,
+        pageSize : 5,
+        total : 0
       }
     },
     methods:{
@@ -132,7 +145,9 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'1',
+            "currentPage" : _this.currentPage,
+            "pageSize" : _this.pageSize
           },
           {headers:{
               'Content-Type':'application/json'
@@ -141,7 +156,23 @@
           console.log("intention dada sssss")
           console.log(res)
           _this.noteList=res.data;
-        })
+        });
+        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+            "uuid":Id,
+            "IntentionType":'1'
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          if(res.data != ''){
+            _this.total = res.data;
+          }
+        });
+      },
+      current_change(currentPage){
+        this.currentPage = currentPage;
+        this.getIntenTionList();
       },
         confirmTransaction:function(index){
             let _this=this;
