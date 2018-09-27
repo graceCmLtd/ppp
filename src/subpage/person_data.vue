@@ -75,6 +75,7 @@
     </div>
     <p class="saveMes">
       <button type="button" name="button" @click="submitCom()">确认</button>
+      <button @click="cancel()">取消</button>
       </p>
   </div>
 </template>
@@ -202,6 +203,9 @@ export default {
           this.$router.push('/release/prise'); 
         });
       }
+    },
+    cancel(){
+      this.$router.push('/release/prise');
     },
     loadInfo(){
         this.pic = this.$route.query.data.pic;
@@ -339,7 +343,7 @@ export default {
     text-align: center;
     margin-bottom:5%;;
     button{
-      width: 35%;
+      width: 10%;
       height:100%;
       background: #FF452C;
       font-size: 14px;

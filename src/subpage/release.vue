@@ -90,9 +90,10 @@ export default {
       this.$router.push('/release/intention')
     },
     prise(){//用户企业认证信息
-      if(getCookie('isAu')=='false'){
+      if(getCookie('isAu')=='true'){
         this.$router.push('/release/prise')
       }else{
+        alert("您还未进行认证，已为您跳转到认证页面...");
         this.$router.push('/release/data')
       }
     },

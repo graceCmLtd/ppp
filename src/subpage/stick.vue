@@ -78,7 +78,7 @@
       <p class="release_alt">您的票据发布成功，请等待审核通过</p>
       <p>
         <button type="button" name="button" @click="closeSave()">继续发布票据</button>
-        <button type="button" name="button">查看审核状态</button>
+        <!-- <button type="button" name="button">查看审核状态</button> -->
         <router-link to="/release/paper" tag="button">查看已发布的票据</router-link>
       </p>
     </div>
