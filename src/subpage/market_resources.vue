@@ -30,7 +30,7 @@
             </el-col>
           <el-col :span="3"><div class="market_resources_mes">{{item.contactsName}}</div></el-col>
           <el-col :span="3"><div class="market_resources_mes opera">
-            <button type="button" name="button" @click="isReg">我要贴</button>
+            <button type="button" name="button" @click="isReg(item)">我要贴</button>
           </div></el-col>
           <el-col :span="6"><div class="market_resources_mes acceptance">{{item.note}}</div></el-col>
           <!-- <el-col :span="3"><div class="market_resources_mes status">
@@ -124,11 +124,17 @@ export default {
       this.currentPage = currentPage;
       this.getList();
     },
-    isReg(){
+    isReg(item){
       let isAu = getCookie('isAu');//从cookie中获取用户是否认证
       console.log(isAu);
       if(isAu=='true'){
-        this.$router.push('/stick');
+        this.$router.push(
+          {
+            name:"Stick",
+            query:{
+              item:item
+            }
+          });
       }else{
         alert("您还未通过审核，已为您跳转......");
         this.$router.push('/release/data');

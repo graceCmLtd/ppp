@@ -208,10 +208,10 @@
           orderId:'',
           amountRange:'',
           timeLimit:'',
-          type1:'',
-          type2:'',
-          type3:'',
-          type4:''
+          type1:null,
+          type2:null,
+          type3:null,
+          type4:null
         },
         formLabelWidth: '120px'
       }
@@ -285,6 +285,9 @@
             ).then((res)=>{
               console.log("addForm 返回值");
               console.log(res);
+              if (res.data.status == 'fail') {
+                alert(res.data.errorMsg)
+              }
               this.getReceiptAll();
             })
           }
@@ -323,6 +326,9 @@
             ).then((res)=>{
               console.log("update quote pool")
               console.log(res);
+              if (res.data.status == 'fail') {
+                alert(res.data.errorMsg)
+              }
               this.getReceiptAll();
             })
       },

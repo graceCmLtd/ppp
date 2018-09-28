@@ -174,7 +174,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'3',
+            "IntentionType":'6',
+            "billReferer":"资源池",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
