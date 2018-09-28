@@ -54,7 +54,7 @@
       </div>
   </div>
   </div>
-    <div class="block">
+    <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -84,7 +84,8 @@ export default {
       pageP:null,
       pageSize : 10,
       currentPage : 1,
-      total : 0
+      total : 0,
+      showPaginate : true
     }
   },
   components:{
@@ -178,8 +179,10 @@ export default {
       }}
       ).then((res)=>{
           _this.noteList=res.data.list;
-          _this.total = res.data.count;
-          
+          if(res.data.count != 'null')
+            _this.total = res.data.count;
+          else
+            _this.res.data.count = false;
         })
     },
     current_change(currentPage){

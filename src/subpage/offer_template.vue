@@ -158,7 +158,7 @@
               <el-button type="primary" @click="editeNoteSubmit" >确 定</el-button>
             </span>
           </el-dialog>
-    <div class="block">
+    <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -185,6 +185,7 @@
         pageSize : 10,
         currentPage : 1,
         total : 0,
+        showPaginate : true,
         noteList:[],
         day:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
@@ -234,7 +235,10 @@
           _this.noteInfo = res.data[0].note
         });
         this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
-            this.total = res.data;
+            if(res.data != '')
+              this.total = res.data;
+            else
+              this.showPaginate = false;
         });
       },
       current_change(currentPage){

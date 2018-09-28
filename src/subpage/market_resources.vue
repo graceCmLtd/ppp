@@ -60,7 +60,7 @@
 
         </el-row>
       </div>
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -96,6 +96,7 @@ export default {
       currentPage : 1,
       pageSize : 10,
       total : 0,
+      showPaginate : true
     }
   },
   components:{
@@ -116,8 +117,10 @@ export default {
         }
       });
       this.axios.get(this.oUrl+'/resourceMarket/getCount').then((res)=>{
-        //console.log(res.data);
-        this.total = res.data;
+        if(res.data != '')
+          this.total = res.data;
+        else
+          this.showPaginate = false;
       });
     },
     current_change:function(currentPage){

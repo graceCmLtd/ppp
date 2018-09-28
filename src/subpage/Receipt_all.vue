@@ -111,7 +111,7 @@
 
       </div>
       <!--分页-->
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -155,7 +155,8 @@
         pic : '',
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     methods:{
@@ -204,9 +205,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
             this.total = res.data;
-          }
+          else
+            this.showPaginate = false;
         });
       },
       current_change(currentPage){

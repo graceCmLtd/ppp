@@ -94,7 +94,7 @@
           </p>
         </div>
         <!-- 分页 -->
-        <div class="block">
+        <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -177,7 +177,7 @@
           </p>
         </div>
         <!-- 分页 -->
-        <div class="block">
+        <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -188,13 +188,13 @@
       </div>
 
       </div>
-      <div class="didOffer" v-show="didOffer">
+      <!-- <div class="didOffer" v-show="didOffer">
         <el-row>
           <el-col :span="10"><div class="didOffer_title company">北京憧憬实业有限公司</div></el-col>
           <el-col :span="7"><div class="didOffer_title">尧经理</div></el-col>
           <el-col :span="7"><div class="didOffer_title">19895425446</div></el-col>
         </el-row>
-      </div>
+      </div> -->
     </div>
     <div>
       <el-dialog title="票据详情" :visible.sync="dialogBillDetailVisual">
@@ -241,7 +241,8 @@
         haveQuote:false,
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     components:{
@@ -311,9 +312,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
             _this.total = res.data;
-          }
+          else
+            _this.showPaginate = false;
         });
       },
       current_change1(currentPage){
@@ -355,9 +357,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
             _this.total = res.data;
-          }
+          else
+            _this.showPaginate = false;
         });
       },
       current_change2(currentPage){
