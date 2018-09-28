@@ -138,17 +138,13 @@ export default {
       }
     },
     isAudit(){
-      console.log("12345");
-      let isAu = getCookie('Iud');
-      this.axios.get(this.oUrl+"/getCompany?contactsId="+isAu).then((res)=>{
-        console.log(res.data);
-        if(res.data[0].role == "包装户"){
+      let role = getCookie('role');
+      if(role == "vip"){
           this.$router.push("/release/template");
-        }else{
+      }else{
           alert("您还未开通此权限！");
           this.$router.push('servicer');
-        }
-      }); 
+      }
     }
     
     

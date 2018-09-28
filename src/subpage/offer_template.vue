@@ -382,17 +382,21 @@
             })
     },
     getNowTime(){//获取当前时间,赋值给updateDate，用于资源市场的排序
-          var date = new Date();
-          var month = date.getMonth() + 1;
-          var strDate = date.getDate();
-          if (month >= 1 && month <= 9) {
-              month = "0" + month;
-          }
-          if (strDate >= 0 && strDate <= 9) {
-              strDate = "0" + strDate;
-          }
-          var currentDate = date.getFullYear() + "-" + month + "-" + strDate
-                  + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+          var now = new Date();   
+          var year = now.getFullYear(); //得到年份    
+          var month = now.getMonth()+1;//得到月份   
+          var date = now.getDate();//得到日期   
+          var day = now.getDay();//得到周几   
+          var hour = now.getHours();//得到小时    
+          var minu = now.getMinutes();//得到分钟    
+          var sec = now.getSeconds();//得到秒    
+          if (month < 10) month = "0" + month;    
+          if (date < 10) date = "0" + date;   
+          if (hour < 10) hour = "0" + hour;   
+          if (minu < 10) minu = "0" + minu;   
+          if (sec < 10) sec = "0" + sec;    
+          var currentDate = "";
+          currentDate = year + "-" + month + "-" + date+ " " + hour + ":" + minu + ":" + sec;
           return currentDate;
     }
 
