@@ -330,14 +330,14 @@
       position: relative;
       background: #f3fbff;
       button{
+        width: 85px;
+        height: 30px;
+        border-radius: 3px;
+        background: #F15749;
+        color: white;
         position: absolute;
-        right:2%;
-        min-height: 28px;
-        width: 12%;
-        top:14%;
-        color:white;
-        border-radius:3px;
-        background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+        right: 3%;
+        top: 12%;
       }
       .pople{
         margin-left: 80px;

@@ -250,7 +250,7 @@
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
-              _this.$refs.intention_mes_details.style.top='20%';
+              _this.$refs.intention_mes_details.style.top='15%';
               _this.$refs.intention_mes_details.style.opacity='1';
             })
           })
@@ -433,7 +433,7 @@
         color:rgba(170,170,170,1);
         line-height:26px;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
             span{
