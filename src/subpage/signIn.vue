@@ -19,7 +19,7 @@
 
           <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>
             手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="tel" maxlength="11" value="" v-model="Phone"/></li>
+            <input type="number" maxlength="11" value="" v-model="Phone"/></li>
           
 
           <li style="margin-top: 20px;"><i style="font-style:normal; color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="PhoneCode" maxlength="6"/>
@@ -79,7 +79,7 @@
         signInMaskShow:false,
         loadingSginIn:false,
         siginInText:'同意协议并注册',
-        Phone:null,
+        Phone:"",
         show: true,
         count: '',
         timer: null,
@@ -226,6 +226,17 @@
         return {
             errorText
         }
+    },
+
+
+    Phone: {
+      set: function(value) {
+          this.msg = value;
+        
+      },
+      get: function() {
+          return this.msg.replace(/[^0-9]+/g,'')
+      }
     },
     
 },
