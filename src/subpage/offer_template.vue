@@ -25,10 +25,14 @@
           <el-col :span="3"><div class="mes">{{item.amountRange}}</div></el-col>
           <el-col :span="4"><div class="mes bank" ref="person_offer_all_bank"                                
           >{{item.timeLimit}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.type1}}</div></el-col>
-          <el-col :span="3"><div class="mes date">{{item.type2}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.type3}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.type4}}</div></el-col>
+          <el-col :span="3" ><div class="mes"v-if="!item.type1">-</div>
+            <div v-else>{{item.type1}}</div></el-col>
+          <el-col :span="3" ><div class="mes"v-if="!item.type2 ">-</div>
+          <div v-else>{{item.type2}}</div></el-col>
+          <el-col :span="3" ><div class="mes"v-if="!item.type3 ">-</div>
+          <div v-else>{{item.type3}}</div></el-col>
+          <el-col :span="3" ><div class="mes" v-if="!item.type4">-</div>
+          <div v-else>{{item.type4}}</div></el-col>
 
           <el-col :span="5"><div class="mes pula" style="position:relative;">
             <p class="xs_w" style="position:absolute;right: 20px;top:10px;">

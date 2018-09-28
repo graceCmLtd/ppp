@@ -22,7 +22,7 @@
         <li>100W</li>
         <li>中国工商银行****支行</li>
         <li>中景实业有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;135883299890</li>
-        <li>2.34%+</li>
+        <li>2.34%+1</li>
         <li>3233.4</li>
         <li>
           <span class="Is"></span>
