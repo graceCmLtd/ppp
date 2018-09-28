@@ -27,7 +27,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">审核中</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
@@ -41,7 +41,7 @@
         </p>
       </div>
       <!--分页-->
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -165,7 +165,8 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     methods:{
@@ -175,7 +176,6 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'5',
-            "filter_str" : "未审核",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -188,15 +188,16 @@
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'3'
+            "IntentionType":'5'
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
-            _this.noteList=res.data;
-          }
+          if(res.data != '')
+            _this.total=res.data;
+          else
+            _this.showPaginate = false;
         })
       },
       current_change(currentPage){
@@ -223,8 +224,11 @@
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
-            console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+            console.log(res.data.length)
+            if(res.data.length === 1)
+                 _this.$refs.PaperIs.src=res.data[0].pic1;
+            else
+                _this.$refs.PaperIs.src='';
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{

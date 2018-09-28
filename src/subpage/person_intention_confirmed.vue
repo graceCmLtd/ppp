@@ -43,7 +43,7 @@
 
 
       <!--分页-->
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -185,7 +185,8 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     methods:{
@@ -216,9 +217,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
               _this.total = res.data;
-          }
+          else
+            _this.showPaginate = false;
         });
       },
       current_change(currentPage){
