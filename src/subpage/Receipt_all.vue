@@ -54,12 +54,12 @@
           <span>电话:{{item.contactsPhone}}</span>
           
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
-            <button type="button" name="button">票据详情</button>
+            <button type="button" name="button" @click="paperMes(index)">票据详情</button>
           </p>
         </div>
 
         <!-- 票据详情的弹窗 -->
-       <div class="intention_mes_details" ref="intention_mes_details">
+ <!--       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
@@ -79,8 +79,35 @@
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img v-bind:src="pic" alt="" ref="">
         </div>
-      </div>
+      </div> -->
 
+
+       <!-- 票据详情的弹窗的修改后-->
+      <div class="intention_mes_details" ref="intention_mes_details">
+         <div class="top_w">
+            <p>票据详情</p>
+          </div>
+        <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img v-bind:src="pic" alt="" ref="">
+        </div>
+
+        <div class="intention_mes_message">
+          <div class="message_left">
+            <ul>
+              <li style="height:100px;"><i style="font-style:normal; background:#F15749;color:#fff; font-size:12px;display:block;border-radius:3px;width:35px;height:20px;line-height:20px;margin-top:1px;">电银</i><span style="color:#F15749;font-weight:bold;">{{amount/10000}}w</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">报价金额</i></li>
+              <li><i style="font-style:normal; font-weight:bold;">每10w加</i><br><span style="font-weight:normal; color:#C0C0C0;">{{xPerLakh}}</span></li>
+              <li><span>{{transacDate}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">出票日期</i></li>
+              <li><span>{{bank}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">承对方</i></li>
+              <li><span>{{maturity}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">汇票到期</i></li>
+              <li style="border-right:none;"><span>{{remain_days}}天</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">剩余天数</i></li>
+            </ul>
+          </div>
+         
+             
+           
+        </div>
+   
+      </div>
 
       </div>
       <!--分页-->
@@ -93,6 +120,10 @@
           @current-change="current_change">
         </el-pagination>
       </div>
+
+      <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)"></div>
+
+    
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics(current_index)">
 
@@ -108,6 +139,7 @@
     data(){
       return{
         noteList:[],
+        day:null,
         intentionMaskShow:false,
         xPerLakh:null,
         transacDate:null,
@@ -241,6 +273,24 @@
 </script>
 
 <style lang="scss" scoped>
+.top_w{
+  width: 749px;
+  height:40px;
+  border-bottom:1px solid #F15749;
+  text-align:left;
+  line-height:40px;
+  p{
+    font-size:15px;
+    font-family:MicrosoftYaHei-Bold;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+    background:#F15749;
+    display:inline-block;
+    width:95px;
+    text-align:center;
+  }
+}
   .person_offer_all{
     width: 100%;
     height:100%;
@@ -363,22 +413,25 @@
   }
 
 
-  .intention_mes_details{
-    width: 670px;
-    height:540px;
-    background: white;
-    position: absolute;
-    left:50%;
-    top:15%;
-    z-index: 501;
-    opacity: 0;
-    display: none;
-    transition: all .5s;
-    overflow: hidden;
-    .intention_mes_pic{
-      width: 670px;
-      height:340px;
+    .intention_mes_details{
+      width: 750px;
+      height: 620px;
       background: white;
+      position: absolute;
+      left:50%;
+      top:15%;
+      z-index: 501;
+      opacity: 0;
+      display: none;
+      transition: all .5s;
+      overflow: hidden;
+    .intention_mes_pic{
+      width: 687px;
+      height: 350px;
+      background: white;
+      margin-left: 30px;
+      margin-top: 31px;
+
       img{
         width: 100%;
         height:100%;
@@ -388,14 +441,22 @@
       width: 100%;
       display: flex;
       height:200px;
+      border-top: 1px solid #979797;
+      margin-top: 10px;
       .message_left{
-        width: 50%;
+        width:100%;
         height:100%;
-        border-right:1px solid #ccc;
         ul{
-          padding-top:12%;
           li{
-            margin-bottom: 5%;
+              margin-bottom: 5%;
+              float: left;
+              padding: 0 30.2px;
+              line-height: 50px;
+              border-right: 1px solid #979797;
+              margin-top: 31px;
+            span{
+              font-weight:bold;
+            }
           }
         }
       }
