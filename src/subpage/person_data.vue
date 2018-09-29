@@ -165,9 +165,9 @@ export default {
             }
           }
         ).then((res)=>{
-          console.log(res)
-          window.localStorage.clear()
-          alert("认证成功！");
+          console.log(res);
+          window.localStorage.clear();
+          alert("认证信息提交成功,待审核...... ");
           _this.$router.push('/release/prise'); 
         })
         }
@@ -199,7 +199,7 @@ export default {
         ).then((res)=>{
           console.log(res)
           window.localStorage.clear()
-          alert("修改完成！");
+          alert("修改信息提交成功,待审核......");
           this.$router.push('/release/prise'); 
         });
       }
