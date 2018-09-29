@@ -33,12 +33,12 @@
 
 
 
-            <el-col :span="5"><router-link to="/release/Receipt/offerConfirm" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
+          <!--   <el-col :span="5"><router-link to="/release/Receipt/offerConfirm" tag="div" class="offer_tit offer_choesT" @click.native="offerCan1()"
                                            :class="{offer:color==4}"
             >卖家已确认
               <span class="person_offer_add"></span>
               <span class="person_offer_triangle" ref="Receipt_triangle_confirm"></span>
-            </router-link></el-col>
+            </router-link></el-col> -->
 
 
             <el-col :span="4"><router-link to="/release/Receipt/offerInvalid" tag="div" class="offer_tit offer_choesT" @click.native="offerCan2()"
