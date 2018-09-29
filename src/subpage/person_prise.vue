@@ -16,6 +16,7 @@
           <li>联系人电话</li>
           <li>联系人QQ</li>
           <li>联系人邮箱</li>
+          <li>审核状态</li>
         </ul>
         <ul class="right">
           <!--<li>****科技有限公司</li>-->
@@ -27,7 +28,7 @@
           <!--<li>64564647@qq.com</li>-->
           <li><input type="text" v-model:value="contactsEmail" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          
+          <li><input type="text" v-model:value="role" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
 
         </ul>
       </div>
@@ -80,7 +81,8 @@ export default {
       bankAccountName : '',
       bankName : '',
       bankAccount : '',
-      bankAddr : ''
+      bankAddr : '',
+      role : ''
     }
   },
 
@@ -99,6 +101,7 @@ export default {
               this.bankName=res.data[0].bankName;
               this.bankAccount=res.data[0].bankAccount;
               this.bankAddr = res.data[0].signUpAddr;
+              this.role=res.data[0].role;
             }
         });
         this.axios.get(this.oUrl+"/getPicsOfCom?contactsId="+contactsId).then((res)=>{
