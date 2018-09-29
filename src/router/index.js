@@ -129,11 +129,11 @@ const router = new Router({
               name:'offerCancel',
               component:resolve=>require(['@/subpage/Receipt_cancel'],resolve)
             },
-            {
-              path:'/release/Receipt/offerConfirm',//报价中
-              name:'offerConfirm',
-              component:resolve=>require(['@/subpage/Receipt_confirm'],resolve)
-            },
+            // {
+            //   path:'/release/Receipt/offerConfirm',//报价中
+            //   name:'offerConfirm',
+            //   component:resolve=>require(['@/subpage/Receipt_confirm'],resolve)
+            // },
             {
               path:'/release/Receipt/offerInvalid',//已失效的报价
               name:'offerInvalid',

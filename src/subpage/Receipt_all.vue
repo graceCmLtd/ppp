@@ -37,13 +37,13 @@
           <el-col :span="3" v-if="item.intentionStatus == '卖家已确认'"><div class="mes operaMes">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
             <!--<p><button type="button" name="button">放弃</button></p>-->
-            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">下一步</button></p>
+            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">去接单</button></p>
           </div>
         </el-col>
         <el-col :span="3" v-else-if="item.intentionStatus == '待接单'"><div class="mes operaMes">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
             <!--<p><button type="button" name="button">放弃</button></p>-->
-            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">下一步</button></p>
+            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">去接单</button></p>
           </div>
         </el-col>
         </el-row>
