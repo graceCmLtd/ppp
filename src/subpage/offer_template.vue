@@ -209,10 +209,10 @@
           orderId:'',
           amountRange:'',
           timeLimit:'',
-          type1:'',
-          type2:'',
-          type3:'',
-          type4:''
+          type1:null,
+          type2:null,
+          type3:null,
+          type4:null
         },
         formLabelWidth: '120px'
       }
@@ -289,6 +289,9 @@
             ).then((res)=>{
               console.log("addForm 返回值");
               console.log(res);
+              if (res.data.status == 'fail') {
+                alert(res.data.errorMsg)
+              }
               this.getReceiptAll();
             })
           }
@@ -327,6 +330,9 @@
             ).then((res)=>{
               console.log("update quote pool")
               console.log(res);
+              if (res.data.status == 'fail') {
+                alert(res.data.errorMsg)
+              }
               this.getReceiptAll();
             })
       },
@@ -578,7 +584,6 @@
     color:#fff;
     line-height:50px;
     text-align:center;
-
   }
 }
 .edit_w{
@@ -624,7 +629,7 @@
     color:#fff;
     display:inline-block;
     line-height:50px;
-   margin:0 20px;
+    margin:0 20px;
   }
 }
 </style>

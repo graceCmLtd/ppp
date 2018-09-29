@@ -175,7 +175,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'5',
+            "IntentionType":'6',
+            "billReferer":"资源池",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -345,14 +346,15 @@
       position: relative;
       background: #f3fbff;
       button{
-        position: absolute;
-        right:2%;
-        min-height: 28px;
-        width: 12%;
-        top:14%;
-        color:white;
-        border-radius:3px;
-        background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+          position: absolute;
+          right: 2%;
+          min-height: 28px;
+          width: 6%;
+          top: 26%;
+          color: white;
+          border-radius: 3px;
+          background: #F15749;
+          cursor: pointer;
       }
       .pople{
         margin-left: 80px;

@@ -85,7 +85,7 @@
       <p>
         <button type="button" name="button" @click="closeSave()">继续发布票据</button>
         <!-- <button type="button" name="button">查看审核状态</button> -->
-        <router-link to="/release/paper" tag="button">查看已发布的票据</router-link>
+        <router-link to="/release/intention/audit" tag="button">查看已发布的票据</router-link>
         
       </p>
     </div>
@@ -247,6 +247,18 @@
         if (getCookie('role')=="vip" || getCookie('role') == "normal") {
           
           return true;
+        }else if(getCookie("isAu")){
+          this.authVisible = true;
+          //this.$router.push({name:"Prise"})
+          _this.getCode();
+          var t;
+          clearTimeout(t);
+          t = setTimeout(function(){
+            _this.authVisible = false;
+            
+            _this.$router.push({name:"Servicer"})
+          },5000)
+          
         }else{
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
@@ -285,6 +297,7 @@
           this.$router.push('/signUp/password')
         }else{
           //let paperNumber=_this.$refs.paperNumber.value;
+          //alert("pppp")
           let paperNumber=_this.billNum;
           let amount=_this.$refs.amount.value;
           let acceptor=_this.$refs.acceptor.value;
@@ -292,10 +305,11 @@
           let The=window.localStorage.getItem('The');//票据反面图片
           let Id=getCookie('Iud');
           let typeSelect = _this.$refs.typeSelect.value;
+          let item = _this.$route.query.item;
           console.log("this  refs  aldfjkad")
           console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
-            // alert('请先完善票面信息！')
+             alert('请先完善票面信息！')
           }else if(!Is&& !The){
             alert('请先上传票据正面图片！')
           }/*else if(!The){
@@ -303,7 +317,8 @@
           }*/else{
             _this.loadingRele=true;
             _this.releText=''
-            _this.axios.post(this.oUrl+'/bills/addbill',{
+            _this.axios.post(this.oUrl+'/bills/addFromResourceMarket',{
+              "paramBill":{
                 "billInfo":{
                   "billNumber":paperNumber,
                   "billType":typeSelect,
@@ -315,18 +330,36 @@
                   "releaserId":Id,
                   "billPicsId":11111,
                   "transferable":true,
-                  "billReferer":"传统渠道"
+                  "billReferer":"资源池"
                 },
                 "billPics":{
                   "billNumber":paperNumber,
                   "pic1":Is,
                   "pic2":The,
                   "updateDate":"2018-08-08"
-                },
-                "userData":{
-                  "uuid":Id
                 }
               },
+              "paramQuote":{
+                "billNumber":paperNumber,
+                "quoterId":item.buyerId,
+                "quoteAmount":2000000,
+                "interest":item.interest,
+                "xPerLakh":10086,
+                "status":"报价完成，ok，进入意向",
+                "real_money":1,
+                "quoteDate":"2018-08-09"
+              },
+              "paramTransaction":{
+                  "transactionId":321321232,
+                  "transactionType":"pool",
+                  "billNumber":paperNumber,
+                  "buyerId":item.buyerId,
+                  "sellerId":Id,
+                  "amount":amount,
+                  "transactionStatus":"on sell",
+                  "transacDate":"2018-08-09"
+              }
+            },
               {headers:{
                   'Content-Type':'application/json'
                 }}

@@ -9,42 +9,42 @@
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose"
-              background-color="#545c64"
-              text-color="#fff"
-              active-text-color="#fff">
+              background-color="#fff"
+              text-color="#333"
+              active-text-color="#666666">
               <el-submenu index="1">
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>我是卖家</span>
+                  <!-- <i class="el-icon-location"></i> -->
+                  <span style="font-weight:bold;">我是卖家</span>
                 </template>
-                <el-menu-item index="1-1"  @click="data()" text-color="#ffd04b">我的求贴</el-menu-item>
+                <el-menu-item index="1-1"  @click="data()" text-color="#ffd04b" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">我的求贴</el-menu-item>
                 <el-menu-item index="1-2" @click="offer()">求贴意向</el-menu-item>
               </el-submenu>
               <el-submenu index="2">
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>我是买家</span>
+                  <!-- <i class="el-icon-location"></i> -->
+                  <span style="font-weight:bold;">我是买家</span>
                 </template>
-                <el-menu-item index="1-2" @click="order()">我的报价</el-menu-item>
-                <el-menu-item index="1-2" @click="jie()">我的接单</el-menu-item>
+                <el-menu-item index="1-2" @click="order()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">我的报价</el-menu-item>
+                <el-menu-item index="1-2" @click="jie()" style="border-bottom:1px solid #E6E6E6;">我的接单</el-menu-item>
                 <el-menu-item index="1-2" @click="releaseOffer()">发布/修改资源池报价</el-menu-item>
               </el-submenu>
               <el-submenu index="3">
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>我的订单</span>
+                  <!-- <i class="el-icon-location"></i> -->
+                  <span style="font-weight:bold;">我的订单</span>
                 </template>
-                <el-menu-item index="1-1" @click="sell()">我卖出的</el-menu-item>
-                <el-menu-item index="1-2" @click="buy()">我买入的</el-menu-item>
+                <el-menu-item index="1-1" @click="sell()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">我卖出的</el-menu-item>
+                <el-menu-item index="1-2" @click="buy()" style="border-bottom:1px solid #E6E6E6;">我买入的</el-menu-item>
               </el-submenu>
               <el-submenu index="4">
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <!-- <i class="el-icon-location"></i> -->
+                  <span style="font-weight:bold;">设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </template>
-                <el-menu-item index="1-1" @click="prise()">企业认证信息</el-menu-item>
-                <el-menu-item index="1-2">账户安全</el-menu-item>
-                <el-menu-item index="1-3" @click="message()">我的消息</el-menu-item>
+                <el-menu-item index="1-1" @click="prise()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">企业认证信息</el-menu-item>
+                <el-menu-item index="1-2" style="border-bottom:1px solid #E6E6E6;">账户安全</el-menu-item>
+                <el-menu-item index="1-3" @click="message()" >我的消息</el-menu-item>
               </el-submenu>
             </el-menu>
           </el-col>

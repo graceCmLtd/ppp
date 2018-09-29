@@ -35,7 +35,7 @@
        <div style="position: absolute;top: 33%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png"></div>
     </div>
     <p class="havelook">
-      <button type="button" name="button" @click="showWarning()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">平台担保支付</button>
+      <button type="button" name="button" @click="showWarning()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">接单去付款</button>
       <!-- <button type="button" name="button">查看交易进度</button> -->
     </p>
     <div class="person_detailed_prompt" ref="detailedPrompt">

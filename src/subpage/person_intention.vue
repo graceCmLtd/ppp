@@ -27,7 +27,7 @@
                 <span class="person_intention_triangle"></span>
               </router-link>
             </el-col>
-            <el-col :span="5">
+        <!--     <el-col :span="5">
               <router-link to="/release/intention/haveBeen"
                            tag="div" class="intention_title"
                            @click.native="intentionHaveBeen()"
@@ -36,7 +36,7 @@
                 
                 <span class="person_intention_triangle"></span>
               </router-link>
-            </el-col>
+            </el-col> -->
             <el-col :span="5">
               <router-link to="/release/intention/refused"
                            tag="div" class="intention_title rejected"
