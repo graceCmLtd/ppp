@@ -365,13 +365,13 @@
       min-width: 95px;
       border-left:1px solid #ccc;
       button{
-        width: 70%;
-        min-height: 20px;
+        width: 53%;
+        min-height: 28px;
         font-size: 12px;
-        border:1px solid #FE442B;
-        color:#FE442B;
-        background:white;
-        border-radius:3px;
+        border-radius: 3px;
+        background: #F15749;
+        color: #fff;
+
       }
     }
     .person_intention_contact{
