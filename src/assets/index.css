@@ -37,13 +37,16 @@ button{
   min-height: 80px;
   padding-top:10px;
 }
+.el-submenu__title{
+  padding-left: 40px !important;
+}
 .el-submenu .el-menu-item{
   height:80px;
   line-height: 80px;
 }
-.el-loading-spinner i{
+/*.el-loading-spinner i{
     color:white;
-}
+}*/
 .el-loading-spinner{
   margin-top:-10px;
 }
@@ -53,19 +56,22 @@ button{
 
 .el-pagination.is-background .el-pager li:not(.disabled).active{
   background: #f45643;
-  color:white!important;
+  color:#333!important;
 }
 .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li:hover{
-  color:#f45643!important;
+  color:#fff!important;
 }
 .el-cascader-menu__item.is-active{
-  color:#FF452C!important;
+  color:#F2F2F2!important;
 }
 input{
   outline: none;
   border:0;
 }
 
+.el-submenu {
+    border-bottom: 1px solid #E6E6E6!important;
+}
 
 
 /*弹窗*/

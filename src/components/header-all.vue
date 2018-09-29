@@ -146,8 +146,8 @@
       padding-top: 1%;
       cursor:pointer;
       position: absolute;
-      left:12%;
-      top:-3%;
+      left: 9%;
+      top: -8%;
       img{
         width: 100%;
         height:100%;

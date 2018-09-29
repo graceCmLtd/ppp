@@ -162,11 +162,11 @@ const router = new Router({
               name:'IntentionConfirmed',
               component:resolve=>require(['@/subpage/person_intention_confirmed'],resolve)
             },
-            {
-              path:'/release/intention/haveBeen',//已确认的报价
-              name:'IntentionHaveBeen',
-              component:resolve=>require(['@/subpage/person_intention_haveBeen'],resolve)
-            },
+            // {
+            //   path:'/release/intention/haveBeen',//已确认的报价
+            //   name:'IntentionHaveBeen',
+            //   component:resolve=>require(['@/subpage/person_intention_haveBeen'],resolve)
+            // },
             {
               path:'/release/intention/refused',//被拒绝的订单
               name:'IntentionRefused',

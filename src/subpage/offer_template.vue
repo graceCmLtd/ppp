@@ -584,7 +584,6 @@
     color:#fff;
     line-height:50px;
     text-align:center;
-
   }
 }
 .edit_w{
@@ -630,7 +629,7 @@
     color:#fff;
     display:inline-block;
     line-height:50px;
-   margin:0 20px;
+    margin:0 20px;
   }
 }
 </style>
