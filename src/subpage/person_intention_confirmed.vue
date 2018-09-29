@@ -43,7 +43,7 @@
 
 
       <!--分页-->
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -185,7 +185,8 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     methods:{
@@ -216,9 +217,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
               _this.total = res.data;
-          }
+          else
+            _this.showPaginate = false;
         });
       },
       current_change(currentPage){
@@ -250,7 +252,7 @@
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
-              _this.$refs.intention_mes_details.style.top='20%';
+              _this.$refs.intention_mes_details.style.top='15%';
               _this.$refs.intention_mes_details.style.opacity='1';
             })
           })
@@ -433,7 +435,7 @@
         color:rgba(170,170,170,1);
         line-height:26px;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
             span{

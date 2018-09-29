@@ -158,7 +158,7 @@
               <el-button type="primary" @click="editeNoteSubmit" >确 定</el-button>
             </span>
           </el-dialog>
-    <div class="block">
+    <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -185,6 +185,7 @@
         pageSize : 10,
         currentPage : 1,
         total : 0,
+        showPaginate : true,
         noteList:[],
         day:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
@@ -234,7 +235,10 @@
           _this.noteInfo = res.data[0].note
         });
         this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
-            this.total = res.data;
+            if(res.data != '')
+              this.total = res.data;
+            else
+              this.showPaginate = false;
         });
       },
       current_change(currentPage){
@@ -384,17 +388,21 @@
             })
     },
     getNowTime(){//获取当前时间,赋值给updateDate，用于资源市场的排序
-          var date = new Date();
-          var month = date.getMonth() + 1;
-          var strDate = date.getDate();
-          if (month >= 1 && month <= 9) {
-              month = "0" + month;
-          }
-          if (strDate >= 0 && strDate <= 9) {
-              strDate = "0" + strDate;
-          }
-          var currentDate = date.getFullYear() + "-" + month + "-" + strDate
-                  + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+          var now = new Date();   
+          var year = now.getFullYear(); //得到年份    
+          var month = now.getMonth()+1;//得到月份   
+          var date = now.getDate();//得到日期   
+          var day = now.getDay();//得到周几   
+          var hour = now.getHours();//得到小时    
+          var minu = now.getMinutes();//得到分钟    
+          var sec = now.getSeconds();//得到秒    
+          if (month < 10) month = "0" + month;    
+          if (date < 10) date = "0" + date;   
+          if (hour < 10) hour = "0" + hour;   
+          if (minu < 10) minu = "0" + minu;   
+          if (sec < 10) sec = "0" + sec;    
+          var currentDate = "";
+          currentDate = year + "-" + month + "-" + date+ " " + hour + ":" + minu + ":" + sec;
           return currentDate;
     }
 

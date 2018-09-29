@@ -41,7 +41,7 @@
         </p>
       </div>
       <!--分页-->
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -175,7 +175,8 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     methods:{
@@ -205,9 +206,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
             _this.total = res.data;
-          }
+          else
+            _this.showPaginate = false;
         });
       },
       current_change(currentPage){
@@ -401,12 +403,11 @@
       min-width: 95px;
       border-left:1px solid #ccc;
       button{
-        width: 70%;
-        min-height: 20px;
+        width: 52%;
+        min-height: 32px;
         font-size: 12px;
-        border:1px solid #FE442B;
-        color:#FE442B;
-        background:white;
+        background:#F15749;
+        color:#fff;
         border-radius:3px;
       }
     }
@@ -421,11 +422,12 @@
         position: absolute;
         right:2%;
         min-height: 28px;
-        width: 12%;
-        top:14%;
+        width: 7%;
+        top:26%;
         color:white;
         border-radius:3px;
-        background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+        background: #F15749;
+        line-height:28px;
       }
       .pople{
         margin-left: 80px;

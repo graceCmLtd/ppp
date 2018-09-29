@@ -42,7 +42,7 @@
         </p>
       </div>
       <!--分页-->
-      <div class="block">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -55,26 +55,6 @@
           <div class="top_w">
             <p>票据详情</p>
           </div>
-        <!-- 修改前的票据详情弹窗 -->
-<!--         <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div> -->
-
-
-
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
       
@@ -136,7 +116,8 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
-        total : 0
+        total : 0,
+        showPaginate : true
       }
     },
     methods:{
@@ -165,9 +146,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
+          if(res.data != '')
             _this.total = res.data;
-          }
+          else
+            _this.showPaginate = false;
         });
       },
       current_change(currentPage){
@@ -216,7 +198,7 @@
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
-              _this.$refs.intention_mes_details.style.top='20%';
+              _this.$refs.intention_mes_details.style.top='15%';
               _this.$refs.intention_mes_details.style.opacity='1';
             })
           })
@@ -278,7 +260,7 @@
     left: 37%;
     z-index: 999;
     padding-left:57px;
-     padding-top:15px;
+     padding-top:2px;
     .show_w1{
       width:350px;
       height:250px;
@@ -467,7 +449,7 @@
         width: 50%;
         height:100%;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
             text-align:left;
