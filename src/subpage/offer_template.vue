@@ -115,16 +115,28 @@
               </el-select>
             </el-form-item>
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
-              <el-input v-model="addForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
+              <el-input v-model="addForm.type1"  placeholder="利率%" ></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money1"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type2"  placeholder="利率%"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money2"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type3" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type3" placeholder="利率%"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money3"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type4"  placeholder="利率%"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money4"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             
           </el-form>
@@ -230,11 +242,12 @@
         console.log(Id)
         this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId?buyerId='+Id+'&pageSize='+this.pageSize+'&currentPage='+this.currentPage).then((res)=>{
           let _this=this;
-          console.log(res);
+          console.log(res.data);
           _this.noteList=res.data;
           _this.noteInfo = res.data[0].note
         });
         this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
+             console.log(res.data);
             if(res.data != '')
               this.total = res.data;
             else
@@ -265,6 +278,11 @@
       addFormSubmit(){
           let Id = getCookie("Iud");
           this.dialogAddFormVisible = false;
+          let type1 = this.addForm.type1+"-"+this.addForm.money1;
+          let type2 = this.addForm.type2+"-"+this.addForm.money2;
+          let type3 = this.addForm.type3+"-"+this.addForm.money3;
+          let type4 = this.addForm.type4+"-"+this.addForm.money4;
+          console.log(type1+"="+type2+"="+type3+"="+type4);
           //alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
@@ -274,10 +292,10 @@
                 "buyerId":Id,
                 "amountRange":this.addForm.amountRange,
                 "timeLimit":this.addForm.timeLimit,
-                "type1":this.addForm.type1,
-                "type2":this.addForm.type2,
-                "type3":this.addForm.type3,
-                "type4":this.addForm.type4,
+                "type1":type1,
+                "type2":type2,
+                "type3":type3,
+                "type4":type4,
                 "billType":"电银",
                 "priority":"2",
                 "updateDate":this.getNowTime(),
