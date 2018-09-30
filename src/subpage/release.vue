@@ -103,7 +103,12 @@ export default {
       this.$router.push('/release/Receipt')
     },
     releaseOffer(){  //发布/修改报价
-      this.$router.push('/release/template')
+      if(getCookie('role') == 'vip'){
+        this.$router.push('/release/template')
+      }else{
+        alert("您未开通此权限！");
+        this.$router.push('/servicer');
+      }
     }
 	},
   components:{
@@ -129,6 +134,9 @@ export default {
     .release_con_table{
       height:100%;
       background: white;
+      margin-top: 3px;
+      box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
+
     }
     .release_con_mes{
       width: 100%;
