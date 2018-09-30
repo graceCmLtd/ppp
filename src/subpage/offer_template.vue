@@ -46,8 +46,8 @@
  <!-- update form 修改报价 -->
         <el-dialog title="修改资源池报价" :visible.sync="dialogUpdateFormVisible">
           <el-form :inline = "true" :model="updateForm">
-            <el-form-item label="票面金额" :label-width="formLabelWidth">
-              <el-select v-model="updateForm.amountRange" placeholder="请选择票面金额范围">
+            <el-form-item label="票面金额"  :label-width="formLabelWidth">
+              <el-select v-model="updateForm.amountRange" disabled placeholder="请选择票面金额范围">
                 <el-option label="10-49.9w" value="10-49.9w"></el-option>
                 <el-option label="50-99.9w" value="50-99.9w"></el-option>
                 <el-option label="100-300w" value="100-300w"></el-option>
@@ -55,7 +55,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="期限" :label-width="formLabelWidth">
-              <el-select v-model="updateForm.timeLimit" placeholder="请选择期限">
+              <el-select v-model="updateForm.timeLimit" disabled placeholder="请选择期限">
                 <el-option label="3个月以下" value="3个月以下"></el-option>
                 <el-option label="3-6个月" value="3-6个月"></el-option>
                 <el-option label="6个月以上" value="6个月以上"></el-option>

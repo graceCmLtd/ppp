@@ -255,7 +255,7 @@
           t = setTimeout(function(){
             _this.authVisible = false;
             
-            _this.$router.push({name:"Servicer"})
+            _this.$router.push({name:"Prise"})
           },5000)
           
         }else{
@@ -267,7 +267,7 @@
           t = setTimeout(function(){
             _this.authVisible = false;
             
-            _this.$router.push({name:"Prise"})
+            _this.$router.push({name:"Servicer"})
           },5000)
         }
       },
