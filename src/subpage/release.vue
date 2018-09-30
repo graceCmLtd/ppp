@@ -134,6 +134,9 @@ export default {
     .release_con_table{
       height:100%;
       background: white;
+      margin-top: 3px;
+      box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
+
     }
     .release_con_mes{
       width: 100%;
