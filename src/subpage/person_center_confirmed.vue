@@ -29,6 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
           </div></el-col> -->
@@ -39,9 +40,11 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <button type="button" name="button" @click="paperMes(index)">票据详情</button>
  
+
         </p>
       </div>
 
@@ -224,7 +227,6 @@
     margin-left: 44px;
     box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
     font-size:13px;
-
 }
 .time_w{
   width:126px;
