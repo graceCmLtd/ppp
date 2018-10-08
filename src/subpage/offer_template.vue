@@ -46,8 +46,8 @@
  <!-- update form 修改报价 -->
         <el-dialog title="修改资源池报价" :visible.sync="dialogUpdateFormVisible">
           <el-form :inline = "true" :model="updateForm">
-            <el-form-item label="票面金额" :label-width="formLabelWidth">
-              <el-select v-model="updateForm.amountRange" placeholder="请选择票面金额范围">
+            <el-form-item label="票面金额"  :label-width="formLabelWidth">
+              <el-select v-model="updateForm.amountRange" disabled placeholder="请选择票面金额范围">
                 <el-option label="10-49.9w" value="10-49.9w"></el-option>
                 <el-option label="50-99.9w" value="50-99.9w"></el-option>
                 <el-option label="100-300w" value="100-300w"></el-option>
@@ -55,7 +55,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="期限" :label-width="formLabelWidth">
-              <el-select v-model="updateForm.timeLimit" placeholder="请选择期限">
+              <el-select v-model="updateForm.timeLimit" disabled placeholder="请选择期限">
                 <el-option label="3个月以下" value="3个月以下"></el-option>
                 <el-option label="3-6个月" value="3-6个月"></el-option>
                 <el-option label="6个月以上" value="6个月以上"></el-option>
@@ -64,14 +64,26 @@
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
               <el-input v-model="updateForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
             </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="updateForm.money1"  placeholder="每十万加(元)" ></el-input>
+            </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
               <el-input v-model="updateForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="updateForm.money2"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
               <el-input v-model="updateForm.type3"  placeholder="利率 / 利率+每十万加"></el-input>
             </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="updateForm.money3"  placeholder="每十万加(元)" ></el-input>
+            </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
               <el-input v-model="updateForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="updateForm.money4"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             
           </el-form>
@@ -115,16 +127,28 @@
               </el-select>
             </el-form-item>
             <el-form-item label="国有+国股" :label-width="formLabelWidth"  >
-              <el-input v-model="addForm.type1"  placeholder="利率 / 利率+每十万加" ></el-input>
+              <el-input v-model="addForm.type1"  placeholder="利率%" ></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money1"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="大商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type2"  placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type2"  placeholder="利率%"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money2"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="授信城商" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type3" placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type3" placeholder="利率%"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money3"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             <el-form-item label="村镇银行" :label-width="formLabelWidth">
-              <el-input v-model="addForm.type4"  placeholder="利率 / 利率+每十万加"></el-input>
+              <el-input v-model="addForm.type4"  placeholder="利率%"></el-input>
+            </el-form-item>
+            <el-form-item label="每十万加" :label-width="formLabelWidth"  >
+              <el-input v-model="addForm.money4"  placeholder="每十万加(元)" ></el-input>
             </el-form-item>
             
           </el-form>
@@ -187,6 +211,7 @@
         total : 0,
         showPaginate : true,
         noteList:[],
+        //list : [],
         day:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         current_index:'',
@@ -212,7 +237,11 @@
           type1:null,
           type2:null,
           type3:null,
-          type4:null
+          type4:null,
+          money1:0,
+          money2:0,
+          money3:0,
+          money4:0,
         },
         formLabelWidth: '120px'
       }
@@ -230,10 +259,11 @@
         console.log(Id)
         this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId?buyerId='+Id+'&pageSize='+this.pageSize+'&currentPage='+this.currentPage).then((res)=>{
           let _this=this;
-          console.log(res);
+          console.log(res.data);
           _this.noteList=res.data;
-          _this.noteInfo = res.data[0].note
+          _this.noteInfo = res.data[0].note;
         });
+        
         this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
             if(res.data != '')
               this.total = res.data;
@@ -265,6 +295,11 @@
       addFormSubmit(){
           let Id = getCookie("Iud");
           this.dialogAddFormVisible = false;
+          let type1 = this.addForm.type1+"% + "+this.addForm.money1;
+          let type2 = this.addForm.type2+"% + "+this.addForm.money2;
+          let type3 = this.addForm.type3+"% + "+this.addForm.money3;
+          let type4 = this.addForm.type4+"% + "+this.addForm.money4;
+          console.log(type1+"="+type2+"="+type3+"="+type4);
           //alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
@@ -274,10 +309,10 @@
                 "buyerId":Id,
                 "amountRange":this.addForm.amountRange,
                 "timeLimit":this.addForm.timeLimit,
-                "type1":this.addForm.type1,
-                "type2":this.addForm.type2,
-                "type3":this.addForm.type3,
-                "type4":this.addForm.type4,
+                "type1":type1,
+                "type2":type2,
+                "type3":type3,
+                "type4":type4,
                 "billType":"电银",
                 "priority":"2",
                 "updateDate":this.getNowTime(),
@@ -301,24 +336,33 @@
         this.updateForm.orderId = this.noteList[index].orderId;
         this.updateForm.amountRange = this.noteList[index].amountRange;
         this.updateForm.timeLimit = this.noteList[index].timeLimit;
-        this.updateForm.type1 = this.noteList[index].type1;
-        this.updateForm.type2 = this.noteList[index].type2;
-        this.updateForm.type3 = this.noteList[index].type3;
-        this.updateForm.type4 = this.noteList[index].type4;
+        this.updateForm.type1 = this.noteList[index].type1.split('% + ')[0];
+        this.updateForm.type2 = this.noteList[index].type2.split('% + ')[0];
+        this.updateForm.type3 = this.noteList[index].type3.split('% + ')[0];
+        this.updateForm.type4 = this.noteList[index].type4.split('% + ')[0];
+        this.updateForm.money1 = this.noteList[index].type1.split('% + ')[1];
+        this.updateForm.money2 = this.noteList[index].type2.split('% + ')[1];
+        this.updateForm.money3 = this.noteList[index].type3.split('% + ')[1];
+        this.updateForm.money4 = this.noteList[index].type4.split('% + ')[1];
         
       },
       dialogUpdateQuoteSubmit(){
           this.dialogUpdateFormVisible = false;
           let Id = getCookie("Iud");
+          let type1 = this.updateForm.type1+"% + "+this.updateForm.money1;
+          let type2 = this.updateForm.type2+"% + "+this.updateForm.money2;
+          let type3 = this.updateForm.type3+"% + "+this.updateForm.money3;
+          let type4 = this.updateForm.type4+"% + "+this.updateForm.money4;
+          console.log(this.updateForm.orderId);
           this.axios.post(this.oUrl+'/resourceMarket/updateByOrderId',{
                 "orderId":this.updateForm.orderId,
                 "buyerId":Id,
                 "amountRange":this.updateForm.amountRange,
                 "timeLimit":this.updateForm.timeLimit,
-                "type1":this.updateForm.type1,
-                "type2":this.updateForm.type2,
-                "type3":this.updateForm.type3,
-                "type4":this.updateForm.type4,
+                "type1":type1,
+                "type2":type2,
+                "type3":type3,
+                "type4":type4,
                 "billType":"电银",
                 "priority":"2",
                 "updateDate":this.getNowTime(),
