@@ -18,7 +18,8 @@
                   <span style="font-weight:bold;">我是卖家</span>
                 </template>
                 <el-menu-item index="1-1"  @click="data()" text-color="#ffd04b" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">我的求贴</el-menu-item>
-                <el-menu-item index="1-2" @click="offer()">求贴意向</el-menu-item>
+                <el-menu-item index="1-2" @click="offer()" style="border-bottom:1px solid #E6E6E6;">求贴意向</el-menu-item>
+                <el-menu-item index="1-3" @click="center()">订单中心</el-menu-item>
               </el-submenu>
               <el-submenu index="2">
                 <template slot="title">
@@ -87,6 +88,9 @@ export default {
     },
     offer(){//用户发布的报价
       this.$router.push('/release/intention')
+    },
+    center(){//订单中心
+      this.$router.push('/release/center')  
     },
     prise(){//用户企业认证信息
       if(getCookie('isAu')=='true'){
