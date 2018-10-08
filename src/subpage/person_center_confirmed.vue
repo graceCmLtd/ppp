@@ -28,16 +28,19 @@
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment">提醒付款</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
+          <span>订单号：7483758395353</span>
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+          <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
         </p>
       </div>
 
@@ -99,72 +102,7 @@
 
     </div>
 
-    <!--内容-->
-    <!-- <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-     
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
+ 
   </div>
 </template>
 
@@ -274,6 +212,30 @@
 </script>
 
 <style lang="scss" scoped>
+#payment{
+    min-height: 28px;
+    width: 7%;
+    color: white;
+    border-radius: 3px;
+    background: #48C1F3;
+    line-height: 30px;
+    margin-top: 32px;
+    margin-left: 44px;
+    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
+}
+.time_w{
+  width:126px;
+  height:19px;
+  font-size:14px;
+  font-weight:bold;
+  color:rgba(3,3,3,1);
+  line-height:19px;
+  display:inline-block;
+  background:#fff;
+  box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  margin-left:55px;
+}
 .top_w{
   width:700px;
   height:40px;
@@ -282,7 +244,6 @@
   line-height:40px;
   p{
     font-size:15px;
-    font-family:MicrosoftYaHei-Bold;
     font-weight:bold;
     color:rgba(255,255,255,1);
     line-height:40px;
@@ -383,7 +344,7 @@
       background: #f3fbff;
       button{
         position: absolute;
-        right:2%;
+        right:15%;
         min-height: 28px;
         width: 7%;
         top:26%;
