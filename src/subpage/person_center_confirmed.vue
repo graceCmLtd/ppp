@@ -28,7 +28,8 @@
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment">提醒付款</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
           </div></el-col> -->
@@ -39,8 +40,11 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
+          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+ 
+
         </p>
       </div>
 
@@ -222,6 +226,7 @@
     margin-top: 32px;
     margin-left: 44px;
     box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
+    font-size:13px;
 }
 .time_w{
   width:126px;
@@ -234,7 +239,8 @@
   background:#fff;
   box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
   border-radius:4px;
-  margin-left:55px;
+  position: relative;
+  left: 16%;
 }
 .top_w{
   width:700px;
@@ -344,10 +350,10 @@
       background: #f3fbff;
       button{
         position: absolute;
-        right:15%;
+        right:27%;
         min-height: 28px;
         width: 7%;
-        top:26%;
+        top:30%;
         color:white;
         border-radius:3px;
         background: #F15749;

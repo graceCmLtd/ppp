@@ -14,6 +14,7 @@
           <el-col><div class="person_offerIn_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
           </p>
            <el-col><div class="person_offerIn_title" style="text-align:center; font-size:13px;color:#666; line-height:32px;">{{item.releaseDate}}</div></el-col>
+          <el-col><div  @click="delItem(index)" class="person_offerIn_title" style="font-size:10px; background:#F15749; width:15px; height:15px; border-radius:50px; line-height:15px; color:#fff;text-align:center; position:absolute; top:10px; right:10px; cursor: pointer; box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);">X</div></el-col>
         </el-row>
       </div>
     </el-row>
@@ -88,7 +89,11 @@
         console.log(this.noteList[index].billNumber)
         this.getBillNum()
         //this.$emit("transb")
-      }
+      },
+      // 删除
+        delItem: function(index){
+          this.noteList.splice(index,1);
+      },
     },
     created(){
       this.getPaper()
