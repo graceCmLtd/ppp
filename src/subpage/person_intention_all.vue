@@ -63,9 +63,9 @@
               <li>银行监管账号：<span>6222299993778389939</span></li>
               <li>票据总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
-              <li>买方：<span>北京清水湾地实业有限公司</span></li>
-              <li>贴现利率：<span>9%</span></li>
-              <li>实收金额：<span>94.95W(含平台担保交易500)</span></li>
+              <li>买方：<span>{{buyer}}</span></li>
+              <li>贴现利率：<span>{{rate}}</span></li>
+              <li>实收金额：<span>{{realMoeny}}W(含平台担保交易500)</span></li>
             </ul>
             </div>
         </div>
@@ -108,6 +108,9 @@
         xPerLakh:null,
         transacDate:null,
         bank:null,
+        buyer : null,
+        realMoeny : null,
+        rate : null,
         releaseDate:null,
         maturity:null,
         remain_days:null,
@@ -117,7 +120,8 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true
+        showPaginate : true,
+
       }
     },
     methods:{
@@ -183,6 +187,9 @@
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
+        this.buyer = _this.noteList[index].companyName;
+        this.rate = _this.noteList[index].interest;
+        this.realMoeny = (_this.noteList[index].real_money/10000).toFixed(2);
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;
