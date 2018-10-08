@@ -316,7 +316,12 @@
             // alert('请先上传票据反面图片！')
           }*/else{
             _this.loadingRele=true;
-            _this.releText=''
+            _this.releText='';
+            //获取利率和每十万加，并计算实付金额，保留小数点后两位
+            let rate = item.interest.split("% + ")[0];
+            let XperLakh = item.interest.split("% + ")[1];
+            let real_money = (amount-((amount*rate/100*_this.dayRe)/360+(amount/100000*XperLakh))).toFixed(2);
+            console.log(real_money+"--"+rate);
             _this.axios.post(this.oUrl+'/bills/addFromResourceMarket',{
               "paramBill":{
                 "billInfo":{
@@ -343,10 +348,10 @@
                 "billNumber":paperNumber,
                 "quoterId":item.buyerId,
                 "quoteAmount":2000000,
-                "interest":item.interest,
-                "xPerLakh":10086,
+                "interest":rate,
+                "xPerLakh":XperLakh,
                 "status":"报价完成，ok，进入意向",
-                "real_money":1,
+                "real_money":real_money,
                 "quoteDate":"2018-08-09"
               },
               "paramTransaction":{

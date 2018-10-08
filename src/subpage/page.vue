@@ -109,7 +109,7 @@
           <el-col :span="3"><div class="table type">承兑行类型</div></el-col>
           <el-col :span="3"><div class="table time">期限</div></el-col>
           <el-col :span="3"><div class="table acce">金额</div></el-col>
-          <el-col :span="3"><div class="table amount">利率</div></el-col>
+          <el-col :span="3"><div class="table amount">利率 + 每十万加</div></el-col>
           <el-col :span="4"><div class="table data">联系人</div></el-col>
           <el-col :span="4"><div class="table status">操作</div></el-col>
           <el-col :span="4"><div class="table status">备注</div></el-col>
@@ -125,7 +125,7 @@
           <el-col :span="3"><div class="tableMes type">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="tableMes time">{{item.timeLimit}}</div></el-col>
           <el-col :span="3"><div class="tableMes acce">{{item.amountRange}}</div></el-col>
-          <el-col :span="3"><div class="tableMes amount">{{item.interest}}%</div></el-col>
+          <el-col :span="3"><div class="tableMes amount">{{item.interest}}</div></el-col>
           <el-col :span="4"><div class="tableMes data">{{item.contactsName}}</div></el-col>
           <el-col :span="4"><div class="tableMes status">
             <button type="button" name="button" @click="isReg">我要贴</button>
