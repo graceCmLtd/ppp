@@ -65,6 +65,11 @@ const router = new Router({
           component:resolve=>require(['@/subpage/person_buy'],resolve)
         },
         {
+          path:'/release/center',//订单中心
+          name:'Center',
+          component:resolve=>require(['@/subpage/person_center'],resolve)
+        },
+        {
           path:'/release/audit',//用户审核中的票据
           name:'Audit',
           component:resolve=>require(['@/subpage/person_audit'],resolve)
@@ -181,6 +186,45 @@ const router = new Router({
           redirect:'/release/intention/all'
         },
 
+
+        {
+          path:'/release/center',//订单中心
+          name:'Center',
+          component:resolve=>require(['@/subpage/person_center'],resolve),
+          children:[
+            {
+              path:'/release/center/all',//全部
+              name:'CenterAll',
+              component:resolve=>require(['@/subpage/person_center_all'],resolve)
+            },
+            {
+              path:'/release/center/confirmed',//待支付
+              name:'CenterConfirmed',
+              component:resolve=>require(['@/subpage/person_center_confirmed'],resolve)
+            },
+            {
+              path:'/release/center/refused',//代背书
+              name:'CenterRefused',
+              component:resolve=>require(['@/subpage/person_center_refused'],resolve)
+            },
+            {
+              path:'/release/center/audit',//代签收
+              name:'CenterAudit',
+              component:resolve=>require(['@/subpage/person_center_audit'],resolve)
+            },
+           {
+              path:'/release/center/completes',//已完成
+              name:'CenterCompletes',
+              component:resolve=>require(['@/subpage/person_center_completes'],resolve)
+            },
+            {
+              path:'/release/center/invalids',//已失效
+              name:'CenterInvalids',
+              component:resolve=>require(['@/subpage/person_center_invalids'],resolve)
+            },
+          ],
+          redirect:'/release/center/all'
+        },
 
 
         {
@@ -326,7 +370,7 @@ router.beforeEach((to,from,next)=>{
   //登录权限页面
   const nextRoute=['OfferIn','OfferBe','choseType','SellerCancelOrder','SellerHadDeal','OfferDe','Template',
   'Order','Prise','Repid','Detailed','Pass','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
-  'IntentionConfirmed','IntentionAll','Cancel','Prrices','Accepted','OfferAll','Buy','Audit','Sell','Trad',
+  'IntentionConfirmed','IntentionAll','Cancel','Prrices','Accepted','OfferAll','Buy','Center','Audit','Sell','Trad',
   'Data','Details','Offer','NoOffer'
 ];
   if(nextRoute.indexOf(to.name)>-1){

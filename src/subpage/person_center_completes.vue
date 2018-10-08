@@ -1,4 +1,4 @@
-<!-- 用户全部报价 -->
+<!-- 审核中 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -8,13 +8,13 @@
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">报价</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
       </el-row>
-      <div class="" style="min-width:216px; background:#fff;" v-for="(item,index) in noteList" :key="index">
+      <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
-          <el-col :span="3"><div class="intention_mes"><span>{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</span></div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
           <el-col :span="3">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
@@ -27,16 +27,15 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3" v-if="item.intentionStatus == '已接单'"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click="confirmTransaction(index)">确认交易</button>
-          </div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
+          <!-- <el-col :span="3"><div class="intention_mes operaMes">
+            <button type="button" name="button">查看进度</button>
+          </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
-          
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
@@ -52,48 +51,100 @@
         </el-pagination>
       </div>
       <div class="intention_mes_details" ref="intention_mes_details">
-          <div class="top_w">
-            <p>票据详情</p>
-          </div>
-       <!-- 修改后的票据详情弹窗 -->
-        <div class="intention_mes_message">
-      
-          <div class="message_left">
-            <ul>
-              <li>银行监管账号：<span>6222299993778389939</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>买方：<span>{{buyer}}</span></li>
-              <li>贴现利率：<span>{{rate}}</span></li>
-              <li>实收金额：<span>{{realMoeny}}W(含平台担保交易500)</span></li>
-            </ul>
-            </div>
-        </div>
-
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
-
+        <div class="intention_mes_message">
+          <div class="message_left">
+            <ul>
+              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>每10w加：<span>{{xPerLakh}}</span></li>
+              <li>出票日期：<span>{{transacDate}}</span></li>
+            </ul>
+          </div>
+          <div class="message_right">
+            <ul>
+              <li>承对方：<span>{{bank}}</span></li>
+              <li>汇票到期日：<span>{{maturity}}</span></li>
+              <li>剩余天数：<span>{{remain_days}}天</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
-
 
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
     </div>
-    <div class="show_w" v-show="isShow">
-      <div class="show_w1">
-      <p>买家已将价格由之前95W(94.5W)</p>
-      <p>修改为94.9W除去平台担保费500</p>
-      <p>实收金额为94.85W</p>
-      <p class="cr_w">
+
+    <!--内容-->
+   <!--  <div class="content_w">
       
-        <a><router-link to="/batch">确认</router-link> </a>
-        <a  @click="hiddenShow()">拒绝</a>    
-      </p>
+      <div class="content_w_first">
+        <ul>
+          <li><a href="">电银</a></li>
+          <li><a href="">中国银行**支行</a></li>
+          <li><a href="">100W</a></li>
+          <li><a href="">2018-07-30</a></li>
+          <li><a href="">7天</a></li>
+          <li>
+            <a href="">年化:10%
+              <p class="wrie_w"></p>
+              <p class="san_w">每10W加:***</p>
+            </a>
+          </li>
+          <li><a href="">已接单</a></li>
+          <li style="border-right: none;">...
+            <button class="btn_w">确定交易</button>
+          </li>
+        </ul>
       </div>
-    </div>
-   
+      
+      <div class="content_w_second">
+        <ul>
+          <li><a href="">张家湾****贸易有限公司</a></li>
+          <li><a href="">赵总</a></li>
+          <li><a href="">13900323434</a></li>
+          <li>
+            <button class="btn_w">详情</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content_w_first">
+        <ul>
+          <li><a href="">电银</a></li>
+          <li><a href="">中国银行**支行</a></li>
+          <li><a href="">100W</a></li>
+          <li><a href="">2018-07-30</a></li>
+          <li><a href="">7天</a></li>
+          <li>
+            <a href="">年化：10%</a>
+            <a href="">每10W加：***</a>
+          </li>
+          <li><a href="">已接单</a></li>
+          <li style="border-right: none;">
+            <a href="" class="no-color">...</a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <div class="content_w_second">
+        <ul>
+          <li><a href="">张家湾****贸易有限公司</a></li>
+          <li><a href="">赵总</a></li>
+          <li><a href="">13900323434</a></li>
+          <li>
+            <button class="btn_w" >详情</button>
+          </li>
+        </ul>
+      </div>
+
+    </div> -->
+
+
+    
   </div>
 </template>
 
@@ -108,20 +159,14 @@
         xPerLakh:null,
         transacDate:null,
         bank:null,
-        buyer : null,
-        realMoeny : null,
-        rate : null,
         releaseDate:null,
         maturity:null,
         remain_days:null,
-        isShow:false,
-        theHref :"tencent://message/?uin=1157785194&Site=pengpengpiao.cn&Menu=yes",
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true,
-
+        showPaginate : true
       }
     },
     methods:{
@@ -130,7 +175,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1',
+            "IntentionType":'6',
+            "billReferer":"资源池",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -138,58 +184,37 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("intention dada sssss")
           console.log(res)
           _this.noteList=res.data;
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'5'
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
           if(res.data != '')
-            _this.total = res.data;
+            _this.total=res.data;
           else
             _this.showPaginate = false;
-        });
+        })
       },
       current_change(currentPage){
         this.currentPage = currentPage;
         this.getIntenTionList();
       },
-        confirmTransaction:function(index){
-            let _this=this;
-            let Id=getCookie('Iud');
-            _this.isShow = !_this.isShow;
-            let billNumberLoca=_this.noteList[index].billNumber;
-            _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
-                "billNumber":billNumberLoca,
-                "intentionStatus":"卖家已确认"/*,
-                "quoterId":Id*/
-              },
-              {headers:{
-                  'Content-Type':'application/json'
-                }}
-            ).then((res)=>{
-              console.log("卖家确认交易操作 返回值：")
-              console.log(res)
-              _this.getIntenTionList();
-              /*_this.noteList=res.data;*/
-            })
-          },
-      hiddenShow:function () {
-                var that = this;
-                that.isShow = false;
-            }, 
+      linkToA(index){
+        /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
+        let _this=this;
+        let Id=getCookie('Iud');
+        _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
+        //alert(index)
+      },
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
-        this.buyer = _this.noteList[index].companyName;
-        this.rate = _this.noteList[index].interest;
-        this.realMoeny = (_this.noteList[index].real_money/10000).toFixed(2);
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;
@@ -200,23 +225,19 @@
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
-            console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+            console.log(res.data.length)
+            if(res.data.length === 1)
+                 _this.$refs.PaperIs.src=res.data[0].pic1;
+            else
+                _this.$refs.PaperIs.src='';
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
-              _this.$refs.intention_mes_details.style.top='15%';
+              _this.$refs.intention_mes_details.style.top='20%';
               _this.$refs.intention_mes_details.style.opacity='1';
             })
           })
         })
-      },
-      linkToA(index){
-        /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
-        let _this=this;
-        let Id=getCookie('Iud');
-        _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
-        //alert(index)
       },
       closePics(){
         this.$refs.intention_mes_details.style.top='15%';
@@ -229,75 +250,11 @@
     },
     created(){
       this.getIntenTionList()
-      //.linkToA(0)
-    },
-   
-
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-.top_w{
-  width:700px;
-  height:40px;
-  border-bottom:1px solid #F15749;
-  text-align:left;
-  line-height:40px;
-  p{
-    font-size:15px;
-    font-family:MicrosoftYaHei-Bold;
-    font-weight:bold;
-    color:rgba(255,255,255,1);
-    line-height:40px;
-    background:#F15749;
-    display:inline-block;
-    width:95px;
-    text-align:center;
-  }
-}
-.show_w{
-    width:450px;
-    height:350px;
-    background: white;
-    background:url("../../static/img/jigou.png");
-    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
-    border-radius: 4px;
-    position: fixed;
-    top: 26%;
-    left: 37%;
-    z-index: 999;
-    padding-left:57px;
-     padding-top:2px;
-    .show_w1{
-      width:350px;
-      height:250px;
-      background:#fff;
-      border-radius:5px; 
-    }
-    p{
-        margin-top: 35px;
-        line-height: 10px;
-        font-size: 14px;
-        font-family: MicrosoftYaHei-Bold;
-        font-weight: bold;
-        color: #666666;
-        padding-top: 16px;
-    
-    }
-    .cr_w{
-      a{
-        width:156px;
-        height:35px;
-        background:rgba(241,87,73,1);
-        border-radius:4px;
-        color:#fff;
-        display: inline-block;
-        line-height:35px;
-        cursor: pointer;
-        text-decoration:none;
-      }
-    }
-}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -308,7 +265,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-  
+    width: 100%;
     margin-top: 3%;
     .intention_mes_title{
       background: #F15749;
@@ -372,13 +329,13 @@
       min-width: 95px;
       border-left:1px solid #ccc;
       button{
-        width: 53%;
-        min-height: 28px;
+        width: 70%;
+        min-height: 20px;
         font-size: 12px;
-        border-radius: 3px;
-        background: #F15749;
-        color: #fff;
-
+        border:1px solid #FE442B;
+        color:#FE442B;
+        background:white;
+        border-radius:3px;
       }
     }
     .person_intention_contact{
@@ -389,14 +346,15 @@
       position: relative;
       background: #f3fbff;
       button{
-        position: absolute;
-        right:2%;
-        min-height: 28px;
-        width: 7%;
-        top:14%;
-        color:white;
-        border-radius:3px;
-        background: #F15749;
+          position: absolute;
+          right: 2%;
+          min-height: 28px;
+          width: 6%;
+          top: 26%;
+          color: white;
+          border-radius: 3px;
+          background: #F15749;
+          cursor: pointer;
       }
       .pople{
         margin-left: 80px;
@@ -405,21 +363,20 @@
     }
   }
   .intention_mes_details{
-    width: 700px;
-    height: 800px;
-    background:rgba(255,255,255,1);
-    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
+    width: 670px;
+    height:540px;
+    background: white;
     position: absolute;
     left:50%;
+    margin-left:-286px;
     top:15%;
     z-index: 501;
     opacity: 0;
     display: none;
     transition: all .5s;
     overflow: hidden;
-
     .intention_mes_pic{
-      width: 695px;
+      width: 670px;
       height:340px;
       background: white;
       img{
@@ -430,25 +387,15 @@
     .intention_mes_message{
       width: 100%;
       display: flex;
+      height:300px;
       .message_left{
-        width: 100%;
+        width: 50%;
         height:100%;
         border-right:1px solid #ccc;
-        text-align: left;
-        margin-left: 100px;
-        font-weight:bold;
-        color:rgba(170,170,170,1);
-        line-height:26px;
         ul{
           padding-top:12%;
           li{
             margin-bottom: 5%;
-            span{
-              font-size:16px;
-              font-weight:bold;
-              color:rgba(102,102,102,1);
-              line-height:26px;
-            }
           }
         }
       }
@@ -456,10 +403,9 @@
         width: 50%;
         height:100%;
         ul{
-          padding-top:5%;
+          padding-top:12%;
           li{
             margin-bottom: 5%;
-            text-align:left;
           }
         }
       }
@@ -467,6 +413,7 @@
   }
   .content_w{
     height: 306px;
+    width: 100%;
     margin: 0 auto;
     background: #fff;
     .content_w_first {

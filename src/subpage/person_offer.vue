@@ -136,7 +136,7 @@ export default {
     }
   }
   .person_offer_view{
-    min-height: 500px;
+    // min-height: 500px;
   }
  }
 }

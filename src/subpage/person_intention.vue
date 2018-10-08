@@ -144,7 +144,7 @@
  
       margin-left:1%;
       margin-top:3%;
-      min-height: 500px;
+      // min-height: 500px;
       background: #fff;
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
       .person_intention_title_external{

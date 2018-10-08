@@ -238,10 +238,10 @@
           type2:null,
           type3:null,
           type4:null,
-          money1:null,
-          money2:null,
-          money3:null,
-          money4:null,
+          money1:0,
+          money2:0,
+          money3:0,
+          money4:0,
         },
         formLabelWidth: '120px'
       }
@@ -295,10 +295,10 @@
       addFormSubmit(){
           let Id = getCookie("Iud");
           this.dialogAddFormVisible = false;
-          let type1 = this.addForm.type1+"%+"+this.addForm.money1;
-          let type2 = this.addForm.type2+"%+"+this.addForm.money2;
-          let type3 = this.addForm.type3+"%+"+this.addForm.money3;
-          let type4 = this.addForm.type4+"%+"+this.addForm.money4;
+          let type1 = this.addForm.type1+"% + "+this.addForm.money1;
+          let type2 = this.addForm.type2+"% + "+this.addForm.money2;
+          let type3 = this.addForm.type3+"% + "+this.addForm.money3;
+          let type4 = this.addForm.type4+"% + "+this.addForm.money4;
           console.log(type1+"="+type2+"="+type3+"="+type4);
           //alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
@@ -336,23 +336,23 @@
         this.updateForm.orderId = this.noteList[index].orderId;
         this.updateForm.amountRange = this.noteList[index].amountRange;
         this.updateForm.timeLimit = this.noteList[index].timeLimit;
-        this.updateForm.type1 = this.noteList[index].type1.split('%+')[0];
-        this.updateForm.type2 = this.noteList[index].type2.split('%+')[0];
-        this.updateForm.type3 = this.noteList[index].type3.split('%+')[0];
-        this.updateForm.type4 = this.noteList[index].type4.split('%+')[0];
-        this.updateForm.money1 = this.noteList[index].type1.split('%+')[1];
-        this.updateForm.money2 = this.noteList[index].type2.split('%+')[1];
-        this.updateForm.money3 = this.noteList[index].type3.split('%+')[1];
-        this.updateForm.money4 = this.noteList[index].type4.split('%+')[1];
+        this.updateForm.type1 = this.noteList[index].type1.split('% + ')[0];
+        this.updateForm.type2 = this.noteList[index].type2.split('% + ')[0];
+        this.updateForm.type3 = this.noteList[index].type3.split('% + ')[0];
+        this.updateForm.type4 = this.noteList[index].type4.split('% + ')[0];
+        this.updateForm.money1 = this.noteList[index].type1.split('% + ')[1];
+        this.updateForm.money2 = this.noteList[index].type2.split('% + ')[1];
+        this.updateForm.money3 = this.noteList[index].type3.split('% + ')[1];
+        this.updateForm.money4 = this.noteList[index].type4.split('% + ')[1];
         
       },
       dialogUpdateQuoteSubmit(){
           this.dialogUpdateFormVisible = false;
           let Id = getCookie("Iud");
-          let type1 = this.updateForm.type1+"%+"+this.updateForm.money1;
-          let type2 = this.updateForm.type2+"%+"+this.updateForm.money2;
-          let type3 = this.updateForm.type3+"%+"+this.updateForm.money3;
-          let type4 = this.updateForm.type4+"%+"+this.updateForm.money4;
+          let type1 = this.updateForm.type1+"% + "+this.updateForm.money1;
+          let type2 = this.updateForm.type2+"% + "+this.updateForm.money2;
+          let type3 = this.updateForm.type3+"% + "+this.updateForm.money3;
+          let type4 = this.updateForm.type4+"% + "+this.updateForm.money4;
           console.log(this.updateForm.orderId);
           this.axios.post(this.oUrl+'/resourceMarket/updateByOrderId',{
                 "orderId":this.updateForm.orderId,
