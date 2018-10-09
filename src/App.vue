@@ -30,6 +30,11 @@ export default {
 <style>
 body{
   background:#F2F2F2;
+  font-family:"微软雅黑";
+}
+a{
+  text-decoration:none;
+  color:#fff;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -260,7 +260,6 @@ export default {
     }
     .market_paper_table{
       width: 100%;
-      height:42px;
       font-size: 14px;
 
       .table{

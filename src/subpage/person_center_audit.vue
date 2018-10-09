@@ -34,8 +34,9 @@
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
-            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#F15749; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px;">提醒买家</div></el-col>
+            <el-col :span="3"><div  v-on:click="toggle()" style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px;cursor: pointer;">提醒买家</div></el-col>
         </el-row>
+
         <p class="person_intention_contact">
           <span>订单号：7483758395353</span>
           <span>{{item.companyName}}</span>
@@ -83,73 +84,10 @@
 
     </div>
 
-    <!--内容-->
-   <!--  <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
-
-
+        <!-- 提醒买家的标志 -->
+        <div class="show_w" v-show="isShow"  @click="hiddenShow()">已提醒买家付款 
+        </div>
+    
     
   </div>
 </template>
@@ -172,6 +110,7 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
+        isShow:false,
         showPaginate : true
       }
     },
@@ -190,7 +129,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log(res)
+          // console.log(res)
           _this.noteList=res.data;
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
@@ -252,29 +191,52 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      }
+      },
+      toggle:function(){
+            this.isShow = !this.isShow;
+      },
+      hiddenShow:function () {
+                var that = this;
+                that.isShow = false;
+
+      }, 
     },
     created(){
       this.getIntenTionList()
-    }
+    },
   }
 </script>
 
 <style lang="scss" scoped>
-.time_w{
-  width:126px;
-  height:19px;
-  font-size:14px;
-  font-weight:bold;
-  color:rgba(3,3,3,1);
-  line-height:19px;
-  display:inline-block;
-  background:#fff;
-  box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
-  border-radius:4px;
-  position: relative;
-  left: 16%;
-}
+  .show_w{
+    width:190px;
+    height:40px;
+    background:#fff; 
+    position:absolute; 
+    left:83%;
+    top:39%;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    line-height:40px;
+    border-radius:5px;
+    cursor:pointer;
+    color:#333;
+
+   }
+
+  .time_w{
+    width:126px;
+    height:19px;
+    font-size:14px;
+    font-weight:bold;
+    color:rgba(3,3,3,1);
+    line-height:19px;
+    display:inline-block;
+    background:#fff;
+    box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+    border-radius:4px;
+    position: relative;
+    left: 16%;
+  }
   .intention_mes_mask{
     width: 100%;
     height:100%;

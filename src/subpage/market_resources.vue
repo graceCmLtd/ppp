@@ -188,6 +188,8 @@ export default {
         width: 100%;
         margin: 0 auto;
         margin-top: 6%;
+        background: #fff;
+        box-shadow: 0px 0px 30px 0px rgba(188, 188, 188, 0.5);
       .market_resources_box{
         transition: all .5s;
         position: relative;
