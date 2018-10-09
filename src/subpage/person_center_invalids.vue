@@ -27,17 +27,20 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
+          <!-- <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
+
+             <el-col :span="3"><div class="intention_mes">已失效</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
+          <el-col :span="3"><div class="intention_mes">...</div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+          <!-- <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
         </p>
       </div>
       <!--分页-->

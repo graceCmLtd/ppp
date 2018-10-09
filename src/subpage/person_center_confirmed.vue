@@ -227,6 +227,7 @@
     margin-left: 44px;
     box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
     font-size:13px;
+    cursor: pointer;
 }
 .time_w{
   width:126px;

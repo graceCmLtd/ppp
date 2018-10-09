@@ -27,16 +27,22 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col>
+
+          <el-col :span="3"><div class="intention_mes">等待买家签收</div></el-col>
+          <!-- 修改前 -->
+          <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
+            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#F15749; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px;">提醒买家</div></el-col>
         </el-row>
         <p class="person_intention_contact">
+          <span>订单号：7483758395353</span>
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
@@ -255,6 +261,20 @@
 </script>
 
 <style lang="scss" scoped>
+.time_w{
+  width:126px;
+  height:19px;
+  font-size:14px;
+  font-weight:bold;
+  color:rgba(3,3,3,1);
+  line-height:19px;
+  display:inline-block;
+  background:#fff;
+  box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position: relative;
+  left: 16%;
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;

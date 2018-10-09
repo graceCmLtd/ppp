@@ -163,7 +163,6 @@
       }
     }
     .person_center_con{
- 
       margin-left:1%;
       margin-top:3%;
       // min-height: 500px;

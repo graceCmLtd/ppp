@@ -33,11 +33,14 @@
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
+          <span>订单号：7483758395353</span>
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+
+          <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
@@ -230,6 +233,20 @@
 </script>
 
 <style lang="scss" scoped>
+.time_w{
+  width:126px;
+  height:19px;
+  font-size:14px;
+  font-weight:bold;
+  color:rgba(3,3,3,1);
+  line-height:19px;
+  display:inline-block;
+  background:#fff;
+  box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position: relative;
+  left: 16%;
+}
 .top_w{
   width:700px;
   height:40px;
@@ -383,13 +400,14 @@
       background: #f3fbff;
       button{
         position: absolute;
-        right:2%;
+        right:27%;
         min-height: 28px;
         width: 7%;
-        top:14%;
+        top:30%;
         color:white;
         border-radius:3px;
         background: #F15749;
+        line-height:28px;
       }
       .pople{
         margin-left: 80px;
