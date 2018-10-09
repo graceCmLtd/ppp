@@ -28,6 +28,7 @@
                 </template>
                 <el-menu-item index="1-2" @click="order()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">我的报价</el-menu-item>
                 <el-menu-item index="1-2" @click="jie()" style="border-bottom:1px solid #E6E6E6;">我的接单</el-menu-item>
+                <el-menu-item index="1-2" @click="orderws()" style="border-bottom:1px solid #E6E6E6;">订单中心</el-menu-item>
                 <el-menu-item index="1-2" @click="releaseOffer()">发布/修改资源池报价</el-menu-item>
               </el-submenu>
               <el-submenu index="3">
@@ -89,7 +90,7 @@ export default {
     offer(){//用户发布的报价
       this.$router.push('/release/intention')
     },
-    center(){//订单中心
+    center(){//我是卖家订单中心
       this.$router.push('/release/center')  
     },
     prise(){//用户企业认证信息
@@ -105,6 +106,9 @@ export default {
     },
     jie(){//我的接单
       this.$router.push('/release/Receipt')
+    },
+    orderws(){//我是买家里的订单中心
+      this.$router.push('/release/Orderws')
     },
     releaseOffer(){  //发布/修改报价
       if(getCookie('role') == 'vip'){

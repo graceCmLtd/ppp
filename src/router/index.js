@@ -148,6 +148,46 @@ const router = new Router({
           redirect:'/release/Receipt/ReceiptAll'
         },
 
+        // 我是买家订单中心
+
+           {
+          path:'/release/orderws',//我是买家订单中心
+          name:'Orderws',
+          component:resolve=>require(['@/subpage/person_orderws'],resolve),
+          children:[
+            {
+              path:'/release/orderws/all',//全部
+              name:'OrderwsAll',
+              component:resolve=>require(['@/subpage/person_orderws_all'],resolve)
+            },
+            {
+              path:'/release/orderws/confirmed',//待支付
+              name:'OrderwsConfirmed',
+              component:resolve=>require(['@/subpage/person_orderws_confirmed'],resolve)
+            },
+            {
+              path:'/release/orderws/refused',//代背书
+              name:'OrderwsRefused',
+              component:resolve=>require(['@/subpage/person_orderws_refused'],resolve)
+            },
+            {
+              path:'/release/orderws/audit',//代签收
+              name:'OrderwsAudit',
+              component:resolve=>require(['@/subpage/person_orderws_audit'],resolve)
+            },
+           {
+              path:'/release/orderws/completes',//已完成
+              name:'OrderwsCompletes',
+              component:resolve=>require(['@/subpage/person_orderws_completes'],resolve)
+            },
+            {
+              path:'/release/orderws/invalids',//已失效
+              name:'OrderwsInvalids',
+              component:resolve=>require(['@/subpage/person_orderws_invalids'],resolve)
+            },
+          ],
+          redirect:'/release/orderws/all'
+        },
 
 
 
@@ -188,7 +228,7 @@ const router = new Router({
 
 
         {
-          path:'/release/center',//订单中心
+          path:'/release/center',//我是买家订单中心
           name:'Center',
           component:resolve=>require(['@/subpage/person_center'],resolve),
           children:[
@@ -370,7 +410,7 @@ router.beforeEach((to,from,next)=>{
   //登录权限页面
   const nextRoute=['OfferIn','OfferBe','choseType','SellerCancelOrder','SellerHadDeal','OfferDe','Template',
   'Order','Prise','Repid','Detailed','Pass','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
-  'IntentionConfirmed','IntentionAll','Cancel','Prrices','Accepted','OfferAll','Buy','Center','Audit','Sell','Trad',
+  'IntentionConfirmed','IntentionAll','Cancel','Prrices','Accepted','Receipt','OfferAll','Buy','Center','Orderws','Audit','Sell','Trad',
   'Data','Details','Offer','NoOffer'
 ];
   if(nextRoute.indexOf(to.name)>-1){
