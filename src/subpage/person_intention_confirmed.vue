@@ -44,16 +44,16 @@
 
       <!-- 修改价格的弹窗 -->
 
-      <el-dialog  :visible.sync="isShow"  >
-        <!-- <div class="show_w"  > -->
+      <!-- <el-dialog title="修改金额" :visible.sync="isShow"> -->
+        <div class="show_w" v-if="isShow" >
         <div class="center_w">
             <p>修改付款金额</p>
             <p>原实付金额：{{realMoeny/10000}}W</p>
             <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
             <p @click="changeSubmit(item)">确认修改</p>
         </div>
-      <!-- </div> -->
-      </el-dialog>
+      </div>
+      <!-- </el-dialog> -->
       
       <!--分页-->
       <div class="block" v-if="showPaginate">
