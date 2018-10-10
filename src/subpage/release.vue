@@ -91,7 +91,7 @@ export default {
       this.$router.push('/release/intention')
     },
     center(){//我是卖家订单中心
-      this.$router.push('/release/center')  
+      this.$router.push('/release/sellerCenter')  
     },
     prise(){//用户企业认证信息
       if(getCookie('isAu')=='true'){
