@@ -282,6 +282,11 @@ const router = new Router({
           name:'Detailed',
           component:resolve=>require(['@/subpage/person_detailed'],resolve)
         },
+          {
+          path:'/release/forward',//提现
+          name:'Forward',
+          component:resolve=>require(['@/subpage/person_forward'],resolve)
+        },
         {
           path:'/release/repid',//急速发票
           name:'Repid',
@@ -409,7 +414,7 @@ const router = new Router({
 router.beforeEach((to,from,next)=>{
   //登录权限页面
   const nextRoute=['OfferIn','OfferBe','choseType','SellerCancelOrder','SellerHadDeal','OfferDe','Template',
-  'Order','Prise','Repid','Detailed','Pass','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
+  'Order','Prise','Repid','Detailed','Forward','Pass','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
   'IntentionConfirmed','IntentionAll','Cancel','Prrices','Accepted','Receipt','OfferAll','Buy','Center','Orderws','Audit','Sell','Trad',
   'Data','Details','Offer','NoOffer'
 ];
