@@ -112,72 +112,7 @@
 
     </div>
 
-    <!--内容-->
-    <!-- <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-     
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
+   
   </div>
 </template>
 
@@ -386,13 +321,11 @@
       min-width: 95px;
       border-left:1px solid #ccc;
       button{
-        width: 70%;
-        min-height: 20px;
-        font-size: 12px;
-        border:1px solid #FE442B;
-        color:#FE442B;
-        background:white;
-        border-radius:3px;
+        width: 56%;
+        min-height: 30px;
+        border-radius: 3px;
+        background: #F15749;
+        color: #fff;
       }
     }
     .person_intention_contact{
