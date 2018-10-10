@@ -163,10 +163,10 @@
         this.currentPage = currentPage;
         this.getIntenTionList();
       },
-        hiddenShow:function () {
-                var that = this;
-                that.isShow = false;
-            }, 
+      hiddenShow:function () {
+          var that = this;
+          that.isShow = false;
+      }, 
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
         let _this=this;
