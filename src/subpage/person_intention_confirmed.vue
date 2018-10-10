@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button" @click="isShow =true">修改金额</button>
+            <button type="button" name="button" @click="modifyAmount(item)">修改金额</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -48,9 +48,9 @@
         <div class="show_w" v-if="isShow" >
         <div class="center_w">
             <p>修改付款金额</p>
-            <p>原实付金额：{{realMoeny/10000}}W</p>
+            <p>原实付金额：{{currentItem.real_money/10000}}W</p>
             <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
-            <a @click="changeSubmit(item)">确认修改</a>
+            <a @click="modifyMoneySubmit()">确认修改</a>
             <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
         </div>
       </div>
@@ -122,7 +122,8 @@
         total : 0,
         showPaginate : true,
         isShow:false,
-        new_money:''
+        new_money:0,
+        currentItem:null
       }
     },
     methods:{
@@ -158,6 +159,22 @@
           else
             _this.showPaginate = false;
         });
+      },
+      /*修改金额*/
+      modifyAmount(item){
+        this.isShow = true;
+        this.currentItem = item;
+        //alert(this.currentItem.real_money)
+      },
+      /*修改金额提交操作*/
+      modifyMoneySubmit(){
+        if (!this.new_money) {
+          alert("请填写金额，或点击取消")  
+          
+        }else{
+          alert("tijia")
+        }
+        
       },
       current_change(currentPage){
         this.currentPage = currentPage;
