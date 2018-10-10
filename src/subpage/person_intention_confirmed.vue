@@ -28,9 +28,9 @@
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <!-- <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">确认交易</button>
-          </div></el-col> -->
+          <el-col :span="3"><div class="intention_mes operaMes">
+            <button type="button" name="button" @click="isShow =true">修改金额</button>
+          </div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span>{{item.companyName}}</span>
@@ -39,9 +39,22 @@
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
+        
       </div>
 
+      <!-- 修改价格的弹窗 -->
 
+      <el-dialog  :visible.sync="isShow"  >
+        <!-- <div class="show_w"  > -->
+        <div class="center_w">
+            <p>修改付款金额</p>
+            <p>原实付金额：{{realMoeny/10000}}W</p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
+            <p @click="changeSubmit(item)">确认修改</p>
+        </div>
+      <!-- </div> -->
+      </el-dialog>
+      
       <!--分页-->
       <div class="block" v-if="showPaginate">
         <el-pagination
@@ -189,7 +202,9 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true
+        showPaginate : true,
+        isShow:false,
+        new_money:''
       }
     },
     methods:{
@@ -540,6 +555,60 @@
     }
 
   }
+.show_w{
+  width:500px;
+  height:450px;
+  background:linear-gradient(180deg,rgba(255,125,85,1) 0%,rgba(255,111,77,1) 100%);
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position:fixed;
+  bottom: 3%;
+  left: 31%;
+  z-index: 999;
+  .center_w{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
 
+     p:nth-child(1){
+        font-size:22px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(246,85,60,1);
+        line-height: 93px;
+   } 
+
+      p:nth-child(2){
+        font-size:16px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(102,102,102,1);
+        line-height: 60px;
+   } 
+     p:nth-child(3){
+      font-size:16px;
+      font-family:MicrosoftYaHei-Bold;
+      font-weight:bold;
+      color:rgba(51,51,51,1);
+      line-height: 89px;
+   } 
+      p:nth-child(4){
+        width:220px;
+        height:40px;
+        background:rgba(241,87,73,1);
+        box-shadow:0px 2px 4px 0px rgba(249,108,108,0.5);
+        border-radius:4px;
+        color:#fff;
+        line-height:40px;
+        font-weight:bold;
+        margin:0 auto;
+        cursor: pointer;
+    }
+  }
+}
 
 </style>
