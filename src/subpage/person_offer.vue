@@ -4,7 +4,7 @@
     <div class="offer_pic">
         <img src="../../static/img/offer2.png" alt="">
     </div>
-    <span style="color:#F15749; position:relative; top:37px; left:110px; font-weight:bold; z-index: 999;" >如买家已接收你的报价，请去我的接单里查看 
+    <span style="color:#F15749; position:relative; top:37px; left:110px; font-weight:bold; z-index: 999;" >如卖家已接收你的报价，请去我的接单里查看 
       <router-link to="/release/Receipt/ReceiptAll" tag="span"><img style="width:100px; height:30px; position:relative; top:10px;" src="../../static/img/9.14.png">   </router-link>
     </span>
 

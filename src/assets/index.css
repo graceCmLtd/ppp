@@ -48,7 +48,7 @@ button{
     color:white;
 }*/
 .el-loading-spinner{
-  margin-top:-10px;
+  margin-top:-10px; 
 }
 .el-loading-spinner .path{
   stroke: #f45643;
