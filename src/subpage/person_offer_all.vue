@@ -182,7 +182,7 @@
         current_index:'',
         amount:null,
         releaseDate:null,
-        maturity:null,
+        maturity:'',
         remain_days:null,
         real_money:null ,
         pic:'',
@@ -209,6 +209,7 @@
           
           console.log("get all quotes")
           console.log(res)
+          console.log(typeof(res.data[0].maturity))
           _this.noteList=res.data;
           /*for(let v in res.data){
             // console.log(res.data[v].maturity)
