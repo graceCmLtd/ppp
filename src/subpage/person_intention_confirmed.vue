@@ -50,7 +50,8 @@
             <p>修改付款金额</p>
             <p>原实付金额：{{realMoeny/10000}}W</p>
             <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
-            <p @click="changeSubmit(item)">确认修改</p>
+            <a @click="changeSubmit(item)">确认修改</a>
+            <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
         </div>
       </div>
       <!-- </el-dialog> -->
@@ -70,24 +71,6 @@
         <div class="top_w">
             <p>票据详情</p>
           </div>
-        <!-- 修改前的票据详情弹窗 -->
-  <!--       <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div> -->
-
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
       
@@ -112,72 +95,7 @@
 
     </div>
 
-    <!--内容-->
-    <!-- <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-     
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
+   
   </div>
 </template>
 
@@ -245,6 +163,10 @@
         this.currentPage = currentPage;
         this.getIntenTionList();
       },
+        hiddenShow:function () {
+                var that = this;
+                that.isShow = false;
+            }, 
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
         let _this=this;
@@ -386,13 +308,11 @@
       min-width: 95px;
       border-left:1px solid #ccc;
       button{
-        width: 70%;
-        min-height: 20px;
-        font-size: 12px;
-        border:1px solid #FE442B;
-        color:#FE442B;
-        background:white;
-        border-radius:3px;
+        width: 56%;
+        min-height: 30px;
+        border-radius: 3px;
+        background: #F15749;
+        color: #fff;
       }
     }
     .person_intention_contact{
@@ -596,17 +516,19 @@
       color:rgba(51,51,51,1);
       line-height: 89px;
    } 
-      p:nth-child(4){
-        width:220px;
-        height:40px;
+      a{
+        width:100px;
+        height:35px;
         background:rgba(241,87,73,1);
         box-shadow:0px 2px 4px 0px rgba(249,108,108,0.5);
         border-radius:4px;
         color:#fff;
-        line-height:40px;
+        line-height:35px;
         font-weight:bold;
-        margin:0 auto;
         cursor: pointer;
+        display:inline-block;
+        margin:20px 20px;
+
     }
   }
 }
