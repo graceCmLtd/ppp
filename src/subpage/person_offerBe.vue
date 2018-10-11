@@ -6,7 +6,7 @@
 
       <div @click="onSelect(index)" style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 150px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);">
         <el-row >
-          <el-col><div id="name_w" style="margin-top:5px;">{{item.acceptor}}</div></el-col>
+          <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;" :title="getValue(index)">{{item.acceptor}}</div></el-col>
 
           <el-col><div  id="name_w_limit" >{{item.amount/10000}}w</div></el-col>
           <p style="float:right;width:120px; font-size:14px; height:50px; line-height:25px; padding-top:-5px;">
@@ -89,6 +89,9 @@
         console.log(this.noteList[index].billNumber)
         this.getBillNum()
         //this.$emit("transb")
+      },
+        getValue(index){
+        return this.noteList[index].acceptor
       },
       // 删除
         delItem: function(index){
