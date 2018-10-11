@@ -17,21 +17,17 @@
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
           <el-col :span="3">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
-            <div class="intention_mes bankMes"
-                 
-            >{{item.acceptor}}</div></el-col>
+            <div class="intention_mes bankMes" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;cursor:pointer;">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col>
-<<<<<<< HEAD
+
       <!--     <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-            <el-col :span="3"><div class="intention_mes">100w</div></el-col>
-=======
+          
           <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
->>>>>>> 52a91dde0adbec48f60fac76de7a9e921f37dc6b
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment">环迅支付</div></el-col>
 
@@ -323,8 +319,9 @@
       border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
-      font-size: 13px;
+      font-size: 14px;
       min-width: 95px;
+      line-height: 60px;
       .interest{
         height:35px;
         line-height: 35px;
