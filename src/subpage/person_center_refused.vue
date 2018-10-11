@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 <!-- 我是卖家订单中心  待背书页面 -->
-=======
-<!-- 待买家拒绝 -->
->>>>>>> e52c44c506f64438f01dfb239e0d05a68103c5fa
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
