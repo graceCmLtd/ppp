@@ -1,4 +1,4 @@
-<!-- 待买家确认 -->
+<!-- 我是卖家订单中心  全部订单 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -27,7 +27,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">100w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
 
@@ -36,9 +36,9 @@
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span>订单号：7483758395353</span>
-          <span>{{item.companyName}}</span>
-          <span class="pople">{{item.contactsName}}</span>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span class="pople">买家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
@@ -139,8 +139,8 @@
         /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'3',
-            "filter_str":"待接单",
+            "IntentionType":'1',
+            //"filter_str":"待接单",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -148,13 +148,12 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log(res)
           _this.noteList=res.data;
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'3',
-            "filter_str":"待接单",
+            "IntentionType":'1',
+            //"filter_str":"待接单",
           },
           {headers:{
               'Content-Type':'application/json'

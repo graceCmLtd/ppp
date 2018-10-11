@@ -27,7 +27,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">买家已确认签收</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
           <el-col :span="3">
@@ -43,9 +43,9 @@
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span>订单号：7483758395353</span>
-          <span>{{item.companyName}}</span>
-          <span class="pople">{{item.contactsName}}</span>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span class="pople">买家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
          <!--  <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
@@ -186,8 +186,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'6',
-            "billReferer":"资源池",
+            "IntentionType":'3',
+            "filter_str":"已签收",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -200,7 +200,8 @@
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'5'
+            "IntentionType":'3',
+            "filter_str":"已背书"
           },
           {headers:{
               'Content-Type':'application/json'

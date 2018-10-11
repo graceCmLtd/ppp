@@ -1,4 +1,8 @@
-<!-- 被拒绝的订单 -->
+<<<<<<< HEAD
+<!-- 我是卖家订单中心  待背书页面 -->
+=======
+<!-- 待买家拒绝 -->
+>>>>>>> e52c44c506f64438f01dfb239e0d05a68103c5fa
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -22,24 +26,52 @@
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes amountMes">
+          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col>
+        <!--   <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
-          </div></el-col>
+          </div></el-col> -->
+          <el-col :span="3"><div class="intention_mes">100w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()">上传背书凭证</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
+            <button type="button" name="button">确认交易</button>
           </div></el-col> -->
         </el-row>
+        <div class="show_w" v-show="isShow">
+          <div class="center_w">
+            <p>上传背书凭证</p>
+            <p>请上传您已背书的照片或截图</p>
+            <p class="cut_w" ><input type="file" accept="image/jpeg" name="" @change="upLoadIs"></p>
+            <p>
+              <a>确认上传</a>
+              <a @click="hiddenShow()" style="background:#ccc;">取消</a>
+            </p>
+          </div>
+        </div>
+
+
         <p class="person_intention_contact">
+<<<<<<< HEAD
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span class="pople">买家联系人：{{item.contactsName}}</span>
+=======
+          <span>订单号：7483758395353</span>
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
+>>>>>>> e52c44c506f64438f01dfb239e0d05a68103c5fa
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+
+          <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
+          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+ 
+
         </p>
       </div>
+
+
       <!--分页-->
       <div class="block" v-if="showPaginate">
         <el-pagination
@@ -50,25 +82,37 @@
           @current-change="current_change">
         </el-pagination>
       </div>
+
       <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+        <div class="top_w">
+            <p>票据详情</p>
         </div>
+
+       <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
+<<<<<<< HEAD
+              <li>票据金额：<span>{{amount/10000}}w</span></li>  
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
             </ul>
           </div>
           <div class="message_right">
             <ul>
+=======
+              <li>银行监管账号：<span>6222299993778389939</span></li>
+              <li>票据总额：<span>{{amount/10000}}w</span></li>
+>>>>>>> e52c44c506f64438f01dfb239e0d05a68103c5fa
               <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
+              <li>买方：<span>北京清水湾地实业有限公司</span></li>
+              <li>贴现利率：<span>9%</span></li>
+              <li>实收金额：<span>94.95W(含平台担保交易500)</span></li>
             </ul>
-          </div>
+            </div>
+        </div>
+       <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
       </div>
 
@@ -77,72 +121,7 @@
 
     </div>
 
-    <!--内容-->
-    <!-- <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
+ 
   </div>
 </template>
 
@@ -164,6 +143,7 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
+        isShow:false,
         showPaginate : true
       }
     },
@@ -171,10 +151,15 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已拒绝",
+<<<<<<< HEAD
+            "filter_str":"待背书",
+=======
+            "filter_str":"待接单",
+>>>>>>> e52c44c506f64438f01dfb239e0d05a68103c5fa
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -188,21 +173,25 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已拒绝"
+<<<<<<< HEAD
+            "filter_str":"待背书"
+=======
+            "filter_str":"待接单",
+>>>>>>> e52c44c506f64438f01dfb239e0d05a68103c5fa
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
           if(res.data != '')
-             _this.total=res.data;
+              _this.total = res.data;
           else
             _this.showPaginate = false;
-        })
+        });
       },
       current_change(currentPage){
-          this.currentPage = currentPage;
-          this.getIntenTionList();
+        this.currentPage = currentPage;
+        this.getIntenTionList();
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
@@ -229,7 +218,7 @@
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
-              _this.$refs.intention_mes_details.style.top='20%';
+              _this.$refs.intention_mes_details.style.top='15%';
               _this.$refs.intention_mes_details.style.opacity='1';
             })
           })
@@ -242,7 +231,43 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      }
+      },
+      toggle:function(){
+         this.isShow = !this.isShow;
+      },
+      hiddenShow:function () {
+          var that = this;
+          that.isShow = false;
+       }, 
+      upLoadIs(e){
+        let _this=this;
+        if (e.target.files[0]) {
+          let file = e.target.files[0]
+          let reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = function() {
+            img.src = this.result
+          }
+          let img = new Image,
+            width = 1024, //image resize   压缩后的宽
+            quality = 0.8, //image quality  压缩质量
+            canvas = document.createElement("canvas"),
+            drawer = canvas.getContext("2d");
+          img.onload = function() {
+            canvas.width = width;
+            canvas.height = width * (img.height / img.width);
+            drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
+            let base64 = canvas.toDataURL("image/jpeg", quality); //压缩后的base64图片
+            _this.$refs.Is.src=base64;
+            window.localStorage.setItem('Is',base64);
+            _this.ocrImage(base64);
+
+          }
+        }
+        if(_this.time != null){
+              _this.choseDate();
+          }
+      },
     },
     created(){
       this.getIntenTionList()
@@ -251,6 +276,101 @@
 </script>
 
 <style lang="scss" scoped>
+.show_w{
+  width:500px;
+  height:450px;
+  background:linear-gradient(180deg,rgba(255,125,85,1) 0%,rgba(255,111,77,1) 100%);
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position:fixed;
+  bottom: 3%;
+  left: 31%;
+  z-index: 999;
+   .center_w{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
+    line-height:40px;
+      p:nth-child(1){
+        font-size:22px;
+        font-weight:bold;
+        color:#F15749;
+      }
+      p:nth-child(2){
+        color:#666;
+        font-size:13px;
+      }
+      p:nth-child(3){
+        width:350px;
+        height:200px;
+        background:#eee;
+        margin:0 auto;
+        border-radius:4px;
+        cursor:pointer;
+      }
+      p:nth-child(4) a{
+        width:130px;
+        height:35px;
+        background:#F15749;
+        color:#fff;
+        line-height:35px;
+        display:inline-block;
+        border-radius:4px;
+        margin: 14px 10px;
+        font-family:"微软雅黑";
+        font-weight:bold;
+        cursor:pointer;
+      }
+  }
+}
+#payment{
+    min-height: 28px;
+    width: 7%;
+    color: white;
+    border-radius: 3px;
+    background: #48C1F3;
+    line-height: 30px;
+    margin-top: 32px;
+    margin-left: 44px;
+    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
+    font-size:13px;
+    cursor: pointer;
+}
+.time_w{
+  width:126px;
+  height:19px;
+  font-size:14px;
+  font-weight:bold;
+  color:rgba(3,3,3,1);
+  line-height:19px;
+  display:inline-block;
+  background:#fff;
+  box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position: relative;
+  left: 16%;
+}
+.top_w{
+  width:700px;
+  height:40px;
+  border-bottom:1px solid #F15749;
+  text-align:left;
+  line-height:40px;
+  p{
+    font-size:15px;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+    background:#F15749;
+    display:inline-block;
+    width:95px;
+    text-align:center;
+  }
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -261,7 +381,6 @@
     z-index: 500;
   }
   .person_intention_mes{
-    width: 100%;
     margin-top: 3%;
     .intention_mes_title{
       background: #F15749;
@@ -343,37 +462,40 @@
       background: #f3fbff;
       button{
         position: absolute;
-        right:2%;
+        right:27%;
         min-height: 28px;
-        width: 12%;
-        top:14%;
+        width: 7%;
+        top:30%;
         color:white;
         border-radius:3px;
-        background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
+        background: #F15749;
+        line-height:28px;
       }
-      .pople{
-        margin-left: 80px;
-        margin-right: 40px;
-      }
+        .pople{
+          margin-left: 80px;
+          margin-right: 40px;
+        }
     }
   }
   .intention_mes_details{
-    width: 670px;
-    height:540px;
-    background: white;
+    width: 700px;
+    height: 800px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
     position: absolute;
     left:50%;
-    margin-left:-286px;
     top:15%;
     z-index: 501;
     opacity: 0;
     display: none;
     transition: all .5s;
     overflow: hidden;
+
     .intention_mes_pic{
-      width: 670px;
+      width: 695px;
       height:340px;
       background: white;
+      margin-left: 2px;
       img{
         width: 100%;
         height:100%;
@@ -382,15 +504,25 @@
     .intention_mes_message{
       width: 100%;
       display: flex;
-      height:300px;
       .message_left{
-        width: 50%;
+        width: 100%;
         height:100%;
         border-right:1px solid #ccc;
+        text-align: left;
+        margin-left: 100px;
+        font-weight:bold;
+        color:rgba(170,170,170,1);
+        line-height:26px;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
+            span{
+              font-size:16px;
+              font-weight:bold;
+              color:rgba(102,102,102,1);
+              line-height:26px;
+            }
           }
         }
       }
@@ -401,6 +533,7 @@
           padding-top:12%;
           li{
             margin-bottom: 5%;
+            text-align:left;
           }
         }
       }
@@ -408,13 +541,11 @@
   }
   .content_w{
     height: 306px;
-    width: 100%;
     margin: 0 auto;
     background: #fff;
     .content_w_first {
       width:100%;
       height:80px;
-
       a{
         text-decoration: none;
         font-size: 13px;
@@ -427,12 +558,11 @@
         margin-top: 3px;
       }
       li{
-         float: left;
-          width: 12.5%;
-          line-height: 71px;
-          border-right: 1px solid #979797;
-          margin-right: -3px;
-
+        float: left;
+        width: 13.5%;
+        line-height: 71px;
+        border-right: 1px solid #979797;
+        margin-right: -16px;
       }
       .btn_w{
         width: 90px;

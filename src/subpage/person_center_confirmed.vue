@@ -1,4 +1,4 @@
-<!-- 待买家确认 -->
+<!-- 我是卖家订单中心  待买家支付页面 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -28,16 +28,16 @@
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment">--</div></el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span>订单号：7483758395353</span>
-          <span>{{item.companyName}}</span>
-          <span class="pople">{{item.contactsName}}</span>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span class="pople">买家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
@@ -139,7 +139,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待接单",
+            "filter_str":"已接单，待支付",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -153,7 +153,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待接单",
+            "filter_str":"已接单，待支付",
           },
           {headers:{
               'Content-Type':'application/json'
@@ -219,14 +219,12 @@
 #payment{
     min-height: 28px;
     width: 7%;
-    color: white;
     border-radius: 3px;
-    background: #48C1F3;
     line-height: 30px;
     margin-top: 32px;
     margin-left: 44px;
-    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
-    font-size:13px;
+    font-size:15px;
+    color:#333;
     cursor: pointer;
 }
 .time_w{
