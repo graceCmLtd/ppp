@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 1a2c2e22762567bdbb600c32f89a5a5dd8779865
 <!-- 我是卖家订单中心  待背书页面 -->
 <template lang="html">
   <div class="person_intention_all">
@@ -146,7 +143,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待背书",
+            "filter_str":"已支付",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -160,7 +157,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待背书"
+            "filter_str":"已支付"
           },
           {headers:{
               'Content-Type':'application/json'

@@ -139,7 +139,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待接单",
+            "filter_str":"已接单,待付款",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -153,7 +153,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待接单",
+            "filter_str":"已接单,待付款",
           },
           {headers:{
               'Content-Type':'application/json'
