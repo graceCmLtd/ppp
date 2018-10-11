@@ -1,4 +1,3 @@
-
 <!-- 我是卖家订单中心  待背书页面 -->
 <template lang="html">
   <div class="person_intention_all">
