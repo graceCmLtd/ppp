@@ -23,6 +23,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+<<<<<<< HEAD
 
      <!--      <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
@@ -34,6 +35,10 @@
           <el-col :span="3"><div class="intention_mes">买家已确认签收</div></el-col>
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
+=======
+          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+>>>>>>> 41c2afd5cae4da9f10f4caf8356794409586bfca
           <el-col :span="3"><div style="line-height:80px; font-size:15px;">...</div></el-col>
 
         <!--   <el-col :span="3"><div class="intention_mes operaMes">
@@ -41,11 +46,11 @@
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span>订单号：{{item.transacType}}</span>
-          <span>公司名称：{{item.companyName}}</span>
+          <span class="pople">订单号：{{item.transacType}}</span>
+          <span class="pople">公司名称：{{item.companyName}}</span>
           <span class="pople">卖家联系人：{{item.contactsName}}</span>
-          <span>电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span class="pople">电话:{{item.contactsPhone}}</span>
+          <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
          <!--  <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
         </p>
       </div>
@@ -304,7 +309,8 @@
       }
       .pople{
         margin-left: 80px;
-        margin-right: 40px;
+        float: left;
+        /*margin-right: 40px;*/
       }
     }
   }

@@ -21,12 +21,6 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col>
-
-      <!--     <el-col :span="3"><div class="intention_mes amountMes">
-            <span class="interest">年化：<span>{{item.interest}}%</span></span>
-            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
-          </div></el-col> -->
-          
           <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment">环迅支付</div></el-col>
@@ -36,11 +30,11 @@
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span>订单号：{{item.transacType}}</span>
-          <span>公司名称：{{item.companyName}}</span>
+          <span class="pople">订单号：{{item.transacType}}</span>
+          <span class="pople">公司名称：{{item.companyName}}</span>
           <span class="pople">卖家联系人：{{item.contactsName}}</span>
-          <span>电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span class="pople">电话:{{item.contactsPhone}}</span>
+          <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
@@ -365,7 +359,8 @@
       }
         .pople{
           margin-left: 80px;
-          margin-right: 40px;
+          float: left;
+          /*margin-right: 40px;*/
         }
     }
   }
