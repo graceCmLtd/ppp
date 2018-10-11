@@ -7,7 +7,7 @@
         <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">报价</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -21,15 +21,18 @@
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3" v-if="item.intentionStatus == '已接单'"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click="confirmTransaction(index)">确认交易</button>
+          <el-col :span="3" v-if="item.intentionStatus == '已接单,待支付'"><div class="intention_mes operaMes">
+            <button type="button" name="button" v-on:click="">-</button>
+          </div></el-col>
+          <el-col :span="3" v-if="item.intentionStatus == '待接单'"><div class="intention_mes operaMes">
+            <button type="button" name="button" v-on:click="modifyAmount(item)">修改金额</button>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -41,6 +44,19 @@
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
+      <!-- 修改价格的弹窗 -->
+
+      <!-- <el-dialog title="修改金额" :visible.sync="isShow"> -->
+        <div class="show_w" v-if="isShow" >
+        <div class="center_w">
+            <p>修改付款金额</p>
+            <p>原实付金额：{{currentItem.real_money/10000}}W</p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
+            <a @click="modifyMoneySubmit()">确认修改</a>
+            <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
+        </div>
+      </div>
+      <!-- </el-dialog> -->
       <!--分页-->
       <div class="block" v-if="showPaginate">
         <el-pagination
@@ -81,7 +97,7 @@
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
     </div>
-    <div class="show_w" v-show="isShow">
+    <!-- <div class="show_w" v-show="isShow">
       <div class="show_w1">
       <p>买家已将价格由之前95W(94.5W)</p>
       <p>修改为94.9W除去平台担保费500</p>
@@ -92,7 +108,7 @@
         <a  @click="hiddenShow()">拒绝</a>    
       </p>
       </div>
-    </div>
+    </div> -->
    
   </div>
 </template>
@@ -121,6 +137,7 @@
         pageSize : 5,
         total : 0,
         showPaginate : true,
+        new_money:0
 
       }
     },
@@ -218,6 +235,36 @@
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
       },
+      /*修改金额*/
+      modifyAmount(item){
+        this.new_money =0;
+        this.isShow = true;
+        this.currentItem = item;
+        //alert(this.currentItem.real_money)
+      },
+      /*修改金额提交操作*/
+      modifyMoneySubmit(){
+        if (!this.new_money) {
+          alert("请填写金额，或点击取消")  
+
+        }else{
+          this.isShow = false;
+          let _this = this;
+          let quoterId = this.currentItem.quoterId;
+          _this.axios.post(_this.oUrl+"/quote/updateRealMoney",{
+            "billNumber":_this.currentItem.billNumber,
+            "quoterId":_this.currentItem.quoterId,
+            "new_money":_this.new_money
+          },{headers:{
+              'Content-Type':'application/json'
+          }}).then((res)=>{
+            console.log("修改金额")
+            console.log(res)
+            _this.getIntenTionList()
+          })
+        }
+        
+      },
       closePics(){
         this.$refs.intention_mes_details.style.top='15%';
         this.$refs.intention_mes_details.style.opacity='0';
@@ -255,7 +302,7 @@
     text-align:center;
   }
 }
-.show_w{
+/*.show_w{
     width:450px;
     height:350px;
     background: white;
@@ -297,7 +344,7 @@
         text-decoration:none;
       }
     }
-}
+}*/
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -541,6 +588,62 @@
     }
 
   }
+.show_w{
+  width:500px;
+  height:450px;
+  background:linear-gradient(180deg,rgba(255,125,85,1) 0%,rgba(255,111,77,1) 100%);
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position:fixed;
+  bottom: 3%;
+  left: 31%;
+  z-index: 999;
+  .center_w{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
 
+     p:nth-child(1){
+        font-size:22px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(246,85,60,1);
+        line-height: 93px;
+   } 
+
+      p:nth-child(2){
+        font-size:16px;
+        font-family:MicrosoftYaHei-Bold;
+        font-weight:bold;
+        color:rgba(102,102,102,1);
+        line-height: 60px;
+   } 
+     p:nth-child(3){
+      font-size:16px;
+      font-family:MicrosoftYaHei-Bold;
+      font-weight:bold;
+      color:rgba(51,51,51,1);
+      line-height: 89px;
+   } 
+      a{
+        width:100px;
+        height:35px;
+        background:rgba(241,87,73,1);
+        box-shadow:0px 2px 4px 0px rgba(249,108,108,0.5);
+        border-radius:4px;
+        color:#fff;
+        line-height:35px;
+        font-weight:bold;
+        cursor: pointer;
+        display:inline-block;
+        margin:20px 20px;
+
+    }
+  }
+}
 
 </style>
