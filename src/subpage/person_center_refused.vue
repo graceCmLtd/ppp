@@ -39,7 +39,7 @@
           <div class="center_w">
             <p>上传背书凭证</p>
             <p>请上传您已背书的照片或截图</p>
-            <p class="cut_w" ><input type="file" accept="image/jpeg" name="" @change="upLoadIs"></p>
+            <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""></p>
             <p>
               <a>确认上传</a>
               <a @click="hiddenShow()" style="background:#ccc;">取消</a>
@@ -59,7 +59,7 @@
           <button type="button" name="button" @click="paperMes(index)">票据详情</button>
  
 
-        </p>
+        </p> 
       </div>
 
 
