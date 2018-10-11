@@ -1,4 +1,4 @@
-<!-- 我是买家 全部订单 -->
+<!-- 我是卖家 订单中心 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -43,7 +43,7 @@
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
-          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+          <button type="button" name="button" @click="paperMes(index)">订单详情</button>
  
 
         </p>
@@ -88,6 +88,7 @@
       
           <div class="message_left">
             <ul>
+              <li>订单号：10258930</li>
               <li>银行监管账号：<span>6222299993778389939</span></li>
               <li>票据总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>

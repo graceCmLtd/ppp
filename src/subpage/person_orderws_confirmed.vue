@@ -23,12 +23,13 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col>
-          <el-col :span="3"><div class="intention_mes amountMes">
+      <!--     <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
-          </div></el-col>
+          </div></el-col> -->
+            <el-col :span="3"><div class="intention_mes">100w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment">环迅支付</div></el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
@@ -42,7 +43,7 @@
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
-          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+          <button type="button" name="button" @click="paperMes(index)">订单详情</button>
  
 
         </p>
@@ -87,6 +88,7 @@
       
           <div class="message_left">
             <ul>
+              <li>订单号：11111122589</li>
               <li>银行监管账号：<span>6222299993778389939</span></li>
               <li>票据总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
