@@ -28,7 +28,7 @@
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment">...</div></el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
@@ -219,14 +219,12 @@
 #payment{
     min-height: 28px;
     width: 7%;
-    color: white;
     border-radius: 3px;
-    background: #48C1F3;
     line-height: 30px;
     margin-top: 32px;
     margin-left: 44px;
-    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
-    font-size:13px;
+    font-size:15px;
+    color:#333;
     cursor: pointer;
 }
 .time_w{
