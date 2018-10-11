@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 1a2c2e22762567bdbb600c32f89a5a5dd8779865
 <!-- 我是卖家订单中心  待背书页面 -->
 <template lang="html">
   <div class="person_intention_all">

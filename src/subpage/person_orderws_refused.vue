@@ -1,4 +1,4 @@
-<!-- 被拒绝的订单 -->
+<!-- 代买家背书 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">

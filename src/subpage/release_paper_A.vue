@@ -57,6 +57,7 @@
         <input type="radio" style="width:20px;height:20px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />
         同意平台担保交易协议
       </p> -->
+      
     </div>
     <div class="release_paper_mask" v-show="PaperMaskShow" @click="closeSave()">
 

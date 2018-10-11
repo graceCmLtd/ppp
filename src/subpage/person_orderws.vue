@@ -1,4 +1,4 @@
-<!-- 求贴意向 -->
+<!-- 我是买家 订单中心 -->
 <template lang="html">
   <div class="person_center">
     <div class="person_center_pic">
@@ -32,7 +32,7 @@
                            tag="div" class="center_title rejected"
                            @click.native="centerRefused()"
                            :class="{centerAc:color==4}"
-              >待卖家背书
+              >待背书
                 
                 <span class="person_center_triangle" ref="person_center_triangle_c"></span>
               </router-link>

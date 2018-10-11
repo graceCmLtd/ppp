@@ -1,4 +1,4 @@
-<!-- 审核中 -->
+<!-- 待买家签收 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">

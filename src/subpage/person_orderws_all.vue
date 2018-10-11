@@ -1,4 +1,4 @@
-<!-- 待买家确认 -->
+<!-- 我是买家 全部订单 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
