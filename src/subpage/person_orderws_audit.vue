@@ -23,15 +23,9 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
-
+          <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <!-- 修改前 -->
-          <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
-          <!-- <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
-          </div></el-col> -->
-            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#F15749; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px;">去签收</div></el-col>
+            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;">确认签收</div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span class="pople">订单号：{{item.transacType}}</span>
@@ -40,7 +34,7 @@
           <span class="pople">电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+          <!-- <button type="button" name="button" @click="paperMes(index)">订单详情</button> -->
         </p>
       </div>
       <!--分页-->
@@ -53,7 +47,7 @@
           @current-change="current_change">
         </el-pagination>
       </div>
-      <div class="intention_mes_details" ref="intention_mes_details">
+<!--       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
@@ -73,7 +67,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">

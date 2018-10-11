@@ -23,7 +23,11 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
+         <!--  <el-col :span="3"><div class="intention_mes amountMes">
+            <span class="interest">年化：<span>{{item.interest}}%</span></span>
+            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
+          </div></el-col> -->
+          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
 
              <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>

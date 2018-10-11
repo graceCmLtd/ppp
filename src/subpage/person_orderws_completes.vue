@@ -24,10 +24,8 @@
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">买家已确认签收</div></el-col>
-            <!-- 修改前 -->
-             <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
-          <el-col :span="3"><div style="border-radius:5px; width:8%; color:#fff; background:#F15749; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 96px;height: 30px;">提现</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div style="line-height:80px; font-size:15px;">...</div></el-col>
 
         <!--   <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>

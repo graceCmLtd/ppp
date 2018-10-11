@@ -87,6 +87,7 @@
       
           <div class="message_left">
             <ul>
+              <li>订单号：<span>2552635896388</span></li>
               <li>银行监管账号：<span>6222299993778389939</span></li>
               <li>票据总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
