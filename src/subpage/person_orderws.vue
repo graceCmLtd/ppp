@@ -9,7 +9,7 @@
         <div class="person_center_title">
           <el-row>
             <el-col :span="4">
-              <router-link to="/release/center/all"
+              <router-link to="/release/orderws/all"
                            tag="div" class="center_title"
                            @click.native="centerAll()"
                            :class="{centerAc:color==1}"
@@ -18,7 +18,7 @@
               </router-link>
             </el-col>
             <el-col :span="4">
-              <router-link to="/release/center/confirmed"
+              <router-link to="/release/orderws/confirmed"
                            tag="div" class="center_title confirmed"
                            @click.native="centerConFirmed()"
                            :class="{centerAc:color==2}"
@@ -28,18 +28,18 @@
               </router-link>
             </el-col>
             <el-col :span="4">
-              <router-link to="/release/center/refused"
+              <router-link to="/release/orderws/refused"
                            tag="div" class="center_title rejected"
                            @click.native="centerRefused()"
                            :class="{centerAc:color==4}"
-              >待背书
+              >待卖家背书
                 
                 <span class="person_center_triangle" ref="person_center_triangle_c"></span>
               </router-link>
             </el-col>
 
             <el-col :span="4">
-              <router-link to="/release/center/audit"
+              <router-link to="/release/orderws/audit"
                            tag="div" class="center_title"
                            @click.native="centerAudit()"
                            :class="{centerAc:color==5}"
@@ -50,7 +50,7 @@
             </el-col>
 
             <el-col :span="4">
-              <router-link to="/release/center/completes"
+              <router-link to="/release/orderws/completes"
                            tag="div" class="center_title"
                            @click.native="centerCompletes()"
                            :class="{centerAc:color==6}"
@@ -61,7 +61,7 @@
             </el-col>
 
            <el-col :span="4">
-              <router-link to="/release/center/invalids"
+              <router-link to="/release/orderws/invalids"
                            tag="div" class="center_title"
                            @click.native="centerInvalids()"
                            :class="{centerAc:color==7}"

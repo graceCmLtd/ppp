@@ -7,7 +7,7 @@
         <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">报价</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -21,8 +21,8 @@
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
@@ -162,6 +162,7 @@
       },
       /*修改金额*/
       modifyAmount(item){
+        this.new_money =0;
         this.isShow = true;
         this.currentItem = item;
         //alert(this.currentItem.real_money)
@@ -170,9 +171,22 @@
       modifyMoneySubmit(){
         if (!this.new_money) {
           alert("请填写金额，或点击取消")  
-          
+
         }else{
-          alert("tijia")
+          this.isShow = false;
+          let _this = this;
+          let quoterId = this.currentItem.quoterId;
+          _this.axios.post(_this.oUrl+"/quote/updateRealMoney",{
+            "billNumber":_this.currentItem.billNumber,
+            "quoterId":_this.currentItem.quoterId,
+            "new_money":_this.new_money
+          },{headers:{
+              'Content-Type':'application/json'
+          }}).then((res)=>{
+            console.log("修改金额")
+            console.log(res)
+            _this.getIntenTionList()
+          })
         }
         
       },

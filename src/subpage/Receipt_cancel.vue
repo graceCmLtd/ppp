@@ -307,7 +307,7 @@
         console.log(Id)
         _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberLoca,
-            "intentionStatus":"已接单",
+            "intentionStatus":"已接单,待支付",
             "quoterId":Id
           },
           {headers:{
@@ -329,7 +329,7 @@
         /*两次请求应为一个事物进行处理*/
         _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberC,
-            "intentionStatus":"已接单",
+            "intentionStatus":"已接单,待支付",
             "quoterId":Id
           },
           {headers:{
