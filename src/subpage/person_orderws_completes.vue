@@ -31,7 +31,7 @@
           </div></el-col> -->
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div style="line-height:80px; font-size:15px;">...</div></el-col>
 
@@ -120,7 +120,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "billReferer":"已签收",
+            "filter_str":"已签收",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -134,7 +134,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
-            "billReferer":"已签收"
+            "filter_str":"已签收"
           },
           {headers:{
               'Content-Type':'application/json'
