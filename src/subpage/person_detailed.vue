@@ -115,6 +115,7 @@ export default {
     },
     /*付款成功  测试*/
     paySuccess(){
+      let _this = this;
         this.showDialog = false;
         this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
           billNumber:this.item.billNumber,
@@ -124,9 +125,13 @@ export default {
         }}).then((res)=>{
           console.log(res)
         })
+        _this.$router.push({
+          name:'OrderwsRefused'
+        })
     },
     /*取消付款 ，待付款 */
     payCancle(){
+      let _this = this;
       this.showDialog = false;
       this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
           billNumber:this.item.billNumber,
@@ -135,6 +140,9 @@ export default {
           'Content-Type':'application/json'
         }}).then((res)=>{
           console.log(res)
+        })
+        _this.$router.push({
+          name:'OrderwsRefused'
         })
     },
     getBill(){

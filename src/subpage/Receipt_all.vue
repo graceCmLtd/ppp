@@ -43,7 +43,7 @@
         <el-col :span="3" v-else-if="item.intentionStatus == '待接单'"><div class="mes operaMes">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
             <!--<p><button type="button" name="button">放弃</button></p>-->
-            <p><button type="button" name="button" @click="turnPlace(index)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">去接单</button></p>
+            <p><button type="button" name="button" @click="turnPlace(item)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">去接单</button></p>
           </div>
         </el-col>
         </el-row>
@@ -156,7 +156,8 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true
+        showPaginate : true,
+        item:[]
       }
     },
     methods:{
@@ -222,13 +223,13 @@
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
       },
-      turnPlace(index){
+      turnPlace(item){
         let _this=this;
-        let billNum=_this.noteList[index].billNumber;
+        //let billNum=_this.noteList[index].billNumber;
         _this.$router.push({
           name:'Detailed',
           query:{
-            bills:billNum
+            item:item
           }
         })
       },
