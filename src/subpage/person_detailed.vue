@@ -14,16 +14,17 @@
         <li>实付金额</li>
         <li>票据图片</li>
       </ul>
-      <ul class="me">
-        <li>62394893080495804985</li>
+      <ul class="me" >
+        <!-- <ul class="alt" > -->
+        <li>62394893080495804985test</li>
         <li>010-05968596/13456950695</li>
        <!--  <li><input type="text" value=""></li>
         <li><input type="text" value=""></li> -->
-        <li>100W</li>
-        <li>中国工商银行****支行</li>
-        <li>中景实业有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;135883299890</li>
-        <li>2.34%+1</li>
-        <li>3233.4</li>
+        <li>{{item.amount}}</li>
+        <li>{{item.acceptor}}</li>
+        <li>{{item.companyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</li>
+        <li>{{item.interest}}%+{{item.xPerLakh}}</li>
+        <li>{{item.real_money}}</li>
         <li>
           <span class="Is"></span>
           <span class="The"></span>
@@ -35,7 +36,7 @@
        <div style="position: absolute;top: 33%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png"></div>
     </div>
     <p class="havelook">
-      <button type="button" name="button" @click="showWarning()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">接单去付款</button>
+      <button type="button" name="button" @click="acceptOrder()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">接单去付款</button>
       <!-- <button type="button" name="button">查看交易进度</button> -->
     </p>
     <div class="person_detailed_prompt" ref="detailedPrompt">
@@ -51,7 +52,10 @@
         <span style="text-align:left;color:#999999; font-size:14px;">请尽快选择平台担保交易，<br> 超时未选择将影响您的平台信用等级，<br> 之后交易将受到限制</span>
       </div>
     </div>
-
+    <el-dialog title="付款" :visible.sync="showDialog">
+      <el-button @click="paySuccess">确定</el-button>
+      <el-button @click="payCancle">取消</el-button>
+    </el-dialog>
     <div class="person_detailed_mask" v-show="detailedMaskShow" @click="closeWarning()">
 
     </div>
@@ -66,7 +70,9 @@ export default {
   data(){
     return{
       detailedMaskShow:false,
-      bills:null
+      bills:null,
+      item:[],
+      showDialog:false
     }
   },
   methods:{
@@ -101,8 +107,39 @@ export default {
       /*跳转到最终线下交易流程页面*/
       _this.$router.push({name:'Batch'})
     },
+    /*去接单*/
+    acceptOrder(){
+      //alert("person_detailed 页面，接口待完善")
+      let _this = this;
+      this.showDialog = true;
+    },
+    /*付款成功  测试*/
+    paySuccess(){
+        this.showDialog = false;
+        this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          billNumber:this.item.billNumber,
+          intentionStatus:"已支付,待背书"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+        })
+    },
+    /*取消付款 ，待付款 */
+    payCancle(){
+      this.showDialog = false;
+      this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          billNumber:this.item.billNumber,
+          intentionStatus:"已接单,待支付"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+        })
+    },
     getBill(){
-      this.bills=this.$route.query.bills;
+      //this.bills=this.$route.query.bills;
+      this.item = this.$route.query.item;
     }
   },
   created(){

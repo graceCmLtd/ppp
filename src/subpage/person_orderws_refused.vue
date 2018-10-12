@@ -109,7 +109,7 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'3',
+            "IntentionType":'4',
             "filter_str":"已支付,待背书",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
@@ -123,7 +123,7 @@
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'3',
+            "IntentionType":'4',
             "filter_str":"已支付,待背书"
           },
           {headers:{
