@@ -23,7 +23,7 @@
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()">上传背书凭证</div></el-col>         
+          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle(item)">上传背书凭证</div></el-col>         
         </el-row>
         <div class="show_w" v-show="isShow">
           <div class="center_w">
@@ -31,7 +31,7 @@
             <p>请上传您已背书的照片或截图</p>
             <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""></p>
             <p>
-              <a>确认上传</a>
+              <a @click="submitImg()">确认上传</a>
               <a @click="hiddenShow()" style="background:#ccc;">取消</a>
             </p>
           </div>
@@ -122,7 +122,8 @@
         pageSize : 5,
         total : 0,
         isShow:false,
-        showPaginate : true
+        showPaginate : true,
+        current_item:[]
       }
     },
     methods:{
@@ -202,13 +203,28 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
-      toggle:function(){
+      toggle:function(item){
          this.isShow = !this.isShow;
+         this.current_item = item;
       },
       hiddenShow:function () {
           var that = this;
           that.isShow = false;
        }, 
+       /*确认*/
+       submitImg(){
+          alert("已背书，待签收，图片保存待实现")
+         this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          billNumber:this.current_item.billNumber,
+          intentionStatus:"已背书,待签收"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+          this.isShow = false;
+          this.getIntenTionList();
+        })
+       },
       upLoadIs(e){
         let _this=this;
         if (e.target.files[0]) {

@@ -32,7 +32,7 @@
           </div></el-col>
           <el-col :span="2"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click = "turnPlace(index)">去接单</button>
+            <button type="button" name="button" v-on:click = "turnPlace(item)">去接单</button>
           </div>
           <!-- <div class="intention_mes operaMes">
             <button type="button" name="button"  v-on:click="toggle()">修改报价</button>
@@ -207,13 +207,13 @@
         },200)
       },
       /*去接单*/
-      turnPlace(index){
+      turnPlace(item){
         let _this=this;
-        let billNum=_this.noteList[index].billNumber;
+        //let billNum=_this.noteList[index].billNumber;
         _this.$router.push({
           name:'Detailed',
           query:{
-            bills:billNum
+            item:item
           }
         })
       },

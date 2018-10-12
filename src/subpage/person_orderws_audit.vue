@@ -25,7 +25,7 @@
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;">确认签收</div></el-col>
+            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;"@click="submitAccept(item)" >确认签收</div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span>订单号：{{item.transacType}}</span>
@@ -122,6 +122,18 @@
         let Id=getCookie('Iud');
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
+      },
+      /*确认签收*/
+      submitAccept(item){
+        this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          billNumber:item.billNumber,
+          intentionStatus:"已签收"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+          this.getIntenTionList()
+        })
       },
       paperMes(index){
         let _this=this;
