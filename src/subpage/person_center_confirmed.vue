@@ -193,7 +193,8 @@
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
             console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+            if(res.data != '')
+                _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
@@ -354,7 +355,7 @@
       }
       button{
         position: absolute;
-        right:20%;
+        right:25%;
         min-height: 28px;
         width: 7%;
         top:30%;

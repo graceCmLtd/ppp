@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '已接单,待支付'"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click="">-</button>
+            <button type="button" name="button" v-on:click="">...</button>
           </div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '待接单'"><div class="intention_mes operaMes">
             <button type="button" name="button" v-on:click="modifyAmount(item)">修改金额</button>
@@ -423,8 +423,8 @@
         min-height: 28px;
         font-size: 12px;
         border-radius: 3px;
-        background: #F15749;
-        color: #fff;
+        background: #fff;
+        color: #333;
 
       }
     }

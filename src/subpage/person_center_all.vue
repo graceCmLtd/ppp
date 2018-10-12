@@ -132,9 +132,12 @@
         maturity:null,
         remain_days:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
+        //由于这里不需要待接单状态的数据，所以分页也要进行相应的变换
+        count1 : 0,
+        count2 : 0,//待接单条数
+        total : 0,//页面显示的总条数
         currentPage : 1,
         pageSize : 5,
-        total : 0,
         showPaginate : true
       }
     },
@@ -142,6 +145,8 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        //var count1 = 0;
+        //var count2 = 0;
         /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
@@ -154,6 +159,10 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          for(var i=0;i<res.data.length;i++){
+            if(res.data[i].intentionStatus === '待接单')
+               res.data.remove(i);
+          }
           _this.noteList=res.data;
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
@@ -165,11 +174,32 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != '')
-              _this.total = res.data;
-          else
-            _this.showPaginate = false;
+          if(res.data != ''){
+              _this.count1 = res.data;
+          //return count1;
+          _this.axios.post(_this.oUrl+'/bills/getIntentionsCount',{
+              "uuid":Id,
+              "IntentionType":'3',
+              "filter_str":"待接单"
+          },
+          {headers:{
+              'Content-Type':'application/json'
+          }}
+          ).then((res)=>{
+              if(res.data != '')
+                _this.count2 = res.data;
+              _this.total = _this.count1-_this.count2;
+              if(_this.total <= 0)
+                _this.showPaginate = false;
+          });
+
+          }
         });
+        
+          
+          //_this.total = count1-count2;
+          /*if(_this.total === 0)
+            _this.showPaginate = false;*/
       },
       current_change(currentPage){
         this.currentPage = currentPage;
@@ -196,7 +226,8 @@
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
             console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+            if(res.data != '')
+                _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
@@ -357,7 +388,7 @@
       }
       button{
         position: absolute;
-        right: 20%;
+        right: 25%;
         min-height: 28px;
         width: 7%;
         top: 20%;
