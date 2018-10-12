@@ -1,13 +1,13 @@
-<!-- 我是买家订单中心 待卖家背书页面 -->
+<!-- 代买家背书 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
+        <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+        <!-- <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -15,27 +15,29 @@
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-          <el-col :span="3">
+          <el-col :span="6">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/1000}}w</span>
+          </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()">提醒卖家背书</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span class="pople">订单号：{{item.transacType}}</span>
-          <span class="pople">公司名称：{{item.companyName}}</span>
-          <span class="pople">卖家联系人：{{item.contactsName}}</span>
-          <span class="pople">电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span>卖家联系人：{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+
           <!-- <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
         </p>
       </div>
@@ -76,7 +78,7 @@
 
     </div>
 
-   
+
   </div>
 </template>
 
@@ -107,7 +109,7 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'4',
+            "IntentionType":'3',
             "filter_str":"已支付,待背书",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
@@ -121,7 +123,7 @@
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'4',
+            "IntentionType":'3',
             "filter_str":"已支付,待背书"
           },
           {headers:{
@@ -185,6 +187,19 @@
 </script>
 
 <style lang="scss" scoped>
+#payment{
+    min-height: 28px;
+    width: 7%;
+    color: white;
+    border-radius: 3px;
+    background: #48C1F3;
+    line-height: 30px;
+    margin-top: 32px;
+    margin-left: 44px;
+    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
+    font-size:13px;
+    cursor: pointer;
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -209,8 +224,6 @@
       border-right:1px solid #ccc;
     }
     .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
     }
     .amount{
       border-left:1px solid #ccc;
@@ -227,6 +240,7 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
+      border-right:1px solid #ccc;
     }
     .bankMes{
       border-left:1px solid #ccc;
@@ -239,7 +253,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
@@ -272,23 +285,21 @@
       width: 100%;
       min-height: 40px;
       line-height: 61px;
-      font-size: 14px;
+      font-size: 13px;
       position: relative;
       background: #f3fbff;
+      span{
+        padding-left:20px;
+      }
       button{
         position: absolute;
-        right:2%;
+        right:20%;
         min-height: 28px;
         width: 12%;
         top:14%;
         color:white;
         border-radius:3px;
         background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
-      }
-      .pople{
-        margin-left: 80px;
-        float: left;
-        /*margin-right: 40px;*/
       }
     }
   }
@@ -385,6 +396,7 @@
         right: -19px;
       }
     }
+
 
 
     .content_w_second{

@@ -5,10 +5,10 @@
     <div class="person_intention_mes">
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
-        <el-col :span="2"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="2"><div class="intention_mes_title">剩余天数</div></el-col>
+        <el-col :span="5"><div class="intention_mes_title">承兑银行</div></el-col>
+        <el-col :span="2"><div class="intention_mes_title">金额</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
+        <!-- <el-col :span="2"><div class="intention_mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">利率</div></el-col>
         <el-col :span="2"><div class="intention_mes_title">状态</div></el-col>
@@ -17,14 +17,14 @@
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-          <el-col :span="3">
+          <el-col :span="5">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="2"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="2"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="2"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <!-- <el-col :span="2"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
@@ -306,20 +306,13 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
     .date{
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
     }
     .amount{
       border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
     }
     .opera{
-      border-left:1px solid #ccc;
     }
     .intention_mes{
       margin-top:8px;
@@ -329,10 +322,10 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
+      border-right:1px solid #ccc;
     }
     .bankMes{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
+
     }
     .lineHeight{
       line-height: 35px!important;
@@ -341,7 +334,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;

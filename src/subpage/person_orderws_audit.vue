@@ -4,10 +4,10 @@
     <div class="person_intention_mes">
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
+        <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+        <!-- <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -15,24 +15,24 @@
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-          <el-col :span="3">
+          <el-col :span="6">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
             <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;">确认签收</div></el-col>
         </el-row>
         <p class="person_intention_contact">
-          <span class="pople">订单号：{{item.transacType}}</span>
-          <span class="pople">公司名称：{{item.companyName}}</span>
-          <span class="pople">卖家联系人：{{item.contactsName}}</span>
-          <span class="pople">电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span>卖家联系人：{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <!-- <button type="button" name="button" @click="paperMes(index)">订单详情</button> -->
         </p>
@@ -47,100 +47,13 @@
           @current-change="current_change">
         </el-pagination>
       </div>
-<!--       <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
-        </div>
-        <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
 
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
     </div>
 
-    <!--内容-->
-   <!--  <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
-
-
+ 
     
   </div>
 </template>
@@ -309,10 +222,9 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
+      border-right:1px solid #ccc;
     }
     .bankMes{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
     }
     .lineHeight{
       line-height: 35px!important;
@@ -354,12 +266,15 @@
       width: 100%;
       min-height: 40px;
       line-height: 61px;
-      font-size: 14px;
+      font-size: 13px;
       position: relative;
       background: #f3fbff;
+      span{
+        padding-left:20px;
+      }
       button{
           position: absolute;
-          right: 2%;
+          right: 20%;
           min-height: 28px;
           width: 6%;
           top: 26%;
@@ -367,11 +282,6 @@
           border-radius: 3px;
           background: #F15749;
           cursor: pointer;
-      }
-      .pople{
-        margin-left: 80px;
-        float: left;
-        /*margin-right: 40px;*/
       }
     }
   }
