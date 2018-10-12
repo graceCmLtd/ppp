@@ -84,8 +84,7 @@
               <li>实收金额：<span>94.95W(含平台担保交易500)</span></li>
             </ul>
           </div>
-         
-            
+
           
         </div>
        <div class="intention_mes_pic" ref="intention_mes_pic">
