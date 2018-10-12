@@ -23,10 +23,11 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes amountMes">
+       <!--    <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
-          </div></el-col>
+          </div></el-col> -->
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
@@ -352,11 +353,14 @@
     }
     .person_intention_contact{
       width: 100%;
-      min-height: 40px;
+      min-height: 55px;
       line-height: 61px;
-      font-size: 14px;
+      font-size: 13px;
       position: relative;
       background: #f3fbff;
+      span{
+        padding-left:25px;
+      }
       button{
           position: absolute;
           right: 2%;
@@ -368,11 +372,7 @@
           background: #F15749;
           cursor: pointer;
       }
-      .pople{
-        margin-left: 80px;
-        float: left;
-        /*margin-right: 40px;*/
-      }
+ 
     }
   }
   .intention_mes_details{

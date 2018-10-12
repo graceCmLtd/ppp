@@ -34,10 +34,10 @@
               <el-submenu index="3">
                 <template slot="title">
                   <!-- <i class="el-icon-location"></i> -->
-                  <span style="font-weight:bold;">我的订单</span>
+                  <span style="font-weight:bold;">账户管理</span>
                 </template>
-                <el-menu-item index="1-1" @click="sell()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">我卖出的</el-menu-item>
-                <el-menu-item index="1-2" @click="buy()" style="border-bottom:1px solid #E6E6E6;">我买入的</el-menu-item>
+                <el-menu-item index="1-1" @click="sell()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">基本信息</el-menu-item>
+                <el-menu-item index="1-2" @click="buy()" style="border-bottom:1px solid #E6E6E6;">电子账户</el-menu-item>
               </el-submenu>
               <el-submenu index="4">
                 <template slot="title">

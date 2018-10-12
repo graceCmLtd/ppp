@@ -23,6 +23,14 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+
+
+     <!--      <el-col :span="3"><div class="intention_mes amountMes">
+            <span class="interest">年化：<span>{{item.interest}}%</span></span>
+            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
+          </div></el-col> -->
+            <!-- 修改前 -->
+             <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div style="line-height:80px; font-size:15px;">...</div></el-col>
@@ -32,11 +40,11 @@
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-          <span class="pople">订单号：{{item.transacType}}</span>
-          <span class="pople">公司名称：{{item.companyName}}</span>
-          <span class="pople">卖家联系人：{{item.contactsName}}</span>
-          <span class="pople">电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span>卖家联系人：{{item.contactsName}}</span>
+          <span>电话:{{item.contactsPhone}}</span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
          <!--  <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
         </p>
       </div>
@@ -77,71 +85,7 @@
 
     </div>
 
-    <!--内容-->
-   <!--  <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
+  
 
 
     
@@ -343,12 +287,15 @@
       width: 100%;
       min-height: 40px;
       line-height: 61px;
-      font-size: 14px;
+      font-size: 13px;
       position: relative;
       background: #f3fbff;
+      span{
+        padding-left:20px;
+      }
       button{
           position: absolute;
-          right: 2%;
+          right: 20%;
           min-height: 28px;
           width: 6%;
           top: 26%;
@@ -356,11 +303,6 @@
           border-radius: 3px;
           background: #F15749;
           cursor: pointer;
-      }
-      .pople{
-        margin-left: 80px;
-        float: left;
-        /*margin-right: 40px;*/
       }
     }
   }
