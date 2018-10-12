@@ -29,7 +29,13 @@
           </div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+          <el-col :span="3">
+            <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">提醒卖家背书</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">查看凭证</div>
+          </el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>

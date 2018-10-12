@@ -29,7 +29,12 @@
           </div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment">上传背书凭证</div></el-col>
+          <el-col :span="3">
+            <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">提醒买家签收</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">提现</div>
+          </el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
@@ -130,7 +135,10 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true
+        showPaginate : true,
+        showOperate1 : false,
+        showOperate2 : false,
+        showOperate3 : false
       }
     },
     methods:{
@@ -149,7 +157,36 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          /*for(var i = 0;i<res.data.length;i++){
+            console.log(res.data[i].intentionStatus);
+            if(res.data[i].intentionStatus == '已支付,待背书'){
+              _this.showOperate1 = true
+              break;
+            }
+            else if(res.data[i].intentionStatus == '已背书,待签收'){
+              _this.showOperate2 = true
+              console.log(111);
+              break;
+            }
+            else if(res.data[i].intentionStatus == '已签收'){
+              _this.showOperate3 = true
+              break;
+            }
+            switch(res.data[i].intentionStatus){
+              case '已支付,待背书':
+                _this.showOperate1 = true
+                break;
+              case '已背书,待签收':
+                _this.showOperate2 = true
+                console.log(111);
+                break;
+              case '已签收':
+                _this.showOperate3 = true
+                break;
+            }
+          }*/
           _this.noteList=res.data;
+          console.log('111'+_this.operate);
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
