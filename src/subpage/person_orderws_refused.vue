@@ -23,11 +23,10 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes amountMes">
-            <span class="interest">年化：<span>{{item.interest}}%</span></span>
-            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/1000}}w</span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()">提醒卖家背书</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
@@ -111,7 +110,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已拒绝",
+            "filter_str":"已支付,待背书",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -125,7 +124,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已拒绝"
+            "filter_str":"已支付,待背书"
           },
           {headers:{
               'Content-Type':'application/json'
@@ -188,6 +187,19 @@
 </script>
 
 <style lang="scss" scoped>
+#payment{
+    min-height: 28px;
+    width: 7%;
+    color: white;
+    border-radius: 3px;
+    background: #48C1F3;
+    line-height: 30px;
+    margin-top: 32px;
+    margin-left: 44px;
+    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
+    font-size:13px;
+    cursor: pointer;
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -384,6 +396,7 @@
         right: -19px;
       }
     }
+
 
 
     .content_w_second{

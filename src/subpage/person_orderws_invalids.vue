@@ -27,7 +27,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
 
              <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
@@ -116,7 +116,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "billReferer":"已失效",
+            "filter_str":"已失效",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -130,7 +130,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
-            "billReferer":"已失效"
+            "filter_str":"已失效"
           },
           {headers:{
               'Content-Type':'application/json'
