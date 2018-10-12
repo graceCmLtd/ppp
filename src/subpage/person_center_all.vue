@@ -135,10 +135,7 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true,
-        showOperate1 : false,
-        showOperate2 : false,
-        showOperate3 : false
+        showPaginate : true
       }
     },
     methods:{
@@ -157,36 +154,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          /*for(var i = 0;i<res.data.length;i++){
-            console.log(res.data[i].intentionStatus);
-            if(res.data[i].intentionStatus == '已支付,待背书'){
-              _this.showOperate1 = true
-              break;
-            }
-            else if(res.data[i].intentionStatus == '已背书,待签收'){
-              _this.showOperate2 = true
-              console.log(111);
-              break;
-            }
-            else if(res.data[i].intentionStatus == '已签收'){
-              _this.showOperate3 = true
-              break;
-            }
-            switch(res.data[i].intentionStatus){
-              case '已支付,待背书':
-                _this.showOperate1 = true
-                break;
-              case '已背书,待签收':
-                _this.showOperate2 = true
-                console.log(111);
-                break;
-              case '已签收':
-                _this.showOperate3 = true
-                break;
-            }
-          }*/
           _this.noteList=res.data;
-          console.log('111'+_this.operate);
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
@@ -228,7 +196,8 @@
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
             console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+            if(res.data != '')
+                _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{

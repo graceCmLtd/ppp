@@ -22,7 +22,7 @@
                            tag="div" class="center_title confirmed"
                            @click.native="centerConFirmed()"
                            :class="{centerAc:color==2}"
-              >待支付
+              >待买家支付
                 
                 <span class="person_center_triangle"></span>
               </router-link>
@@ -43,7 +43,7 @@
                            tag="div" class="center_title"
                            @click.native="centerAudit()"
                            :class="{centerAc:color==5}"
-              >待签收
+              >待买家签收
                 
                 <span class="person_center_triangle" ref="person_center_triangle_s"></span>
               </router-link>
