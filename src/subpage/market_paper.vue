@@ -178,6 +178,8 @@ export default {
         'Content-Type':'application/json'
       }}
       ).then((res)=>{
+        console.log("票据市场  ")
+        console.log(res)
           _this.noteList=res.data.list;
           if(res.data.count != 'null')
             _this.total = res.data.count;

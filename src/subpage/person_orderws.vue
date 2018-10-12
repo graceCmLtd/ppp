@@ -32,7 +32,7 @@
                            tag="div" class="center_title rejected"
                            @click.native="centerRefused()"
                            :class="{centerAc:color==4}"
-              >待背书
+              >待卖家背书
                 
                 <span class="person_center_triangle" ref="person_center_triangle_c"></span>
               </router-link>
