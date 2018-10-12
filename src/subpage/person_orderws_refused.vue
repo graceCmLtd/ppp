@@ -33,19 +33,12 @@
           </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
-<<<<<<< HEAD
-          <span>{{item.companyName}}</span>
-          <span class="pople">{{item.contactsName}}</span>
+          <span>订单号：{{item.transacType}}</span>
+          <span>公司名称：{{item.companyName}}</span>
+          <span>卖家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-=======
-          <span class="pople">订单号：{{item.transacType}}</span>
-          <span class="pople">公司名称：{{item.companyName}}</span>
-          <span class="pople">卖家联系人：{{item.contactsName}}</span>
-          <span class="pople">电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)" class="pople"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
->>>>>>> 41c2afd5cae4da9f10f4caf8356794409586bfca
+
           <!-- <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
         </p>
       </div>
@@ -282,23 +275,21 @@
       width: 100%;
       min-height: 40px;
       line-height: 61px;
-      font-size: 14px;
+      font-size: 13px;
       position: relative;
       background: #f3fbff;
+      span{
+        padding-left:20px;
+      }
       button{
         position: absolute;
-        right:2%;
+        right:20%;
         min-height: 28px;
         width: 12%;
         top:14%;
         color:white;
         border-radius:3px;
         background: linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
-      }
-      .pople{
-        margin-left: 80px;
-        float: left;
-        /*margin-right: 40px;*/
       }
     }
   }
