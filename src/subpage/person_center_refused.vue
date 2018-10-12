@@ -4,10 +4,10 @@
     <div class="person_intention_mes">
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
+        <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+      <!--   <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -15,24 +15,15 @@
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-          <el-col :span="3">
-            <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
+          <el-col :span="6">
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col>
-        <!--   <el-col :span="3"><div class="intention_mes amountMes">
-            <span class="interest">年化：<span>{{item.interest}}%</span></span>
-            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
-          </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">100w</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()">上传背书凭证</div></el-col>
-          <!-- <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">确认交易</button>
-          </div></el-col> -->
+          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()">上传背书凭证</div></el-col>         
         </el-row>
         <div class="show_w" v-show="isShow">
           <div class="center_w">
@@ -373,8 +364,7 @@
       border-right:1px solid #ccc;
     }
     .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
+
     }
     .amount{
       border-left:1px solid #ccc;
@@ -391,9 +381,9 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
+      border-right:1px solid #ccc;
     }
     .bankMes{
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
     }
     .lineHeight{

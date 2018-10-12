@@ -5,9 +5,9 @@
     <div class="person_intention_mes">
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
-        <el-col :span="4"><div class="intention_mes_title">到期日/剩余天数</div></el-col>
+        <el-col :span="4"><div class="intention_mes_title">承兑银行</div></el-col>
+        <el-col :span="2"><div class="intention_mes_title">金额</div></el-col>
+        <el-col :span="4"><div class="intention_mes_title">到期日</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">利率</div></el-col>
         <el-col :span="2"><div class="intention_mes_title">状态</div></el-col>
@@ -16,12 +16,12 @@
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-          <el-col :span="3">
+          <el-col :span="4">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="2"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="4"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="2"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
@@ -67,31 +67,8 @@
           @current-change="current_change">
         </el-pagination>
       </div>
-   <!-- 票据详情的弹窗的修改前-->
-    <!--   <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
-        </div>
-        <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
- 
 
-        <!-- 票据详情的弹窗的修改后-->
+    <!-- 票据详情的弹窗的修改后-->
       <div class="intention_mes_details" ref="intention_mes_details">
          <div class="top_w">
             <p>票据详情</p>
@@ -122,74 +99,6 @@
 
     </div>
 
-
-
-    <!--内容-->
-    <!-- <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-             
-            </a>
-          </li>
-          <li><a href="">待接单</a></li>
-          <li style="border-right: none;">
-            <button class="btn_w">下一步</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">票据详情</button>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            
-          </li>
-          <li><a href="">待接单</a></li>
-          <li style="border-right: none;">
-            
-                <button class="btn_w">下一步</button>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >票据详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
   </div>
 </template>
 
@@ -485,12 +394,8 @@
       border-right:1px solid #ccc;
     }
     .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
     }
     .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
     }
     .opera{
       border-left:1px solid #ccc;
@@ -503,6 +408,7 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
+      border-right:1px solid #ccc;
     }
     .bankMes{
       border-left:1px solid #ccc;
@@ -515,7 +421,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
