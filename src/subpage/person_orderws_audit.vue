@@ -4,10 +4,10 @@
     <div class="person_intention_mes">
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
+        <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
+        <!-- <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -15,14 +15,14 @@
       <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
-          <el-col :span="3">
+          <el-col :span="6">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+          <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
             <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;">确认签收</div></el-col>
@@ -222,10 +222,9 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
+      border-right:1px solid #ccc;
     }
     .bankMes{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
     }
     .lineHeight{
       line-height: 35px!important;

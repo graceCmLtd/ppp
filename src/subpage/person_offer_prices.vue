@@ -5,10 +5,10 @@
     <div class="offer_mes">
       <el-row>
         <el-col :span="3"><div class="mes_title">票据类型</div></el-col>
-        <el-col :span="3"><div class="mes_title">承兑银行</div></el-col>
+        <el-col :span="6"><div class="mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="mes_title">金额</div></el-col>
         <el-col :span="3"><div class="mes_title">到期日</div></el-col>
-        <el-col :span="3"><div class="mes_title">剩余天数</div></el-col>
+        <!-- <el-col :span="3"><div class="mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="mes_title">实付金额</div></el-col>
         <el-col :span="3"><div class="mes_title">状态</div></el-col>
         <el-col :span="3"><div class="mes_title">操作</div></el-col>
@@ -19,10 +19,10 @@
           <!-- <el-col :span="3"><div class="mes bank" ref="person_offer_all_bank"
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
             >{{item.acceptor}}</div></el-col> -->
-          <el-col :span="3"><div class="mes">{{item.acceptor}}</div></el-col>
+          <el-col :span="6"><div class="mes">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="mes">{{item.amount}}</div></el-col>
-          <el-col :span="3"><div class="mes date">{{item.maturity}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col>
+          <el-col :span="3"><div class="mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+     <!--      <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="mes amount mes_chose">
             <!--<div class="rate">-->
             <!--<p>利率：{{item.interest}}%</p>-->
@@ -34,7 +34,7 @@
           <el-col :span="3"><div class="mes pula">
             <span>{{item.quoteStatus}}</span>
           </div></el-col>
-          <el-col :span="3"><div class="mes operaMes">
+          <el-col :span="3"><div class="mes operaMes" style="border:none;">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
             <!--<p><button type="button" name="button" class="wow hinge"> 放弃</button></p>-->
             <span style="margin-top: 30px; color: #ccc;">...</span>
@@ -287,12 +287,9 @@ import {getCookie} from '@/assets/util'
         border-right:1px solid #ccc;
       }
       .date{
-        border-left:1px solid #ccc;
-        border-right:1px solid #ccc;
+  
       }
       .amount{
-        border-left:1px solid #ccc;
-        border-right:1px solid #ccc;
       }
       .mes{
         margin-top:8px;
@@ -300,6 +297,7 @@ import {getCookie} from '@/assets/util'
         min-height: 70px;
         line-height: 70px;
         font-size: 14px;
+        border-right:1px solid #ccc;
       }
       .opera{
         border-left:1px solid #ccc;

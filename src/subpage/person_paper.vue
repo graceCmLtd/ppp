@@ -63,10 +63,10 @@
       <div class="hadOffer" v-show="hadOffer">
         <el-row>
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">承兑银行</div></el-col>
+          <el-col :span="8"><div class="hadOffer_title">承兑银行</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
+       <!--    <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col> -->
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
           
@@ -74,11 +74,11 @@
 
         <div class="person-offerIn" v-for = "item in noteL ">
           <el-row class="oferMes">
-            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>哦
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
+            <el-col :span="8"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
+         <!--    <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col> -->
             <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}</span>
               <span>每10w加：{{item.xPerLakh}}</span>
@@ -89,7 +89,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none">&nbsp;&nbsp;&nbsp;QQ咨询</a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span>{{item.companyId}}</span>
           <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
@@ -130,10 +130,10 @@
         <el-row>
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">票号</div></el-col> -->
-          <el-col :span="4"><div class="hadOffer_title">承兑银行</div></el-col>
+          <el-col :span="8"><div class="hadOffer_title">承兑银行</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col>
+          <!-- <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col> -->
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
 
@@ -152,14 +152,14 @@
             <!-- <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col> -->
 
            <!--  <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billNumber}}</div></el-col> -->
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;" >{{item.acceptor}}</div></el-col>
+            <el-col :span="8"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;" >{{item.acceptor}}</div></el-col>
 
 
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
 
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
 
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col>
+     <!--        <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col> -->
 
             <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}</span>
