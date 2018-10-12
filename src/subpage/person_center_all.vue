@@ -389,7 +389,7 @@
       }
       button{
         position: absolute;
-        right: 20%;
+        right: 25%;
         min-height: 28px;
         width: 7%;
         top: 20%;
