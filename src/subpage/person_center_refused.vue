@@ -76,10 +76,6 @@
               <li>票据金额：<span>{{amount/10000}}w</span></li>  
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
               <li>银行监管账号：<span>6222299993778389939</span></li>
               <li>票据总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
@@ -87,7 +83,10 @@
               <li>贴现利率：<span>9%</span></li>
               <li>实收金额：<span>94.95W(含平台担保交易500)</span></li>
             </ul>
-            </div>
+          </div>
+         
+            
+          
         </div>
        <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
@@ -184,8 +183,7 @@
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
             console.log(res)
-            if(res.data != '')
-                _this.$refs.PaperIs.src=res.data[0].pic1;
+            _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
@@ -435,7 +433,7 @@
       }
       button{
         position: absolute;
-        right:20%;
+        right:25%;
         min-height: 28px;
         width: 7%;
         top:30%;
