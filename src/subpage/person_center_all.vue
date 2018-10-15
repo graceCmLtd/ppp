@@ -32,12 +32,16 @@
           <el-col :span="3">
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
             <div class="intention_mes" id="payment" @click="toggle(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
+
+     <!--        <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'"><router-link :to="{path:'/release/forward',query:{item:item}}">提现  </router-link></div>
+ -->
             <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
               <router-link to="/release/forward">
               提现  
             </router-link>
           </div>
+
           </el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">

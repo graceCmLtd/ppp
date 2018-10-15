@@ -16,7 +16,7 @@
        <p>实收金额<i>{{item.real_money/10000}}w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
        <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
-       <span class="The"><img v-bind:src="pic2"></span>
+       <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
        <p class="agreement"> 
         <input type="radio" style="width:15px;height:15px;" name="" value="">同意碰碰票平台服务协议
        </p>
