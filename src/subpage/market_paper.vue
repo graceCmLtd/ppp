@@ -52,9 +52,7 @@
             </div></el-col>
         </el-row>
       </div>
-  </div>
-  </div>
-    <div class="block" v-if="showPaginate">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -64,6 +62,9 @@
 
         </el-pagination>
     </div>
+  </div>
+  </div>
+    
   <Footer :height="minHeight"/>
   </div>
 </template>
