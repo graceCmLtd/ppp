@@ -13,7 +13,7 @@
        <p>承兑方<i>{{current_item.acceptor}}</i></p>
        <p>贴现利率<i>{{current_item.interest}}%</i></p>
        <p>每十万扣<i>{{current_item.xPerLakh}}</i></p>
-       <p>实收金额<i>3222.5w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
+       <p>实收金额<i>{{current_item.real_money}}元 <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
        <span class="Is"></span>
        <span class="The"></span>
@@ -41,9 +41,20 @@ export default {
     }
   },
   created(){
-    this.current_item = this.$route.query.item
+    console.log(this)
     console.log(this.$route.query.item)
+  },
+  mounted() {
+    console.log(33)
+    this.current_item = this.$route.query.item
+  },
+  watch: {
+    '$route': function() {
+      console.log(444)
+      this.current_item = this.$route.query.item
+    }
   }
+
 }
 </script>
 
