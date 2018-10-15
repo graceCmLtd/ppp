@@ -16,7 +16,7 @@
       </ul>
       <ul class="me" >
         <!-- <ul class="alt" > -->
-        <li>62394893080495804985test</li>
+        <li>62394893080495804985</li>
         <li>010-05968596/13456950695</li>
        <!--  <li><input type="text" value=""></li>
         <li><input type="text" value=""></li> -->
@@ -26,8 +26,8 @@
         <li>{{item.interest}}%+{{item.xPerLakh}}</li>
         <li>{{item.real_money}}</li>
         <li>
-          <span class="Is"></span>
-          <span class="The"></span>
+          <a class="Is"></a>
+          <a class="The"></a>
         </li>
         <li>
           <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
@@ -214,23 +214,20 @@ export default {
         margin-top:-3.5%;
       }
       li:nth-child(8){
-        background-color: red;
         margin-top: -1%;
         position: relative;
-        span{
-          position: absolute;
+        top: 10%;
+        a{
           width: 230px;
           height: 160px;
           background-color: #ccc;
-        }
-        span:nth-child(2){
-            right: -112%;
-
+          margin-left:20px;
+          display:inline-block;
         }
       }
       li:last-child{
-        margin-top: 89%;
         position:relative;
+        top: 53px;
         padding-left:10%;
         input{
           position: absolute;
@@ -240,11 +237,9 @@ export default {
     }
   }
   .havelook{
-    width: 72%;
     text-align: center;
     margin-left: 8%;
     position: relative;
-    bottom: 278px;
     button{
       min-width: 25%;
       min-height: 40px;
