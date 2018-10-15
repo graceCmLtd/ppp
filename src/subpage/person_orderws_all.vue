@@ -69,7 +69,7 @@
 
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="top_w">
-            <p>票据详情</p>
+            <p>订详情</p>
           </div>
         <!-- 修改前的票据详情弹窗 -->
   <!--       <div class="intention_mes_message">
@@ -94,13 +94,13 @@
       
           <div class="message_left">
             <ul>
-              <li>订单号：10258930</li>
-              <li>银行监管账号：<span>6222299993778389939</span></li>
+              <li>订单号：<span>{{orderId}}</span></li>
+              <li>银行监管账号：<span>{{bankAccount}}</span></li>
               <li>票据总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
-              <li>买方：<span>北京清水湾地实业有限公司</span></li>
-              <li>贴现利率：<span>9%</span></li>
-              <li>实收金额：<span>94.95W(含平台担保交易500)</span></li>
+              <li>卖方：<span>{{companyName}}</span></li>
+              <li>贴现利率：<span>{{interest}}%</span></li>
+              <li>实收金额：<span>{{real_money/10000}}W(含平台担保交易500)</span></li>
             </ul>
             </div>
         </div>
@@ -132,6 +132,11 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        orderId:null,
+        bankAccount:null,
+        real_money:null,
+        interest:null,
+        companyName:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
@@ -234,6 +239,12 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
+          _this.orderId = _this.noteList[index].transacType;
+          _this.bankAccount = _this.noteList[index].bankAccount;
+          _this.real_money = _this.noteList[index].real_money;
+          _this.interest = _this.noteList[index].interest;
+          _this.companyName = _this.noteList[index].companyName;
+
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;

@@ -34,7 +34,7 @@
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
-          <button type="button" name="button" @click="paperMes(index)">票据详情</button>
+          <button type="button" name="button" @click="paperMes(index)">订单详情</button>
         </p>
       </div>
       <!--分页-->
@@ -54,16 +54,17 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
+              <li>订单号：<span>{{orderId}}</span></li>
+              <li>承兑方：<span>{{bank}}</span></li>
+              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <li>贴现利率：<span>{{interest}}%</span></li>
             </ul>
           </div>
           <div class="message_right">
             <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
+              <li>银行监管账号：<span>{{bankAccount}}</span></li>
+              <li>买方：<span>{{bank}}</span></li>
+              <li>实收金额：<span>{{real_money/10000}}w(含平台担保交易500)</span></li>
             </ul>
           </div>
         </div>
@@ -96,6 +97,11 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        orderId:null,
+        bankAccount:null,
+        companyName:null,
+        interest:null,
+        real_money:0,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
@@ -153,6 +159,11 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
+           _this.orderId=_this.noteList[index].transacType;
+          _this.bankAccount = _this.noteList[index].bankAccount;
+          _this.companyName=_this.noteList[index].companyName;
+          _this.interest=_this.noteList[index].interest;
+          _this.real_money=_this.noteList[index].real_money;
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
