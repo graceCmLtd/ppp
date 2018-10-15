@@ -4,7 +4,6 @@
     <div class="seller_order_con">
       <div class="seller_order_title">
         <el-row>
-
           <el-col :span="12"><router-link
             to="/release/sellerorder/haddeal" tag="div"
             class="order_title" :class="{sellerAc:color==1}"
@@ -20,7 +19,6 @@
       <div class="seller_order_view">
         <router-view></router-view>
       </div>
-
     </div>
   </div>
 </template>
