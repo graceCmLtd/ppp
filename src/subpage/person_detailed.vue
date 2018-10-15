@@ -240,6 +240,9 @@ export default {
     text-align: center;
     margin-left: 8%;
     position: relative;
+    position: absolute;
+    bottom: 31%;
+    left: 39%;
     button{
       min-width: 25%;
       min-height: 40px;
