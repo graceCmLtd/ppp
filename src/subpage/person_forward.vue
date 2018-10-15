@@ -10,9 +10,9 @@
        <p>开户行<i>兴业银行北京中关村支行</i></p>
        <p>户名<i>****实业有限公司</i></p>
        <p>担保交易专席客服联系方式<i>010-05968596/13456950695</i></p>
-       <p>承兑方<i>中国工商银行****支行</i></p>
-       <p>贴现利率<i>2.34%+</i></p>
-       <p>每十万扣<i>50</i></p>
+       <p>承兑方<i>{{current_item.acceptor}}</i></p>
+       <p>贴现利率<i>{{current_item.interest}}%</i></p>
+       <p>每十万扣<i>{{current_item.xPerLakh}}</i></p>
        <p>实收金额<i>3222.5w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
        <span class="Is"></span>
@@ -35,6 +35,15 @@
 
 <script>
 export default {
+  data(){
+    return{
+      current_item:[]
+    }
+  },
+  created(){
+    this.current_item = this.$route.query.item
+    console.log(this.$route.query.item)
+  }
 }
 </script>
 
