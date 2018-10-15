@@ -230,23 +230,20 @@ export default {
         margin-top:-3.5%;
       }
       li:nth-child(8){
-        background-color: red;
         margin-top: -1%;
         position: relative;
-        span{
-          position: absolute;
+        top: 10%;
+        a{
           width: 230px;
           height: 160px;
           background-color: #ccc;
-        }
-        span:nth-child(2){
-            right: -112%;
-
+          margin-left:20px;
+          display:inline-block;
         }
       }
       li:last-child{
-        margin-top: 89%;
         position:relative;
+        top: 53px;
         padding-left:10%;
         input{
           position: absolute;
@@ -256,11 +253,9 @@ export default {
     }
   }
   .havelook{
-    width: 72%;
     text-align: center;
     margin-left: 8%;
     position: relative;
-    bottom: 278px;
     button{
       min-width: 25%;
       min-height: 40px;

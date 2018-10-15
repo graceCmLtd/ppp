@@ -32,7 +32,7 @@
           <el-col :span="3">
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
             <div class="intention_mes" id="payment" @click="toggle(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
-            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">提醒买家</div>
+            <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
               <router-link to="/release/forward">
               提现  
@@ -128,7 +128,9 @@
 
     </div>
 
- 
+   <!-- 提醒买家的标志 -->
+        <div class="shows_w" v-show="issShow"  @click="hiddenShow()">已提醒买家付款 
+        </div>
   </div>
 </template>
 
@@ -160,7 +162,8 @@
         pageSize : 5,
         showPaginate : true,
         current_item:[],
-        isShow:false
+        isShow:false,
+        issShow:false
       }
     },
     methods:{
@@ -262,6 +265,15 @@
          this.isShow = !this.isShow;
          this.current_item = item;
       },
+      // 提醒卖家付款
+        toggle:function(){
+            this.issShow = !this.issShow;
+        },
+        hiddenShow:function () {
+                  var that = this;
+                  that.issShow = false;
+
+        }, 
       /*确认*/
        submitImg(){
           alert("已背书，待签收，图片保存待实现")
@@ -329,6 +341,35 @@
 </script>
 
 <style lang="scss" scoped>
+.shows_w{
+    width:190px;
+    height:40px;
+    background:#fff; 
+    position:absolute; 
+    left:83%;
+    top:39%;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    line-height:40px;
+    border-radius:5px;
+    cursor:pointer;
+    color:#333;
+
+   }
+#color_w{
+   min-height: 28px;
+    width: 7%;
+    color: white;
+    border-radius: 3px;
+    background: #48C1F3;
+    line-height: 30px;
+    margin-top: 32px;
+    margin-left: 44px;
+    font-size:13px;
+    cursor: pointer;
+}
+#color_w:hover{
+  background:#ccc;
+}
 #payment{
     min-height: 28px;
     width: 7%;

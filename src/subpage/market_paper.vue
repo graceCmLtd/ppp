@@ -179,7 +179,7 @@ export default {
         'Content-Type':'application/json'
       }}
       ).then((res)=>{
-        console.log("票据市场  ")
+        console.log("票据市场 ")
         console.log(res)
           _this.noteList=res.data.list;
           if(res.data.count != 'null')
@@ -232,7 +232,7 @@ export default {
     width: 80%;
     height:774px;
     margin:0 auto;
-    padding-top:6%;
+    padding-top: 4%;
     p{
       width: 100%;
       text-align: left;

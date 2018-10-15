@@ -223,10 +223,6 @@
       border-left:1px solid #ccc;
       border-right:1px solid #ccc;
     }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
     .amount{
       border-left:1px solid #ccc;
       border-right:1px solid #ccc;
@@ -258,6 +254,7 @@
       flex-direction: column;
       font-size: 13px;
       min-width: 95px;
+      line-height:67px;
       .interest{
         height:35px;
         line-height: 35px;

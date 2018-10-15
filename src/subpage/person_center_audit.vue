@@ -24,7 +24,7 @@
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div  v-on:click="toggle()" style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px;cursor: pointer;">提醒买家</div></el-col>
+          <el-col :span="3"><div class="color_w" v-on:click="toggle()">提醒买家</div></el-col>
         </el-row>
 
         <p class="person_intention_contact">
@@ -210,6 +210,22 @@
 </script>
 
 <style lang="scss" scoped>
+.color_w{
+   border-radius:4px;
+   width:8%; 
+   color:#fff;
+   background:#48C1F3;
+   margin-top: 29px;
+   line-height: 30px; 
+   margin-left: 38px;
+   width: 86px;
+   height: 30px;
+   font-size:14px;
+   cursor: pointer;
+}
+.color_w:hover{
+  background:#ccc;
+}
   .show_w{
     width:190px;
     height:40px;
