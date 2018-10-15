@@ -207,7 +207,7 @@
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
             console.log(res)
             if(res.data != '')
-            _this.$refs.PaperIs.src=res.data[0].pic1;
+              _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
