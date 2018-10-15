@@ -31,6 +31,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
+<<<<<<< HEAD
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
@@ -38,6 +39,11 @@
               提现  
             </router-link>
           </div>
+=======
+            <div class="intention_mes" id="payment" @click="toggle(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">提醒买家签收</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">提现</div>
+>>>>>>> d1ec88489690dfe10bc0e0ab2980a56d3d94815b
           </el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
@@ -57,7 +63,18 @@
 
         </p>
       </div>
-
+<!-- 上传背书凭证 -->
+      <div class="show_w" v-show="isShow">
+          <div class="center_w">
+            <p>上传背书凭证</p>
+            <p>请上传您已背书的照片或截图</p>
+            <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""></p>
+            <p>
+              <a @click="submitImg()">确认上传</a>
+              <a @click="hiddenShow()" style="background:#ccc;">取消</a>
+            </p>
+          </div>
+        </div>
 
       <!--分页-->
       <div class="block" v-if="showPaginate">
@@ -142,7 +159,9 @@
         total : 0,//页面显示的总条数
         currentPage : 1,
         pageSize : 5,
-        showPaginate : true
+        showPaginate : true,
+        current_item:[],
+        isShow:false
       }
     },
     methods:{
@@ -209,6 +228,54 @@
         this.currentPage = currentPage;
         this.getIntenTionList();
       },
+      upLoadIs(e){
+        let _this=this;
+        if (e.target.files[0]) {
+          let file = e.target.files[0]
+          let reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = function() {
+            img.src = this.result
+          }
+          let img = new Image,
+            width = 1024, //image resize   压缩后的宽
+            quality = 0.8, //image quality  压缩质量
+            canvas = document.createElement("canvas"),
+            drawer = canvas.getContext("2d");
+          img.onload = function() {
+            canvas.width = width;
+            canvas.height = width * (img.height / img.width);
+            drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
+            let base64 = canvas.toDataURL("image/jpeg", quality); //压缩后的base64图片
+            _this.$refs.Is.src=base64;
+            window.localStorage.setItem('Is',base64);
+            _this.ocrImage(base64);
+
+          }
+        }
+        if(_this.time != null){
+              _this.choseDate();
+          }
+      },
+      /**/
+      toggle:function(item){
+         this.isShow = !this.isShow;
+         this.current_item = item;
+      },
+      /*确认*/
+       submitImg(){
+          alert("已背书，待签收，图片保存待实现")
+         this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          billNumber:this.current_item.billNumber,
+          intentionStatus:"已背书,待签收"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+          this.isShow = false;
+          this.getIntenTionList();
+        })
+       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
         let _this=this;
@@ -541,5 +608,44 @@
 
   }
 
-
+.center_w{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
+    line-height:40px;
+      p:nth-child(1){
+        font-size:22px;
+        font-weight:bold;
+        color:#F15749;
+      }
+      p:nth-child(2){
+        color:#666;
+        font-size:13px;
+      }
+      p:nth-child(3){
+        width:350px;
+        height:200px;
+        background:#eee;
+        margin:0 auto;
+        border-radius:4px;
+        cursor:pointer;
+      }
+      p:nth-child(4) a{
+        width:130px;
+        height:35px;
+        background:#F15749;
+        color:#fff;
+        line-height:35px;
+        display:inline-block;
+        border-radius:4px;
+        margin: 14px 10px;
+        font-family:"微软雅黑";
+        font-weight:bold;
+        cursor:pointer;
+      }
+  }
 </style>

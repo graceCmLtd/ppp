@@ -31,9 +31,9 @@
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
-            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
+            <div class="intention_mes" id="payment" @click="toPay(item)" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">提醒卖家背书</div>
-            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
+            <div class="intention_mes" id="payment" @click="submitAccept(item)" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">查看凭证</div>
           </el-col>
 
@@ -136,6 +136,7 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
+        item:[],
         showPaginate : true,
         //页面不需要显示待接单状态的数据，所以这里要除去待接单状态的数据
         count1 : 0, //全部状态条数
@@ -198,6 +199,28 @@
       current_change(currentPage){
         this.currentPage = currentPage;
         this.getIntenTionList();
+      },
+      /*环迅支付*/
+      toPay(item){
+        let _this = this;
+        _this.$router.push({
+          name:'Detailed',
+          query:{
+            item:item
+          }
+        })
+      },
+      /*确认签收*/
+      submitAccept(item){
+        this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          billNumber:item.billNumber,
+          intentionStatus:"已签收"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+          this.getIntenTionList()
+        })
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
