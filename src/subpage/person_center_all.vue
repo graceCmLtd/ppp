@@ -31,9 +31,19 @@
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
+<<<<<<< HEAD
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">提醒买家</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
+              <router-link to="/release/forward">
+              提现  
+            </router-link>
+          </div>
+=======
             <div class="intention_mes" id="payment" @click="toggle(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">提醒买家签收</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">提现</div>
+>>>>>>> d1ec88489690dfe10bc0e0ab2980a56d3d94815b
           </el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
