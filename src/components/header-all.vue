@@ -12,7 +12,7 @@
         </div>
         <div >
           <div class="topmenu">
-            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">40078398</i></a>
+            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">4001-521-889 </i></a>
           </div>
           <div class="topmenu" v-if="isSinIn" >
             <a href=""  id="topbar_my_top">
@@ -239,10 +239,10 @@
 
 
 #mall_header .topbar {
-    background-color: #f2f2f2;
+    background-color: #474F5A;
     height: 30px;
     line-height: 30px;
-    color: #9a9a9a;
+    color: #fff;
 }
 #mall_header a{
   text-decoration:none;
@@ -279,7 +279,7 @@
 #mall_header .w1180 .topmenu {
     float: right;
     text-align: right;
-    color: #ccc;
+    color: #fff;
 }
 #mall_header .topmenu a, #mall_header .topmenu span {
     color: #9a9a9a;

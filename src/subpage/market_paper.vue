@@ -52,9 +52,7 @@
             </div></el-col>
         </el-row>
       </div>
-  </div>
-  </div>
-    <div class="block" v-if="showPaginate">
+      <div class="block" v-if="showPaginate">
         <el-pagination
           background
           layout="prev,pager, next"
@@ -64,6 +62,9 @@
 
         </el-pagination>
     </div>
+  </div>
+  </div>
+    
   <Footer :height="minHeight"/>
   </div>
 </template>
@@ -178,7 +179,7 @@ export default {
         'Content-Type':'application/json'
       }}
       ).then((res)=>{
-        console.log("票据市场  ")
+        console.log("票据市场 ")
         console.log(res)
           _this.noteList=res.data.list;
           if(res.data.count != 'null')
@@ -231,7 +232,7 @@ export default {
     width: 80%;
     height:774px;
     margin:0 auto;
-    padding-top:6%;
+    padding-top: 4%;
     p{
       width: 100%;
       text-align: left;
