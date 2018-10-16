@@ -423,8 +423,9 @@
         min-height: 28px;
         font-size: 12px;
         border-radius: 3px;
-        background: #F15749;
         color: #fff;
+        background:#fff;
+        color:#333;
 
       }
     }

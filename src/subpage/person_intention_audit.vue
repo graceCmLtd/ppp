@@ -50,27 +50,6 @@
           @current-change="current_change">
         </el-pagination>
       </div>
-    <!--   <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
-        </div>
-        <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
 
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="top_w">
@@ -98,12 +77,7 @@
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
-    </div>
-
-   
-
-
-    
+    </div>  
   </div>
 </template>
 

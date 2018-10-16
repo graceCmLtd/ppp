@@ -40,12 +40,10 @@
     </div>
     <el-dialog title="付款" :visible.sync="showDialog">
       <el-button @click="paySuccess">确定</el-button>
-      <el-button @click="payCancle">取消</el-button>
+      <el-button @click="payCancle" style="background-color:#ccc;margin-left:40px;">取消</el-button>
     </el-dialog>
     <div class="person_detailed_mask" v-show="detailedMaskShow" @click="closeWarning()">
-
     </div>
-
   </div>
 </template>
 
@@ -147,8 +145,6 @@ export default {
           this.pic2 = res.data[0].pic2;
         }
       });
-
-      
     }
   },
   created(){

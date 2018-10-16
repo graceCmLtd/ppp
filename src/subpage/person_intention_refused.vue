@@ -160,10 +160,14 @@
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
-            console.log(res)
-            _this.$refs.PaperIs.src=res.data[0].pic1;
-            _this.intentionMaskShow=true;
-            _this.$refs.intention_mes_details.style.display='block';
+              console.log(res)
+            if(res.data.length === 1 )
+                 _this.$refs.PaperIs.src=res.data[0].pic1;
+                 
+            else 
+              _this.$refs.PaperIs.src='';
+              _this.intentionMaskShow=true;
+              _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
               _this.$refs.intention_mes_details.style.top='20%';
               _this.$refs.intention_mes_details.style.opacity='1';
