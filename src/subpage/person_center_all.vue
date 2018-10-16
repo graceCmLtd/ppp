@@ -66,9 +66,11 @@
           <div class="center_w">
             <p>上传背书凭证</p>
             <p>请上传您已背书的照片或截图</p>
-            <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""></p>
+            <p class="cut_w" ><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt="" ><span class="Is"><img :src="pic1.src" width="280px" height="160px"></span></p>
+            
+            <!-- <p :src="pic1">{{pic1}}</p> -->
             <p>
-              <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
+              
               <a @click="submitImg()">确认上传</a>
               <a @click="hiddenShow()" style="background:#ccc;">取消</a>
             </p>
@@ -169,7 +171,7 @@
         current_item:[],
         isShow:false,
         issShow:false,
-        pic1:''
+        pic1:new Image
       }
     },
     methods:{
@@ -245,6 +247,7 @@
           reader.readAsDataURL(file)
           reader.onload = function() {
             img.src = this.result
+            _this.pic1 = img
           }
           let img = new Image,
             width = 1024, //image resize   压缩后的宽
@@ -256,9 +259,9 @@
             canvas.height = width * (img.height / img.width);
             drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
             let base64 = canvas.toDataURL("image/jpeg", quality); //压缩后的base64图片
-            _this.$refs.Is.src=base64;
+            //_this.$refs.Is.src=base64;
             window.localStorage.setItem('Is',base64);
-            _this.ocrImage(base64);
+            //_this.ocrImage(base64);
 
           }
         }
