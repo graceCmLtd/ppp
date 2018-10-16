@@ -26,8 +26,13 @@
         <li>{{item.interest}}%+{{item.xPerLakh}}</li>
         <li>{{item.real_money}}</li>
         <li>
+<<<<<<< HEAD
+          <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
+          <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
+=======
           <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
           <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
+>>>>>>> 3a276e17fa6454a25e39e97dfc00336a0205d414
         </li>
         <li>
           <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
@@ -206,7 +211,7 @@ export default {
       }
     }
     .me{
-       text-align: left;
+        text-align: left;
         margin-left: 5%;
         padding-top: .15%;
         font-size: 14px;
@@ -232,8 +237,6 @@ export default {
       }
       li:nth-child(8){
         margin-top: -1%;
-        position: relative;
-        top: 10%;
         a{
           width: 230px;
           height: 160px;
@@ -257,6 +260,9 @@ export default {
     text-align: center;
     margin-left: 8%;
     position: relative;
+    position: absolute;
+    bottom: 31%;
+    left: 39%;
     button{
       min-width: 25%;
       min-height: 40px;
