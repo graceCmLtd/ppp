@@ -50,7 +50,7 @@
           @current-change="current_change">
         </el-pagination>
       </div>
-      <div class="intention_mes_details" ref="intention_mes_details">
+    <!--   <div class="intention_mes_details" ref="intention_mes_details">
         <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
@@ -70,6 +70,29 @@
             </ul>
           </div>
         </div>
+      </div> -->
+
+      <div class="intention_mes_details" ref="intention_mes_details">
+        <div class="top_w">
+            <p>票据详情</p>
+        </div>
+       <!-- 修改后的票据详情弹窗 -->
+        <div class="intention_mes_message">
+      
+          <div class="message_left">
+            <ul>
+              <li>银行监管账号：<span>6222299993778389939</span></li>
+              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <li>承对方：<span>{{bank}}</span></li>
+              <li>买方：<span>{{buyer}}</span></li>
+              <li>贴现利率：<span>{{rate}}%</span></li>
+              <li>实收金额：<span>{{realMoeny}}W(含平台担保交易500)</span></li>
+            </ul>
+          </div>
+        </div>
+       <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+        </div>
       </div>
 
     </div>
@@ -77,71 +100,7 @@
 
     </div>
 
-    <!--内容-->
-   <!--  <div class="content_w">
-      
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-              <p class="wrie_w"></p>
-              <p class="san_w">每10W加:***</p>
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">...
-            <button class="btn_w">确定交易</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w">详情</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-            <a href="">每10W加：***</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <a href="" class="no-color">...</a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
+   
 
 
     
@@ -255,6 +214,24 @@
 </script>
 
 <style lang="scss" scoped>
+.top_w{
+  width:700px;
+  height:40px;
+  border-bottom:1px solid #F15749;
+  text-align:left;
+  line-height:40px;
+  p{
+    font-size:15px;
+    font-family:MicrosoftYaHei-Bold;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+    background:#F15749;
+    display:inline-block;
+    width:95px;
+    text-align:center;
+  }
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -363,22 +340,24 @@
     }
   }
   .intention_mes_details{
-    width: 670px;
-    height:540px;
-    background: white;
+    width: 700px;
+    height: 800px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
     position: absolute;
     left:50%;
-    margin-left:-286px;
     top:15%;
     z-index: 501;
     opacity: 0;
     display: none;
     transition: all .5s;
     overflow: hidden;
+
     .intention_mes_pic{
-      width: 670px;
+      width: 695px;
       height:340px;
       background: white;
+      margin-left: 2px;
       img{
         width: 100%;
         height:100%;
@@ -387,15 +366,25 @@
     .intention_mes_message{
       width: 100%;
       display: flex;
-      height:300px;
       .message_left{
-        width: 50%;
+        width: 100%;
         height:100%;
         border-right:1px solid #ccc;
+        text-align: left;
+        margin-left: 100px;
+        font-weight:bold;
+        color:rgba(170,170,170,1);
+        line-height:26px;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
+            span{
+              font-size:16px;
+              font-weight:bold;
+              color:rgba(102,102,102,1);
+              line-height:26px;
+            }
           }
         }
       }
@@ -406,6 +395,7 @@
           padding-top:12%;
           li{
             margin-bottom: 5%;
+            text-align:left;
           }
         }
       }
