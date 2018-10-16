@@ -210,9 +210,9 @@
     font-size:13px;
     cursor: pointer;
 }
-#payment:hover{
-  background:#ccc;
-}
+  #payment:hover{
+      background:#ccc;
+  }
 .show_w{
     width:190px;
     height:40px;
@@ -225,8 +225,7 @@
     border-radius:5px;
     cursor:pointer;
     color:#333;
-
-   }
+  }
   .intention_mes_mask{
     width: 100%;
     height:100%;
