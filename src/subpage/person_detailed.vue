@@ -27,8 +27,9 @@
         <li>{{item.real_money}}</li>
         <li>
 
-          <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
-          <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
+
+          <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
+          <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
 
         </li>
         <li>
