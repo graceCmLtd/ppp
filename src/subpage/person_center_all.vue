@@ -31,7 +31,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
-            <div class="intention_mes" id="payment" @click="toggle(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
+            <div class="intention_mes" id="payment" @click="toggleupload(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
 
      <!--        <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'"><router-link :to="{path:'/release/forward',query:{item:item}}">提现  </router-link></div>
  -->
@@ -68,6 +68,7 @@
             <p>请上传您已背书的照片或截图</p>
             <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""></p>
             <p>
+              <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
               <a @click="submitImg()">确认上传</a>
               <a @click="hiddenShow()" style="background:#ccc;">取消</a>
             </p>
@@ -167,7 +168,8 @@
         showPaginate : true,
         current_item:[],
         isShow:false,
-        issShow:false
+        issShow:false,
+        pic1:''
       }
     },
     methods:{
@@ -265,7 +267,7 @@
           }
       },
       /**/
-      toggle:function(item){
+      toggleupload:function(item){
          this.isShow = !this.isShow;
          this.current_item = item;
       },
