@@ -12,7 +12,7 @@
         </div>
         <div >
           <div class="topmenu">
-            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#F15749;">4001-521-889 </i></a>
+            <a target="_blank" href="">客服电话：<i style="font-style:normal;color:#fff;">4001-521-889 </i></a>
           </div>
           <div class="topmenu" v-if="isSinIn" >
             <a href=""  id="topbar_my_top">
@@ -257,24 +257,10 @@
 #mall_header .w1180 .toplink {
     float: left;
 }
+
 #mall_header .w1180 .toplink a, #mall_header .toplink span {
-    color: #9a9a9a;
+    color: #fff;
     margin-right: 10px;
-}
-#mall_header .w1180 .toplink a, #mall_header .toplink span {
-    color: #9a9a9a;
-    margin-right: 10px;
-}
-#mall_header .w1180 .toplink a, #mall_header .toplink span {
-    color: #9a9a9a;
-    margin-right: 10px;
-}
-#mall_header .w1180 .toplink a, #mall_header .toplink span {
-    color: #9a9a9a;
-    margin-right: 10px;
-}
-#mall_header .w1180 .toplink {
-    float: left;
 }
 #mall_header .w1180 .topmenu {
     float: right;
@@ -282,11 +268,7 @@
     color: #fff;
 }
 #mall_header .topmenu a, #mall_header .topmenu span {
-    color: #9a9a9a;
-    margin: 0 10px;
-}
-#mall_header .topmenu a, #mall_header .topmenu span {
-    color: #9a9a9a;
+    color: #fff;
     margin: 0 10px;
 }
 #mall_header .topbar i.tel {

@@ -70,7 +70,7 @@
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="top_w">
             <p>票据详情</p>
-          </div>
+        </div>
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
       
@@ -83,7 +83,7 @@
               <li>贴现利率：<span>{{rate}}%</span></li>
               <li>实收金额：<span>{{realMoeny}}W(含平台担保交易500)</span></li>
             </ul>
-            </div>
+          </div>
         </div>
        <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
