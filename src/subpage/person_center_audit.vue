@@ -232,7 +232,7 @@
     background:#fff; 
     position:absolute; 
     left:83%;
-    top:39%;
+    top:21%;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
     line-height:40px;
     border-radius:5px;
