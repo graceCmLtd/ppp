@@ -23,21 +23,16 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
           <el-col :span="3">
-            <!-- <div style="border-radius:5px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 96px;height: 30px;">  -->
-            <div style="border-radius:5px; width:8%; color:#fff; background:#F15749; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 96px;height: 30px;"> 
+            <div style="border-radius:5px;color:#fff; background:#48C1F3; margin-top: 29px;line-height: 29px; margin-left: 38px; width:90px;height: 29px;"> 
             <router-link :to="{path:'/release/forward',query:{item:item}}">
               提现  
             </router-link>
             </div>
-          </el-col>
-
-        <!--   <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
-          </div></el-col> -->
+          </el-col> 
         </el-row>
         <p class="person_intention_contact">
           <span class="pople">订单号：{{item.transacType}}</span>
@@ -218,18 +213,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
     .opera{
       border-left:1px solid #ccc;
     }
@@ -243,9 +226,6 @@
       min-width: 95px;
       border-left:1px solid #ccc;
     }
-    .bankMes{
-      border-right:1px solid #ccc;
-    }
     .lineHeight{
       line-height: 35px!important;
       font-size: 13px;
@@ -253,8 +233,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
       font-size: 13px;
