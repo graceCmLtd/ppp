@@ -78,7 +78,9 @@
 
     </div>
 
-
+  <!-- 提醒买家的标志 -->
+        <div class="show_w" v-show="isShow"  @click="hiddenShow()">已提醒卖家背书 
+        </div>
   </div>
 </template>
 
@@ -100,6 +102,7 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
+        isShow:false,
         showPaginate : true
       }
     },
@@ -179,7 +182,14 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      }
+      },
+      toggle:function(){
+            this.isShow = !this.isShow;
+      },
+      hiddenShow:function () {
+                var that = this;
+                that.isShow = false;
+      },
     },
     created(){
       this.getIntenTionList()
@@ -197,10 +207,25 @@
     line-height: 30px;
     margin-top: 32px;
     margin-left: 44px;
-    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
     font-size:13px;
     cursor: pointer;
 }
+  #payment:hover{
+      background:#ccc;
+  }
+.show_w{
+    width:190px;
+    height:40px;
+    background:#fff; 
+    position:absolute; 
+    left:83%;
+    top:21%;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    line-height:40px;
+    border-radius:5px;
+    cursor:pointer;
+    color:#333;
+  }
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -220,19 +245,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -243,10 +255,6 @@
       min-width: 95px;
       border-right:1px solid #ccc;
     }
-    .bankMes{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
     .lineHeight{
       line-height: 35px!important;
       font-size: 13px;
@@ -254,7 +262,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
       font-size: 13px;

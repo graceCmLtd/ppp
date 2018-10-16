@@ -4,40 +4,26 @@
       <img src="../../static/img/ping.png" alt="">
     </div>
     <div class="person_detailed_mes">
-      <ul class="alt">
-        <li>银行监管账号</li>
-        <li>担保交易专席客服联系方式</li>
-        <li>票据总额</li>
-        <li>承兑方</li>
-        <li>卖方</li>
-        <li>贴现利率</li>
-        <li>实付金额</li>
-        <li>票据图片</li>
-      </ul>
-      <ul class="me" >
-        <!-- <ul class="alt" > -->
-        <li>{{item.bankAccount}}</li>
-        <li>4001-521-889</li>
-       <!--  <li><input type="text" value=""></li>
-        <li><input type="text" value=""></li> -->
-        <li>{{item.amount}}</li>
-        <li>{{item.acceptor}}</li>
-        <li>{{item.companyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</li>
-        <li>{{item.interest}}%+{{item.xPerLakh}}</li>
-        <li>{{item.real_money}}</li>
-        <li>
-          <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
-          <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
-        </li>
-        <li>
+      <div class="content_w">
+        <p>银行监管账号 <i>{{item.bankAccount}}</i></p>
+        <p>担保交易专席客服联系方式 <i>4001-521-889</i></p>
+        <p>票据总额 <i>{{item.amount}}</i></p>
+        <p>承兑方 <i>{{item.acceptor}}</i></p>
+        <p>卖方 <i>{{item.companyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</i></p>
+        <p>贴现利率 <i>{{item.interest}}%+{{item.xPerLakh}}</i></p>
+        <p>实付金额 <i>{{item.real_money}}</i></p>
+        <p>票据图片</p>  
+          <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
+          <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
+        <p class="agreement"> 
           <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
-        </li>
-      </ul>
-       <div style="position: absolute;top: 33%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png"></div>
+        </p> 
+      </div>
+      <div style="position: absolute;top: 33%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
+      </div>
     </div>
     <p class="havelook">
-      <button type="button" name="button" @click="acceptOrder()" style="background-color:#F15749; color:#fff; width:237px;height:50px; font-size:20px;">接单去付款</button>
-      <!-- <button type="button" name="button">查看交易进度</button> -->
+      <button type="button" name="button" @click="acceptOrder()">接单去付款</button>
     </p>
     <div class="person_detailed_prompt" ref="detailedPrompt">
       <img src="../../static/img/warning.png" alt="">
@@ -54,14 +40,10 @@
     </div>
     <el-dialog title="付款" :visible.sync="showDialog">
       <el-button @click="paySuccess">确定</el-button>
-      <el-button @click="payCancle">取消</el-button>
+      <el-button @click="payCancle" style="background-color:#ccc;margin-left:40px;">取消</el-button>
     </el-dialog>
     <div class="person_detailed_mask" v-show="detailedMaskShow" @click="closeWarning()">
-
     </div>
-
- 
-
   </div>
 </template>
 
@@ -163,8 +145,6 @@ export default {
           this.pic2 = res.data[0].pic2;
         }
       });
-
-      
     }
   },
   created(){
@@ -195,61 +175,35 @@ export default {
     background:rgba(255,255,255,1);
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     position:relative;
-    .alt{
-        text-align: right;
-        position: relative;
-        left: 16%;
-        top: 80px;
-      li{
-        margin-bottom: 10%;
-        font-weight:bold;
+
+    .content_w{
+      margin:0 auto;
+      text-align:left;
+      margin-top:40px;
+      font-size:15px;
+      font-weight:bold;
+      letter-spacing:1px;
+      line-height:45px;
+      i{
+       font-style:normal;
+       font-weight:normal;
+       margin-left:40px;
       }
-    }
-    .me{
-       text-align: left;
-        margin-left: 5%;
-        padding-top: .15%;
-        font-size: 14px;
-        position: relative;
-        left: 16%;
-        top: 80px;
-      li{
-        margin-bottom: 10.5%;
-        input{
-          width: 96%;
-          border:1px solid #ccc;
-          height:22px;
-        }
+      .Is{
+        width:230px;
+        height:160px;
+        background:#F7F7F7;
       }
-      li:nth-child(5){
-        margin-top:-4%;
+      .The{
+        width:230px;
+        height:160px;
+        background:#F7F7F7;
+        margin-left:25px;
       }
-      li:nth-child(6){
-        margin-top:-5%;
-      }
-      li:nth-child(7){
-        margin-top:-3.5%;
-      }
-      li:nth-child(8){
-        margin-top: -1%;
-        position: relative;
-        top: 10%;
-        a{
-          width: 230px;
-          height: 160px;
-          background-color: #ccc;
-          margin-left:20px;
-          display:inline-block;
-        }
-      }
-      li:last-child{
+      .agreement{
         position:relative;
-        top: 53px;
-        padding-left:10%;
-        input{
-          position: absolute;
-          left:0;
-        }
+        left:31%;
+        top:3%;
       }
     }
   }
@@ -257,19 +211,19 @@ export default {
     text-align: center;
     margin-left: 8%;
     position: relative;
+    position: absolute;
+    bottom: 35%;
+    left: 39%;
     button{
       min-width: 25%;
       min-height: 40px;
-      background:linear-gradient(180deg,rgba(255,121,86,1),rgba(254,68,43,1));
-      color:white;
       border-radius: 3px;
       font-size: 15px;
-    }
-    button:nth-child(1){
-      background: white;
-      border:1px solid #FE5035;
-      color:#FE5035;
-      margin-right:20px;
+      background-color:#F15749;
+      color:#fff; 
+      width:237px;
+      height:50px; 
+      font-size:20px;
     }
   }
   .person_detailed_mask{

@@ -237,7 +237,7 @@
       },
       /*修改金额*/
       modifyAmount(item){
-        this.new_money =0;
+        this.new_money =item.real_money;
         this.isShow = true;
         this.currentItem = item;
         //alert(this.currentItem.real_money)
@@ -423,8 +423,9 @@
         min-height: 28px;
         font-size: 12px;
         border-radius: 3px;
-        background: #fff;
-        color: #333;
+        color: #fff;
+        background:#fff;
+        color:#333;
 
       }
     }

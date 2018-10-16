@@ -15,14 +15,16 @@
        <p>每十万扣<i>{{item.xPerLakh}}</i></p>
        <p>实收金额<i>{{item.real_money/10000}}w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
-       <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
-       <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
+       <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
+       <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
        <p class="agreement"> 
         <input type="radio" style="width:15px;height:15px;" name="" value="">同意碰碰票平台服务协议
        </p>
        <p class="btn_1">
-         <a href="">确认提现</a>
-         <a href="" style="background:#A6A6A6; margin-left:29px;"><router-link to="/release/center/completes">取消并返回</router-link></a>
+         <span>确认提现</span>
+         <span style="background:#A6A6A6; margin-left:29px;">
+          <router-link to="/release/center/completes">取消并返回</router-link>
+        </span>
       </p>
        <div style="position: absolute; bottom:50%; right: -17%; cursor: pointer;"><img src="../../static/img/9.18.png" alt=""></div>
       </div>
@@ -119,7 +121,7 @@ export default {
         left:31%;
         top:3%;
       }
-      .btn_1 a{
+      .btn_1 span{
         width:137px;
         height:40px;
         background:#F15749;
@@ -131,6 +133,8 @@ export default {
         text-align:center;
         position:relative;
         left:20%;
+        color:#fff;
+        cursor:pointer;
       }
     }
  }

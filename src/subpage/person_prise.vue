@@ -19,13 +19,9 @@
           <li>审核状态</li>
         </ul>
         <ul class="right">
-          <!--<li>****科技有限公司</li>-->
           <li><input type="text" v-model:value="companyName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
-          <!--<li>范冰冰</li>-->
           <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <!--<li>139****0099</li>-->
           <li><input type="text" v-model:value="contactsPhone" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <!--<li>64564647@qq.com</li>-->
           <li><input type="text" v-model:value="contactsEmail" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" v-model:value="role" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
@@ -37,9 +33,7 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <!-- <span style="color:#ccc; cursor:pointer;"></span> -->
           <img v-bind:src="pic" style="width:360px;height:240px;">
-          <!-- <input type="file" accept="image/jpeg" name="" value=""> -->
         </div>
       </div>
       <p class="prise_title" style="margin-top:-2%;">
@@ -52,9 +46,6 @@
           <li>银行账号</li>
         </ul>
         <ul class="bank_right">
-          <!--<li>****科技有限公司</li>-->
-          <!--<li>中国建设银行**分行</li>-->
-          <!--<li>6217000783248325845</li>-->
           <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" v-model:value="bankName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
           <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>

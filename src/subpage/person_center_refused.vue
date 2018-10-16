@@ -29,7 +29,7 @@
           <div class="center_w">
             <p>上传背书凭证</p>
             <p>请上传您已背书的照片或截图</p>
-            <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""></p>
+            <p class="cut_w" ref="Is"><input type="file" accept="image/jpg" name="" @change="upLoadIs"  value="" alt=""><span class="Is"><img :src="pic1.src" width="280px" height="160px"></span></p>
             <p>
               <a @click="submitImg()">确认上传</a>
               <a @click="hiddenShow()" style="background:#ccc;">取消</a>
@@ -124,7 +124,8 @@
         total : 0,
         isShow:false,
         showPaginate : true,
-        current_item:[]
+        current_item:[],
+        pic1:new Image
       }
     },
     methods:{
@@ -253,6 +254,7 @@
           reader.readAsDataURL(file)
           reader.onload = function() {
             img.src = this.result
+            _this.pic1 = img
           }
           let img = new Image,
             width = 1024, //image resize   压缩后的宽
