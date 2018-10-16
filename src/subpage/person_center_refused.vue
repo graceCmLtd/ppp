@@ -221,6 +221,7 @@
        /*确认*/
        submitImg(){
           alert("已背书，待签收，图片保存待实现")
+
          this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
           billNumber:this.current_item.billNumber,
           intentionStatus:"已背书,待签收"
@@ -230,6 +231,18 @@
           console.log(res)
           this.isShow = false;
           this.getIntenTionList();
+        })
+        //let imgIs = window.localStorage.;
+        this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
+          orderId:this.current_item.transacType,
+          pic1:window.localStorage.getItem("Is"),
+          pic2:"sss"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+          //this.isShow = false;
+          //this.getIntenTionList();
         })
        },
       upLoadIs(e){
@@ -253,7 +266,7 @@
             let base64 = canvas.toDataURL("image/jpeg", quality); //压缩后的base64图片
             _this.$refs.Is.src=base64;
             window.localStorage.setItem('Is',base64);
-            _this.ocrImage(base64);
+            //_this.ocrImage(base64);
 
           }
         }

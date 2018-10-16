@@ -6,23 +6,23 @@
     <div class="person_detailed_mes">
       <div class="content_w" style="position:relative;">
        <p style="color:#F15749; font-size:20px;">请确认收款信息</p>
-       <p>收款账号<i>62394893080495804985</i></p>
-       <p>开户行<i>兴业银行北京中关村支行</i></p>
-       <p>户名<i>****实业有限公司</i></p>
-       <p>担保交易专席客服联系方式<i>010-05968596/13456950695</i></p>
-       <p>承兑方<i>中国工商银行****支行</i></p>
-       <p>贴现利率<i>2.34%+</i></p>
-       <p>每十万扣<i>50</i></p>
-       <p>实收金额<i>3222.5w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
+       <p>收款账号<i>{{item.bankAccount}}</i></p>
+       <p>开户行<i>{{item.bankName}}</i></p>
+       <p>户名<i>{{item.companyName}}</i></p>
+       <p>担保交易专席客服联系方式<i>4001-521-889</i></p>
+       <p>承兑方<i>{{item.acceptor}}</i></p>
+       <p>贴现利率<i>{{item.interest}}%</i></p>
+       <p>每十万扣<i>{{item.xPerLakh}}</i></p>
+       <p>实收金额<i>{{item.real_money/10000}}w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
-       <span class="Is"></span>
-       <span class="The"></span>
+       <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
+       <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
        <p class="agreement"> 
         <input type="radio" style="width:15px;height:15px;" name="" value="">同意碰碰票平台服务协议
        </p>
        <p class="btn_1">
          <a href="">确认提现</a>
-         <a href="" style="background:#A6A6A6; margin-left:29px;">取消并返回</a>
+         <a href="" style="background:#A6A6A6; margin-left:29px;"><router-link to="/release/center/completes">取消并返回</router-link></a>
       </p>
        <div style="position: absolute; bottom:50%; right: -17%; cursor: pointer;"><img src="../../static/img/9.18.png" alt=""></div>
       </div>
@@ -35,6 +35,34 @@
 
 <script>
 export default {
+  data(){
+    return{
+      item:[],
+      pic1 : '',
+      pic2 : ''
+    }
+  },
+  created(){
+    this.getBillInfo();
+  },
+  methods:{
+    getBillInfo(){
+      var object = this.$route.query.item;
+      if(object instanceof Object){
+        localStorage.setItem('item',JSON.stringify(object));
+      }
+      this.item = JSON.parse(localStorage.getItem('item'));
+      console.log(this.item);
+      var billNumber = this.item.billNumber;
+      this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+billNumber).then((res)=>{
+        console.log(res.data);
+        if(res.data != ''){
+          this.pic1 = res.data[0].pic1;
+          this.pic2 = res.data[0].pic2;
+        }
+      });
+    }
+  }
 }
 </script>
 

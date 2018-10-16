@@ -17,7 +17,7 @@
       <ul class="me" >
         <!-- <ul class="alt" > -->
         <li>{{item.bankAccount}}</li>
-        <li>010-05968596/13456950695</li>
+        <li>4001-521-889</li>
        <!--  <li><input type="text" value=""></li>
         <li><input type="text" value=""></li> -->
         <li>{{item.amount}}</li>
@@ -26,8 +26,13 @@
         <li>{{item.interest}}%+{{item.xPerLakh}}</li>
         <li>{{item.real_money}}</li>
         <li>
+<<<<<<< HEAD
           <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
           <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
+=======
+          <span class="Is"><img v-bind:src="pic1" width="200px" height="200px"></span>
+          <span class="The"><img v-bind:src="pic2" width="200px" height="200px"></span>
+>>>>>>> 3a276e17fa6454a25e39e97dfc00336a0205d414
         </li>
         <li>
           <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
@@ -158,9 +163,10 @@ export default {
       var billNumber = this.item.billNumber;
       this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+billNumber).then((res)=>{
         console.log(res.data);
-        if(res.data != '')
+        if(res.data != ''){
           this.pic1 = res.data[0].pic1;
           this.pic2 = res.data[0].pic2;
+        }
       });
 
       

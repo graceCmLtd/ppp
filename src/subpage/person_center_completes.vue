@@ -27,8 +27,9 @@
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
           <el-col :span="3">
-            <div style="border-radius:5px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 96px;height: 30px;"> 
-            <router-link to="/release/forward">
+            <!-- <div style="border-radius:5px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 96px;height: 30px;">  -->
+            <div style="border-radius:5px; width:8%; color:#fff; background:#F15749; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 96px;height: 30px;"> 
+            <router-link :to="{path:'/release/forward',query:{item:item}}">
               提现  
             </router-link>
             </div>
