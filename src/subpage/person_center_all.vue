@@ -62,7 +62,7 @@
 
         </p>
       </div>
-<!-- 上传背书凭证 -->
+      <!-- 上传背书凭证 -->
       <div class="show_w" v-show="isShow">
           <div class="center_w">
             <p>上传背书凭证</p>
@@ -94,7 +94,7 @@
             <p>票据详情</p>
           </div>
         <!-- 修改前的票据详情弹窗 -->
-  <!--       <div class="intention_mes_message">
+        <!--  <div class="intention_mes_message">
           <div class="message_left">
             <ul>
               <li>票据金额：<span>{{amount/10000}}w</span></li>
