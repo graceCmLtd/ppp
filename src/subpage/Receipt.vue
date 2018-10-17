@@ -153,9 +153,6 @@
         }
       }
     }
-    .person_offer_view{
-      min-height: 500px;
-    }
   }
 }
 </style>

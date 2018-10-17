@@ -349,7 +349,7 @@
       }
       button{
           position: absolute;
-          right: 25%;
+          right: 21%;
           min-height: 28px;
           width: 6%;
           top: 26%;
@@ -358,7 +358,6 @@
           background: #F15749;
           cursor: pointer;
       }
-
     }
   }
   .intention_mes_details{

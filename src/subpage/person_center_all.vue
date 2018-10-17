@@ -37,7 +37,7 @@
  -->
             <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
-              <router-link to="/release/forward">
+            <router-link :to="{path:'/release/forward',query:{item:item}}">
               提现  
             </router-link>
           </div>
@@ -58,6 +58,7 @@
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
  
+
 
         </p>
       </div>
@@ -281,6 +282,7 @@
         hiddenShow:function () {
                   var that = this;
                   that.issShow = false;
+                  that.isShow = false;
 
         }, 
       /*确认*/
@@ -441,20 +443,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-  
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -514,9 +502,9 @@
       }
       button{
         position: absolute;
-        right: 25%;
+        right: 21%;
         min-height: 28px;
-        width: 7%;
+        width: 6%;
         top: 20%;
         color:white;
         border-radius:3px;
@@ -667,11 +655,15 @@
     width:400px;
     height:350px;
     background:rgba(255,255,255,1);
-    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     border-radius:4px;
     margin:0 auto;
     margin-top:52px;
     line-height:40px;
+    position:fixed;
+    z-index:999;
+    top: 30%;
+    right: 35%;
       p:nth-child(1){
         font-size:22px;
         font-weight:bold;

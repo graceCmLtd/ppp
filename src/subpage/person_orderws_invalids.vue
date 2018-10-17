@@ -215,21 +215,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -239,8 +224,6 @@
       font-size: 14px;
       min-width: 95px;
       border-right:1px solid #ccc;
-    }
-    .bankMes{
     }
     .lineHeight{
       line-height: 35px!important;
