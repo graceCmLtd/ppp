@@ -83,7 +83,7 @@ export default {
       date:'',
       minHeight:'10%',
       pageP:null,
-      pageSize : 10,
+      pageSize : 15,
       currentPage : 1,
       total : 0,
       showPaginate : true
