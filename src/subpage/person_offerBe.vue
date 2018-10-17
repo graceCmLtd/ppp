@@ -8,7 +8,7 @@
         <el-row >
           <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;" :title="getValue(index)">{{item.acceptor}}</div></el-col>
 
-          <el-col><div  id="name_w_limit" >{{item.amount/10000}}w</div></el-col>
+          <el-col><div  id="name_w_limit" >{{item.amount/10000 | numFilter}}w</div></el-col>
           <p style="float:right;width:120px; font-size:14px; height:50px; line-height:25px; padding-top:-5px;">
           <el-col><div class="person_offerIn_title">剩余天数:<i style="font-style:normal; color:#F15749; font-size:15px;">{{item.remain_days}}天</i></div></el-col>
           <el-col><div class="person_offerIn_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
@@ -18,20 +18,6 @@
         </el-row>
       </div>
     </el-row>
-
-    <!--<el-row v-for="(item,index) in noteList" :key="index">
-      <el-col :span="5"><div class="person_offerIn_mes"
-                             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
-      >{{item.acceptor}}</div></el-col>
-      <el-col :span="4"><div class="person_offerIn_mes limit">{{item.amount/10000}}w</div></el-col>
-      <el-col :span="5"><div class="person_offerIn_mes">{{item.releaseDate}}</div></el-col>
-      <el-col :span="5"><div class="person_offerIn_mes time">{{item.maturity}}</div></el-col>
-      <el-col :span="5"><div class="person_offerIn_mes tradTime">
-        <span>2018-07-22</span>
-        <span>00:00:00</span>
-      </div></el-col>
-    </el-row>-->
-    <!-- <person-paper  :noteL = 'noteDetail' ></person-paper> -->
   </div>
 
   <!--  <person-paper noteList = 666></person-paper> -->
@@ -101,7 +87,13 @@
     created(){
       this.getPaper()
 
-    }
+    },
+    filters: {
+      numFilter(value) {
+        let realVal = Number(value).toFixed(2)
+        return Number(realVal)
+        }
+      },
   }
 </script>
 
@@ -156,9 +148,9 @@
     color: #F15749;
     letter-spacing: 1px;
     position: relative;
-    top: 38px;
-    left: 4px;
-    font-size: 24px;
+    top: 7px;
+    left: 10px;
+    font-size: 22px;
   }
 #person_offerIn_title_w{
   text-align:right;

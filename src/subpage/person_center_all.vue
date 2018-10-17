@@ -5,10 +5,10 @@
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
         <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">票面金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
         <!-- <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
-        <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">交易金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
       </el-row>
@@ -62,7 +62,7 @@
 
         </p>
       </div>
-<!-- 上传背书凭证 -->
+      <!-- 上传背书凭证 -->
       <div class="show_w" v-show="isShow">
           <div class="center_w">
             <p>上传背书凭证</p>
@@ -94,7 +94,7 @@
             <p>票据详情</p>
           </div>
         <!-- 修改前的票据详情弹窗 -->
-  <!--       <div class="intention_mes_message">
+        <!--  <div class="intention_mes_message">
           <div class="message_left">
             <ul>
               <li>票据金额：<span>{{amount/10000}}w</span></li>

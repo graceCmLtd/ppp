@@ -5,7 +5,7 @@
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">承兑银行</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">票面金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">报价</div></el-col>
@@ -415,7 +415,7 @@
         right: -19px;
       }
 
-      .no-color{
+        .no-color{
         color:rgba(171,171,171,1);
         position: relative;
         right: -19px;
@@ -447,13 +447,7 @@
             color: #fff;
           }
         }
-
       }
-
-
     }
-
   }
-
-
 </style>
