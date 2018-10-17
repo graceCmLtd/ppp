@@ -27,7 +27,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button" @click="modifyAmount(item)">修改金额</button>
           </div></el-col>
@@ -284,21 +284,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -307,9 +292,6 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
-    }
-    .bankMes{
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
     }
     .lineHeight{
@@ -319,8 +301,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
       font-size: 13px;
@@ -337,7 +317,6 @@
     }
     .operaMes{
       min-width: 95px;
-      border-left:1px solid #ccc;
       button{
         width: 56%;
         min-height: 30px;
