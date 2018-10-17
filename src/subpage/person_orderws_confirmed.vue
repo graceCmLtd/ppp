@@ -59,24 +59,6 @@
         <div class="top_w">
             <p>订单详情</p>
           </div>
-        <!-- 修改前的票据详情弹窗 -->
-  <!--       <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div> -->
-
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
       
@@ -295,19 +277,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -366,7 +335,7 @@
       }
       button{
         position: absolute;
-        right:20%;
+        right:25%;
         min-height: 28px;
         width: 7%;
         top:30%;
@@ -378,7 +347,6 @@
         .pople{
           margin-left: 80px;
           float: left;
-          /*margin-right: 40px;*/
         }
     }
   }
