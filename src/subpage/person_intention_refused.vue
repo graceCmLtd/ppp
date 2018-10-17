@@ -415,7 +415,7 @@
         right: -19px;
       }
 
-      .no-color{
+        .no-color{
         color:rgba(171,171,171,1);
         position: relative;
         right: -19px;
@@ -447,13 +447,7 @@
             color: #fff;
           }
         }
-
       }
-
-
     }
-
   }
-
-
 </style>
