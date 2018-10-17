@@ -48,7 +48,7 @@
 
             <span class="time_w" v-if="!timerArr[index]">倒计时：<i style="font-style: normal; color:#F15749;">0:0:0</i></span>
 
-            <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >10:{{getMinutes(index)}}:{{getSeconds(index)}}:{{m}}:{{s}}</i></span>
+            <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >{{num(timerArr[index].minutes)}}:{{num(timerArr[index].seconds)}}</i></span>
             
           
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
@@ -263,34 +263,40 @@
        /*更新倒计时数组*/
        updateTimer(){
           let _this = this;
-          var temp ={};
+          /*var temp ={};*/
           var date = new Date().getTime()/1000;
           var timeout = 1200;
           console.log("date ")
           console.log(date)
           for (let i = 0; i < _this.noteList.length; i++) {
+            let temp ={}
             console.log(_this.noteList[i].updateTimeStamp)
-            if(date - _this.noteList[i].updateTimeStamp){
+            console.log((date - _this.noteList[i].updateTimeStamp))
+            let a = date - _this.noteList[i].updateTimeStamp
+            console.log(a >1200)
+            if(a >1200.0){
               console.log(i+"timeout ")
-              temp["minutes"]= 30;
+              temp["minutes"]= 0;
               temp["seconds"]= 0;
             }else{
-              temp["minutes"]= Math.floor((date - _this.noteList[i].updateTimeStamp)/60);
-              temp["seconds"]= (date - _this.noteList[i].updateTimeStamp)%60;
+              temp["minutes"]=Math.floor(19 - (date - _this.noteList[i].updateTimeStamp)/60);
+              temp["seconds"]=Math.round(60- (date - _this.noteList[i].updateTimeStamp)%60);
             }
-            
             _this.timerArr[i] = temp;
+            console.log("shenemgui ")
+            console.log(_this.timerArr[i])
+            
           }
           
           console.log("minuete ")
-          console.log(date)
+          /*console.log(date)*/
           console.log(_this.timerArr)
        },
        /*倒计时*/
       num(n) {
         return n < 10 ? '0' + n : '' + n
       },
-       timer (index) {
+       timer () {
         var _this = this
         //var time = new Array();
         var time = window.setInterval(function () {
@@ -298,26 +304,30 @@
             console.log("timer")
             console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
-              _this.timerArr[index].seconds = 59
-              _this.timerArr[index].minutes -= 1
+              // Vue.set
+              let t1 = {}
+              t1["seconds"] = 59;
+              t1["minutes"] = _this.timerArr[index].minutes -1;
+              //_this.timerArr.splice(index,2,t1)
+              _this.timerArr.splice(index,1,t1)
+              /*_this.timerArr[index].seconds = 59
+              _this.timerArr[index].minutes -= 1*/
             } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
               _this.timerArr[index].seconds = 0
-              window.clearInterval(time)
-              alert("timeout")
+              //window.clearInterval(time)
+              //alert("timeout")
             } else {
-              _this.timerArr[index].seconds -= 1
+                let t1 = {}
+              t1["seconds"] = _this.timerArr[index].seconds;
+              t1["minutes"] = _this.timerArr[index].minutes ;
+              //_this.timerArr.splice(index,2,t1)
+              _this.timerArr.splice(index,1,t1)
+                _this.timerArr[index].seconds -= 1
+            
+              
             }
 
           }
-         /* if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
-            _this.timerArr[index].seconds = 59
-            _this.timerArr[index].minutes -= 1
-          } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
-            _this.timerArr[index].seconds = 0
-            window.clearInterval(time)
-          } else {
-            _this.timerArr[index].seconds -= 1
-          }*/
         }, 1000)
       },
       /*updateTimeArray(){
@@ -329,12 +339,12 @@
         },1000)
         
       },*/
-      getMinutes(index){
+      /*getMinutes(index){
         return this.timerArr[index].minutes;
       },
       getSeconds(index){
         return this.timerArr[index].seconds;
-      },
+      },*/
       /*上传正面图片*/
       upLoadIs(e){
         let _this=this;
@@ -372,18 +382,7 @@
     },
     mounted(){
       this.timer();
-    },
-    watch:{
-        getMinutes(index){}
-    },/*
-    computed: {
-      getminutes:function(index){
-        return this.timerArr[index].minutes;
-      },
-      getseconds:function(index){
-        return this.timerArr[index].seconds;
-      }
-    }*/
+    }
   }
 </script>
 
