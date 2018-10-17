@@ -64,7 +64,7 @@
         <el-row>
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
           <el-col :span="8"><div class="hadOffer_title">承兑银行</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">票面金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
        <!--    <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col> -->
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
@@ -131,7 +131,7 @@
           <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">票号</div></el-col> -->
           <el-col :span="8"><div class="hadOffer_title">承兑银行</div></el-col>
-          <el-col :span="4"><div class="hadOffer_title">金额</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">票面金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
           <!-- <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col> -->
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
