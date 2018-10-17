@@ -12,7 +12,7 @@
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
       </el-row>
-      <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index">
+      <div class="" style="min-width:216px;" v-for="(item,index) in noteList" :key="index" v-model="timerArr">
         <el-row>
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
           <el-col :span="6">
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-
+        <button type="button" @click="tttttt(index)">时间</button>
         <p class="person_intention_contact">
           <span>订单号：{{item.transacType}}</span>
           <span>公司名称：{{item.companyName}}</span>
@@ -45,7 +45,12 @@
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
-          <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
+
+            <span class="time_w" v-if="!timerArr[index]">倒计时：<i style="font-style: normal; color:#F15749;">0:0:0</i></span>
+
+            <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >10:{{getMinutes(index)}}:{{getSeconds(index)}}:{{m}}:{{s}}</i></span>
+            
+          
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
  
 
@@ -125,7 +130,10 @@
         isShow:false,
         showPaginate : true,
         current_item:[],
-        pic1:new Image
+        pic1:new Image,
+        timerArr:[],
+        m:'',
+        s:''
       }
     },
     methods:{
@@ -146,6 +154,7 @@
         ).then((res)=>{
           console.log(res)
           _this.noteList=res.data;
+          _this.updateTimer();
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
@@ -157,10 +166,15 @@
             }}
         ).then((res)=>{
           if(res.data != '')
-              _this.total = res.data;
+            _this.total = res.data;
+            
           else
             _this.showPaginate = false;
         });
+      },
+      tttttt(index){
+        this.m= this.timerArr[index].minutes;
+        this.s = this.timerArr[index].seconds;
       },
       current_change(currentPage){
         this.currentPage = currentPage;
@@ -246,6 +260,82 @@
           //this.getIntenTionList();
         })
        },
+       /*更新倒计时数组*/
+       updateTimer(){
+          let _this = this;
+          var temp ={};
+          var date = new Date().getTime()/1000;
+          var timeout = 1200;
+          console.log("date ")
+          console.log(date)
+          for (let i = 0; i < _this.noteList.length; i++) {
+            console.log(_this.noteList[i].updateTimeStamp)
+            if(date - _this.noteList[i].updateTimeStamp){
+              console.log(i+"timeout ")
+              temp["minutes"]= 30;
+              temp["seconds"]= 0;
+            }else{
+              temp["minutes"]= Math.floor((date - _this.noteList[i].updateTimeStamp)/60);
+              temp["seconds"]= (date - _this.noteList[i].updateTimeStamp)%60;
+            }
+            
+            _this.timerArr[i] = temp;
+          }
+          
+          console.log("minuete ")
+          console.log(date)
+          console.log(_this.timerArr)
+       },
+       /*倒计时*/
+      num(n) {
+        return n < 10 ? '0' + n : '' + n
+      },
+       timer (index) {
+        var _this = this
+        //var time = new Array();
+        var time = window.setInterval(function () {
+          for (var index = 0; index < _this.timerArr.length; index++) {
+            console.log("timer")
+            console.log(_this.timerArr[index])
+            if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
+              _this.timerArr[index].seconds = 59
+              _this.timerArr[index].minutes -= 1
+            } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
+              _this.timerArr[index].seconds = 0
+              window.clearInterval(time)
+              alert("timeout")
+            } else {
+              _this.timerArr[index].seconds -= 1
+            }
+
+          }
+         /* if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
+            _this.timerArr[index].seconds = 59
+            _this.timerArr[index].minutes -= 1
+          } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
+            _this.timerArr[index].seconds = 0
+            window.clearInterval(time)
+          } else {
+            _this.timerArr[index].seconds -= 1
+          }*/
+        }, 1000)
+      },
+      /*updateTimeArray(){
+        var _this = this;
+        var time= window.setInterval(function(){
+          for (var i = 0; i < _this.timerArr.length; i++) {
+          _this.timer(index)
+        }
+        },1000)
+        
+      },*/
+      getMinutes(index){
+        return this.timerArr[index].minutes;
+      },
+      getSeconds(index){
+        return this.timerArr[index].seconds;
+      },
+      /*上传正面图片*/
       upLoadIs(e){
         let _this=this;
         if (e.target.files[0]) {
@@ -279,7 +369,21 @@
     },
     created(){
       this.getIntenTionList()
-    }
+    },
+    mounted(){
+      this.timer();
+    },
+    watch:{
+        getMinutes(index){}
+    },/*
+    computed: {
+      getminutes:function(index){
+        return this.timerArr[index].minutes;
+      },
+      getseconds:function(index){
+        return this.timerArr[index].seconds;
+      }
+    }*/
   }
 </script>
 
