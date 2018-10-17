@@ -284,21 +284,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -307,9 +292,6 @@
       line-height:70px;
       font-size: 14px;
       min-width: 95px;
-    }
-    .bankMes{
-      border-left:1px solid #ccc;
       border-right:1px solid #ccc;
     }
     .lineHeight{
@@ -319,8 +301,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
       font-size: 13px;
@@ -337,7 +317,6 @@
     }
     .operaMes{
       min-width: 95px;
-      border-left:1px solid #ccc;
       button{
         width: 56%;
         min-height: 30px;
