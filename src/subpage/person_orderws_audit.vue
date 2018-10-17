@@ -26,7 +26,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
             <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;"@click="submitAccept(item)" >确认签收</div>
-              <div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;"@click="" >查看凭证</div></el-col>
+              <div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;"@click="checkVoucher(item)" >查看凭证</div></el-col>
         </el-row>
         <p class="person_intention_contact">
           <span>订单号：{{item.transacType}}</span>
@@ -54,6 +54,10 @@
 
     </div>
 
+    <el-dialog title="凭证图片" :visible.sync="dialogTableVisible">
+      <img v-bind:src="pic1">
+    </el-dialog>
+
  
     
   </div>
@@ -77,7 +81,9 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true
+        showPaginate : true,
+        dialogTableVisible:false,
+        pic1:''
       }
     },
     methods:{
@@ -170,6 +176,9 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
+      },
+      checkVoucher(item){
+          
       }
     },
     created(){
