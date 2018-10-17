@@ -281,6 +281,7 @@
         hiddenShow:function () {
                   var that = this;
                   that.issShow = false;
+                  that.isShow = false;
 
         }, 
       /*确认*/
