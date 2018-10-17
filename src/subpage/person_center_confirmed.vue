@@ -367,7 +367,7 @@
         position: absolute;
         right:25%;
         min-height: 28px;
-        width: 7%;
+        width: 6%;
         top:30%;
         color:white;
         border-radius:3px;
