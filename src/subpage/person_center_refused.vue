@@ -135,7 +135,7 @@
         /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'3',
+            "IntentionType":"3",
             "filter_str":"已支付,待背书",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
