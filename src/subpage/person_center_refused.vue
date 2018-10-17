@@ -5,10 +5,10 @@
       <el-row>
         <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
         <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
-        <el-col :span="3"><div class="intention_mes_title">金额</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">票面金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
       <!--   <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
-        <el-col :span="3"><div class="intention_mes_title">实付金额</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">交易金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
       </el-row>
@@ -48,7 +48,7 @@
 
             <span class="time_w" v-if="!timerArr[index]">倒计时：<i style="font-style: normal; color:#F15749;">0:0:0</i></span>
 
-            <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >10:{{getMinutes(index)}}:{{getSeconds(index)}}:{{m}}:{{s}}</i></span>
+            <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;">10:{{getMinutes(index)}}:{{getSeconds(index)}}:{{m}}:{{s}}</i></span>
             
           
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
@@ -374,7 +374,9 @@
       this.timer();
     },
     watch:{
-        getMinutes(index){}
+        getMinutes(m,s){
+          
+        }
     },/*
     computed: {
       getminutes:function(index){
@@ -557,7 +559,7 @@
       }
       button{
         position: absolute;
-        right:21%;
+        right:25%;
         min-height: 28px;
         width: 6%;
         top:30%;
