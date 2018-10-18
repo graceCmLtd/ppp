@@ -150,7 +150,7 @@
           console.log(res)
           for(var i = 0;i<res.data.length;i++){
             if(res.data[i].intentionStatus === '待接单')
-              res.data.remove(i);
+              res.data.splice(i,1);
           }
           _this.noteList=res.data;
         });
