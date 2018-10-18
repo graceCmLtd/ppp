@@ -92,25 +92,7 @@
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="top_w">
             <p>票据详情</p>
-          </div>
-        <!-- 修改前的票据详情弹窗 -->
-        <!--  <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div> -->
-
+        </div>
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
       
@@ -195,7 +177,7 @@
         ).then((res)=>{
           for(var i=0;i<res.data.length;i++){
             if(res.data[i].intentionStatus === '待接单')
-               res.data.remove(i);
+               res.data.splice(i,1);
           }
           console.log(res.data);
           _this.noteList=res.data;
@@ -379,7 +361,7 @@
     cursor: pointer;
 }
 #color_w:hover{
-  background:#ccc;
+   background:#ccc;
 }
 #payment{
     min-height: 28px;
@@ -643,10 +625,7 @@
             color: #fff;
           }
         }
-
       }
-
-
     }
 
   }

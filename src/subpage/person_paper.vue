@@ -374,7 +374,8 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
-            "filter":1
+            "filter":1,
+            "billReferer":"传统渠道"
           },
           {
             headers:{
