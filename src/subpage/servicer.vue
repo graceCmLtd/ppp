@@ -6,7 +6,7 @@
             <p><img src="../../static/img/light.png"></p>
             <p>温馨提示</p>
             <p>海量收票请联系客服</p>
-            <p>客服电话：15101699799</p>
+            <p>客服电话：4001-521-889</p>
             <p>  
               <router-link to="resources">
                 返回

@@ -300,8 +300,8 @@
         //var time = new Array();
         var time = window.setInterval(function () {
           for (var index = 0; index < _this.timerArr.length; index++) {
-            console.log("timer")
-            console.log(_this.timerArr[index])
+            //console.log("timer")
+            //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
               // Vue.set
               let t1 = {}

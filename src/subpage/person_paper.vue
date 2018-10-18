@@ -124,7 +124,7 @@
         <span :class="{HadAc:colorB==4}" @click="notOffer">未报价<span></span></span>
       </p> -->
       <p class="person_paper_tableB">
-        <span :class="{HadBc:colorB==3}">票据还未通过审核，请联系客服进行审核。客服电话：4008888888</span></p>
+        <span :class="{HadBc:colorB==3}">票据还未通过审核，请联系客服进行审核。客服电话：4001-521-889</span></p>
       <div class="hadOffer" v-show="hadOffer">
         
         <el-row>
