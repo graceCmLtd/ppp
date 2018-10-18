@@ -18,18 +18,16 @@ Vue.prototype.axios=Axios;
 
 
 
-<<<<<<< HEAD
 
-Vue.prototype.oUrl='http://39.104.140.40/ppp'
+// Vue.prototype.oUrl='http://39.104.140.40/ppp'
 
  // Vue.prototype.oUrl='http://localhost:8080/ppp'
-=======
+
 //Vue.prototype.oUrl='http://39.104.140.40/ppp'
 
 
 Vue.prototype.oUrl='http://localhost:8080/ppp'
 
->>>>>>> 1cbf1abf3eea1ee347e6c3a41a00af131505010d
 
 
 
