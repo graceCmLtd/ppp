@@ -55,7 +55,7 @@
     </div>
 
     <el-dialog title="凭证图片" :visible.sync="dialogTableVisible">
-      <img v-bind:src="pic1">
+      <img v-bind:src="pic1" width="580px" height="295px">
     </el-dialog>
 
  
@@ -178,7 +178,14 @@
         },200)
       },
       checkVoucher(item){
-          
+          console.log(item.transacType);
+          this.dialogTableVisible = true;
+          var orderId = item.transacType;
+          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId?orderId',{orderId:orderId}).then((res)=>{
+              console.log(res.data);
+              if(res.data != '')
+                this.pic1 = res.data[0].pic1;
+          });
       }
     },
     created(){
