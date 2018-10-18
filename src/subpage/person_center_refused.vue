@@ -272,9 +272,11 @@
               console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
+              temp["flag"] = false;
             }else{
-              temp["minutes"]=Math.floor(19 - (date - _this.noteList[i].updateTimeStamp)/60);
-              temp["seconds"]=Math.round(60- (date - _this.noteList[i].updateTimeStamp)%60);
+              temp["minutes"]=Math.floor(20 - (date - _this.noteList[i].updateTimeStamp)/60);
+              temp["seconds"]=Math.round(60 - (date - _this.noteList[i].updateTimeStamp)%60);
+              temp["flag"] = false;
             }
             _this.timerArr[i] = temp;
             console.log("shenemgui ")
@@ -291,26 +293,40 @@
       },
        timer () {
         var _this = this
+         var count =0;
         var time = window.setInterval(function () {
-          let t1 = {}
+          //let t1 = {}
           for (var index = 0; index < _this.timerArr.length; index++) {
             //console.log("timer")
             //console.log(_this.timerArr[index])
-            if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
+            if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
               // Vue.set
-              //let t1 = {}
+              let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
+              t1["flag"] =  false;
               _this.timerArr.splice(index,1,t1)
-            } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
+            } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0 && _this.timerArr[index].flag) {
+              count ++;
               _this.timerArr[index].seconds = 0
+              console.log(index +"： index  倒计时结束")
+              console.log(count)
+              console.log(_this.timerArr.length)
+              if(count >= _this.timerArr.length)
+              {
+                console.log(count)
+                window.clearInterval(time)
+                count =0
+              }
               //window.clearInterval(time)
-            } else {
-               // let t1 = {}
+            } else if(_this.timerArr[index].minutes > 0 || _this.timerArr[index].seconds > 0) {
+              let t1 = {}
               t1["seconds"] = _this.timerArr[index].seconds;
               t1["minutes"] = _this.timerArr[index].minutes ;
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
+            }else{
+                _this.timerArr[index].flag = true;
             }
           }
         }, 1000)
