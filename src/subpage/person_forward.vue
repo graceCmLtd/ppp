@@ -92,7 +92,6 @@ export default {
   position:absolute;
   top:34%;
   left:43%;
-
   .sure_w{
     width:330px;
     height:100px;
@@ -101,6 +100,7 @@ export default {
     border-radius:3px;
     line-height:100px;
     font-family:"微软雅黑";
+    font-size:19px;
   }
 }
 
