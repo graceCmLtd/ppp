@@ -21,15 +21,20 @@
         <input type="radio" style="width:15px;height:15px;" name="" value="">同意碰碰票平台服务协议
        </p>
        <p class="btn_1">
-         <span>确认提现</span>
+         <span v-on:click="toggle()">确认提现</span>
          <span style="background:#A6A6A6; margin-left:29px;">
           <router-link to="/release/center/completes">取消并返回</router-link>
         </span>
       </p>
-       <div style="position: absolute; bottom:50%; right: -17%; cursor: pointer;"><img src="../../static/img/9.18.png" alt=""></div>
+       <div style="position: absolute; bottom:50%; right: -17%; cursor: pointer;"><img src="../../static/img/9.18.png" alt="">
+       </div>
       </div>
     </div>
-
+    <div class="show_w" v-show="isShow"  @click="hiddenShow()">
+      <div class="sure_w">
+        请等待查收哦！
+      </div>
+    </div>
  
 
   </div>
@@ -41,7 +46,8 @@ export default {
     return{
       item:[],
       pic1 : '',
-      pic2 : ''
+      pic2 : '',
+      isShow:false,
     }
   },
   created(){
@@ -63,12 +69,41 @@ export default {
           this.pic2 = res.data[0].pic2;
         }
       });
-    }
+    },
+    toggle:function(){
+          this.isShow = !this.isShow;
+        },
+    hiddenShow:function () {
+           var that = this;
+           that.isShow = false;
+     }, 
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.show_w{
+  width: 400px;
+  height: 150px;
+  border-radius:3px;
+  background:red;
+  background: linear-gradient(180deg, #ff7d55 0%, #ff6f4d 100%);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  position:absolute;
+  top:34%;
+  left:43%;
+  .sure_w{
+    width:330px;
+    height:100px;
+    background:#fff;
+    margin:20px auto;
+    border-radius:3px;
+    line-height:100px;
+    font-family:"微软雅黑";
+    font-size:19px;
+  }
+}
+
 .person_detailed{
   width: 100%;
   height:100%;

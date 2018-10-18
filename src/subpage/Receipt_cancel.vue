@@ -443,7 +443,6 @@
         width: 53%;
         min-height: 32px;
         font-size: 12px;
-        border: 1px solid #F15749;
         color: #F15749;
         background: white;
         border-radius: 3px;
