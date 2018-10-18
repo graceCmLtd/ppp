@@ -254,7 +254,7 @@
           _this.axios.post(_this.oUrl+"/quote/updateRealMoney",{
             "billNumber":_this.currentItem.billNumber,
             "quoterId":_this.currentItem.quoterId,
-            "new_money":_this.new_money
+            "new_money":_this.new_money*10000
           },{headers:{
               'Content-Type':'application/json'
           }}).then((res)=>{

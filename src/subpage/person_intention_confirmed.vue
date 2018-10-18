@@ -49,7 +49,7 @@
         <div class="center_w">
             <p>修改付款金额</p>
             <p>原实付金额：{{currentItem.real_money/10000}}W</p>
-            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0">W </p>
             <a @click="modifyMoneySubmit()">确认修改</a>
             <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
         </div>
@@ -179,7 +179,7 @@
           _this.axios.post(_this.oUrl+"/quote/updateRealMoney",{
             "billNumber":_this.currentItem.billNumber,
             "quoterId":_this.currentItem.quoterId,
-            "new_money":_this.new_money
+            "new_money":_this.new_money*10000
           },{headers:{
               'Content-Type':'application/json'
           }}).then((res)=>{

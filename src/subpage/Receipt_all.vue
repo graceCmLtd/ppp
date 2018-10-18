@@ -43,7 +43,7 @@
         <el-col :span="3" v-else-if="item.intentionStatus == '待接单'"><div class="mes operaMes">
             <!--<p><button type="button" name="button" @click="turnPlace(index)">交易</button></p>-->
             <!--<p><button type="button" name="button">放弃</button></p>-->
-            <p><button type="button" name="button" @click="turnPlace(item)" style="background: #F2F2F2; color: #666; margin-top: 20px; width: 79px;">去接单</button></p>
+            <p><button type="button" name="button" @click="turnPlace(item)" style="background: #F15749; color: #fff; margin-top: 20px; width: 79px;">去接单</button></p>
           </div>
         </el-col>
         </el-row>
@@ -58,31 +58,8 @@
           </p>
         </div>
 
-        <!-- 票据详情的弹窗 -->
- <!--       <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img v-bind:src="pic" alt="" ref="">
-        </div>
-      </div> -->
 
-
-       <!-- 票据详情的弹窗的修改后-->
+    <!-- 票据详情的弹窗的修改后-->
       <div class="intention_mes_details" ref="intention_mes_details">
          <div class="top_w">
             <p>票据详情</p>
