@@ -54,29 +54,6 @@
           @current-change="current_change">
         </el-pagination>
       </div>
-       <!-- 票据详情的弹窗的修改前-->
-<!--       <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
-        </div>
-        <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
-
 
        <!-- 票据详情的弹窗的修改后-->
       <div class="intention_mes_details" ref="intention_mes_details">
@@ -89,14 +66,12 @@
 
         <div class="intention_mes_message">
           <div class="message_left">
-            <ul>
-              <li style="height:100px;"><i style="font-style:normal; background:#F15749;color:#fff; font-size:12px;display:block;border-radius:3px;width:35px;height:20px;line-height:20px;margin-top:1px;">电银</i><span style="color:#F15749;font-weight:bold;">{{amount/10000}}w</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">报价金额</i></li>
-              <li><i style="font-style:normal; font-weight:bold;">每10w加</i><br><span style="font-weight:normal; color:#C0C0C0;">{{xPerLakh}}</span></li>
-              <li><span>{{transacDate}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">出票日期</i></li>
-              <li><span>{{bank}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">承对方</i></li>
-              <li><span>{{maturity}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">汇票到期</i></li>
-              <li style="border-right:none;"><span>{{remain_days}}天</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">剩余天数</i></li>
-            </ul>
+              <ul>
+                <li><p class="money_w">{{billType}}</p><i>{{amount/10000}}w</i></br><span>报价金额</span></li>
+                <li><i>{{interest}}%</br></i>每10W加:{{xPerLakh}}元</br><span>利率</span></li>
+                <li><i>{{maturity}}<br></i>(剩{{remain_days}}天)</br><span>汇票到期日/剩余天数</span></li>
+                <li style="border-right:none;"><i class="bank_w">{{bank}}</i></br><span>承兑方</span></li>
+              </ul>
           </div>
          
              
@@ -109,63 +84,6 @@
 
     </div>
 
-    <!--内容-->
-   <!--  <div class="content_w">
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化:10%
-            </a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-            <button class="btn_w">下一步</button>
-          </li>
-        </ul>
-      </div>
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-          </li>
-        </ul>
-      </div>
-
-      <div class="content_w_first">
-        <ul>
-          <li><a href="">电银</a></li>
-          <li><a href="">中国银行**支行</a></li>
-          <li><a href="">100W</a></li>
-          <li><a href="">2018-07-30</a></li>
-          <li><a href="">7天</a></li>
-          <li>
-            <a href="">年化：10%</a>
-          </li>
-          <li><a href="">已接单</a></li>
-          <li style="border-right: none;">
-             <button class="btn_w">下一步</button>
-          </li>
-        </ul>
-      </div>
-      <div class="content_w_second">
-        <ul>
-          <li><a href="">张家湾****贸易有限公司</a></li>
-          <li><a href="">赵总</a></li>
-          <li><a href="">13900323434</a></li>
-          <li>
-            <button class="btn_w" >票据详情</button>
-          </li>
-        </ul>
-      </div>
-
-    </div> -->
   </div>
 </template>
 
@@ -183,6 +101,8 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        interest:null,
+        billType:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
@@ -238,6 +158,8 @@
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
           _this.bank=_this.noteList[index].acceptor;
+          _this.interest=_this.noteList[index].interest;
+          _this.billType=_this.noteList[index].billType;
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
@@ -306,14 +228,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .date{
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-    }
-    .opera{
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -323,9 +237,6 @@
       font-size: 14px;
       min-width: 95px;
       border-right:1px solid #ccc;
-    }
-    .bankMes{
-
     }
     .lineHeight{
       line-height: 35px!important;
@@ -423,12 +334,32 @@
           li{
               margin-bottom: 5%;
               float: left;
-              padding: 0 30.2px;
+              width:182px;
               line-height: 50px;
               border-right: 1px solid #979797;
               margin-top: 31px;
             span{
+               color:#C0C0C0;
+               font-size:13px;
+            }
+            i{
+              font-style:normal;
               font-weight:bold;
+            }
+            .money_w{
+              width:40px;
+              height:25px;
+              line-height:25px;
+              background:#F15749;
+              border-radius:4px;
+              color:#fff;
+              font-size:13px;
+              margin-left:7px;
+            }
+            .bank_w{
+              width:123px;
+              overflow:hidden;
+              text-overflow:ellipsis; 
             }
           }
         }

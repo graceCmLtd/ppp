@@ -361,7 +361,7 @@
     cursor: pointer;
 }
 #color_w:hover{
-  background:#ccc;
+   background:#ccc;
 }
 #payment{
     min-height: 28px;
@@ -625,10 +625,7 @@
             color: #fff;
           }
         }
-
       }
-
-
     }
 
   }

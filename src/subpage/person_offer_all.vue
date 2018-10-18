@@ -61,29 +61,6 @@
           </p>
         </div>
 
-      <!-- 票据详情的弹窗的修改前 -->
-<!--        <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img v-bind:src="pic" alt="" ref="">
-        </div>
-      </div> -->
-
        <!-- 票据详情的弹窗的修改后-->
       <div class="intention_mes_details" ref="intention_mes_details">
          <div class="top_w">
@@ -96,17 +73,13 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li style="height:100px;"><i style="font-style:normal; background:#F15749;color:#fff; font-size:12px;display:block;border-radius:3px;width:35px;height:20px;line-height:20px;margin-top:1px;">电银</i><span style="color:#F15749;font-weight:bold;">{{amount/10000}}w</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">报价金额</i></li>
-              <li><i style="font-style:normal; font-weight:bold;">每10w加</i><br><span style="font-weight:normal; color:#C0C0C0;">{{xPerLakh}}</span></li>
-              <li><span>{{transacDate}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">出票日期</i></li>
-              <li><span>{{bank}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">承对方</i></li>
-              <li><span>{{maturity}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">汇票到期</i></li>
-              <li style="border-right:none;"><span>{{remain_days}}天</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">剩余天数</i></li>
+              <li><p class="money_w">{{billType}}</p><i>{{amount/10000}}w</i></br><span>报价金额</span></li>
+              <li><i>{{interest}}%</br></i>每10W加:{{xPerLakh}}元</br><span>利率</span></li>
+              <li><i>{{maturity}}<br></i>(剩{{remain_days}}天)</br><span>汇票到期日/剩余天数</span></li>
+              <li style="border-right:none;"><i>{{bank}}</i></br><span>承兑方</span></li>
             </ul>
           </div>
-         
-             
-           
+
         </div>
    
       </div>
@@ -130,37 +103,7 @@
     </div>
     </div>
 
-    <!--票据图片-->
-    <!--<div class="bill_w">
-      <div class="type_w">
-        <span class="type_w_1">票据图片</span>
-      </div>
-      <img src="/static/img/bill.png" alt="" style="margin-top: 37px;">
-      <div class="bill_footer_w">
-        <ul>
-          <li>
-            <p class="silver_w">电银</p>
-            <p class="silver_w_2">105,343,00</p>
-            <p class="silver_w_3">报价金额</p>
-          </li>
-          <li>
-            <p class="silver_w_4">每10W加：3%</p>
-            <p class="silver_w_5">报价</p>
-          </li>
-          <li>
-            <p class="silver_w_4">2018-07-30</p>
-            <p class="silver_w_5">出票日期</p>
-          </li>
-
-          <li style="border-right: none;">
-            <p class="last_w">承兑方     <i>中国银行 **支行</i> </p>
-            <p class="last_w">汇票到期    <i>2019-03-30</i> </p>
-            <p class="last_w" style="margin-left: -52px;">剩余天数    <i>98 </i>  </p>
-          </li>
-
-        </ul>
-      </div>
-    </div>-->
+    
     
   </div>
 
@@ -186,6 +129,8 @@
         maturity:'',
         remain_days:null,
         real_money:null ,
+        interest:null,
+        billType:null,
         pic:'',
         pageSize : 5,
         currentPage : 1,
@@ -268,12 +213,7 @@
           }
         })
       },
-      // slit(){
-      //   this.$alert(
-      //     '<div class="intention_mes_details" ref="intention_mes_details"><div class="intention_mes_pic" ref="intention_mes_pic"><img src="../../static/img/banner1.jpg" alt="" ref="PaperIs"></div><div class="intention_mes_message"><div class="message_left"><ul><li>票据金额：<span>100w</span></li><li>每10w加：<span>2</span></li><li>出票日期：<span>2018-09-05</span></li></ul></div><div class="message_right"><ul><li>承对方：<span>天津商业银行</span></li><li>汇票到期日：<span>2018-11-30</span></li><li>剩余天数：<span>84天</span></li></ul></div></div></div>',
-      //     '票据详情',
-      //     { dangerouslyUseHTMLString: true });
-      // }
+
      paperMes(index){
         let _this=this;
         _this.current_index = index;
@@ -282,6 +222,8 @@
           console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
+          _this.interest=_this.noteList[index].interest;
+          _this.billType=_this.noteList[index].billType;
           _this.transacDate=_this.noteList[index].transacDate;
           _this.bank=_this.noteList[index].acceptor;
           _this.releaseDate=_this.noteList[index].releaseDate;
@@ -353,16 +295,6 @@
         line-height: 35px!important;
         font-size: 13px!important;
       }
-      .bank{
-        border-left:1px solid #ccc;
-        border-right:1px solid #ccc;
-      }
-      .date{
-      
-      }
-      .amount{
-      
-      }
       .mes{
         margin-top:8px;
         margin-bottom:8px;
@@ -370,8 +302,6 @@
         line-height: 70px;
         font-size: 14px;
         border-right:1px solid #ccc;
-      }
-      .opera{
       }
       .mes_chose{
         display: flex;
@@ -594,12 +524,27 @@
           li{
               margin-bottom: 5%;
               float: left;
-              padding: 0 30.2px;
+              padding: 0 46px;
               line-height: 50px;
               border-right: 1px solid #979797;
               margin-top: 31px;
             span{
+               color:#C0C0C0;
+               font-size:13px;
+            }
+            i{
+              font-style:normal;
               font-weight:bold;
+            }
+            .money_w{
+              width:40px;
+              height:25px;
+              line-height:25px;
+              background:#F15749;
+              border-radius:4px;
+              color:#fff;
+              font-size:13px;
+              margin-left:-27px;
             }
           }
         }

@@ -66,14 +66,12 @@
         </div>
 
         <div class="intention_mes_message">
-          <div class="message_left">
+         <div class="message_left">
             <ul>
-              <li style="height:100px;"><i style="font-style:normal; background:#F15749;color:#fff; font-size:12px;display:block;border-radius:3px;width:35px;height:20px;line-height:20px;margin-top:1px;">电银</i><span style="color:#F15749;font-weight:bold;">{{amount/10000}}w</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">报价金额</i></li>
-              <li><i style="font-style:normal; font-weight:bold;">每10w加</i><br><span style="font-weight:normal; color:#C0C0C0;">{{xPerLakh}}</span></li>
-              <li><span>{{transacDate}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">出票日期</i></li>
-              <li><span>{{bank}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">承对方</i></li>
-              <li><span>{{maturity}}</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">汇票到期</i></li>
-              <li style="border-right:none;"><span>{{remain_days}}天</span><br><i style="font-style:normal; color:#C0C0C0;font-size:13px;">剩余天数</i></li>
+              <li><p class="money_w">{{billType}}</p><i>{{amount/10000}}w</i></br><span>报价金额</span></li>
+              <li><i>{{interest}}%</br></i>每10W加:{{xPerLakh}}元</br><span>利率</span></li>
+              <li><i>{{maturity}}<br></i>(剩{{remain_days}}天)</br><span>汇票到期日/剩余天数</span></li>
+              <li style="border-right:none;"><i>{{bank}}</i></br><span>承兑方</span></li>
             </ul>
           </div>
          
@@ -124,6 +122,8 @@ import {getCookie} from '@/assets/util'
         maturity:null,
         remain_days:null,
         real_money:null ,
+        interest:null,
+        billType:null,
         pic:'',
         currentPage : 1,
         pageSize : 5,
@@ -211,6 +211,8 @@ import {getCookie} from '@/assets/util'
           console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
+          _this.interest=_this.noteList[index].interest;
+          _this.billType=_this.noteList[index].billType;
           _this.transacDate=_this.noteList[index].transacDate;
           _this.bank=_this.noteList[index].acceptor;
           _this.releaseDate=_this.noteList[index].releaseDate;
@@ -516,19 +518,34 @@ import {getCookie} from '@/assets/util'
       height:200px;
       border-top: 1px solid #979797;
       margin-top: 10px;
-      .message_left{
+    .message_left{
         width:100%;
         height:100%;
         ul{
           li{
               margin-bottom: 5%;
               float: left;
-              padding: 0 30.2px;
+              padding: 0 46px;
               line-height: 50px;
               border-right: 1px solid #979797;
               margin-top: 31px;
             span{
+               color:#C0C0C0;
+               font-size:13px;
+            }
+            i{
+              font-style:normal;
               font-weight:bold;
+            }
+            .money_w{
+              width:40px;
+              height:25px;
+              line-height:25px;
+              background:#F15749;
+              border-radius:4px;
+              color:#fff;
+              font-size:13px;
+              margin-left:-27px;
             }
           }
         }
