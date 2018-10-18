@@ -37,7 +37,6 @@
           </div>
         </div>
 
-        <button type="button" @click="tttttt(index)">时间</button>
         <p class="person_intention_contact">
           <span>订单号：{{item.transacType}}</span>
           <span>公司名称：{{item.companyName}}</span>
@@ -171,10 +170,6 @@
             _this.showPaginate = false;
         });
       },
-      tttttt(index){
-        this.m= this.timerArr[index].minutes;
-        this.s = this.timerArr[index].seconds;
-      },
       current_change(currentPage){
         this.currentPage = currentPage;
         this.getIntenTionList();
@@ -186,6 +181,7 @@
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
       },
+      /*订单详情*/
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
@@ -224,6 +220,7 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
+      /*上传背书凭证弹框*/
       toggle:function(item){
          this.isShow = !this.isShow;
          this.current_item = item;
@@ -262,19 +259,17 @@
        /*更新倒计时数组*/
        updateTimer(){
           let _this = this;
-          /*var temp ={};*/
+          //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
           console.log("date ")
           console.log(date)
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
-            console.log(_this.noteList[i].updateTimeStamp)
-            console.log((date - _this.noteList[i].updateTimeStamp))
             let a = date - _this.noteList[i].updateTimeStamp
-            console.log(a >1200)
+           
             if(a >1200.0){
-              console.log(i+"timeout ")
+              console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
             }else{
@@ -288,7 +283,6 @@
           }
           
           console.log("minuete ")
-          /*console.log(date)*/
           console.log(_this.timerArr)
        },
        /*倒计时*/
@@ -297,53 +291,30 @@
       },
        timer () {
         var _this = this
-        //var time = new Array();
         var time = window.setInterval(function () {
+          let t1 = {}
           for (var index = 0; index < _this.timerArr.length; index++) {
             //console.log("timer")
             //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes !== 0) {
               // Vue.set
-              let t1 = {}
+              //let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
-              //_this.timerArr.splice(index,2,t1)
               _this.timerArr.splice(index,1,t1)
-              /*_this.timerArr[index].seconds = 59
-              _this.timerArr[index].minutes -= 1*/
             } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
               _this.timerArr[index].seconds = 0
               //window.clearInterval(time)
-              //alert("timeout")
             } else {
-                let t1 = {}
+               // let t1 = {}
               t1["seconds"] = _this.timerArr[index].seconds;
               t1["minutes"] = _this.timerArr[index].minutes ;
-              //_this.timerArr.splice(index,2,t1)
               _this.timerArr.splice(index,1,t1)
-                _this.timerArr[index].seconds -= 1
-            
-              
+              _this.timerArr[index].seconds -= 1 
             }
-
           }
         }, 1000)
       },
-      /*updateTimeArray(){
-        var _this = this;
-        var time= window.setInterval(function(){
-          for (var i = 0; i < _this.timerArr.length; i++) {
-          _this.timer(index)
-        }
-        },1000)
-        
-      },*/
-      /*getMinutes(index){
-        return this.timerArr[index].minutes;
-      },
-      getSeconds(index){
-        return this.timerArr[index].seconds;
-      },*/
       /*上传正面图片*/
       upLoadIs(e){
         let _this=this;
