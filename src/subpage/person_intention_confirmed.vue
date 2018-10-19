@@ -81,7 +81,7 @@
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}%</span></li>
-              <li>实收金额：<span>{{realMoeny}}W(含平台担保交易500)</span></li>
+              <li>实收金额：<span>{{realMoeny}}W(含平台担保费)</span></li>
             </ul>
           </div>
         </div>
@@ -210,7 +210,7 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         this.buyer = _this.noteList[index].companyName;
         this.rate = _this.noteList[index].interest;
-        this.realMoeny = (_this.noteList[index].real_money/10000).toFixed(2);
+        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;

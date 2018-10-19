@@ -54,7 +54,7 @@
 
     </div>
 
-    <el-dialog title="凭证图片" :visible.sync="dialogTableVisible">
+    <el-dialog title="凭证图片" width="650px" :visible.sync="dialogTableVisible">
       <img v-bind:src="pic1" width="580px" height="295px">
     </el-dialog>
 
