@@ -13,11 +13,11 @@
         <p>贴现利率 <i>{{item.interest}}%+{{item.xPerLakh}}</i></p>
         <p>实付金额 <i>{{item.real_money}}</i></p> -->
         <p style="font-size:17px;">确认背书户信息</p>
-        <p>票号：<i>12369526695256</i></p>
-        <p>户名:<i>**银行商贸</i></p>
-        <p>银行账号:<i>622222222222222222</i></p>
-        <p>开户行:<i>建设银行</i></p>
+        <p>银行账号:<i>{{list.bankAccount}}</i></p>
+        <p>户名:<i>{{list.bankAccountName}}</i></p>
+        <p>开户行:<i>{{list.bankName}}</i></p>
         <p>担保交易专席客服联系方式:<i>4001-521-889 </i></p>
+        <p>票号：<i>{{item.billNumber}}</i></p>
         <p>票面总额:<i>{{item.amount}}</i></p>
         <p>承兑方:<i>{{item.acceptor}}</i></p>
         <p>卖方:<i>{{item.companyName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</i></p>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+  import {getCookie} from '@/assets/util'
 export default {
   data(){
     return{
@@ -68,7 +69,8 @@ export default {
       item:[],
       showDialog:false,
       pic1 : '',
-      pic2 : ''
+      pic2 : '',
+      list : []
     }
   },
   methods:{
@@ -156,6 +158,13 @@ export default {
           this.pic1 = res.data[0].pic1;
           this.pic2 = res.data[0].pic2;
         }
+      });
+      let Id=getCookie('Iud');
+      console.log(Id);
+      this.axios.get(this.oUrl+'/getCompany?contactsId='+Id).then((res)=>{
+          console.log("ss");
+          console.log(res);
+          this.list = res.data[0];
       });
     }
   },

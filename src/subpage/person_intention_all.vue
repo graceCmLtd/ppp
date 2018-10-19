@@ -28,7 +28,7 @@
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3" v-if="item.intentionStatus == '已接单,待支付'"><div class="intention_mes operaMes">
+          <el-col :span="3" v-if="item.intentionStatus == '已失效'"><div class="intention_mes operaMes">
             <button type="button" name="button" v-on:click="" style="background:#fff; color:#333;">...</button>
           </div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '待接单'"><div class="intention_mes operaMes">
@@ -54,7 +54,7 @@
             <p>原实付金额：{{currentItem.real_money/10000}}W</p>
             <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0">W</p>
             <a @click="modifyMoneySubmit()">确认修改</a>
-            <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
+            <a @click="showCancel()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
         </div>
       </div>
       <!-- 取消页面 -->
@@ -161,7 +161,9 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1',
+            "IntentionType":'7',
+            "filter_str1":'待接单',
+            "filter_str2":'已失效',
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -169,18 +171,21 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("intention dada sssss")
+          console.log("intention 123")
           console.log(res)
           _this.noteList=res.data;
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'7',
+            "filter_str1":'待接单',
+            "filter_str2":'已失效'
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          console.log('www'+res.data);
           if(res.data != '')
             _this.total = res.data;
           else
@@ -211,9 +216,8 @@
               /*_this.noteList=res.data;*/
             })
           },
-      hiddenShow:function () {
-                var that = this;
-                that.isShow = false;
+            showCancel(){
+              this.isShow = false;
             }, 
       paperMes(index){
         let _this=this;
