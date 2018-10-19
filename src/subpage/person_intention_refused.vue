@@ -37,7 +37,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-          <button type="button" name="button" @click="paperMes(index)">查看详情</button>
+          <!-- <button type="button" name="button" @click="paperMes(index)">查看详情</button> -->
         </p>
       </div>
       <!--分页-->
@@ -51,11 +51,11 @@
         </el-pagination>
       </div>
 
-      <div class="intention_mes_details" ref="intention_mes_details">
+      <!-- 修改后的票据详情弹窗 -->
+      <!-- <div class="intention_mes_details" ref="intention_mes_details">
         <div class="top_w">
             <p>票据详情</p>
         </div>
-       <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
       
           <div class="message_left">
@@ -72,7 +72,7 @@
        <div class="intention_mes_pic" ref="intention_mes_pic">
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
-      </div>
+      </div> -->
 
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
@@ -110,7 +110,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已拒绝",
+            "filter_str":"已失效",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -124,7 +124,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已拒绝"
+            "filter_str":"已失效"
           },
           {headers:{
               'Content-Type':'application/json'
@@ -151,14 +151,14 @@
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
-          console.log(res)
-          _this.amount=_this.noteList[index].amount;
+          console.log(_this.noteList[index].billNumber)
+          /*_this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
           _this.bank=_this.noteList[index].acceptor;
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
-          _this.remain_days = _this.noteList[index].remain_days;
+          _this.remain_days = _this.noteList[index].remain_days;*/
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
               console.log(res)
             if(res.data.length === 1 )
