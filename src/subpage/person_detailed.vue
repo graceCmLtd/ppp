@@ -12,6 +12,8 @@
         <p>卖方 <i>{{item.companyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</i></p>
         <p>贴现利率 <i>{{item.interest}}%+{{item.xPerLakh}}</i></p>
         <p>实付金额 <i>{{item.real_money}}</i></p> -->
+        <p>确认背书户信息</p>
+        <p>票号：<i>12369526695256</i></p>
         <p>户名:<i>**银行商贸</i></p>
         <p>银行账号:<i>622222222222222222</i></p>
         <p>开户行:<i>建设银行</i></p>
@@ -194,8 +196,8 @@ export default {
     .content_w{
       margin:0 auto;
       text-align:left;
-      margin-top:40px;
-      font-size:15px;
+      margin-top:3px;
+      font-size:14px;
       font-weight:bold;
       letter-spacing:1px;
       line-height:45px;
@@ -218,7 +220,7 @@ export default {
       .agreement{
         position:relative;
         left:31%;
-        top:3%;
+        top:-2%;
         z-index:99;
       }
     }
@@ -228,7 +230,7 @@ export default {
     margin-left: 8%;
     position: relative;
     position: absolute;
-    bottom: 31%;
+    bottom: 30%;
     left: 39%;
     button{
       min-width: 25%;
