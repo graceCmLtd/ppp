@@ -155,6 +155,7 @@
       /*环迅支付*/
       toPay(item){
         let _this = this;
+        console.log(item);
         _this.$router.push({
           name:'Detailed',
           query:{
