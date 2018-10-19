@@ -5,13 +5,28 @@
     </div>
     <div class="person_detailed_mes">
       <div class="content_w">
-        <p>银行监管账号 <i>{{item.bankAccount}}</i></p>
+     <!--    <p>银行监管账号 <i>{{item.bankAccount}}</i></p>
         <p>担保交易专席客服联系方式 <i>4001-521-889</i></p>
         <p>票据总额 <i>{{item.amount}}</i></p>
         <p>承兑方 <i>{{item.acceptor}}</i></p>
         <p>卖方 <i>{{item.companyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</i></p>
         <p>贴现利率 <i>{{item.interest}}%+{{item.xPerLakh}}</i></p>
-        <p>实付金额 <i>{{item.real_money}}</i></p>
+        <p>实付金额 <i>{{item.real_money}}</i></p> -->
+        <p>户名:<i>**银行商贸</i></p>
+        <p>银行账号:<i>622222222222222222</i></p>
+        <p>开户行:<i>建设银行</i></p>
+        <p>担保交易专席客服联系方式:<i>4001-521-889 </i></p>
+        <p>票面总额:<i>{{item.amount}}</i></p>
+        <p>承兑方:<i>{{item.acceptor}}</i></p>
+        <p>卖方:<i>{{item.companyName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</i></p>
+        <p>贴现利率:<i>{{item.interest}}%</i></p>
+        <p>每十万加：<i>{{item.xPerLakh}}</i></p>
+        <p>实付金额 : <i>{{item.real_money}}</i></p>
+
+
+
+
+
         <p>票据图片</p>  
           <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
           <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
@@ -19,7 +34,7 @@
           <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
         </p> 
       </div>
-      <div style="position: absolute;top: 33%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
+      <div style="position: absolute;top: 41%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
       </div>
     </div>
     <p class="havelook">
@@ -32,12 +47,12 @@
       <p class="warning_alt">强烈建议选择平台担保交易</p>
       <i class="el-icon-close" @click="closeWarning()"></i>
     </div>
-    <div class="time_w">
+  <!--   <div class="time_w">
       <div class="time_a">
         <p>倒计时<i> 00:10:00</i>,过时将 取消交易</p>
         <span style="text-align:left;color:#999999; font-size:14px;">请尽快选择平台担保交易，<br> 超时未选择将影响您的平台信用等级，<br> 之后交易将受到限制</span>
       </div>
-    </div>
+    </div> -->
     <el-dialog title="付款" :visible.sync="showDialog">
       <el-button @click="paySuccess">确定</el-button>
       <el-button @click="payCancle" style="background-color:#ccc;margin-left:40px;">取消</el-button>
@@ -204,6 +219,7 @@ export default {
         position:relative;
         left:31%;
         top:3%;
+        z-index:99;
       }
     }
   }
@@ -212,7 +228,7 @@ export default {
     margin-left: 8%;
     position: relative;
     position: absolute;
-    bottom: 35%;
+    bottom: 31%;
     left: 39%;
     button{
       min-width: 25%;
