@@ -57,8 +57,8 @@
       
           <div class="message_left">
             <ul>
-              <li>银行监管账号：<span>6222299993778389939</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <li>票号：<span>6222299993778389939</span></li>
+              <li>票面总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}%</span></li>

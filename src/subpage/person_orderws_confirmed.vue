@@ -60,13 +60,11 @@
             <p>订单详情</p>
           </div>
        <!-- 修改后的票据详情弹窗 -->
-        <div class="intention_mes_message">
-      
+        <div class="intention_mes_message">   
           <div class="message_left">
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
-              <li>银行监管账号：<span>{{bankAccount}}</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>卖方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
@@ -78,7 +76,6 @@
           <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
       </div>
-
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
