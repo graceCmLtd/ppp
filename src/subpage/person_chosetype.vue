@@ -27,7 +27,7 @@
         <ul>
           <li>交易方式：<span>买卖双方协商</span></li>
           <li>联系方式：<span>{{billData.contactsPhone}}</span></li>
-          <li>交易金额：<span>{{billData.real_money}}</span>w<font color="red">(含平台担保费)</font></li>
+          <li>实收金额：<span>{{billData.real_money}}</span>w<font color="red">(含平台担保费)</font></li>
           <li>总额：<span>{{billData.amount/10000}}</span>w</li>
         </ul>
       </div>
@@ -132,7 +132,7 @@ export default {
         window.localStorage.setItem('item',JSON.stringify(object));
       }
       this.billData = JSON.parse(window.localStorage.getItem('item'));
-      this.billData.real_money = Number(this.billData.real_money/10000).toFixed(2);
+      this.billData.real_money = Number((this.billData.real_money-(this.billData.real_money*5/10000))/10000).toFixed(2);
 
       console.log("billData")
       console.log(this.billData)
