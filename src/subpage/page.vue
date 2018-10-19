@@ -274,6 +274,7 @@ export default {
                 that.isShow = false;
             }, 
   },
+ 
   created(){
     this.getListTop();
     this.getListBot()

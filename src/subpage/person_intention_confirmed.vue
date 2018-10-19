@@ -30,6 +30,7 @@
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button" @click="modifyAmount(item)">修改金额</button>
+            <p class="cancel_w"  v-on:click="toggle()">取消</p>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -52,6 +53,18 @@
             <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0">W </p>
             <a @click="modifyMoneySubmit()">确认修改</a>
             <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
+        </div>
+      </div>
+      <!-- 取消页面 -->
+      <div class="isShow_cancel" v-if="isShow_cancel" @click="hiddenShow()" >
+        <div class="cancel_center" >
+          <p>是否取消订单</p>
+          <p><img src="../../static/img/dog.png"></p>
+          <p>取消订单，你重新发布此票据</p>
+          <p>
+            <span>确认取消不卖了</span>
+            <span style="background:#ccc;">不,在等等</span>
+          </p>
         </div>
       </div>
       <!-- </el-dialog> -->
@@ -122,6 +135,7 @@
         total : 0,
         showPaginate : true,
         isShow:false,
+        isShow_cancel:false,
         new_money:0,
         currentItem:null
       }
@@ -168,6 +182,7 @@
         //alert(this.currentItem.real_money)
       },
       /*修改金额提交操作*/
+
       modifyMoneySubmit(){
         if (!this.new_money) {
           alert("请填写金额，或点击取消")  
@@ -232,6 +247,7 @@
           })
         })
       },
+
       closePics(){
         this.$refs.intention_mes_details.style.top='15%';
         this.$refs.intention_mes_details.style.opacity='0';
@@ -239,7 +255,14 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      }
+      },
+      toggle:function(){
+          this.isShow_cancel = !this.isShow_cancel;
+          },
+      hiddenShow:function () {
+          var that = this;
+          that.isShow_cancel = false;
+        }, 
     },
     created(){
       this.getIntenTionList()
@@ -248,24 +271,24 @@
 </script>
 
 <style lang="scss" scoped>
-.top_w{
-  width:700px;
-  height:40px;
-  border-bottom:1px solid #F15749;
-  text-align:left;
-  line-height:40px;
-  p{
-    font-size:15px;
-    font-family:MicrosoftYaHei-Bold;
-    font-weight:bold;
-    color:rgba(255,255,255,1);
+  .top_w{
+    width:700px;
+    height:40px;
+    border-bottom:1px solid #F15749;
+    text-align:left;
     line-height:40px;
-    background:#F15749;
-    display:inline-block;
-    width:95px;
-    text-align:center;
+    p{
+      font-size:15px;
+      font-family:MicrosoftYaHei-Bold;
+      font-weight:bold;
+      color:rgba(255,255,255,1);
+      line-height:40px;
+      background:#F15749;
+      display:inline-block;
+      width:95px;
+      text-align:center;
+    }
   }
-}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -318,11 +341,25 @@
     .operaMes{
       min-width: 95px;
       button{
-        width: 56%;
+        width: 64px;
         min-height: 30px;
         border-radius: 3px;
         background: #F15749;
         color: #fff;
+        font-size:13px;
+      }
+      .cancel_w{
+        width:64px;
+        height: 30px;
+        line-height:30px;
+        border-radius: 3px;
+        background: #ccc;
+        color: #fff;
+        font-size:13px;
+        float:right;
+        margin-top:20px;
+        margin-right: 2px;
+        cursor:pointer;
       }
     }
     .person_intention_contact{
@@ -542,5 +579,50 @@
     }
   }
 }
-
+/*取消*/
+.isShow_cancel{
+  width:500px;
+  height:450px;
+  background:linear-gradient(180deg,rgba(255,125,85,1) 0%,rgba(255,111,77,1) 100%);
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position:fixed;
+  bottom: 3%;
+  left: 31%;
+  z-index: 999;
+  .cancel_center{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
+    line-height:40px;
+    p:nth-child(1){
+      color: #F15749;
+      font-weight: bold;
+      font-size:20px;
+    }
+     p:nth-child(2) img{  
+      height:180px;
+    }
+    p:nth-child(3){
+      color:#666;
+      font-family:"微软雅黑";
+    }
+    p:nth-child(4) span{
+      color:#fff;
+      background:#F15749;
+      width:120px;
+      height:32px;
+      border-radius:3px;
+      line-height:32px;
+      font-size:13px;
+      display:inline-block;
+      cursor:pointer;
+      margin-left:10px;
+    }
+  }
+}
 </style>

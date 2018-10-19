@@ -300,10 +300,8 @@ export default {
       i{
        font-style:normal;
        color:#F15749;
+     }
     }
-    }
-    
-
   }
 }
 
