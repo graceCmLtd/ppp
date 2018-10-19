@@ -3,10 +3,9 @@
   <div class="person_choseType">
     <p class="choseType_company">{{billData.acceptor}}</p>
     <p>票据类型：&nbsp;&nbsp;&nbsp;<span>{{billType}}</span></p>
-    <p>汇票到期日：&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}</span></p>
-    <p>票据金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
+    <p>汇票到期日：&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}(剩{{billData.remain_days}}天)</span></p>
+    <p>票面金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
     <p>出票日期：&nbsp;&nbsp;&nbsp;<span>{{maturityDay}}</span></p>
-    <p>剩余天数：&nbsp;&nbsp;&nbsp;<span>{{billData.remain_days}}</span>天</p>
     <!-- <p>期望利率：&nbsp;&nbsp;&nbsp;<span>10</span>%</p> -->
     <p class="pic_title">
       <span>汇票图片</span>

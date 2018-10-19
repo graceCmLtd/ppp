@@ -17,6 +17,13 @@ const router = new Router({
       }
     },
     {
+      path:'/My_news',
+      name:'My_news',
+      components:{
+        default:resolve=>require(['@/subpage/My_news'],resolve)
+      }
+    },
+    {
       path:'/stick',//我要贴
       name:'Stick',
       component:resolve=>require(['@/subpage/stick'],resolve)
