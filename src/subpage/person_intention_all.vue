@@ -25,14 +25,15 @@
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
-            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
+            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3" v-if="item.intentionStatus == '已接单,待支付'"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click="">...</button>
+          <el-col :span="3" v-if="item.intentionStatus == '已失效'"><div class="intention_mes operaMes">
+            <button type="button" name="button" v-on:click="" style="background:#fff; color:#333;">...</button>
           </div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '待接单'"><div class="intention_mes operaMes">
             <button type="button" name="button" v-on:click="modifyAmount(item)">修改金额</button>
+            <p class="cancel_w"  v-on:click="toggle()">取消</p>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -51,9 +52,21 @@
         <div class="center_w">
             <p>修改付款金额</p>
             <p>原实付金额：{{currentItem.real_money/10000}}W</p>
-            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0">W</p>
             <a @click="modifyMoneySubmit()">确认修改</a>
-            <a @click="hiddenShow()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
+            <a @click="showCancel()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
+        </div>
+      </div>
+      <!-- 取消页面 -->
+      <div class="isShow_cancel" v-if="isShow_cancel" @click="hiddenShow()" >
+        <div class="cancel_center" >
+          <p>是否取消订单</p>
+          <p><img src="../../static/img/dog.png"></p>
+          <p>取消订单，你重新发布此票据</p>
+          <p>
+            <span>确认取消不卖了</span>
+            <span style="background:#ccc;">不,在等等</span>
+          </p>
         </div>
       </div>
       <!-- </el-dialog> -->
@@ -76,12 +89,12 @@
       
           <div class="message_left">
             <ul>
-              <li>银行监管账号：<span>6222299993778389939</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <li>票号：<span>6222299993778389939</span></li>
+              <li>票面总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}</span></li>
-              <li>实收金额：<span>{{realMoeny}}W(含平台担保交易500)</span></li>
+              <li>实收金额：<span>{{realMoeny}}W(含平台担保费)</span></li>
             </ul>
             </div>
         </div>
@@ -137,6 +150,7 @@
         pageSize : 5,
         total : 0,
         showPaginate : true,
+        isShow_cancel:false,
         new_money:0
 
       }
@@ -147,7 +161,9 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1',
+            "IntentionType":'7',
+            "filter_str1":'待接单',
+            "filter_str2":'已失效',
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -155,18 +171,21 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("intention dada sssss")
+          console.log("intention 123")
           console.log(res)
           _this.noteList=res.data;
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'1'
+            "IntentionType":'7',
+            "filter_str1":'待接单',
+            "filter_str2":'已失效'
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          console.log('www'+res.data);
           if(res.data != '')
             _this.total = res.data;
           else
@@ -197,16 +216,15 @@
               /*_this.noteList=res.data;*/
             })
           },
-      hiddenShow:function () {
-                var that = this;
-                that.isShow = false;
+            showCancel(){
+              this.isShow = false;
             }, 
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
         this.buyer = _this.noteList[index].companyName;
         this.rate = _this.noteList[index].interest;
-        this.realMoeny = (_this.noteList[index].real_money/10000).toFixed(2);
+        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;
@@ -272,7 +290,14 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      }
+      },
+     toggle:function(){
+          this.isShow_cancel = !this.isShow_cancel;
+          },
+      hiddenShow:function () {
+          var that = this;
+          that.isShow_cancel = false;
+        }, 
     },
     created(){
       this.getIntenTionList()
@@ -398,14 +423,25 @@
     .operaMes{
       min-width: 95px;
       button{
-        width: 53%;
-        min-height: 28px;
-        font-size: 12px;
+        width: 64px;
+        min-height: 30px;
         border-radius: 3px;
+        background: #F15749;
         color: #fff;
-        background:#fff;
-        color:#333;
-
+        font-size:13px;
+      }
+      .cancel_w{
+        width:64px;
+        height: 30px;
+        line-height:30px;
+        border-radius: 3px;
+        background: #ccc;
+        color: #fff;
+        font-size:13px;
+        float:right;
+        margin-top:20px;
+        margin-right: 2px;
+        cursor:pointer;
       }
     }
     .person_intention_contact{
@@ -625,5 +661,50 @@
     }
   }
 }
-
+/*取消*/
+.isShow_cancel{
+  width:500px;
+  height:450px;
+  background:linear-gradient(180deg,rgba(255,125,85,1) 0%,rgba(255,111,77,1) 100%);
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+  border-radius:4px;
+  position:fixed;
+  bottom: 3%;
+  left: 31%;
+  z-index: 999;
+  .cancel_center{
+    width:400px;
+    height:350px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 32px 0px rgba(241,87,73,0.5);
+    border-radius:4px;
+    margin:0 auto;
+    margin-top:52px;
+    line-height:40px;
+    p:nth-child(1){
+      color: #F15749;
+      font-weight: bold;
+      font-size:20px;
+    }
+     p:nth-child(2) img{  
+      height:180px;
+    }
+    p:nth-child(3){
+      color:#666;
+      font-family:"微软雅黑";
+    }
+    p:nth-child(4) span{
+      color:#fff;
+      background:#F15749;
+      width:120px;
+      height:32px;
+      border-radius:3px;
+      line-height:32px;
+      font-size:13px;
+      display:inline-block;
+      cursor:pointer;
+      margin-left:10px;
+    }
+  }
+}
 </style>

@@ -25,7 +25,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
-            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
+            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.status}}</div></el-col>
         </el-row>
@@ -57,8 +57,8 @@
       
           <div class="message_left">
             <ul>
-              <li>银行监管账号：<span>6222299993778389939</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <li>票号：<span>6222299993778389939</span></li>
+              <li>票面总额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}%</span></li>

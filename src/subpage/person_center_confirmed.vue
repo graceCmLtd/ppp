@@ -90,12 +90,12 @@
           <div class="message_left">
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
-              <li>银行监管账号：<span>{{bankAccount}}</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
-              <li>实收金额：<span>{{real_money}}W(含平台担保交易500)</span></li>
+              <li>实收金额：<span>{{real_money}}W(含平台担保费)</span></li>
             </ul>
             </div>
         </div>
@@ -193,7 +193,7 @@
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.companyName=_this.noteList[index].companyName;
           _this.interest=_this.noteList[index].interest;
-          _this.real_money=_this.noteList[index].real_money;
+          _this.real_money=((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);;
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;

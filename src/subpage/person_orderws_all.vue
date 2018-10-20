@@ -34,7 +34,7 @@
             <div class="intention_mes" id="payment" @click="toPay(item)" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">提醒卖家背书</div>
             <div class="intention_mes" id="payment" @click="submitAccept(item)" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
-            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'">查看凭证</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'" @click="checkVoucher(item)">查看凭证</div>
           </el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
@@ -77,8 +77,8 @@
           <div class="message_left">
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
-              <li>银行监管账号：<span>{{bankAccount}}</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>卖方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
@@ -96,6 +96,9 @@
 
     </div>
 
+    <el-dialog title="凭证图片" width="650px" :visible.sync="dialogTableVisible">
+      <img v-bind:src="pic1" width="580px" height="295px">
+    </el-dialog>
  
   </div>
 </template>
@@ -129,7 +132,9 @@
         timeout_count:0,
         //页面不需要显示待接单状态的数据，所以这里要除去待接单状态的数据
         count1 : 0, //全部状态条数
-        count2 : 0 //待接单状态数据条数
+        count2 : 0, //待接单状态数据条数
+        dialogTableVisible:false,
+        pic1:''
       }
     },
     methods:{
@@ -351,6 +356,16 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
+      },
+      checkVoucher(item){
+          console.log(item.transacType);
+          this.dialogTableVisible = true;
+          var orderId = item.transacType;
+          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId?orderId',{orderId:orderId}).then((res)=>{
+              console.log(res.data);
+              if(res.data != '')
+                this.pic1 = res.data[0].pic1;
+          });
       }
     },
     created(){

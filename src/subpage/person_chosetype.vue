@@ -3,10 +3,9 @@
   <div class="person_choseType">
     <p class="choseType_company">{{billData.acceptor}}</p>
     <p>票据类型：&nbsp;&nbsp;&nbsp;<span>{{billType}}</span></p>
-    <p>汇票到期日：&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}</span></p>
-    <p>票据金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
+    <p>汇票到期日：&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}(剩{{billData.remain_days}}天)</span></p>
+    <p>票面金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
     <p>出票日期：&nbsp;&nbsp;&nbsp;<span>{{maturityDay}}</span></p>
-    <p>剩余天数：&nbsp;&nbsp;&nbsp;<span>{{billData.remain_days}}</span>天</p>
     <!-- <p>期望利率：&nbsp;&nbsp;&nbsp;<span>10</span>%</p> -->
     <p class="pic_title">
       <span>汇票图片</span>
@@ -27,7 +26,7 @@
         <ul>
           <li>交易方式：<span>买卖双方协商</span></li>
           <li>联系方式：<span>{{billData.contactsPhone}}</span></li>
-          <li>交易金额：<span>{{billData.real_money}}</span>w<font color="red">(含平台担保费)</font></li>
+          <li>实收金额：<span>{{billData.real_money}}</span>w<font color="red">(含平台担保费)</font></li>
           <li>总额：<span>{{billData.amount/10000}}</span>w</li>
         </ul>
       </div>
@@ -132,7 +131,7 @@ export default {
         window.localStorage.setItem('item',JSON.stringify(object));
       }
       this.billData = JSON.parse(window.localStorage.getItem('item'));
-      this.billData.real_money = Number(this.billData.real_money/10000).toFixed(2);
+      this.billData.real_money = Number((this.billData.real_money-(this.billData.real_money*5/10000))/10000).toFixed(2);
 
       console.log("billData")
       console.log(this.billData)
