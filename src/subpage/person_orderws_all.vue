@@ -48,7 +48,7 @@
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
-          <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
+          <span class="time_w" v-if="item.intentionStatus == '已接单,待支付' || item.intentionStatus == '已背书,待签收' ">倒计时：<i style="font-style: normal; color:#F15749;">{{num(timerArr[index].minutes)}}:{{num(timerArr[index].seconds)}}</i></span>
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
  
 
@@ -125,6 +125,8 @@
         total : 0,
         item:[],
         showPaginate : true,
+        timerArr:[],
+        timeout_count:0,
         //页面不需要显示待接单状态的数据，所以这里要除去待接单状态的数据
         count1 : 0, //全部状态条数
         count2 : 0 //待接单状态数据条数
@@ -153,6 +155,7 @@
               res.data.splice(i,1);
           }
           _this.noteList=res.data;
+          _this.updateTimer();
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
@@ -216,6 +219,100 @@
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
       },
+       /*更新倒计时数组*/
+       updateTimer(){
+          let _this = this;
+          //var temp ={};
+          var date = new Date().getTime()/1000;
+          var timeout = 1200;
+          console.log("date ")
+          console.log(date)
+          for (let i = 0; i < _this.noteList.length; i++) {
+            let temp ={}
+            let a = date - _this.noteList[i].updateTimeStamp
+           
+            if(a >1200.0){
+              console.log(i+"  timeout ")
+              temp["minutes"]= 0;
+              temp["seconds"]= 0;
+              temp["flag"] = false;
+              _this.timeout_count ++;
+            }else{
+              temp["minutes"]=Math.floor(20 - (date - _this.noteList[i].updateTimeStamp)/60);
+              temp["seconds"]=Math.round(60 - (date - _this.noteList[i].updateTimeStamp)%60);
+              temp["flag"] = true;
+            }
+            _this.timerArr[i] = temp;
+            console.log("shenemgui ")
+            console.log(_this.timerArr[i])
+            
+          }
+          
+          console.log("minuete ")
+          console.log(_this.timerArr)
+       },
+       /*倒计时*/
+      num(n) {
+        return n < 10 ? '0' + n : '' + n
+      },
+       timer () {
+        var _this = this
+         //var count =0;
+        var time = window.setInterval(function () {
+          //let t1 = {}
+          console.log(_this.timerArr)
+          if (_this.timerArr.length == 0) {
+            console.log("数组为空，倒计时结束")
+            window.clearInterval(time)
+          }
+          for (var index = 0; index < _this.timerArr.length; index++) {
+            //console.log("timer")
+            //console.log(_this.timerArr[index])
+            if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
+              let t1 = {}
+              t1["seconds"] = 59;
+              t1["minutes"] = _this.timerArr[index].minutes -1;
+
+              _this.timerArr.splice(index,1,t1)
+            } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0 && _this.timerArr[index].flag) {
+              _this.timerArr[index].flag = false;
+              _this.timeout_count ++;
+              _this.timerArr[index].seconds = 0
+              
+              /*transacType 为 orderid 超时失效*/
+              if (_this.noteList[index].intentionStatus == "已接单,待支付" || _this.noteList[index].intentionStatus == "已背书,待签收") {
+                this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+                orderId:this.noteList[index].transacType,
+                intentionStatus:"已超时"
+              },{headers:{
+                'Content-Type':'application/json'
+              }}).then((res)=>{
+                console.log(res)
+              })
+              }
+              
+
+              //window.clearInterval(time)
+            } else if(_this.timerArr[index].minutes > 0 || _this.timerArr[index].seconds > 0) {
+              let t1 = {}
+              t1["seconds"] = _this.timerArr[index].seconds;
+              t1["minutes"] = _this.timerArr[index].minutes ;
+              _this.timerArr.splice(index,1,t1)
+              _this.timerArr[index].seconds -= 1 
+            }else{
+              console.log(index +"： index  倒计时结束")
+              console.log(_this.timeout_count)
+              console.log(_this.timerArr.length)
+              if(_this.timeout_count >= _this.timerArr.length)
+              {
+                console.log(_this.timeout_count)
+                window.clearInterval(time)
+                _this.timeout_count =0
+              }
+            }
+          }
+        }, 1000)
+      },
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
@@ -258,6 +355,9 @@
     },
     created(){
       this.getIntenTionList()
+    },
+    mounted(){
+      this.timer()
     }
   }
 </script>

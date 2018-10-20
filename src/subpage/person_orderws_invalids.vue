@@ -116,7 +116,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"已失效",
+            "filter_str":"已超时",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -130,7 +130,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"已失效"
+            "filter_str":"已超时"
           },
           {headers:{
               'Content-Type':'application/json'
