@@ -62,7 +62,7 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
             </ul>
@@ -116,7 +116,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"已失效",
+            "filter_str":"已超时",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -130,7 +130,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"已失效"
+            "filter_str":"已超时"
           },
           {headers:{
               'Content-Type':'application/json'

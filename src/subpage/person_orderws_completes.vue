@@ -65,7 +65,7 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
             </ul>

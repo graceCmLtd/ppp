@@ -62,7 +62,7 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
             </ul>
@@ -116,7 +116,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已失效",
+            "filter_str":"已超时",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -130,7 +130,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已失效"
+            "filter_str":"已超时"
           },
           {headers:{
               'Content-Type':'application/json'
@@ -215,21 +215,6 @@
       font-weight: bold;
       color: #fff;
     }
-    .bank{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .date{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .amount{
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
-    }
-    .opera{
-      border-left:1px solid #ccc;
-    }
     .intention_mes{
       margin-top:8px;
       margin-bottom:8px;
@@ -240,9 +225,6 @@
       min-width: 95px;
       border-right:1px solid #ccc;
     }
-    .bankMes{
-      border-right:1px solid #ccc;
-    }
     .lineHeight{
       line-height: 35px!important;
       font-size: 13px;
@@ -250,8 +232,6 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
       font-size: 13px;
@@ -268,7 +248,6 @@
     }
     .operaMes{
       min-width: 95px;
-      border-left:1px solid #ccc;
       button{
         width: 70%;
         min-height: 20px;

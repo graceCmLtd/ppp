@@ -77,8 +77,8 @@
           <div class="message_left">
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
-              <li>银行监管账号：<span>{{bankAccount}}</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
@@ -130,8 +130,7 @@
         current_item:[],
         pic1:new Image,
         timerArr:[],
-        m:'',
-        s:''
+        timeout_count:0
       }
     },
     methods:{
@@ -273,10 +272,11 @@
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
+              _this.timeout_count ++;
             }else{
               temp["minutes"]=Math.floor(20 - (date - _this.noteList[i].updateTimeStamp)/60);
               temp["seconds"]=Math.round(60 - (date - _this.noteList[i].updateTimeStamp)%60);
-              temp["flag"] = false;
+              temp["flag"] = true;
             }
             _this.timerArr[i] = temp;
             console.log("shenemgui ")
@@ -293,31 +293,37 @@
       },
        timer () {
         var _this = this
-         var count =0;
+         //var count =0;
         var time = window.setInterval(function () {
           //let t1 = {}
+          console.log(_this.timerArr)
+          if (_this.timerArr.length == 0) {
+            console.log("数组为空，倒计时结束")
+            window.clearInterval(time)
+          }
           for (var index = 0; index < _this.timerArr.length; index++) {
             //console.log("timer")
             //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
-              // Vue.set
               let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
-              t1["flag"] =  false;
+
               _this.timerArr.splice(index,1,t1)
             } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0 && _this.timerArr[index].flag) {
-              count ++;
+              _this.timerArr[index].flag = false;
+              _this.timeout_count ++;
               _this.timerArr[index].seconds = 0
-              console.log(index +"： index  倒计时结束")
-              console.log(count)
-              console.log(_this.timerArr.length)
-              if(count >= _this.timerArr.length)
-              {
-                console.log(count)
-                window.clearInterval(time)
-                count =0
-              }
+              
+              /*transacType 为 orderid 超时失效*/
+              _this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+                orderId:_this.noteList[index].transacType,
+                intentionStatus:"已超时"
+              },{headers:{
+                'Content-Type':'application/json'
+              }}).then((res)=>{
+                console.log(res)
+              })
               //window.clearInterval(time)
             } else if(_this.timerArr[index].minutes > 0 || _this.timerArr[index].seconds > 0) {
               let t1 = {}
@@ -326,7 +332,15 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-                _this.timerArr[index].flag = true;
+              console.log(index +"： index  倒计时结束")
+              console.log(_this.timeout_count)
+              console.log(_this.timerArr.length)
+              if(_this.timeout_count >= _this.timerArr.length)
+              {
+                console.log(_this.timeout_count)
+                window.clearInterval(time)
+                _this.timeout_count =0
+              }
             }
           }
         }, 1000)

@@ -48,25 +48,28 @@
         </el-pagination>
       </div>
       <div class="intention_mes_details" ref="intention_mes_details">
-        <div class="intention_mes_pic" ref="intention_mes_pic">
-          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+        <div class="top_w">
+            <p>订单详情</p>
         </div>
+
+       <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
-              <li>承兑方：<span>{{bank}}</span></li>
-              <li>票据总额：<span>{{amount/10000}}w</span></li>
+              <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
+              <li>票面金额：<span>{{amount/10000}}w</span></li>
+              <li>承对方：<span>{{bank}}</span></li>
+              <li>买方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
+              <li>实收金额：<span>{{real_money}}W(含平台担保费)</span></li>
             </ul>
           </div>
-          <div class="message_right">
-            <ul>
-              <li>银行监管账号：<span>{{bankAccount}}</span></li>
-              <li>买方：<span>{{bank}}</span></li>
-              <li>实收金额：<span>{{real_money}}w(含平台担保费)</span></li>
-            </ul>
-          </div>
+
+          
+        </div>
+       <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
         </div>
       </div>
 
@@ -360,23 +363,25 @@
       }
     }
   }
-  .intention_mes_details{
-    width: 670px;
-    height:540px;
-    background: white;
+ .intention_mes_details{
+    width: 700px;
+    height: 800px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
     position: absolute;
     left:50%;
-    margin-left:-286px;
     top:15%;
     z-index: 501;
     opacity: 0;
     display: none;
     transition: all .5s;
     overflow: hidden;
+
     .intention_mes_pic{
-      width: 670px;
+      width: 695px;
       height:340px;
       background: white;
+      margin-left: 2px;
       img{
         width: 100%;
         height:100%;
@@ -385,15 +390,25 @@
     .intention_mes_message{
       width: 100%;
       display: flex;
-      height:300px;
       .message_left{
-        width: 50%;
+        width: 100%;
         height:100%;
         border-right:1px solid #ccc;
+        text-align: left;
+        margin-left: 100px;
+        font-weight:bold;
+        color:rgba(170,170,170,1);
+        line-height:26px;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
+            span{
+              font-size:16px;
+              font-weight:bold;
+              color:rgba(102,102,102,1);
+              line-height:26px;
+            }
           }
         }
       }
@@ -404,11 +419,29 @@
           padding-top:12%;
           li{
             margin-bottom: 5%;
+            text-align:left;
           }
         }
       }
     }
   }
+  .top_w{
+    width:700px;
+    height:40px;
+    border-bottom:1px solid #F15749;
+    text-align:left;
+    line-height:40px;
+  p{
+    font-size:15px;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+    background:#F15749;
+    display:inline-block;
+    width:95px;
+    text-align:center;
+  }
+}
   .content_w{
     height: 306px;
     width: 100%;
