@@ -30,7 +30,7 @@
        </div>
         <div class="news_content1">
           <p>
-            <i>·</i>
+            <!-- <i>·</i> -->
             <span class="items">「系统」</span> 
             <span class="names">您的提交的公司信息已经通过审核</span>
             <span class="time">10月19日 15:32</span>
@@ -55,7 +55,7 @@ export default {
 		}
 	},
     methods:{
-           // 删除
+    // 删除
         delItem: function(index){
           this.noteList.splice(index,1);
       },
@@ -74,7 +74,6 @@ export default {
 		height: 30px;
 		margin-top: 60px;
 		color:#000;
-		/*background:yellow;	*/
 		font-size: 16px;
 		font-weight: bold;
 		letter-spacing:1px;
@@ -95,43 +94,43 @@ export default {
 		background:#FFFFFF;
     box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
     color: #000;
-        .news_content1{
-        	margin: 0 auto;
-        	width: 80%;
-          height:80px;
-        	border-bottom: 1px solid #979797;
-        	font-weight: bold;
-        	line-height: 30px;
-          text-align:left;
-        	i{
-        		font-style: normal;
-    				color: #F15749;	
-    				font-size: 20px;
-        	}
-        	.items{
-        		color: #000;
-        		font-size:16px;
-        	}
-        	.names{
-        		color: #F15749;
-        		
-        		font-size:14px;
-        	}
-        	.time{
-        		font-size: 12px;
-        		color: #666;
-        		margin-left: 25px;
-        		font-weight:normal;
-        	}
-        	.details{
-        		font-size: 14px;
-        		color: #333;
-        	}
-        }
-        .news_content1:hover{
-        	background:rgba(241,87,73,0.1);
-        	cursor: pointer;
-        }
-	}
-}
+    .news_content1{
+    	margin: 0 auto;
+    	width: 80%;
+      height:80px;
+    	border-bottom: 1px solid #f3f3f3;
+    	font-weight: bold;
+    	line-height: 30px;
+      text-align:left;
+    	i{
+    		font-style: normal;
+    		color: #F15749;	
+    		font-size: 20px;
+    	}
+    	.items{
+    		color: #000;
+    		font-size:16px;
+    	}
+    	.names{
+    		color: #F15749;
+    		font-size:14px;
+    	}
+    	.time{
+    		font-size: 12px;
+    		color: #666;
+    		margin-left: 25px;
+    		font-weight:normal;
+    	}
+    	.details{
+    		font-size: 14px;
+    		color: #333;
+        text-indent:52px;
+    	}
+    }
+    .news_content1:hover{
+    	background:rgba(241,87,73,0.1);
+    	cursor: pointer;
+       }
+	   }
+  }
 </style>
