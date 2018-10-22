@@ -181,7 +181,7 @@
           console.log(item.transacType);
           this.dialogTableVisible = true;
           var orderId = item.transacType;
-          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId?orderId',{orderId:orderId}).then((res)=>{
+          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
               console.log(res.data);
               if(res.data != '')
                 this.pic1 = res.data[0].pic1;
