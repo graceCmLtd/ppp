@@ -1,0 +1,124 @@
+<!-- 首页下 -->
+<template lang="html">
+  <div class="news_all">
+  	<div class="news_first">
+  		<span>全部消息（<i>7</i>/<i>13</i>）</span>
+  		<span>全部标记为已读</span>
+  	</div>
+  	<div class="news_content">
+  	   <!-- <div class="" v-for="(item,index) in noteList" :key="index"> -->
+  		 <div class="news_content1">
+  		 	<p>
+  		 		<i>·</i>
+  		 		<span class="items">「系统」</span> 
+  		 	    <span class="names">您的提交的公司信息已经通过审核</span>
+  		 		<span class="time">10月19日 15:32</span>
+  		 	</p>
+  		 	<p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+  		 </div>
+  <!-- 		 <div class="news_content1">
+  		 	<p>
+  		 		<i>·</i>
+  		 		<span>「交易」 您的提交的公司信息已经通过审核</span>
+  		 		<span>10月19日15：32</span>
+  		 	</p>
+  		 	<p>你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+  		 </div>
+  		  <div class="news_content1">
+  		 	<p>
+  		 		<span>「交易」 您的提交的公司信息已经通过审核</span>
+  		 		<span>10月19日15：32</span>
+  		 	</p>
+  		 	<p>你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+  		 </div> -->
+
+  	<!-- 	</div> -->
+  	   </div>
+  	</div>
+  </div>
+
+</template>
+
+<script>
+import {getCookie} from '@/assets/util'
+export default {	
+	data(){
+		return{
+		 noteList:[],	
+		}
+	}
+}
+</script>
+
+<style lang="scss" scoped>
+.news_all{
+	width: 100%;
+	height:100%;
+	.news_first{
+		margin-top: 20px;
+		width: 70%;
+		margin: 0 auto;
+		height: 30px;
+		margin-top: 60px;
+		color:#000;
+		/*background:yellow;	*/
+		font-size: 16px;
+		font-weight: bold;
+		letter-spacing:1px;
+		span:nth-child(1){
+			float: left;
+		}
+		span:nth-child(2){
+			float: right;
+		}
+		i{
+			font-style: normal;
+			color: #F15749;
+		}
+	}
+	.news_content{
+		width: 70%;
+		height: 100%;
+		margin: 0 auto;
+		background:#FFFFFF;
+        box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+        color: #000;
+ 
+        .news_content1{
+        	margin: 0 auto;
+        	width: 80%;
+        	border-bottom: 1px solid #979797;
+        	font-weight: bold;
+        	line-height: 30px;
+        	i{
+        		font-style: normal;
+				color: #F15749;	
+				font-size: 20px;
+        	}
+        	.items{
+        		color: #000;
+        		font-size:16px;
+        	}
+        	.names{
+        		color: #F15749;
+        		
+        		font-size:14px;
+        	}
+        	.time{
+        		font-size: 12px;
+        		color: #666;
+        		margin-left: 25px;
+        		font-weight:normal;
+        	}
+        	.details{
+        		font-size: 14px;
+        		color: #333;
+        	}
+        }
+        .news_content1:hover{
+        	background:rgba(241,87,73,0.1);
+        	cursor: pointer;
+        }
+	}
+}
+</style>
