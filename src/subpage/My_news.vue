@@ -11,28 +11,34 @@
   		 	<p>
   		 		<i>·</i>
   		 		<span class="items">「系统」</span> 
-  		 	    <span class="names">您的提交的公司信息已经通过审核</span>
+  		 	  <span class="names">您的提交的公司信息已经通过审核</span>
   		 		<span class="time">10月19日 15:32</span>
+          <span style="float:right; color:#979797;"  @click="delItem(index)">x</span>
   		 	</p>
   		 	<p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
   		 </div>
-  <!-- 		 <div class="news_content1">
-  		 	<p>
-  		 		<i>·</i>
-  		 		<span>「交易」 您的提交的公司信息已经通过审核</span>
-  		 		<span>10月19日15：32</span>
-  		 	</p>
-  		 	<p>你的票据38258**7628已经审核,可以点击前往查看详情。</p>
-  		 </div>
-  		  <div class="news_content1">
-  		 	<p>
-  		 		<span>「交易」 您的提交的公司信息已经通过审核</span>
-  		 		<span>10月19日15：32</span>
-  		 	</p>
-  		 	<p>你的票据38258**7628已经审核,可以点击前往查看详情。</p>
-  		 </div> -->
 
-  	<!-- 	</div> -->
+      <div class="news_content1">
+        <p>
+          <i>·</i>
+          <span class="items">「系统」</span> 
+          <span class="names">您的提交的公司信息已经通过审核</span>
+          <span class="time">10月19日 15:32</span>
+          <span style="float:right; color:#979797;">x</span>
+        </p>
+        <p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+       </div>
+        <div class="news_content1">
+          <p>
+            <i>·</i>
+            <span class="items">「系统」</span> 
+            <span class="names">您的提交的公司信息已经通过审核</span>
+            <span class="time">10月19日 15:32</span>
+            <span style="float:right; color:#979797;">x</span>
+          </p>
+          <p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+       </div>
+
   	   </div>
   	</div>
   </div>
@@ -44,9 +50,16 @@ import {getCookie} from '@/assets/util'
 export default {	
 	data(){
 		return{
-		 noteList:[],	
+		 noteList:[],
+      index:0,	
 		}
-	}
+	},
+    methods:{
+           // 删除
+        delItem: function(index){
+          this.noteList.splice(index,1);
+      },
+    }
 }
 </script>
 
@@ -78,22 +91,22 @@ export default {
 	}
 	.news_content{
 		width: 70%;
-		height: 100%;
 		margin: 0 auto;
 		background:#FFFFFF;
-        box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
-        color: #000;
- 
+    box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+    color: #000;
         .news_content1{
         	margin: 0 auto;
         	width: 80%;
+          height:80px;
         	border-bottom: 1px solid #979797;
         	font-weight: bold;
         	line-height: 30px;
+          text-align:left;
         	i{
         		font-style: normal;
-				color: #F15749;	
-				font-size: 20px;
+    				color: #F15749;	
+    				font-size: 20px;
         	}
         	.items{
         		color: #000;
