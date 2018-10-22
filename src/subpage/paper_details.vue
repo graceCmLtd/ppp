@@ -100,24 +100,32 @@ export default {
       }else{
         console.log("报价用户id：")
         console.log(Id)
-        _this.axios.post(_this.oUrl+'/quote/addQuote',{
-          "billNumber":_this.bill,//票号
-        	"quoterId":Id,//用户Id
-        	"quoteAmount":amount,
-        	"interest":interest,//利率
-        	"xPerLakh":xPerLakh,//每10w加
-        	"status":"报价中",
-        	"quoteDate":"2018-08-09",//报价时间
-          "real_money" : _this.interest_rate
-        }).then((res)=>{
-          console.log(res)
-          this.detailsMaskShow=true;
-          this.$refs.success_mes.style.display="block";
-          setTimeout(()=>{
-            this.$refs.success_mes.style.top="30%";
-            this.$refs.success_mes.style.opacity="1";
-          })
-        })
+        _this.axios.get(_this.oUrl+'/quote/getByBillNumberAndQuoterId?billNumber='+this.billType+'&quoterId='+Id).then((res)=>{
+            console.log(res.data.length);
+            if(res.data.length === 0 ){
+              _this.axios.post(_this.oUrl+'/quote/addQuote',{
+                  "billNumber":_this.bill,//票号
+                  "quoterId":Id,//用户Id
+                  "quoteAmount":amount,
+                  "interest":interest,//利率
+                  "xPerLakh":xPerLakh,//每10w加
+                  "status":"报价中",
+                  "quoteDate":"2018-08-09",//报价时间
+                  "real_money" : _this.interest_rate
+                }).then((res)=>{
+                  console.log(res)
+                  this.detailsMaskShow=true;
+                  this.$refs.success_mes.style.display="block";
+                  setTimeout(()=>{
+                    this.$refs.success_mes.style.top="30%";
+                    this.$refs.success_mes.style.opacity="1";
+                  })
+                })
+              }else{
+                alert("您已对该票据报价！");
+              }
+        });
+        
       }
     },
     closeSprompt(){
