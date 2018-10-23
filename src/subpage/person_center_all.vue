@@ -237,7 +237,7 @@
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
-            if(a >1200.0){
+            if(a >1200.0 || _this.noteList[i].intentionStatus !="已支付,待背书"){
               console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
@@ -269,6 +269,16 @@
           console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
             console.log("数组为空，倒计时结束")
+            window.clearInterval(time)
+          }
+
+          console.log("this ....... path ")
+          console.log(_this.$route.path)
+          if (_this.$route.path == "/release/center/all") {
+            console.log("path is /release/center/all")
+
+          }else{
+            console.log("clearInterval time  /release/center/all")
             window.clearInterval(time)
           }
           for (var index = 0; index < _this.timerArr.length; index++) {

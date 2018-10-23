@@ -33,7 +33,7 @@
           </div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '待接单'"><div class="intention_mes operaMes">
             <button type="button" name="button" v-on:click="modifyAmount(item)">修改金额</button>
-            <p class="cancel_w"  v-on:click="toggle()">取消</p>
+            <p class="cancel_w"  v-on:click="order_toggle(item)">取消订单</p>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -58,14 +58,14 @@
         </div>
       </div>
       <!-- 取消页面 -->
-      <div class="isShow_cancel" v-if="isShow_cancel" @click="hiddenShow()" >
+      <div class="isShow_cancel" v-if="isShow_cancel" >
         <div class="cancel_center" >
           <p>是否取消订单</p>
           <p><img src="../../static/img/dog.png"></p>
           <p>取消订单，你重新发布此票据</p>
           <p>
-            <span>确认取消不卖了</span>
-            <span style="background:#ccc;">不,在等等</span>
+            <span @click="removeSubmit()">确认取消不卖了</span>
+            <span style="background:#ccc;"  @click="hiddenShow()">不,在等等</span>
           </p>
         </div>
       </div>
@@ -151,7 +151,8 @@
         total : 0,
         showPaginate : true,
         isShow_cancel:false,
-        new_money:0
+        new_money:0,
+        currentItem:null
 
       }
     },
@@ -255,7 +256,7 @@
       },
       /*修改金额*/
       modifyAmount(item){
-        this.new_money =item.real_money;
+        this.new_money =item.real_money/10000;
         this.isShow = true;
         this.currentItem = item;
         //alert(this.currentItem.real_money)
@@ -283,6 +284,32 @@
         }
         
       },
+      /*确认删除票据订单交易 ISD:intention Seller Delete*/
+      removeSubmit(){
+        let _this = this
+        alert("确定删除")
+        this.isShow_cancel = !this.isShow_cancel;
+        _this.axios.post(_this.oUrl+"/transaction/cancleOrder",{
+            "billInfo":{
+              "billId":_this.currentItem.billId,
+              "billNumber":_this.currentItem.billNumber
+            },
+            "quoteInfo":{
+              "quoteId":_this.currentItem.quoteId,
+              "status":"已失效"
+            },
+            "transactionInfo":{
+              "orderId":_this.currentItem.transacType,
+              "intentionStatus":"ISD"
+            }
+          },{headers:{
+              'Content-Type':'application/json'
+          }}).then((res)=>{
+            console.log("删除意向")
+            console.log(res)
+            _this.getIntenTionList()
+          })
+      },
       closePics(){
         this.$refs.intention_mes_details.style.top='15%';
         this.$refs.intention_mes_details.style.opacity='0';
@@ -291,8 +318,10 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
-     toggle:function(){
+     order_toggle:function(item){
           this.isShow_cancel = !this.isShow_cancel;
+          this.currentItem = item;
+          console.log(item)
           },
       hiddenShow:function () {
           var that = this;
