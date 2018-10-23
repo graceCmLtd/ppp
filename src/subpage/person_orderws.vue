@@ -7,7 +7,7 @@
     <div class="person_center_con">
       <div class="person_center_title_external">
         <div class="person_center_title">
-          <el-row>
+        <el-row>
             <el-col :span="4">
               <router-link to="/release/orderws/all"
                            tag="div" class="center_title"
