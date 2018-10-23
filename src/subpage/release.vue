@@ -9,7 +9,8 @@
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose"
-              background-color="#fff"
+              background="#fff"
+              active-background-color="red"
               text-color="#333"
               active-text-color="#F15749">
               <el-submenu index="1">
@@ -147,7 +148,6 @@ export default {
       background: white;
       margin-top: 3px;
       box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
-
     }
     .release_con_mes{
       width: 100%;
