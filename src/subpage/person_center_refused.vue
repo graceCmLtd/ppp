@@ -267,12 +267,23 @@
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
-            if(a >1200.0){
+            if(a > timeout || _this.noteList[i].intentionStatus != "已支付,待背书"){
               console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
               _this.timeout_count ++;
+              if (a> timeout && _this.noteList[i].intentionStatus =="已支付,待背书") {
+                /*transacType 为 orderid 超时失效*/
+              _this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+                orderId:_this.noteList[i].transacType,
+                intentionStatus:"已超时"
+              },{headers:{
+                'Content-Type':'application/json'
+              }}).then((res)=>{
+                console.log(res)
+              })
+              }
             }else{
               temp["minutes"]=Math.floor(20 - (date - _this.noteList[i].updateTimeStamp)/60);
               temp["seconds"]=Math.round(60 - (date - _this.noteList[i].updateTimeStamp)%60);
@@ -299,6 +310,15 @@
           console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
             console.log("数组为空，倒计时结束")
+            window.clearInterval(time)
+          }
+          console.log("this ....... path ")
+          console.log(_this.$route.path)
+          if (_this.$route.path == "/release/center/refused") {
+            console.log("path is /release/center/refused")
+
+          }else{
+            console.log("clearInterval time  /release/center/refused")
             window.clearInterval(time)
           }
           for (var index = 0; index < _this.timerArr.length; index++) {
