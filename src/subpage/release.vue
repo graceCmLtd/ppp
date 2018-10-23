@@ -11,7 +11,7 @@
               @close="handleClose"
               background-color="#fff"
               text-color="#333"
-              active-text-color="#409EFF">
+              active-text-color="#F15749">
               <el-submenu index="1">
                 <template slot="title">
                   <!-- <i class="el-icon-location"></i> -->
