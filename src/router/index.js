@@ -420,7 +420,7 @@ router.beforeEach((to,from,next)=>{
   //登录权限页面
   const nextRoute=['OfferIn','OfferBe','choseType','SellerCancelOrder','SellerHadDeal','OfferDe','Template',
   'Order','Prise','Repid','Detailed','Forward','Pass','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
-  'IntentionConfirmed','IntentionAll','Cancel','Prrices','Accepted','Receipt','OfferAll','Buy','SellerCenter','Orderws','Audit','Sell','Trad',
+  'IntentionConfirmed','IntentionAll','Cancel','my_news','Prrices','Accepted','Receipt','OfferAll','Buy','SellerCenter','Orderws','Audit','Sell','Trad',
   'Data','Details','Offer','NoOffer'
 ];
   if(nextRoute.indexOf(to.name)>-1){

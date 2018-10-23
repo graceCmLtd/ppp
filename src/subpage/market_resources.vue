@@ -94,7 +94,7 @@ export default {
       pageNum:10,
       marketResourcesLoadig:true,
       currentPage : 1,
-      pageSize : 15,
+      pageSize : 12,
       total : 0,
       showPaginate : true
     }

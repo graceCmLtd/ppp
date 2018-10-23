@@ -6,27 +6,6 @@
     <div class="person_paper_pic">
       <img src="../../static/img/qiu.png" alt="">
     </div>
-    <!--<p class="person_paper_num">该票据已通知<span>13</span>个票据买家，请耐心等待买家报价</p>-->
-    <!--<p class="person_paper_table">
-      <router-link
-        to="/release/paper/offerIn" tag="span"
-        @click.native="offerIn()"
-        :class="{paperAc:color==1}"
-      >全部报价</router-link>
-      <person-offerIn @click.native="offerIn()"
-      :class="{paperAc:color==1}"
-      >报价</person-offerIn>
-      <person-offerin v-bind:billNum = "billNum" tag="span" @transb="getBillNum" :class="{paperAc:color==1}" >全部报价</person-offerin>
-      <router-link
-        to="/release/paper/offerBe" tag="span"
-        @click.native="offerBe()"
-        :class="{paperAc:color==2}"
-      >审核中</router-link>
-    </p> -->
-    <!-- <div class="hadRelease">
-      <router-view></router-view>
-    </div> -->
-
     <!-- 切换全部报价和审核中 -->
     <div  class="person_paper_table" >
       <div class="table_w_1">
