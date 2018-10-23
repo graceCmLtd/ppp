@@ -7,15 +7,7 @@
     <div class="person_center_con">
       <div class="person_center_title_external">
         <div class="person_center_title">
-          <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="1" @click="centerAll()">全部订单</el-menu-item>
-          <el-menu-item index="2">待支付</el-menu-item>
-          <el-menu-item index="3">待卖家背书</el-menu-item>
-          <el-menu-item index="4">待签收</el-menu-item>
-          <el-menu-item index="5">已完成</el-menu-item>
-          <el-menu-item index="6">已失效</el-menu-item>
-        </el-menu>
-          <!-- <el-row>
+        <el-row>
             <el-col :span="4">
               <router-link to="/release/orderws/all"
                            tag="div" class="center_title"
@@ -79,7 +71,7 @@
               </router-link>
             </el-col>
 
-          </el-row> -->
+          </el-row>
         </div>
       </div>
       <div class="person_center_view">
