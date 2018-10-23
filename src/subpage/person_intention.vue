@@ -42,7 +42,7 @@
                            tag="div" class="intention_title rejected"
                            @click.native="IntentionRefused()"
                            :class="{intentionAc:color==4}"
-              >买家已拒绝/失效
+              >已拒绝/失效
                 
                 <span class="person_intention_triangle" ref="person_intention_triangle_c"></span>
               </router-link>

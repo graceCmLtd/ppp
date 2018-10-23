@@ -117,6 +117,20 @@
         this.color=7;
         this.$refs.person_center_triangle_f.style.right='-13%'
       }
+    },
+    created(){
+      if (this.$route.path == "/release/center/all") {
+        this.color = 1
+      }else if(this.$route.path =="/release/center/confirmed"){
+        this.color =2
+      }else if(this.$route.path == "/release/center/refused"){
+        this.color =4
+      }else if(this.$route.path ==  "/release/center/audit"){
+        this.color = 5
+      }else if(this.$route.path == "/release/center/completes"){
+        this.color = 6
+      }
+      
     }
   }
 </script>
