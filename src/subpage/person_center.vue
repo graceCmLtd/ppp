@@ -129,6 +129,8 @@
         this.color = 5
       }else if(this.$route.path == "/release/center/completes"){
         this.color = 6
+      }else if(this.$route.path == "/release/center/invalids"){
+        this.color = 7
       }
       
     }

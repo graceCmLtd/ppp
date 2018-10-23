@@ -58,8 +58,6 @@ export default {
   methods:{
     offerAll(){
       this.color=1;
-      console.log("this  object :")
-      console.log(this)
     },
     offerAcc(){
       this.color=2;
@@ -71,8 +69,17 @@ export default {
     offerCan(){
       this.color=4;
       this.$refs.person_offer_triangle_cancel.style.right='-9%'
-    },
-  }
+    }
+  },
+    created(){
+      if (this.$route.path == "/release/offer/offerAll") {
+        this.color = 1
+      }else if(this.$route.path =="/release/offer/offerPrices"){
+        this.color =3
+      }else if(this.$route.path == "/release/offer/offerCancel"){
+        this.color =4
+      } 
+    }
 }
 </script>
 

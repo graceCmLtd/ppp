@@ -95,6 +95,17 @@
         this.color=5;
         this.$refs.person_intention_triangle_s.style.right='-9%'
       }
+    },
+    created(){
+      if (this.$route.path == "/release/intention/all") {
+        this.color = 1
+      }else if(this.$route.path =="/release/intention/confirmed"){
+        this.color =2
+      }else if(this.$route.path == "/release/intention/refused"){
+        this.color =4
+      }else if(this.$route.path ==  "/release/intention/audit"){
+        this.color = 5
+      }   
     }
   }
 </script>

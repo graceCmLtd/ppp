@@ -9,7 +9,8 @@
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose"
-              background-color="#fff"
+              background="#fff"
+              active-background-color="red"
               text-color="#333"
               active-text-color="#F15749">
               <el-submenu index="1">
