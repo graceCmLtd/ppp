@@ -17,15 +17,15 @@ const router = new Router({
       }
     },
     {
-      path:'/my_news',//我的消息
-      name:'My_news',
-      component:resolve=>require(['@/subpage/my_news'],resolve)
-    },
-    {
       path:'/stick',//我要贴
       name:'Stick',
       component:resolve=>require(['@/subpage/stick'],resolve)
       },
+    {
+      path:'/my_news',//我的消息
+      name:'My_news',
+      component:resolve=>require(['@/subpage/my_news'],resolve)
+    },
  
     {
       path:'/release',

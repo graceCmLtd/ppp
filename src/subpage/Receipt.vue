@@ -70,9 +70,6 @@
         this.color=1;
         console.log(this)
       },
-      // offerAcc(){
-      //   this.color=2;
-      // },
       offerPri(){
         this.color=2;
         this.$refs.Receipt_triangle_prices.style.right='-9%'
@@ -90,6 +87,18 @@
         this.color=5;
         this.$refs.Receipt_triangle_invalid.style.right='-9%'
       }
+    },
+    created(){
+      if (this.$route.path == "/release/Receipt/ReceiptAll") {
+        this.color = 1
+      }else if(this.$route.path =="/release/Receipt/offerPrices"){
+        this.color =2
+      }else if(this.$route.path == "/release/Receipt/offerCancel"){
+        this.color =3
+      }else if(this.$route.path ==  "/release/Receipt/offerInvalid"){
+        this.color = 5
+      }
+      
     }
   }
 </script>

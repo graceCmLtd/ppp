@@ -117,6 +117,22 @@
         this.color=7;
         this.$refs.person_center_triangle_f.style.right='-13%'
       }
+    },
+    created(){
+      if (this.$route.path == "/release/orderws/all") {
+        this.color = 1
+      }else if(this.$route.path =="/release/orderws/confirmed"){
+        this.color =2
+      }else if(this.$route.path == "/release/orderws/refused"){
+        this.color =4
+      }else if(this.$route.path ==  "/release/orderws/audit"){
+        this.color = 5
+      }else if(this.$route.path == "/release/orderws/completes"){
+        this.color = 6
+      }else if(this.$route.path == "/release/orderws/invalids"){
+        this.color = 7
+      }
+      
     }
   }
 </script>
