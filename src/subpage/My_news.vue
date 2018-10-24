@@ -16,7 +16,7 @@
           <span style="float:right; color:#979797;"  @click="delItem(index)">x</span>
   		 	</p>
   		 	<p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
-        <p>{{message}}</p>
+        
   		 </div>
 
       <div class="news_content1">
@@ -39,7 +39,7 @@
           </p>
           <p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
        </div>
-       <div><button @click="receive()">sss</button></div>
+       <div><p>213{{msg}}</p></div>
   	   </div>
   	</div>
   </div>
@@ -54,7 +54,7 @@ export default {
 		return{
 		 noteList:[],
       index:0,	
-      message:''
+      msg:''
 		}
 	},
     methods:{
@@ -65,15 +65,30 @@ export default {
       receive(){
         let Id = getCookie('Iud');
         console.log(Id);
-        var goEasy = new GoEasy({appKey:"BC-a9752c0d240f407298d5346075fb6de4"});
+        if(typeof GoEasy !== 'undefined'){ 
+          var goEasy = new GoEasy({
+            appkey:'BC-a9752c0d240f407298d5346075fb6de4',
+            onConnected:function(){ 
+                console.log("Connect to GoEasy success."); 
+            } , 
+            onDisconnected:function(){ 
+                console.log("Disconnect to GoEasy server."); 
+            } , 
+            onConnectFailed:function(error){ 
+                console.log("Connect to GoEasy failed, error code: "+ error.code+" Error message: "+ error.content); 
+            } 
+          });
+        }
         console.log("vvvvvvvv")
-        console.log(goEasy.subscribe)
+        //console.log(goEasy.subscribe)
         goEasy.subscribe({
             channel: Id,
         onMessage: function (message) {
-              alert("Channel:" + message.channel + " content:" + message.content);
+              alert("您有心得消息");
+              this.$router.push('/news');
               console.log("wwwsssss");
-              this.message = message.content;
+              this.msg = message.content;
+              console.log('cds'+this.msg);
         }
         });
         console.log("end")
