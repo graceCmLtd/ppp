@@ -65,15 +65,32 @@ export default {
       receive(){
         let Id = getCookie('Iud');
         console.log(Id);
-        var goEasy = new GoEasy({appKey:"BC-a9752c0d240f407298d5346075fb6de4"});
+        let _this = this;
+        var goEasy = new GoEasy({appkey:"BC-a9752c0d240f407298d5346075fb6de4",
+          onConnected:function(){
+            alert("connection success")
+          },
+          onDisconnected:function(){
+            alert("onDisconnected")
+          },onConnectFaild:function(error){
+            alert("conneectFaild : "+error)
+          }});
         console.log("vvvvvvvv")
-        console.log(goEasy.subscribe)
+        //console.log(goEasy.subscribe)
         goEasy.subscribe({
             channel: Id,
         onMessage: function (message) {
               alert("Channel:" + message.channel + " content:" + message.content);
-              console.log("wwwsssss");
-              this.message = message.content;
+              console.log(message);
+              _this.message = message.content;
+        },
+        onSuccess:function(){
+          console.log("success")
+          alert("success")
+        },
+        onFailed:function(error){
+          console.log("fail")
+          alert(error)
         }
         });
         console.log("end")
