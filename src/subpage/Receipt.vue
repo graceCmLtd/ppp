@@ -150,7 +150,6 @@
           }
           .person_offer_add{
             width: 100%;
-            height:14px;
             position: absolute;
             top:-40%;
             left:0;
