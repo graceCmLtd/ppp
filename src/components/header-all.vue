@@ -20,7 +20,7 @@
               个人中心
             </router-link>
           </a>
-            <a target="_blank" href=""> <router-link to="My_news">
+            <a target="_blank" href=""> <router-link to="/My_news">
               我的消息
             </router-link>
             </a>

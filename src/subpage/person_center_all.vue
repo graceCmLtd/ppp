@@ -363,10 +363,16 @@
       toggleupload:function(item){
          this.isShow = !this.isShow;
          this.current_item = item;
+
       },
       // 提醒卖家付款
         toggle:function(){
             this.issShow = !this.issShow;
+            let Id=getCookie('Iud');
+            let message = "我已签收！"
+            this.axios.post(this.oUrl+'/publish/send',{uuid:Id,message:message}).then((res)=>{
+                console.log(res.data);
+            });
         },
         hiddenShow:function () {
                   var that = this;
