@@ -16,6 +16,7 @@
           <span style="float:right; color:#979797;"  @click="delItem(index)">x</span>
   		 	</p>
   		 	<p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+        <p>{{message}}</p>
   		 </div>
 
       <div class="news_content1">
@@ -38,12 +39,13 @@
           </p>
           <p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
        </div>
-
+       <div><button @click="receive()">sss</button></div>
   	   </div>
   	</div>
   </div>
 
 </template>
+
 
 <script>
 import {getCookie} from '@/assets/util'
@@ -52,6 +54,7 @@ export default {
 		return{
 		 noteList:[],
       index:0,	
+      message:''
 		}
 	},
     methods:{
@@ -59,6 +62,25 @@ export default {
         delItem: function(index){
           this.noteList.splice(index,1);
       },
+      receive(){
+        let Id = getCookie('Iud');
+        console.log(Id);
+        var goEasy = new GoEasy({appKey:"BC-a9752c0d240f407298d5346075fb6de4"});
+        console.log("vvvvvvvv")
+        console.log(goEasy.subscribe)
+        goEasy.subscribe({
+            channel: Id,
+        onMessage: function (message) {
+              alert("Channel:" + message.channel + " content:" + message.content);
+              console.log("wwwsssss");
+              this.message = message.content;
+        }
+        });
+        console.log("end")
+      }
+    },
+    created(){
+      this.receive();
     }
 }
 </script>
