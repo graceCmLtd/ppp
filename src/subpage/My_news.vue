@@ -6,20 +6,20 @@
   		<span>全部标记为已读</span>
   	</div>
   	<div class="news_content">
-  	   <!-- <div class="" v-for="(item,index) in noteList" :key="index"> -->
+  	   <div class="" v-for="(item,index) in msgList" :key="index">
   		 <div class="news_content1">
   		 	<p>
   		 		<i>·</i>
-  		 		<span class="items">「系统」</span> 
-  		 	  <span class="names">您的提交的公司信息已经通过审核</span>
+  		 		<span class="items">「{{item.msgType}}」</span> 
+  		 	  <span class="names">{{item.msgContent}}</span>
   		 		<span class="time">10月19日 15:32</span>
           <span style="float:right; color:#979797;"  @click="delItem(index)">x</span>
   		 	</p>
-  		 	<p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
+  		 	<p class="details">{{item.msgContent}}</p>
         
   		 </div>
-
-      <div class="news_content1">
+      </div>
+      <!-- <div class="news_content1">
         <p>
           <i>·</i>
           <span class="items">「系统」</span> 
@@ -31,7 +31,7 @@
        </div>
         <div class="news_content1">
           <p>
-            <!-- <i>·</i> -->
+            
             <span class="items">「系统」</span> 
             <span class="names">您的提交的公司信息已经通过审核</span>
             <span class="time">10月19日 15:32</span>
@@ -39,8 +39,8 @@
           </p>
           <p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
        </div>
-       <div><p>213{{msg}}</p></div>
-  	   </div>
+       <div><p>{{msg.msgContent}}</p></div>
+  	   </div> -->
   	</div>
   </div>
 
@@ -52,7 +52,7 @@ import {getCookie} from '@/assets/util'
 export default {	
 	data(){
 		return{
-		 noteList:[],
+		 msgList:[],
       index:0,	
       msg:''
 		}
@@ -60,7 +60,7 @@ export default {
     methods:{
     // 删除
         delItem: function(index){
-          this.noteList.splice(index,1);
+          this.msgList.splice(index,1);
       },
       receive(){
         let Id = getCookie('Iud');
@@ -89,6 +89,7 @@ export default {
               alert("Channel:" + message.channel + " content:" + message.content);
               console.log(message);
               _this.message = message.content;
+              _this.msgList.push(JSON.parse(message.content));
         },
         onSuccess:function(){
           console.log("success")
