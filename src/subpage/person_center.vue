@@ -160,8 +160,8 @@
       border-color:transparent transparent #AF2600;
       margin:40px auto;
       position: absolute;
-      top: -136%;
-      right: -7.5%;
+      top: -133%;
+      right: -9.5%;
       transform:rotate(-135deg);
     }
   }
@@ -192,7 +192,7 @@
           position: absolute;
           bottom:-1px;
           border-bottom:3px solid #F15749;
-          width: 49%;
+          width: 61%;
           .center_title{
             min-height: 36px;
             line-height: 36px;
@@ -200,6 +200,7 @@
             position: relative;
             /*background: #F15749;*/
             /*color: #fff;*/
+            width:130px;
           }
         }
       }

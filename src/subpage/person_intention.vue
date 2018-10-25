@@ -172,19 +172,10 @@
             line-height: 36px;
             cursor:pointer;
             position: relative;
-            /*background: #F15749;*/
-            /*color: #fff;*/
+            width: 130px;
           }
         }
       }
     }
   }
-  /*.content{*/
-  /*width:125%;*/
-  /*height:100%;*/
-  /*border:1px solid black;*/
-  /*background:#fff;*/
-  /*margin: 0 auto;*/
-
-  /*}*/
 </style>

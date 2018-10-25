@@ -57,6 +57,7 @@
           flex: 1;
           font-size: 17px;
           color: #fff;
+          cursor: pointer;
         }
       }
       p{
