@@ -109,16 +109,10 @@
       },
     },
     created(){
-      alert("header ")
       if (getCookie("Iud")) {
         this.isSinIn = true;
       }
-       const h = this.$createElement;
-
-        this.$notify({
-          title: '标题名称',
-          message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
-        });
+      
     },
     watch:{
       $route(to,from){
