@@ -39,7 +39,7 @@
           </p>
           <p class="details">你的票据38258**7628已经审核,可以点击前往查看详情。</p>
        </div>
-       <div><p>213{{msg}}</p></div>
+       <div><p>{{msg}}</p></div>
   	   </div>
   	</div>
   </div>
@@ -84,8 +84,7 @@ export default {
         goEasy.subscribe({
             channel: Id,
         onMessage: function (message) {
-              alert("您有心得消息");
-              this.$router.push('/news');
+              alert("Channel:" + message.channel + " content:" + message.content);
               console.log("wwwsssss");
               this.msg = message.content;
               console.log('cds'+this.msg);
