@@ -4,7 +4,7 @@
     <div class="offer_pic">
         <img src="../../static/img/offer2.png" alt="">
     </div>
-    <span style="color:#F15749; position:relative; top:37px; left:110px; font-weight:bold; z-index: 999;" >如卖家已接收你的报价，请去我的接单里查看 
+    <span style="color:#F15749; position:relative; top:40px; left:110px; font-weight:bold; z-index: 999;" >如卖家已接收你的报价，请去我的接单里查看 
       <router-link to="/release/Receipt/ReceiptAll" tag="span"><img style="width:100px; height:30px; position:relative; top:10px;" src="../../static/img/9.14.png">   </router-link>
     </span>
 
@@ -97,8 +97,10 @@ export default {
     }
   }
   .offer_w_con{
+    margin-left: 1%;
     background:#fff;
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    width: 98%;
   .offer_title_external{
     width: 100%;
     height:50px;
@@ -116,6 +118,7 @@ export default {
         background: #F15749;
         color:white;
         position: relative;
+        width:130px;
         .person_offer_triangle{
           width:0;
           height:0;
@@ -127,14 +130,6 @@ export default {
           top:-135.4%;
           right:-9.5%;
           transform:rotate(-135deg);
-        }
-        .person_offer_add{
-          width: 100%;
-          height:14px;
-          position: absolute;
-          top:-40%;
-          left:0;
-          background: #F15749;
         }
       }
       .offer_tit{

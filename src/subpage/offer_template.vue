@@ -480,10 +480,11 @@
         z-index: 1;
 }
   .content{
-    width: 100%;
+    width: 99%;
     height:100%;
-     background:rgba(255,255,255,1);
-      box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    margin-left: 1%;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .content_w1_title{
       height: 61px;
       border-bottom:3px solid #F15749;

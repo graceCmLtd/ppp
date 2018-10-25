@@ -278,7 +278,7 @@
     height:100%;
     .offer_mes{
       margin-left: 1%;
-      margin-top: 4%;
+      margin-top: 3%;
       .mes_title{
         background: #F15749;
         min-width: 36px;
