@@ -156,6 +156,13 @@ export default {
     
   },
   created(){
+    alert("resourceMarket")
+     const h = this.$createElement;
+
+        this.$notify({
+          title: '标题名称',
+          message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
+        });
     this.getList()
   }
 }

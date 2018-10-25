@@ -369,6 +369,7 @@
         toggle:function(){
             this.issShow = !this.issShow;
             let Id=getCookie('Iud');
+            console.log(Id);
             let message = "我已签收！"
             this.axios.post(this.oUrl+'/publish/send',{uuid:Id,message:message}).then((res)=>{
                 console.log(res.data);
