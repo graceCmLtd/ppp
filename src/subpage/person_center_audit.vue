@@ -24,7 +24,7 @@
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="color_w" v-on:click="toggle()" v-bind:click="ti(已提醒买家)">提醒买家</div></el-col>
+          <el-col :span="3"><div class="color_w" v-on:click="toggle()" @click="fun($event)">提醒买家</div></el-col>
         </el-row>
 
         <p class="person_intention_contact">
@@ -206,9 +206,9 @@
                 that.isShow = false;
 
       }, 
-      ti:function (message) {
-          alert("已提醒买家")
-        }
+      fun(e){
+           e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+      }
     },
     created(){
       this.getIntenTionList()

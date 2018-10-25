@@ -32,7 +32,7 @@
           <el-col :span="3">
             <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
             <div class="intention_mes" id="payment" @click="toPay(item)" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
-            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'">提醒卖家背书</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'" v-on:click="toggle()" @click="fun($event)">提醒卖家背书</div>
             <div class="intention_mes" id="payment" @click="submitAccept(item)" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'" @click="checkVoucher(item)">查看凭证</div>
           </el-col>
@@ -100,6 +100,10 @@
       <img v-bind:src="pic1" width="580px" height="295px">
     </el-dialog>
  
+
+   <!-- 提醒买家的标志 -->
+    <div class="show_w" v-show="isShow"  @click="hiddenShow()">已提醒卖家背书 
+        </div>
   </div>
 </template>
 
@@ -134,7 +138,8 @@
         count1 : 0, //全部状态条数
         count2 : 0, //待接单状态数据条数
         dialogTableVisible:false,
-        pic1:''
+        pic1:'',
+        isShow:false,
       }
     },
     methods:{
@@ -366,7 +371,17 @@
               if(res.data != '')
                 this.pic1 = res.data[0].pic1;
           });
-      }
+      },
+      toggle:function(){
+            this.isShow = !this.isShow;
+      },
+      hiddenShow:function () {
+                var that = this;
+                that.isShow = false;
+      },
+       fun(e){
+               e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+            },
     },
     created(){
       this.getIntenTionList()
@@ -391,6 +406,19 @@
     font-size:13px;
     cursor: pointer;
 }
+.show_w{
+    width:190px;
+    height:40px;
+    background:#fff; 
+    position:absolute; 
+    left:83%;
+    top:21%;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    line-height:40px;
+    border-radius:5px;
+    cursor:pointer;
+    color:#333;
+  }
 .time_w{
   width:126px;
   height:19px;
