@@ -609,7 +609,7 @@
   padding: 10px;
 }
 .table_w_1{
-  width: 253px;
+  width: 249px;
    border-bottom:4px solid #F15749;
    margin-bottom:2px;
    z-index:999;

@@ -8,7 +8,7 @@
       <div class="offer_title_external">
         <p class="offer_title">
           <el-row>
-            <el-col :span="7">
+            <el-col :span="5">
               <router-link to="/release/Receipt/ReceiptAll"
                            tag="div" class="offer_tit" @click.native="ReceiptAll()" :class="{offer:color==1}" ref="one"
               >全部
@@ -16,14 +16,14 @@
                 <span class="person_offer_triangle"></span>
               </router-link></el-col>
 
-            <el-col :span="4"><router-link to="/release/Receipt/offerPrices" tag="div"
+            <el-col :span="5"><router-link to="/release/Receipt/offerPrices" tag="div"
                                            class="offer_tit" @click.native="offerPri()" :class="{offer:color==2}"
             >&nbsp;&nbsp;&nbsp;已接单
               <span class="person_offer_add"></span>
               <span class="person_offer_triangle" ref="Receipt_triangle_prices"></span>
             </router-link></el-col>
 
-            <el-col :span="4"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
+            <el-col :span="5"><router-link to="/release/Receipt/offerCancel" tag="div" class="offer_tit offer_choesT" @click.native="offerCan()"
                                            :class="{offer:color==3}" 
             >待接单
 
@@ -117,6 +117,8 @@
         }
     }
     .offer_w_con{
+      margin-left: 1%;
+      margin-top: 3%;
       background:rgba(255,255,255,1);
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .offer_title_external{
@@ -136,6 +138,7 @@
           background: #F15749;
           color:white;
           position: relative;
+          width:130px;
           .person_offer_triangle{
             width:0;
             height:0;
@@ -147,14 +150,6 @@
             top:-135.4%;
             right:-9.5%;
             transform:rotate(-135deg);
-          }
-          .person_offer_add{
-            width: 100%;
-            height:14px;
-            position: absolute;
-            top:-40%;
-            left:0;
-            background: #F15749;
           }
         }
         .offer_tit{

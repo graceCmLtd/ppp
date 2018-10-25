@@ -147,8 +147,7 @@
     padding-left:15%;
     position: relative;
     z-index: 500;
-    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
-
+    box-shadow:2px 2px 5px rgba(188,188,188,0.5);
     .logo{
       width: 150px;
       height:70px;
@@ -252,6 +251,7 @@
     height: 30px;
     line-height: 30px;
     color: #fff;
+    z-index: 999;
 }
 #mall_header a{
   text-decoration:none;

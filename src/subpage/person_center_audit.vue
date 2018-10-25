@@ -24,7 +24,7 @@
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="color_w" v-on:click="toggle()">提醒买家</div></el-col>
+          <el-col :span="3"><div class="color_w" v-on:click="toggle()" @click="fun($event)">提醒买家</div></el-col>
         </el-row>
 
         <p class="person_intention_contact">
@@ -110,7 +110,7 @@
         pageSize : 5,
         total : 0,
         isShow:false,
-        showPaginate : true
+        showPaginate : true,
       }
     },
     methods:{
@@ -197,6 +197,7 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
+
       toggle:function(){
             this.isShow = !this.isShow;
       },
@@ -205,6 +206,9 @@
                 that.isShow = false;
 
       }, 
+      fun(e){
+           e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+      }
     },
     created(){
       this.getIntenTionList()
@@ -226,9 +230,7 @@
    font-size:14px;
    cursor: pointer;
 }
-.color_w:hover{
-  background:#ccc;
-}
+  
   .show_w{
     width:190px;
     height:40px;
