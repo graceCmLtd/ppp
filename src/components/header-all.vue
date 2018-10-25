@@ -127,9 +127,14 @@ const h = _this.$createElement;
               //_this.msgList.push(JSON.parse(message.content));
               let msg_content = JSON.parse(message.content);
 
-        _this.$notify({
+        /*_this.$notify({
           title: '新消息',
           message: h('i', { style: 'color: red'},msg_content.msgContent )
+        });*/
+        _this.$notify({
+          title: '新消息',
+          message: msg_content.msgContent,
+          duration: 30000
         });
         },
         onSuccess:function(){
