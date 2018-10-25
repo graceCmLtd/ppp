@@ -10,9 +10,9 @@
   		 <div class="news_content1">
   		 	<p>
   		 		<i>·</i>
-  		 		<span class="items">「{{item.msgType}}」</span> 
-  		 	  <span class="names">{{item.msgContent}}</span>
-  		 		<span class="time">10月19日 15:32</span>
+  		 		<span class="items">「{{item.msgType}}消息」</span> 
+  		 	  <span class="names">{{msgName}}</span>
+  		 		<span class="time">{{item.msgTime}}</span>
           <span style="float:right; color:#979797;"  @click="delItem(index)">x</span>
   		 	</p>
   		 	<p class="details">{{item.msgContent}}</p>
@@ -53,8 +53,8 @@ export default {
 	data(){
 		return{
 		 msgList:[],
-      index:0,	
-      msg:''
+      index:0,
+      msgName:''
 		}
 	},
     methods:{
@@ -62,10 +62,26 @@ export default {
         delItem: function(index){
           this.msgList.splice(index,1);
       },
-      
+      getMsgList(){
+        let _this = this;
+        let receiverId = getCookie("Iud");
+        console.log('--'+receiverId);
+        _this.axios.get(_this.oUrl+'/msg/getUserMsg?receiverId='+receiverId).then((res)=>{
+            console.log('ssss222'+res.data+'sds');
+            for(var i=0;i<res.data.length;i++){
+              if(res.data[i].msgType === '系统'){
+                _this.msgName = '您有新的系统消息'
+              }else if(res.data[i].msgType === '交易'){
+                _this.msgName = '您有新的交易消息'
+              }
+            }
+            _this.msgList = res.data;
+        });
+
+      }
     },
     created(){
-     
+      this.getMsgList();
     }
 }
 </script>
