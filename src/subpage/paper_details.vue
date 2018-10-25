@@ -101,9 +101,10 @@ export default {
         console.log("报价用户id：")
         console.log(Id)
         _this.axios.get(_this.oUrl+'/quote/getByBillNumberAndQuoterId?billNumber='+this.billType+'&quoterId='+Id).then((res)=>{
-            console.log(res.data.length);
+            console.log(res.data);
             if(res.data.length === 0 ){
               _this.axios.post(_this.oUrl+'/quote/addQuote',{
+                "quoteEntity":{
                   "billNumber":_this.bill,//票号
                   "quoterId":Id,//用户Id
                   "quoteAmount":amount,
@@ -112,6 +113,16 @@ export default {
                   "status":"报价中",
                   "quoteDate":"2018-08-09",//报价时间
                   "real_money" : _this.interest_rate
+                },
+                "message":{
+                  "msgType":"系统",
+                  "senderId":Id,
+                  "receiverId":_this.releaserId,
+                  "msgContent":"有新报价",
+                  "flag":"0",
+                  "path":"/release/offer/offerPrices"
+                }
+                  
                 }).then((res)=>{
                   console.log(res)
                   this.detailsMaskShow=true;
