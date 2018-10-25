@@ -11,7 +11,7 @@
   		 	<p>
   		 		<i>·</i>
   		 		<span class="items">「{{item.msgType}}」</span> 
-  		 	  <span class="names">您的提交的公司信息已经通过审核</span>
+  		 	  <span class="names">{{item.msgContent}}</span>
   		 		<span class="time">10月19日 15:32</span>
           <span style="float:right; color:#979797;"  @click="delItem(index)">x</span>
   		 	</p>
