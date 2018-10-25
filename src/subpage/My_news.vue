@@ -62,49 +62,10 @@ export default {
         delItem: function(index){
           this.msgList.splice(index,1);
       },
-      receive(){
-        let Id = getCookie('Iud');
-        console.log(Id);
-        let _this = this;
-
-        if(typeof GoEasy !== 'undefined'){ 
-          var goEasy = new GoEasy({
-            appkey:'BC-a9752c0d240f407298d5346075fb6de4',
-            onConnected:function(){ 
-                console.log("Connect to GoEasy success."); 
-            } , 
-            onDisconnected:function(){ 
-                console.log("Disconnect to GoEasy server."); 
-            } , 
-            onConnectFailed:function(error){ 
-                console.log("Connect to GoEasy failed, error code: "+ error.code+" Error message: "+ error.content); 
-            } 
-          });
-        }
-        console.log("vvvvvvvv")
-        //console.log(goEasy.subscribe)
-        goEasy.subscribe({
-            channel: Id,
-        onMessage: function (message) {
-              alert("Channel:" + message.channel + " content:" + message.content);
-              console.log(message);
-              _this.message = message.content;
-              _this.msgList.push(JSON.parse(message.content));
-        },
-        onSuccess:function(){
-          console.log("success")
-          alert("success")
-        },
-        onFailed:function(error){
-          console.log("fail")
-          alert(error)
-        }
-        });
-        console.log("end")
-      }
+      
     },
     created(){
-      this.receive();
+     
     }
 }
 </script>
