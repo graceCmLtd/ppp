@@ -24,7 +24,7 @@
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="color_w" v-on:click="toggle()" @click="fun($event)">提醒买家</div></el-col>
+          <el-col :span="3"><div class="color_w" v-on:click="toggle()" @click="fun($event,item)">提醒买家</div></el-col>
         </el-row>
 
         <p class="person_intention_contact">
@@ -206,8 +206,23 @@
                 that.isShow = false;
 
       }, 
-      fun(e){
+      fun(e,item){
            e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+           this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":item.buyerId,
+                  "msgContent":"有卖家提醒您尽快签收,订单号："+item.transacType,
+                  "flag":"0",
+                  "path":"/release/orderws/audit"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+                //alert("已提醒")
+              })
+
       }
     },
     created(){

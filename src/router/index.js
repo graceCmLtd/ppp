@@ -27,6 +27,47 @@ const router = new Router({
       component:resolve=>require(['@/subpage/my_news'],resolve)
     },
  
+// silde
+   {
+      path:'/footside',
+      name:'Footside',
+      component:resolve=>require(['@/subpage/footside'],resolve),
+      children:[
+        {
+          path:'/footside/about',//关于我们
+          name:'About',
+          component:resolve=>require(['@/subpage/about'],resolve)
+        },
+        {
+          path:'/footside/help',//帮助中心
+          name:'Help',
+          component:resolve=>require(['@/subpage/help'],resolve)
+        },
+        {
+          path:'/footside/clause',//碰碰票服务条款及说明
+          name:'Clause',
+          component:resolve=>require(['@/subpage/clause'],resolve)
+        },
+    
+        {
+          path:'/footside/security',//安全保障
+          name:'Security',
+          component:resolve=>require(['@/subpage/security'],resolve)
+          },
+   
+      
+        {
+          path:'/footside/cooperation',//合作专区
+          name:'Cooperation',
+          component:resolve=>require(['@/subpage/cooperation'],resolve)
+        },    
+      ],
+      redirect:'/footside/about'
+    },
+
+
+
+ //release
     {
       path:'/release',
       name:'Release',
@@ -48,11 +89,11 @@ const router = new Router({
         component:resolve=>require(['@/subpage/invoice'],resolve)
         },
     
-      {
-        path:'/servicer',//联系客服
-        name:'Servicer',
-        component:resolve=>require(['@/subpage/servicer'],resolve)
-        },
+        {
+          path:'/servicer',//联系客服
+          name:'Servicer',
+          component:resolve=>require(['@/subpage/servicer'],resolve)
+          },
    
         {
           path:'/release/trad',//平台担保交易
@@ -361,6 +402,7 @@ const router = new Router({
       ],
       redirect:'/release/paper'
     },
+
     {
       path:'/signIn',//注册
       name:'SignIn',

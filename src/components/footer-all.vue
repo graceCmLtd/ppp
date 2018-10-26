@@ -3,12 +3,31 @@
     <div class="contact_us ">
 
       <ul class="header">
-        <li>关于我们</li>
-        <li>帮助中心</li>
-        <li>碰碰票数据</li>
-        <li>碰碰票服务条款及说明</li>
-        <li>安全保障</li>
-        <li>合作专区</li>
+        <li>
+           <router-link to="/footside/about">
+               关于我们
+           </router-link>
+        </li>
+        <li>    
+           <router-link to="/footside/help">
+             帮助中心
+           </router-link>
+         </li>
+        <li>
+          <router-link to="/footside/clause">
+            碰碰票服务条款及说明 
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/footside/security">
+          安全保障
+          </router-link>
+        </li>
+        <li> 
+          <router-link to="/footside/cooperation">
+          合作专区  
+        </router-link>
+        </li>
       </ul>
       <p style="margin-top: 60px;">客服热线：4001-521-889 （时间：9:00——18:00）</p>
       <p style="margin-top: 10px;">电子邮箱：info@pengpengpiao.com</p>
