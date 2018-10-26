@@ -115,6 +115,8 @@ export default {
     paySuccess(){
       let _this = this;
         _this.showDialog = false;
+        console.log("发布者")
+        console.log(_this.item)
         _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:_this.item.billNumber,
@@ -123,7 +125,7 @@ export default {
           "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
-                  "receiverId":_this.releaserId,
+                  "receiverId":_this.item.releaserId,
                   "msgContent":"买家已支付，请及时背书",
                   "flag":"0",
                   "path":"/release/Receipt/offerCancel"

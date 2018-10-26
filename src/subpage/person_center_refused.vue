@@ -223,6 +223,8 @@
       toggle:function(item){
          this.isShow = !this.isShow;
          this.current_item = item;
+         console.log("this item")
+          console.log(this.current_item.buyerId)
       },
       hiddenShow:function () {
           var that = this;
@@ -230,11 +232,23 @@
        }, 
        /*确认*/
        submitImg(){
-          alert("已背书，待签收，图片保存待实现")
-
+          //alert("已背书，待签收，图片保存待实现")
+          console.log("this item")
+          console.log(this.item)
          this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
-          billNumber:this.current_item.billNumber,
-          intentionStatus:"已背书,待签收"
+          "intentionObj":{
+            billNumber:this.current_item.billNumber,
+            intentionStatus:"已背书,待签收"
+          },
+          "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":this.current_item.buyerId,
+                  "msgContent":"有卖家已背书，请及时签收",
+                  "flag":"0",
+                  "path":"/release/orderws/audit"
+                }
+          
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
@@ -263,6 +277,7 @@
           var timeout = 1200;
           console.log("date ")
           console.log(date)
+          let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
@@ -275,13 +290,16 @@
               _this.timeout_count ++;
               if (a> timeout && _this.noteList[i].intentionStatus =="已支付,待背书") {
                 /*transacType 为 orderid 超时失效*/
-              _this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+                reloadFlag = true;
+              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
                 'Content-Type':'application/json'
               }}).then((res)=>{
+                console.log("超时失效")
                 console.log(res)
+                
               })
               }
             }else{
@@ -294,7 +312,10 @@
             console.log(_this.timerArr[i])
             
           }
-          
+          if (reloadFlag) {
+            _this.getIntenTionList()
+            reloadFlag = false;
+          }
           console.log("minuete ")
           console.log(_this.timerArr)
        },
@@ -307,18 +328,18 @@
          //var count =0;
         var time = window.setInterval(function () {
           //let t1 = {}
-          console.log(_this.timerArr)
+          //console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
             console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
-          console.log("this ....... path ")
-          console.log(_this.$route.path)
+          //console.log("this ....... path ")
+          //console.log(_this.$route.path)
           if (_this.$route.path == "/release/center/refused") {
-            console.log("path is /release/center/refused")
+            //console.log("path is /release/center/refused")
 
           }else{
-            console.log("clearInterval time  /release/center/refused")
+            //console.log("clearInterval time  /release/center/refused")
             window.clearInterval(time)
           }
           for (var index = 0; index < _this.timerArr.length; index++) {
@@ -336,12 +357,13 @@
               _this.timerArr[index].seconds = 0
               
               /*transacType 为 orderid 超时失效*/
-              _this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[index].transacType,
                 intentionStatus:"已超时"
               },{headers:{
                 'Content-Type':'application/json'
               }}).then((res)=>{
+                console.log("超时已失效")
                 console.log(res)
               })
               //window.clearInterval(time)
@@ -353,8 +375,8 @@
               _this.timerArr[index].seconds -= 1 
             }else{
               console.log(index +"： index  倒计时结束")
-              console.log(_this.timeout_count)
-              console.log(_this.timerArr.length)
+              //console.log(_this.timeout_count)
+              //console.log(_this.timerArr.length)
               if(_this.timeout_count >= _this.timerArr.length)
               {
                 console.log(_this.timeout_count)
