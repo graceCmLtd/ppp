@@ -178,16 +178,30 @@
           var timeout = 1200;
           console.log("date ")
           console.log(date)
+          let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
-            if(a >1200.0){
+            if(a >1200.0 || _this.noteList[i].intentionStatus !="已接单,待支付"){
               console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
               _this.timeout_count ++;
+              if(a >1200 && _this.noteList[i].intentionStatus =="已接单,待支付"){
+                /*transacType 为 orderid 超时失效*/
+                reloadFlag = true;
+              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+                orderId:this.noteList[i].transacType,
+                intentionStatus:"已超时"
+              },{headers:{
+                'Content-Type':'application/json'
+              }}).then((res)=>{
+                console.log(res)
+                
+              })
+              }
             }else{
               temp["minutes"]=Math.floor(20 - (date - _this.noteList[i].updateTimeStamp)/60);
               temp["seconds"]=Math.round(60 - (date - _this.noteList[i].updateTimeStamp)%60);
@@ -198,7 +212,10 @@
             console.log(_this.timerArr[i])
             
           }
-          
+          if (reloadFlag) {
+            _this.getIntenTionList();
+            reloadFlag = false;
+          }
           console.log("minuete ")
           console.log(_this.timerArr)
        },
@@ -216,6 +233,15 @@
             console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
+          console.log("this ....... path ")
+          console.log(_this.$route.path)
+          if (_this.$route.path == "/release/orderws/confirmed") {
+            console.log("path is /release/orderws/confirmed")
+
+          }else{
+            console.log("clearInterval time  /release/orderws/confirmed")
+            window.clearInterval(time)
+          }
           for (var index = 0; index < _this.timerArr.length; index++) {
             //console.log("timer")
             //console.log(_this.timerArr[index])
@@ -223,7 +249,7 @@
               let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
-
+              t1["flag"] = true;
               _this.timerArr.splice(index,1,t1)
             } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0 && _this.timerArr[index].flag) {
               _this.timerArr[index].flag = false;
@@ -231,7 +257,7 @@
               _this.timerArr[index].seconds = 0
               
               /*transacType 为 orderid 超时失效*/
-              this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:this.noteList[index].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -247,17 +273,6 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-              if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0) {
-                /*transacType 为 orderid 超时失效*/
-              this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
-                orderId:this.noteList[index].transacType,
-                intentionStatus:"已超时"
-              },{headers:{
-                'Content-Type':'application/json'
-              }}).then((res)=>{
-                console.log(res)
-              })
-              }
                 console.log(index +"： index  倒计时结束")
               console.log(_this.timeout_count)
               console.log(_this.timerArr.length)

@@ -74,7 +74,7 @@ export default {
     }
   },
   methods:{
-    showWarning(){
+    /*showWarning(){
       let _this=this;
       _this.axios.post(this.oUrl+'/transaction/payViaPlatform',{
         "transacStatus":"成功",
@@ -92,7 +92,7 @@ export default {
         _this.$refs.detailedPrompt.style.top='30%'
       })
     })
-    },
+    },*/
     closeWarning(){
       let _this=this;
       _this.$refs.detailedPrompt.style.opacity='0';
@@ -114,10 +114,23 @@ export default {
     /*付款成功  测试*/
     paySuccess(){
       let _this = this;
-        this.showDialog = false;
-        this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
-          billNumber:this.item.billNumber,
-          intentionStatus:"已支付,待背书"
+        _this.showDialog = false;
+        console.log("发布者")
+        console.log(_this.item)
+        _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
+          "intentionObj":{
+            billNumber:_this.item.billNumber,
+            intentionStatus:"已支付,待背书"
+          },
+          "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":_this.item.releaserId,
+                  "msgContent":"买家已支付，请及时背书",
+                  "flag":"0",
+                  "path":"/release/Receipt/offerCancel"
+                }
+          
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
@@ -130,10 +143,21 @@ export default {
     /*取消付款 ，待付款 */
     payCancle(){
       let _this = this;
-      this.showDialog = false;
-      this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
-          billNumber:this.item.billNumber,
+      _this.showDialog = false;
+      _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
+        "intentionObj":{
+          billNumber:_this.item.billNumber,
           intentionStatus:"已接单,待支付"
+        },
+        "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":getCookie("Iud"),
+                  "msgContent":"支付未完成，请及时完成付款",
+                  "flag":"0",
+                  "path":"/release/Receipt/offerCancel"
+                }
+          
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
@@ -150,7 +174,8 @@ export default {
         localStorage.setItem('item',JSON.stringify(object));
       }
       this.item = JSON.parse(localStorage.getItem('item'));
-      console.log(this.item.billNumber);
+      console.log("paogoqi")
+      console.log(this.item);
       var billNumber = this.item.billNumber;
       this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+billNumber).then((res)=>{
         console.log(res.data);

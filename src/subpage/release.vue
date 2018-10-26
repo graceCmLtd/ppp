@@ -89,7 +89,7 @@ export default {
     },
     data(){//我的求贴
       this.$router.push('/release/paper')
-      this.getindex();
+      //this.getindex();
     },
     message(){//我的消息
       this.$router.push('/release/mes')

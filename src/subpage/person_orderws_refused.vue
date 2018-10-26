@@ -26,7 +26,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.real_money/1000}}w</span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()" @click="fun($event)">提醒卖家背书</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()" @click="fun($event,item)">提醒卖家背书</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
@@ -190,8 +190,24 @@
                 var that = this;
                 that.isShow = false;
       },
-       fun(e){
+       fun(e,item){
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+               console.log("提醒")
+               console.log(item)
+               this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":item.sellerId,
+                  "msgContent":"有买家提醒您尽快背书,订单号："+item.transacType,
+                  "flag":"0",
+                  "path":"/release/center/refused"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+                alert("已提醒")
+              })
             },
        },
     created(){

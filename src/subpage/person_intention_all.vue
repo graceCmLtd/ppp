@@ -197,15 +197,14 @@
         this.currentPage = currentPage;
         this.getIntenTionList();
       },
-        confirmTransaction:function(index){
+        /*confirmTransaction:function(index){
             let _this=this;
             let Id=getCookie('Iud');
             _this.isShow = !_this.isShow;
             let billNumberLoca=_this.noteList[index].billNumber;
             _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
                 "billNumber":billNumberLoca,
-                "intentionStatus":"卖家已确认"/*,
-                "quoterId":Id*/
+                "intentionStatus":"卖家已确认"
               },
               {headers:{
                   'Content-Type':'application/json'
@@ -214,9 +213,8 @@
               console.log("卖家确认交易操作 返回值：")
               console.log(res)
               _this.getIntenTionList();
-              /*_this.noteList=res.data;*/
             })
-          },
+          },*/
             showCancel(){
               this.isShow = false;
             }, 

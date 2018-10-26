@@ -4,7 +4,7 @@
   <div class="person_intention_all">
     <div class="person_intention_mes">
       <el-row>
-        <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">票据类型1</div></el-col>
         <el-col :span="4"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="2"><div class="intention_mes_title">票面金额</div></el-col>
         <el-col :span="4"><div class="intention_mes_title">到期日</div></el-col>
@@ -238,7 +238,6 @@
           console.log("接单操作返回值：")
           console.log(res)
           _this.getIntenTionList();
-          /*_this.noteList=res.data;*/
         })
       },
       /*修改价格*/

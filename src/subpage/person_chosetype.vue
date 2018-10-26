@@ -110,7 +110,15 @@ export default {
               "quoterId":_this.quoterId,
               "billNumber":_this.billN,
               "intentionStatus":"待接单"
-            }
+            },
+            "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":_this.quoterId,
+                  "msgContent":"有新意向",
+                  "flag":"0",
+                  "path":"/release/Receipt/offerCancel"
+                }
           },
         {headers:{
           'Content-Type':'application/json'
