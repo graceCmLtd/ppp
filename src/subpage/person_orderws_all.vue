@@ -32,7 +32,7 @@
           <el-col :span="3">
             <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
             <div class="intention_mes" id="payment" @click="toPay(item)" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
-            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'" v-on:click="toggle()" @click="fun($event)">提醒卖家背书</div>
+            <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'" v-on:click="toggle()" @click="fun($event,item)">提醒卖家背书</div>
             <div class="intention_mes" id="payment" @click="submitAccept(item)" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'" @click="checkVoucher(item)">查看凭证</div>
           </el-col>
@@ -428,8 +428,24 @@
                 var that = this;
                 that.isShow = false;
       },
-       fun(e){
+       fun(e,item){
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+               this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":item.sellerId,
+                  "msgContent":"有买家提醒您尽快背书,订单号："+item.transacType,
+                  "flag":"0",
+                  "path":"/release/center/refused"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+                alert("已提醒")
+              })
+
+               
             },
     },
     created(){
