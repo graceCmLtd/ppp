@@ -101,7 +101,7 @@
         let Id = getCookie('Iud');
         console.log(Id);
         let _this = this;
-const h = _this.$createElement;
+        const h = _this.$createElement;
         if(typeof GoEasy !== 'undefined'){ 
           var goEasy = new GoEasy({
             appkey:'BC-a9752c0d240f407298d5346075fb6de4',
