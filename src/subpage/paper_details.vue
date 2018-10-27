@@ -12,7 +12,7 @@
           <!-- <p>期望利率:<span></span></p> -->
         </div>
         <div class="place">
-          <p class="num">已有23家机构报价</p>
+          <p class="num">请填写你的报价</p>
           <div class="table">
             <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" v-model:value="rate" alt="" ref="interest"/>%</p>
             <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" v-model:value="add_amount" ref="xPerLakh"/>元</p>
