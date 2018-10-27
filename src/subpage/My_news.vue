@@ -3,11 +3,11 @@
   <div class="news_all">
   	<div class="news_first">
   		<span>全部消息（<i>{{unreadCount}}</i>/<i>{{total}}</i>）</span>
-  		<span @click="updateFlag()">全部标记为已读</span>
+  		<span @click="updateFlag()" style="cursor:pointer">全部标记为已读</span>
   	</div>
   	<div class="news_content">
   	   <div class="" v-for="(item,index) in msgList" :key="index">
-  		 <div class="news_content1" style="background:red;">
+  		 <div class="news_content1" v-bind:class="{ active: item.flag === 0, 'text-danger':item.flag === 0 }">
   		 	<p>
   		 		<i v-if="item.flag === 0">·</i>
   		 		<span class="items">「{{item.msgType}}消息」</span> 
@@ -71,18 +71,18 @@ export default {
       total:0,
       currentPage:1,
       pageSize:8,
-      showPaginate : true
+      showPaginate : true,
 		}
 	},
     methods:{
     // 删除
         delItem: function(index,item){
-          console.log(item)
-          var list = []
-          list.push(item);
-          list.push(1)
-          console.log(list)
-          //this.msgList.splice(index,1);
+          // console.log(item)
+          // var list = []
+          // list.push(item);
+          // list.push(1)
+          // console.log(list)
+          this.msgList.splice(index,1);
       },
       getMsgList(){
         let _this = this;
@@ -194,10 +194,10 @@ export default {
         text-indent:52px;
     	}
     }
-    .news_content1:hover{
-    	background:rgba(241,87,73,0.1);
-    	cursor: pointer;
-       }
+    
 	   }
+  }
+  .text-danger{
+    background: rgba(241,87,73,0.1);
   }
 </style>
