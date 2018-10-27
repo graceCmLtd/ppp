@@ -37,11 +37,11 @@
       <img src="../../static/img/Logo.png" alt="" @click="page()">
     </div>
     <ul class="header_title">
-      <router-link to="/page" tag="li" @click.native="pageAc()" :class="{active:color==1}">首页</router-link>
-      <router-link to="/marketpa" tag="li" @click.native="market()" :class="{active:color==2}">票据市场</router-link>
-      <router-link to="/resources" tag="li" @click.native="resources()" :class="{active:color==3}">资源市场</router-link>
-      <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==4}">我要贴现</router-link>
-      <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==5}">我要买票</router-link>
+      <router-link to="/page" tag="li" active-class="active">首页</router-link>
+      <router-link to="/marketpa" tag="li" active-class="active">票据市场</router-link>
+      <router-link to="/resources" tag="li" active-class="active">资源市场</router-link>
+      <router-link to="/releasepa" tag="li" active-class="active">我要贴现</router-link>
+      <router-link to="/buyBillPa" tag="li" active-class="active">我要买票</router-link>
       <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" </div>:class="{active:color==6}">个人中心</router-link>-->
       
     </ul>
@@ -82,21 +82,7 @@
       page(){
         this.$router.push('/page')
       },
-      pageAc(){
-        this.color=1;
-      },
-      market(){
-        this.color=2;
-      },
-      resources(){
-        this.color=3;
-      },
-      releasePa(){
-        this.color=4;
-      },
-      buypaper(){
-        this.color=5;
-      },
+      
       receive_msg(){
         let Id = getCookie('Iud');
         console.log(Id);
@@ -164,17 +150,6 @@
       }
       this.receive_msg()
 
-      if (this.$route.path == "/page") {
-        this.color = 1
-      }else if(this.$route.path =="/marketpa"){
-        this.color =2
-      }else if(this.$route.path == "/resources"){
-        this.color =3
-      }else if(this.$route.path == "/releasepa"){
-        this.color =4
-      }else if(this.$route.path == "/marketpa"){
-        this.color =5
-      }
 
     },
     watch:{
