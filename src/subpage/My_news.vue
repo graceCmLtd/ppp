@@ -77,12 +77,12 @@ export default {
     methods:{
     // 删除
         delItem: function(index,item){
-          console.log(item)
-          var list = []
-          list.push(item);
-          list.push(1)
-          console.log(list)
-          //this.msgList.splice(index,1);
+          // console.log(item)
+          // var list = []
+          // list.push(item);
+          // list.push(1)
+          // console.log(list)
+          this.msgList.splice(index,1);
       },
       getMsgList(){
         let _this = this;

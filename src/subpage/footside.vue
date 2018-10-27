@@ -12,7 +12,7 @@
               background="#fff"
               active-background-color="red"
               text-color="gray"
-              active-text-color="#333333">
+              active-text-color="#F15749">
               <el-menu-item index="/footside/about"  @click="about()" text-color="#ffd04b"  style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">关于我们</el-menu-item>
               <el-menu-item index="/footside/help" @click="help()" style="border-bottom:1px solid #E6E6E6;">帮助中心</el-menu-item>
               <el-menu-item index="/footside/clause" @click="clause()"  style="border-bottom:1px solid #E6E6E6;">碰碰票服务条款及说明</el-menu-item>
