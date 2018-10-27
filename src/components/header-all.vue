@@ -37,11 +37,11 @@
       <img src="../../static/img/Logo.png" alt="" @click="page()">
     </div>
     <ul class="header_title">
-      <router-link to="/page" tag="li" @click.native="pageAc()" :class="{active:color==0}">首页</router-link>
-      <router-link to="/marketpa" tag="li" @click.native="market()" :class="{active:color==1}">票据市场</router-link>
-      <router-link to="/resources" tag="li" @click.native="resources()" :class="{active:color==2}">资源市场</router-link>
-      <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==3}">我要贴现</router-link>
-      <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==4}">我要买票</router-link>
+      <router-link to="/page" tag="li" @click.native="pageAc()" active-class="{active:color==1}">首页</router-link>
+      <router-link to="/marketpa" tag="li" @click.native="market()" active-class="{active:color==2}">票据市场</router-link>
+      <router-link to="/resources" tag="li" @click.native="resources()" active-class="{active:color==3}">资源市场</router-link>
+      <router-link to="/releasepa" tag="li" @click.native="releasePa()" active-class="{active:color==4}">我要贴现</router-link>
+      <router-link to="/marketpas" tag="li" @click.native="buypaper()" active-class="{active:color==5}">我要买票</router-link>
       <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" </div>:class="{active:color==6}">个人中心</router-link>-->
       
     </ul>
@@ -69,7 +69,7 @@
   export default {
     data(){
       return{
-        color:0,
+        color:1,
         enter:true,
         signSucc:false,
         nick:null,
@@ -83,19 +83,19 @@
         this.$router.push('/page')
       },
       pageAc(){
-        this.color=0;
-      },
-      market(){
         this.color=1;
       },
-      resources(){
+      market(){
         this.color=2;
       },
-      releasePa(){
+      resources(){
         this.color=3;
       },
-      buypaper(){
+      releasePa(){
         this.color=4;
+      },
+      buypaper(){
+        this.color=5;
       },
       receive_msg(){
         let Id = getCookie('Iud');
@@ -138,11 +138,11 @@
         });
         },
         onSuccess:function(){
-          // console.log("success")
+          console.log("success")
           //alert("success")
         },
         onFailed:function(error){
-          // console.log("fail")
+          console.log("fail")
           //alert(error)
         }
         });
@@ -159,30 +159,22 @@
       },
     },
     created(){
-
-      console.log("created  1232321312")
       if (getCookie("Iud")) {
         this.isSinIn = true;
       }
-     
+      this.receive_msg()
 
       if (this.$route.path == "/page") {
-        console.log(this.$route.path)
-        this.color =0
+        this.color = 1
       }else if(this.$route.path =="/marketpa"){
-        console.log(this.$route.path)
-        this.color =1
-      }else if(this.$route.path == "/resources"){
-        console.log(this.$route.path)
         this.color =2
-      }else if(this.$route.path == "/releasepa"){
-        console.log(this.$route.path)
+      }else if(this.$route.path == "/resources"){
         this.color =3
-      }else if(this.$route.path == "/marketpa"){
-        console.log(this.$route.path)
+      }else if(this.$route.path == "/releasepa"){
         this.color =4
+      }else if(this.$route.path == "/marketpas"){
+        this.color =5
       }
-       this.receive_msg()
     },
     watch:{
       $route(to,from){
@@ -191,7 +183,7 @@
           this.enter=false;
           this.signSucc=true;
           if (getCookie("Iud")) {
-        this.isSinIn = true;
+          this.isSinIn = true;
       }
         }
       }
