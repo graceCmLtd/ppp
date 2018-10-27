@@ -7,7 +7,7 @@
   	</div>
   	<div class="news_content">
   	   <div class="" v-for="(item,index) in msgList" :key="index">
-  		 <div class="news_content1">
+  		 <div class="news_content1" style="background:red;">
   		 	<p>
   		 		<i v-if="item.flag === 0">·</i>
   		 		<span class="items">「{{item.msgType}}消息」</span> 
