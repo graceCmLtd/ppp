@@ -155,7 +155,7 @@
           'Content-Type':'application/json'
         }}).then((res)=>{
           console.log(res)
-          window.clearInterval(time)
+          //window.clearInterval(time)
           this.getIntenTionList()
 
         })
