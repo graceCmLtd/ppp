@@ -437,8 +437,8 @@ const router = new Router({
       component:resolve=>require(['@/subpage/market_paper'],resolve)
     },
     {
-      path:'/marketpas',//票据市场
-      name:'MarketPas',
+      path:'/buyBillPa',//我要买票
+      name:'buyBillPa',
       component:resolve=>require(['@/subpage/market_paper'],resolve)
     },
     {

@@ -37,11 +37,11 @@
       <img src="../../static/img/Logo.png" alt="" @click="page()">
     </div>
     <ul class="header_title">
-      <router-link to="/page" tag="li" @click.native="pageAc()" active-class="{active:color==1}">首页</router-link>
-      <router-link to="/marketpa" tag="li" @click.native="market()" active-class="{active:color==2}">票据市场</router-link>
-      <router-link to="/resources" tag="li" @click.native="resources()" active-class="{active:color==3}">资源市场</router-link>
-      <router-link to="/releasepa" tag="li" @click.native="releasePa()" active-class="{active:color==4}">我要贴现</router-link>
-      <router-link to="/marketpas" tag="li" @click.native="buypaper()" active-class="{active:color==5}">我要买票</router-link>
+      <router-link to="/page" tag="li" @click.native="pageAc()" :class="{active:color==1}">首页</router-link>
+      <router-link to="/marketpa" tag="li" @click.native="market()" :class="{active:color==2}">票据市场</router-link>
+      <router-link to="/resources" tag="li" @click.native="resources()" :class="{active:color==3}">资源市场</router-link>
+      <router-link to="/releasepa" tag="li" @click.native="releasePa()" :class="{active:color==4}">我要贴现</router-link>
+      <router-link to="/marketpa" tag="li" @click.native="buypaper()" :class="{active:color==5}">我要买票</router-link>
       <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" </div>:class="{active:color==6}">个人中心</router-link>-->
       
     </ul>
@@ -172,9 +172,10 @@
         this.color =3
       }else if(this.$route.path == "/releasepa"){
         this.color =4
-      }else if(this.$route.path == "/marketpas"){
+      }else if(this.$route.path == "/marketpa"){
         this.color =5
       }
+
     },
     watch:{
       $route(to,from){
@@ -183,7 +184,7 @@
           this.enter=false;
           this.signSucc=true;
           if (getCookie("Iud")) {
-          this.isSinIn = true;
+        this.isSinIn = true;
       }
         }
       }
