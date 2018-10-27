@@ -335,17 +335,26 @@
           }
           //console.log("this ....... path ")
           //console.log(_this.$route.path)
-          if (_this.$route.path == "/release/center/refused") {
-            //console.log("path is /release/center/refused")
-
+          /*跳转页面时停止计时器*/
+          /*if (_this.$route.path == "/release/center/refused") {
           }else{
-            //console.log("clearInterval time  /release/center/refused")
             window.clearInterval(time)
-          }
+          }*/
+          /*跳转页面时停止计时器 end*/
           for (var index = 0; index < _this.timerArr.length; index++) {
             //console.log("timer")
             //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
+              /*剩余10分钟提醒*/
+              if (_this.timerArr[index].minutes == 10) {
+                  _this.$notify({
+                    title: '新消息',
+                    message: "您有一笔待背书订单即将超时，请及时到我是卖家->我的订单 完成背书",
+                    duration: 30000
+                  });
+              }
+              /*剩余10分钟提醒 end*/
+
               let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
@@ -366,6 +375,23 @@
                 console.log("超时已失效")
                 console.log(res)
               })
+
+              /*发送超时消息*/
+              this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":_this.noteList[index].buyerId,
+                  "msgContent":"有卖家未能及时背书，交易失效,订单号："+_this.noteList[index].transacType,
+                  "flag":"0",
+                  "path":"/release/center/refused"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+                //alert("已提醒")
+              })
+              /*发送超时消息  end*/
               //window.clearInterval(time)
             } else if(_this.timerArr[index].minutes > 0 || _this.timerArr[index].seconds > 0) {
               let t1 = {}

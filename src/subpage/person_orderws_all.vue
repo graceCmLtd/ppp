@@ -252,7 +252,7 @@
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
-            if(a >1200.0 || _this.noteList[i].intentionStatus !="已接单,待支付"|| _this.noteList[i].intentionStatus !="已背书,待签收"){
+            if(a >1200.0 || (_this.noteList[i].intentionStatus !="已接单,待支付" && _this.noteList[i].intentionStatus !="已背书,待签收") ){
               console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
@@ -288,9 +288,6 @@
               temp["flag"] = true;
             }
             _this.timerArr[i] = temp;
-            console.log("shenemgui ")
-            console.log(_this.timerArr[i])
-            
           }
           if (reloadFlag) {
             console.log("有超时，重新加载列表")
@@ -298,8 +295,8 @@
             _this.getIntenTionList()
 
           }
-          console.log("minuete ")
-          console.log(_this.timerArr)
+/*          console.log("minuete ")
+          console.log(_this.timerArr)*/
        },
        /*倒计时*/
       num(n) {
@@ -317,16 +314,13 @@
           }
           console.log("this ....... path ")
           console.log(_this.$route.path)
+          /*跳转页面时停止计时器*/
           if (_this.$route.path == "/release/orderws/all") {
-            console.log("path is /release/orderws/all")
-
           }else{
-            console.log("clearInterval time  /release/orderws/all")
             window.clearInterval(time)
           }
+          /*跳转页面时停止计时器end */
           for (var index = 0; index < _this.timerArr.length; index++) {
-            //console.log("timer")
-            //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
               let t1 = {}
               t1["seconds"] = 59;
@@ -339,7 +333,7 @@
               _this.timerArr[index].seconds = 0
               
               /*transacType 为 orderid 超时失效*/
-              if (_this.noteList[index].intentionStatus == "已接单,待支付" || _this.noteList[index].intentionStatus == "已背书,待签收") {
+              /*if (_this.noteList[index].intentionStatus == "已接单,待支付" || _this.noteList[index].intentionStatus == "已背书,待签收") {
                 _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:this.noteList[index].transacType,
                 intentionStatus:"已超时"
@@ -348,7 +342,7 @@
               }}).then((res)=>{
                 console.log(res)
               })
-              }
+              }*/
               
 
               //window.clearInterval(time)
@@ -360,11 +354,8 @@
               _this.timerArr[index].seconds -= 1 
             }else{
               console.log(index +"： index  倒计时结束")
-              console.log(_this.timeout_count)
-              console.log(_this.timerArr.length)
               if(_this.timeout_count >= _this.timerArr.length)
               {
-                console.log(_this.timeout_count)
                 window.clearInterval(time)
                 _this.timeout_count =0
               }
@@ -445,7 +436,7 @@
                 alert("已提醒")
               })
 
-               
+
             },
     },
     created(){
