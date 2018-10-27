@@ -437,6 +437,11 @@ const router = new Router({
       component:resolve=>require(['@/subpage/market_paper'],resolve)
     },
     {
+      path:'/buyBillPa',//我要买票
+      name:'buyBillPa',
+      component:resolve=>require(['@/subpage/market_paper'],resolve)
+    },
+    {
       path:'/details',//票据详情
       name:'Details',
       component:resolve=>require(['@/subpage/paper_details'],resolve)
