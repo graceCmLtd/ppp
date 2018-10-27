@@ -97,10 +97,7 @@ export default {
                 _this.msgName = '您有新的交易消息'
               }
               if(res.data[i].flag === 0 ){
-                //_this.fff.style.bgColor = "red";
                   _this.unreadCount += 1;
-
-                  
               }
 
             }

@@ -35,7 +35,7 @@
 
      <!--        <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'"><router-link :to="{path:'/release/forward',query:{item:item}}">提现  </router-link></div>
  -->
-            <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()"  @click="fun($event)">提醒买家</div>
+            <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()"  @click="fun($event,item)">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
             <router-link :to="{path:'/release/forward',query:{item:item}}">
               提现  
@@ -398,8 +398,25 @@
                   that.isShow = false;
 
         }, 
-         fun(e){
+         fun(e,item){
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
+               this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":item.buyerId,
+                  "msgContent":"有卖家提醒您尽快签收,订单号："+item.transacType,
+                  "flag":"0",
+                  "path":"/release/orderws/audit"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+                //alert("已提醒")
+              })
+
+
+               
        },
       /*确认*/
        submitImg(){

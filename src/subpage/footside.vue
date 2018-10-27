@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="24">
             <el-menu
-              :default-active="getDirectory()"
+              :default-active="$route.path"
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose"
@@ -41,11 +41,6 @@ export default {
   methods:{
     handleOpen(key, keyPath) {
       // console.log(key, keyPath);
-    },
-    getDirectory(){
-      let thePath = this.$route.path;
-      console.log(thePath.substr(0,thePath.lastIndexOf("/")+1))
-      return thePath.substr(0,thePath.lastIndexOf("/")+1)
     },
     handleClose(key, keyPath) {
     },
