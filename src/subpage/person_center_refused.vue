@@ -328,7 +328,7 @@
          //var count =0;
         var time = window.setInterval(function () {
           //let t1 = {}
-          //console.log(_this.timerArr)
+          console.log("计时")
           if (_this.timerArr.length == 0) {
             console.log("数组为空，倒计时结束")
             window.clearInterval(time)
