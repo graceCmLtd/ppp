@@ -21,7 +21,7 @@
             </router-link>
           </a>
             <a target="_blank" href=""> <router-link to="/My_news">
-              <el-badge is-dot class="item">我的消息</el-badge>
+              我的消息
             </router-link>
             </a>
           </div>
@@ -73,7 +73,7 @@
         enter:true,
         signSucc:false,
         nick:null,
-        isSinIn:false
+        isSinIn:false,
       }
     },
 
