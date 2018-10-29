@@ -20,17 +20,13 @@
               个人中心
             </router-link>
           </a>
-            <a target="_blank" href=""> <router-link to="/My_news">
+            <a target="_blank" href="" class="red-point"> <router-link to="/My_news">
               我的消息
             </router-link>
             </a>
           </div>
-
-          <div class="spot">
+          
             
-          </div>
-          
-          
         </div>
     </div>
 </div>
@@ -171,15 +167,20 @@
   }
 </script>
 <style lang="scss" scoped>
-  .spot{
-    width: 6px;
-    height: 6px;
-    background-color: red;
+  .red-point{
+          position: relative;
+        }
+
+  .red-point::before{
+    content: " ";
+    border: 3px solid red;/*设置红色*/
+    border-radius:3px;/*设置圆角*/
     position: absolute;
-    top: 6px;
-    right: 24%;
-    border-radius: 50px;
+    z-index: 1000;
+    right: 0;
+    margin-right: -8px;
   }
+
   .active{
     background: #F15749;
     color:white;
