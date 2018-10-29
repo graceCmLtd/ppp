@@ -25,8 +25,12 @@
             </router-link>
             </a>
           </div>
-          
+
+          <div class="spot">
             
+          </div>
+          
+          
         </div>
     </div>
 </div>
@@ -167,6 +171,15 @@
   }
 </script>
 <style lang="scss" scoped>
+  .spot{
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    position: absolute;
+    top: 6px;
+    right: 24%;
+    border-radius: 50px;
+  }
   .active{
     background: #F15749;
     color:white;
