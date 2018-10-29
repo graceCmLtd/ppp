@@ -21,7 +21,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment" @click="toPay(item)">环迅支付</div></el-col>
 
@@ -357,6 +357,12 @@
     },
     mounted(){
       this.timer()
+    },
+    filters: {
+        numFilter(value) {
+          let realVal = Number(value).toFixed(2)
+          return Number(realVal)
+      }
     }
   }
 </script>

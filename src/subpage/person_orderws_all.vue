@@ -27,7 +27,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
@@ -444,6 +444,12 @@
     },
     mounted(){
       this.timer()
+    },
+    filters: {
+        numFilter(value) {
+          let realVal = Number(value).toFixed(2)
+          return Number(realVal)
+      }
     }
   }
 </script>
