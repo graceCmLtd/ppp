@@ -22,10 +22,10 @@
                <a class="cal_2" @click="hiddenShow()">X</a>
              </div>
              <div class="content_c">
-               <p>票面金额（万元）：<input type="text" v-model:value="money" name="" placeholder="请输入金额"></p>
-               <p>年利率（%）：<input type="text" v-model:value="rate" name="" placeholder="%"></p>
+               <p>票面金额(万元)：<input type="text" v-model:value="money" name="" placeholder="请输入金额"></p>
+               <p>年利率（%）：&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="rate" name="" placeholder="%"></p>
                <!-- <p>贴现日期：<input type="" name="" placeholder="2018-09-05"></p> -->
-               <p>贴现日期：
+               <p>贴现日期：&nbsp;&nbsp;&nbsp;&nbsp;
                     <el-date-picker
                       v-model="time1"
                       type="date"
@@ -35,7 +35,7 @@
                     </el-date-picker>
                </p>
               <!--  <p>到期日期：<input type="" name="" placeholder="请选择日期"></p> -->
-               <p>到期日期：
+               <p>到期日期：&nbsp;&nbsp;&nbsp;&nbsp;
                     <el-date-picker
                       v-model="time2"
                       type="date"
@@ -44,7 +44,7 @@
                     >
                     </el-date-picker>
                </p>
-               <p class="day_1">调整天数：<input type="text" v-model:value="adjustDays" name="" placeholder="异地通常为3天">
+               <p class="day_1">调整天数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="adjustDays" name="" placeholder="异地通常为3天">
                 <!-- style="width:143px; height:28px;" -->
                 <!-- <a style="line-height">电银</a>
                 <a style="background:#40C0F5;">纸银</a> -->
@@ -54,10 +54,10 @@
                  <a @click="" @click="empty()">清空</a>
                  <a style="background:#F15749;" @click="calculate()">计算</a>
                </p>
-               <p>计息天数(天)：<input type="text" v-model:value="days" name="" placeholder="0" disabled></p>
+               <p>计息天数(天)：&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="days" name="" placeholder="0" disabled></p>
                <p>每十万贴息(元)：<input type="text" v-model:value="interests1" name="" placeholder="0.00元" disabled></p>
-               <p>贴息利息(元)：<input type="text" v-model:value="interests2" name="" placeholder="0.00元" disabled></p>
-               <p>贴息金额(元)：<input type="text" v-model:value="sumMoney" name="" placeholder="0.00元" disabled></p>
+               <p>贴息利息(元)：&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="interests2" name="" placeholder="0.00元" disabled></p>
+               <p>贴息金额(元)：&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="sumMoney" name="" placeholder="0.00元" disabled></p>
              </div>
            </div>
 
