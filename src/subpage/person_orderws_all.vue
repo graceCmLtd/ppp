@@ -595,15 +595,14 @@
         padding-left:20px;
       }
       button{
-        position: absolute;
-        right:20%;
         min-height: 28px;
-        width: 7%;
-        top:30%;
-        color:white;
-        border-radius:3px;
-        background: #F15749;
-        line-height:28px;
+        width: 6%;
+        color: #fff;
+        border-radius: 3px;
+        background: #f15749;
+        line-height: 28px;
+        float: right;
+        margin: 19px;
       }
         .pople{
           margin-left: 80px;

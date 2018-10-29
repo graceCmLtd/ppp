@@ -82,7 +82,7 @@
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
-              <li>实收金额：<span>{{real_money}}W(含平台担保费)</span></li>
+              <li>实收金额：<span>{{real_money/10000}}w(含平台担保费)</span></li>
             </ul>
           </div>
 
