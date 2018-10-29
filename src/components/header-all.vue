@@ -20,8 +20,8 @@
               个人中心
             </router-link>
           </a>
-            <a target="_blank" href=""> <router-link to="/My_news">
-              <el-badge is-dot class="item">我的消息</el-badge>
+            <a target="_blank" href="" class="red-point"> <router-link to="/My_news">
+              我的消息
             </router-link>
             </a>
           </div>
@@ -37,10 +37,10 @@
       <img src="../../static/img/Logo.png" alt="" @click="page()">
     </div>
     <ul class="header_title">
-      <router-link to="/page" tag="li"  active-class="active">首页</router-link>
+      <router-link to="/page" tag="li" active-class="active">首页</router-link>
       <router-link to="/marketpa" tag="li" active-class="active">票据市场</router-link>
-      <router-link to="/resources" tag="li"  active-class="active">资源市场</router-link>
-      <router-link to="/releasepa" tag="li"  active-class="active">我要贴现</router-link>
+      <router-link to="/resources" tag="li" active-class="active">资源市场</router-link>
+      <router-link to="/releasepa" tag="li" active-class="active">我要贴现</router-link>
       <router-link to="/buyBillPa" tag="li" active-class="active">我要买票</router-link>
       <!--<router-link to="/person_offerIn" tag="li" @click.native="buypaper_w()" </div>:class="{active:color==6}">个人中心</router-link>-->
       
@@ -69,11 +69,11 @@
   export default {
     data(){
       return{
-        color:0,
+        color:1,
         enter:true,
         signSucc:false,
         nick:null,
-        isSinIn:false
+        isSinIn:false,
       }
     },
 
@@ -82,6 +82,7 @@
       page(){
         this.$router.push('/page')
       },
+      
       receive_msg(){
         let Id = getCookie('Iud');
         console.log(Id);
@@ -123,11 +124,11 @@
         });
         },
         onSuccess:function(){
-          // console.log("success")
+          console.log("success")
           //alert("success")
         },
         onFailed:function(error){
-          // console.log("fail")
+          console.log("fail")
           //alert(error)
         }
         });
@@ -144,12 +145,12 @@
       },
     },
     created(){
-
-      console.log("created  1232321312")
       if (getCookie("Iud")) {
         this.isSinIn = true;
       }
       this.receive_msg()
+
+
     },
     watch:{
       $route(to,from){
@@ -166,6 +167,20 @@
   }
 </script>
 <style lang="scss" scoped>
+  .red-point{
+          position: relative;
+        }
+
+  .red-point::before{
+    content: " ";
+    border: 3px solid red;/*设置红色*/
+    border-radius:3px;/*设置圆角*/
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    margin-right: -8px;
+  }
+
   .active{
     background: #F15749;
     color:white;
