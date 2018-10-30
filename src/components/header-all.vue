@@ -155,24 +155,28 @@
       },
     },
     created(){
-      if (getCookie("Iud")) {
+      if (getCookie("Iud") && getCookie('Iud') != "null") {
+        this.nick=getCookie('Nick')
+        this.enter=false;
+        this.signSucc=true;
         this.isSinIn = true;
       }
       this.receive_msg();
       this.getMsg();
 
-
     },
     watch:{
       $route(to,from){
+        console.log("rooute")
         if(getCookie('Iud') && getCookie('Iud') != "null"){
           this.nick=getCookie('Nick')
+          console.log(123)
           console.log(this.enter+this.signSucc);
           this.enter=false;
           this.signSucc=true;
           if (getCookie("Iud")) {
-        this.isSinIn = true;
-      }
+            this.isSinIn = true;
+          }
         }
       }
     }
@@ -184,7 +188,7 @@
   }
   .red-point::before{
     content: " ";
-    border: 3px solid red;/*设置红色*/
+    border: 3px solid #F15749;/*设置红色*/
     border-radius:3px;/*设置圆角*/
     position: absolute;
     z-index: 1000;

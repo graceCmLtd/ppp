@@ -366,16 +366,21 @@
         })
       },
       paperMesper(item){//查看票据详情
-        console.log("paper detail info  item")
-        console.log(item)
-        this.$router.push({
-          name:'choseType',
-          query:{
-            bills:this.billN,
-            quoterId:item.quoterId,
-            noteL:item
-          }
-        })
+        if(getCookie("role") === "unknown"){
+            alert("您的公司信息还没有通过公司认证！请先填写公司信息或等待审核");
+            this.$router.push('/release/prise');
+        }else{
+            console.log("paper detail info  item")
+            console.log(item)
+            this.$router.push({
+              name:'choseType',
+              query:{
+                bills:this.billN,
+                quoterId:item.quoterId,
+                noteL:item
+              }
+            })  
+        }
       },
       getBillDetail(item){
         console.log("get bill detail")
