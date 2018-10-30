@@ -1,6 +1,6 @@
 <template lang="html">
  <div>
-     <!-- 最顶部 -->
+  <!-- 最顶部 -->
   <div id="mall_header">
     <div class="topbar">
     <div class="w1180">
