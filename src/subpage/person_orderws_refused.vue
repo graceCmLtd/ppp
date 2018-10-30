@@ -23,7 +23,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/1000}}w</span>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/1000 |numFilter}}w</span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()" @click="fun($event,item)">提醒卖家背书</div></el-col>
@@ -212,7 +212,13 @@
        },
     created(){
       this.getIntenTionList()
-    }
+    },
+    filters: {
+        numFilter(value) {
+          let realVal = Number(value).toFixed(2)
+          return Number(realVal)
+      }
+    },
   }
 </script>
 

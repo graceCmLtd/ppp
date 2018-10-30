@@ -55,7 +55,7 @@
           <el-row class="oferMes">
             <el-col :span="4"><div class="hadOffer_mes" id="page_w" style="border-right:1px solid #979797; margin-top: 6px;">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
             <el-col :span="8"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
-            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount}}</div></el-col>
+            <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount/10000}}W</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
          <!--    <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col> -->
             <el-col :span="4"><div class="hadOffer_mes limit">

@@ -20,7 +20,7 @@
             :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''"
             >{{item.acceptor}}</div></el-col> -->
           <el-col :span="6"><div class="mes">{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.amount}}</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
        <!--    <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="mes amount mes_chose">
@@ -28,7 +28,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.real_money/10000}}W</p>
+              <p>{{item.real_money/10000| numFilter}}w</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -155,7 +155,7 @@
           
           console.log("get all quotes")
           console.log(res)
-          console.log(typeof(res.data[0].maturity))
+          //console.log(typeof(res.data[0].maturity))
           _this.noteList=res.data;
           /*for(let v in res.data){
             // console.log(res.data[v].maturity)
@@ -175,7 +175,7 @@
             console.log(_this.day)
             _this.marDay.push(_this.day)
           }*/
-          console.log(_this.marDay)
+          //console.log(_this.marDay)
         });
         _this.axios.post(_this.oUrl + '/quote/getQuoteCount',{
             "uuid":Id,
@@ -254,8 +254,14 @@
     },
     mounted(){
       this.getOfferAll();
+    },
+      filters: {
+        numFilter(value) {
+          let realVal = Number(value).toFixed(2)
+          return Number(realVal)
+      }
     }
-  }
+}
 </script>
 
 <style lang="scss" scoped>

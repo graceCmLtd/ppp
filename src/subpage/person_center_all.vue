@@ -17,9 +17,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
           <el-col :span="6">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
-            <div class="intention_mes bankMes"
-                 
-            >{{item.acceptor}}</div></el-col>
+            <div class="intention_mes bankMes" >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
        <!--    <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col> -->
@@ -33,8 +31,8 @@
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
             <div class="intention_mes" id="payment" @click="toggleupload(item)" v-if="item.intentionStatus==='已支付,待背书'">上传背书凭证</div>
 
-     <!--        <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'"><router-link :to="{path:'/release/forward',query:{item:item}}">提现  </router-link></div>
- -->
+           <!--<div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'"><router-link :to="{path:'/release/forward',query:{item:item}}">提现  </router-link></div>
+       -->
             <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()"  @click="fun($event,item)">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
             <router-link :to="{path:'/release/forward',query:{item:item}}">
@@ -280,9 +278,7 @@
       },
        timer () {
         var _this = this
-        // var count =0;
         var time = window.setInterval(function () {
-          //let t1 = {}
           console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
             console.log("数组为空，倒计时结束")
@@ -291,17 +287,24 @@
 
           console.log("this ....... path ")
           console.log(_this.$route.path)
+          /*跳转页面时停止计时器*/
           if (_this.$route.path == "/release/center/all") {
-            console.log("path is /release/center/all")
-
           }else{
-            console.log("clearInterval time  /release/center/all")
             window.clearInterval(time)
           }
+          /*跳转页面时停止计时器 end*/
           for (var index = 0; index < _this.timerArr.length; index++) {
-            //console.log("timer")
-            //console.log(_this.timerArr[index])
+
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
+              /*剩余10分钟提醒*/
+              /*if (_this.timerArr[index].minutes == 10) {
+                  _this.$notify({
+                    title: '新消息',
+                    message: "您有一笔待背书订单即将超时，请及时到我是卖家->我的订单 完成背书",
+                    duration: 30000
+                  });
+              }*/
+              /*剩余10分钟提醒 end*/
               let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
@@ -312,8 +315,8 @@
               _this.timeout_count ++;
               _this.timerArr[index].seconds = 0
 
-              if (_this.noteList[index].intentionStatus == "已支付,待背书") {
-                /*transacType 为 orderid 超时失效*/
+              /*transacType 为 orderid 超时失效*/
+              /*if (_this.noteList[index].intentionStatus == "已支付,待背书") {
               _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[index].transacType,
                 intentionStatus:"已超时"
@@ -322,8 +325,22 @@
               }}).then((res)=>{
                 console.log(res)
               })
-              }
-              
+              }*/
+              /*发送超时消息*/
+              /*this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":_this.noteList[index].buyerId,
+                  "msgContent":"有卖家未能及时背书，交易失效,订单号："+_this.noteList[index].transacType,
+                  "flag":"0",
+                  "path":"/release/center/refused"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+              })*/
+              /*发送超时消息  end*/
 
               //window.clearInterval(time)
             } else if(_this.timerArr[index].minutes > 0 || _this.timerArr[index].seconds > 0) {
@@ -334,8 +351,6 @@
               _this.timerArr[index].seconds -= 1 
             }else{
               console.log(index +"： index  倒计时结束")
-              console.log(_this.timeout_count)
-              console.log(_this.timerArr.length)
               if(_this.timeout_count >= _this.timerArr.length)
               {
                 console.log(_this.timeout_count)
@@ -416,7 +431,7 @@
               })
 
 
-               
+
        },
       /*确认*/
        submitImg(){

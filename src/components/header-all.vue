@@ -169,16 +169,15 @@
 </script>
 <style lang="scss" scoped>
   .red-point{
-          position: relative;
-        }
-
+     position: relative;
+  }
   .red-point::before{
     content: " ";
     border: 3px solid red;/*设置红色*/
     border-radius:3px;/*设置圆角*/
     position: absolute;
     z-index: 1000;
-    right: 0;
+    right: 14px;
     margin-right: -8px;
   }
 

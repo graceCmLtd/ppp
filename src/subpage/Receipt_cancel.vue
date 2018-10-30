@@ -4,7 +4,7 @@
   <div class="person_intention_all">
     <div class="person_intention_mes">
       <el-row>
-        <el-col :span="3"><div class="intention_mes_title">票据类型1</div></el-col>
+        <el-col :span="3"><div class="intention_mes_title">票据类型</div></el-col>
         <el-col :span="4"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="2"><div class="intention_mes_title">票面金额</div></el-col>
         <el-col :span="4"><div class="intention_mes_title">到期日</div></el-col>
@@ -24,7 +24,7 @@
           <el-col :span="2"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="4"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="2"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
 
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
@@ -292,6 +292,12 @@
     },
     created(){
       this.getIntenTionList()
+    },
+    filters: {
+        numFilter(value) {
+          let realVal = Number(value).toFixed(2)
+          return Number(realVal)
+      }
     }
   }
 </script>

@@ -500,8 +500,8 @@
           width: 30%;
           height:100%;
           .paper_is{
-            width: 50%;
-            height:40%;
+             width: 92%;
+             height: 40%;
             padding-top:13%;
             position: relative;
             img{
@@ -522,8 +522,8 @@
             }
           }
           .paper_the{
-            width: 50%;
-            height:40%;
+            width: 92%;
+            height: 40%;
             padding-top:13%;
             margin-top: 10%;
             position: relative;

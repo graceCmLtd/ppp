@@ -21,7 +21,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment" @click="toPay(item)">环迅支付</div></el-col>
 
@@ -235,17 +235,25 @@
           }
           console.log("this ....... path ")
           console.log(_this.$route.path)
-          if (_this.$route.path == "/release/orderws/confirmed") {
-            console.log("path is /release/orderws/confirmed")
-
+          /*跳转页面时停止计时器*/
+          /*if (_this.$route.path == "/release/orderws/confirmed") {
           }else{
-            console.log("clearInterval time  /release/orderws/confirmed")
             window.clearInterval(time)
-          }
+          }*/
+          /*跳转页面时停止计时器 end*/
           for (var index = 0; index < _this.timerArr.length; index++) {
             //console.log("timer")
             //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
+              /*剩余10分钟提醒*/
+              if (_this.timerArr[index].minutes == 10) {
+                  _this.$notify({
+                    title: '新消息',
+                    message: "您有一笔订单即将超时，请及时到我是买家->我的订单 完成支付",
+                    duration: 30000
+                  });
+              }
+              /*剩余10分钟提醒 end*/
               let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
@@ -265,8 +273,26 @@
               }}).then((res)=>{
                 console.log(res)
               })
+
+              /*发送超时消息*/
+              this.axios.post(this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":_this.noteList[index].sellerId,
+                  "msgContent":"有买家未能及时付款，交易失效,订单号："+_this.noteList[index].transacType,
+                  "flag":"0",
+                  "path":"/release/center/refused"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then(()=>{
+                //alert("已提醒")
+              })
+              /*发送超时消息  end*/
               //window.clearInterval(time)
             } else if(_this.timerArr[index].minutes > 0 || _this.timerArr[index].seconds > 0) {
+              
               let t1 = {}
               t1["seconds"] = _this.timerArr[index].seconds;
               t1["minutes"] = _this.timerArr[index].minutes ;
@@ -282,6 +308,7 @@
                 window.clearInterval(time)
                 _this.timeout_count =0
               }
+
             }
           }
         }, 1000)
@@ -330,6 +357,12 @@
     },
     mounted(){
       this.timer()
+    },
+    filters: {
+        numFilter(value) {
+          let realVal = Number(value).toFixed(2)
+          return Number(realVal)
+      }
     }
   }
 </script>
