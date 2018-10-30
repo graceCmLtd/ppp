@@ -20,7 +20,11 @@
               个人中心
             </router-link>
           </a>
-            <a target="_blank" href="" class="red-point"> <router-link to="/My_news">
+            <a target="_blank" href="" class="red-point" v-if="showPoint"> <router-link to="/My_news">
+              我的消息
+            </router-link>
+            </a>
+            <a target="_blank" href="" v-else="showPoint"> <router-link to="/My_news">
               我的消息
             </router-link>
             </a>
@@ -74,6 +78,7 @@
         signSucc:false,
         nick:null,
         isSinIn:false,
+        showPoint:false
       }
     },
 
@@ -107,21 +112,17 @@
         goEasy.subscribe({
             channel: Id,
         onMessage: function (message) {
-              //alert("Channel:" + message.channel + " content:" + message.content);
+          if(message){
+              _this.showPoint = true;
               console.log(message);
-              //_this.message = message.content;
-              //_this.msgList.push(JSON.parse(message.content));
               let msg_content = JSON.parse(message.content);
-
-        /*_this.$notify({
-          title: '新消息',
-          message: h('i', { style: 'color: red'},msg_content.msgContent )
-        });*/
-        _this.$notify({
-          title: '新消息',
-          message: msg_content.msgContent,
-          duration: 30000
-        });
+              _this.$notify({
+                title: '新消息',
+                message: msg_content.msgContent,
+                duration: 30000
+              });
+          }
+              
         },
         onSuccess:function(){
           console.log("success")
@@ -131,6 +132,15 @@
           console.log("fail")
           //alert(error)
         }
+        });
+      },
+      getMsg(){
+        let id = getCookie("Iud");
+        let _this = this;
+        _this.axios.get(this.oUrl+'/msg/getUserMsg?receiverId='+id+'&currentPage=1&pageSize=10').then((res)=>{
+            console.log(res.data[0].flag);
+            if(res.data[0].flag === 0)
+              _this.showPoint = true
         });
       },
       cancellation(){//注销
@@ -145,23 +155,25 @@
       },
     },
     created(){
-      if (getCookie("Iud")) {
+      if (getCookie("Iud") && getCookie('Iud') != "null") {
+        this.nick=getCookie('Nick')
+        this.enter=false;
+        this.signSucc=true;
         this.isSinIn = true;
       }
-      this.receive_msg()
-
+      this.receive_msg();
+      this.getMsg();
 
     },
     watch:{
       $route(to,from){
         if(getCookie('Iud') && getCookie('Iud') != "null"){
           this.nick=getCookie('Nick')
-          console.log(this.enter+this.signSucc);
           this.enter=false;
           this.signSucc=true;
           if (getCookie("Iud")) {
-        this.isSinIn = true;
-      }
+            this.isSinIn = true;
+          }
         }
       }
     }
@@ -173,7 +185,7 @@
   }
   .red-point::before{
     content: " ";
-    border: 3px solid red;/*设置红色*/
+    border: 3px solid #F15749;/*设置红色*/
     border-radius:3px;/*设置圆角*/
     position: absolute;
     z-index: 1000;
