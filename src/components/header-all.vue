@@ -167,11 +167,8 @@
     },
     watch:{
       $route(to,from){
-        console.log("rooute")
         if(getCookie('Iud') && getCookie('Iud') != "null"){
           this.nick=getCookie('Nick')
-          console.log(123)
-          console.log(this.enter+this.signSucc);
           this.enter=false;
           this.signSucc=true;
           if (getCookie("Iud")) {
