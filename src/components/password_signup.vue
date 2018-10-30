@@ -48,40 +48,45 @@ export default {
           'Content-Type':'application/json'
         }}
       ).then((res)=>{
-        console.log(res)
-        //console.log(this)
-        _this.sginUpText='登录';
-        _this.loadingSginUp=false;
-        let token=res.data.ticket;
-        let uid=res.data.uuid;
-        let nick=res.data.user_phone;
-        let isau=res.data.CompanyAuthentication;
-        let role = res.data.role;
-        setCookie('Too',token);
-        setCookie('Iud',uid);
-        setCookie('Nick',nick);
-        setCookie('isAu',isau);
-        if(role=="包装户"){
-          setCookie('role',"vip")
-        }else if(role=="普通用户"){
-          setCookie('role','normal')
-        }else{
-          setCookie('role',"unknown")
-        }
-        if(_this.back){
-          console.log("_this  back     ")
-          console.log(window.history)
-          console.log(this.$route)
-          window.history.back()
-          setTimeout(()=>{
-          window.history.back()
-          },0)
-        }else{
-          console.log("else ,,,,,")
-          console.log(this.$route)
-          console.log(window.history)
-          window.history.back()
+        console.log(res.data)
+        if(res.data.status === "success"){
+            _this.sginUpText='登录';
+            _this.loadingSginUp=false;
+            let token=res.data.ticket;
+            let uid=res.data.uuid;
+            let nick=res.data.user_phone;
+            let isau=res.data.CompanyAuthentication;
+            let role = res.data.role;
+            setCookie('Too',token);
+            setCookie('Iud',uid);
+            setCookie('Nick',nick);
+            setCookie('isAu',isau);
+            if(role=="包装户"){
+              setCookie('role',"vip")
+            }else if(role=="普通用户"){
+              setCookie('role','normal')
+            }else{
+              setCookie('role',"unknown")
+            }
+            if(_this.back){
+              console.log("_this  back     ")
+              console.log(window.history)
+              console.log(this.$route)
+              window.history.back()
+              setTimeout(()=>{
+              window.history.back()
+              },0)
+            }else{
+              console.log("else ,,,,,")
+              console.log(this.$route)
+              console.log(window.history)
+              window.history.back()
+              }
+          }else if(res.data.status === "fail"){
+              alert(res.data.errorMsg);
+              window.location.reload();
           }
+        
         })
       }
   },

@@ -659,15 +659,14 @@
         padding-left:20px;
       }
       button{
-        position: absolute;
-        right: 21%;
         min-height: 28px;
         width: 6%;
-        top: 20%;
-        color:white;
-        border-radius:3px;
+        color: white;
+        border-radius: 3px;
         background: #F15749;
-        line-height:28px;
+        line-height: 28px;
+        float: right;
+        margin: 12px 30px;
       }
   
     }

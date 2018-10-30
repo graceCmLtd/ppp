@@ -7,14 +7,15 @@
   	</div>
   	<div class="news_content">
   	   <div class="" v-for="(item,index) in msgList" :key="index">
-  		 <div class="news_content1" v-bind:class="{ active: item.flag === 0, 'text-danger':item.flag === 0 }">
+  		 <div class="news_content1" v-bind:class="{ active: item.flag === 0, 'text-danger':item.flag === 0 }" 
+       @click="updateOneFlag(item)">
   		 	<p>
   		 		<i v-if="item.flag === 0">·</i>
   		 		<span class="items">「{{item.msgType}}消息」</span> 
   		 	  <span class="names" v-if="item.flag === 0">{{msgName}}</span>
           <span class="names" v-if="item.flag === 1">已读</span>
   		 		<span class="time">{{item.msgTime}}</span>
-          <span style="float:right; color:#979797;"  @click="delItem(index,item)">x</span>
+          <span style="float:right; color:#979797;cursor: pointer;"  @click="delItem(index,item)">x</span>
   		 	</p>
   		 	<p class="details">{{item.msgContent}}</p>
         
@@ -89,19 +90,20 @@ export default {
         let receiverId = getCookie("Iud");
         console.log('--'+receiverId);
         _this.axios.get(_this.oUrl+'/msg/getUserMsg?receiverId='+receiverId+'&currentPage='+this.currentPage+'&pageSize='+this.pageSize).then((res)=>{
-            console.log(res.data);
-            for(var i=0;i<res.data.length;i++){
-              if(res.data[i].msgType === '系统'){
-                _this.msgName = '您有新的系统消息'
-              }else if(res.data[i].msgType === '交易'){
-                _this.msgName = '您有新的交易消息'
-              }
-              if(res.data[i].flag === 0 ){
-                  _this.unreadCount += 1;
-              }
+            if(res.data.length > 0){
+                for(var i=0;i<res.data.length;i++){
+                if(res.data[i].msgType === '系统'){
+                  _this.msgName = '您有新的系统消息'
+                }else if(res.data[i].msgType === '交易'){
+                  _this.msgName = '您有新的交易消息'
+                }
+                if(res.data[i].flag === 0 ){
+                    _this.unreadCount += 1;
+                }
 
+              }
+              _this.msgList = res.data;
             }
-            _this.msgList = res.data;
         });
         _this.axios.get(_this.oUrl+'/msg/getMsgCount?receiverId='+receiverId).then((res)=>{
             if(res.data !== '')
@@ -120,6 +122,20 @@ export default {
             if(res.data.status === "success"){
                 this.$router.go(0);
             }
+        });
+      },
+      updateOneFlag(item){
+        console.log(item.msgId);
+        let _this = this;
+        let receiverId = getCookie("Iud");
+        _this.axios.post(_this.oUrl+'/msg/updateOneFlag',{
+            "receiverId":receiverId,
+            "msgId":item.msgId,
+            "flag":1
+        }).then((res)=>{
+            if(res.data.status === "success")
+              _this.getMsgList();
+              window.location.reload();
         });
       }
     },
@@ -194,8 +210,7 @@ export default {
         text-indent:52px;
     	}
     }
-    
-	   }
+	 }
   }
   .text-danger{
     background: rgba(241,87,73,0.1);

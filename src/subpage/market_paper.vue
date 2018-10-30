@@ -1,3 +1,4 @@
+<!-- 票据市场 -->
 <template lang="html">
   <div class="market_paper">
   <div class="market_paper_con">
@@ -70,6 +71,7 @@
 </template>
 
 <script>
+import {getCookie} from '@/assets/util';
 export default {
   data(){
     return{
@@ -193,13 +195,19 @@ export default {
       this.getList();
     },
     SeeDetails(index){  //查看详情
-      let bill=this.noteList[index].billNumber
-      this.$router.push({
-        name:'Details',
-        query:{
-          bills:bill
-        }
-      })
+      if(getCookie("role") === "unknown"){
+          alert("您的公司信息还没有通过公司认证！请先填写公司信息或等待审核");
+          this.$router.push('/release/prise');
+      }else{
+        let bill=this.noteList[index].billNumber
+        this.$router.push({
+          name:'Details',
+          query:{
+            bills:bill
+          }
+        })
+      }
+      
     },
     acceptor(){//字符超过长度省略
       for (let v in this.$refs.acceptor){
