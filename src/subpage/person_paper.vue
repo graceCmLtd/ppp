@@ -20,7 +20,7 @@
       <person-offerin
         v-bind:is="currentTabComponent"
         class="tab"  v-bind:billNum = "billNum" @transb="getBillNum"
-      ></person-offerin>
+      >we</person-offerin>
 
       <!-- <person-offerbe v-bind:is="currentTabComponent" 
         class="tab" v-bind:billNum = "billNum" @transb = "getBillNum" ></person-offerbe>
