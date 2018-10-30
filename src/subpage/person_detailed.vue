@@ -28,7 +28,8 @@
           <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
           <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
         <p class="agreement"> 
-          <input type="radio" style="width:15px;height:15px;" name="" value="">同意平台担保支付协议
+          <input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
+          <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保支付协议
         </p> 
       </div>
       <div style="position: absolute;top: 41%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
@@ -70,7 +71,10 @@ export default {
       showDialog:false,
       pic1 : '',
       pic2 : '',
-      list : []
+      list : [],
+      radioT:true,
+      radioB:false,
+       checked:false,
     }
   },
   methods:{
@@ -191,7 +195,16 @@ export default {
           console.log(res);
           this.list = res.data[0];
       });
-    }
+    },
+          radioTC($event){
+        this.radioT=false;
+        this.radioB=true;
+        $event.target.checked=false
+      },
+      radioBC(){
+        this.radioT=true;
+        this.radioB=false;
+      },
   },
   created(){
     this.getBill();
