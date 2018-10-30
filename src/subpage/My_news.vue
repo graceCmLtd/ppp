@@ -7,7 +7,7 @@
   	</div>
   	<div class="news_content">
   	   <div class="" v-for="(item,index) in msgList" :key="index">
-  		 <div class="news_content1" v-bind:class="{ active: item.flag === 0, 'text-danger':item.flag === 0 }">
+  		 <div class="news_content1" v-bind:class="{ active: item.flag === 0, 'text-danger':item.flag === 0 }" @click="updateOneFlag(item)">
   		 	<p>
   		 		<i v-if="item.flag === 0">·</i>
   		 		<span class="items">「{{item.msgType}}消息」</span> 
@@ -120,6 +120,20 @@ export default {
             if(res.data.status === "success"){
                 this.$router.go(0);
             }
+        });
+      },
+      updateOneFlag(item){
+        console.log(item.msgId);
+        let _this = this;
+        let receiverId = getCookie("Iud");
+        _this.axios.post(_this.oUrl+'/msg/updateOneFlag',{
+            "receiverId":receiverId,
+            "msgId":item.msgId,
+            "flag":"1"
+        }).then((res)=>{
+            if(res.data.status === "success")
+              _this.getMsgList();
+              window.location.reload();
         });
       }
     },
