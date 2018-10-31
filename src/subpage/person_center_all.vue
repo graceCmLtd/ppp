@@ -388,7 +388,7 @@
           }
         }
         if(_this.time != null){
-              _this.choseDate();
+           _this.choseDate();
           }
       },
       /**/
