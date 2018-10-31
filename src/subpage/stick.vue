@@ -351,7 +351,7 @@
                 "quoteAmount":2000000,
                 "interest":rate,
                 "xPerLakh":XperLakh,
-                "status":"报价完成，ok，进入意向",
+                "status":"报价完成,进入意向",
                 "real_money":real_money,
                 "quoteDate":"2018-08-09"
               },
