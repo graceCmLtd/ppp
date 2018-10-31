@@ -89,6 +89,9 @@
         xPerLakh:null,
         transacDate:null,
         bank:null,
+        buyer : null,
+        realMoeny : null,
+        rate : null,
         releaseDate:null,
         maturity:null,
         remain_days:null,
@@ -145,6 +148,9 @@
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
+        this.buyer = _this.noteList[index].companyName;
+        this.rate = _this.noteList[index].interest;
+        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;

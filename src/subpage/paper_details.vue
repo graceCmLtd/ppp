@@ -6,7 +6,7 @@
         <div class="mes">
           <p><i style="font-weight:bold; font-style:normal;">票据号码</i>:<span>{{billType}}</span></p>
           <p><i style="font-weight:bold; font-style:normal;">汇票到期日</i>:<span>{{billDate}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;">票据金额</i>:<span>{{amount}}元</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">票面总额</i>:<span>{{amount}}元</span></p>
           <p><i style="font-weight:bold; font-style:normal;">出票日期</i>:<span>{{billTime}}</span></p>
           <p><i style="font-weight:bold; font-style:normal;">剩余天数</i>:<span>{{remainDays}}</span></p>
           <!-- <p>期望利率:<span></span></p> -->

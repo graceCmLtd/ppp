@@ -358,7 +358,6 @@
             background: white;
             border:1px solid #F15749;
             color:#F15749;
-
           }
         }
       }
@@ -374,7 +373,7 @@
           display: flex;
           justify-content: space-around;
           button{
-            width:105px;
+            width:80px;
             height:30px;
             border-radius:3px;
             background: #F15749;
@@ -385,9 +384,7 @@
           }
         }
       }
-
     }
-
   }
   .bill_w{
     width:1049px;

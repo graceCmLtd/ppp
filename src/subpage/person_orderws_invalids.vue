@@ -30,10 +30,10 @@
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 |numFilter}}w</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
 
-             <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button">查看进度</button>
-          </div></el-col> -->
+               <button type="button" name="button">查看进度</button>
+               </div></el-col> -->
           <el-col :span="3"><div class="intention_mes">...</div></el-col>
         </el-row>
         <p class="person_intention_contact">

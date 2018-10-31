@@ -69,7 +69,7 @@
 
       <div class="intention_mes_details" ref="intention_mes_details">
         <div class="top_w">
-            <p>订详情</p>
+            <p>订单详情</p>
         </div>
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
