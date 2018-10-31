@@ -15,7 +15,7 @@
   		 	  <span class="names" v-if="item.flag === 0">{{msgName}}</span>
           <span class="names" v-if="item.flag === 1">已读</span>
   		 		<span class="time">{{item.msgTime}}</span>
-          <span style="float:right; color:#979797;"  @click="delItem(index,item)">x</span>
+          <span style="float:right; color:#979797;cursor: pointer;"  @click="delItem(index,item)">x</span>
   		 	</p>
   		 	<p class="details">{{item.msgContent}}</p>
         
@@ -210,8 +210,7 @@ export default {
         text-indent:52px;
     	}
     }
-    
-	   }
+	 }
   }
   .text-danger{
     background: rgba(241,87,73,0.1);

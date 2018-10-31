@@ -20,7 +20,7 @@
       <person-offerin
         v-bind:is="currentTabComponent"
         class="tab"  v-bind:billNum = "billNum" @transb="getBillNum"
-      ></person-offerin>
+      >we</person-offerin>
 
       <!-- <person-offerbe v-bind:is="currentTabComponent" 
         class="tab" v-bind:billNum = "billNum" @transb = "getBillNum" ></person-offerbe>
@@ -177,7 +177,7 @@
         </el-row>
       </div> -->
     </div>
-    <div>
+    <!-- <div>
       <el-dialog title="票据详情" :visible.sync="dialogBillDetailVisual">
         <img  src="../../static/img/bill.png" alt="" width="90%" height="98%"  ref="billDetailPic">
         <el-table :data="billD">
@@ -189,7 +189,7 @@
           <el-table-column property="remain_days" label="剩余天数" width="150"></el-table-column>
         </el-table>
       </el-dialog>
-    </div>
+    </div> -->
 
 
   </div>
@@ -392,7 +392,7 @@
           console.log(res)
           console.log(this)
           _this.billDetailPic=res.data[0].pic1;
-          _this.dialogBillDetailVisual = true;
+          //_this.dialogBillDetailVisual = true;
         })
       },
       getBillNum(billNumber){

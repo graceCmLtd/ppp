@@ -1,20 +1,20 @@
 <!-- 用户报价中的票据 -->
 <template lang="html">
-  <div class="person_offerIn" style="overflow-y:auto; overflow-x:hidden;">
+  <div class="seller_discount" style="overflow-y:auto; overflow-x:hidden;">
 
     <el-row  v-for="(item,index) in noteList" :key = "index">
       <div @click="onSelect(index)" class="list" style="border: 1px solid #eee; background: #fff; margin-top:-7px; height: 150px;  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2); position:relative;">
         <el-row >
-          <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;" :title="getValue(index)">{{item.acceptor}}</div></el-col>
+          <el-col><div class="seller_discount_title" id="name_w" style="margin-top: 5px;" :title="getValue(index)">{{item.acceptor}}</div></el-col>
 
-          <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000 | numFilter}}w</div></el-col>
+          <el-col><div class="seller_discount_title limit" id="name_w_limit">{{item.amount/10000 | numFilter}}w</div></el-col>
           <p style="float:right;width:120px; font-size:14px; height:50px; line-height:25px; padding-top:-5px;">
-          <el-col><div class="person_offerIn_title">剩余天数:<i style="font-style:normal; color:#F15749; font-size:15px;">{{item.remain_days}}天</i></div></el-col>
-          <el-col><div class="person_offerIn_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
+          <el-col><div class="seller_discount_title">剩余天数:<i style="font-style:normal; color:#F15749; font-size:15px;">{{item.remain_days}}天</i></div></el-col>
+          <el-col><div class="seller_discount_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
           </p>
-          <el-col><div class="person_offerIn_title" style="text-align:center; font-size:13px;color:#666; line-height:32px;">{{item.releaseDate}}</div></el-col>
+          <el-col><div class="seller_discount_title" style="text-align:center; font-size:13px;color:#666; line-height:32px;">{{item.releaseDate}}</div></el-col>
 
-          <el-col><div  @click="delItem(index)" class="person_offerIn_title" style="font-size:13px; font-weight:bold; color:#F15749;text-align:center; position:absolute; top:10px; right:10px;cursor: pointer; " title="删除">删除</div></el-col>
+          <el-col><div  @click="delItem(index)" class="seller_discount_title" style="font-size:13px; font-weight:bold; color:#F15749;text-align:center; position:absolute; top:10px; right:10px;cursor: pointer; " title="删除">删除</div></el-col>
         </el-row>
       </div>
     </el-row>
@@ -62,16 +62,14 @@
           // console.log("我的求贴 全部报价 ")
           console.log(res)
           this.noteList=res.data;
-          this.billNumber=this.noteList[this.index].billNumber;
-          this.getBillNum()
         })
       },
       getValue(index){
         return this.noteList[index].acceptor
       },
       onSelect(index){
-         console.log("on select the item ....")
-         console.log(index)
+        // console.log("on select the item ....")
+        // console.log(index)
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
@@ -88,17 +86,6 @@
     },
     created(){
       this.getPaper()
-      let _this = this;
-      let time =  window.setInterval(function(){
-        if (_this.$route.path == "/release/paper/offerIn") {
-          _this.getPaper()
-          console.log("rrrrrrrrrrrrrrrrrrrrrrr")
-        }else{
-          window.clearInterval(time)
-        }
-        console.log("sdsfsfsdfdsff")
-      },30000)
-
 
     },
     filters: {
@@ -111,12 +98,12 @@
 </script>
 
 <style lang="scss" scoped>
-  .person_offerIn{
+  .seller_discount{
     width: 290px;
     height: 424px;
     margin-top: -1%;
     margin-left: -4%;  
-    .person_offerIn_mes{
+    .seller_discount_mes{
       min-height: 70px;
       line-height: 70px;
       font-size: 14px;
@@ -163,7 +150,7 @@
     left: 10px;
     font-size: 22px;
   }
-#person_offerIn_title_w{
+#seller_discount_title_w{
   text-align:right;
 }
 </style>

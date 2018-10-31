@@ -337,7 +337,6 @@
         }
       }
       .operaMes{
-        border-left:1px solid #ccc;
         line-height: 0;
         display: flex;
         flex-direction: column;
