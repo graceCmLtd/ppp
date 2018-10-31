@@ -22,7 +22,7 @@
             >{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
@@ -189,7 +189,14 @@
     },
     created(){
       this.getIntenTionList()
-    }
+    },
+    filters: {
+      numFilter(value) {
+       let realVal = Number(value).toFixed(2)
+        return Number(realVal)
+
+    }
+  }
   }
 </script>
 

@@ -28,7 +28,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">...</div></el-col>
 
@@ -66,23 +66,6 @@
         <div class="top_w">
             <p>票据详情</p>
           </div>
-        <!-- 修改前的票据详情弹窗 -->
-  <!--       <div class="intention_mes_message">
-          <div class="message_left">
-            <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
-              <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>出票日期：<span>{{transacDate}}</span></li>
-            </ul>
-          </div>
-          <div class="message_right">
-            <ul>
-              <li>承对方：<span>{{bank}}</span></li>
-              <li>汇票到期日：<span>{{maturity}}</span></li>
-              <li>剩余天数：<span>{{remain_days}}天</span></li>
-            </ul>
-          </div>
-        </div> -->
 
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
@@ -225,7 +208,14 @@
     },
     created(){
       this.getIntenTionList()
-    }
+    },
+    filters: {
+      numFilter(value) {
+       let realVal = Number(value).toFixed(2)
+        return Number(realVal)
+
+    }
+   }
   }
 </script>
 

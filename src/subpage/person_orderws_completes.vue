@@ -25,7 +25,7 @@
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
 
 
-     <!--      <el-col :span="3"><div class="intention_mes amountMes">
+     <!--   <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
@@ -82,13 +82,7 @@
 
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
-
-    </div>
-
-  
-
-
-    
+    </div>   
   </div>
 </template>
 
