@@ -55,14 +55,14 @@ button{
 }
 
 .el-pagination.is-background .el-pager li:not(.disabled).active{
-  background: #f45643;
+  background: #F15749;
   color:#333!important;
 }
 .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li:hover{
-  color:#fff!important;
+  color:#F15749!important;
 }
 .el-cascader-menu__item.is-active{
-  color:#F2F2F2!important;
+  color:#F15749!important;
 }
 input{
   outline: none;

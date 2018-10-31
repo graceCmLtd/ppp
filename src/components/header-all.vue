@@ -138,9 +138,11 @@
         let id = getCookie("Iud");
         let _this = this;
         _this.axios.get(this.oUrl+'/msg/getUserMsg?receiverId='+id+'&currentPage=1&pageSize=10').then((res)=>{
-            console.log(res.data[0].flag);
-            if(res.data[0].flag === 0)
-              _this.showPoint = true
+          if(res.data.length > 0){
+              if(res.data[0].flag === 0)
+                  _this.showPoint = true
+          } 
+          
         });
       },
       cancellation(){//注销
