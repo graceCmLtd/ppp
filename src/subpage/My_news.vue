@@ -135,7 +135,7 @@ export default {
         }).then((res)=>{
             if(res.data.status === "success")
               _this.getMsgList();
-              window.location.reload();
+              //window.location.reload();
         });
       }
     },

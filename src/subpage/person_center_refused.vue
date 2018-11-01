@@ -257,6 +257,7 @@
           this.getIntenTionList();
         })
         //let imgIs = window.localStorage.;
+        console.log("www.123");
         this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
           orderId:this.current_item.transacType,
           pic1:window.localStorage.getItem("Is"),
@@ -265,6 +266,7 @@
           'Content-Type':'application/json'
         }}).then((res)=>{
           console.log(res)
+          console.log("插入success");
           //this.isShow = false;
           //this.getIntenTionList();
         })
