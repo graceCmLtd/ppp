@@ -1,4 +1,4 @@
-  <!-- 用户发布的票据 -->
+    <!-- 用户发布的票据 -->
 <!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
@@ -66,7 +66,7 @@
           <p class="hadOffer_opera">
           <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
-          <span>电话:{{item.contactsPhone}}</span>
+          <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           <span @click="linkToA(index)">
             <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span>{{item.companyId}}</span>
@@ -142,7 +142,7 @@
 
             <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}%</span>
-              <span>每10w加：{{item.failReason}}</span>
+              <span>每10w加：{{item.xPerLakh}}</span>
             </div></el-col>
           </el-row>
 
@@ -408,7 +408,12 @@
       this.names["offerin"] = "全部报价"
       this.names["offerbe"] = "审核中"
       this.getBills()
-    }
+    },
+    filters: {
+               hideMiddle(val) {
+                    return `${val.substring(0,3)}****${val.substring(val.length-3)}`
+                }
+            }
   }
 </script>
 

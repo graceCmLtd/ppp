@@ -20,7 +20,7 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{item.amount/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 |numFilter }}w</div></el-col>
@@ -338,7 +338,7 @@
           var orderId = item.transacType;
           this.axios.post(this.oUrl+'/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
               console.log(res.data);
-              if(res.data != '')
+              if(res.data.length > 0)
                 this.pic1 = res.data[0].pic1;
           });
       }

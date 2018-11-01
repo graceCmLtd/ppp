@@ -60,9 +60,14 @@
         <div class="cancel_center" >
           <p>是否取消订单</p>
           <p><img src="../../static/img/dog.png"></p>
-          <p>取消订单，你重新发布此票据</p>
+          <!-- <p>取消订单，你重新发布此票据</p> -->
           <p>
             <span @click="removeSubmit()">确认取消不卖了</span>
+             <span>
+              <router-link to="/marketpa">
+                 返回票据市场
+              </router-link>
+            </span>
             <span style="background:#ccc;"@click="hiddenShow()">不,在等等</span>
           </p>
         </div>
@@ -646,7 +651,7 @@
     border-radius:4px;
     margin:0 auto;
     margin-top:52px;
-    line-height:40px;
+    line-height:56px;
     p:nth-child(1){
       color: #F15749;
       font-weight: bold;
@@ -655,14 +660,11 @@
      p:nth-child(2) img{  
       height:180px;
     }
-    p:nth-child(3){
-      color:#666;
-      font-family:"微软雅黑";
-    }
-    p:nth-child(4) span{
+
+    p:nth-child(3) span{
       color:#fff;
       background:#F15749;
-      width:120px;
+      width:100px;
       height:32px;
       border-radius:3px;
       line-height:32px;

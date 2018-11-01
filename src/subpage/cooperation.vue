@@ -3,7 +3,7 @@
   <div class="cooperration_w">
     <div class="cooperration_w_1">
       <div class="cooperration_w_2">
-        <h3 style="text-align:center;">暂无</h3>
+        <h3 style="text-align:center;">敬请期待</h3>
        
       </div>
     </div>

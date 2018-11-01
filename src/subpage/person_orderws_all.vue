@@ -78,11 +78,12 @@
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
               <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
-              <li>票面金额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{amount/10000 |numFilter}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>卖方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
-              <li>实收金额：<span>{{real_money/10000}}W(含平台担保交易500)</span></li>
+              <li>每10w加：<span>{{xPerLakh}}</span></li>
+              <li>实付金额：<span>{{real_money/10000 |numFilter}}W</span></li>
             </ul>
             </div>
         </div>
@@ -245,15 +246,15 @@
           //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
-          console.log("date ")
-          console.log(date)
+          //console.log("date ")
+          //console.log(date)
           let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
             if(a >1200.0 || (_this.noteList[i].intentionStatus !="已接单,待支付" && _this.noteList[i].intentionStatus !="已背书,待签收") ){
-              console.log(i+"  timeout ")
+              //console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
@@ -307,13 +308,13 @@
          //var count =0;
         var time = window.setInterval(function () {
           //let t1 = {}
-          console.log(_this.timerArr)
+          //console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
-            console.log("数组为空，倒计时结束")
+            //console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
-          console.log("this ....... path ")
-          console.log(_this.$route.path)
+          //console.log("this ....... path ")
+          //console.log(_this.$route.path)
           /*跳转页面时停止计时器*/
           if (_this.$route.path == "/release/orderws/all") {
           }else{
@@ -353,6 +354,8 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
+              //
+
               console.log(index +"： index  倒计时结束")
               if(_this.timeout_count >= _this.timerArr.length)
               {
