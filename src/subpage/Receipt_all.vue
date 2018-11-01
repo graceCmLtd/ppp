@@ -20,7 +20,7 @@
           <el-col :span="6"><div class="mes bank" ref="person_offer_all_bank"
                                  
           >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="mes">{{item.amount/10000 | numFilter}}w</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="mes amount mes_chose">

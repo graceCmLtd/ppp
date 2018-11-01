@@ -78,11 +78,12 @@
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
               <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
-              <li>票面金额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{amount/10000 |numFilter}}w</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>卖方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
-              <li>实收金额：<span>{{real_money/10000}}W(含平台担保交易500)</span></li>
+              <li>每10w加：<span>{{xPerLakh}}</span></li>
+              <li>实付金额：<span>{{real_money/10000 |numFilter}}W</span></li>
             </ul>
             </div>
         </div>

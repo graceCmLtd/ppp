@@ -28,9 +28,9 @@
           </p>
           <p>承兑人全称<input type="text" vlaue="" placehoder="" ref="acceptor"/></p>
           <!--<p>是否可签转<input type="text" vlaue="" placehoder=""/></p>-->
-           <span style="font-size:17px;font-weight:400;color:rgba(51,51,51,1);line-height:25px;color:#F35643;font-weight:bold; margin-top:70px;">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</span>
-           <p style="position:relative;left:-14%;"><input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
-          <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保交易协议</p>
+        <!--    <span style="font-size:17px;font-weight:400;color:rgba(51,51,51,1);line-height:25px;color:#F35643;font-weight:bold; margin-top:70px;">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</span> -->
+         <!--   <p style="position:relative;left:-14%;"><input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
+          <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保交易协议</p> -->
           <p class="obtain">
             <!-- 保存 -->
             <!-- <button type="button" name="button" @click="PaperSave()">保存</button> -->
@@ -515,7 +515,7 @@
             }
             button:nth-child(1){
              position: absolute;
-             top: -26px;
+             top: 11px;
              left: 15%;
             }
             button:nth-child(2){

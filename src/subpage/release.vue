@@ -72,9 +72,6 @@ export default {
 	methods:{
     handleOpen(key, keyPath) {
        console.log(key, keyPath);
-/*       console.log("handleOpen")
-       console.log(this.$route.path)
-       console.log(this)*/
     },
     getDirectory(){
       let thePath = this.$route.path;
@@ -85,7 +82,6 @@ export default {
       return thePath.substr(0,thePath.lastIndexOf("/")+1)
     },
     handleClose(key, keyPath) {
-      // console.log(key, keyPath);
     },
     data(){//我的求贴
       this.$router.push('/release/paper')
