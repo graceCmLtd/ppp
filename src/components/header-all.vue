@@ -119,7 +119,7 @@
               _this.$notify({
                 title: '新消息',
                 message: msg_content.msgContent,
-                duration: 30000
+                duration: 0
               });
           }
               

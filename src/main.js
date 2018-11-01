@@ -9,11 +9,13 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Axios from 'axios'
 import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
+import global_ from '@/components/global'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;
 Vue.prototype.axios=Axios;
 
+Vue.prototype.GLOBAL = global_;
 //Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 

@@ -97,7 +97,7 @@
           window.clearInterval(time)
         }
         console.log("sdsfsfsdfdsff")
-      },30000)
+      },_this.GLOBAL.flushSeconds)
 
 
     },

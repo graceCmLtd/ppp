@@ -257,6 +257,7 @@
           this.getIntenTionList();
         })
         //let imgIs = window.localStorage.;
+
         console.log("www.123");
         this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
           orderId:this.current_item.transacType,
