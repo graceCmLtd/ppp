@@ -410,7 +410,7 @@
       this.getBills()
     },
     filters: {
-               hideMiddle(val) {
+             hideMiddle(val) {
                     return `${val.substring(0,3)}****${val.substring(val.length-3)}`
                 }
             }
