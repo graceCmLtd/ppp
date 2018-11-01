@@ -205,7 +205,7 @@
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
-                  "receiverId":_this.currentItem.quoterId,
+                  "receiverId":quoterId,
                   "msgContent":"有卖家修改了交易金额，请确认",
                   "flag":"0",
                   "path":"/release/orderws/audit"
