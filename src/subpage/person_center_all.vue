@@ -508,7 +508,14 @@
     },
     mounted(){
       this.timer();
-    }
+    },
+    filters: {
+      numFilter(value) {
+       let realVal = Number(value).toFixed(2)
+        return Number(realVal)
+
+    }
+  }
   }
 </script>
 
