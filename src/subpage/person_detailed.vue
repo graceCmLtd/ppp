@@ -27,10 +27,10 @@
         <p>票据图片</p>  
           <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
           <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
-        <p class="agreement"> 
+ <!--        <p class="agreement"> 
           <input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保支付协议
-        </p> 
+        </p> --> 
       </div>
       <div style="position: absolute;top: 41%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
       </div>
