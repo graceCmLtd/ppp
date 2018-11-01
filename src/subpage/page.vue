@@ -276,8 +276,23 @@ export default {
   },
  
   created(){
-    this.getListTop();
-    this.getListBot()
+    let _this = this;
+      _this.getListTop();
+      _this.getListBot()
+    
+    /*定时刷新页面*/
+    let timer = window.setInterval(function(){
+      if (_this.$route.path == '/page') {
+        _this.getListTop();
+        _this.getListBot()
+        console.log("in timer")
+      }else{
+        window.clearInterval(timer)
+        console.log("shutdown timer")
+      }
+      
+    },_this.GLOBAL.flushSeconds)
+    /*定时刷新页面 end*/
   }
 }
 

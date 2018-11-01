@@ -257,6 +257,8 @@
           this.getIntenTionList();
         })
         //let imgIs = window.localStorage.;
+        console.log("inset image subpage ")
+        console.log(window.localStorage.getItem("Is"))
         this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
           orderId:this.current_item.transacType,
           pic1:window.localStorage.getItem("Is"),
