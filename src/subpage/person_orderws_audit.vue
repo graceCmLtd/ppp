@@ -338,7 +338,7 @@
           var orderId = item.transacType;
           this.axios.post(this.oUrl+'/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
               console.log(res.data);
-              if(res.data != '')
+              if(res.data.length > 0)
                 this.pic1 = res.data[0].pic1;
           });
       }
