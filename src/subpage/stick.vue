@@ -527,7 +527,7 @@
           width: 30%;
           height:100%;
           .paper_is{
-            width: 50%;
+            width: 86%;
             height:40%;
             padding-top:13%;
             position: relative;
@@ -549,7 +549,7 @@
             }
           }
           .paper_the{
-            width: 50%;
+            width: 86%;
             height:40%;
             padding-top:13%;
             margin-top: 10%;

@@ -201,6 +201,20 @@
             console.log("修改金额")
             console.log(res)
             _this.getIntenTionList()
+            _this.axios.post(_this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":quoterId,
+                  "msgContent":"有卖家修改了交易金额，请确认",
+                  "flag":"0",
+                  "path":"/release/orderws/audit"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then((res)=>{
+                console.log("send msg for amount modify")
+              })
           })
         }
         
