@@ -1,4 +1,4 @@
-  <!-- 用户发布的票据 -->
+    <!-- 用户发布的票据 -->
 <!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
@@ -142,7 +142,7 @@
 
             <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}%</span>
-              <span>每10w加：{{item.failReason}}</span>
+              <span>每10w加：{{item.xPerLakh}}</span>
             </div></el-col>
           </el-row>
 

@@ -353,7 +353,9 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-              //console.log(index +"： index  倒计时结束")
+              //
+
+              console.log(index +"： index  倒计时结束")
               if(_this.timeout_count >= _this.timerArr.length)
               {
                 window.clearInterval(time)
