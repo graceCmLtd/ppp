@@ -9,7 +9,7 @@
         <el-row>
           <!-- <el-col :span="3"><div class="market_resources_title">票据类型</div></el-col> -->
           <el-col :span="4"><div class="market_resources_title acceptance">承兑行类型</div></el-col>
-          <el-col :span="2"><div class="market_resources_title">期限</div></el-col>
+          <el-col :span="2"><div class="market_resources_title">剩余期限</div></el-col>
           <el-col :span="2"><div class="market_resources_title">金额</div></el-col>
           <el-col :span="4"><div class="market_resources_title rate">利率+每十万加</div></el-col>
           <el-col :span="3"><div class="market_resources_title">联系人</div></el-col>
