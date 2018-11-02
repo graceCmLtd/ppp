@@ -171,6 +171,7 @@
             "IntentionType":'7',
             "filter_str1":'待接单',
             "filter_str2":'已失效',
+            "quoteStatus":"报价完成,进入意向",
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -186,7 +187,8 @@
             "uuid":Id,
             "IntentionType":'7',
             "filter_str1":'待接单',
-            "filter_str2":'已失效'
+            "filter_str2":'已失效',
+            "quoteStatus":"报价完成,进入意向"
           },
           {headers:{
               'Content-Type':'application/json'
@@ -347,14 +349,37 @@
         },
         backMarket(){
           console.log(this.currentItem);
-          this.axios.post(this.oUrl+'/quote/updateStatus',
-            {
+          this.axios.post(this.oUrl+'/quote/updateStatus',{
+            "quoteBack":{
               "billNumber":this.currentItem.billNumber,
-              "status":"报价中"
-            }).then((res)=>{
+              "status":"报价中",
+              "oldStatus":"已报价,待接受"
+            },
+            "setQuoteInvalid":{
+              "billNumber":this.currentItem.billNumber,
+              "status":"已失效",
+              "oldStatus":"报价完成,进入意向"
+            },
+            "setTransacInvalid":{
+              "billNumber":this.currentItem.billNumber,
+              "buyerId":this.currentItem.buyerId,
+              "intentionStatus":"已失效"
+            },
+            "message":{
+              "msgType":"交易",
+              "senderId":getCookie("Iud"),
+              "receiverId":this.currentItem.buyerId,
+              "msgContent":"有卖家取消了本次交易"+_this.currentItem.acceptor+"请到 我是买家->我的接单->已失效中 查看",
+              "flag":"0",
+              "path":"/release/Receipt/offerInvalid"
+            }}).then((res)=>{
                 console.log(res.data.status);
-                this.getIntenTionList();
-                window.location.reload();
+                if(res.data.status === 'success'){
+                    this.getIntenTionList();
+                    this.$router.push('/marketpa');
+                }
+                
+
           });
         } 
     },
