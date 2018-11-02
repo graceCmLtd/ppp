@@ -240,6 +240,7 @@
             "uuid":Id,
             "filter":2,
             "billNumber":_this.billNum,
+            "quoteStatus":"报价中",
             "pageSize" : _this.pageSize,
             "currentPage" : _this.currentPage
           },
@@ -250,13 +251,16 @@
         ).then((res)=>{
           console.log("get quoted bills ...")
           console.log(res)
-          this.noteL = res.data
-          _this.billN=res.data[0].billNumber;
-          if (res.data[0].interest) {
-            _this.haveQuote = true;
-          }else{
-            _this.haveQuote = false;
+          if(res.data.length > 0){
+              this.noteL = res.data
+              _this.billN=res.data[0].billNumber;
+              if (res.data[0].interest) {
+                _this.haveQuote = true;
+              }else{
+                _this.haveQuote = false;
+              }
           }
+          
         });
         _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
             "uuid":Id,
@@ -313,7 +317,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != '')
+          if(res.data.length > 0)
             _this.total = res.data;
           else
             _this.showPaginate = false;
@@ -323,7 +327,7 @@
         this.currentPage = currentPage;
         this.notOffer();
       },
-      getBills(){
+      /*getBills(){
         let _this=this;
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
@@ -339,7 +343,7 @@
           //console.log(res)
           _this.billN=res.data[0].billNumber;
         })
-      },
+      },*/
       paperMesper(item){//查看票据详情
         if(getCookie("role") === "unknown"){
             alert("您的公司信息还没有通过公司认证！请先填写公司信息或等待审核");
@@ -350,7 +354,7 @@
             this.$router.push({
               name:'choseType',
               query:{
-                bills:this.billN,
+                bills:item.billNumber,
                 quoterId:item.quoterId,
                 noteL:item
               }
@@ -382,7 +386,7 @@
     created(){
       this.names["offerin"] = "全部报价"
       this.names["offerbe"] = "审核中"
-      this.getBills()
+      //this.getBills()
     },
     filters: {
              hideMiddle(val) {
