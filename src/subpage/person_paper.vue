@@ -13,18 +13,20 @@
           v-for="tab in tabs"
           v-bind:key="tab"
           v-bind:class="['tab-button', { active: currentTab === tab }]"
-          v-on:click="currentTab = tab"
-        >{{ names[tab] }}</button>
+          v-on:click="currentTab = tab">{{ names[tab] }}</button>
         </div>
 
-      <person-offerin
-        v-bind:is="currentTabComponent"
-        class="tab"  v-bind:billNum = "billNum" @transb="getBillNum"
-      >we</person-offerin>
-
-      <!-- <person-offerbe v-bind:is="currentTabComponent" 
+        <div  v-if="currentTabComponent == 'person-offerin'">
+          <person-offerin v-bind:is="currentTabComponent"
+        class="tab"  v-bind:billNum = "billNum" @transb="getBillNum"></person-offerin>
+        </div>
+      
+        <div v-if ="currentTabComponent == 'person-offerbe'">
+          <person-offerbe v-bind:is="currentTabComponent" 
         class="tab" v-bind:billNum = "billNum" @transb = "getBillNum" ></person-offerbe>
-         -->
+        </div>
+
+        
     </div>
     
     <div class="yibao_w" v-if=" haveQuote == false && currentTab == 'offerin' " >
@@ -45,10 +47,7 @@
           <el-col :span="8"><div class="hadOffer_title">承兑银行</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">票面金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
-       <!--    <el-col :span="4"><div class="hadOffer_title">剩余天数</div></el-col> -->
           <el-col :span="4"><div class="hadOffer_title">报价</div></el-col>
-          <!-- <el-col :span="4"><div class="hadOffer_title">{{billN}}</div></el-col> -->
-          
         </el-row>
 
         <div class="person-offerIn" v-for = "item in noteL ">
@@ -57,7 +56,6 @@
             <el-col :span="8"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.acceptor}}</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.amount/10000}}W</div></el-col>
             <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
-         <!--    <el-col :span="4"><div class="hadOffer_mes" style="border-right:1px solid #979797; margin-top: 6px;">{{item.remain_days}}天</div></el-col> -->
             <el-col :span="4"><div class="hadOffer_mes limit">
               <span>年化：{{item.interest}}%</span>
               <span>每10w加：{{item.xPerLakh}}</span>
@@ -95,14 +93,21 @@
       </div>
     </div>
     <!-- 未报价end -->
+
+
+    <div class="yibao_w" v-if=" showAudit == false && currentTab == 'offerbe' " >
+      <p style="color:#666;font-size:30px;background-color:#F2F2F2; box-shadow:0px 0px 0px 35px #F2F2F2"> <i style="font-style:normal; color:red;font-size:33px;">!</i> 没有待审核中的票据  ヽ(^_−)ﾉ</p>
+    </div>
+
+
         <!-- 待审核 -->
-     <div class="yibao_w" v-if="color == 1 && currentTab == 'offerbe' " >
+     <div class="yibao_w" v-if="color == 1 && currentTab == 'offerbe' && showAudit == true " >
       <p class="person_paper_tableB">
         <span :class="{HadBc:colorB==3}">票据还未通过审核，请联系客服进行审核。客服电话：4001-521-889</span></p>
       <div class="hadOffer" v-show="hadOffer">
         
         <el-row>
-          <el-col :span="4"><div class="hadOffer_title">票据类型</div></el-col>
+          <el-col :span="4"><div class="hadOffer_title">票据类型1</div></el-col>
           <el-col :span="8"><div class="hadOffer_title">承兑银行</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">票面金额</div></el-col>
           <el-col :span="4"><div class="hadOffer_title">到期日</div></el-col>
@@ -198,7 +203,8 @@
         currentPage : 1,
         pageSize : 5,
         total : 0,
-        showPaginate : true
+        showPaginate : true,
+        showAudit : false
       }
     },
     components:{
@@ -233,8 +239,6 @@
         this.didOffer=false;
         let _this=this;
         let Id=getCookie('Iud');
-        console.log("billnumer is :")
-        console.log(_this.billNum)
         
         _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
@@ -251,12 +255,17 @@
           console.log("get quoted bills ...")
           console.log(res)
           this.noteL = res.data
-          _this.billN=res.data[0].billNumber;
+          if (this.noteL.length ==0) {
+            _this.haveQuote = false;
+          }else{
+            _this.billN=res.data[0].billNumber;
           if (res.data[0].interest) {
             _this.haveQuote = true;
           }else{
             _this.haveQuote = false;
           }
+          }
+          
         });
         _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
             "uuid":Id,
@@ -370,19 +379,51 @@
           _this.dialogBillDetailVisual = true;  
         })
       },
+      getItemAuditing(){
+        let _this = this;
+           _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+            "uuid":getCookie("Iud"),
+            "filter":4,
+            "billNumber":_this.billNum,
+            "pageSize" : 5,
+            "currentPage" : 0
+          },
+          {
+            headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          console.log("get quoted bills ...")
+          console.log(res)
+          this.noteL = res.data
+          if (this.noteL.length ==0) {
+            _this.showAudit = false;
+          }else{
+            _this.billN=res.data[0].billNumber;
+            _this.showAudit = true;
+          
+          }
+          
+        });
+      },
       getBillNum(billNumber){
-        //this.billN = this.billN+1;
       console.log("get billNumber in .....")
       console.log(billNumber)
       this.billNum = billNumber
-      this.havOffer()
+      if (this.currentTabComponent =="person-offerin") {
+        this.havOffer()
+      }else if(this.currentTabComponent == "person-offerbe")
+      {
+        this.getItemAuditing()
+      }
+      
     }
     },
     
     created(){
       this.names["offerin"] = "全部报价"
       this.names["offerbe"] = "审核中"
-      this.getBills()
+      //this.getBills()
     },
     filters: {
              hideMiddle(val) {
