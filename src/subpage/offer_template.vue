@@ -159,12 +159,10 @@
         </el-dialog>
 
 
-
     <div class="add_w">
-
-      <span style="cursor: pointer;"><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
-
-
+      <span style="cursor: pointer;">
+        <a @click="dialogAddFormVisible = true" >增加报价</a>
+      </span>
     </div>
 
 
