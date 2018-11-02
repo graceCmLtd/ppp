@@ -237,6 +237,7 @@
           console.log(this.item)
          this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
+            transacId : this.current_item.transacId,
             billNumber:this.current_item.billNumber,
             intentionStatus:"已背书,待签收"
           },
