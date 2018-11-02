@@ -99,7 +99,7 @@ export default {
             "InvalidateBody":{
               "billNumber":_this.billN,
               "quoterId":_this.quoterId,
-              "quoteStatus":"报价失效"
+              "quoteStatus":"已报价,待接受"
             },
             "validateBody":{
               "billNumber":_this.billN,

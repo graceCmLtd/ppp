@@ -65,11 +65,12 @@
           <!-- <p>取消订单，你重新发布此票据</p> -->
           <p>
             <span @click="removeSubmit()">确认取消不卖了</span>
-             <span>
+             <!-- <span>
               <router-link to="/marketpa">
                  返回票据市场
               </router-link>
-            </span>
+            </span> -->
+            <span @click="backMarket()">返回票据市场</span>
             <span style="background:#ccc;"@click="hiddenShow()">不,在等等</span>
           </p>
         </div>
@@ -329,7 +330,19 @@
       hiddenShow:function () {
           var that = this;
           that.isShow_cancel = false;
-        }, 
+        },
+        backMarket(){
+          console.log(this.currentItem);
+          this.axios.post(this.oUrl+'/quote/updateStatus',
+            {
+              "billNumber":this.currentItem.billNumber,
+              "status":"报价中"
+            }).then((res)=>{
+                console.log(res.data.status);
+                this.getIntenTionList();
+                window.location.reload();
+          });
+        } 
     },
     created(){
       this.getIntenTionList()
