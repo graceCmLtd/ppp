@@ -244,7 +244,7 @@
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":this.current_item.buyerId,
-                  "msgContent":"有卖家已背书，请及时签收",
+                  "msgContent":"有卖家已背书,承兑银行："+this.current_item.acceptor+"请到 我是买家->订单中心->待签收 及时签收",
                   "flag":"0",
                   "path":"/release/orderws/audit"
                 }
@@ -257,6 +257,7 @@
           this.getIntenTionList();
         })
         //let imgIs = window.localStorage.;
+
         console.log("www.123");
         this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
           orderId:this.current_item.transacType,

@@ -25,7 +25,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
-            <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}</span></span>
+            <span class="premium">每10w加：<span>{{item.xPerLakh}}</span></span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '已失效'"><div class="intention_mes operaMes">
@@ -284,6 +284,20 @@
             console.log("修改金额")
             console.log(res)
             _this.getIntenTionList()
+            _this.axios.post(_this.oUrl+"/publish/send",{
+                "message":{
+                  "msgType":"交易",
+                  "senderId":getCookie("Iud"),
+                  "receiverId":quoterId,
+                  "msgContent":"有卖家修改了交易金额，承兑银行："+_this.currentItem.acceptor+"请到 我是买家->我的接单->待接单中 查看",
+                  "flag":"0",
+                  "path":"/release/orderws/audit"
+                }
+               },{headers:{
+                'Content-Type':'application/json'
+              }}).then((res)=>{
+                console.log("send msg for amount modify")
+              })
           })
         }
         
@@ -347,6 +361,19 @@
     created(){
       this.getIntenTionList()
       //.linkToA(0)
+      /*定时刷新页面*/
+    let _this = this;
+    let timer = window.setInterval(function(){
+      if (_this.$route.path == '/release/intention/all') {
+        _this.getIntenTionList()
+        console.log("in timer")
+      }else{
+        window.clearInterval(timer)
+        console.log("shutdown timer")
+      }
+      
+    },_this.GLOBAL.flushSeconds)
+    /*定时刷新页面 end*/
     },
     filters: {
       numFilter(value) {

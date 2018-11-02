@@ -25,7 +25,7 @@
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{Number(item.real_money/10000).toFixed(2) }}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes"  v-if="item.intentionStatus==='待接单'||item.intentionStatus==='已接单,待支付'||item.intentionStatus==='已失效'">...</div>
@@ -455,6 +455,21 @@
           console.log(res)
           this.isShow = false;
           this.getIntenTionList();
+        })
+
+        //let imgIs = window.localStorage.;
+        console.log("inset image ")
+        console.log(window.localStorage.getItem("Is"))
+        this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
+          orderId:this.current_item.transacType,
+          pic1:window.localStorage.getItem("Is"),
+          pic2:"sss"
+        },{headers:{
+          'Content-Type':'application/json'
+        }}).then((res)=>{
+          console.log(res)
+          //this.isShow = false;
+          //this.getIntenTionList();
         })
        },
       linkToA(index){

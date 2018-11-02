@@ -221,6 +221,20 @@ export default {
   },
   created(){
     this.getList()
+
+    /*定时刷新页面*/
+    let _this = this;
+    let timer = window.setInterval(function(){
+      if (_this.$route.path == '/marketpa') {
+        _this.getList();
+        console.log("in timer")
+      }else{
+        window.clearInterval(timer)
+        console.log("shutdown timer")
+      }
+      
+    },_this.GLOBAL.flushSeconds)
+    /*定时刷新页面 end*/
   },
   updated(){
     this.acceptor()
