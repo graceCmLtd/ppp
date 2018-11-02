@@ -7,7 +7,7 @@
         <el-col :span="6"><div class="intention_mes_title">承兑银行</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">票面金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">到期日</div></el-col>
-      <!--   <el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
+      <!--<el-col :span="3"><div class="intention_mes_title">剩余天数</div></el-col> -->
         <el-col :span="3"><div class="intention_mes_title">交易金额</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">状态</div></el-col>
         <el-col :span="3"><div class="intention_mes_title">操作</div></el-col>
@@ -43,15 +43,9 @@
           <span>买家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
-
-
-            <span class="time_w" v-if="!timerArr[index]">倒计时：<i style="font-style: normal; color:#F15749;">0:0:0</i></span>
-
-            <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >{{num(timerArr[index].minutes)}}:{{num(timerArr[index].seconds)}}</i></span>
- 
-            <button type="button" name="button" @click="paperMes(index)">订单详情</button>
- 
-
+          <span class="time_w" v-if="!timerArr[index]">倒计时：<i style="font-style: normal; color:#F15749;">0:0:0</i></span>
+          <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >{{num(timerArr[index].minutes)}}:{{num(timerArr[index].seconds)}}</i></span>
+          <button type="button" name="button" @click="paperMes(index)">订单详情</button>
         </p> 
       </div>
 
