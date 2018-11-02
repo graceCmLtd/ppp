@@ -30,7 +30,7 @@
         <span>汇票图片</span>
       </p>
       <div class="paper_pic">
-        <img src="../../static/img/banner2.jpg" alt="" ref="billPic">
+        <img :class="{'active':isChoose}"  src="../../static/img/banner2.jpg" alt="" ref="billPic" @click="imgScc">
       </div>
     </div>
     <div class="success_mes" ref="success_mes">
@@ -70,7 +70,8 @@ export default {
       rate : 0,
       add_amount : 0,
       adjustDays : 0 ,
-      interest_rate : 0
+      interest_rate : 0,
+      isChoose:false,
     }
   },
   components:{
@@ -173,7 +174,11 @@ export default {
         console.log(res)
 
       })
-    }
+    },
+    imgScc:function () {                     
+        this.isChoose = !this.isChoose     
+     },
+
   },
 
   created(){
@@ -186,10 +191,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-a{
-   text-decoration: none; 
-   color:#fff;
-}
+  a{
+     text-decoration: none; 
+     color:#fff;
+  }
 .paper_details{
   width: 100%;
   height:100%;
@@ -294,6 +299,7 @@ a{
       text-align: left;
       border-bottom: 2px solid #F15749;
       margin-top:3%;
+
       span{
         width: 150px;
         height: 48px;
@@ -311,11 +317,22 @@ a{
       margin:0 auto;
       margin-top: 4%;
       margin-bottom:5%;
-      border:1px solid #979797;
+      position: relative; 
+      text-align: center;
+      cursor: pointer;
+
       img{
         width: 100%;
         height:100%;
+        transform: scale(1);          
+        transition: all ease 0.5s; 
       }
+      img.active {     
+       transform: scale(1.5);    
+       position: absolute;          
+       z-index: 100;
+       left:-3%;
+      }  
     }
   }
   .success_mes{
