@@ -104,7 +104,7 @@ export default {
             "validateBody":{
               "billNumber":_this.billN,
               "quoterId":_this.quoterId,
-              "quoteStatus":"报价完成,ok，进入意向"
+              "quoteStatus":"报价完成,进入意向"
             },
             "transactionBody":{
               "quoterId":_this.quoterId,
