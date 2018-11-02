@@ -53,6 +53,7 @@
         this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":1,
+            "quoteStatus":"报价中",
             "billReferer":"传统渠道"
           },
           {headers:{
@@ -60,10 +61,13 @@
             }}
         ).then((res)=>{
           // console.log("我的求贴 全部报价 ")
-          console.log(res)
-          this.noteList=res.data;
-          this.billNumber=this.noteList[this.index].billNumber;
-          this.getBillNum()
+          if(res.data.length > 0){
+            console.log(res)
+            this.noteList=res.data;
+            this.billNumber=this.noteList[this.index].billNumber;
+            console.log("transbill1"+this.billNumber);
+            this.getBillNum()
+          }
         })
       },
       getValue(index){
@@ -77,6 +81,7 @@
         this.noteDetail = arr
         //console.log(this.noteList[index])
         this.billNumber=this.noteList[index].billNumber;
+        console.log("transbill2"+this.billNumber);
         console.log(this.noteList[index].billNumber)
         this.getBillNum()
         //this.$emit("transb")

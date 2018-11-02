@@ -146,7 +146,7 @@
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":item.sellerId,
-                  "msgContent":"有买家已签收，交易完成，请到我是卖家->订单中心查看",
+                  "msgContent":"有买家已签收，交易完成，请到我是卖家->订单中心查看,承兑银行："+item.acceptor,
                   "flag":"0",
                   "path":"/release/center/completes"
                 }

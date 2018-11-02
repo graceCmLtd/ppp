@@ -62,6 +62,11 @@
           console.log("我的求贴 全部报价 ")
           console.log(res)
           this.noteList=res.data;
+          if (!this.noteList.length ==0) {
+            this.billNumber=this.noteList[this.index].billNumber
+          }
+          
+          this.getBillNum()
         })
       },
       onSelect(index){
@@ -70,11 +75,8 @@
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
-        //console.log(this.noteList[index])
         this.billNumber=this.noteList[index].billNumber;
-        console.log(this.noteList[index].billNumber)
         this.getBillNum()
-        //this.$emit("transb")
       },
         getValue(index){
         return this.noteList[index].acceptor
@@ -86,7 +88,19 @@
     },
     created(){
       this.getPaper()
-
+    /*定时刷新页面*/
+    let _this = this
+    let timer = window.setInterval(function(){
+      if (_this.$route.path == '/release/paper/offerIn') {
+        _this.getPaper()
+        console.log("in timer")
+      }else{
+        window.clearInterval(timer)
+        console.log("shutdown timer")
+      }
+      
+    },_this.GLOBAL.flushSeconds)
+    /*定时刷新页面 end*/
     },
     filters: {
       numFilter(value) {
