@@ -159,23 +159,22 @@
         </el-dialog>
 
 
-
     <div class="add_w">
-
-      <span style="cursor: pointer;"><a  @click="dialogAddFormVisible = true" >增加报价</a></span>
-
-
+      <span style="cursor: pointer;">
+        <a @click="dialogAddFormVisible = true" >增加报价</a>
+      </span>
     </div>
 
 
     <div class="edit_w">
       <!-- <a class="note_w">默认备注：{{noteInfo}}</a> -->
-      <textarea>默认备注：{{noteInfo}}</textarea>
+      <!-- <textarea>默认备注：{{noteInfo}}</textarea> -->
+
       <a class="edit_wq" @click="dialogEditNoteVisible =  true">编辑备注</a>
+      <div style="color:#333; border:1px solid #ccc; font-size:13px; height:auto; width:500px; z-index:99; line-height:30px;" >默认备注：{{noteInfo}}</div>
     </div>
 
-    <el-dialog  title="修改备注信息"  :visible.sync="dialogEditNoteVisible" width="30%"
-            :before-close="handleClose">
+    <el-dialog  title="修改备注信息"  :visible.sync="dialogEditNoteVisible" width="30%">
             <el-input type="textarea" v-model="noteInfo"></el-input>
             <span slot="footer" class="dialog-footer">
               <el-button @click="dialogEditNoteVisible = false">取 消</el-button>

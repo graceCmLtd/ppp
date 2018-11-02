@@ -49,7 +49,7 @@
 
             <span class="time_w" v-else >倒计时：<i style="font-style: normal; color:#F15749;"  >{{num(timerArr[index].minutes)}}:{{num(timerArr[index].seconds)}}</i></span>
  
-           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
+            <button type="button" name="button" @click="paperMes(index)">订单详情</button>
  
 
         </p> 
@@ -237,6 +237,7 @@
           console.log(this.item)
          this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
+            transacId : this.current_item.transacId,
             billNumber:this.current_item.billNumber,
             intentionStatus:"已背书,待签收"
           },

@@ -33,7 +33,7 @@
       </p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <img v-bind:src="pic" style="width:360px;height:240px;">
+          <img v-bind:src="pic" :class="{'active':isChoose}" style="width:360px;height:240px;" @click="imgScc">
         </div>
       </div>
       <p class="prise_title" style="margin-top:-2%;">
@@ -73,7 +73,8 @@ export default {
       bankName : '',
       bankAccount : '',
       bankAddr : '',
-      role : ''
+      role : '',
+      isChoose:false,
     }
   },
 
@@ -116,7 +117,10 @@ export default {
           "bankAddr":this.bankAddr
         };
         this.$router.push({path:"/release/data",query:{"data":data}});
-      }
+      },
+      imgScc:function () {                     
+        this.isChoose = !this.isChoose     
+     }
       /*submitInfo(){
         let contactsId = getCookie("Iud");
         console.log(contactsId)
@@ -228,6 +232,21 @@ export default {
         height: 240px;
         margin: 0 auto;
         border:1px solid #ccc;
+        position: relative; 
+        text-align: center;
+        cursor: pointer;
+        img{
+        width: 100%;
+        height:100%;
+        transform: scale(1);          
+        transition: all ease 0.5s; 
+        }
+        img.active {     
+         transform: scale(1.5);    
+         position: absolute;          
+         z-index: 100;
+         left:-3%;
+        }  
         input{
           width: 100%;
           height:100%;
