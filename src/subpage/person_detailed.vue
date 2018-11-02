@@ -130,7 +130,7 @@ export default {
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":_this.item.releaserId,
-                  "msgContent":"买家已支付，请及时背书",
+                  "msgContent":"买家已支付,请及时到 我是卖家->订单中心->待支付 背书,承兑银行："+_this.item.acceptor,
                   "flag":"0",
                   "path":"/release/Receipt/offerCancel"
                 }
