@@ -425,7 +425,12 @@
     },
     filters: {
              hideMiddle(val) {
-                    return `${val.substring(0,3)}****${val.substring(val.length-3)}`
+              if (val) {
+                return `${val.substring(0,3)}****${val.substring(val.length-3)}`
+              }else{
+                return null
+              }
+                    
                 }
             }
   }
