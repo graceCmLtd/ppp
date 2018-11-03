@@ -29,6 +29,7 @@
   import {getCookie} from '@/assets/util'
   /*import personPaper from '@/subpage/person_paper'*/
   export default {
+    
     data(){
       return{
         noteList:[],
@@ -38,16 +39,12 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
     },
-    /*components: {
-      personPaper
-    },*/
     methods:{
 
       getBillNum(){
         //this.billN = this.billN+1;
-      console.log("get billNumber in 11.....")
+      //console.log("get billNumber in 11.....")
       this.$emit("transb",this.billNumber)
-      //console.log(res)
     },
       getPaper(){
         let Id=getCookie('Iud');
@@ -59,10 +56,13 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("我的求贴 全部报价 ")
-          console.log(res)
+          //console.log("我的求贴 全部报价 ")
+          //console.log(res)
           this.noteList=res.data;
           if (!this.noteList.length ==0) {
+            if (this.index >= this.noteList.length) {
+              this.index = this.noteList.length - 1;
+            }
             this.billNumber=this.noteList[this.index].billNumber
           }
           
@@ -90,8 +90,11 @@
       this.getPaper()
     /*定时刷新页面*/
     let _this = this
+
     let timer = window.setInterval(function(){
-      if (_this.$route.path == '/release/paper/offerIn') {
+/*      console.log("currentTab :")
+      console.log(_this.$parent.currentTab)*/
+      if (_this.$route.path == '/release/paper/offerIn' && _this.$parent.currentTab == 'offerbe') {
         _this.getPaper()
         console.log("in timer")
       }else{
