@@ -168,7 +168,7 @@ export default {
           console.log(res);
           window.localStorage.clear();
           alert("认证信息提交成功,待审核...... ");
-          _this.$router.push('/release/prise'); 
+          _this.$router.push('/release/data'); 
         })
         }
       }else{
@@ -199,13 +199,13 @@ export default {
         ).then((res)=>{
           console.log(res)
           window.localStorage.clear()
-          alert("修改信息提交成功,待审核......");
-          this.$router.push('/release/prise'); 
+          alert("认证信息提交成功,待审核......");
+          this.$router.push('/release/data'); 
         });
       }
     },
     cancel(){
-      this.$router.push('/release/prise');
+      this.$router.push('/release/data');
     },
     loadInfo(){
         /*this.pic = this.$route.query.data.pic;
