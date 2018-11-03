@@ -103,12 +103,12 @@ export default {
       this.$router.push('/release/sellerCenter')  
     },
     prise(){//用户企业认证信息
-      if(getCookie('isAu')=='true'){
-        this.$router.push('/release/prise')
-      }else{
-        alert("您还未进行认证，已为您跳转到认证页面...");
+      //if(getCookie('isAu')=='true'){
+        //this.$router.push('/release/prise')
+      //}else{
+        //alert("您还未进行认证，已为您跳转到认证页面...");
         this.$router.push('/release/data')
-      }
+      //}
     },
     order(){//买家资源池票据
       this.$router.push('/release/offer')
