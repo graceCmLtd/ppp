@@ -37,14 +37,10 @@
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes"
       }
     },
-    /*components: {
-      personPaper
-    },*/
     methods:{
 
       getBillNum(){
-        //this.billN = this.billN+1;
-      console.log("get billNumber in 11.....")
+      /*console.log("get billNumber in 11.....")*/
       this.$emit("transb",this.billNumber)
       //console.log(res)
     },
@@ -62,7 +58,7 @@
         ).then((res)=>{
           // console.log("我的求贴 全部报价 ")
           if(res.data.length > 0){
-            console.log(res)
+            //console.log(res)
             this.noteList=res.data;
             this.billNumber=this.noteList[this.index].billNumber;
             console.log("transbill1"+this.billNumber);
@@ -79,12 +75,10 @@
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
-        //console.log(this.noteList[index])
         this.billNumber=this.noteList[index].billNumber;
         console.log("transbill2"+this.billNumber);
-        console.log(this.noteList[index].billNumber)
+        //console.log(this.noteList[index].billNumber)
         this.getBillNum()
-        //this.$emit("transb")
       },
       // 删除
         delItem: function(index){
@@ -95,13 +89,16 @@
       this.getPaper()
       let _this = this;
       let time =  window.setInterval(function(){
-        if (_this.$route.path == "/release/paper/offerIn") {
+/*        console.log("currentTabChild offerin 0")
+        console.log(_this.$parent.currentTab)*/
+        if (_this.$route.path == "/release/paper/offerIn" && _this.$parent.currentTab == 'offerin') {
           _this.getPaper()
-          console.log("rrrrrrrrrrrrrrrrrrrrrrr")
+          /*console.log("rrrrrrrrrrrrrrrrrrrrrrr")*/
         }else{
           window.clearInterval(time)
+          console.log("shutdown timer offerin")
         }
-        console.log("sdsfsfsdfdsff")
+        console.log("刷心")
       },_this.GLOBAL.flushSeconds)
 
 
