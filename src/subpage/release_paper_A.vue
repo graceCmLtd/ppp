@@ -247,19 +247,8 @@
         if (getCookie('role')=="vip" || getCookie('role') == "normal") {
           
           return true;
-        }else if(getCookie("isAu")){
-          this.authVisible = true;
-          //this.$router.push({name:"Prise"})
-          _this.getCode();
-          var t;
-          clearTimeout(t);
-          t = setTimeout(function(){
-            _this.authVisible = false;
-            
-            _this.$router.push({name:"Prise"})
-          },5000)
-          
-        }else{
+        }else if(getCookie("isAu") === "true"){
+          console.log("ddd22"+getCookie("isAu"));
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
@@ -269,6 +258,19 @@
             _this.authVisible = false;
             
             _this.$router.push({name:"Servicer"})
+          },5000)
+          
+        }else if(getCookie("isAu") === "false"){
+          console.log("fff11");
+          this.authVisible = true;
+          //this.$router.push({name:"Prise"})
+          _this.getCode();
+          var t;
+          clearTimeout(t);
+          t = setTimeout(function(){
+            _this.authVisible = false;
+            
+            _this.$router.push({name:"Data"})
           },5000)
         }
       },
