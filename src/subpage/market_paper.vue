@@ -197,7 +197,7 @@ export default {
     SeeDetails(index){  //查看详情
       if(getCookie("role") === "unknown"){
           alert("您的公司信息还没有通过公司认证！请先填写公司信息或等待审核");
-          this.$router.push('/release/prise');
+          this.$router.push('/release/data');
       }else{
         let bill=this.noteList[index].billNumber
         this.$router.push({

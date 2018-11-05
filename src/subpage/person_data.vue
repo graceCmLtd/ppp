@@ -168,7 +168,7 @@ export default {
           console.log(res);
           window.localStorage.clear();
           alert("认证信息提交成功,待审核...... ");
-          _this.$router.push('/release/prise'); 
+          _this.$router.push('/release/data'); 
         })
         }
       }else{
@@ -199,16 +199,16 @@ export default {
         ).then((res)=>{
           console.log(res)
           window.localStorage.clear()
-          alert("修改信息提交成功,待审核......");
-          this.$router.push('/release/prise'); 
+          alert("认证信息提交成功,待审核......");
+          this.$router.push('/release/data'); 
         });
       }
     },
     cancel(){
-      this.$router.push('/release/prise');
+      this.$router.push('/release/data');
     },
     loadInfo(){
-        this.pic = this.$route.query.data.pic;
+        /*this.pic = this.$route.query.data.pic;
         this.companyName = this.$route.query.data.companyName;
         this.contactsName = this.$route.query.data.contactsName;
         this.contactsPhone = this.$route.query.data.contactsPhone;
@@ -217,7 +217,29 @@ export default {
         this.bankAccountName = this.$route.query.data.bankAccountName;
         this.banksName = this.$route.query.data.bankName;
         this.bankAccount = this.$route.query.data.bankAccount;
-        this.bankAddr = this.$route.query.data.bankAddr;
+        this.bankAddr = this.$route.query.data.bankAddr;*/
+        let contactsId = getCookie("Iud");
+        this.axios.get(this.oUrl+"/getCompany?contactsId="+contactsId).then((res)=>{
+            console.log(res.data);
+            if(res.data != ''){
+              this.companyName=res.data[0].companyName;
+              this.contactsName=res.data[0].contactsName;
+              this.contactsPhone=res.data[0].contactsPhone;
+              this.contactsEmail=res.data[0].contactsEmail;
+              this.contactsQQ=res.data[0].contactsQQ;
+              this.bankAccountName=res.data[0].bankAccountName;
+              this.banksName=res.data[0].bankName;
+              this.bankAccount=res.data[0].bankAccount;
+              this.bankAddr = res.data[0].signUpAddr;
+              this.role=res.data[0].role;
+            }
+        });
+        this.axios.get(this.oUrl+"/getPicsOfCom?contactsId="+contactsId).then((res)=>{
+            console.log(res.data);
+            if(res.data != ''){
+              this.pic = res.data[0].picContent;
+            }
+        });
     }
   },
   created(){

@@ -18,12 +18,12 @@
 
         <div  v-if="currentTabComponent == 'person-offerin'">
           <person-offerin v-bind:is="currentTabComponent"
-        class="tab"  v-bind:billNum = "billNum" @transb="getBillNum"></person-offerin>
+        class="tab" :currentTabChild='currentTab'  v-bind:billNum = "billNum" @transb="getBillNum"></person-offerin>
         </div>
       
         <div v-if ="currentTabComponent == 'person-offerbe'">
           <person-offerbe v-bind:is="currentTabComponent" 
-        class="tab" v-bind:billNum = "billNum" @transb = "getBillNum" ></person-offerbe>
+        class="tab" :currentTabChild='currentTab' v-bind:billNum = "billNum" @transb = "getBillNum" ></person-offerbe>
         </div>
 
         
@@ -129,7 +129,7 @@
           <p class="hadOffer_opera">
             <span>{{item.companyName}}</span>
           <span class="pople">{{item.contactsName}}</span>
-          <span>电话:{{item.contactsPhone}}</span>
+          <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           
           <span @click="linkToA(index)">
             <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
@@ -383,15 +383,15 @@
             "uuid":getCookie("Iud"),
             "filter":4,
             "billNumber":_this.billNum,
-            "pageSize" : 5,
-            "currentPage" : 0
+            "pageSize" : _this.pageSize,
+            "currentPage" : _this.currentPage
           },
           {
             headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("get quoted bills ...")
+          console.log("get quote auditing    bills ...")
           console.log(res)
           this.noteL = res.data
           if (this.noteL.length ==0) {
