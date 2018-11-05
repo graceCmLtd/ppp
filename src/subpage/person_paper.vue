@@ -1,4 +1,4 @@
-    <!-- 用户发布的票据 -->
+<!-- 用户发布的票据 -->
 <!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
@@ -429,10 +429,9 @@
                 return `${val.substring(0,3)}****${val.substring(val.length-3)}`
               }else{
                 return null
-              }
-                    
-                }
-            }
+              }          
+         }
+      }
   }
 </script>
 
