@@ -32,7 +32,7 @@
             <button type="button" name="button" v-on:click="" style="background:#fff; color:#333;">...</button>
           </div></el-col>
           <el-col :span="3" v-if="item.intentionStatus == '待接单'"><div class="intention_mes operaMes">
-            <button type="button" name="button" v-on:click="modifyAmount(item)">修改金额</button>
+            <button type="button" name="button" v-on:click="modifyAmount(item)" style="background:#FFB100">修改金额</button>
             <p class="cancel_w"  v-on:click="order_toggle(item)">取消订单</p>
           </div></el-col>
         </el-row>
