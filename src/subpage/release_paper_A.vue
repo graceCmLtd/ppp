@@ -39,14 +39,22 @@
             >{{releText}}</button>
           </p>
         </div>
-        <div class="mes_right">
+    
+
+        <div class="mes_right">  
+        
           <div class="paper_is">
-            <span><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
+            <div class="big_w"   style="position:absolute; left:-50%;" @click="imgScc">查看</div> 
+            <span><img :class="{'active':isChoose}" src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
+
           </div>
+
+   
           <div class="paper_the">
-            <span><img src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
+            <div class="big_w"  style="position:absolute; left:-50%;" @click="imgSccs">查看</div>
+            <span><img :class="{'active':isChooses}" src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
@@ -54,13 +62,12 @@
       </div>
       <!-- <p class="service">
         <input type="radio" style="width:20px;height:20px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"/>
-        <input type="radio" style="width:20px;height:20px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />
+        <input type="radio" style="width:20px;height:20px;" value="" checked="checked" v-show="radioB" @click="radioBC()" />
         同意平台担保交易协议
       </p> -->
       
     </div>
     <div class="release_paper_mask" v-show="PaperMaskShow" @click="closeSave()">
-
     </div>
     <div class="save_paompt" ref="save_paompt">
       <img src="../../static/img/save_icon.png" alt="">
@@ -113,6 +120,8 @@
         authVisible:false,
         count: '',
         timer: null,
+        isChoose:false,
+        isChooses:false,
       }
     },
     components:{
@@ -377,14 +386,27 @@
               _this.billNum = res.data.billNumber;
           });
           
-      }
+      },
+    imgScc:function () {                     
+      this.isChoose = !this.isChoose     
+     },
+    imgSccs:function () {                     
+      this.isChooses = !this.isChooses    
+     },
 
     }
   }
 </script>
 
 <style lang="scss">
-
+  .big_w{
+    width:30px;
+    height:20px;
+    cursor:pointer;
+    font-size:14px;
+    background:#F15749;
+    color:#fff;
+  }
   .el-input__inner{
     width: 200px;
     height:28px!important;
@@ -480,13 +502,13 @@
               position: relative;
               margin-left: -76px;
             button{
-              width:120px;
-              height:40px;
+              width: 290px;
+              height: 40px;
               background: #F15749;
-              color:white;
+              color: white;
               font-size: 16px;
               border-radius: 5px;
-              margin-left:80px;
+              margin-left: -36px;
             }
             button:nth-child(1){
               position: absolute;
@@ -502,17 +524,27 @@
           width: 30%;
           height:100%;
           .paper_is{
-             width: 92%;
-             height: 40%;
+            width: 92%;
+            height: 40%;
             padding-top:13%;
             position: relative;
+            text-align: center;
+            cursor: pointer;
             img{
               width: 100%;
               height:100%;
               position: absolute;
               top:0;
               left:0;
+              transform: scale(1);          
+              transition: all ease 0.5s; 
             }
+             img.active {     
+                 transform: scale(1.5);    
+                 position: absolute;          
+                 z-index: 100;
+                 left:-3%;
+                } 
             input{
               width: 100%;
               height:100%;
@@ -535,7 +567,15 @@
               position: absolute;
               top:0;
               left:0;
+              transform: scale(1);          
+              transition: all ease 0.5s; 
             }
+            img.active {     
+                 transform: scale(1.5);    
+                 position: absolute;          
+                 z-index: 100;
+                 left:-3%;
+                } 
             input{
               width: 100%;
               height:100%;

@@ -44,12 +44,14 @@
         </div>
         <div class="mes_right">
           <div class="paper_is">
-            <span><img src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
+            <div class="big_w"   style="position:absolute; left:-50%;" @click="imgScc">查看</div> 
+            <span><img :class="{'active':isChoose}" src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
-            <span><img src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
+            <div class="big_w"  style="position:absolute; left:-50%;" @click="imgSccs">查看</div>
+            <span><img :class="{'active':isChooses}" src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
@@ -115,6 +117,8 @@
         authVisible:false,
         count: '',
         timer: null,
+        isChoose:false,
+        isChooses:false,
       }
     },
     components:{
@@ -402,14 +406,27 @@
               _this.billNum = res.data.billNumber;
           });
           
-      }
+      },
+      imgScc:function () {                     
+        this.isChoose = !this.isChoose     
+       },
+      imgSccs:function () {                     
+        this.isChooses = !this.isChooses    
+       },
 
     }
   }
 </script>
 
 <style lang="scss">
-
+  .big_w{
+    width:30px;
+    height:20px;
+    cursor:pointer;
+    font-size:14px;
+    background:#F15749;
+    color:#fff;
+  }
   .el-input__inner{
     width: 200px;
     height:28px!important;

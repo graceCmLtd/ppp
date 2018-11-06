@@ -54,7 +54,6 @@
         </div>
        <!-- 修改后的票据详情弹窗 -->
         <div class="intention_mes_message">
-      
           <div class="message_left">
             <ul>
               <li>票号：<span>6222299993778389939</span></li>
