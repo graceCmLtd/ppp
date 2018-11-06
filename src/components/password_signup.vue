@@ -13,8 +13,10 @@
       element-loading-background="rgba(0,0,0,0.1)"
       >{{sginUpText}}</button>
     </p>
-
-      <a href="" style="font-size:13px; color: #3a83e8;text-decoration:none; float: right; margin-left：10px;margin-right: 99px;">忘记密码?</a>
+      <a> 
+       <router-link to="/forgetp"  style="font-size:13px; color: #3a83e8;text-decoration:none; float: right; margin-left：10px; margin-right: 99px;">忘记密码? 
+       </router-link>
+     </a>
   </div>
 </template>
 
