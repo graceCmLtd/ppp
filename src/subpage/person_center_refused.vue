@@ -232,6 +232,7 @@
           "intentionObj":{
             transacId : this.current_item.transacId,
             billNumber:this.current_item.billNumber,
+            orderId:this.current_item.transacType,
             intentionStatus:"已背书,待签收"
           },
           "message":{

@@ -70,7 +70,7 @@
                  返回票据市场
               </router-link>
             </span> -->
-            <span @click="backMarket()">返回票据市场</span>
+            <span @click="backMarket()" v-if="showBack">返回票据市场</span>
             <span style="background:#ccc;"@click="hiddenShow()">不,在等等</span>
           </p>
         </div>
@@ -158,7 +158,8 @@
         showPaginate : true,
         isShow_cancel:false,
         new_money:0,
-        currentItem:null
+        currentItem:null,
+        showBack:true
 
       }
     },
@@ -339,8 +340,12 @@
         },200)
       },
      order_toggle:function(item){
+          if(item.billReferer === "资源池"){
+            this.showBack = false;
+          }
           this.isShow_cancel = !this.isShow_cancel;
           this.currentItem = item;
+
           console.log(item)
           },
       hiddenShow:function () {
@@ -362,14 +367,20 @@
             },
             "setTransacInvalid":{
               "billNumber":this.currentItem.billNumber,
-              "buyerId":this.currentItem.buyerId,
+              "oldStatus":"待接单",
               "intentionStatus":"已失效"
+            },
+            "billInfo":{
+                "billNumber":this.currentItem.billNumber,
+                "amount":this.currentItem.amount,
+                "releaseDate":"2018-08-08",
+                "releaserId":this.currentItem.releaserId
             },
             "message":{
               "msgType":"交易",
               "senderId":getCookie("Iud"),
               "receiverId":this.currentItem.buyerId,
-              "msgContent":"有卖家取消了本次交易"+_this.currentItem.acceptor+"请到 我是买家->我的接单->已失效中 查看",
+              "msgContent":"有卖家取消了本次交易"+this.currentItem.acceptor+"请到 我是买家->我的接单->已失效中 查看",
               "flag":"0",
               "path":"/release/Receipt/offerInvalid"
             }}).then((res)=>{

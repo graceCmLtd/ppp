@@ -439,6 +439,7 @@
          this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:this.current_item.billNumber,
+            orderId:this.current_item.transacType,
             intentionStatus:"已背书,待签收"
           },
           "message":{
