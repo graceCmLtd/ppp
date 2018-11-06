@@ -8,8 +8,8 @@
           <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 287px;height: 27.97px;">
             <option value ="电银">电银</option>
             <option value ="纸银">纸银</option>
-            <option value="电商">电商</option>
-            <option value="纸商">纸商</option>
+            <option value ="电商">电商</option>
+            <option value ="纸商">纸商</option>
           </select>
           </p>
           <p>票据号码<input type="text" v-model:vlaue="billNum" placehoder="" ref="paperNumber" oninput="if(value.length > 30)value = value.slice(0, 30)" /></p>

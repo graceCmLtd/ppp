@@ -10,13 +10,16 @@
             <option value="纸商">纸商</option>
           </select>
           </p>
-          <p style="text-align:left; margin-left:67px;"><i>票据正面</i></p>
-            <img src="../../static/img/pic_icon.png" alt="" title="请选择图片" ref="Is"  style="width:300px; height:200px;" />
+            <div class="big_w"  style="position:absolute; left:-29%;"  @click="imgScc">查看</div> 
+            <p style="text-align:left; margin-left:67px;"><i>票据正面</i></p>
+         
+            <img :class="{'active':isChoose}" src="../../static/img/pic_icon.png" alt="" title="请选择图片" ref="Is"  style="width:300px; height:200px;" />
             <span style="text-align:center; position:relative; left: -180px;">票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs"  style="position:relative;left:20px;top:-111px;opacity: 0; cursor:pointer;">
 
+          <div class="big_w" style="position:absolute; left:-29%;"  @click="imgSccs">查看</div> 
           <p style="text-align:left; margin-left:67px;"><i>票据反面</i></p>        
-            <img src="../../static/img/pic_icon_in.png" alt="" title="请选择图片" ref="The"  style="width:300px; height:200px;" />
+            <img :class="{'active':isChooses}" src="../../static/img/pic_icon_in.png" alt="" title="请选择图片" ref="The"  style="width:300px; height:200px;" />
             <span style="text-align:center; position:relative;  left: -180px;">票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe" style="position:relative;left:20px;top:-111px;opacity: 0; cursor:pointer;">
 
@@ -44,6 +47,8 @@
           time:null,
           show: true,
           releText:'发布',
+          isChoose:false,
+          isChooses:false
 
         }  
       },
@@ -56,7 +61,7 @@
           let phoneCode=_this.$refs.PhoneCode.value;//手机验证码
 
         },
-            upLoadIs(e){
+        upLoadIs(e){
         let _this=this;
         if (e.target.files[0]) {
           let file = e.target.files[0]
@@ -140,11 +145,25 @@
           }, 1000)
         }
       },
+     imgScc:function () {                     
+          this.isChoose = !this.isChoose  
+       },
+      imgSccs:function () {                     
+          this.isChooses = !this.isChooses  
+      }
     }
   }
 </script>
 
 <style lang="scss">
+ .big_w{
+    width:30px;
+    height:20px;
+    cursor:pointer;
+    font-size:14px;
+    background:#F15749;
+    color:#fff;
+  }
   .rapidly_w{
     width: 100%;
     height:100%;
@@ -161,6 +180,7 @@
         margin:0 auto;
         margin-top: 30px;
         padding-top: 30px;
+        position:relative;
         p{
           font-size:18px;
           font-weight:bold;
@@ -179,8 +199,18 @@
 
         }
 
-      }
+          img {    
+           transform: scale(1);         
+           transition: all ease 0.5s; 
+         } 
+           img.active {     
+           transform: scale(1.5);         
+           position: absolute;         
+           z-index: 100;
+           
+        }   
 
+      }
     }
   }
   .get_w{
