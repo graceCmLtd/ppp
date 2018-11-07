@@ -31,7 +31,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
-            <div class="intention_mes" id="payment" @click="toPay(item)" v-if="item.intentionStatus==='已接单,待支付'">环迅支付</div>
+            <div class="intention_mes" id="payment" @click="toPay(item)" v-if="item.intentionStatus==='已接单,待支付'">在线支付</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已支付,待背书'" v-on:click="toggle()" @click="fun($event,item)">提醒卖家背书</div>
             <div class="intention_mes" id="payment" @click="submitAccept(item)" v-if="item.intentionStatus==='已背书,待签收'">确认签收</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已背书,待签收'" @click="checkVoucher(item)">查看凭证</div>
@@ -201,7 +201,7 @@
         this.currentPage = currentPage;
         this.getIntenTionList();
       },
-      /*环迅支付*/
+      /*在线支付*/
       toPay(item){
         let _this = this;
         _this.$router.push({

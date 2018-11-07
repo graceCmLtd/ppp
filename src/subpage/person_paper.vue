@@ -253,8 +253,8 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log("get quoted bills ...")
-          console.log(res)
+          // console.log("get quoted bills ...")
+          // console.log(res)
           if(res.data.length > 0){
               this.noteL = res.data
               _this.billN=res.data[0].billNumber;
@@ -306,7 +306,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          console.log(res)
+          // console.log(res)
           this.noteL = res.data
           _this.billN=res.data[0].billNumber;
         });
@@ -405,8 +405,8 @@
         });
       },
       getBillNum(billNumber){
-      console.log("get billNumber in .....")
-      console.log(billNumber)
+      // console.log("get billNumber in .....")
+      // console.log(billNumber)
       this.billNum = billNumber
       if (this.currentTabComponent =="person-offerin") {
         this.havOffer()

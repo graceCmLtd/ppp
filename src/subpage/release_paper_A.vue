@@ -44,7 +44,7 @@
         <div class="mes_right">  
         
           <div class="paper_is">
-            <div class="big_w"   style="position:absolute; left:-50%;" @click="imgScc">查看</div> 
+            <div class="big_w"   style="position:absolute; left:4%; top: 86%; z-index: 999;" @click="imgScc">查看</div> 
             <span><img :class="{'active':isChoose}" src="../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
@@ -53,7 +53,7 @@
 
    
           <div class="paper_the">
-            <div class="big_w"  style="position:absolute; left:-50%;" @click="imgSccs">查看</div>
+            <div class="big_w"   style="position:absolute; left:4%; top: 86%; z-index: 999;" @click="imgSccs">查看</div>
             <span><img :class="{'active':isChooses}" src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
@@ -540,7 +540,7 @@
               transition: all ease 0.5s; 
             }
              img.active {     
-                 transform: scale(1.5);    
+                 transform: scale(2);    
                  position: absolute;          
                  z-index: 100;
                  left:-3%;
