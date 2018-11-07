@@ -92,8 +92,6 @@
     let _this = this
 
     let timer = window.setInterval(function(){
-/*      console.log("currentTab :")
-      console.log(_this.$parent.currentTab)*/
       if (_this.$route.path == '/release/paper/offerIn' && _this.$parent.currentTab == 'offerbe') {
         _this.getPaper()
         console.log("in timer")

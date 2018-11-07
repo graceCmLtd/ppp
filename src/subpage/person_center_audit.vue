@@ -162,7 +162,7 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
-           _this.orderId=_this.noteList[index].transacType;
+          _this.orderId=_this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.companyName=_this.noteList[index].companyName;
           _this.interest=_this.noteList[index].interest;

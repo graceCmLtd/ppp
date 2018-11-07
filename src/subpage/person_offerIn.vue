@@ -98,7 +98,6 @@
           window.clearInterval(time)
           console.log("shutdown timer offerin")
         }
-        console.log("刷心")
       },_this.GLOBAL.flushSeconds)
 
 
@@ -142,7 +141,6 @@
       }
     }
   }
-
   #name_w{
     font-weight:bold;
     color: #666666;

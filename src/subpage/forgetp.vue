@@ -39,7 +39,6 @@
 
         </ul>
       </div>
-     <!--  <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:#F15749; cursor: pointer;"  @click="open">《碰碰票服务条款及说明》</span></p> -->
       <p class="turnSignin"><button @click="sginIn()"
                                     v-loading="loadingSginIn"
                                     element-loading-text=""
@@ -166,7 +165,6 @@
     computed:{
        passwordValidate: function() {
         var errorText;
-
         if(!/^[0-9A-Za-z]{6,15}$/.test(this.passwordModel)) {
             errorText = '密码少于6位'
         } else {
@@ -216,10 +214,10 @@
     created(){
       let token = getCookie("Too");
       if (token) {
-      console.log("else ,,,,,")
-          console.log(this.$route)
-          console.log(window.history)
-          window.history.back()
+      // console.log("else ,,,,,")
+      //     console.log(this.$route)
+      //     console.log(window.history)
+           window.history.back()
            window.history.back()
       }
     }
@@ -233,7 +231,7 @@
     height:100%;
     min-width: 1378px;
     /*background:rgba(242,242,242,1);*/
-        .box{
+    .box{
       position: absolute;
       top: 44%;
       right: 13%;
