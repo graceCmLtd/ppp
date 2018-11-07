@@ -37,8 +37,8 @@
                   <!-- <i class="el-icon-location"></i> -->
                   <span style="font-weight:bold;">账户管理</span>
                 </template>
-                <el-menu-item index="/release/sellerorder/" @click="sell()" style="border-bottom:1px solid #E6E6E6; border-top:1px solid #E6E6E6;">基本信息</el-menu-item>
-                <el-menu-item index="/release/" @click="buy()">电子账户</el-menu-item>
+                <el-menu-item index="/release/sellerorder/" @click="sell()" style="border-top:1px solid #E6E6E6;">基本信息</el-menu-item>
+                <!-- <el-menu-item index="/release/" @click="buy()">电子账户</el-menu-item> -->
               </el-submenu>
               <el-submenu index="4">
                 <template slot="title">
