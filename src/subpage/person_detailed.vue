@@ -139,6 +139,7 @@ export default {
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
+          alert("支付成功")
           console.log(res)
         })
         _this.$router.push({
@@ -167,6 +168,7 @@ export default {
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
+          alert( "交易取消")
           console.log(res)
         })
         _this.$router.push({
