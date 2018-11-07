@@ -9,7 +9,7 @@
 
 
       <p style="margin-top: 170px; float: left; margin-left: -100px; font-weight: bold;">有任何问题请联系客服</p>
-      <p style="margin-top: 210px; float: left; margin-left: -155px;">电话:<i style="color: orangered;">15101699799</i><span style="margin-left: 3px; display: inline-block; width: 70px; height: 25px; font-weight: bold; text-align: center; line-height: 25px; color: #FFF; background: orange; border-radius: 5px;">QQ客服</span></p>
+      <p style="margin-top: 210px; float: left; margin-left: -155px;">电话:<i style="color: orangered;">4001-521-889</i><span style="margin-left: 3px; display: inline-block; width: 70px; height: 25px; font-weight: bold; text-align: center; line-height: 25px; color: #FFF; background: orange; border-radius: 5px;">QQ客服</span></p>
     </div>
     <!-- <Header/> -->
     <div class="sgin_in_con">

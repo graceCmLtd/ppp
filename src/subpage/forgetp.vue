@@ -11,11 +11,11 @@
         <ul class="signIn_message" style="margin-top: 30px;">
 
           <li style="margin-top: 20px;"><i style="font-style:normal;color: #FF0000;">*</i>
-            手&nbsp;机&nbsp;号&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
+            手机号码:&nbsp;&nbsp;&nbsp;
             <input type="tel" maxlength="11" value="" v-model="Phone"/></li>
           
 
-          <li style="margin-top: 20px;"><i style="font-style:normal; color: #FF0000;">*</i>手&nbsp;机&nbsp;验&nbsp;证&nbsp;码:<input type="text" value="" ref="PhoneCode" maxlength="6"/>
+          <li style="margin-top: 20px;"><i style="font-style:normal; color: #FF0000;">*</i>手机验证码:&nbsp;&nbsp;<input type="text" value="" ref="PhoneCode" maxlength="6"/>
 
             <span v-show="show" @click="getCode()" style="width: 130px; height: 43px; display: inline-block; text-align: center; line-height: 43px; background: #F15749; color: #fff; margin-left: 20px; cursor: pointer; border-radius: 5px;">
             获取短信验证码</span>
@@ -23,7 +23,7 @@
             <div class="retrieve_password">
               <li style="margin-top: 20px; position: relative;">
                 <i style="font-style:normal;color: #FF0000;">*</i>
-                输&nbsp;入&nbsp;新&nbsp;密&nbsp;码:
+                输入新密码:
                 <input type="text" v-if="pwdType" v-model="eyetxt">
                 <input type="password" placeholder="" v-model="eyetxt" v-else maxlength="16" v-model.lazy="passwordModel">
                 <img src="" alt="">
@@ -31,7 +31,7 @@
                 <span style="margin-left:50px; color:#FF0000;">{{passwordValidate.errorText}}</span>
               </li>
 
-              <li style="margin-top: 20px; position: relative; width: 146%;"><i style="font-style:normal;color: #FF0000;">*</i>确认新密码:
+              <li style="margin-top: 20px; position: relative; width: 146%;"><i style="font-style:normal;color: #FF0000;">*</i>确认新密码:&nbsp;
                 <input type="password" maxlength="16" value="" ref="pass"  v-model.lazy="passwordcheckModel"/><br>
                 <span  style="margin-left:59px; color:#FF0000;">{{passwordCheckValidate.errorText}}</span>
               </li>
