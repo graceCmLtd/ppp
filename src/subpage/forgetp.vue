@@ -2,7 +2,7 @@
   <div class="sgin_in">
     <div class="box">
       <p>有任何问题请联系客服</p>
-      <p >电话:<i style="color: orangered;">15101699799</i><span style="margin-left: 3px; display: inline-block; width: 70px; height: 25px; font-weight: bold; text-align: center; line-height: 25px; color: #FFF; background: orange; border-radius: 5px;">QQ客服</span></p>
+      <p >电话:<i style="color: orangered;">4001-521-8896</i><span style="margin-left: 3px; display: inline-block; width: 70px; height: 25px; font-weight: bold; text-align: center; line-height: 25px; color: #FFF; background: orange; border-radius: 5px;">QQ客服</span></p>
     </div>
     <!-- <Header/> -->
     <div class="sgin_in_con">
@@ -89,39 +89,29 @@
         let pass=_this.$refs.pass.value;//密码
         //let amgrent_w=_this.$refs.amgrent_w.value;
         //||amgrent_w==''
+        console.log(phone+'-'+phoneCode+'-'+pass)
         if(phone==''||phoneCode==''||pass==''){
           alert('请先完善您的个人信息！')
         }else{
           _this.siginInText='';
           _this.loadingSginIn=true;
-          _this.axios.post(_this.oUrl+'/register',
+          _this.axios.post(_this.oUrl+'/updatePassword',
             {
-              "login_name":"default",
-              "user_phone":phone,
-              "user_passwd":pass,
+              "phoneNum":phone,
+              "password":pass,
               "code":phoneCode
             },
             {header:{
                 'Content-Type':'application/json'
               }},
           ).then((res)=>{
-            console.log(res)
-            if (res.data.status == 'success') {
-              _this.siginInText='同意协议并注册';
-              _this.loadingSginIn=false;
-              _this.loadingSginIn=false;
-              _this.signInMaskShow=true;
-              _this.$refs.signIn_prompt.style.display='block';
-              setTimeout(()=>{
-                _this.$refs.signIn_prompt.style.opacity='1';
-                _this.$refs.signIn_prompt.style.top='15%';
-              })
-            }else if(res.data.errorMsg == "the phone sms is wrong"){
-              alert("手机验证码错误")
+            console.log(res.data);
+            if(res.data.status === "success"){
+                _this.$router.push("/signUp/password")
             }else{
-              alert("注册失败")
+              alert(res.data.msg)
+              window.location.reload();
             }
-
           })
         }
       },
@@ -210,7 +200,7 @@
     },
 
 
-    Phone: {
+    /*Phone: {
       set: function(value) {
           this.msg = value;
         
@@ -218,7 +208,7 @@
       get: function() {
           return this.msg.replace(/[^0-9]+/g,'')
       }
-    },
+    },*/
     
 },
 

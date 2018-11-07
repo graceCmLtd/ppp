@@ -22,9 +22,9 @@ Vue.prototype.GLOBAL = global_;
 // Vue.prototype.oUrl='http://39.104.140.40/ppp'
 
 
- // Vue.prototype.oUrl='http://localhost:8080/ppp' 
+ Vue.prototype.oUrl='http://localhost:8080/ppp' 
 
-Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
+//Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
 
 //Vue.prototype.oUrl='http://pengpengpiao.cn/ppp'
 

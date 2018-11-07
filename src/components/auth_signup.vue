@@ -22,7 +22,7 @@
       >{{sginUpText}}</button>
     </p>
 
-      <a href="" style="font-size:13px; color: #3a83e8;text-decoration:none; float: right; margin-left：10px;margin-right: 99px;">忘记密码?</a>
+      <!-- <a href="" style="font-size:13px; color: #3a83e8;text-decoration:none; float: right; margin-left：10px;margin-right: 99px;">忘记密码?</a> -->
   </div>
 </template>
 
