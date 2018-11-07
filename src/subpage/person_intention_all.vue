@@ -317,7 +317,7 @@
             },
             "quoteInfo":{
               "quoteId":_this.currentItem.quoteId,
-              "status":"已失效"
+              "status":"报价失效"
             },
             "transactionInfo":{
               "orderId":_this.currentItem.transacType,
@@ -362,7 +362,7 @@
             },
             "setQuoteInvalid":{
               "billNumber":this.currentItem.billNumber,
-              "status":"已失效",
+              "status":"报价失效",
               "oldStatus":"报价完成,进入意向"
             },
             "setTransacInvalid":{
