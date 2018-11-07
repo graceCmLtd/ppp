@@ -571,7 +571,6 @@
     line-height: 30px;
     margin-top: 32px;
     margin-left: 44px;
-    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
     font-size:13px;
     cursor: pointer;
 }
@@ -631,7 +630,7 @@
       max-height:70px;
       line-height:70px;
       font-size: 14px;
-      min-width: 95px;
+      min-width: 80px;
       border-right:1px solid #ccc;
     }
  
