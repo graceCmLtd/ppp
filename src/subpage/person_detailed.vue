@@ -124,6 +124,7 @@ export default {
         _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:_this.item.billNumber,
+            orderId:_this.item.transacType,
             intentionStatus:"已支付,待背书"
           },
           "message":{
@@ -151,6 +152,7 @@ export default {
       _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
         "intentionObj":{
           billNumber:_this.item.billNumber,
+          orderId:_this.item.transacType,
           intentionStatus:"已接单,待支付"
         },
         "message":{

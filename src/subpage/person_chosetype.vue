@@ -61,6 +61,7 @@ export default {
       billN:null,
       billData:[],
       quoterId:'',
+      orderId:null,
       isChoose:false,
     }
   },
@@ -92,6 +93,7 @@ export default {
         window.history.back()
       })*/
       /*sop1 买家操作1 提交意向，等待买家接单*/
+      console.log(_this.orderId);
       console.log("quoterId ........")
       console.log(_this.quoterId)
       console.log(getCookie('Iud'))
@@ -109,7 +111,7 @@ export default {
             },
             "transactionBody":{
               "quoterId":_this.quoterId,
-              "billNumber":_this.billN,
+              "orderId":_this.orderId,
               "intentionStatus":"待接单"
             },
             "message":{
@@ -157,7 +159,12 @@ export default {
         _this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+bill).then((res)=>{
           console.log(res)
           _this.$refs.choseTypePic.src=res.data[0].pic1;
-        })
+        });
+        _this.axios.get(this.oUrl+'/transaction/getOrderId?billNumber='+bill).then((res)=>{
+          console.log(res.data);
+            if(res.data.length > 0)
+              _this.orderId = res.data[0].transactionType;
+        });
       })
     },
 

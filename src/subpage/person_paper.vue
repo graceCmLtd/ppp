@@ -1,4 +1,4 @@
-    <!-- 用户发布的票据 -->
+<!-- 用户发布的票据 -->
 <!-- 卖家页面 已报价未报价 -->
 <template lang="html">
   <div class="person_paper">
@@ -349,8 +349,8 @@
       },*/
       paperMesper(item){//查看票据详情
         if(getCookie("role") === "unknown"){
-            alert("您的公司信息还没有通过公司认证！请先填写公司信息或等待审核");
-            this.$router.push('/release/prise');
+            alert("您的公司信息还没有通过认证！请先填写公司信息或等待审核");
+            this.$router.push('/release/data');
         }else{
             console.log("paper detail info  item")
             console.log(item)
@@ -429,10 +429,9 @@
                 return `${val.substring(0,3)}****${val.substring(val.length-3)}`
               }else{
                 return null
-              }
-                    
-                }
-            }
+              }          
+         }
+      }
   }
 </script>
 

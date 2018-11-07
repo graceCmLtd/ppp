@@ -26,6 +26,11 @@ const router = new Router({
       name:'My_news',
       component:resolve=>require(['@/subpage/my_news'],resolve)
     },
+    {
+    path:'/forgetp',//忘记密码
+    name:'Forgetp',
+    component:resolve=>require(['@/subpage/forgetp'],resolve)
+  },
  
 // silde
    {
@@ -323,6 +328,7 @@ const router = new Router({
           name:'Pass',
           component:resolve=>require(['@/subpage/person_pass'],resolve)
         },
+   
         {
           path:'/release/detailed',//买家购买票据详情
           name:'Detailed',
@@ -466,7 +472,7 @@ const router = new Router({
 router.beforeEach((to,from,next)=>{
   //登录权限页面
   const nextRoute=['OfferIn','OfferBe','choseType','SellerCancelOrder','SellerHadDeal','OfferDe','Template',
-  'Order','Prise','Repid','Detailed','Forward','Pass','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
+  'Order','Prise','Repid','Detailed','Forward','Pass','forgetp','Mes','IntentionAudit','IntentionRefused','IntentionHaveBeen',
   'IntentionConfirmed','IntentionAll','Cancel','my_news','Prrices','Accepted','Receipt','OfferAll','Buy','SellerCenter','Orderws','Audit','Sell','Trad',
   'Data','Details','Offer','NoOffer'
 ];

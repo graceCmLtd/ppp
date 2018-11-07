@@ -20,7 +20,7 @@
     </el-row>
   </div>
 
-  <!--  <person-paper noteList = 666></person-paper> -->
+  <!--<person-paper noteList = 666></person-paper> -->
 
 
 </template>

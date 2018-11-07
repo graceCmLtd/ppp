@@ -29,7 +29,7 @@
           </div></el-col>
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
-            <button type="button" name="button" @click="modifyAmount(item)">修改金额</button>
+            <button type="button" name="button" @click="modifyAmount(item)" style="background:#FFB100">修改金额</button>
             <p class="cancel_w"  v-on:click="order_toggle()">取消</p>
           </div></el-col>
         </el-row>
