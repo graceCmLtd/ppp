@@ -529,9 +529,8 @@
       numFilter(value) {
        let realVal = Number(value).toFixed(2)
         return Number(realVal)
-
     }
-  }
+   }
   }
 </script>
 
@@ -558,7 +557,7 @@
     background: #48C1F3;
     line-height: 30px;
     margin-top: 32px;
-    margin-left: 44px;
+    margin-left: 52px;
     font-size:13px;
     cursor: pointer;
 }
