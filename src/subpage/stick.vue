@@ -119,6 +119,7 @@
         timer: null,
         isChoose:false,
         isChooses:false,
+        interestItem:null
       }
     },
     components:{
@@ -136,6 +137,9 @@
           this.choseDate();
         }
       }
+    },
+    created(){
+      this.getInterest();
     },
     methods:{
       choseDate(){
@@ -296,8 +300,18 @@
         }
       },
 
+      getInterest(){
+        let object = this.$route.query.item;
+          console.log(object);
+          if(object instanceof Object){
+            window.localStorage.setItem('item',JSON.stringify(object));
+          }
+          let item = JSON.parse(window.localStorage.getItem('item'));
+          console.log(item);
+          this.interestItem = item;
+      },
       submitMes(){
-        let _this=this;
+         let _this=this;
         if(!getCookie('Iud')){
           this.$router.push('/signUp/password')
         }else{
@@ -310,7 +324,8 @@
           let The=window.localStorage.getItem('The');//票据反面图片
           let Id=getCookie('Iud');
           let typeSelect = _this.$refs.typeSelect.value;
-          let item = _this.$route.query.item;
+          let item = _this.interestItem;
+          
           console.log("this  refs  aldfjkad")
           console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
