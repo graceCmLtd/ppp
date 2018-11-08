@@ -159,6 +159,21 @@ export default {
         background:#F7F7F7;
         margin-left:25px;
       }
+                 img{
+              width: 100%;
+              height:100%;
+              position: absolute;
+              top:0;
+              left:0;
+              transform: scale(1);          
+              transition: all ease 0.5s; 
+            }
+             img.active {     
+                 transform: scale(2);    
+                 position: absolute;          
+                 z-index: 100;
+                 left:-3%;
+                } 
       .agreement{
         position:relative;
         left:31%;
