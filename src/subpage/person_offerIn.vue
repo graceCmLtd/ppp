@@ -89,8 +89,6 @@
       this.getPaper()
       let _this = this;
       let time =  window.setInterval(function(){
-/*        console.log("currentTabChild offerin 0")
-        console.log(_this.$parent.currentTab)*/
         if (_this.$route.path == "/release/paper/offerIn" && _this.$parent.currentTab == 'offerin') {
           _this.getPaper()
           /*console.log("rrrrrrrrrrrrrrrrrrrrrrr")*/

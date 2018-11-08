@@ -119,6 +119,7 @@
               _this.$notify({
                 title: '新消息',
                 message: msg_content.msgContent,
+                
                 duration: 0
               });
           }
@@ -133,6 +134,9 @@
           //alert(error)
         }
         });
+      },
+      handleMsg(msg_content){
+        alert(msg_content)
       },
       getMsg(){
         let id = getCookie("Iud");

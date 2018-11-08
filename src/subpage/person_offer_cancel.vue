@@ -370,7 +370,7 @@ import {getCookie} from '@/assets/util'
           display: flex;
           justify-content: space-around;
           button{
-            width:105px;
+            width:80px;
             height:30px;
             border-radius:3px;
             background: #F15749;

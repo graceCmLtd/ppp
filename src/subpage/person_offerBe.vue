@@ -89,7 +89,7 @@
     created(){
       this.getPaper()
     /*定时刷新页面*/
-    let _this = this
+/*    let _this = this
 
     let timer = window.setInterval(function(){
       if (_this.$route.path == '/release/paper/offerIn' && _this.$parent.currentTab == 'offerbe') {
@@ -100,7 +100,7 @@
         console.log("shutdown timer")
       }
       
-    },_this.GLOBAL.flushSeconds)
+    },_this.GLOBAL.flushSeconds)*/
     /*定时刷新页面 end*/
     },
     filters: {

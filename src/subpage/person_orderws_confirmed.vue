@@ -23,7 +23,7 @@
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col> -->
           <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment" @click="toPay(item)">环迅支付</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" @click="toPay(item)">在线支付</div></el-col>
 
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">确认交易</button>
@@ -394,7 +394,6 @@
   box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
   border-radius:4px;
   position: relative;
-  left: 16%;
 }
 .top_w{
   width:700px;
@@ -488,11 +487,8 @@
         padding-left:20px;
       }
       button{
-        position: absolute;
-        right:20%;
         min-height: 28px;
         width: 7%;
-        top:30%;
         color:white;
         border-radius:3px;
         background: #F15749;
