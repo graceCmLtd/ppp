@@ -15,8 +15,8 @@
        <p>每十万扣<i>{{item.xPerLakh}}</i></p>
        <p>实收金额<i>{{item.real_money/10000}}w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
-       <span class="Is"><img :class="{'active':isChoose}" v-bind:src="pic1" width="230px" height="160px" @click="imgScc"></span>
-       <span class="The"><img :class="{'active':isChooses}" v-bind:src="pic2" width="230px" height="160px" @click="imgSccss"></span>
+       <span class="Is"><img v-bind:src="pic1" :class="{'active':isChoose}" width="230px" height="160px"  @click="imgScc"></span>
+       <span class="The"><img v-bind:src="pic2" :class="{'active':isChooses}" width="230px" height="160px" @click="imgSccs"></span>
        <p class="agreement"> 
         <input type="radio" style="width:15px;height:15px;" name="" value="">同意碰碰票平台服务协议
        </p>
@@ -80,11 +80,11 @@ export default {
            that.isShow = false;
      }, 
     imgScc:function () {                     
-      this.isChoose = !this.isChoose     
-     },
+        this.isChoose = !this.isChoose     
+       },
     imgSccs:function () {                     
-      this.isChooses = !this.isChooses    
-     },
+        this.isChooses = !this.isChooses    
+       },
   }
 }
 </script>
@@ -159,26 +159,22 @@ export default {
         background:#F7F7F7;
         margin-left:25px;
       }
-                 img{
-              width: 100%;
-              height:100%;
-              position: absolute;
-              top:0;
-              left:0;
-              transform: scale(1);          
-              transition: all ease 0.5s; 
-            }
-             img.active {     
-                 transform: scale(2);    
-                 position: absolute;          
-                 z-index: 100;
-                 left:-3%;
-                } 
       .agreement{
         position:relative;
         left:31%;
         top:3%;
       }
+      img{
+         transform: scale(1);          
+         transition: all ease 0.5s; 
+        }
+      img.active {     
+         transform: scale(2.5);    
+         position: absolute;          
+         z-index: 100;
+         left: 33%;
+         bottom: 10%;
+      } 
       .btn_1 span{
         width:137px;
         height:40px;
