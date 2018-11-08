@@ -497,7 +497,6 @@
   box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
   border-radius:4px;
   position: relative;
-  left: 16%;
 }
 .top_w{
   width:700px;
