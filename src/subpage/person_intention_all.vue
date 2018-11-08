@@ -398,7 +398,7 @@
       this.getIntenTionList()
       //.linkToA(0)
       /*定时刷新页面*/
-    let _this = this;
+    /*let _this = this;
     let timer = window.setInterval(function(){
       if (_this.$route.path == '/release/intention/all') {
         _this.getIntenTionList()
@@ -408,12 +408,12 @@
         console.log("shutdown timer")
       }
       
-    },_this.GLOBAL.flushSeconds)
+    },_this.GLOBAL.flushSeconds)*/
     /*定时刷新页面 end*/
     },
     filters: {
       numFilter(value) {
-       let realVal = Number(value).toFixed(2)
+       let realVal = Number(value).toFixed(6)
         return Number(realVal)
 
     }
