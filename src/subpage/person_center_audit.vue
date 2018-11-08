@@ -230,9 +230,8 @@
     },
     filters: {
       numFilter(value) {
-       let realVal = Number(value).toFixed(2)
+       let realVal = Number(value).toFixed(6)
         return Number(realVal)
-
     }
   }
   }
