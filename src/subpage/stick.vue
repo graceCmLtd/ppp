@@ -50,7 +50,7 @@
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
-            <div class="big_w" style="position:absolute; left:-2%; top: 84%; z-index: 999;" @click="imgSccs" title="放大">+</div>
+            <div class="big_w" style="position:absolute; left:-2%; top: 84%; z-index: 999; background:fff; color:#333; " @click="imgSccs" title="放大">+</div>
             <span><img :class="{'active':isChooses}" src="../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
