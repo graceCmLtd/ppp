@@ -120,7 +120,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已背书,待签收",
+            "transaction_filter":["已背书,待签收"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -134,7 +134,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已背书,待签收"
+            "transaction_filter":["已背书,待签收"]
           },
           {headers:{
               'Content-Type':'application/json'
@@ -279,7 +279,6 @@
     box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
     border-radius:4px;
     position: relative;
-    left: 16%;
   }
   .intention_mes_mask{
     width: 100%;
@@ -374,15 +373,15 @@
         padding-left:20px;
       }
       button{
-          position: absolute;
-          right: 21%;
           min-height: 28px;
           width: 6%;
-          top: 26%;
           color: white;
           border-radius: 3px;
           background: #F15749;
+          line-height: 28px;
           cursor: pointer;
+          float: right;
+          margin: 12px 30px; 
       }
     }
   }

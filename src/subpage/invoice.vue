@@ -10,14 +10,14 @@
             <option value="纸商">纸商</option>
           </select>
           </p>
-            <div class="big_w"  style="position:absolute; left:-29%;"  @click="imgScc">查看</div> 
+            <div class="big_w"  style="position:absolute; left:-29%;"  @click="imgScc">+</div> 
             <p style="text-align:left; margin-left:67px;"><i>票据正面</i></p>
          
             <img :class="{'active':isChoose}" src="../../static/img/pic_icon.png" alt="" title="请选择图片" ref="Is"  style="width:300px; height:200px;" />
             <span style="text-align:center; position:relative; left: -180px;">票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs"  style="position:relative;left:20px;top:-111px;opacity: 0; cursor:pointer;">
 
-          <div class="big_w" style="position:absolute; left:-29%;"  @click="imgSccs">查看</div> 
+          <div class="big_w" style="position:absolute; left:-29%;"  @click="imgSccs">+</div> 
           <p style="text-align:left; margin-left:67px;"><i>票据反面</i></p>        
             <img :class="{'active':isChooses}" src="../../static/img/pic_icon_in.png" alt="" title="请选择图片" ref="The"  style="width:300px; height:200px;" />
             <span style="text-align:center; position:relative;  left: -180px;">票据反面</span>
@@ -157,12 +157,13 @@
 
 <style lang="scss">
  .big_w{
-    width:30px;
+    width:20px;
     height:20px;
+    border-radius:50%;
     cursor:pointer;
     font-size:14px;
-    background:#F15749;
-    color:#fff;
+    color:#333;
+    border:1px solid #333;
   }
   .rapidly_w{
     width: 100%;

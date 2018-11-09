@@ -130,7 +130,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已接单,待支付",
+            "transaction_filter":["已接单,待支付"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -144,7 +144,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"已接单,待支付",
+            "transaction_filter":["已接单,待支付"],
           },
           {headers:{
               'Content-Type':'application/json'
@@ -243,7 +243,6 @@
   box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
   border-radius:4px;
   position: relative;
-  left: 16%;
 }
 .top_w{
   width:700px;
@@ -354,15 +353,14 @@
         padding-left:20px;
       }
       button{
-        position: absolute;
-        right:25%;
         min-height: 28px;
         width: 6%;
-        top:30%;
         color:white;
         border-radius:3px;
         background: #F15749;
         line-height:28px;
+        float: right;
+        margin: 12px 30px;
       }      
     }
   }

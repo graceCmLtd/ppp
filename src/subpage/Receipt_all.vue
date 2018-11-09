@@ -375,7 +375,7 @@
           display: flex;
           justify-content: space-around;
           button{
-            width: 85px;
+            width: 80px;
             height: 30px;
             border-radius: 3px;
             background: #F15749;

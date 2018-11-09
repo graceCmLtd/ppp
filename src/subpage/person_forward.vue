@@ -15,15 +15,15 @@
        <p>每十万扣<i>{{item.xPerLakh}}</i></p>
        <p>实收金额<i>{{item.real_money/10000}}w <i style="font-style:normal; color:#F15749;">(已扣除万分之五手续费)</i></i></p>
        <p>票据图片</p>
-       <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
-       <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
+       <span class="Is"><img v-bind:src="pic1" :class="{'active':isChoose}" width="230px" height="160px"  @click="imgScc"></span>
+       <span class="The"><img v-bind:src="pic2" :class="{'active':isChooses}" width="230px" height="160px" @click="imgSccs"></span>
        <p class="agreement"> 
         <input type="radio" style="width:15px;height:15px;" name="" value="">同意碰碰票平台服务协议
        </p>
        <p class="btn_1">
          <span v-on:click="toggle()">确认提现</span>
          <span style="background:#A6A6A6; margin-left:29px;">
-          <router-link to="/release/center/completes">取消并返回</router-link>
+        <router-link to="/release/center/completes">取消并返回</router-link>
         </span>
       </p>
        <div style="position: absolute; bottom:50%; right: -17%; cursor: pointer;"><img src="../../static/img/9.18.png" alt="">
@@ -48,6 +48,8 @@ export default {
       pic1 : '',
       pic2 : '',
       isShow:false,
+      isChoose:false,
+      isChooses:false,
     }
   },
   created(){
@@ -77,6 +79,12 @@ export default {
            var that = this;
            that.isShow = false;
      }, 
+    imgScc:function () {                     
+        this.isChoose = !this.isChoose     
+       },
+    imgSccs:function () {                     
+        this.isChooses = !this.isChooses    
+       },
   }
 }
 </script>
@@ -156,6 +164,17 @@ export default {
         left:31%;
         top:3%;
       }
+      img{
+         transform: scale(1);          
+         transition: all ease 0.5s; 
+        }
+      img.active {     
+         transform: scale(2.5);    
+         position: absolute;          
+         z-index: 100;
+         left: 33%;
+         bottom: 10%;
+      } 
       .btn_1 span{
         width:137px;
         height:40px;

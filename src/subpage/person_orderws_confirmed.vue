@@ -488,7 +488,7 @@
       }
       button{
         min-height: 28px;
-        width: 7%;
+        width: 6%;
         color:white;
         border-radius:3px;
         background: #F15749;

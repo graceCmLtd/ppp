@@ -142,10 +142,7 @@
         interest:null,
         real_money:0,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
-        //由于这里不需要待接单状态的数据，所以分页也要进行相应的变换
-        count1 : 0,
-        count2 : 0,//待接单条数
-        total : 0,//页面显示的总条数
+        total : 0,
         currentPage : 1,
         pageSize : 5,
         showPaginate : true,
@@ -166,8 +163,8 @@
         /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'1',
-            //"filter_str":"待接单",
+            "IntentionType":'3',
+            "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -175,44 +172,27 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          for(var i=0;i<res.data.length;i++){
-            if(res.data[i].intentionStatus === '待接单')
-               res.data.splice(i,1);
-          }
           console.log(res.data);
           _this.noteList=res.data;
           _this.updateTimer();
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'1',
-            //"filter_str":"待接单",
+            "IntentionType":'3',
+            "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"]
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
+          //alert(res.data)
           if(res.data != ''){
-              _this.count1 = res.data;
-          //return count1;
-          _this.axios.post(_this.oUrl+'/bills/getIntentionsCount',{
-              "uuid":Id,
-              "IntentionType":'3',
-              "filter_str":"待接单"
-          },
-          {headers:{
-              'Content-Type':'application/json'
-          }}
-          ).then((res)=>{
-              if(res.data != '')
-                _this.count2 = res.data;
-              _this.total = _this.count1-_this.count2;
-              if(_this.total <= 0)
-                _this.showPaginate = false;
-          });
-
+              _this.total = res.data;
+          }else{
+            _this.showPaginate = false;
           }
         });
+
         
           
           //_this.total = count1-count2;
@@ -529,9 +509,8 @@
       numFilter(value) {
        let realVal = Number(value).toFixed(2)
         return Number(realVal)
-
     }
-  }
+   }
   }
 </script>
 
@@ -558,7 +537,7 @@
     background: #48C1F3;
     line-height: 30px;
     margin-top: 32px;
-    margin-left: 44px;
+    margin-left: 52px;
     font-size:13px;
     cursor: pointer;
 }
@@ -689,8 +668,7 @@
         line-height: 28px;
         float: right;
         margin: 12px 30px;
-      }
-  
+      } 
     }
   }
   .intention_mes_details{
