@@ -30,7 +30,7 @@
           <el-col :span="3"><div class="intention_mes" style="border-right:1px solid #ccc;">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button" @click="modifyAmount(item)" style="background:#F15749">修改金额</button>
-            <p class="cancel_w"  v-on:click="order_toggle()" style="background:#FFB100">取消订单</p>
+            <p class="cancel_w"  v-on:click="order_toggle(item)" style="background:#FFB100">取消订单</p>
           </div></el-col>
         </el-row>
         <p class="person_intention_contact">
@@ -153,7 +153,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待接单",
+            "transaction_filter":["待接单"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -167,7 +167,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "filter_str":"待接单",
+            "transaction_filter":["待接单"],
           },
           {headers:{
               'Content-Type':'application/json'
@@ -301,7 +301,7 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
-      order_toggle:function(){
+      order_toggle:function(item){
           this.isShow_cancel = !this.isShow_cancel;
           this.currentItem = item;
           },
