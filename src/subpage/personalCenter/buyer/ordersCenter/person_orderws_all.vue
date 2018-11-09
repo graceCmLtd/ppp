@@ -173,7 +173,8 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data.length > 0){
+          //alert('ddd'+res.data+'ccc')
+          if(res.data != ''){
             _this.total = res.data;      
           }else{
             _this.showPaginate = false;
