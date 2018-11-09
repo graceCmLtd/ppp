@@ -403,7 +403,7 @@ const router = new Router({
         {
           path:'/release/choseType',//选择交易
           name:'choseType',
-          component:resolve=>require(['@/subpage/person_choseType'],resolve)
+          component:resolve=>require(['@/subpage/personalCenter/seller/draftDiscount/person_choseType'],resolve)
         }
       ],
       redirect:'/release/paper'

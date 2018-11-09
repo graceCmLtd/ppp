@@ -11,7 +11,7 @@
       <span>汇票图片</span>
     </p>
     <div class="paper_pic">
-      <img :class="{'active':isChoose}"  src="../../static/img/banner2.jpg" alt="" ref="choseTypePic" @click="imgScc">
+      <img :class="{'active':isChoose}"  src="../../../../../static/img/banner2.jpg" alt="" ref="choseTypePic" @click="imgScc">
     </div>
     <div class="choseType_payMes">
       <div class="mes_left">
