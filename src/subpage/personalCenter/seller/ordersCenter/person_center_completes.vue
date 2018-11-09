@@ -128,7 +128,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
-            "transaction_filter":["已背书"]
+            "transaction_filter":["已签收"]
           },
           {headers:{
               'Content-Type':'application/json'
