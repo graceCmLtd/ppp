@@ -8,9 +8,9 @@
 
      <!-- <button @click="getCode">获取验证码</button> -->
 
-     <span v-show="show" @click="getCode()" style="width: 90px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #F15749; color: #fff; font-size:12px;cursor: pointer; border-radius: 5px; position:relative; top:-75px; right:-175px;">
+     <span v-show="show" @click="getCode()" style="width: 83px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #F15749; color: #fff; font-size:11px;cursor: pointer; border-radius: 5px; position:relative; top:-75px; right:-182px;">
             获取短信验证码</span>
-      <span v-show="!show" class="count"  style="width: 90px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; position:relative; top:-75px; right:-169px;">{{count}} S</span>
+      <span v-show="!show" class="count"  style="width: 83px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; position:relative; top:-75px; right:-170px;">{{count}} S</span>
 
 
     <p class="turn">
