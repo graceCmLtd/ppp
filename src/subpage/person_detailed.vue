@@ -25,8 +25,8 @@
         <p>每十万加：<i>{{item.xPerLakh}}</i></p>
         <p>实付金额 : <i>{{item.real_money}}</i></p>
         <p>票据图片</p>  
-          <span class="Is"><img v-bind:src="pic1" width="230px" height="160px"></span>
-          <span class="The"><img v-bind:src="pic2" width="230px" height="160px"></span>
+          <span class="Is"><img v-bind:src="pic1" :class="{'active':isChoose}" width="230px" height="160px" @click="imgScc"></span>
+          <span class="The"><img v-bind:src="pic2" :class="{'active':isChooses}" width="230px" height="160px" @click="imgSccs"></span>
  <!--        <p class="agreement"> 
           <input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保支付协议
@@ -74,7 +74,9 @@ export default {
       list : [],
       radioT:true,
       radioB:false,
-       checked:false,
+      checked:false,
+      isChoose:false,
+      isChooses:false,
     }
   },
   methods:{
@@ -201,7 +203,7 @@ export default {
           this.list = res.data[0];
       });
     },
-          radioTC($event){
+      radioTC($event){
         this.radioT=false;
         this.radioB=true;
         $event.target.checked=false
@@ -210,6 +212,12 @@ export default {
         this.radioT=true;
         this.radioB=false;
       },
+      imgScc:function () {                     
+        this.isChoose = !this.isChoose     
+       },
+      imgSccs:function () {                     
+        this.isChooses = !this.isChooses    
+       },
   },
   created(){
     this.getBill();
@@ -270,6 +278,17 @@ export default {
         top:-2%;
         z-index:99;
       }
+      img{
+         transform: scale(1);          
+         transition: all ease 0.5s; 
+        }
+      img.active {     
+         transform: scale(2.5);    
+         position: absolute;          
+         z-index: 100;
+         left: 33%;
+         bottom: 10%;
+      } 
     }
   }
   .havelook{

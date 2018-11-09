@@ -444,11 +444,10 @@
     }
     .operaMes{
       min-width: 95px;
-      border-left:1px solid #ccc;
       button{
         width: 53%;
-        min-height: 32px;
-        font-size: 12px;
+        min-height: 30px;
+        font-size: 14px;
         color: #F15749;
         background: white;
         border-radius: 3px;
@@ -465,13 +464,13 @@
       background: #f3fbff;
       button{
         position: absolute;
-        right: 2.5%;
-        min-height: 33px;
-        width: 7%;
+        right: 2.8%;
+        min-height: 30px;
+        width: 6.5%;
         top: 14%;
-        color: white;
+        color: #fff;
         border-radius: 3px;
-        background: #F15749;
+        background: #f15749;
       }
       .pople{
         margin-left: 80px;
