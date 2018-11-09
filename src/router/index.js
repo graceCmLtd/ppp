@@ -19,7 +19,7 @@ const router = new Router({
     {
       path:'/stick',//我要贴
       name:'Stick',
-      component:resolve=>require(['@/subpage/stick'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/resourceMarket/resourceMarketStick'],resolve)
       },
     {
       path:'/my_news',//我的消息
@@ -115,11 +115,11 @@ const router = new Router({
           name:'Buy',
           component:resolve=>require(['@/subpage/person_buy'],resolve)
         },
-        {
+/*        {
           path:'/release/center',//订单中心
           name:'Center',
           component:resolve=>require(['@/subpage/person_center'],resolve)
-        },
+        },*/
         {
           path:'/release/audit',//用户审核中的票据
           name:'Audit',
@@ -134,27 +134,27 @@ const router = new Router({
         {
           path:'/release/offer',//用户发布的报价
           name:'ReOffer',
-          component:resolve=>require(['@/subpage/person_offer'],resolve),
+          component:resolve=>require(['@/subpage/personalCenter/buyer/quotes/person_offer'],resolve),
           children:[
             {
               path:'/release/offer/offerAll',//用户全部报价
               name:'OfferAll',
-              component:resolve=>require(['@/subpage/person_offer_all'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/quotes/person_offer_all'],resolve)
             },
-            {
+            /*{
               path:'/release/offer/offerAccepted',//已被卖家接受的报价
               name:'Accepted',
-              component:resolve=>require(['@/subpage/person_offer_accepted'],resolve)
-            },
+              component:resolve=>require(['@/subpage/personalCenter/buyer/quotes/person_offer_accepted'],resolve)
+            },*/
             {
               path:'/release/offer/offerPrices',//报价中
               name:'Prrices',
-              component:resolve=>require(['@/subpage/person_offer_prices'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/quotes/person_offer_quoting'],resolve)
             },
             {
               path:'/release/offer/offerCancel',//已失效的报价
               name:'Cancel',
-              component:resolve=>require(['@/subpage/person_offer_cancel'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/quotes/person_offer_invalid'],resolve)
             }
           ],
           redirect:'/release/offer/offerAll'
@@ -168,22 +168,22 @@ const router = new Router({
         {
           path:'/release/Receipt',//我的接单
           name:'Receipt',
-          component:resolve=>require(['@/subpage/Receipt'],resolve),
+          component:resolve=>require(['@/subpage/personalCenter/buyer/ordersReceiving/Receipt'],resolve),
           children:[
             {
               path:'/release/Receipt/ReceiptAll',//用户全部报价
               name:'ReceiptAll',
-              component:resolve=>require(['@/subpage/Receipt_all'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersReceiving/Receipt_all'],resolve)
             },
             {
               path:'/release/Receipt/offerPrices',//已被卖家接受的报价
               name:'offerPrices',
-              component:resolve=>require(['@/subpage/Receipt_prices'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersReceiving/Receipt_received'],resolve)
             },
              {
               path:'/release/Receipt/offerCancel',//已被卖家接受的报价
               name:'offerCancel',
-              component:resolve=>require(['@/subpage/Receipt_cancel'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersReceiving/Receipt_receiving'],resolve)
             },
             // {
             //   path:'/release/Receipt/offerConfirm',//报价中
@@ -193,7 +193,7 @@ const router = new Router({
             {
               path:'/release/Receipt/offerInvalid',//已失效的报价
               name:'offerInvalid',
-              component:resolve=>require(['@/subpage/Receipt_invalid'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersReceiving/Receipt_invalid'],resolve)
             }
           ],
           redirect:'/release/Receipt/ReceiptAll'
@@ -204,37 +204,37 @@ const router = new Router({
            {
           path:'/release/orderws',//我是买家订单中心
           name:'Orderws',
-          component:resolve=>require(['@/subpage/person_orderws'],resolve),
+          component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws'],resolve),
           children:[
             {
               path:'/release/orderws/all',//全部
               name:'OrderwsAll',
-              component:resolve=>require(['@/subpage/person_orderws_all'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws_all'],resolve)
             },
             {
               path:'/release/orderws/confirmed',//待支付
               name:'OrderwsConfirmed',
-              component:resolve=>require(['@/subpage/person_orderws_confirmed'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws_confirmed'],resolve)
             },
             {
-              path:'/release/orderws/refused',//代背书
+              path:'/release/orderws/refused',//待背书
               name:'OrderwsRefused',
-              component:resolve=>require(['@/subpage/person_orderws_refused'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws_endorse'],resolve)
             },
             {
-              path:'/release/orderws/audit',//代签收
+              path:'/release/orderws/audit',//待签收
               name:'OrderwsAudit',
-              component:resolve=>require(['@/subpage/person_orderws_audit'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws_signin'],resolve)
             },
            {
               path:'/release/orderws/completes',//已完成
               name:'OrderwsCompletes',
-              component:resolve=>require(['@/subpage/person_orderws_completes'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws_completes'],resolve)
             },
             {
               path:'/release/orderws/invalids',//已失效
               name:'OrderwsInvalids',
-              component:resolve=>require(['@/subpage/person_orderws_invalids'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/buyer/ordersCenter/person_orderws_invalids'],resolve)
             },
           ],
           redirect:'/release/orderws/all'
@@ -246,17 +246,17 @@ const router = new Router({
         {
           path:'/release/intention',//求贴意向
           name:'Intention',
-          component:resolve=>require(['@/subpage/person_intention'],resolve),
+          component:resolve=>require(['@/subpage/personalCenter/seller/intentions/person_intention'],resolve),
           children:[
             {
               path:'/release/intention/all',//全部报价
               name:'IntentionAll',
-              component:resolve=>require(['@/subpage/person_intention_all'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/intentions/person_intention_all'],resolve)
             },
             {
               path:'/release/intention/confirmed',//待确认的报价
               name:'IntentionConfirmed',
-              component:resolve=>require(['@/subpage/person_intention_confirmed'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/intentions/person_intention_confirmed'],resolve)
             },
             // {
             //   path:'/release/intention/haveBeen',//已确认的报价
@@ -266,12 +266,12 @@ const router = new Router({
             {
               path:'/release/intention/refused',//被拒绝的订单
               name:'IntentionRefused',
-              component:resolve=>require(['@/subpage/person_intention_refused'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/intentions/person_intention_refused'],resolve)
             },
             {
               path:'/release/intention/audit',//审核中订单
               name:'IntentionAudit',
-              component:resolve=>require(['@/subpage/person_intention_audit'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/intentions/person_intention_audit'],resolve)
             }
           ],
           redirect:'/release/intention/all'
@@ -281,37 +281,37 @@ const router = new Router({
         {
           path:'/release/sellerCenter',//我是卖家订单中心
           name:'SellerCenter',
-          component:resolve=>require(['@/subpage/person_center'],resolve),
+          component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center'],resolve),
           children:[
             {
               path:'/release/center/all',//全部
               name:'CenterAll',
-              component:resolve=>require(['@/subpage/person_center_all'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center_all'],resolve)
             },
             {
               path:'/release/center/confirmed',//待支付
               name:'CenterConfirmed',
-              component:resolve=>require(['@/subpage/person_center_confirmed'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center_confirmed'],resolve)
             },
             {
-              path:'/release/center/refused',//代背书
+              path:'/release/center/refused',//待代背书
               name:'CenterRefused',
-              component:resolve=>require(['@/subpage/person_center_refused'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center_refused'],resolve)
             },
             {
-              path:'/release/center/audit',//代签收
+              path:'/release/center/audit',//待签收
               name:'CenterAudit',
-              component:resolve=>require(['@/subpage/person_center_audit'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center_audit'],resolve)
             },
            {
               path:'/release/center/completes',//已完成
               name:'CenterCompletes',
-              component:resolve=>require(['@/subpage/person_center_completes'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center_completes'],resolve)
             },
             {
               path:'/release/center/invalids',//已失效
               name:'CenterInvalids',
-              component:resolve=>require(['@/subpage/person_center_invalids'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/ordersCenter/person_center_invalids'],resolve)
             }
           ],
           redirect:'/release/center/all'
@@ -385,17 +385,17 @@ const router = new Router({
         {
           path:'/release/paper',//用户发布的票据
           name:'Paper',
-          component:resolve=>require(['@/subpage/person_paper'],resolve),
+          component:resolve=>require(['@/subpage/personalCenter/seller/draftDiscount/person_paper'],resolve),
           children:[
             {
               path:'/release/paper/offerIn',//用户报价中的票据
               name:'OfferIn',
-              component:resolve=>require(['@/subpage/person_offerIn'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/draftDiscount/person_offerIn'],resolve)
             },
             {
               path:'/release/paper/offerBe',//用户审核中的票据
               name:'OfferBe',
-              component:resolve=>require(['@/subpage/person_offerBe'],resolve)
+              component:resolve=>require(['@/subpage/personalCenter/seller/draftDiscount/person_offerBe'],resolve)
             }
           ],
           redirect:'/release/paper/offerIn'
@@ -435,22 +435,22 @@ const router = new Router({
     {
       path:'/releasepa',//发布票据
       name:'ReleasePa',
-      component:resolve=>require(['@/subpage/release_paper_A'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/sellDrafts/release_paper_A'],resolve)
     },
     {
       path:'/marketpa',//票据市场
       name:'MarketPa',
-      component:resolve=>require(['@/subpage/market_paper'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/draftsMarket/market_paper'],resolve)
     },
     {
       path:'/buyBillPa',//我要买票
       name:'buyBillPa',
-      component:resolve=>require(['@/subpage/market_paper'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/buyDrafts/market_paper'],resolve)
     },
     {
       path:'/details',//票据详情
       name:'Details',
-      component:resolve=>require(['@/subpage/paper_details'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/draftsMarket/paper_details'],resolve)
     },
     {
       path:'/offer',//通知买家已报价
@@ -465,7 +465,7 @@ const router = new Router({
     {
       path:'/resources',//资源市场
       name:'Resources',
-      component:resolve=>require(['@/subpage/market_resources'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/resourceMarket/market_resources'],resolve)
     }
   ]
 });
@@ -478,7 +478,7 @@ router.beforeEach((to,from,next)=>{
 ];
   if(nextRoute.indexOf(to.name)>-1){
     if(!getCookie('Iud')){
-      console.log('Surprise MontherFuck!')
+      //console.log('Surprise MontherFuck!')
       console.log(window.location.href)
       next('/signUp/password')
     }

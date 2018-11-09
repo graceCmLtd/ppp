@@ -4,7 +4,7 @@
   <div class="person_paper">
     <!-- banner图 -->
     <div class="person_paper_pic">
-      <img src="../../static/img/qiu.png" alt="">
+      <img src="../../../../../static/img/qiu.png" alt="">
     </div>
     <!-- 切换全部报价和审核中 -->
     <div  class="person_paper_table" >
@@ -66,7 +66,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span>{{item.companyId}}</span>
           <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
@@ -132,7 +132,7 @@
           <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
             <span>{{item.companyId}}</span>
             <button type="button" name="button" @click="getBillDetail(item)">查看</button>
           </p>
@@ -159,7 +159,7 @@
     </div>
     <div>
       <el-dialog title="票据详情" :visible.sync="dialogBillDetailVisual">
-        <img  src="../../static/img/bill.png" alt="" width="90%" height="98%"  ref="billDetailPic">
+        <img  src="../../../../../static/img/bill.png" alt="" width="90%" height="98%"  ref="billDetailPic">
         <el-table :data="billD">
           <el-table-column  property="billType" label="票据类型" width="150" ></el-table-column>
           <el-table-column property="billReferer" label="发布渠道" width="150"></el-table-column>
