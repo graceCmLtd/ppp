@@ -688,8 +688,7 @@
         line-height: 28px;
         float: right;
         margin: 12px 30px;
-      }
-  
+      } 
     }
   }
   .intention_mes_details{

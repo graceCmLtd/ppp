@@ -23,7 +23,7 @@
        <p class="btn_1">
          <span v-on:click="toggle()">确认提现</span>
          <span style="background:#A6A6A6; margin-left:29px;">
-          <router-link to="/release/center/completes">取消并返回</router-link>
+        <router-link to="/release/center/completes">取消并返回</router-link>
         </span>
       </p>
        <div style="position: absolute; bottom:50%; right: -17%; cursor: pointer;"><img src="../../static/img/9.18.png" alt="">
