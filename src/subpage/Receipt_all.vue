@@ -144,7 +144,8 @@
         console.log(Id)
         this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":"2",
+            "IntentionType":"4",
+            "transaction_filter":["已接单,待支付","待接单","已失效"],
             "currentPage" : this.currentPage,
             "pageSize" : this.pageSize
           },
@@ -177,7 +178,8 @@
         });
         this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":"2",
+            "IntentionType":"4",
+            "transaction_filter":["已接单,待支付","待接单","已失效"],
           },
           {headers:{
               'Content-Type':'application/json'

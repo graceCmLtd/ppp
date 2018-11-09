@@ -151,8 +151,8 @@
         console.log(Id);
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'2',
-            //"filter_str":"待接单",
+            "IntentionType":'4',
+            "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -161,39 +161,22 @@
             }}
         ).then((res)=>{
           console.log(res)
-          for(var i = 0;i<res.data.length;i++){
-            if(res.data[i].intentionStatus === '待接单')
-              res.data.splice(i,1);
-          }
           _this.noteList=res.data;
           _this.updateTimer();
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'2'
-            //"filter_str":"待接单",
+            "IntentionType":'4',
+            "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data != ''){
-              _this.count1 = res.data;
-              _this.axios.post(_this.oUrl+'/bills/getIntentionsCount',{
-                  "uuid":Id,
-                  "IntentionType":'4',
-                  "filter_str":"待接单"
-              },
-              {headers:{
-                  'Content-Type':'application/json'
-              }}
-              ).then((res)=>{
-                  if(res.data != '')
-                    _this.count2 = res.data;
-                  _this.total = _this.count1-_this.count2;
-                  if(_this.total <= 0)
-                    _this.showPaginate = false;
-              });
+          if(res.data.length > 0){
+            _this.total = res.data;      
+          }else{
+            _this.showPaginate = false;
           }
         });
       },

@@ -168,10 +168,9 @@
         let Id=getCookie('Iud');
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
-            "IntentionType":'7',
-            "filter_str1":'待接单',
-            "filter_str2":'已失效',
-            "quoteStatus":"报价完成,进入意向",
+            "IntentionType":'3',
+            "transaction_filter":["待接单","已失效"],
+            "quote_filter":["报价完成,进入意向"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -185,10 +184,9 @@
         });
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
-            "IntentionType":'7',
-            "filter_str1":'待接单',
-            "filter_str2":'已失效',
-            "quoteStatus":"报价完成,进入意向"
+            "IntentionType":'3',
+            "transaction_filter":['待接单',"已失效"],
+            "quote_filter":["报价完成,进入意向"]
           },
           {headers:{
               'Content-Type':'application/json'

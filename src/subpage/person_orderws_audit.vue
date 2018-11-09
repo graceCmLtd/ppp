@@ -95,7 +95,7 @@
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"已背书,待签收",
+            "transaction_filter":["已背书,待签收"],            
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -110,7 +110,7 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
-            "filter_str":"已背书,待签收"
+            "transaction_filter":["已背书,待签收"],
           },
           {headers:{
               'Content-Type':'application/json'
