@@ -44,7 +44,7 @@
         <div class="mes_right">  
         
           <div class="paper_is">
-            <div class="big_w" v-if="bigImg"  style="position:absolute; left:-2%; top: 84%; z-index: 999;" @click="imgScc" title="放大">+</div> 
+            <div class="big_w" v-if="bigImg"  style="position:absolute; right:-7%; top: 84%; z-index: 999;" @click="imgScc"><img src="../../../../static/img/toggle.png"></div> 
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
@@ -53,7 +53,7 @@
 
    
           <div class="paper_the">
-            <div class="big_w" v-if="bigImgs"  style="position:absolute; left: -2%;  top: 84%;z-index: 999;" @click="imgSccs" title="放大">+</div>
+            <div class="big_w" v-if="bigImgs"  style="position:absolute; right:-7%; top: 84%;z-index: 999;" @click="imgSccs"><img src="../../../../static/img/toggle.png"></div>
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
@@ -408,10 +408,7 @@
   .big_w{
     width:20px;
     height:20px;
-    border-radius:50%;
     cursor:pointer;
-    font-size:18px;
-    border:1px solid #333;
     line-height:20px;
   }
   .el-input__inner{
