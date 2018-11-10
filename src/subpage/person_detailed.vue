@@ -35,8 +35,9 @@
       <div style="position: absolute;top: 41%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
       </div>
     </div>
-    <p class="havelook">
-      <button type="button" name="button" @click="acceptOrder()">接单去付款</button>
+    <p class="havelook" @click="acceptOrder()">
+      <!-- <button type="button" name="button" @click="acceptOrder()">接单去付款</button> -->
+      接单去付款
     </p>
     <div class="person_detailed_prompt" ref="detailedPrompt">
       <img src="../../static/img/warning.png" alt="">
@@ -292,23 +293,19 @@ export default {
     }
   }
   .havelook{
-    text-align: center;
     margin-left: 8%;
-    position: relative;
     position: absolute;
     bottom: 30%;
     left: 39%;
-    button{
-      min-width: 25%;
-      min-height: 40px;
-      border-radius: 3px;
-      font-size: 15px;
-      background-color:#F15749;
-      color:#fff; 
-      width:237px;
-      height:50px; 
-      font-size:20px;
-    }
+    border-radius: 3px;
+    background-color:#F15749;
+    color:#fff; 
+    width:237px;
+    height:50px; 
+    font-size:19px;
+    line-height: 50px;
+    cursor:pointer;
+   
   }
   .person_detailed_mask{
     width: 100%;
