@@ -4,7 +4,7 @@
     <div class="offer_pic">
         <img src="../../../../../static/img/offer2.png" alt="">
     </div>
-    <span style="color:#F15749; position:relative; top:40px; left:110px; font-weight:bold; z-index: 999;" >如卖家已接收你的报价，请去我的接单里查看 
+    <span style="color:#F15749; position:relative; top:10px; left:110px; font-weight:bold; z-index: 999;" >如卖家已接收你的报价，请去我的接单里查看 
       <router-link to="/release/Receipt/ReceiptAll" tag="span"><img style="width:100px; height:30px; position:relative; top:10px;" src="../../../../../static/img/9.14.png">   </router-link>
     </span>
 
@@ -64,11 +64,11 @@ export default {
     },
     offerPri(){
       this.color=3;
-      this.$refs.person_offer_triangle_prices.style.right='-9%'
+      // this.$refs.person_offer_triangle_prices.style.right='-9%'
     },
     offerCan(){
       this.color=4;
-      this.$refs.person_offer_triangle_cancel.style.right='-9%'
+      // this.$refs.person_offer_triangle_cancel.style.right='-9%'
     }
   },
     created(){
@@ -97,7 +97,8 @@ export default {
     }
   }
   .offer_w_con{
-    margin-left: 1%;
+    margin-left: 0.5%;
+    margin-top: -2%;
     background:#fff;
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     width: 98%;
@@ -107,28 +108,28 @@ export default {
     position: relative;
     .offer_title{
           width: 49%;
-          min-height: 36px;
-          line-height: 36px;
-          margin-left: 1%;
+          min-height: 53px;
+          line-height: 53px;
           border-bottom: 3px solid #F15749;
-          background: white;
           position: absolute;
-          bottom: 0;
+          bottom: -1px;
       .offer{
-        background: #F15749;
-        color:white;
-        position: relative;
-        width:130px;
+          position: relative;
+          width: 130px;
+          background: #F15749;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
         .person_offer_triangle{
           width:0;
           height:0;
-          border-width:0 10px 10px;
+          border-width:0 7px 7px;
           border-style:solid;
           border-color:transparent transparent #AF2600;
           margin:40px auto;
           position: absolute;
-          top:-135.4%;
-          right:-9.5%;
+          top: -69%;
+          right: -7.5%;
           transform:rotate(-135deg);
         }
       }
@@ -136,9 +137,6 @@ export default {
         cursor:pointer;
       }
     }
-  }
-  .person_offer_view{
-    // min-height: 500px;
   }
  }
 }

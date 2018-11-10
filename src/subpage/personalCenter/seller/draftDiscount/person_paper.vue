@@ -490,7 +490,7 @@
       width: 300px;
       margin-left: 1%;
       text-align: left;
-      margin-top: 2%;
+      margin-top: 0.8%;
       span{
         /*color:#3C3C3C;*/
         font-size: 17px;
@@ -517,7 +517,7 @@
     }
     .hadOffer{
       width: 100%;
-      margin-top:4%;
+      margin-top:0.6%;
 
       .hadOffer_title{
         min-height: 34px;

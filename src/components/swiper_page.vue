@@ -2,10 +2,12 @@
   <div class="swiper">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="../../static/img/banner3.png" alt="" title=""></div>
-        <div class="swiper-slide"><img src="../../static/img/banner2.png" alt="" title=""></div>
-        <div class="swiper-slide"><img src="../../static/img/banner1.png" alt="" title=""></div>
         <div class="swiper-slide"><img src="../../static/img/banner0.png" alt="" title=""></div>
+        <div class="swiper-slide"><img src="../../static/img/banner2.png" alt="" title=""></div>
+        <div class="swiper-slide"><img src="../../static/img/banner3.png" alt="" title=""></div>
+        <div class="swiper-slide"><img src="../../static/img/banner1.png" alt="" title=""></div>
+
+      
       </div>
       <!-- Add Pagination -->
       <div class="swiper-pagination"></div>

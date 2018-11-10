@@ -102,20 +102,20 @@
       },
       centerRefused(){
         this.color=4;
-        this.$refs.person_center_triangle_c.style.top='-134.5%';
-        this.$refs.person_center_triangle_c.style.right='-7%'
+        // this.$refs.person_center_triangle_c.style.top='-134.5%';
+        // this.$refs.person_center_triangle_c.style.right='-7%'
       },
       centerAudit(){
         this.color=5;
-        this.$refs.person_center_triangle_s.style.right='-9%'
+        // this.$refs.person_center_triangle_s.style.right='-9%'
       },
       centerCompletes(){
         this.color=6;
-        this.$refs.person_center_triangle_d.style.right='-11%'
+        // this.$refs.person_center_triangle_d.style.right='-11%'
       },
       centerInvalids(){
         this.color=7;
-        this.$refs.person_center_triangle_f.style.right='-13%'
+        // this.$refs.person_center_triangle_f.style.right='-13%'
       }
     },
     created(){
@@ -142,8 +142,11 @@
     background:#eee;
   }
   .centerAc{
-    background: #F15749;
-    color:white;
+      background: #F15749;
+      color:white;
+      font-size: 16px;
+      font-weight: bold;
+      line-height:40px;
     .person_center_add{
       width: 100%;
       height:14px;
@@ -155,13 +158,13 @@
     .person_center_triangle{
       width:0;
       height:0;
-      border-width:0 10px 10px;
+      border-width:0 7px 7px;
       border-style:solid;
       border-color:transparent transparent #AF2600;
       margin:40px auto;
       position: absolute;
-      top: -133%;
-      right: -9.5%;
+      top: -69%;
+      right: -7.5%;
       transform:rotate(-135deg);
     }
   }
@@ -179,8 +182,8 @@
       }
     }
     .person_center_con{
-      margin-left:1%;
-      margin-top:3%;
+      margin-left:0.5%;
+      margin-top:0.8%;
       // min-height: 500px;
       background: #fff;
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
@@ -190,16 +193,15 @@
         position: relative;
         .person_center_title{
           position: absolute;
-          bottom:-1px;
+          bottom:2px;
           border-bottom:3px solid #F15749;
           width: 61%;
           .center_title{
-            min-height: 36px;
-            line-height: 36px;
+            min-height: 53px;
+            line-height:53px;
             cursor:pointer;
             position: relative;
-            /*background: #F15749;*/
-            /*color: #fff;*/
+            bottom: -1px;
             width:130px;
           }
         }

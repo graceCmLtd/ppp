@@ -186,6 +186,7 @@
   }
 </script>
 <style lang="scss" scoped>
+
   .red-point{
      position: relative;
   }
@@ -306,7 +307,6 @@
       }
     }
   }
-
 
 
 

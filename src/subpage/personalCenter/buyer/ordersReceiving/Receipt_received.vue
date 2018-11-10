@@ -225,8 +225,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-    margin-top: 3%;
-    margin-left: 1%;
+    margin-top: 0.4%;
     .intention_mes_title{
       background: #F15749;
       min-height: 44px;
