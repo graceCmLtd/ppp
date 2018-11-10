@@ -491,8 +491,8 @@
       margin-left: 1%;
       text-align: left;
       margin-top: 0.8%;
+      cursor: pointer;
       span{
-        /*color:#3C3C3C;*/
         font-size: 17px;
         cursor:pointer;
       }
@@ -502,10 +502,8 @@
     }
     .person_paper_tableB{
       width: 100%;
-     
       text-align: left;
       border-bottom: 1px solid #F15749;
-      /*margin-top: 12%;*/
 
       span{
         font-size: 17px;
