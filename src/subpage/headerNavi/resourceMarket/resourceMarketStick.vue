@@ -5,15 +5,15 @@
       <p class="release_paper_title"><span>票据信息</span></p>
       <div class="release_paper_mes">
         <div class="mes_left">
-          <p style="position: relative;">票据类型&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 287px;height: 27.97px;">
+          <p style="position: relative;">票据类别&nbsp;&nbsp;<select  ref="typeSelect" class="select_w" style=" border: 1px solid #000; outline: none;width: 287px;height: 27.97px;">
             <option value ="电银">电银</option>
             <option value ="纸银">纸银</option>
-            <option value ="电商">电商</option>
-            <option value ="纸商">纸商</option>
+            <option value="电商">电商</option>
+            <option value="纸商">纸商</option>
           </select>
           </p>
           <p>票据号码<input type="text" v-model:vlaue="billNum" placehoder="" ref="paperNumber" oninput="if(value.length > 30)value = value.slice(0, 30)" /></p>
-          <p>票面总额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
+          <p>票据金额<input type="text" vlaue="" placehoder="" ref="amount"/></p>
           <p class="release_paper_date" style="margin-left:-72px;">票据到期日
             <el-date-picker
               v-model="time"
@@ -28,6 +28,9 @@
           </p>
           <p>承兑人全称<input type="text" vlaue="" placehoder="" ref="acceptor"/></p>
           <!--<p>是否可签转<input type="text" vlaue="" placehoder=""/></p>-->
+        <!--    <span style="font-size:17px;font-weight:400;color:rgba(51,51,51,1);line-height:25px;color:#F35643;font-weight:bold; margin-top:70px;">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</span> -->
+         <!--   <p style="position:relative;left:-14%;"><input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
+          <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保交易协议</p> -->
           <p class="obtain">
             <!-- 保存 -->
             <!-- <button type="button" name="button" @click="PaperSave()">保存</button> -->
@@ -39,21 +42,15 @@
             >{{releText}}</button>
           </p>
         </div>
-    
-
-        <div class="mes_right">  
-        
+        <div class="mes_right">
           <div class="paper_is">
             <div class="big_w"   style="position:absolute; left:-2%; top: 84%; z-index: 999;" @click="imgScc" title="放大">+</div> 
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
-
           </div>
-
-   
           <div class="paper_the">
-            <div class="big_w"   style="position:absolute; left: -2%;  top: 84%;z-index: 999;" @click="imgSccs" title="放大">+</div>
+            <div class="big_w" style="position:absolute; left:-2%; top: 84%; z-index: 999; background:fff; color:#333; " @click="imgSccs" title="放大">+</div>
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
@@ -62,25 +59,23 @@
       </div>
       <!-- <p class="service">
         <input type="radio" style="width:20px;height:20px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"/>
-        <input type="radio" style="width:20px;height:20px;" value="" checked="checked" v-show="radioB" @click="radioBC()" />
+        <input type="radio" style="width:20px;height:20px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />
         同意平台担保交易协议
       </p> -->
-      
     </div>
     <div class="release_paper_mask" v-show="PaperMaskShow" @click="closeSave()">
+
     </div>
     <div class="save_paompt" ref="save_paompt">
       <img src="../../../../static/img/save_icon.png" alt="">
       <p class="save_title">保存成功</p>
       <p class="save_alt">您可以在我的票据-草稿里对该票据编辑发布</p>
       <p>
-        <button type="button" name="button">
-          <router-link to="/release/offer/offerAll">
-             查看审核状态
-            </router-link>
-          </button>
+        <button type="button" name="button">查看审核状态</button>
       </p>
     </div>
+
+
     <el-dialog title="温馨提示" :visible.sync="authVisible"
       width="30%"  >
       <span v-model='count'>您还未进行企业认证，{{count}}秒后将自动跳转到认证页面</span>
@@ -93,10 +88,12 @@
       <p>
         <button type="button" name="button" @click="closeSave()">继续发布票据</button>
         <!-- <button type="button" name="button">查看审核状态</button> -->
-        <router-link to="/release/paper" tag="button">查看已发布的票据</router-link>
+        <router-link to="/release/intention/audit" tag="button">查看已发布的票据</router-link>
+        
       </p>
     </div>
     
+
     <Footer :height="minHeight"/>
   </div>
 </template>
@@ -114,7 +111,7 @@
         checked:false,
         PaperMaskShow:false,
         loadingRele:false,
-        releText:'发布',
+        releText:'提交意向',
         dayRe:'？',
         typeSelect:'',
         authVisible:false,
@@ -122,6 +119,7 @@
         timer: null,
         isChoose:false,
         isChooses:false,
+        interestItem:null
       }
     },
     components:{
@@ -139,6 +137,9 @@
           this.choseDate();
         }
       }
+    },
+    created(){
+      this.getInterest();
     },
     methods:{
       choseDate(){
@@ -241,23 +242,21 @@
           }
         }
       },
-      // radioTC($event){
-      //   this.radioT=false;
-      //   this.radioB=true;
-      //   $event.target.checked=false
-      // },
-      // radioBC(){
-      //   this.radioT=true;
-      //   this.radioB=false;
-      // },
+      radioTC($event){
+        this.radioT=false;
+        this.radioB=true;
+        $event.target.checked=false
+      },
+      radioBC(){
+        this.radioT=true;
+        this.radioB=false;
+      },
       authCheck(){
         let _this = this;
-        console.log("authCheck....")
         if (getCookie('role')=="vip" || getCookie('role') == "normal") {
           
           return true;
-        }else if(getCookie("isAu") === "true"){
-          console.log("ddd22"+getCookie("isAu"));
+        }else if(getCookie("isAu")){
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
@@ -269,8 +268,7 @@
             _this.$router.push({name:"Servicer"})
           },5000)
           
-        }else if(getCookie("isAu") === "false"){
-          console.log("fff11");
+        }else{
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
@@ -279,7 +277,7 @@
           t = setTimeout(function(){
             _this.authVisible = false;
             
-            _this.$router.push({name:"Data"})
+            _this.$router.push({name:"Prise"})
           },5000)
         }
       },
@@ -301,12 +299,24 @@
           }, 1000)
         }
       },
+
+      getInterest(){
+        let object = this.$route.query.item;
+          console.log(object);
+          if(object instanceof Object){
+            window.localStorage.setItem('item',JSON.stringify(object));
+          }
+          let item = JSON.parse(window.localStorage.getItem('item'));
+          console.log(item);
+          this.interestItem = item;
+      },
       submitMes(){
-        let _this=this;
+         let _this=this;
         if(!getCookie('Iud')){
           this.$router.push('/signUp/password')
-        }else if(this.authCheck()){
+        }else{
           //let paperNumber=_this.$refs.paperNumber.value;
+          //alert("pppp")
           let paperNumber=_this.billNum;
           let amount=_this.$refs.amount.value;
           let acceptor=_this.$refs.acceptor.value;
@@ -314,19 +324,26 @@
           let The=window.localStorage.getItem('The');//票据反面图片
           let Id=getCookie('Iud');
           let typeSelect = _this.$refs.typeSelect.value;
+          let item = _this.interestItem;
+          
           console.log("this  refs  aldfjkad")
           console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
-            alert('请先完善票面信息！')
-          }else if(!Is && !The){
-            //alert('请先上传票据正面图片！')
-            alert('请先上传票据图片！')
+             alert('请先完善票面信息！')
+          }else if(!Is&& !The){
+            alert('请先上传票据正面图片！')
           }/*else if(!The){
-            //alert('请先上传票据反面图片！')
+            // alert('请先上传票据反面图片！')
           }*/else{
             _this.loadingRele=true;
-            _this.releText=''
-            _this.axios.post(this.oUrl+'/bills/addbill',{
+            _this.releText='';
+            //获取利率和每十万加，并计算实付金额，保留小数点后两位
+            let rate = item.interest.split("% + ")[0];
+            let XperLakh = item.interest.split("% + ")[1];
+            let real_money = (amount-((amount*rate/100*_this.dayRe)/360+(amount/100000*XperLakh))).toFixed(2);
+            console.log(real_money+"--"+rate);
+            _this.axios.post(this.oUrl+'/bills/addFromResourceMarket',{
+              "paramBill":{
                 "billInfo":{
                   "billNumber":paperNumber,
                   "billType":typeSelect,
@@ -338,30 +355,48 @@
                   "releaserId":Id,
                   "billPicsId":11111,
                   "transferable":true,
-                  "billReferer":"传统渠道"
+                  "billReferer":"资源池"
                 },
                 "billPics":{
                   "billNumber":paperNumber,
                   "pic1":Is,
                   "pic2":The,
                   "updateDate":"2018-08-08"
-                },
-                "userData":{
-                  "uuid":Id
                 }
               },
+              "paramQuote":{
+                "billNumber":paperNumber,
+                "quoterId":item.buyerId,
+                "quoteAmount":2000000,
+                "interest":rate,
+                "xPerLakh":XperLakh,
+                "status":"报价完成,进入意向",
+                "real_money":real_money,
+                "quoteDate":"2018-08-09"
+              },
+              "paramTransaction":{
+                  "transactionId":321321232,
+                  "transactionType":"pool",
+                  "billNumber":paperNumber,
+                  "buyerId":item.buyerId,
+                  "sellerId":Id,
+                  "amount":amount,
+                  "transactionStatus":"on sell",
+                  "transacDate":"2018-08-09"
+              }
+            },
               {headers:{
                   'Content-Type':'application/json'
                 }}
             ).then((res)=>{
               console.log(res)
               if(res.data.statusCode==='fail'){
-                _this.releText='发布';
+                _this.releText='提交意向';
                 alert('该票已有发布记录！');
                 window.location.reload();
               }else{
                 _this.loadingRele=false;
-                _this.releText='发布';
+                _this.releText='提交意向';
                 _this.loadingRele=false;
                 _this.PaperRele();
                 window.localStorage.clear();
@@ -387,12 +422,12 @@
           });
           
       },
-    imgScc:function () {                     
-      this.isChoose = !this.isChoose     
-     },
-    imgSccs:function () {                     
-      this.isChooses = !this.isChooses    
-     },
+      imgScc:function () {                     
+        this.isChoose = !this.isChoose     
+       },
+      imgSccs:function () {                     
+        this.isChooses = !this.isChooses    
+       },
 
     }
   }
@@ -429,7 +464,6 @@
       background: rgba(255,255,255,1);
       box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
       margin-top: 100px;
-
       .release_paper_title{
         width: 100%;
         border-bottom: 2px solid #F15749;
@@ -503,18 +537,19 @@
               position: relative;
               margin-left: -76px;
             button{
-              width: 290px;
-              height: 40px;
+              width:360px;
+              height:50px;
               background: #F15749;
-              color: white;
+              color:white;
               font-size: 16px;
               border-radius: 5px;
-              margin-left: -36px;
+              margin-left:80px;
+              font-weight:bold;
             }
             button:nth-child(1){
-              position: absolute;
-              top:0;
-              left:40%;
+             position: absolute;
+             top: 11px;
+             left: 15%;
             }
             button:nth-child(2){
               margin-left: 250px;
@@ -525,27 +560,17 @@
           width: 30%;
           height:100%;
           .paper_is{
-            width: 92%;
-            height: 40%;
+            width: 86%;
+            height:40%;
             padding-top:13%;
             position: relative;
-            text-align: center;
-            cursor: pointer;
             img{
               width: 100%;
               height:100%;
               position: absolute;
               top:0;
               left:0;
-              transform: scale(1);          
-              transition: all ease 0.5s; 
             }
-             img.active {     
-                 transform: scale(2);    
-                 position: absolute;          
-                 z-index: 100;
-                 left:-3%;
-                } 
             input{
               width: 100%;
               height:100%;
@@ -557,8 +582,8 @@
             }
           }
           .paper_the{
-            width: 92%;
-            height: 40%;
+            width: 86%;
+            height:40%;
             padding-top:13%;
             margin-top: 10%;
             position: relative;
@@ -568,15 +593,7 @@
               position: absolute;
               top:0;
               left:0;
-              transform: scale(1);          
-              transition: all ease 0.5s; 
             }
-            img.active {     
-                 transform: scale(1.5);    
-                 position: absolute;          
-                 z-index: 100;
-                 left:-3%;
-                } 
             input{
               width: 100%;
               height:100%;
@@ -689,7 +706,7 @@
         button{
           width: 120px;
           height:35px;
-          background: #F15749;
+          background: linear-gradient(180deg,rgba(254,126,89,1),rgba(252,72,45,1));
           border-radius:5px;
           color:white;
         }
