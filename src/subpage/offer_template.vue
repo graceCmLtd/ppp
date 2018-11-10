@@ -649,7 +649,6 @@
     width:120px;
     height:50px;
     background:rgba(83,192,255,1);
-    box-shadow:0px 2px 4px 0px rgba(83,192,255,0.4);
     border-radius:4px 3px 3px 3px;
     color:#fff;
     line-height:50px;

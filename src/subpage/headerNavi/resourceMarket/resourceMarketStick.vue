@@ -44,13 +44,13 @@
         </div>
         <div class="mes_right">
           <div class="paper_is">
-            <div class="big_w"   style="position:absolute; left:-2%; top: 84%; z-index: 999;" @click="imgScc" title="放大">+</div> 
+            <div class="big_w" v-if="bigImg"  style="position:absolute; right:-7%; top: 84%; z-index: 999;" @click="imgScc"><img src="../../../../static/img/toggle.png"></div> 
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
-            <div class="big_w" style="position:absolute; left:-2%; top: 84%; z-index: 999; background:fff; color:#333; " @click="imgSccs" title="放大">+</div>
+            <div class="big_w" v-if="bigImgs" style="position:absolute; right:-7%; top: 84%; z-index: 999; background:fff; color:#333; " @click="imgSccs"><img src="../../../../static/img/toggle.png"></div>
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
             <span>上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
@@ -119,7 +119,9 @@
         timer: null,
         isChoose:false,
         isChooses:false,
-        interestItem:null
+        interestItem:null,
+        bigImg:false,
+        bigImgs:false,
       }
     },
     components:{
@@ -211,6 +213,8 @@
             _this.$refs.Is.src=base64;
             window.localStorage.setItem('Is',base64);
             _this.ocrImage(base64);
+            _this.bigImg=true;
+            _this.$refs.big_w="block";
 
           }
         }
@@ -238,7 +242,9 @@
             drawer.drawImage(img, 0, 0, canvas.width, canvas.height);
             let base64 = canvas.toDataURL("image/jpeg", quality); //压缩后的base64图片
             _this.$refs.The.src=base64;
-            window.localStorage.setItem('The',base64)
+            window.localStorage.setItem('The',base64),
+            _this.bigImgs=true;
+            _this.$refs.big_w="block";
           }
         }
       },
@@ -437,10 +443,7 @@
   .big_w{
     width:20px;
     height:20px;
-    border-radius:50%;
     cursor:pointer;
-    font-size:18px;
-    border:1px solid #333;
     line-height:20px;
   }
   .el-input__inner{
@@ -564,13 +567,21 @@
             height:40%;
             padding-top:13%;
             position: relative;
-            img{
+         img{
               width: 100%;
               height:100%;
               position: absolute;
               top:0;
               left:0;
+              transform: scale(1);          
+              transition: all ease 0.5s; 
             }
+             img.active {     
+                 transform: scale(2);    
+                 position: absolute;          
+                 z-index: 100;
+                 left:-3%;
+                } 
             input{
               width: 100%;
               height:100%;
@@ -587,13 +598,21 @@
             padding-top:13%;
             margin-top: 10%;
             position: relative;
-            img{
+              img{
               width: 100%;
               height:100%;
               position: absolute;
               top:0;
               left:0;
+              transform: scale(1);          
+              transition: all ease 0.5s; 
             }
+             img.active {     
+                 transform: scale(2);    
+                 position: absolute;          
+                 z-index: 100;
+                 left:-3%;
+                } 
             input{
               width: 100%;
               height:100%;
