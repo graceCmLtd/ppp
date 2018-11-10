@@ -13,7 +13,7 @@
                            tag="div" class="center_title"
                            @click.native="centerAll()"
                            :class="{centerAc:color==1}"
-              >全部订单
+              >全部订单({{count1}})
                 <span class="person_center_triangle"></span>
               </router-link>
             </el-col>
@@ -22,7 +22,7 @@
                            tag="div" class="center_title confirmed"
                            @click.native="centerConFirmed()"
                            :class="{centerAc:color==2}"
-              >待支付
+              >待支付({{count2}})
                 
                 <span class="person_center_triangle"></span>
               </router-link>
@@ -32,7 +32,7 @@
                            tag="div" class="center_title rejected"
                            @click.native="centerRefused()"
                            :class="{centerAc:color==4}"
-              >待卖家背书
+              >待卖家背书({{count3}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_c"></span>
               </router-link>
@@ -43,7 +43,7 @@
                            tag="div" class="center_title"
                            @click.native="centerAudit()"
                            :class="{centerAc:color==5}"
-              >待签收
+              >待签收({{count4}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_s"></span>
               </router-link>
@@ -54,7 +54,7 @@
                            tag="div" class="center_title"
                            @click.native="centerCompletes()"
                            :class="{centerAc:color==6}"
-              >已完成
+              >已完成({{count5}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_d"></span>
               </router-link>
@@ -65,7 +65,7 @@
                            tag="div" class="center_title"
                            @click.native="centerInvalids()"
                            :class="{centerAc:color==7}"
-              >已失效
+              >已失效({{count6}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_f"></span>
               </router-link>
@@ -82,10 +82,17 @@
 </template>
 
 <script>
+  import {getCookie} from '@/assets/util'
   export default {
     data(){
       return{
-        color:1
+        color:1,
+        count1:0,
+        count2:0,
+        count3:0,
+        count4:0,
+        count5:0,
+        count6:0,
       }
     },
     methods:{
@@ -116,6 +123,45 @@
       centerInvalids(){
         this.color=7;
         this.$refs.person_center_triangle_f.style.right='-13%'
+      },
+      centerInvalids(){
+        this.color=7;
+        this.$refs.person_center_triangle_f.style.right='-13%'
+      },
+      getItemCount(){
+        let _this = this;
+        let Id = getCookie('Iud');
+        _this.axios.post(this.oUrl+'/transaction/getCountByIntentionStatus',{
+            "uuid":Id,
+            "role":"buyer",
+            "filter_str":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"]
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          //alert(res.data)
+          if(res.data.length > 0){
+            for(var i = 0;i<res.data.length;i++){
+                if(res.data[i].intentionStatus === "已接单,待支付"){
+                  this.count2 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已支付,待背书"){
+                  this.count3 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已背书,待签收"){
+                  this.count4 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已签收"){
+                  this.count5 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已失效"){
+                  this.count6 = res.data[i].count;
+                }
+                this.count1 += res.data[i].count;
+            }
+          }
+        });
       }
     },
     created(){
@@ -132,7 +178,24 @@
       }else if(this.$route.path == "/release/orderws/invalids"){
         this.color = 7
       }
-      
+      this.getItemCount();
+    },
+    watch:{
+      '$route' (to, from){
+        if (this.$route.path == "/release/orderws/all") {
+          this.color = 1
+        }else if(this.$route.path =="/release/orderws/confirmed"){
+          this.color =2
+        }else if(this.$route.path == "/release/orderws/refused"){
+          this.color =4
+        }else if(this.$route.path ==  "/release/orderws/audit"){
+          this.color = 5
+        }else if(this.$route.path == "/release/orderws/completes"){
+          this.color = 6
+        }else if(this.$route.path == "/release/orderws/invalids"){
+          this.color = 7
+        }
+      } 
     }
   }
 </script>

@@ -157,7 +157,10 @@
         }}).then((res)=>{
           console.log(res)
           //window.clearInterval(time)
-          this.getIntenTionList()
+          //this.getIntenTionList()
+          if(res.data.status === "success"){
+              this.$router.push({name:'OrderwsCompletes'});
+          }
 
         })
       },

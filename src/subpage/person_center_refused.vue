@@ -248,24 +248,28 @@
           'Content-Type':'application/json'
         }}).then((res)=>{
           console.log(res)
-          this.isShow = false;
-          this.getIntenTionList();
-        })
-        //let imgIs = window.localStorage.;
-
-        console.log("www.123");
-        this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
-          orderId:this.current_item.transacType,
-          pic1:window.localStorage.getItem("Is"),
-          pic2:"sss"
-        },{headers:{
-          'Content-Type':'application/json'
-        }}).then((res)=>{
-          console.log(res)
-          console.log("插入success");
-          //this.isShow = false;
           //this.getIntenTionList();
+          if(res.data.status === "success"){
+              this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
+              orderId:this.current_item.transacType,
+              pic1:window.localStorage.getItem("Is"),
+              pic2:"sss"
+              },{headers:{
+              'Content-Type':'application/json'
+              }}).then((res)=>{
+                  console.log(res)
+                  console.log("插入success");
+                  //this.isShow = false;
+                  //this.getIntenTionList();
+                  console.log("ffdd123")
+                  if(res.data.status === "success"){
+                        this.isShow = false;
+                        this.$router.push({name:'CenterAudit'});
+                  } 
+              })
+          }
         })
+        
        },
        /*更新倒计时数组*/
        updateTimer(){

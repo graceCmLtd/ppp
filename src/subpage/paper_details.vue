@@ -14,13 +14,13 @@
         <div class="place">
           <p class="num">请填写你的报价</p>
           <div class="table">
-            <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" v-model:value="rate" alt="" ref="interest"/>%</p>
-            <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" v-model:value="add_amount" ref="xPerLakh"/>元</p>
-            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" v-model:value="adjustDays" />天</p>
+            <p style="font-weight:bold;">报价利率&nbsp;:<input type="text" v-model:value="quoteItems.rate" alt="" ref="interest"/>%</p>
+            <p style="font-weight:bold;">每10万加&nbsp;:<input type="text" v-model:value="quoteItems.add_amount" ref="xPerLakh"/>元</p>
+            <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" v-model:value="quoteItems.adjustDays"/>天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
             <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">
               交易金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{interest_rate}}元</i> &nbsp;&nbsp;&nbsp;
-                <i style="background:#f15749;width:100px;height:30px;display:inline-block;font-style:normal;color:white;line-height:30px;text-align:center;border-radius:5px;"><button @click="calculate()" style="background:#f15749;width:100px;height:30px;">计算</button></i>
+                <!-- <i style="background:#f15749;width:100px;height:30px;display:inline-block;font-style:normal;color:white;line-height:30px;text-align:center;border-radius:5px;"><button @click="calculate()" style="background:#f15749;width:100px;height:30px;">计算</button></i> -->
             </p>
             <p><button type="button" @click="detailSprompt()">确认报价</button></p>
           </div>
@@ -67,9 +67,7 @@ export default {
       companyName:"",
       releaserId:null,
       acceptor:null,
-      rate : 0,
-      add_amount : 0,
-      adjustDays : 0 ,
+      quoteItems:{rate : 0,add_amount : 0,adjustDays : 0},
       interest_rate : 0,
       isChoose:false,
     }
@@ -81,14 +79,19 @@ export default {
   },
   methods:{
     calculate(){
+      console.log("adsddadaddsa");
       let amount = this.amount;
       let remainDay = this.remainDays;
-      let rate = this.rate;
-      let add_amount = this.add_amount;
-      let adjustDays = this.adjustDays;
-      let interest = (amount*(rate/100)*(remainDay+adjustDays))/360+(amount/100000*add_amount);
-      let realValue = Number(amount - interest).toFixed(2);
-      this.interest_rate = realValue;
+      let rate = this.quoteItems.rate;
+      let add_amount = this.quoteItems.add_amount;
+      let adjustDays = this.quoteItems.adjustDays;
+      if(rate === '' && add_amount === '' && adjustDays === ''){
+        this.interest_rate = 0
+      }else{
+        let interest = (amount*(rate/100)*(remainDay+adjustDays))/360+(amount/100000*add_amount);
+        let realValue = Number(amount - interest).toFixed(2);
+        this.interest_rate = realValue;
+      }
     },
     detailSprompt(){
       let _this=this;
@@ -186,6 +189,16 @@ export default {
   },
   mounted(){
      this.getPics()
+  },
+  watch:{
+    quoteItems: {
+      handler: function (val, oldVal) {
+          //console.log("quoteItems.adjustDays:"+val.adjustDays,oldVal.adjustDays); 
+          console.log("ccvvvxx"+this.quoteItems.add_amount+"-"+this.quoteItems.adjustDays);
+          this.calculate();
+       },
+      deep: true
+    }
   }
 }
 </script>

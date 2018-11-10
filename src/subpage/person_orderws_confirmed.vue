@@ -143,7 +143,7 @@
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
-          if(res.data.length != '')
+          if(res.data != '')
               _this.total = res.data;
           else
             _this.showPaginate = false;

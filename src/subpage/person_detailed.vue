@@ -141,13 +141,13 @@ export default {
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
-          alert("支付成功")
           console.log(res)
+          if(res.data.status === "success"){
+            alert("支付成功")
+            _this.$router.push({name:'OrderwsRefused'})
+          } 
         })
-        _this.$router.push({
-          name:'OrderwsRefused'
-        })
-    },
+      },
     /*取消付款 ，待付款 */
     payCancle(){
       let _this = this;
@@ -170,13 +170,11 @@ export default {
         },{headers:{
           'Content-Type':'application/json'
         }}).then((res)=>{
-          
-          console.log("交易取消")
-          console.log(res)
-        })
-        _this.$router.push({
-          name:'OrderwsRefused'
-        })
+          if(res.data.status === "success"){
+              console.log("交易取消")
+              _this.$router.push({name:'OrderwsConfirmed'})
+          }
+        }) 
     },
     getBill(){
       //this.bills=this.$route.query.bills;
