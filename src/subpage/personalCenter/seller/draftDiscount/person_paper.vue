@@ -66,7 +66,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span>{{item.companyId}}</span>
           <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
@@ -132,7 +132,7 @@
           <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
             <span>{{item.companyId}}</span>
             <button type="button" name="button" @click="getBillDetail(item)">查看</button>
           </p>
