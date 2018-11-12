@@ -33,7 +33,7 @@
 
            <!--<div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'"><router-link :to="{path:'/release/forward',query:{item:item}}">提现  </router-link></div>
        -->
-            <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'" v-on:click="toggle()"  @click="fun($event,item)">提醒买家</div>
+            <div class="intention_mes"  id="color_w" v-if="item.intentionStatus==='已背书,待签收'"   @click="fun($event,item)">提醒买家</div>
             <div class="intention_mes" id="payment" v-if="item.intentionStatus==='已签收'">
             <router-link :to="{path:'/release/forward',query:{item:item}}">
               提现  
