@@ -45,6 +45,9 @@
         
           <div class="paper_is">
             <div class="big_w" v-if="bigImg"  style="position:absolute; right:-7%; top: 84%; z-index: 999;" @click="imgScc"><img src="../../../../static/img/toggle.png"></div> 
+            <div class="loading" style="" v-if="gifImg">
+              <img src="../../../../static/img/loading.gif">
+            </div> 
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span>上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
@@ -124,6 +127,7 @@
         isChooses:false,
         bigImg:false,
         bigImgs:false,
+        gifImg:false,
       }
     },
     components:{
@@ -214,6 +218,8 @@
             _this.ocrImage(base64);
             _this.bigImg=true;
             _this.$refs.big_w="block";
+            _this.gifImg=true;
+            _this.$refs.loading="block";
 
           }
         }
@@ -384,12 +390,18 @@
           var url = this.oUrl + "/bills/ocrImage";
           var data = {"image":path};
           _this.axios.post(url,data).then(function(res){
-              if(res.data.time == ""){
+              if(res.data.time == "" || res.data.billNumber== ""){
                   _this.time = null;
+                  _this.gifImg=false;
+                  _this.gifImg=false;
+                
               }
               var date = new Date(res.data.time); //时间对象
               _this.time = date.getTime(); //转换成时间戳
               _this.billNum = res.data.billNumber;
+
+             
+
           });
           
       },
@@ -405,6 +417,14 @@
 </script>
 
 <style lang="scss">
+.loading{
+  position:absolute; 
+  right: 40%;
+  top: 35%;
+  z-index: 999;
+  width:40px;
+  height:40px;
+}
   .big_w{
     width:20px;
     height:20px;
