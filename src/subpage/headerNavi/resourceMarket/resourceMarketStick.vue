@@ -49,7 +49,7 @@
               <img src="../../../../static/img/loading.gif">
             </div> 
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
-            <span>上传票据正面</span>
+            <span style="margin-top: 62%;">上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
@@ -58,7 +58,7 @@
               <img src="../../../../static/img/loading.gif">
             </div>  -->
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
-            <span>上传票据反面</span>
+            <span style="margin-top: 62%;">上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
         </div>
