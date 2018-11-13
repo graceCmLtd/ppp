@@ -30,7 +30,7 @@
         <span>汇票图片</span>
       </p>
       <div class="paper_pic">
-        <img :class="{'active':isChoose}"  src="../../../../static/img/banner2.jpg" alt="" ref="billPic" @click="imgScc">
+        <img :class="{'active':isChoose}"  src="../../static/img/banner2.jpg" alt="" ref="billPic" @click="imgScc">
       </div>
     </div>
     <div class="success_mes" ref="success_mes">
@@ -251,7 +251,7 @@ export default {
         height: 350px;
         min-height: 300px;
         position: relative;
-        background: url("../../../../static/img/jigou.png");
+        background: url("../../static/img/jigou.png");
         padding-left:10%;
         padding-top:3%;
         .num{

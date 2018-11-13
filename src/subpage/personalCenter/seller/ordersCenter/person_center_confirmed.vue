@@ -41,7 +41,7 @@
           <span>公司名称：{{item.companyName}}</span>
           <span>买家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
 
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">10:10:10</i></span>
           <button type="button" name="button" @click="paperMes(index)">订单详情</button>
@@ -271,7 +271,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-    margin-top: 3%;
+    margin-top: 0.4%;
     .intention_mes_title{
       background: #F15749;
       min-height: 44px;

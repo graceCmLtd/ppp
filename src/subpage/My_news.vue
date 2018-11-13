@@ -177,6 +177,7 @@ export default {
 		background:#FFFFFF;
     box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
     color: #000;
+    cursor:pointer;
     .news_content1{
     	margin: 0 auto;
     	width: 80%;

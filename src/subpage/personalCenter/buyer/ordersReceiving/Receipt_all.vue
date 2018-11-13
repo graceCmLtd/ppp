@@ -53,7 +53,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
             <button type="button" name="button" @click="paperMes(index)">票据详情</button>
           </p>
         </div>
@@ -285,8 +285,7 @@
     width: 100%;
     height:100%;
     .offer_mes{
-      margin-left: 1%;
-      margin-top: 3%;
+      margin-top: 0.4%;
       .mes_title{
         background: #F15749;
         min-width: 36px;

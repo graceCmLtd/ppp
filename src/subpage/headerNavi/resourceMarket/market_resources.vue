@@ -200,7 +200,7 @@ export default {
     .market_resources_list{
         width: 100%;
         margin: 0 auto;
-        margin-top: 6%;
+        margin-top: 9%;
         background: #fff;
         box-shadow: 0px 0px 30px 0px rgba(188, 188, 188, 0.5);
       .market_resources_box{

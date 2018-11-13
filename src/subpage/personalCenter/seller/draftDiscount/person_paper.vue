@@ -66,7 +66,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <span>{{item.companyId}}</span>
           <button type="button" name="button" @click="paperMesper(item)">查看</button>
           </p>
@@ -132,7 +132,7 @@
           <span>电话:{{item.contactsPhone | hideMiddle}}</span>
           
           <span @click="linkToA(index)">
-            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+            <a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
             <span>{{item.companyId}}</span>
             <button type="button" name="button" @click="getBillDetail(item)">查看</button>
           </p>
@@ -490,9 +490,9 @@
       width: 300px;
       margin-left: 1%;
       text-align: left;
-      margin-top: 2%;
+      margin-top: 0.8%;
+      cursor: pointer;
       span{
-        /*color:#3C3C3C;*/
         font-size: 17px;
         cursor:pointer;
       }
@@ -502,10 +502,8 @@
     }
     .person_paper_tableB{
       width: 100%;
-     
       text-align: left;
       border-bottom: 1px solid #F15749;
-      /*margin-top: 12%;*/
 
       span{
         font-size: 17px;
@@ -517,7 +515,7 @@
     }
     .hadOffer{
       width: 100%;
-      margin-top:4%;
+      margin-top:0.6%;
 
       .hadOffer_title{
         min-height: 34px;

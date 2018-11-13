@@ -78,7 +78,8 @@
         signSucc:false,
         nick:null,
         isSinIn:false,
-        showPoint:false
+        showPoint:false,
+        message:''
       }
     },
 
@@ -116,9 +117,16 @@
               _this.showPoint = true;
               console.log(message);
               let msg_content = JSON.parse(message.content);
-              _this.$notify({
+              _this.message = msg_content;
+              const h = _this.$createElement;
+              _this.instance=_this.$notify({
                 title: '新消息',
-                message: msg_content.msgContent,
+                //  dangerouslyUseHTMLString: true,
+                message:h('p',{
+                on:{
+                    click:_this.onClick
+                }
+                },msg_content.msgContent), 
                 
                 duration: 0
               });
@@ -134,6 +142,10 @@
           //alert(error)
         }
         });
+      },
+      onClick(){
+        console.log(this.message);
+        this.$router.push({path:this.message.path})  
       },
       handleMsg(msg_content){
         alert(msg_content)
@@ -186,6 +198,7 @@
   }
 </script>
 <style lang="scss" scoped>
+
   .red-point{
      position: relative;
   }
@@ -306,7 +319,6 @@
       }
     }
   }
-
 
 
 

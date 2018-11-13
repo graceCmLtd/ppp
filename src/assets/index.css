@@ -112,3 +112,11 @@ input{
     right: 0;
     border-radius: 50%;
 }
+.el-notification{
+    box-shadow:0px 2px 10% 0px #333;
+    border-left: 30px solid #F15749 !important;
+}
+.el-notification__content p {
+    margin: 0;
+    color: #48C1F3;
+}

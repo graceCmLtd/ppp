@@ -39,7 +39,7 @@
           <span class="pople">{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
           
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
           <button type="button" name="button" @click="paperMes(index)">查看详情</button>
         </p>
       </div>
@@ -161,7 +161,6 @@
         new_money:0,
         currentItem:null,
         showBack:true
-
       }
     },
     methods:{
@@ -221,8 +220,8 @@
             })
           },*/
       showCancel(){
-              this.isShow = false;
-            }, 
+         this.isShow = false;
+      }, 
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
@@ -335,15 +334,15 @@
           this.$refs.intention_mes_details.style.display='none';
         },200)
       },
-     order_toggle:function(item){
-          if(item.billReferer === "资源池"){
-            this.showBack = false;
-          }
-          this.isShow_cancel = !this.isShow_cancel;
-          this.currentItem = item;
+       order_toggle:function(item){
+            if(item.billReferer === "资源池"){
+              this.showBack = false;
+            }
+            this.isShow_cancel = !this.isShow_cancel;
+            this.currentItem = item;
 
-          console.log(item)
-          },
+            console.log(item)
+            },
       hiddenShow:function () {
           var that = this;
           that.isShow_cancel = false;
@@ -413,7 +412,7 @@
         return Number(realVal)
 
     }
-   }
+  }
 }
 </script>
 
@@ -489,8 +488,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-  
-    margin-top: 3%;
+    margin-top: 0.4%;
     .intention_mes_title{
       background: #F15749;
       min-height: 44px;

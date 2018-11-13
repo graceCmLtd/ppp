@@ -1,4 +1,4 @@
-<!-- 我是买家订单中心  待签收页面 -->
+<!-- 待支付 -->
 <template lang="html">
   <div class="person_intention_all">
     <div class="person_intention_mes">
@@ -17,27 +17,33 @@
           <el-col :span="3"><div class="intention_mes">{{item.billType}}&nbsp;/&nbsp;{{item.billReferer}}</div></el-col>
           <el-col :span="6">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
-            <div class="intention_mes bankMes"
-                 
-            >{{item.acceptor}}</div></el-col>
+            <div class="intention_mes bankMes" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;cursor:pointer;">{{item.acceptor}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.amount/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
-          <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 |numFilter }}w</div></el-col>
+          <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col> -->
+          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000 |numFilter}}w</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-            <el-col :span="3"><div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;"@click="submitAccept(item)" >确认签收</div>
-              <div style="border-radius:4px; width:8%; color:#fff; background:#48C1F3; margin-top: 29px;line-height: 30px; margin-left: 38px; width: 86px;height: 30px; font-size:14px; cursor:pointer;"@click="checkVoucher(item)" >查看凭证</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" @click="toPay(item)">在线支付</div></el-col>
+
+          <!-- <el-col :span="3"><div class="intention_mes operaMes">
+            <button type="button" name="button">确认交易</button>
+          </div></el-col> -->
         </el-row>
         <p class="person_intention_contact">
           <span>订单号：{{item.transacType}}</span>
           <span>公司名称：{{item.companyName}}</span>
           <span>卖家联系人：{{item.contactsName}}</span>
           <span>电话:{{item.contactsPhone}}</span>
-          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px; position:relative; top: 7px;" src="../../../../../static/img/qq_img.png" title="QQ咨询"></a></span>
+          <span @click="linkToA(index)"><a v-bind:href="linka" style="text-decoration:none"><img  style="width:95px; height:25px;" src="../../static/img/qq_img.png" title="QQ咨询"></a></span>
+
           <span class="time_w">倒计时：<i style="font-style: normal; color:#F15749;">{{num(timerArr[index].minutes)}}:{{num(timerArr[index].seconds)}}</i></span>
-          <!-- <button type="button" name="button" @click="paperMes(index)">订单详情</button> -->
+          <button type="button" name="button" @click="paperMes(index)">订单详情</button>
+ 
+
         </p>
       </div>
+
+
       <!--分页-->
       <div class="block" v-if="showPaginate">
         <el-pagination
@@ -49,17 +55,34 @@
         </el-pagination>
       </div>
 
+      <div class="intention_mes_details" ref="intention_mes_details">
+        <div class="top_w">
+            <p>订单详情</p>
+          </div>
+       <!-- 修改后的票据详情弹窗 -->
+        <div class="intention_mes_message">   
+          <div class="message_left">
+            <ul>
+              <li>订单号：<span>{{orderId}}</span></li>
+              <li>票面金额：<span>{{amount/10000 |numFilter}}w</span></li>
+              <li>承对方：<span>{{bank}}</span></li>
+              <li>卖方：<span>{{companyName}}</span></li>
+              <li>贴现利率：<span>{{interest}}%</span></li>
+              <li>每10w加：<span>{{xPerLakh}}</span></li>
+              <li>实收金额：<span>{{real_money/10000 |numFilter}}W</span></li>
+            </ul>
+            </div>
+        </div>
+       <div class="intention_mes_pic" ref="intention_mes_pic">
+          <img src="../../static/img/banner1.jpg" alt="" ref="PaperIs">
+        </div>
+      </div>
     </div>
     <div class="intention_mes_mask" v-show="intentionMaskShow" @click="closePics()">
 
     </div>
 
-    <el-dialog title="凭证图片" width="650px" :visible.sync="dialogTableVisible">
-      <img v-bind:src="pic1" width="580px" height="295px">
-    </el-dialog>
-
  
-    
   </div>
 </template>
 
@@ -77,13 +100,16 @@
         releaseDate:null,
         maturity:null,
         remain_days:null,
+        orderId:null,
+        bankAccount:null,
+        real_money:null,
+        interest:null,
+        companyName:null,
         linka:"tencent://message/?uin=11577851&Site=pengpengpiao.cn&Menu=yes",
         currentPage : 1,
         pageSize : 5,
         total : 0,
         showPaginate : true,
-        dialogTableVisible:false,
-        pic1:'',
         timerArr:[],
         timeout_count:0
       }
@@ -92,10 +118,11 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
+        /*卖家IntentionType状态1或3*/
         _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
-            "transaction_filter":["已背书,待签收"],            
+            "transaction_filter":["已接单,待支付"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           },
@@ -110,21 +137,32 @@
         _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
-            "transaction_filter":["已背书,待签收"],
+            "transaction_filter":["已接单,待支付"]
           },
           {headers:{
               'Content-Type':'application/json'
             }}
         ).then((res)=>{
           if(res.data != '')
-            _this.total=res.data;
+              _this.total = res.data;
           else
             _this.showPaginate = false;
-        })
+        });
       },
       current_change(currentPage){
         this.currentPage = currentPage;
         this.getIntenTionList();
+      },
+      /*环迅支付*/
+      toPay(item){
+        let _this = this;
+        console.log(item);
+        _this.$router.push({
+          name:'Detailed',
+          query:{
+            item:item
+          }
+        })
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
@@ -132,37 +170,6 @@
         let Id=getCookie('Iud');
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
-      },
-      /*确认签收*/
-      submitAccept(item){
-        console.log("卖家id")
-        console.log(item.sellerId)
-        this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
-          "intentionObj":{
-            billNumber:item.billNumber,
-            orderId:item.transacType,
-            intentionStatus:"已签收"
-          },
-          "message":{
-                  "msgType":"交易",
-                  "senderId":getCookie("Iud"),
-                  "receiverId":item.sellerId,
-                  "msgContent":"有买家已签收，交易完成，请到我是卖家->订单中心查看,承兑银行："+item.acceptor,
-                  "flag":"0",
-                  "path":"/release/center/completes"
-                }
-          
-        },{headers:{
-          'Content-Type':'application/json'
-        }}).then((res)=>{
-          console.log(res)
-          //window.clearInterval(time)
-          //this.getIntenTionList()
-          if(res.data.status === "success"){
-              this.$router.push({name:'OrderwsCompletes'});
-          }
-
-        })
       },
       /*更新倒计时数组*/
        updateTimer(){
@@ -177,13 +184,13 @@
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
-            if(a >1200.0 || _this.noteList[i].intentionStatus !="已背书,待签收"){
+            if(a >1200.0 || _this.noteList[i].intentionStatus !="已接单,待支付"){
               console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
               _this.timeout_count ++;
-              if (a>1200 && _this.noteList[i].intentionStatus =="已背书,待签收") {
+              if(a >1200 && _this.noteList[i].intentionStatus =="已接单,待支付"){
                 /*transacType 为 orderid 超时失效*/
                 reloadFlag = true;
               _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
@@ -196,7 +203,6 @@
                 
               })
               }
-               
             }else{
               temp["minutes"]=Math.floor(20 - (date - _this.noteList[i].updateTimeStamp)/60);
               temp["seconds"]=Math.round(60 - (date - _this.noteList[i].updateTimeStamp)%60);
@@ -208,7 +214,7 @@
             
           }
           if (reloadFlag) {
-            _this.getIntenTionList()
+            _this.getIntenTionList();
             reloadFlag = false;
           }
           console.log("minuete ")
@@ -220,26 +226,31 @@
       },
        timer () {
         var _this = this
+         //var count =0;
         var time = window.setInterval(function () {
+          //let t1 = {}
+          console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
             console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
-          /*console.log("this ....... path ")
-          console.log(_this.$route.path)*/
+          console.log("this ....... path ")
+          console.log(_this.$route.path)
           /*跳转页面时停止计时器*/
-          /*if (_this.$route.path == "/release/orderws/audit") {
+          /*if (_this.$route.path == "/release/orderws/confirmed") {
           }else{
             window.clearInterval(time)
           }*/
-          /*跳转页面时停止计时器end*/
+          /*跳转页面时停止计时器 end*/
           for (var index = 0; index < _this.timerArr.length; index++) {
+            //console.log("timer")
+            //console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
               /*剩余10分钟提醒*/
-              if (_this.timerArr[index].minutes == 10 && _this.timerArr[index].seconds == 0) {
+              if (_this.timerArr[index].minutes == 10) {
                   _this.$notify({
                     title: '新消息',
-                    message: "您有一笔待签收订单即将超时，请及时到我是买家->我的订单 完成签收",
+                    message: "您有一笔订单即将超时，请及时到我是买家->我的订单 完成支付",
                     duration: 30000
                   });
               }
@@ -247,7 +258,7 @@
               let t1 = {}
               t1["seconds"] = 59;
               t1["minutes"] = _this.timerArr[index].minutes -1;
-              t1['flag'] = true;
+              t1["flag"] = true;
               _this.timerArr.splice(index,1,t1)
             } else if (_this.timerArr[index].minutes === 0 && _this.timerArr[index].seconds === 0 && _this.timerArr[index].flag) {
               _this.timerArr[index].flag = false;
@@ -263,15 +274,16 @@
               }}).then((res)=>{
                 console.log(res)
               })
+
               /*发送超时消息*/
               this.axios.post(this.oUrl+"/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":_this.noteList[index].sellerId,
-                  "msgContent":"有买家未能及时签收，交易将被回滚并失效,订单号："+_this.noteList[index].transacType,
+                  "msgContent":"有买家未能及时付款，交易失效,订单号："+_this.noteList[index].transacType,
                   "flag":"0",
-                  "path":"/release/center/audit"
+                  "path":"/release/center/refused"
                 }
                },{headers:{
                 'Content-Type':'application/json'
@@ -297,6 +309,7 @@
                 window.clearInterval(time)
                 _this.timeout_count =0
               }
+
             }
           }
         }, 1000)
@@ -306,6 +319,11 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
           console.log(res)
+          _this.orderId = _this.noteList[index].transacType;
+          _this.bankAccount = _this.noteList[index].bankAccount;
+          _this.real_money = _this.noteList[index].real_money;
+          _this.interest = _this.noteList[index].interest;
+          _this.companyName = _this.noteList[index].companyName;
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
@@ -314,15 +332,13 @@
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
           _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
-            console.log(res.data.length)
-            if(res.data.length === 1)
-                 _this.$refs.PaperIs.src=res.data[0].pic1;
-            else
-                _this.$refs.PaperIs.src='';
+            console.log(res)
+            if(res.data != '')
+              _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
             setTimeout(()=>{
-              _this.$refs.intention_mes_details.style.top='20%';
+              _this.$refs.intention_mes_details.style.top='15%';
               _this.$refs.intention_mes_details.style.opacity='1';
             })
           })
@@ -335,16 +351,6 @@
           this.intentionMaskShow=false;
           this.$refs.intention_mes_details.style.display='none';
         },200)
-      },
-      checkVoucher(item){
-          console.log(item.transacType);
-          this.dialogTableVisible = true;
-          var orderId = item.transacType;
-          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
-              console.log(res.data);
-              if(res.data.length > 0)
-                this.pic1 = res.data[0].pic1;
-          });
       }
     },
     created(){
@@ -363,6 +369,19 @@
 </script>
 
 <style lang="scss" scoped>
+#payment{
+    min-height: 28px;
+    width: 7%;
+    color: white;
+    border-radius: 3px;
+    background: #48C1F3;
+    line-height: 30px;
+    margin-top: 32px;
+    margin-left: 44px;
+    box-shadow:0px 2px 4px 0px rgba(72,193,243,1);
+    font-size:13px;
+    cursor: pointer;
+}
 .time_w{
   width:126px;
   height:19px;
@@ -376,6 +395,23 @@
   border-radius:4px;
   position: relative;
 }
+.top_w{
+  width:700px;
+  height:40px;
+  border-bottom:1px solid #F15749;
+  text-align:left;
+  line-height:40px;
+  p{
+    font-size:15px;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+    background:#F15749;
+    display:inline-block;
+    width:95px;
+    text-align:center;
+  }
+}
   .intention_mes_mask{
     width: 100%;
     height:100%;
@@ -386,8 +422,7 @@
     z-index: 500;
   }
   .person_intention_mes{
-    width: 100%;
-    margin-top: 0.4%;
+    margin-top: 3%;
     .intention_mes_title{
       background: #F15749;
       min-height: 44px;
@@ -414,12 +449,11 @@
     }
     .amountMes{
       line-height: 0;
-      border-left:1px solid #ccc;
-      border-right:1px solid #ccc;
       display: flex;
       flex-direction: column;
-      font-size: 13px;
+      font-size: 14px;
       min-width: 95px;
+      line-height: 60px;
       .interest{
         height:35px;
         line-height: 35px;
@@ -432,7 +466,6 @@
     }
     .operaMes{
       min-width: 95px;
-      border-left:1px solid #ccc;
       button{
         width: 70%;
         min-height: 20px;
@@ -454,35 +487,38 @@
         padding-left:20px;
       }
       button{
-          min-height: 28px;
-          width: 6%;
-          color: white;
-          border-radius: 3px;
-          background: #F15749;
-          line-height: 28px;
-          cursor: pointer;
-          float: right;
-          margin: 12px 30px;
+        min-height: 28px;
+        width: 6%;
+        color:white;
+        border-radius:3px;
+        background: #F15749;
+        line-height:28px;
       }
+        .pople{
+          margin-left: 80px;
+          float: left;
+        }
     }
   }
   .intention_mes_details{
-    width: 670px;
-    height:540px;
-    background: white;
+    width: 700px;
+    height: 800px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 30px 0px rgba(188,188,188,0.5);
     position: absolute;
     left:50%;
-    margin-left:-286px;
     top:15%;
     z-index: 501;
     opacity: 0;
     display: none;
     transition: all .5s;
     overflow: hidden;
+
     .intention_mes_pic{
-      width: 670px;
+      width: 695px;
       height:340px;
       background: white;
+      margin-left: 2px;
       img{
         width: 100%;
         height:100%;
@@ -491,15 +527,25 @@
     .intention_mes_message{
       width: 100%;
       display: flex;
-      height:300px;
       .message_left{
-        width: 50%;
+        width: 100%;
         height:100%;
         border-right:1px solid #ccc;
+        text-align: left;
+        margin-left: 100px;
+        font-weight:bold;
+        color:rgba(170,170,170,1);
+        line-height:26px;
         ul{
-          padding-top:12%;
+          padding-top:5%;
           li{
             margin-bottom: 5%;
+            span{
+              font-size:16px;
+              font-weight:bold;
+              color:rgba(102,102,102,1);
+              line-height:26px;
+            }
           }
         }
       }
@@ -510,6 +556,7 @@
           padding-top:12%;
           li{
             margin-bottom: 5%;
+            text-align:left;
           }
         }
       }
@@ -517,13 +564,11 @@
   }
   .content_w{
     height: 306px;
-    width: 100%;
     margin: 0 auto;
     background: #fff;
     .content_w_first {
       width:100%;
       height:80px;
-
       a{
         text-decoration: none;
         font-size: 13px;
@@ -537,11 +582,10 @@
       }
       li{
         float: left;
-        width: 12.5%;
+        width: 13.5%;
         line-height: 71px;
         border-right: 1px solid #979797;
-        margin-right: -3px;
-
+        margin-right: -16px;
       }
       .btn_w{
         width: 90px;

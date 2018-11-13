@@ -13,7 +13,7 @@
                            tag="div" class="center_title"
                            @click.native="centerAll()"
                            :class="{centerAc:color==1}"
-              >全部订单
+              >全部订单({{count1}})
                 <span class="person_center_triangle"></span>
               </router-link>
             </el-col>
@@ -22,7 +22,7 @@
                            tag="div" class="center_title confirmed"
                            @click.native="centerConFirmed()"
                            :class="{centerAc:color==2}"
-              >待买家支付
+              >待买家支付({{count2}})
                 
                 <span class="person_center_triangle"></span>
               </router-link>
@@ -32,7 +32,7 @@
                            tag="div" class="center_title rejected"
                            @click.native="centerRefused()"
                            :class="{centerAc:color==4}"
-              >待背书
+              >待背书({{count3}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_c"></span>
               </router-link>
@@ -43,7 +43,7 @@
                            tag="div" class="center_title"
                            @click.native="centerAudit()"
                            :class="{centerAc:color==5}"
-              >待买家签收
+              >待买家签收({{count4}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_s"></span>
               </router-link>
@@ -54,7 +54,7 @@
                            tag="div" class="center_title"
                            @click.native="centerCompletes()"
                            :class="{centerAc:color==6}"
-              >已完成
+              >已完成({{count5}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_d"></span>
               </router-link>
@@ -65,7 +65,7 @@
                            tag="div" class="center_title"
                            @click.native="centerInvalids()"
                            :class="{centerAc:color==7}"
-              >已失效
+              >已失效({{count6}})
                 
                 <span class="person_center_triangle" ref="person_center_triangle_f"></span>
               </router-link>
@@ -82,10 +82,18 @@
 </template>
 
 <script>
+  import {getCookie} from '@/assets/util'
   export default {
     data(){
       return{
-        color:1
+        color:1,
+        count1:0,
+        count2:0,
+        count3:0,
+        count4:0,
+        count5:0,
+        count6:0,
+        timer:''
       }
     },
     methods:{
@@ -102,20 +110,62 @@
       },
       centerRefused(){
         this.color=4;
-        this.$refs.person_center_triangle_c.style.top='-134.5%';
-        this.$refs.person_center_triangle_c.style.right='-7%'
+        // this.$refs.person_center_triangle_c.style.top='-134.5%';
+        // this.$refs.person_center_triangle_c.style.right='-7%'
       },
       centerAudit(){
         this.color=5;
-        this.$refs.person_center_triangle_s.style.right='-9%'
+        // this.$refs.person_center_triangle_s.style.right='-9%'
       },
       centerCompletes(){
         this.color=6;
-        this.$refs.person_center_triangle_d.style.right='-11%'
+        // this.$refs.person_center_triangle_d.style.right='-11%'
       },
       centerInvalids(){
         this.color=7;
-        this.$refs.person_center_triangle_f.style.right='-13%'
+        //this.$refs.person_center_triangle_f.style.right='-13%'
+      },
+      getItemCount(){
+        let _this = this;
+        let Id = getCookie('Iud');
+        _this.axios.post(this.oUrl+'/transaction/getCountByIntentionStatus',{
+            "uuid":Id,
+            "role":"seller",
+            "filter_str":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"]
+          },
+          {headers:{
+              'Content-Type':'application/json'
+            }}
+        ).then((res)=>{
+          //alert(res.data)
+          var count1 = 0,count2 = 0,count3 = 0,count4 = 0,count5 = 0,count6 = 0;
+          if(res.data.length > 0){
+            for(var i = 0;i<res.data.length;i++){
+                if(res.data[i].intentionStatus === "已接单,待支付"){
+                  count2 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已支付,待背书"){
+                  count3 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已背书,待签收"){
+                  count4 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已签收"){
+                  count5 = res.data[i].count;
+                }
+                if(res.data[i].intentionStatus === "已失效"){
+                  count6 = res.data[i].count;
+                }
+                count1 += res.data[i].count;
+            }
+            this.count1 = count1;
+            this.count2 = count2;
+            this.count3 = count3;
+            this.count4 = count4;
+            this.count5 = count5;
+            this.count6 = count6;
+          }
+        });
       }
     },
     created(){
@@ -132,7 +182,30 @@
       }else if(this.$route.path == "/release/center/invalids"){
         this.color = 7
       }
-      
+      this.getItemCount();
+      this.timer = setInterval(this.getItemCount, 2000);
+    },
+    watch:{
+      '$route' (to, from){
+        if (this.$route.path == "/release/center/all") {
+          this.color = 1
+        }else if(this.$route.path =="/release/center/confirmed"){
+          this.color =2
+        }else if(this.$route.path == "/release/center/refused"){
+          this.color =4
+        }else if(this.$route.path ==  "/release/center/audit"){
+          this.color = 5
+        }else if(this.$route.path == "/release/center/completes"){
+          this.color = 6
+        }else if(this.$route.path == "/release/center/invalids"){
+          this.color = 7
+        }
+      } 
+    },
+    beforeDestroy() {
+      console.log("ssfff1111");
+        clearInterval(this.timer);
+        console.log("vvxxzzz11");
     }
   }
 </script>
@@ -142,8 +215,11 @@
     background:#eee;
   }
   .centerAc{
-    background: #F15749;
-    color:white;
+      background: #F15749;
+      color:white;
+      font-size: 16px;
+      font-weight: bold;
+      line-height:40px;
     .person_center_add{
       width: 100%;
       height:14px;
@@ -155,13 +231,13 @@
     .person_center_triangle{
       width:0;
       height:0;
-      border-width:0 10px 10px;
+      border-width:0 7px 7px;
       border-style:solid;
       border-color:transparent transparent #AF2600;
       margin:40px auto;
       position: absolute;
-      top: -133%;
-      right: -9.5%;
+      top: -69%;
+      right: -7.5%;
       transform:rotate(-135deg);
     }
   }
@@ -179,8 +255,8 @@
       }
     }
     .person_center_con{
-      margin-left:1%;
-      margin-top:3%;
+      margin-left:0.5%;
+      margin-top:0.8%;
       // min-height: 500px;
       background: #fff;
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
@@ -190,16 +266,15 @@
         position: relative;
         .person_center_title{
           position: absolute;
-          bottom:-1px;
+          bottom:2px;
           border-bottom:3px solid #F15749;
           width: 61%;
           .center_title{
-            min-height: 36px;
-            line-height: 36px;
+            min-height: 53px;
+            line-height:53px;
             cursor:pointer;
             position: relative;
-            /*background: #F15749;*/
-            /*color: #fff;*/
+            bottom: -1px;
             width:130px;
           }
         }

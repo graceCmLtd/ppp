@@ -27,16 +27,6 @@
                 <span class="person_intention_triangle"></span>
               </router-link>
             </el-col>
-        <!--     <el-col :span="5">
-              <router-link to="/release/intention/haveBeen"
-                           tag="div" class="intention_title"
-                           @click.native="intentionHaveBeen()"
-                           :class="{intentionAc:color==3}"
-              >买家已接单
-                
-                <span class="person_intention_triangle"></span>
-              </router-link>
-            </el-col> -->
             <el-col :span="5">
               <router-link to="/release/intention/refused"
                            tag="div" class="intention_title rejected"
@@ -81,19 +71,19 @@
       intentionConFirmed(){
         this.color=2;
       },
-      intentionHaveBeen(){
-        this.color=3;
-        this.$refs.person_intention_triangle_c.style.top='-134.5%';
-        this.$refs.person_intention_triangle_c.style.right='-6%'
-      },
+      // intentionHaveBeen(){
+      //   this.color=3;
+      //   this.$refs.person_intention_triangle_c.style.top='-134.5%';
+      //   this.$refs.person_intention_triangle_c.style.right='-6%'
+      // },
       IntentionRefused(){
         this.color=4;
-        this.$refs.person_intention_triangle_c.style.top='-134.5%';
-        this.$refs.person_intention_triangle_c.style.right='-7%'
+        // this.$refs.person_intention_triangle_c.style.top='-134.5%';
+        // this.$refs.person_intention_triangle_c.style.right='-7%'
       },
       IntentionAudit(){
         this.color=5;
-        this.$refs.person_intention_triangle_s.style.right='-9%'
+        this.$refs.person_intention_triangle_s.style.right='-7%'
       }
     },
     created(){
@@ -117,6 +107,9 @@
   .intentionAc{
     background: #F15749;
     color:white;
+    font-size: 16px;
+    font-weight: bold;
+    line-height:40px;
     .person_intention_add{
       width: 100%;
       height:14px;
@@ -126,16 +119,17 @@
       left:0;
     }
     .person_intention_triangle{
-      width:0;
-      height:0;
-      border-width:0 10px 10px;
-      border-style:solid;
-      border-color:transparent transparent #AF2600;
-      margin:40px auto;
+      width: 0;
+      height: 0;
+      border-width: 0 7px 7px;
+      border-style: solid;
+      border-color: transparent transparent #AF2600;
+      margin: 40px auto;
       position: absolute;
-      top: -136%;
+      top: -69%;
       right: -7.5%;
-      transform:rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      transform: rotate(-135deg);
     }
   }
   .person_intention{
@@ -153,8 +147,8 @@
     }
     .person_intention_con{
  
-      margin-left:1%;
-      margin-top:3%;
+       margin-left: 0.5%;
+       margin-top: 0.8%;
       // min-height: 500px;
       background: #fff;
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
@@ -164,15 +158,16 @@
         position: relative;
         .person_intention_title{
           position: absolute;
-          bottom:-1px;
+          bottom: 2px;
           border-bottom:3px solid #F15749;
           width: 49%;
           .intention_title{
-            min-height: 36px;
-            line-height: 36px;
-            cursor:pointer;
+            min-height: 53px;
+            line-height: 53px;
+            cursor: pointer;
             position: relative;
             width: 130px;
+            bottom: -1px;
           }
         }
       }

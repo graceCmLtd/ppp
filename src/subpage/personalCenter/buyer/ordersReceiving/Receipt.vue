@@ -72,20 +72,20 @@
       },
       offerPri(){
         this.color=2;
-        this.$refs.Receipt_triangle_prices.style.right='-9%'
+        // this.$refs.Receipt_triangle_prices.style.right='-9%'
         console.log(this)
       },
       offerCan(){
         this.color=3;
-        this.$refs.Receipt_triangle_cancel.style.right='-9%'
+        // this.$refs.Receipt_triangle_cancel.style.right='-9%'
       },
       offerCan1(){
         this.color=4;
-        this.$refs.Receipt_triangle_confirm.style.right='-9%'
+        // this.$refs.Receipt_triangle_confirm.style.right='-9%'
       },
       offerCan2(){
         this.color=5;
-        this.$refs.Receipt_triangle_invalid.style.right='-9%'
+        // this.$refs.Receipt_triangle_invalid.style.right='-9%'
       }
     },
     created(){
@@ -117,8 +117,8 @@
         }
     }
     .offer_w_con{
-      margin-left: 1%;
-      margin-top: 3%;
+      margin-left: 0.5%;
+      margin-top: 0.8%;
       background:rgba(255,255,255,1);
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
     .offer_title_external{
@@ -126,29 +126,29 @@
       height:50px;
       position: relative;
       .offer_title{
-        min-height: 36px;
-        line-height: 36px;
-        margin-left: 1%;
+        min-height: 53px;
+        line-height: 53px;
         border-bottom: 3px solid #F15749;
-        background: white;
         position: absolute;
-        bottom: 0;
+        bottom: 3px;
         width: 49%;
         .offer{
-          background: #F15749;
-          color:white;
           position: relative;
-          width:130px;
+          width: 130px;
+          background: #F15749;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
           .person_offer_triangle{
             width:0;
             height:0;
-            border-width:0 10px 10px;
+            border-width:0 7px 7px;
             border-style:solid;
             border-color:transparent transparent #AF2600;
             margin:40px auto;
             position: absolute;
-            top:-135.4%;
-            right:-9.5%;
+            top: -69%;
+            right: -7.5%;
             transform:rotate(-135deg);
           }
         }

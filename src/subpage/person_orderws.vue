@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="person_center">
     <div class="person_center_pic">
-      <img src="../../../../../static/img/tie.png" alt="">
+      <img src="../../static/img/tie.png" alt="">
     </div>
     <div class="person_center_con">
       <div class="person_center_title_external">
@@ -93,7 +93,6 @@
         count4:0,
         count5:0,
         count6:0,
-        timer:''
       }
     },
     methods:{
@@ -105,30 +104,30 @@
       },
       centerHaveBeen(){
         this.color=3;
-        // this.$refs.person_center_triangle_c.style.top='-134.5%';
-        // this.$refs.person_center_triangle_c.style.right='-6%'
+        //this.$refs.person_center_triangle_c.style.top='-134.5%';
+        //this.$refs.person_center_triangle_c.style.right='-6%'
       },
       centerRefused(){
         this.color=4;
-        // this.$refs.person_center_triangle_c.style.top='-134.5%';
-        // this.$refs.person_center_triangle_c.style.right='-7%'
+        //this.$refs.person_center_triangle_c.style.top='-134.5%';
+        //this.$refs.person_center_triangle_c.style.right='-7%'
       },
       centerAudit(){
         this.color=5;
-        // this.$refs.person_center_triangle_s.style.right='-9%'
+        //this.$refs.person_center_triangle_s.style.right='-9%'
       },
       centerCompletes(){
         this.color=6;
-        // this.$refs.person_center_triangle_d.style.right='-11%'
+        //this.$refs.person_center_triangle_d.style.right='-11%'
       },
+      /*centerInvalids(){
+        this.color=7;
+        //this.$refs.person_center_triangle_f.style.right='-13%'
+      },*/
       centerInvalids(){
         this.color=7;
         //this.$refs.person_center_triangle_f.style.right='-13%'
       },
-      /*centerInvalids(){
-        this.color=7;
-        this.$refs.person_center_triangle_f.style.right='-13%'
-      },*/
       getItemCount(){
         let _this = this;
         let Id = getCookie('Iud');
@@ -142,32 +141,25 @@
             }}
         ).then((res)=>{
           //alert(res.data)
-          var count1 = 0,count2 = 0,count3 = 0,count4 = 0,count5 = 0,count6 = 0;
           if(res.data.length > 0){
             for(var i = 0;i<res.data.length;i++){
                 if(res.data[i].intentionStatus === "已接单,待支付"){
-                  count2 = res.data[i].count;
+                  this.count2 = res.data[i].count;
                 }
                 if(res.data[i].intentionStatus === "已支付,待背书"){
-                  count3 = res.data[i].count;
+                  this.count3 = res.data[i].count;
                 }
                 if(res.data[i].intentionStatus === "已背书,待签收"){
-                  count4 = res.data[i].count;
+                  this.count4 = res.data[i].count;
                 }
                 if(res.data[i].intentionStatus === "已签收"){
-                  count5 = res.data[i].count;
+                  this.count5 = res.data[i].count;
                 }
                 if(res.data[i].intentionStatus === "已失效"){
-                  count6 = res.data[i].count;
+                  this.count6 = res.data[i].count;
                 }
-                count1 += res.data[i].count;
+                this.count1 += res.data[i].count;
             }
-            this.count1 = count1;
-            this.count2 = count2;
-            this.count3 = count3;
-            this.count4 = count4;
-            this.count5 = count5;
-            this.count6 = count6;
           }
         });
       }
@@ -187,9 +179,7 @@
         this.color = 7
       }
       this.getItemCount();
-      this.timer = setInterval(this.getItemCount, 2000);
     },
-     
     watch:{
       '$route' (to, from){
         if (this.$route.path == "/release/orderws/all") {
@@ -206,11 +196,6 @@
           this.color = 7
         }
       } 
-    },
-    beforeDestroy() {
-      console.log("ssfff1111");
-        clearInterval(this.timer);
-        console.log("vvxxzzz11");
     }
   }
 </script>
@@ -220,11 +205,8 @@
     background:#eee;
   }
   .centerAc{
-      background: #F15749;
-      color:white;
-      font-size: 16px;
-      font-weight: bold;
-      line-height:40px;
+    background: #F15749;
+    color:white;
     .person_center_add{
       width: 100%;
       height:14px;
@@ -236,13 +218,13 @@
     .person_center_triangle{
       width:0;
       height:0;
-      border-width:0 7px 7px;
+      border-width:0 10px 10px;
       border-style:solid;
       border-color:transparent transparent #AF2600;
       margin:40px auto;
       position: absolute;
-      top: -69%;
-      right: -7.5%;
+      top: -135%;
+      right: -9.5%;
       transform:rotate(-135deg);
     }
   }
@@ -260,8 +242,8 @@
       }
     }
     .person_center_con{
-      margin-left:0.5%;
-      margin-top:0.8%;
+      margin-left:1%;
+      margin-top:3%;
       // min-height: 500px;
       background: #fff;
       box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
@@ -271,19 +253,28 @@
         position: relative;
         .person_center_title{
           position: absolute;
-          bottom:2px;
+          bottom:-1px;
           border-bottom:3px solid #F15749;
           width: 61%;
           .center_title{
-            min-height: 53px;
-            line-height:53px;
+            min-height: 36px;
+            line-height: 36px;
             cursor:pointer;
             position: relative;
-            bottom: -1px;
+            /*background: #F15749;*/
+            /*color: #fff;*/
             width:130px;
           }
         }
       }
     }
   }
+  /*.content{*/
+  /*width:125%;*/
+  /*height:100%;*/
+  /*border:1px solid black;*/
+  /*background:#fff;*/
+  /*margin: 0 auto;*/
+
+  /*}*/
 </style>
