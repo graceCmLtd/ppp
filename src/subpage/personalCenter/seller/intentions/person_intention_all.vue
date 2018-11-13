@@ -133,6 +133,8 @@
 
 <script>
   import {getCookie} from '@/assets/util'
+  import {sendPost} from '@/assets/fetch'
+  import {ss} from '@/assets/fetch'
   export default {
     data(){
       return{
@@ -166,32 +168,29 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        let ticket = 'ticket='+getCookie('Too')
+        sendPost(
+          {
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["待接单","已失效"],
             "quote_filter":["报价完成,进入意向"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
-          },
-          {headers:{
-              'Content-Type':'application/json'
-            }}
-        ).then((res)=>{
+          }).then((res)=>{
           console.log("intention 123")
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        ss({
+          url:'/bills/getIntentionsCount',
+          method:'post',
+          data:{
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":['待接单',"已失效"],
             "quote_filter":["报价完成,进入意向"]
-          },
-          {headers:{
-              'Content-Type':'application/json'
-            }}
-        ).then((res)=>{
+          }}).then((res)=>{
           console.log('www'+res.data);
           if(res.data != '')
             _this.total = res.data;

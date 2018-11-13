@@ -72,6 +72,7 @@
 
 <script>
 import {getCookie} from '@/assets/util';
+import {ss} from '@/assets/fetch'
 export default {
   data(){
     return{
@@ -170,6 +171,21 @@ export default {
     
     getList(){
       let _this=this;
+      /*ss({
+        "billType":_this.billType,
+        "amountType":_this.amount,
+        "maturityType":_this.date,
+        "starter":(_this.currentPage-1)*_this.pageSize,
+        "number":_this.pageSize
+      }).then((res)=>{
+        console.log("票据市场 ")
+        console.log(res)
+          _this.noteList=res.data.list;
+          if(res.data.count != 'null')
+            _this.total = res.data.count;
+          else
+            _this.res.data.count = false;
+        })*/
       _this.axios.post(_this.oUrl+'/bills/filterbill',{
         "billType":_this.billType,
       	"amountType":_this.amount,
@@ -178,7 +194,8 @@ export default {
       	"number":_this.pageSize
       },
       {headers:{
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Authorization':getCookie('Too')
       }}
       ).then((res)=>{
         console.log("票据市场 ")

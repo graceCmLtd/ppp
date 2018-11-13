@@ -156,6 +156,8 @@
     },
     methods:{
       getIntenTionList(){
+        console.log("this----------------------")
+        console.log(this)
         let _this=this;
         let Id=getCookie('Iud');
         //var count1 = 0;
