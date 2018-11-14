@@ -88,6 +88,7 @@ export default {
       getMsgList(){
         let _this = this;
         let receiverId = getCookie("Iud");
+        let unreadCount = 0;
         console.log('--'+receiverId);
         _this.axios.get(_this.oUrl+'/msg/getUserMsg?receiverId='+receiverId+'&currentPage='+this.currentPage+'&pageSize='+this.pageSize).then((res)=>{
             if(res.data.length > 0){
@@ -98,10 +99,11 @@ export default {
                   _this.msgName = '您有新的交易消息'
                 }
                 if(res.data[i].flag === 0 ){
-                    _this.unreadCount += 1;
+                    unreadCount += 1;
                 }
 
               }
+              _this.unreadCount = unreadCount;
               _this.msgList = res.data;
             }
         });
@@ -135,13 +137,19 @@ export default {
         }).then((res)=>{
             if(res.data.status === "success")
               _this.getMsgList();
-              window.location.reload();
+              //window.location.reload();
         });
       }
     },
     created(){
       this.getMsgList();
     },
+    watch:{
+      unreadCount:function(curVal,oldVal){
+          if(curVal === 0)
+              window.location.reload();
+      }
+    }
     
 }
 </script>
