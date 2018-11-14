@@ -45,14 +45,20 @@
         <div class="mes_right">
           <div class="paper_is">
             <div class="big_w" v-if="bigImg"  style="position:absolute; right:-7%; top: 84%; z-index: 999;" @click="imgScc"><img src="../../../../static/img/toggle.png"></div> 
+            <div class="loading" style="" v-if="gifImg">
+              <img src="../../../../static/img/loading.gif">
+            </div> 
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
-            <span>上传票据正面</span>
+            <span style="margin-top: 62%;">上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
             <div class="big_w" v-if="bigImgs" style="position:absolute; right:-7%; top: 84%; z-index: 999; background:fff; color:#333; " @click="imgSccs"><img src="../../../../static/img/toggle.png"></div>
+           <!--  <div class="loadings" style="" v-if="gifImgs">
+              <img src="../../../../static/img/loading.gif">
+            </div>  -->
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
-            <span>上传票据反面</span>
+            <span style="margin-top: 62%;">上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
         </div>
@@ -122,6 +128,8 @@
         interestItem:null,
         bigImg:false,
         bigImgs:false,
+        gifImg:false,
+        // gifImgs:false,
       }
     },
     components:{
@@ -215,6 +223,8 @@
             _this.ocrImage(base64);
             _this.bigImg=true;
             _this.$refs.big_w="block";
+            _this.gifImg=true;
+            _this.$refs.loading="block";
 
           }
         }
@@ -245,6 +255,8 @@
             window.localStorage.setItem('The',base64),
             _this.bigImgs=true;
             _this.$refs.big_w="block";
+            // _this.gifImgs=true;
+            // _this.$refs.loadings="block";
           }
         }
       },
@@ -419,12 +431,16 @@
           var url = this.oUrl + "/bills/ocrImage";
           var data = {"image":path};
           _this.axios.post(url,data).then(function(res){
-              if(res.data.time == ""){
+              if(res.data.time == "" || res.data.billNumber== ""){
                   _this.time = null;
+                  _this.gifImg=false;
+                  // _this.gifImgs=false;
               }
               var date = new Date(res.data.time); //时间对象
               _this.time = date.getTime(); //转换成时间戳
               _this.billNum = res.data.billNumber;
+              _this.gifImg=false;
+              // _this.gifImgs=false;
           });
           
       },
@@ -440,6 +456,22 @@
 </script>
 
 <style lang="scss">
+.loading{
+  position:absolute; 
+  right: 40%;
+  top: 35%;
+  z-index: 999;
+  width:40px;
+  height:40px;
+}
+.loadings{
+  position:absolute; 
+  right: 40%;
+  top: 35%;
+  z-index: 999;
+  width:40px;
+  height:40px;
+}
   .big_w{
     width:20px;
     height:20px;
