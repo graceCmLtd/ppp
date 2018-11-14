@@ -457,7 +457,7 @@ export default {
           width: 40%;
           min-height: 28px;
           border-radius:8px;
-          background: #ff6600;
+          background: #f45643;
           color:white;
         }
       }
@@ -471,7 +471,7 @@ export default {
       button{
         width: 11%;
         height:100%;
-        background: #ff6600;
+        background: #f45643;
         border-radius: 18px;
         color:white;
       }

@@ -186,7 +186,7 @@ export default {
     .resources_title{
       width: 15%;
       min-height: 70px;
-      background-color: rgba(255,71,46,1);
+      background-color: #f45643;
       color:white;
       border-radius:8px;
       cursor:pointer;
@@ -196,6 +196,7 @@ export default {
       min-width: 180px;
       float:right;
       margin-right:30px;   
+      font-family:"微软雅黑";
     }
     .market_resources_list{
         width: 100%;
@@ -237,9 +238,10 @@ export default {
         button{
           min-width:74px;
           min-height: 30px;
-          background: linear-gradient(180deg,rgba(255,125,91,1),rgba(255,71,46,1));;
           border-radius:5px;
           color:white;
+          background: #f45643;
+          box-shadow: 0px 0px 30px 20%;
         }
       }
       .led{
@@ -256,7 +258,7 @@ export default {
           button{
             min-width:74px;
             min-height: 30px;
-            background: linear-gradient(180deg,rgba(255,125,91,1),rgba(255,71,46,1));;
+            background: #f45643;
             border-radius:5px;
             color:white;
           }
