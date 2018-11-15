@@ -23,7 +23,9 @@ Vue.prototype.GLOBAL = global_;
 
 
 
+
   //Vue.prototype.oUrl='http://localhost:8080/ppp' 
+
 
 
 

@@ -2,8 +2,6 @@
   <div class="market_resources">
     <div class="market_resources_con">
       <p class="resources_title" @click="isAudit">
- <!--        <span>批量收票请去我的报价</span><br>
-        <span>模版发布收票价格</span> -->
         <img src="../../../../static/img/banner_get.png">
       </p>
       <div class="market_resources_list">
