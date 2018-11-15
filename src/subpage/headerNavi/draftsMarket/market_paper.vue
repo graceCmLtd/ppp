@@ -269,15 +269,19 @@ export default {
 .markAc{
   background: #f15749;
   color:white;
+  font-weight:bold;
 }
 .market_paper{
   width: 100%;
   height:100%;
   .market_paper_con{
     width: 80%;
-    height:774px;
-    margin:0 auto;
-    padding-top: 4%;
+    margin: 0 auto;
+    padding-top: 1%;
+    background: #fff;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+    margin-top:42px;
+
     p{
       width: 100%;
       text-align: left;
