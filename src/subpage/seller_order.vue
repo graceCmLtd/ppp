@@ -175,7 +175,7 @@ export default {
     }
   }
   .person_prise_con{
-    width: 75%;
+    width: 80%;
     height:100%;
     margin: 0 auto;
     background: rgba(255,255,255,1);
@@ -231,7 +231,6 @@ export default {
         width: 360px;
         height: 240px;
         margin: 0 auto;
-        border:1px solid #ccc;
         position: relative; 
         text-align: center;
         cursor: pointer;

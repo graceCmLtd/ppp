@@ -2,81 +2,83 @@
   <div class="person_data">
     <div class="person_data_process">
       <img src="../../static/img/qiye.png" alt="">
-      <p style="color:#FF0000;font-size:24px;font-weight:400;">企业信息认证中心</p>
     </div>
-    <p class="person_data_company">
-      <span>企业信息</span>
-    </p>
-    <div class="company_mes">
-      <p style="">
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;公司名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="companyName" ref="companyName"/></span>
-      </p>
-      <p class="">
-        <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsName" ref="contactName"/></span>
-      </p>
-      <p class="">
-        <span>联系人电话&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsPhone" ref="contactPhone"/></span>
-      </p>
-      <p class="">
-        <span>联系人邮箱&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsEmail" ref="contactEmail"/></span>
-      </p>
-    </div>
-    <p class="person_data_company">
-      <span>上传营业执照</span>
-    </p>
-    <div class="company_license">
-      <div class="reprod">
-        <img src="../../static/img/pic_icon.png" alt="">
-        <p>点击上传营业执照</p>
-        <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusiness">
-        <img v-bind:src="pic" alt=""  class="showPic"  ref="Business">
-      </div>
-    </div>
-    <p class="person_data_company">
-      <span>对公银行账户</span>
-      </p>
-    <div class="company_mes">
-      <p>
-        <span>账户名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="bankAccountName" ref="bankId"></span>
+    <div style="background:#fff; width:80%;margin:0 auto;box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);">
+        <p style="color:#FF0000;font-size:24px;font-weight:400;">企业信息认证中心</p>
+        <p class="person_data_company">
+          <span>企业信息</span>
         </p>
-      <p class="">
-        <span>开户银行&nbsp;&nbsp;&nbsp;
-          <!-- <el-cascader
-            :options="options"
-            :value="valueCom"
-            separator="/"
-            change-on-select
-          ></el-cascader> -->
-          <input type="text" name="" v-model:value="banksName" ref="bankName" />
-        </span>
-      </p>
-      <p class="">
-        <span>开户地址&nbsp;&nbsp;&nbsp;
-          <!-- <el-cascader
-            :options="options"
-            :value="valueCom"
-            separator="/"
-            change-on-select
-          ></el-cascader> -->
-          <input type="text" name="" v-model:value="bankAddr" ref="bankAddress" />
-        </span>
-      </p>
-      <p class="">
-        <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="bankAccount" ref="bankNumber"/></span>
-      </p>
-    </div>
-    <p class="person_data_company">
-      <span>设置联系QQ</span>
-      </p>
-    <div class="company_mes">
-      <p>
-        <span>请输入QQ号码&nbsp;&nbsp;<input type="text" v-model:value="contactsQQ" ref="QQ"/></span>
-      </p>
-    </div>
-    <p class="saveMes">
-      <button type="button" name="button" @click="submitCom()">确认</button>
-      <button @click="cancel()">取消</button>
-      </p>
+        <div class="company_mes">
+          <p style="">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;公司名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="companyName" ref="companyName"/></span>
+          </p>
+          <p class="">
+            <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsName" ref="contactName"/></span>
+          </p>
+          <p class="">
+            <span>联系人电话&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsPhone" ref="contactPhone"/></span>
+          </p>
+          <p class="">
+            <span>联系人邮箱&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsEmail" ref="contactEmail"/></span>
+          </p>
+        </div>
+        <p class="person_data_company">
+          <span>上传营业执照</span>
+        </p>
+        <div class="company_license">
+          <div class="reprod">
+            <img src="../../static/img/pic_icon.png" alt="">
+            <p>点击上传营业执照</p>
+            <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusiness">
+            <img v-bind:src="pic" alt=""  class="showPic"  ref="Business">
+          </div>
+        </div>
+        <p class="person_data_company">
+          <span>对公银行账户</span>
+          </p>
+        <div class="company_mes">
+          <p>
+            <span>账户名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="bankAccountName" ref="bankId"></span>
+            </p>
+          <p class="">
+            <span>开户银行&nbsp;&nbsp;&nbsp;
+              <!-- <el-cascader
+                :options="options"
+                :value="valueCom"
+                separator="/"
+                change-on-select
+              ></el-cascader> -->
+              <input type="text" name="" v-model:value="banksName" ref="bankName" />
+            </span>
+          </p>
+          <p class="">
+            <span>开户地址&nbsp;&nbsp;&nbsp;
+              <!-- <el-cascader
+                :options="options"
+                :value="valueCom"
+                separator="/"
+                change-on-select
+              ></el-cascader> -->
+              <input type="text" name="" v-model:value="bankAddr" ref="bankAddress" />
+            </span>
+          </p>
+          <p class="">
+            <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="bankAccount" ref="bankNumber"/></span>
+          </p>
+        </div>
+        <p class="person_data_company">
+          <span>设置联系QQ</span>
+          </p>
+        <div class="company_mes">
+          <p>
+            <span>请输入QQ号码&nbsp;&nbsp;<input type="text" v-model:value="contactsQQ" ref="QQ"/></span>
+          </p>
+        </div>
+        <p class="saveMes">
+          <button type="button" name="button" @click="submitCom()">确认</button>
+          <button @click="cancel()">取消</button>
+          </p>
+      </div>
   </div>
 </template>
 
@@ -359,15 +361,14 @@ export default {
     }
   }
   .saveMes{
-    width: 82%;
     height:28px;
-    margin-left: 18%;
+    margin: 0 auto;
     text-align: center;
     margin-bottom:5%;;
     button{
       width: 10%;
       height:100%;
-      background: #FF452C;
+      background: rgb(241, 87, 73);
       font-size: 14px;
       color:white;
       border-radius: 5px;

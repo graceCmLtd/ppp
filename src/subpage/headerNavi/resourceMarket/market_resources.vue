@@ -2,8 +2,7 @@
   <div class="market_resources">
     <div class="market_resources_con">
       <p class="resources_title" @click="isAudit">
-        <span>批量收票请去我的报价</span><br>
-        <span>模版发布收票价格</span>
+        <img src="../../../../static/img/banner_get.png">
       </p>
       <div class="market_resources_list">
         <el-row>
@@ -184,23 +183,16 @@ export default {
     height:100%;
     padding-top:3%;
     .resources_title{
-      width: 15%;
-      min-height: 70px;
-      background-color: rgba(255,71,46,1);
-      color:white;
-      border-radius:8px;
-      cursor:pointer;
-      font-size: 15px;
-      padding-top:1.2%;
-      box-sizing: border-box;
-      min-width: 180px;
-      float:right;
-      margin-right:30px;   
+      width: 100%;
+      cursor: pointer;
+      float: right;
+      margin: -15px auto;  
+      font-family:"微软雅黑";
     }
     .market_resources_list{
         width: 100%;
         margin: 0 auto;
-        margin-top: 9%;
+        margin-top: 6%;
         background: #fff;
         box-shadow: 0px 0px 30px 0px rgba(188, 188, 188, 0.5);
       .market_resources_box{
@@ -237,9 +229,10 @@ export default {
         button{
           min-width:74px;
           min-height: 30px;
-          background: linear-gradient(180deg,rgba(255,125,91,1),rgba(255,71,46,1));;
           border-radius:5px;
           color:white;
+          background: #f45643;
+          box-shadow: 0px 0px 30px 20%;
         }
       }
       .led{
@@ -256,7 +249,7 @@ export default {
           button{
             min-width:74px;
             min-height: 30px;
-            background: linear-gradient(180deg,rgba(255,125,91,1),rgba(255,71,46,1));;
+            background: #f45643;
             border-radius:5px;
             color:white;
           }
