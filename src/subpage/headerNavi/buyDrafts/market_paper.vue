@@ -252,6 +252,7 @@ export default {
 .markAc{
   background: #f15749;
   color:white;
+  font-weight:bold;
 }
 .market_paper{
   width: 100%;

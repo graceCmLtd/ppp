@@ -55,8 +55,8 @@
         <router-link to="/signUp" tag="span" class="signUp">登录</router-link>
       </p>
 
-      <p class="signSucc" v-show="signSucc">欢迎您,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}},</span>
-        <span style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()">退出</span>
+      <p class="signSucc" v-show="signSucc">您好,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}}</span>
+        <span style="float: right; height:25px; line-height: 25px;color:#f45643;padding-left: 7px;  background: red; font-size: 12px; color:#fff;" @click="cancellation()">退出</span>
         <!-- <router-link style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()" to="/signUp">另一个退出</router-link> -->
       </p>
 
@@ -215,6 +215,7 @@
   .active{
     background: #F15749;
     color:white;
+    font-weight:bold;
   }
   .header_all{
     width: 100%;
@@ -302,8 +303,15 @@
       .signSucc{
         width: 200px;
         font-size: 14px;
-        margin-top:3%;
+        margin-top: 3%;
         text-align: left;
+        border: 1px solid #F15749;
+        border-radius: 4px;
+        height: 25px;
+        line-height: 25px;
+        font-family:"微软雅黑";
+        color:#F15749;
+
       }
       .user_icon{
         img{
