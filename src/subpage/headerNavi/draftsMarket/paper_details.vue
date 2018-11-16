@@ -100,7 +100,7 @@ export default {
       let xPerLakh=this.add_amount;
       let Id=getCookie('Iud')
       if(_this.interest_rate === 0){
-        alert('请先计算交易金额！')
+        alert('请先填写您得报价！')
       }else{
         console.log("报价用户id：")
         console.log(Id)
@@ -193,8 +193,7 @@ export default {
   watch:{
     quoteItems: {
       handler: function (val, oldVal) {
-          //console.log("quoteItems.adjustDays:"+val.adjustDays,oldVal.adjustDays); 
-          console.log("ccvvvxx"+this.quoteItems.add_amount+"-"+this.quoteItems.adjustDays);
+          console.log('ccc');
           this.calculate();
        },
       deep: true
