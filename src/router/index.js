@@ -445,7 +445,7 @@ const router = new Router({
     {
       path:'/buyBillPa',//我要买票
       name:'buyBillPa',
-      component:resolve=>require(['@/subpage/headerNavi/buyDrafts/market_paper'],resolve)
+      component:resolve=>require(['@/subpage/headerNavi/draftsMarket/market_paper'],resolve)
     },
     {
       path:'/details',//票据详情
