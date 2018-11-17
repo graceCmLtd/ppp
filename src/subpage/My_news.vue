@@ -131,7 +131,16 @@ export default {
       updateFlag(){
         console.log("1213");
         let receiverId = getCookie("Iud");
-        this.axios.post(this.oUrl+'/msg/updateFlag',{"receiverId":receiverId,"flag":1}).then((res)=>{
+        this.axios.post(this.oUrl+'/msg/updateFlag',
+          {
+            "receiverId":receiverId,
+            "flag":1
+          },
+          {headers:{
+            'Content-Type':'application/json',
+            'Authorization':getCookie('Too')
+          }
+          }).then((res)=>{
             console.log(res.data);
             if(res.data.status === "success"){
                 this.$router.go(0);
@@ -146,7 +155,11 @@ export default {
             "receiverId":receiverId,
             "msgId":item.msgId,
             "flag":1
-        }).then((res)=>{
+        },
+        {headers:{
+            'Content-Type':'application/json',
+            'Authorization':getCookie('Too')
+          }}).then((res)=>{
             if(res.data.status === "success")
               _this.getMsgList();
               //window.location.reload();
