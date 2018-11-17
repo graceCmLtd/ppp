@@ -115,7 +115,8 @@
               "code":phoneCode
             },
             {header:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
               }},
           ).then((res)=>{
             console.log(res)
@@ -148,7 +149,8 @@
             "phone":this.Phone
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           console.log(res)

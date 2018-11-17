@@ -10,6 +10,7 @@ import Axios from 'axios'
 import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 import global_ from '@/components/global'
+import * as fetch_ from '@/assets/fetch'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;
@@ -18,14 +19,17 @@ Vue.prototype.axios=Axios;
 Vue.prototype.GLOBAL = global_;
 //Vue.prototype.oUrl='http://localhost:8080/ppp'
 
+Vue.prototype.fetch = fetch_;
 
- // Vue.prototype.oUrl='https://39.104.140.40/ppp'
+
+  // Vue.prototype.oUrl='https://39.104.140.40/ppp'
+
 
  // Vue.prototype.oUrl='http://localhost:8080/ppp' 
  
 Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
 
-// Vue.prototype.oUrl='https://pengpengpiao.com/ppp' 
+ //Vue.prototype.oUrl='https://pengpengpiao.com/ppp' 
 
 
 

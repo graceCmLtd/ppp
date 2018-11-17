@@ -90,7 +90,14 @@ export default {
         let receiverId = getCookie("Iud");
         let unreadCount = 0;
         console.log('--'+receiverId);
-        _this.axios.get(_this.oUrl+'/msg/getUserMsg?receiverId='+receiverId+'&currentPage='+this.currentPage+'&pageSize='+this.pageSize).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/msg/getUserMsg',
+          params:{
+            receiverId:receiverId,
+            currentPage:this.currentPage,
+            pageSize:this.pageSize
+          }
+        }).then((res)=>{
             if(res.data.length > 0){
                 for(var i=0;i<res.data.length;i++){
                 if(res.data[i].msgType === '系统'){
@@ -107,7 +114,12 @@ export default {
               _this.msgList = res.data;
             }
         });
-        _this.axios.get(_this.oUrl+'/msg/getMsgCount?receiverId='+receiverId).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/msg/getMsgCount',
+          params:{
+            receiverId:receiverId
+          }
+        }).then((res)=>{
             if(res.data !== '')
               _this.total = res.data;
         });
@@ -119,7 +131,16 @@ export default {
       updateFlag(){
         console.log("1213");
         let receiverId = getCookie("Iud");
-        this.axios.post(this.oUrl+'/msg/updateFlag',{"receiverId":receiverId,"flag":1}).then((res)=>{
+        this.axios.post(this.oUrl+'/msg/updateFlag',
+          {
+            "receiverId":receiverId,
+            "flag":1
+          },
+          {headers:{
+            'Content-Type':'application/json',
+            'Authorization':getCookie('Too')
+          }
+          }).then((res)=>{
             console.log(res.data);
             if(res.data.status === "success"){
                 this.$router.go(0);
@@ -134,7 +155,11 @@ export default {
             "receiverId":receiverId,
             "msgId":item.msgId,
             "flag":1
-        }).then((res)=>{
+        },
+        {headers:{
+            'Content-Type':'application/json',
+            'Authorization':getCookie('Too')
+          }}).then((res)=>{
             if(res.data.status === "success")
               _this.getMsgList();
               //window.location.reload();

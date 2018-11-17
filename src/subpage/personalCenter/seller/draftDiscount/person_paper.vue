@@ -250,7 +250,8 @@
           },
           {
             headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           // console.log("get quoted bills ...")
@@ -272,7 +273,8 @@
           },
           {
             headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           if(res.data != '')
@@ -303,7 +305,8 @@
           },
           {
             headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           // console.log(res)
@@ -317,7 +320,8 @@
           },
           {
             headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           if(res.data.length > 0)
@@ -340,7 +344,8 @@
           },
           {
             headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           //console.log(res)
@@ -370,9 +375,15 @@
         let _this = this;
         _this.billD[0] = item
         
-        _this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+item.billNumber).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/bills/getBillPics',
+          params:{
+            billNumber:item.billNumber
+          }
+        }).then((res)=>{
+          console.log("get pic1 s 1")
           console.log(res)
-          console.log(this)
+          //console.log(this)
           _this.billDetailPic=res.data[0].pic1;
           _this.dialogBillDetailVisual = true;  
         })
@@ -388,7 +399,8 @@
           },
           {
             headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           console.log("get quote auditing    bills ...")

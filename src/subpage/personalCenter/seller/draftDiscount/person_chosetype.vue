@@ -149,7 +149,12 @@ export default {
       console.log(this.billData)
       _this.billN=this.$route.query.bills;
       _this.quoterId = this.$route.query.quoterId;
-      _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+bill).then((res)=>{
+      _this.fetch.httpGet({
+        url:'/bills/getbill',
+        params:{
+          billNumber:bill
+        }
+      }).then((res)=>{
         console.log("获取票据信息")
         console.log(res)
         //_this.billData = res.data[0];
@@ -157,11 +162,21 @@ export default {
         _this.releaseDate=res.data[0].releaseDate;
         _this.billAmount=res.data[0].amount;
         _this.maturityDay=res.data[0].maturity;
-        _this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+bill).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/bills/getBillPics',
+          params:{
+            billNumber:bill
+          }
+        }).then((res)=>{
           console.log(res)
           _this.$refs.choseTypePic.src=res.data[0].pic1;
         });
-        _this.axios.get(this.oUrl+'/transaction/getOrderId?billNumber='+bill).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/transaction/getOrderId',
+          params:{
+            billNumber:bill
+          }
+        }).then((res)=>{
           console.log(res.data);
             if(res.data.length > 0)
               _this.orderId = res.data[0].transactionType;

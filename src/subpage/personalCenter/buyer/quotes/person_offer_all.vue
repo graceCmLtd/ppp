@@ -149,7 +149,8 @@
             "pageSize":_this.pageSize
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           
@@ -182,7 +183,8 @@
             "filter":"1"
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           if(res.data != '')
@@ -218,7 +220,12 @@
         let _this=this;
         _this.current_index = index;
         let billNumber=_this.noteList[index].billNumber;
-        _this.axios.get(_this.oUrl+'/quote/getDetail?billNumber=' + billNumber).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/quote/getDetail',
+          params:{
+            billNumber:billNumber
+          }
+        }).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
@@ -230,7 +237,12 @@
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
           _this.real_money = _this.noteList[index].real_money;
-          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber=' + billNumber).then((res)=>{
+          _this.fetch.httpGet({
+            url:'/bills/getBillPics',
+            params:{
+              billNumber:billNumber
+            }
+          }).then((res)=>{
             _this.pic=res.data[0].pic1;
             _this.intentionMaskShow=true;
             console.log(_this)

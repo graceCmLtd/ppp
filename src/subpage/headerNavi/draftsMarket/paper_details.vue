@@ -104,10 +104,18 @@ export default {
       }else{
         console.log("报价用户id：")
         console.log(Id)
-        _this.axios.get(_this.oUrl+'/quote/getByBillNumberAndQuoterId?billNumber='+this.billType+'&quoterId='+Id).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/quote/getByBillNumberAndQuoterId',
+          params:{
+            billNumber:this.billType,
+            quoterId:Id
+          }
+        }).then((res)=>{
             console.log(res.data);
             if(res.data.length === 0 ){
-              _this.axios.post(_this.oUrl+'/quote/addQuote',{
+              _this.fetch.httpPost({
+                url:'/quote/addQuote',
+                data:{
                 "quoteEntity":{
                   "billNumber":_this.bill,//票号
                   "quoterId":Id,//用户Id
@@ -126,8 +134,8 @@ export default {
                   "flag":"0",
                   "path":"/release/offer/offerPrices"
                 }
-                  
-                }).then((res)=>{
+                }
+              }).then((res)=>{
                   console.log(res)
                   this.detailsMaskShow=true;
                   this.$refs.success_mes.style.display="block";
@@ -153,7 +161,12 @@ export default {
     },
     getBill(){//获取票号
       this.bill=this.$route.query.bills;
-      this.axios.get(this.oUrl+'/bills/getbillr?billNumber='+this.bill).then((res)=>{
+      this.fetch.httpGet({
+        url:'/bills/getbillr',
+        params:{
+          billNumber:this.bill
+        }
+      }).then((res)=>{
         console.log(res)
         this.billType=res.data[0].billNumber;
         this.billDate=res.data[0].maturity;
@@ -166,14 +179,24 @@ export default {
     },
     getPics(){
       let _this=this;
-      _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+_this.bill).then((res)=>{
+      _this.fetch.httpGet({
+        url:'/bills/getBillPics',
+        params:{
+          billNumber:_this.bill
+        }
+      }).then((res)=>{
         console.log()
         _this.$refs.billPic.src=res.data[0].pic1;
       })
     },
     getCompanyInfo(){
       let _this=this;
-      _this.axios.get(_this.oUrl+'/bills/getCompany?contactsId='+_this.releaserId).then((res)=>{
+      _this.fetch.httpGet({
+        url:'/bills/getCompany',
+        params:{
+          contactsId:_this.releaserId
+        }
+      }).then((res)=>{
         console.log(res)
 
       })

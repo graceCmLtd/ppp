@@ -404,7 +404,8 @@
               }
             },
               {headers:{
-                  'Content-Type':'application/json'
+                  'Content-Type':'application/json',
+                  'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
               console.log(res)
@@ -430,7 +431,10 @@
           let _this = this;
           var url = this.oUrl + "/bills/ocrImage";
           var data = {"image":path};
-          _this.axios.post(url,data).then(function(res){
+          _this.fetch.httpPost({
+            url:'/bills/ocrImage',
+            data:data
+          }).then(function(res){
               if(res.data.time == "" || res.data.billNumber== ""){
                   _this.time = null;
                   _this.gifImg=false;

@@ -88,7 +88,8 @@ export default {
 	       "billNumber":_this.bills
       },
       {headers:{
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
       }}
     ).then((res)=>{
       console.log(res)
@@ -140,7 +141,8 @@ export default {
                 }
           
         },{headers:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
         }}).then((res)=>{
           console.log(res)
           if(res.data.status === "success"){
@@ -169,7 +171,8 @@ export default {
                 }
           
         },{headers:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
         }}).then((res)=>{
           if(res.data.status === "success"){
               console.log("交易取消")
@@ -187,7 +190,12 @@ export default {
       console.log("paogoqi")
       console.log(this.item);
       var billNumber = this.item.billNumber;
-      this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+billNumber).then((res)=>{
+      this.fetch.httpGet({
+        url:'/bills/getBillPics',
+        params:{
+          billNumber:billNumber
+        }
+      }).then((res)=>{
         console.log(res.data);
         if(res.data != ''){
           this.pic1 = res.data[0].pic1;
@@ -196,7 +204,12 @@ export default {
       });
       let Id=getCookie('Iud');
       console.log(Id);
-      this.axios.get(this.oUrl+'/getCompany?contactsId='+Id).then((res)=>{
+      this.fetch.httpGet({
+        url:'/getCompany',
+        params:{
+          contactsId:Id
+        }
+      }).then((res)=>{
           console.log("ss");
           console.log(res);
           this.list = res.data[0];

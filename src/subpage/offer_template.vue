@@ -256,14 +256,33 @@
       getReceiptAll(){
         let Id=getCookie('Iud');
         console.log(Id)
-        this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId?buyerId='+Id+'&pageSize='+this.pageSize+'&currentPage='+this.currentPage).then((res)=>{
+        /*this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId',{params:{buyerId:Id,pageSize:this.pageSize,currentPage:this.currentPage},headers:{'Authorization':getCookie('Too')}}).then((res)=>{
           let _this=this;
           console.log(res.data);
           _this.noteList=res.data;
-          _this.noteInfo = res.data[0].note;
-        });
+          //_this.noteInfo = res.data[0].note;
+        });*/
+        this.fetch.httpGet({
+          url:'/resourceMarket/getByBuyerId',
+          params:{
+            buyerId:Id,pageSize:this.pageSize,
+            currentPage:this.currentPage
+          }
+        }).then((res)=>{
+          let _this=this;
+          console.log(res.data);
+          _this.noteList=res.data;
+          //_this.noteInfo = res.data[0].note;
+        })
         
-        this.axios.get(this.oUrl+'/resourceMarket/getCountByBuyerId?buyerId='+Id).then((res)=>{
+        this.fetch.httpGet(
+          {
+            url:'/resourceMarket/getCountByBuyerId',
+            params:{
+              buyerId:Id
+            },
+          }
+        ).then((res)=>{
             if(res.data != '')
               this.total = res.data;
             else
@@ -303,24 +322,24 @@
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
           }else{
-              this.axios.post(this.oUrl+'/resourceMarket/add',{
+              this.fetch.httpPost({
+                url:'/resourceMarket/add',
+                data:{
                   "resourceMarketInfo":{
-                "buyerId":Id,
-                "amountRange":this.addForm.amountRange,
-                "timeLimit":this.addForm.timeLimit,
-                "type1":type1,
-                "type2":type2,
-                "type3":type3,
-                "type4":type4,
-                "billType":"电银",
-                "priority":"2",
-                "updateDate":this.getNowTime(),
-                "note":"实际交易价格"
-              }},
-              {headers:{
-                  'Content-Type':'application/json'
-                }}
-            ).then((res)=>{
+                    "buyerId":Id,
+                    "amountRange":this.addForm.amountRange,
+                    "timeLimit":this.addForm.timeLimit,
+                    "type1":type1,
+                    "type2":type2,
+                    "type3":type3,
+                    "type4":type4,
+                    "billType":"电银",
+                    "priority":"2",
+                    "updateDate":this.getNowTime(),
+                    "note":"实际交易价格"
+                  }
+                }
+              }).then((res)=>{
               console.log("addForm 返回值");
               console.log(res);
               if (res.data.status == 'fail') {
@@ -368,7 +387,8 @@
                 "note":"实际交易价格"
               },
               {headers:{
-                  'Content-Type':'application/json'
+                  'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
               console.log("update quote pool")
@@ -397,7 +417,12 @@
         let index = this.current_index;
         this.dialogDeleteVisible = false;
         console.log("dialogDeleteQuoteSubmit")
-        this.axios.get(this.oUrl+'/resourceMarket/deleteByOrderId?orderId='+this.noteList[index].orderId).then((res)=>{
+        this.fetch.httpGet({
+          url:'/resourceMarket/deleteByOrderId',
+          params:{
+            orderId:this.noteList[index].orderId
+          }
+        }).then((res)=>{
           let _this=this;
           console.log("delete the quote ")
 
@@ -422,7 +447,8 @@
                 "note":this.noteInfo
               },
               {headers:{
-                  'Content-Type':'application/json'
+                  'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
               console.log("update note ")

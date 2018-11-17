@@ -47,7 +47,8 @@ export default {
           "user_passwd":pass
         },
         {header:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
         }}
       ).then((res)=>{
         console.log(res.data)

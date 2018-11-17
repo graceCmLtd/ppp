@@ -53,7 +53,8 @@
             "billReferer":"传统渠道"
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           // console.log("我的求贴 全部报价 ")

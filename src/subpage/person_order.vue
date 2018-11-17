@@ -88,7 +88,12 @@ export default {
     },
     getOrder(){
       let _this=this;
-      _this.axios.get(this.oUrl+'/quote/getByQuoterId?quoterId=b7138b09c85b4bf6a9da174cb165085e').then((res)=>{
+      _this.fetch.httpGet({
+        url:'/quote/getByQuoterId',
+        params:{
+          quoterId:'b7138b09c85b4bf6a9da174cb165085e'
+        }
+      }).then((res)=>{
         console.log(res)
       })
     }
