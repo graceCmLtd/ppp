@@ -158,7 +158,8 @@
             "pageSize" : _this.pageSize
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           console.log(res)
@@ -170,7 +171,8 @@
             "transaction_filter":["待接单"],
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           if(res.data != '')
@@ -201,7 +203,8 @@
             "quoterId":_this.currentItem.quoterId,
             "new_money":_this.new_money*10000
           },{headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
           }}).then((res)=>{
             console.log("修改金额")
             console.log(res)
@@ -216,7 +219,8 @@
                   "path":"/release/orderws/audit"
                 }
                },{headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
               }}).then((res)=>{
                 console.log("send msg for amount modify")
               })
@@ -243,7 +247,8 @@
               "intentionStatus":"ISD"
             }
           },{headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
           }}).then((res)=>{
             console.log("删除意向")
             console.log(res)
@@ -271,7 +276,12 @@
         this.buyer = _this.noteList[index].companyName;
         this.rate = _this.noteList[index].interest;
         this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);
-        _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/bills/getbill',
+          params:{
+            billNumber:billNumberLoca
+          }
+        }).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
@@ -280,7 +290,12 @@
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
-          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
+          _this.fetch.httpGet({
+            url:'/bills/getBillPics',
+            params:{
+              billNumber:billNumberLoca
+            }
+          }).then((res)=>{
             console.log(res)
             _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;

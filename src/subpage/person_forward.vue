@@ -64,7 +64,12 @@ export default {
       this.item = JSON.parse(localStorage.getItem('item'));
       console.log(this.item);
       var billNumber = this.item.billNumber;
-      this.axios.get(this.oUrl+'/bills/getBillPics?billNumber='+billNumber).then((res)=>{
+      this.fetch.httpGet({
+        url:'/bills/getBillPics',
+        params:{
+          billNumber:billNumber
+        }
+      }).then((res)=>{
         console.log(res.data);
         if(res.data != ''){
           this.pic1 = res.data[0].pic1;

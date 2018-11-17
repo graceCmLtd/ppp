@@ -242,7 +242,8 @@ export default {
       },
       {
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
         }
       }
       ).then((res)=>{

@@ -103,7 +103,13 @@ export default {
   },
   methods:{
     getList(){
-      this.axios.get(this.oUrl+'/resourceMarket/getAllInfo?pageSize='+this.pageSize+"&currentPage="+this.currentPage).then((res)=>{
+      this.fetch.httpGet({
+        url:'/resourceMarket/getAllInfo',
+        params:{
+          pageSize:this.pageSize,
+          currentPage:this.currentPage
+        }
+      }).then((res)=>{
         this.noteList=res.data;
         console.log(res.data);
         this.marketResourcesLoadig=false;
@@ -115,7 +121,9 @@ export default {
           this.isLogin=true;
         }
       });
-      this.axios.get(this.oUrl+'/resourceMarket/getCount').then((res)=>{
+      this.fetch.httpGet({
+        url:'/resourceMarket/getCount'
+      }).then((res)=>{
         if(res.data != '')
           this.total = res.data;
         else

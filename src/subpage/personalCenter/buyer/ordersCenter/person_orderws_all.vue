@@ -157,7 +157,8 @@
             "pageSize" : _this.pageSize
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           console.log(res)
@@ -170,7 +171,8 @@
             "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           //alert('ddd'+res.data+'ccc')
@@ -212,7 +214,8 @@
                   "path":"/release/center/completes"
                 }
         },{headers:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
         }}).then((res)=>{
           console.log(res)
           this.getIntenTionList();
@@ -251,7 +254,8 @@
                 orderId:this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
               }}).then((res)=>{
                 console.log(res)
               })
@@ -263,7 +267,8 @@
                 orderId:this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
               }}).then((res)=>{
                 console.log(res)
               })
@@ -324,7 +329,8 @@
                 orderId:this.noteList[index].transacType,
                 intentionStatus:"已超时"
               },{headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
               }}).then((res)=>{
                 console.log(res)
               })
@@ -354,7 +360,12 @@
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
-        _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/bills/getbill',
+          params:{
+            billNumber:billNumberLoca
+          }
+        }).then((res)=>{
           console.log(res)
           _this.orderId = _this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
@@ -369,7 +380,12 @@
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
-          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
+          _this.fetch.httpGet({
+            url:'/bills/getBillPics',
+            params:{
+              billNumber:billNumberLoca
+            }
+          }).then((res)=>{
             console.log(res)
             if(res.data != '')
                 _this.$refs.PaperIs.src=res.data[0].pic1;
@@ -419,7 +435,8 @@
                   "path":"/release/center/refused"
                 }
                },{headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
               }}).then(()=>{
                 alert("已提醒")
               })

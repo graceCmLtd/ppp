@@ -134,7 +134,8 @@
             "filter_str":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"]
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           //alert(res.data)

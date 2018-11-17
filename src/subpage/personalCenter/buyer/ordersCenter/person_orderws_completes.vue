@@ -119,7 +119,8 @@
             "pageSize" : _this.pageSize
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           console.log(res)
@@ -131,7 +132,8 @@
             "transaction_filter":["已签收"],
           },
           {headers:{
-              'Content-Type':'application/json'
+              'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
           if(res.data != '')
@@ -154,7 +156,12 @@
       paperMes(index){
         let _this=this;
         let billNumberLoca=_this.noteList[index].billNumber;
-        _this.axios.get(_this.oUrl+'/bills/getbill?billNumber='+billNumberLoca).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/bills/getbill',
+          params:{
+            billNumber:billNumberLoca
+          }
+        }).then((res)=>{
           console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
@@ -163,7 +170,12 @@
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
-          _this.axios.get(_this.oUrl+'/bills/getBillPics?billNumber='+billNumberLoca).then((res)=>{
+          _this.fetch.httpGet({
+            url:'/bills/getBillPics',
+            params:{
+              billNumber:billNumberLoca
+            }
+          }).then((res)=>{
             console.log(res.data.length)
             if(res.data.length === 1)
                  _this.$refs.PaperIs.src=res.data[0].pic1;

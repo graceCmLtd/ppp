@@ -90,7 +90,14 @@ export default {
         let receiverId = getCookie("Iud");
         let unreadCount = 0;
         console.log('--'+receiverId);
-        _this.axios.get(_this.oUrl+'/msg/getUserMsg?receiverId='+receiverId+'&currentPage='+this.currentPage+'&pageSize='+this.pageSize).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/msg/getUserMsg',
+          params:{
+            receiverId:receiverId,
+            currentPage:this.currentPage,
+            pageSize:this.pageSize
+          }
+        }).then((res)=>{
             if(res.data.length > 0){
                 for(var i=0;i<res.data.length;i++){
                 if(res.data[i].msgType === '系统'){
@@ -107,7 +114,12 @@ export default {
               _this.msgList = res.data;
             }
         });
-        _this.axios.get(_this.oUrl+'/msg/getMsgCount?receiverId='+receiverId).then((res)=>{
+        _this.fetch.httpGet({
+          url:'/msg/getMsgCount',
+          params:{
+            receiverId:receiverId
+          }
+        }).then((res)=>{
             if(res.data !== '')
               _this.total = res.data;
         });

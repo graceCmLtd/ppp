@@ -81,7 +81,12 @@ export default {
     methods:{
       getCompany(){
         let contactsId = getCookie("Iud");
-        this.axios.get(this.oUrl+"/getCompany?contactsId="+contactsId).then((res)=>{
+        this.fetch.httpGet({
+          url:'/getCompany',
+          params:{
+            contactsId:contactsId
+          }
+        }).then((res)=>{
             console.log(res.data);
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
@@ -96,7 +101,12 @@ export default {
               this.role=res.data[0].role;
             }
         });
-        this.axios.get(this.oUrl+"/getPicsOfCom?contactsId="+contactsId).then((res)=>{
+        this.fetch.httpGet({
+          url:'/getPicsOfCom',
+          params:{
+            contactsId:contactsId
+          }
+        }).then((res)=>{
             console.log(res.data);
             if(res.data != ''){
               this.pic = res.data[0].picContent;
@@ -147,7 +157,8 @@ export default {
         }
       },
       {headers:{
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+          'Authorization':getCookie('Too')
       }}
       ).then((res)=>{
         this.noteListLed=res.data;
