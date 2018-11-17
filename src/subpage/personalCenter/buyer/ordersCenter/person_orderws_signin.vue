@@ -356,10 +356,19 @@
           console.log(item.transacType);
           this.dialogTableVisible = true;
           var orderId = item.transacType;
-          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
+          this.fetch.httpPost({
+            url:'/transaction/getPicsByOrderId',
+            data:{
+              orderId:orderId
+            }
+          }).then((res)=>{
+            console.log("获取凭证图片")
+              console.log(res)
               console.log(res.data);
               if(res.data.length > 0)
                 this.pic1 = res.data[0].pic1;
+          }).catch((error)=>{
+            console.log(error)
           });
       }
     },
