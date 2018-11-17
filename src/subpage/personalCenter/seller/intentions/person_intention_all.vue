@@ -270,7 +270,12 @@
       },
       /*修改金额*/
       modifyAmount(item){
-        this.new_money =item.real_money/10000;
+        if(item.real_money){
+          this.new_money =item.real_money/10000;
+        }else{
+          this.new_money=0
+        }
+        
         this.isShow = true;
         this.currentItem = item;
         //alert(this.currentItem.real_money)

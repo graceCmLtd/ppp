@@ -113,7 +113,9 @@ export default {
         }).then((res)=>{
             console.log(res.data);
             if(res.data.length === 0 ){
-              _this.axios.post(_this.oUrl+'/quote/addQuote',{
+              _this.fetch.httpPost({
+                url:'/quote/addQuote',
+                data:{
                 "quoteEntity":{
                   "billNumber":_this.bill,//票号
                   "quoterId":Id,//用户Id
@@ -132,12 +134,12 @@ export default {
                   "flag":"0",
                   "path":"/release/offer/offerPrices"
                 }
-                  
                 },
                 {headers:{
                 'Content-Type':'application/json',
                 'Authorization':getCookie('Too')
-              }}).then((res)=>{
+                }
+              }).then((res)=>{
                   console.log(res)
                   this.detailsMaskShow=true;
                   this.$refs.success_mes.style.display="block";
