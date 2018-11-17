@@ -134,10 +134,6 @@ export default {
                   "flag":"0",
                   "path":"/release/offer/offerPrices"
                 }
-                },
-                {headers:{
-                'Content-Type':'application/json',
-                'Authorization':getCookie('Too')
                 }
               }).then((res)=>{
                   console.log(res)
