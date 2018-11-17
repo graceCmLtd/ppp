@@ -133,7 +133,11 @@ export default {
                   "path":"/release/offer/offerPrices"
                 }
                   
-                }).then((res)=>{
+                },
+                {headers:{
+                'Content-Type':'application/json',
+                'Authorization':getCookie('Too')
+              }}).then((res)=>{
                   console.log(res)
                   this.detailsMaskShow=true;
                   this.$refs.success_mes.style.display="block";
