@@ -9,8 +9,8 @@
       </router-link>
        <div class="monitoring_center">
         <span>
-          <p>2018年11月17日星期六</p>
-          <p class="time_1">15:08:38</p>
+          <p style="font-size:20px;width: 215px;word-break: break-all;  word-wrap: break-word;">{{new Date()|date}}</p>
+          <!-- <p class="time_1">15:08:38</p> -->
           <p>交易时间09:00—16:30</p>
         </span>
         <span>
@@ -312,7 +312,12 @@
         
       },_this.GLOBAL.flushSeconds)
       /*定时刷新页面 end*/
-    }
+    },
+    filters:{
+            date:function(data){
+                return data.getFullYear()+'年'+data.getMonth()+'月'+data.getDate()+"日星期"+data.getDay()+data.getHours()+':'+data.getMinutes()+':'+data.getSeconds()
+        }
+      }
   }
 
 </script>
@@ -336,10 +341,12 @@
       p{
         text-align:left;
         letter-spacing:1px;
+
         i{
           font-weight:bold;
           color:#FF5051;
           font-size:27px;
+          font-style: normal;
         }
       }
       .time_1{
