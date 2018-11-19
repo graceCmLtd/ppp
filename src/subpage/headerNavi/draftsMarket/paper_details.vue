@@ -130,9 +130,9 @@ export default {
                   "msgType":"系统",
                   "senderId":Id,
                   "receiverId":_this.releaserId,
-                  "msgContent":"有新报价",
+                  "msgContent":"您发布的票据(票号后四位"+_this.bill.substring(_this.bill.length-4)+",承兑银行："+_this.acceptor+")有新的报价信息,请到我的求贴全部报价中查看",
                   "flag":"0",
-                  "path":"/release/offer/offerPrices"
+                  "path":"/release/paper/offerIn"
                 }
                 }
               }).then((res)=>{
@@ -146,6 +146,7 @@ export default {
                 })
               }else{
                 alert("您已对该票据报价！");
+                this.$router.push('/marketpa')
               }
         });
         

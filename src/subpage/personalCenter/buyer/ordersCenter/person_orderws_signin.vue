@@ -149,7 +149,7 @@
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":item.sellerId,
-                  "msgContent":"有买家已签收，交易完成，请到我是卖家->订单中心查看,承兑银行："+item.acceptor,
+                  "msgContent":"有买家已签收，交易完成。票号后四位："+item.billNumber.substring(item.billNumber.length-4)+",承兑银行："+item.acceptor+"请到我是卖家订单中心已完成查看",
                   "flag":"0",
                   "path":"/release/center/completes"
                 }

@@ -251,7 +251,7 @@
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":this.current_item.buyerId,
-                  "msgContent":"有卖家已背书,承兑银行："+this.current_item.acceptor+"请到 我是买家->订单中心->待签收 及时签收",
+                  "msgContent":"有卖家已背书,票号后四位："+this.current_item.billNumber.substring(this.current_item.billNumber.length-4)+",承兑银行："+this.current_item.acceptor+"请到 我是买家->订单中心->待签收 及时签收",
                   "flag":"0",
                   "path":"/release/orderws/audit"
                 }
