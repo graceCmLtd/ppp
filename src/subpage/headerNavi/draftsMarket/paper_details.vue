@@ -134,7 +134,6 @@ export default {
                   "flag":"0",
                   "path":"/release/offer/offerPrices"
                 }
-                  
                 }
               }).then((res)=>{
                   console.log(res)
