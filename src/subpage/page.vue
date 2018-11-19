@@ -208,13 +208,6 @@
       },
       PageBot:resolve=>{
         require(['@/subpage/page_bot'],resolve)
-// =======
-//       {
-//         headers:{
-//           'Content-Type':'application/json',
-//           'Authorization':getCookie('Too')
-//         }
-// >>>>>>> 950b802a973db01878e614532b0bb1a665da9238
       }
     },
     methods:{
@@ -294,11 +287,11 @@
       },
       toggle:function(){
               this.isShow = !this.isShow;
-            },
+        },
       hiddenShow:function () {
                   var that = this;
                   that.isShow = false;
-              }, 
+       }, 
     },
    
     created(){
