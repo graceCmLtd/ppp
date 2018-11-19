@@ -56,7 +56,7 @@
       </p>
 
       <p class="signSucc" v-show="signSucc">您好,<span style="color:#f45643; padding-right: 20%; font-size: 10px;">{{nick}}</span>
-        <span style="float: right; height:25px; line-height: 25px;color:#f45643;padding-left: 7px;  background: red; font-size: 12px; color:#fff;" @click="cancellation()">退出</span>
+        <span style="float: right; height:25px; line-height: 25px;color:#f45643;padding-left: 7px;   background: #F15749;; font-size: 12px; color:#fff;" @click="cancellation()">退出</span>
         <!-- <router-link style="color:rgb(244, 86, 67);text-decoration:underline; font-size: 10px;" @click="cancellation()" to="/signUp">另一个退出</router-link> -->
       </p>
 
@@ -318,6 +318,7 @@
         line-height: 25px;
         font-family:"微软雅黑";
         color:#F15749;
+        padding-left: 10px;
 
       }
       .user_icon{
