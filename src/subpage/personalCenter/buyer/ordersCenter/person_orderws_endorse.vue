@@ -26,7 +26,7 @@
           <el-col :span="3"><div class="intention_mes">{{item.real_money/1000 |numFilter}}w</span>
           </div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle()" @click="fun($event,item)">提醒卖家背书</div></el-col>
+          <el-col :span="3"><div class="intention_mes" id="payment" @click="fun($event,item)">提醒卖家背书</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes operaMes">
             <button type="button" name="button">查看进度</button>
           </div></el-col> -->
@@ -211,7 +211,7 @@
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":item.sellerId,
-                  "msgContent":"有买家提醒您尽快背书,订单号："+item.transacType,
+                  "msgContent":"有买家提醒您尽快背书(票号后四位："+item.billNumber.substring(item.billNumber.length-4)+",承兑银行："+item.acceptor+"),订单号："+item.transacType,
                   "flag":"0",
                   "path":"/release/center/refused"
                 }

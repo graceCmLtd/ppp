@@ -63,6 +63,7 @@ export default {
       quoterId:'',
       orderId:null,
       isChoose:false,
+      acceptor:''
     }
   },
   methods:{
@@ -118,7 +119,7 @@ export default {
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":_this.quoterId,
-                  "msgContent":"有新意向",
+                  "msgContent":"您有新的意向信息,票号后四位("+_this.billN.substring(_this.billN.length-4)+")承兑银行："+_this.acceptor+"的报价已被接受，请到我的接单页面待接单查看",
                   "flag":"0",
                   "path":"/release/Receipt/offerCancel"
                 }
@@ -144,7 +145,7 @@ export default {
       }
       this.billData = JSON.parse(window.localStorage.getItem('item'));
       this.billData.real_money = Number((this.billData.real_money-(this.billData.real_money*5/10000))/10000).toFixed(2);
-
+      this.acceptor = this.billData.acceptor;
       console.log("billData")
       console.log(this.billData)
       _this.billN=this.$route.query.bills;

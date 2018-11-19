@@ -145,7 +145,7 @@
       },
       onClick(){
         console.log(this.message);
-        this.$router.push({path:this.message.path})  
+        this.$router.push({path:this.message.path})
       },
       handleMsg(msg_content){
         alert(msg_content)

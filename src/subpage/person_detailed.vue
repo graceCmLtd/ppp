@@ -135,9 +135,9 @@ export default {
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":_this.item.releaserId,
-                  "msgContent":"买家已支付,请及时到 我是卖家->订单中心 背书,承兑银行："+_this.item.acceptor,
+                  "msgContent":"买家已支付了您的订单(票号后四位"+_this.item.billNumber.substring(_this.item.billNumber.length-4)+",承兑方："+_this.item.acceptor+"),请到订单中心页面待背书查看",
                   "flag":"0",
-                  "path":"/release/Receipt/offerCancel"
+                  "path":"/release/center/refused"
                 }
           
         },{headers:{
@@ -165,7 +165,7 @@ export default {
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
                   "receiverId":getCookie("Iud"),
-                  "msgContent":"支付未完成，请及时完成付款",
+                  "msgContent":"您有未支付订单,请及时完成付款",
                   "flag":"0",
                   "path":"/release/Receipt/offerCancel"
                 }

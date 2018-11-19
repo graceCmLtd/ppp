@@ -255,7 +255,7 @@
             }}
         ).then((res)=>{
           // console.log("get quoted bills ...")
-          // console.log(res)
+           console.log(res)
           if(res.data.length > 0){
               this.noteL = res.data
               _this.billN=res.data[0].billNumber;
