@@ -94,11 +94,11 @@ export default {
       }
     },
     detailSprompt(){
-      let _this=this;
       let amount=this.$refs.amount.value;
-      let interest=this.$refs.interest.value;
-      let xPerLakh=this.add_amount;
+      let interest=this.quoteItems.rate;
+      let xPerLakh=this.quoteItems.add_amount;
       let Id=getCookie('Iud')
+      let _this=this;
       if(_this.interest_rate === 0){
         alert('请先填写您得报价！')
       }else{
