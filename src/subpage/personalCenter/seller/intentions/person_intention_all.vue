@@ -174,7 +174,7 @@
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["待接单","已失效"],
-            "quote_filter":["报价完成,进入意向"],
+            //"quote_filter":["报价完成,进入意向"],
             "currentPage" : _this.currentPage,
             "pageSize" : _this.pageSize
           }
