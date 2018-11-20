@@ -48,15 +48,14 @@
             <input type="password" maxlength="16" value="" ref="pass"  v-model.lazy="passwordcheckModel"/><br>
             <span  style="margin-left:59px; color:#FF0000;">{{passwordCheckValidate.errorText}}</span>
           </li>
-          <li style="margin-top: 20px; position: relative; width: 146%;"><i style="font-style:normal;color: #FF0000;">*</i>图片验证码:
-            <input type="text" maxlength="16" value="" ref="pass"  v-model.lazy="passwordcheckModel"/><br>
-            <img :src="imageUrl" @click="getValidatePic">
+          <li class="src_w"><i style="font-style:normal;color: #FF0000;">*</i>图片验证码:&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" maxlength="16" value="" ref="pass"  v-model.lazy="passwordcheckModel"/> <img :src="imageUrl" @click="getValidatePic">
           </li>
         </div>
 
         </ul>
       </div>
-      <p class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:#F15749; cursor: pointer;"  @click="open">《碰碰票服务条款及说明》</span></p>
+      <div class="ment"><input type="checkbox" name="vehicle" value="Bike">我已阅读<span style="color:#F15749; cursor: pointer;"  @click="open">《碰碰票服务条款及说明》</span></div>
       <p class="turnSignin"><button @click="sginIn()"
                                     v-loading="loadingSginIn"
                                     element-loading-text=""
@@ -277,6 +276,7 @@
 </script>
 
 <style lang="scss" scoped>
+
   .sgin_in{
     .box{
       position: fixed;
@@ -312,7 +312,6 @@
     }*/
       .signIn_mes{
         width: 100%;
-        height:56%;
         margin:0 auto;
         display: flex;
         padding-top:4%;
@@ -345,6 +344,22 @@
               width: 55%;
             }
           }
+            .src_w{
+              margin-top:-14px;
+              input{
+                font-size: 14px;
+                border: 1px solid #ccc;
+                width: 58%;
+                height: 40px;
+              }
+              img{
+                width: 111px;
+                position: relative;
+                top: 17px;
+                height: 44px;
+                cursor:pointer;
+              }
+            }
           /*li:nth-child(4){
             input{
               width: 44%;
@@ -373,7 +388,7 @@
       .turnSignin{
         width: 100%;
         text-align: center;
-        margin-top: 4%;
+        margin-top: 6%;
         button{
           width: 341px;
           height:38px;
