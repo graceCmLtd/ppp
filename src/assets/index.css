@@ -121,7 +121,11 @@ input{
 }
 .el-notification__content p {
     margin: 0;
-    color: #48C1F3;
+    color: blue;
+    cursor:pointer;
+}
+.el-notification__content p:hover{
+  text-decoration: underline;
 }
 .el-loading-mask {
     position: absolute;

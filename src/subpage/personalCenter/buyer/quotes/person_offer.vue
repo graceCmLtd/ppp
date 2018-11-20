@@ -105,12 +105,12 @@ export default {
   .offer_title_external{
     width: 100%;
     height:50px;
+    border-bottom: 3px solid #F15749;
     position: relative;
     .offer_title{
           width: 49%;
           min-height: 53px;
           line-height: 53px;
-          border-bottom: 3px solid #F15749;
           position: absolute;
           bottom: -1px;
       .offer{

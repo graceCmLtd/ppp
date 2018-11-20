@@ -12,7 +12,9 @@
             获取短信验证码</span>
       <span v-show="!show" class="count"  style="width: 83px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; position:relative; top:-75px; right:-170px;">{{count}} S</span>
 
-      <p class="code"><span style="color:red;">*</span>&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass" /><img :src="imageUrl" @click="getValidatePic"></p>
+      <p class="code_w1">
+        <span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass" /><img :src="imageUrl" @click="getValidatePic">
+      </p>
 
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
@@ -185,6 +187,24 @@ created(){
       border:1px solid #ccc;
       min-height: 22px;
       font-size: 15px;
+    }
+  }
+  .code_w1{
+     margin-top:-16px;
+    input{
+      width:89px;
+      height:30px;
+      border:1px solid #ccc;
+      font-size: 15px;
+
+    }
+    img{
+      height:33px;
+      width:70px;
+      position: relative;
+      top: 12px;
+      left: 4px;
+      cursor: pointer;
     }
   }
   .turn{

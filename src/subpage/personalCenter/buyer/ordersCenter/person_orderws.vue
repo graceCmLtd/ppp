@@ -269,18 +269,18 @@
       .person_center_title_external{
         width: 100%;
         height:50px;
+        border-bottom:3px solid #F15749;
         position: relative;
         .person_center_title{
           position: absolute;
           bottom:2px;
-          border-bottom:3px solid #F15749;
           width: 61%;
           .center_title{
             min-height: 53px;
             line-height:53px;
             cursor:pointer;
             position: relative;
-            bottom: -1px;
+            bottom: -2px;
             width:130px;
           }
         }

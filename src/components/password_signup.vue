@@ -4,8 +4,11 @@
     <p class="phone">
       <span style="color:red;">*</span>手机号：&nbsp;&nbsp;<input  type="text" value="" placeholder="" ref="phoneNumber" maxlength="11" />
     </p>
+
     <p class="code"><span style="color:red;">*</span>密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
-    <p class="code"><span style="color:red;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="" /><img :src="imageUrl" @click="getValidatePic"></p>
+
+    <p class="code_w1"><span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass"/><img :src="imageUrl" @click="getValidatePic"></p>
+
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
       v-loading="loadingSginUp"
@@ -143,8 +146,25 @@ created(){
       font-size: 15px;
     }
   }
+.code_w1{
+    input{
+      width:76px;
+      height:30px;
+      border:1px solid #ccc;
+      min-height: 22px;
+      font-size: 15px;
+    }
+    img{
+      height:33px;
+      width:70px;
+      position: relative;
+      top: 12px;
+      left: 4px;
+      cursor: pointer;
+    }
+  }
   .turn{
-    margin-top:10%!important;
+    margin-top:6%!important;
     width: 60%;
     min-height: 35px;
     margin:0 auto;
