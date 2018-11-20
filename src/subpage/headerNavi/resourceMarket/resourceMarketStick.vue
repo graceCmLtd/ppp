@@ -33,9 +33,9 @@
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保交易协议</p> -->
           <div class="gathering">
             <ol style="text-align:center;">请确认收款信息:</ol>
-              <ol>户名：******有限公司</ol>
-              <ol>开户行：中国建设银行齐齐哈尔毛家坡支行</ol>
-              <ol>账号：622345285928583</ol>
+              <ol>{{companyInfo.companyName}}</ol>
+              <ol>{{companyInfo.bankName}}</ol>
+              <ol>{{companyInfo.bankAccount}}</ol>
             
           </div>
           <div class="db_w">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</div>
@@ -138,6 +138,7 @@
         bigImg:false,
         bigImgs:false,
         gifImg:false,
+        companyInfo:[]
         // gifImgs:false,
       }
     },
@@ -159,6 +160,7 @@
     },
     created(){
       this.getInterest();
+      this.getCompanyInfo();
     },
     methods:{
       choseDate(){
@@ -336,6 +338,20 @@
           let item = JSON.parse(window.localStorage.getItem('item'));
           console.log(item);
           this.interestItem = item;
+      },
+      getCompanyInfo(){
+        let uuid = getCookie("Iud");
+        this.fetch.httpGet({
+          url:'/getCompany',
+          params:{
+            contactsId:uuid
+          }
+        }).then((res)=>{
+          console.log(res.data)
+          if(res.data.length > 0){
+            this.companyInfo = res.data[0]
+          }
+        });
       },
       submitMes(){
          let _this=this;

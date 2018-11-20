@@ -8,6 +8,7 @@
     <p class="code"><span style="color:red;">*</span>密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
 
     <p class="code_w1"><span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass"/><img :src="imageUrl" @click="getValidatePic"></p>
+
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
       v-loading="loadingSginUp"
