@@ -18,9 +18,9 @@
       <div class="mes_left">
         <ul>
             <li style="font-weight:bold;">票据收款账户:</li>
-            <li>户名：<span>******有限公司</span></li>
-            <li>开户行：<span>中国建设银行齐齐哈尔毛家坡支行</span></li>
-            <li>账号：<span>622345285928583</span></li>
+            <li>户名：<span>{{billData.companyName}}</span></li>
+            <li>开户行：<span>{{billData.bankName}}</span></li>
+            <li>账号：<span>{{billData.bankAccount}}</span></li>
 
         </ul>
       </div>
