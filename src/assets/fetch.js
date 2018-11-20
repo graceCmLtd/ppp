@@ -12,18 +12,45 @@ const fetch = axios.create({
 })
 
 // request拦截器
-fetch.interceptors.request.use(config => {
+axios.interceptors.request.use(config => {
   /*if (process.env.NODE_ENV === 'production') {
     if (cookie.isLogged()) {
       config.headers['exp-authorization'] = cookie.getBiteLoginToken()
     }
   }
   return config*/
+   //alert("interceptors request")
   config.headers['Authorization'] = getCookie("Too")
+  config.headers['UUID'] = getCookie('Iud')
   return config
 }, error => {
-  console.log(error)
-  Promise.reject(error)
+ 
+  console.log("request error")
+  console.log(error.response)
+  return Promise.reject(error)
+})
+
+
+axios.interceptors.response.use(response =>{
+  
+  return response;
+},error=>{
+  //alert("interceptors response")
+  console.log("response error ////////////////")
+  console.log(error.response)
+  if ( error && error.response) {
+    switch(error.response.status){
+      case 602:
+      alert("602")
+        break;
+      case 702:
+      alert("702")
+        break;
+      default:
+        break;
+    }
+  }
+  return Promise.reject(error)
 })
 
 export function httpGet(conf){
