@@ -155,11 +155,11 @@
       .person_intention_title_external{
         width: 100%;
         height:50px;
+        border-bottom:3px solid #F15749;
         position: relative;
         .person_intention_title{
           position: absolute;
           bottom: 2px;
-          border-bottom:3px solid #F15749;
           width: 49%;
           .intention_title{
             min-height: 53px;
@@ -167,7 +167,7 @@
             cursor: pointer;
             position: relative;
             width: 130px;
-            bottom: -1px;
+            bottom: -2px;
           }
         }
       }
