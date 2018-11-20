@@ -12,6 +12,7 @@
             获取短信验证码</span>
       <span v-show="!show" class="count"  style="width: 83px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; position:relative; top:-75px; right:-170px;">{{count}} S</span>
 
+      <p class="code"><span style="color:red;">*</span>&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass" /><img :src="imageUrl" @click="getValidatePic"></p>
 
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
@@ -38,7 +39,8 @@ export default {
       show:true,
       Phone:'',
       count: '',
-      timer: null
+      timer: null,
+      imageUrl:''
     }
   },
   methods:{
@@ -139,10 +141,23 @@ export default {
             }
           }, 1000)
         }
-      }
+      },
+      getValidatePic(){
+        this.fetch.httpGet({
+          url:'/getValidatePic',
+          responseType: 'arraybuffer'
+        }).then((res) => {
+          console.log(res)
+            this.imageUrl = 'data:image/png;base64,' + btoa(
+                new Uint8Array(res.data)
+                  .reduce((data, byte) => data + String.fromCharCode(byte), '')
+              );
+          })
+        },
 },
 created(){
   //this.getQuery()
+  this.getValidatePic()
 }
 }
 </script>

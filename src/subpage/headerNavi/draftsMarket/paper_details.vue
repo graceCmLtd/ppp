@@ -99,7 +99,7 @@ export default {
       let xPerLakh=this.quoteItems.add_amount;
       let Id=getCookie('Iud')
       let _this=this;
-      if(_this.interest_rate === 0){
+      if(_this.interest_rate === 0 || _this.interest_rate === 'NaN'){
         alert('请先填写您得报价！')
       }else{
         console.log("报价用户id：")
@@ -162,6 +162,7 @@ export default {
     },
     getBill(){//获取票号
       this.bill=this.$route.query.bills;
+      console.log(this.bill)
       this.fetch.httpGet({
         url:'/bills/getbillr',
         params:{
@@ -169,13 +170,15 @@ export default {
         }
       }).then((res)=>{
         console.log(res)
-        this.billType=res.data[0].billNumber;
-        this.billDate=res.data[0].maturity;
-        this.amount=res.data[0].amount;
-        this.billTime=res.data[0].releaseDate;
-        this.remainDays=res.data[0].remain_days;
-        this.releaserId = res.data[0].releaserId;
-        this.acceptor = res.data[0].acceptor;
+        if(res.data.length > 0){
+            this.billType=res.data[0].billNumber;
+            this.billDate=res.data[0].maturity;
+            this.amount=res.data[0].amount;
+            this.billTime=res.data[0].releaseDate;
+            this.remainDays=res.data[0].remain_days;
+            this.releaserId = res.data[0].releaserId;
+            this.acceptor = res.data[0].acceptor;
+        }
       })
     },
     getPics(){
@@ -187,7 +190,9 @@ export default {
         }
       }).then((res)=>{
         console.log()
-        _this.$refs.billPic.src=res.data[0].pic1;
+        if(res.data.length > 0){
+          _this.$refs.billPic.src=res.data[0].pic1;
+        } 
       })
     },
     getCompanyInfo(){

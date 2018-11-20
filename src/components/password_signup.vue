@@ -5,6 +5,7 @@
       <span style="color:red;">*</span>手机号：&nbsp;&nbsp;<input  type="text" value="" placeholder="" ref="phoneNumber" maxlength="11" />
     </p>
     <p class="code"><span style="color:red;">*</span>密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
+    <p class="code"><span style="color:red;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass" /><img :src="imageUrl" @click="getValidatePic"></p>
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
       v-loading="loadingSginUp"
@@ -28,7 +29,8 @@ export default {
     return{
       back:false,
       loadingSginUp:false,
-      sginUpText:'登录'
+      sginUpText:'登录',
+      imageUrl:''
     }
   },
   methods:{
@@ -93,12 +95,25 @@ export default {
         })
       }
   },
+  getValidatePic(){
+        this.fetch.httpGet({
+          url:'/getValidatePic',
+          responseType: 'arraybuffer'
+        }).then((res) => {
+          console.log(res)
+            this.imageUrl = 'data:image/png;base64,' + btoa(
+                new Uint8Array(res.data)
+                  .reduce((data, byte) => data + String.fromCharCode(byte), '')
+              );
+          })
+        },
   getQuery(){
     this.back=this.$route.query.back;
   }
 },
 created(){
-  this.getQuery()
+  this.getQuery(),
+  this.getValidatePic()
 }
 }
 </script>

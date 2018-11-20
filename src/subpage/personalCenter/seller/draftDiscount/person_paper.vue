@@ -374,7 +374,7 @@
         console.log(item)
         let _this = this;
         _this.billD[0] = item
-        
+        console.log(item.billNumber)
         _this.fetch.httpGet({
           url:'/bills/getBillPics',
           params:{
