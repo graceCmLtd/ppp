@@ -315,9 +315,9 @@
     },
     filters:{
             date:function(data){
-                return data.getFullYear()+'年'+data.getMonth()+'月'+data.getDate()+"日星期"+data.getDay()+data.getHours()+':'+data.getMinutes()+':'+data.getSeconds()
-        }
+                return data.getFullYear()+'年'+(data.getMonth()+1)+'月'+data.getDate()+"日星期"+data.getDay()+data.getHours()+':'+data.getMinutes()+':'+data.getSeconds()
       }
+    }
   }
 
 </script>
@@ -459,7 +459,6 @@
       height: 140px;
       border-radius:5px;
       min-height: 98px;
-      background: #f45643;
       text-align: center;
       position: absolute;
       top: -12px;

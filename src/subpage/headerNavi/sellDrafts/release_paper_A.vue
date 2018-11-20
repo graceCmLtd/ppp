@@ -587,7 +587,7 @@
             width: 92%;
             height: 40%;
             padding-top:13%;
-            margin-top: 10%;
+            margin-top: 1%;
             position: relative;
             img{
               width: 100%;

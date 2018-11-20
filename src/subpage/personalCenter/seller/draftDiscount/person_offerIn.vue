@@ -112,7 +112,7 @@
 
 <style lang="scss" scoped>
   .person_offerIn{
-    width: 267px;
+    width: 288px;
     height: 424px;
     margin-top: -1%;
     margin-left: -4%;  

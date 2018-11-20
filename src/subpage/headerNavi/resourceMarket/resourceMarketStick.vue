@@ -31,6 +31,15 @@
         <!--    <span style="font-size:17px;font-weight:400;color:rgba(51,51,51,1);line-height:25px;color:#F35643;font-weight:bold; margin-top:70px;">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</span> -->
          <!--   <p style="position:relative;left:-14%;"><input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保交易协议</p> -->
+          <div class="gathering">
+            <ol style="text-align:center;">请确认收款信息:</ol>
+              <ol>户名：******有限公司</ol>
+              <ol>开户行：中国建设银行齐齐哈尔毛家坡支行</ol>
+              <ol>账号：622345285928583</ol>
+            
+          </div>
+          <div class="db_w">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</div>
+
           <p class="obtain">
             <!-- 保存 -->
             <!-- <button type="button" name="button" @click="PaperSave()">保存</button> -->
@@ -460,6 +469,18 @@
 </script>
 
 <style lang="scss">
+.gathering{ 
+  width:51%;
+  text-align:left;
+  margin-left: 22%;
+  ol:first-child{
+    font-weight:600;
+  }
+}
+ .db_w{
+    font-weight:bold;
+    color:#F35643;
+  }
 .loading{
   position:absolute; 
   right: 40%;
@@ -569,12 +590,6 @@
             }
           }
           .obtain{
-              width: 100%;
-              text-align: center;
-              height: 40px;
-              margin-top: 9%;
-              position: relative;
-              margin-left: -76px;
             button{
               width:360px;
               height:50px;
@@ -582,25 +597,19 @@
               color:white;
               font-size: 16px;
               border-radius: 5px;
-              margin-left:80px;
               font-weight:bold;
-            }
-            button:nth-child(1){
-             position: absolute;
-             top: 11px;
-             left: 15%;
-            }
-            button:nth-child(2){
-              margin-left: 250px;
+              position:relative;
+              left:50%;
+
             }
           }
         }
         .mes_right{
-          width: 30%;
+          width: 24%;
           height:100%;
           .paper_is{
             width: 86%;
-            height:40%;
+            height:32%;
             padding-top:13%;
             position: relative;
          img{
@@ -630,9 +639,9 @@
           }
           .paper_the{
             width: 86%;
-            height:40%;
+            height:32%;
             padding-top:13%;
-            margin-top: 10%;
+            margin-top: 1%;
             position: relative;
               img{
               width: 100%;
