@@ -627,7 +627,7 @@
 }
 
   .tab-button {
-    width: 125px;
+    width: 135px;
     height: 45px;
     padding: 6px 10px;
     cursor: pointer;
@@ -647,7 +647,7 @@
   padding: 10px;
 }
 .table_w_1{
-  width: 249px;
+  width: 269px;
    border-bottom:4px solid #F15749;
    margin-bottom:2px;
    z-index:999;

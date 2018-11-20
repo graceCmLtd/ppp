@@ -116,7 +116,7 @@
 
 <style lang="scss" scoped>
   .person_offerBe{
-    width: 272px;
+    width: 289px;
     height: 424px;
     overflow-y:auto;
     overflow-x:hidden;
