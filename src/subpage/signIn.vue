@@ -49,7 +49,7 @@
             <span  style="margin-left:59px; color:#FF0000;">{{passwordCheckValidate.errorText}}</span>
           </li>
           <li class="src_w"><i style="font-style:normal;color: #FF0000;">*</i>图片验证码:&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" maxlength="16" value="" ref="pass"  v-model.lazy="passwordcheckModel"/> <img :src="imageUrl" @click="getValidatePic">
+            <input type="text" maxlength="16" value="" ref="picpass"  v-model.lazy="passwordcheckModel"/> <img :src="imageUrl" @click="getValidatePic">
           </li>
         </div>
 
@@ -101,12 +101,12 @@
         let _this=this;
         //let name=_this.$refs.UserName.value;//用户名
         let phone=_this.Phone;//手机号码
-        //let code=_this.$refs.Code.value;//图形验证码k
+        let picpass=_this.$refs.picpass.value;//图形验证码k
         let phoneCode=_this.$refs.PhoneCode.value;//手机验证码
         let pass=_this.$refs.pass.value;//密码
         //let amgrent_w=_this.$refs.amgrent_w.value;
         //||amgrent_w==''
-        if(phone==''||phoneCode==''||pass==''){
+        if(phone==''||phoneCode==''||pass==''||picpass==''){
           alert('请先完善您的个人信息！')
         }else{
           _this.siginInText='';
@@ -116,7 +116,8 @@
               "login_name":"default",
               "user_phone":phone,
               "user_passwd":pass,
-              "code":phoneCode
+              "code":phoneCode,
+              "picCode":picpass
             },
             {header:{
                 'Content-Type':'application/json',
@@ -137,7 +138,8 @@
             }else if(res.data.errorMsg == "the phone sms is wrong"){
               alert("手机验证码错误")
             }else{
-              alert("注册失败")
+              alert(res.data.errorMsg)
+              window.location.reload()
             }
 
           })

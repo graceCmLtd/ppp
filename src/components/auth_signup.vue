@@ -13,7 +13,7 @@
       <span v-show="!show" class="count"  style="width: 83px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; position:relative; top:-75px; right:-170px;">{{count}} S</span>
 
       <p class="code_w1">
-        <span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass" /><img :src="imageUrl" @click="getValidatePic">
+        <span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="picpass" /><img :src="imageUrl" @click="getValidatePic">
       </p>
 
     <p class="turn">
@@ -50,16 +50,17 @@ export default {
       let _this=this;
       let phone=_this.Phone;
       let pass=_this.$refs.pass.value;
-
-      if(phone==''||pass==''){
-        alert('请输入手机号或密码')
+      let picpass=_this.$refs.picpass.value;
+      if(phone==''||pass==''||picpass==''){
+        alert('请输入登录信息')
       }else{
         _this.sginUpText='';
         _this.loadingSginUp=true;
         _this.axios.post(_this.oUrl+'/loginBySms',
         {
           "user_phone":phone,
-          "Sms":pass
+          "Sms":pass,
+          "picCode":picpass
         },
         {header:{
           'Content-Type':'application/json',
@@ -68,39 +69,45 @@ export default {
       ).then((res)=>{
         console.log(res)
         //console.log(this)
-        _this.sginUpText='登录';
-        _this.loadingSginUp=false;
-        let token=res.data.ticket;
-        let uid=res.data.uuid;
-        let nick=res.data.user_phone;
-        let isau=res.data.CompanyAuthentication;
-        let role = res.data.role;
-        setCookie('Too',token);
-        setCookie('Iud',uid);
-        setCookie('Nick',nick);
-        setCookie('isAu',isau);
-        if(role=="包装户"){
-          setCookie('role',"vip")
-        }else if(role=="普通用户"){
-          setCookie('role','normal')
-        }else{
-          setCookie('role',"unknown")
+        if(res.data.status === 'success'){
+            _this.sginUpText='登录';
+            _this.loadingSginUp=false;
+            let token=res.data.ticket;
+            let uid=res.data.uuid;
+            let nick=res.data.user_phone;
+            let isau=res.data.CompanyAuthentication;
+            let role = res.data.role;
+            setCookie('Too',token);
+            setCookie('Iud',uid);
+            setCookie('Nick',nick);
+            setCookie('isAu',isau);
+            if(role=="包装户"){
+              setCookie('role',"vip")
+            }else if(role=="普通用户"){
+              setCookie('role','normal')
+            }else{
+              setCookie('role',"unknown")
+            }
+             _this.$router.push({name:"MarketPa"})
+            if(_this.back){
+              console.log("_this  back     ")
+              console.log(window.history)
+              console.log(this.$route)
+              //_this.$router.push({name:"MarketPa"})
+              window.history.back()
+              setTimeout(()=>{
+              window.history.back()
+              },0)
+            }else{
+              console.log("else ,,,,,")
+              //_this.$router.push({name:"MarketPa"})
+              window.history.back()
+              }
+        }else if(res.data.status === 'fail'){
+              alert(res.data.errorMsg);
+              window.location.reload();
         }
-         _this.$router.push({name:"MarketPa"})
-        if(_this.back){
-          console.log("_this  back     ")
-          console.log(window.history)
-          console.log(this.$route)
-          //_this.$router.push({name:"MarketPa"})
-          window.history.back()
-          setTimeout(()=>{
-          window.history.back()
-          },0)
-        }else{
-          console.log("else ,,,,,")
-          //_this.$router.push({name:"MarketPa"})
-          window.history.back()
-          }
+        
         })
       }
 

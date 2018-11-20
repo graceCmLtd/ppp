@@ -7,7 +7,7 @@
 
     <p class="code"><span style="color:red;">*</span>密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
 
-    <p class="code_w1"><span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="pass"/><img :src="imageUrl" @click="getValidatePic"></p>
+    <p class="code_w1"><span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="picpass"/><img :src="imageUrl" @click="getValidatePic"></p>
 
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
@@ -41,15 +41,18 @@ export default {
       let _this=this;
       let phone=_this.$refs.phoneNumber.value;
       let pass=_this.$refs.pass.value;
-      if(phone==''||pass==''){
-        alert('请输入手机号或密码')
+      let picpass=_this.$refs.picpass.value;
+      console.log(picpass)
+      if(phone==''||pass==''||picpass==''){
+        alert('请输入登录信息')
       }else{
         _this.sginUpText='';
         _this.loadingSginUp=true;
         _this.axios.post(_this.oUrl+'/login',
         {
           "user_phone":phone,
-          "user_passwd":pass
+          "user_passwd":pass,
+          "picCode":picpass
         },
         {header:{
           'Content-Type':'application/json',
