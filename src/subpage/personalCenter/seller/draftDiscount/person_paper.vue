@@ -515,7 +515,7 @@
     .person_paper_tableB{
       width: 100%;
       text-align: left;
-      border-bottom: 1px solid #F15749;
+      border-bottom: 3px solid #F15749;
 
       span{
         font-size: 17px;
