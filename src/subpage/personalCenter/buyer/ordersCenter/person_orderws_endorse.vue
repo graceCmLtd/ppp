@@ -110,7 +110,7 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["已支付,待背书"],
@@ -125,7 +125,7 @@
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["已支付,待背书"]
@@ -206,7 +206,7 @@
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
                console.log("提醒")
                console.log(item)
-               this.axios.post(this.oUrl+"/publish/send",{
+               this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),

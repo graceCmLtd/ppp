@@ -143,7 +143,7 @@ export default {
         }else if(busPic==''){
           alert('请先上传营业执照！')
         }else{
-          _this.axios.post(this.oUrl+'/addCompany',{
+          _this.fetch.myPost('/addCompany',{
             "companyInfo":{
               "companyName":comName,
               "contactsId":id,
@@ -177,7 +177,7 @@ export default {
       }else{
         console.log("---123");
         let busPic=window.localStorage.getItem('Business');
-        this.axios.post(this.oUrl+'/updateCompany',{
+        this.fetch.myPost('/updateCompany',{
             "companyInfo":{
               "companyName":this.companyName,
               "contactsId":id,

@@ -150,7 +150,7 @@
         let _this=this;
         let Id=getCookie('Iud');
         /*卖家IntentionType状态1或3*/
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["待接单"],
@@ -165,7 +165,7 @@
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["待接单"],
@@ -198,7 +198,7 @@
           this.isShow = false;
           let _this = this;
           let quoterId = this.currentItem.quoterId;
-          _this.axios.post(_this.oUrl+"/quote/updateRealMoney",{
+          _this.fetch.myPost("/quote/updateRealMoney",{
             "billNumber":_this.currentItem.billNumber,
             "quoterId":_this.currentItem.quoterId,
             "new_money":_this.new_money*10000
@@ -209,7 +209,7 @@
             console.log("修改金额")
             console.log(res)
             _this.getIntenTionList()
-            _this.axios.post(_this.oUrl+"/publish/send",{
+            _this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
@@ -233,7 +233,7 @@
         let _this = this
         //alert("确定删除")
         this.isShow_cancel = !this.isShow_cancel;
-        _this.axios.post(_this.oUrl+"/transaction/cancleOrder",{
+        _this.fetch.myPost("/transaction/cancleOrder",{
             "billInfo":{
               "billId":_this.currentItem.billId,
               "billNumber":_this.currentItem.billNumber

@@ -186,7 +186,7 @@ export default {
           else
             _this.res.data.count = false;
         })*/
-      _this.axios.post(_this.oUrl+'/bills/filterbill',{
+      _this.fetch.myPost('/bills/filterbill',{
         "billType":_this.billType,
       	"amountType":_this.amount,
       	"maturityType":_this.date,

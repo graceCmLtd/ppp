@@ -388,7 +388,7 @@
             let XperLakh = item.interest.split("% + ")[1];
             let real_money = (amount-((amount*rate/100*_this.dayRe)/360+(amount/100000*XperLakh))).toFixed(6);
             console.log(real_money+"--"+rate);
-            _this.axios.post(this.oUrl+'/bills/addFromResourceMarket',{
+            _this.fetch.myPost('/bills/addFromResourceMarket',{
               "paramBill":{
                 "billInfo":{
                   "billNumber":paperNumber,

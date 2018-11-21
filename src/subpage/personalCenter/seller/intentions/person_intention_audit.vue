@@ -105,7 +105,7 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'6',
             "billReferer":"资源池",
@@ -120,7 +120,7 @@
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'5'
           },

@@ -131,7 +131,7 @@
         let _this=this;
         let Id=getCookie('Iud');
         /*卖家IntentionType状态1或3*/
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":"3",
             "transaction_filter":["已支付,待背书"],
@@ -147,7 +147,7 @@
           _this.noteList=res.data;
           _this.updateTimer();
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["已支付,待背书"]
@@ -240,7 +240,7 @@
           //alert("已背书，待签收，图片保存待实现")
           console.log("this item")
           console.log(this.item)
-         this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+         this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             transacId : this.current_item.transacId,
             billNumber:this.current_item.billNumber,
@@ -263,7 +263,7 @@
           console.log(res)
           //this.getIntenTionList();
           if(res.data.status === "success"){
-              this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
+              this.fetch.myPost("/transaction/addBackEndPics",{
               orderId:this.current_item.transacType,
               pic1:window.localStorage.getItem("Is"),
               pic2:"sss"
@@ -307,7 +307,7 @@
               if (a> timeout && _this.noteList[i].intentionStatus =="已支付,待背书") {
                 /*transacType 为 orderid 超时失效*/
                 reloadFlag = true;
-              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -383,7 +383,7 @@
               _this.timerArr[index].seconds = 0
               
               /*transacType 为 orderid 超时失效*/
-              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[index].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -395,7 +395,7 @@
               })
 
               /*发送超时消息*/
-              this.axios.post(this.oUrl+"/publish/send",{
+              this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),

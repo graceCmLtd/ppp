@@ -240,7 +240,7 @@
         let _this=this;
         let Id=getCookie('Iud');
         
-        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":2,
             "billNumber":_this.billNum,
@@ -266,7 +266,7 @@
               }
           }         
         });
-        _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
+        _this.fetch.myPost('/bills/getMyQuotedCount',{
             "uuid":Id,
             "filter":2,
             "billNumber":_this.billNum
@@ -296,7 +296,7 @@
         console.log("billnumer is :")
         console.log(_this.billNum)
         
-        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":3,
             "billNumber":_this.billNum,
@@ -313,7 +313,7 @@
           this.noteL = res.data
           _this.billN=res.data[0].billNumber;
         });
-        _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
+        _this.fetch.myPost('/bills/getMyQuotedCount',{
             "uuid":Id,
             "filter":3,
             "billNumber":_this.billNum
@@ -337,7 +337,7 @@
       /*getBills(){
         let _this=this;
         let Id=getCookie('Iud');
-        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":1,
             "billReferer":"传统渠道"
@@ -390,7 +390,7 @@
       },
       getItemAuditing(){
         let _this = this;
-           _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+           _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":getCookie("Iud"),
             "filter":4,
             "billNumber":_this.billNum,

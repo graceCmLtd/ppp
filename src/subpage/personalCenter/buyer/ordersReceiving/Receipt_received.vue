@@ -116,7 +116,7 @@
         let Id=getCookie('Iud');
         console.log("已接单  userid ")
         console.log(Id)
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["已接单,待支付"],
@@ -131,7 +131,7 @@
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["已接单,待支付"],

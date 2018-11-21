@@ -338,7 +338,7 @@
           }*/else{
             _this.loadingRele=true;
             _this.releText=''
-            _this.axios.post(this.oUrl+'/bills/addbill',{
+            _this.fetch.myPost('/bills/addbill',{
                 "billInfo":{
                   "billNumber":paperNumber,
                   "billType":typeSelect,

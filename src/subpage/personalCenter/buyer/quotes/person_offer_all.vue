@@ -142,7 +142,7 @@
       getOfferAll(){
         let Id=getCookie('Iud');
         let _this=this;
-        this.axios.post(this.oUrl+'/quote/getMyQuote',{
+        this.fetch.myPost('/quote/getMyQuote',{
             "uuid":Id,
             "filter":"1",
             "currentPage":_this.currentPage,
@@ -178,7 +178,7 @@
           }*/
           //console.log(_this.marDay)
         });
-        _this.axios.post(_this.oUrl + '/quote/getQuoteCount',{
+        _this.fetch.myPost('/quote/getQuoteCount',{
             "uuid":Id,
             "filter":"1"
           },

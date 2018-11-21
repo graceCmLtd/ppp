@@ -83,7 +83,7 @@ export default {
   methods:{
     /*showWarning(){
       let _this=this;
-      _this.axios.post(this.oUrl+'/transaction/payViaPlatform',{
+      _this.fetch.myPost('/transaction/payViaPlatform',{
         "transacStatus":"成功",
 	       "billNumber":_this.bills
       },
@@ -125,7 +125,7 @@ export default {
         _this.showDialog = false;
         console.log("发布者")
         console.log(_this.item)
-        _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
+        _this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:_this.item.billNumber,
             orderId:_this.item.transacType,
@@ -155,7 +155,7 @@ export default {
     payCancle(){
       let _this = this;
       _this.showDialog = false;
-      _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatus",{
+      _this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
         "intentionObj":{
           billNumber:_this.item.billNumber,
           orderId:_this.item.transacType,

@@ -200,7 +200,7 @@
         let Id=getCookie('Iud');
         console.log("买家查询卖家已确认订单，买家id为：")
         console.log(Id)
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
             "filter_str":"卖家已确认",
@@ -215,7 +215,7 @@
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
             "filter_str":"卖家已确认"

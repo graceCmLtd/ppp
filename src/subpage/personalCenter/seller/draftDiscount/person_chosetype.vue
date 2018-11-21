@@ -89,7 +89,7 @@ export default {
       if(!this.TypeAgShowT){
         alert('请先接收担保交易条款')
       }else{
-        /*_this.axios.post(this.oUrl+'/quote/submitIntention',{
+        /*_this.fetch.myPost('/quote/submitIntention',{
           "billNumber":_this.billN,
           "quoteStatus":'卖家确认'
         },
@@ -105,7 +105,7 @@ export default {
       console.log("quoterId ........")
       console.log(_this.quoterId)
       console.log(getCookie('Iud'))
-      _this.axios.post(this.oUrl+'/transaction/updateIntentionStatus',{
+      _this.fetch.myPost('/transaction/updateIntentionStatus',{
             "operate":"sop1",
             "InvalidateBody":{
               "billNumber":_this.billN,

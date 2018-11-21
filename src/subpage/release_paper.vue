@@ -100,7 +100,7 @@ export default {
       }else if(!this.radioB){
         alert('请选择同意担保交易协议！')
       }else{
-        _this.axios.post(this.oUrl+'/bills/addbill',{
+        _this.fetch.myPost('/bills/addbill',{
           "billInfo":{
         		"billNumber":paperNumber,
         		"billType":"国票",

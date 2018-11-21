@@ -372,7 +372,7 @@
           let type3 = this.updateForm.type3+"% + "+this.updateForm.money3;
           let type4 = this.updateForm.type4+"% + "+this.updateForm.money4;
           console.log(this.updateForm.orderId);
-          this.axios.post(this.oUrl+'/resourceMarket/updateByOrderId',{
+          this.fetch.myPost('/resourceMarket/updateByOrderId',{
                 "orderId":this.updateForm.orderId,
                 "buyerId":Id,
                 "amountRange":this.updateForm.amountRange,
@@ -442,7 +442,7 @@
       this.dialogEditNoteVisible = false;
       //alert(this.noteInfo)
       let Id = getCookie("Iud");
-      this.axios.post(this.oUrl+'/resourceMarket/updateNoteByUserId',{
+      this.fetch.myPost('/resourceMarket/updateNoteByUserId',{
                 "buyerId":Id,
                 "note":this.noteInfo
               },

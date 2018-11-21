@@ -130,7 +130,7 @@
         let Id=getCookie('Iud');
         console.log("待接单userid")
         console.log(Id)
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["待接单"],
@@ -145,7 +145,7 @@
           console.log(res)
           _this.noteList=res.data;
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["待接单"],
@@ -238,7 +238,7 @@
         console.log("接单操作订单号和用户id：")
         console.log(billNumberLoca)
         console.log(Id)
-        _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+        _this.fetch.myPost('/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberLoca,
             "intentionStatus":"已接单,待支付",
             "quoterId":Id
@@ -260,7 +260,7 @@
         let Id = getCookie("Iud")
         let _this = this;
         /*两次请求应为一个事物进行处理*/
-        _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+        _this.fetch.myPost('/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberC,
             "intentionStatus":"已接单,待支付",
             "quoterId":Id
@@ -277,7 +277,7 @@
         })
 /*修改quote表中实付金额*/
         if (_this.new_money) {
-          _this.axios.post(this.oUrl+'/quote/updateRealMoney',{
+          _this.fetch.myPost('/quote/updateRealMoney',{
             "billNumber":billNumberC,
             "new_money":_this.new_money,
             "quoterId":Id
