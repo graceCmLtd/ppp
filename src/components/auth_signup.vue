@@ -12,6 +12,9 @@
             获取短信验证码</span>
       <span v-show="!show" class="count"  style="width: 83px; height: 28px; display: inline-block; text-align: center; line-height: 30px; background: #ccc; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; position:relative; top:-75px; right:-170px;">{{count}} S</span>
 
+      <p class="code_w1">
+        <span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="picpass" /><img :src="imageUrl" @click="getValidatePic">
+      </p>
 
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
@@ -38,7 +41,8 @@ export default {
       show:true,
       Phone:'',
       count: '',
-      timer: null
+      timer: null,
+      imageUrl:''
     }
   },
   methods:{
@@ -46,57 +50,61 @@ export default {
       let _this=this;
       let phone=_this.Phone;
       let pass=_this.$refs.pass.value;
-
-      if(phone==''||pass==''){
-        alert('请输入手机号或密码')
+      let picpass=_this.$refs.picpass.value;
+      if(phone==''||pass==''||picpass==''){
+        alert('请输入登录信息')
       }else{
         _this.sginUpText='';
         _this.loadingSginUp=true;
-        _this.axios.post(_this.oUrl+'/loginBySms',
-        {
+        _this.fetch.httpPost({
+          url:'/loginBySms',
+          data:{
           "user_phone":phone,
-          "Sms":pass
-        },
-        {header:{
-          'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-        }}
-      ).then((res)=>{
+          "Sms":pass,
+          "picCode":picpass
+        }
+      }).then((res)=>{
         console.log(res)
         //console.log(this)
-        _this.sginUpText='登录';
-        _this.loadingSginUp=false;
-        let token=res.data.ticket;
-        let uid=res.data.uuid;
-        let nick=res.data.user_phone;
-        let isau=res.data.CompanyAuthentication;
-        let role = res.data.role;
-        setCookie('Too',token);
-        setCookie('Iud',uid);
-        setCookie('Nick',nick);
-        setCookie('isAu',isau);
-        if(role=="包装户"){
-          setCookie('role',"vip")
-        }else if(role=="普通用户"){
-          setCookie('role','normal')
-        }else{
-          setCookie('role',"unknown")
+        if(res.data.status === 'success'){
+            _this.sginUpText='登录';
+            _this.loadingSginUp=false;
+            let token=res.data.ticket;
+            let uid=res.data.uuid;
+            let nick=res.data.user_phone;
+            let isau=res.data.CompanyAuthentication;
+            let role = res.data.role;
+            setCookie('Too',token);
+            setCookie('Iud',uid);
+            setCookie('Nick',nick);
+            setCookie('isAu',isau);
+            if(role=="包装户"){
+              setCookie('role',"vip")
+            }else if(role=="普通用户"){
+              setCookie('role','normal')
+            }else{
+              setCookie('role',"unknown")
+            }
+             _this.$router.push({name:"MarketPa"})
+            if(_this.back){
+              console.log("_this  back     ")
+              console.log(window.history)
+              console.log(this.$route)
+              //_this.$router.push({name:"MarketPa"})
+              window.history.back()
+              setTimeout(()=>{
+              window.history.back()
+              },0)
+            }else{
+              console.log("else ,,,,,")
+              //_this.$router.push({name:"MarketPa"})
+              window.history.back()
+              }
+        }else if(res.data.status === 'fail'){
+              alert(res.data.errorMsg);
+              window.location.reload();
         }
-         _this.$router.push({name:"MarketPa"})
-        if(_this.back){
-          console.log("_this  back     ")
-          console.log(window.history)
-          console.log(this.$route)
-          //_this.$router.push({name:"MarketPa"})
-          window.history.back()
-          setTimeout(()=>{
-          window.history.back()
-          },0)
-        }else{
-          console.log("else ,,,,,")
-          //_this.$router.push({name:"MarketPa"})
-          window.history.back()
-          }
+        
         })
       }
 
@@ -110,7 +118,7 @@ export default {
         let Phone=_this.Phone;*/
         console.log("the phone number is ")
         console.log(this.Phone)
-        this.axios.post(this.oUrl+'/getPhoneSms',{
+        this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
           {headers:{
@@ -139,10 +147,23 @@ export default {
             }
           }, 1000)
         }
-      }
+      },
+      getValidatePic(){
+        this.fetch.httpGet({
+          url:'/getValidatePic',
+          responseType: 'arraybuffer'
+        }).then((res) => {
+          console.log(res)
+            this.imageUrl = 'data:image/png;base64,' + btoa(
+                new Uint8Array(res.data)
+                  .reduce((data, byte) => data + String.fromCharCode(byte), '')
+              );
+          })
+        },
 },
 created(){
   //this.getQuery()
+  this.getValidatePic()
 }
 }
 </script>
@@ -170,6 +191,24 @@ created(){
       border:1px solid #ccc;
       min-height: 22px;
       font-size: 15px;
+    }
+  }
+  .code_w1{
+     margin-top:-16px;
+    input{
+      width:89px;
+      height:30px;
+      border:1px solid #ccc;
+      font-size: 15px;
+
+    }
+    img{
+      height:33px;
+      width:70px;
+      position: relative;
+      top: 12px;
+      left: 4px;
+      cursor: pointer;
     }
   }
   .turn{

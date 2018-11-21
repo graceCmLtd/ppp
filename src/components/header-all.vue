@@ -185,9 +185,10 @@
         this.enter=false;
         this.signSucc=true;
         this.isSinIn = true;
+        this.receive_msg();
+        this.getMsg();
       }
-      this.receive_msg();
-      this.getMsg();
+      
 
     },
     watch:{

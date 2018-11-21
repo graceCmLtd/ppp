@@ -163,7 +163,7 @@
         //var count1 = 0;
         //var count2 = 0;
         /*卖家IntentionType状态1或3*/
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
@@ -179,7 +179,7 @@
           _this.noteList=res.data;
           _this.updateTimer();
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'3',
             "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"]
@@ -229,7 +229,7 @@
               if (a> timeout && _this.noteList[i].intentionStatus =="已支付,待背书") {
                 /*transacType 为 orderid 超时失效*/
                 reloadFlag = true;
-              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -302,7 +302,7 @@
 
               /*transacType 为 orderid 超时失效*/
               /*if (_this.noteList[index].intentionStatus == "已支付,待背书") {
-              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:_this.noteList[index].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -313,7 +313,7 @@
               })
               }*/
               /*发送超时消息*/
-              /*this.axios.post(this.oUrl+"/publish/send",{
+              /*this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
@@ -390,7 +390,7 @@
             let Id=getCookie('Iud');
             console.log(Id);
             let message = "我已签收！"
-            this.axios.post(this.oUrl+'/publish/send',{uuid:Id,message:message}).then((res)=>{
+            this.fetch.myPost('/publish/send',{uuid:Id,message:message}).then((res)=>{
                 console.log(res.data);
             });
         },
@@ -402,7 +402,7 @@
         }, 
          fun(e,item){
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
-               this.axios.post(this.oUrl+"/publish/send",{
+               this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
@@ -424,7 +424,7 @@
       /*确认*/
        submitImg(){
           //alert("已背书，待签收，图片保存待实现")
-         this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+         this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:this.current_item.billNumber,
             orderId:this.current_item.transacType,
@@ -450,7 +450,7 @@
         //let imgIs = window.localStorage.;
         console.log("inset image ")
         console.log(window.localStorage.getItem("Is"))
-        this.axios.post(this.oUrl+"/transaction/addBackEndPics",{
+        this.fetch.myPost("/transaction/addBackEndPics",{
           orderId:this.current_item.transacType,
           pic1:window.localStorage.getItem("Is"),
           pic2:"sss"

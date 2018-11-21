@@ -48,7 +48,7 @@
     },
       getPaper(){
         let Id=getCookie('Iud');
-        this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":4
           },
@@ -116,7 +116,7 @@
 
 <style lang="scss" scoped>
   .person_offerBe{
-    width: 272px;
+    width: 289px;
     height: 424px;
     overflow-y:auto;
     overflow-x:hidden;

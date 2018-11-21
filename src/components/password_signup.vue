@@ -4,7 +4,11 @@
     <p class="phone">
       <span style="color:red;">*</span>手机号：&nbsp;&nbsp;<input  type="text" value="" placeholder="" ref="phoneNumber" maxlength="11" />
     </p>
+
     <p class="code"><span style="color:red;">*</span>密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="" placeholder="" ref="pass" /></p>
+
+    <p class="code_w1"><span style="color:red;">*</span>图片验证码:&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="" ref="picpass"/><img :src="imageUrl" @click="getValidatePic"></p>
+
     <p class="turn">
       <button type="button" name="button" @click="sginIn()"
       v-loading="loadingSginUp"
@@ -28,7 +32,8 @@ export default {
     return{
       back:false,
       loadingSginUp:false,
-      sginUpText:'登录'
+      sginUpText:'登录',
+      imageUrl:''
     }
   },
   methods:{
@@ -36,15 +41,18 @@ export default {
       let _this=this;
       let phone=_this.$refs.phoneNumber.value;
       let pass=_this.$refs.pass.value;
-      if(phone==''||pass==''){
-        alert('请输入手机号或密码')
+      let picpass=_this.$refs.picpass.value;
+      console.log(picpass)
+      if(phone==''||pass==''||picpass==''){
+        alert('请输入登录信息')
       }else{
         _this.sginUpText='';
         _this.loadingSginUp=true;
-        _this.axios.post(_this.oUrl+'/login',
+        _this.fetch.myPost('/login',
         {
           "user_phone":phone,
-          "user_passwd":pass
+          "user_passwd":pass,
+          "picCode":picpass
         },
         {header:{
           'Content-Type':'application/json',
@@ -93,12 +101,25 @@ export default {
         })
       }
   },
+  getValidatePic(){
+        this.fetch.httpGet({
+          url:'/getValidatePic',
+          responseType: 'arraybuffer'
+        }).then((res) => {
+          console.log(res)
+            this.imageUrl = 'data:image/png;base64,' + btoa(
+                new Uint8Array(res.data)
+                  .reduce((data, byte) => data + String.fromCharCode(byte), '')
+              );
+          })
+        },
   getQuery(){
     this.back=this.$route.query.back;
   }
 },
 created(){
-  this.getQuery()
+  this.getQuery(),
+  this.getValidatePic()
 }
 }
 </script>
@@ -128,8 +149,25 @@ created(){
       font-size: 15px;
     }
   }
+.code_w1{
+    input{
+      width:76px;
+      height:30px;
+      border:1px solid #ccc;
+      min-height: 22px;
+      font-size: 15px;
+    }
+    img{
+      height:33px;
+      width:70px;
+      position: relative;
+      top: 12px;
+      left: 4px;
+      cursor: pointer;
+    }
+  }
   .turn{
-    margin-top:10%!important;
+    margin-top:6%!important;
     width: 60%;
     min-height: 35px;
     margin:0 auto;

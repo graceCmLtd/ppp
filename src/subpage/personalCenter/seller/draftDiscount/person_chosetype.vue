@@ -13,21 +13,22 @@
     <div class="paper_pic">
       <img :class="{'active':isChoose}"  src="../../../../../static/img/banner2.jpg" alt="" ref="choseTypePic" @click="imgScc">
     </div>
+    <div style="float:left; margin-left:31%;margin-top:15px;">交易方式： 三方担保支付</div>
     <div class="choseType_payMes">
       <div class="mes_left">
         <ul>
-          <li>支付方式：<span>买卖双方协商，银行转账</span></li>
-          <li>买家联系人：<span>{{billData.contactsName}}</span></li>
-          <li>贴现利率：<span>{{billData.interest}}</span>%</li>
-          <li>每10w加：<span>{{billData.xPerLakh}}</span></li>
+            <li style="font-weight:bold;">票据收款账户:</li>
+            <li>户名：<span>{{billData.companyName}}</span></li>
+            <li>开户行：<span>{{billData.bankName}}</span></li>
+            <li>账号：<span>{{billData.bankAccount}}</span></li>
+
         </ul>
       </div>
       <div class="mes_right">
         <ul>
-          <li>交易方式：<span>买卖双方协商</span></li>
-          <li>联系方式：<span>{{billData.contactsPhone}}</span></li>
-          <li>实收金额：<span>{{billData.real_money}}</span>w<font color="red">(含平台担保费)</font></li>
-          <li>总额：<span>{{billData.amount/10000}}</span>w</li>
+          <li>贴现利率：<span>{{billData.interest}}</span>%</li>
+          <li>每10w加：<span>{{billData.xPerLakh}}</span></li>
+          <li>实收金额：<span>{{billData.real_money}}</span>w<font color="red" size="2px;">(含平台担保费)</font></li>
         </ul>
       </div>
     </div>
@@ -82,7 +83,7 @@ export default {
       if(!this.TypeAgShowT){
         alert('请先接收担保交易条款')
       }else{
-        /*_this.axios.post(this.oUrl+'/quote/submitIntention',{
+        /*_this.fetch.myPost('/quote/submitIntention',{
           "billNumber":_this.billN,
           "quoteStatus":'卖家确认'
         },
@@ -98,7 +99,7 @@ export default {
       console.log("quoterId ........")
       console.log(_this.quoterId)
       console.log(getCookie('Iud'))
-      _this.axios.post(this.oUrl+'/transaction/updateIntentionStatus',{
+      _this.fetch.myPost('/transaction/updateIntentionStatus',{
             "operate":"sop1",
             "InvalidateBody":{
               "billNumber":_this.billN,
@@ -258,7 +259,7 @@ export default {
       height:100%;
       ul{
         width: 100%;
-        padding-top:10%;
+        padding-top:5%;
         li{
           text-align: left;
           font-size: 14px;

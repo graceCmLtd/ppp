@@ -131,7 +131,7 @@ export default {
       updateFlag(){
         console.log("1213");
         let receiverId = getCookie("Iud");
-        this.axios.post(this.oUrl+'/msg/updateFlag',
+        this.fetch.myPost('/msg/updateFlag',
           {
             "receiverId":receiverId,
             "flag":1
@@ -151,7 +151,7 @@ export default {
         console.log(item.msgId);
         let _this = this;
         let receiverId = getCookie("Iud");
-        _this.axios.post(_this.oUrl+'/msg/updateOneFlag',{
+        _this.fetch.myPost('/msg/updateOneFlag',{
             "receiverId":receiverId,
             "msgId":item.msgId,
             "flag":1

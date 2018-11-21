@@ -240,7 +240,7 @@
         let _this=this;
         let Id=getCookie('Iud');
         
-        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":2,
             "billNumber":_this.billNum,
@@ -266,7 +266,7 @@
               }
           }         
         });
-        _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
+        _this.fetch.myPost('/bills/getMyQuotedCount',{
             "uuid":Id,
             "filter":2,
             "billNumber":_this.billNum
@@ -296,7 +296,7 @@
         console.log("billnumer is :")
         console.log(_this.billNum)
         
-        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":3,
             "billNumber":_this.billNum,
@@ -313,7 +313,7 @@
           this.noteL = res.data
           _this.billN=res.data[0].billNumber;
         });
-        _this.axios.post(this.oUrl+'/bills/getMyQuotedCount',{
+        _this.fetch.myPost('/bills/getMyQuotedCount',{
             "uuid":Id,
             "filter":3,
             "billNumber":_this.billNum
@@ -337,7 +337,7 @@
       /*getBills(){
         let _this=this;
         let Id=getCookie('Iud');
-        _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":1,
             "billReferer":"传统渠道"
@@ -374,7 +374,7 @@
         console.log(item)
         let _this = this;
         _this.billD[0] = item
-        
+        console.log(item.billNumber)
         _this.fetch.httpGet({
           url:'/bills/getBillPics',
           params:{
@@ -390,7 +390,7 @@
       },
       getItemAuditing(){
         let _this = this;
-           _this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+           _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":getCookie("Iud"),
             "filter":4,
             "billNumber":_this.billNum,
@@ -627,7 +627,7 @@
 }
 
   .tab-button {
-    width: 125px;
+    width: 135px;
     height: 45px;
     padding: 6px 10px;
     cursor: pointer;
@@ -647,7 +647,7 @@
   padding: 10px;
 }
 .table_w_1{
-  width: 249px;
+  width: 269px;
    border-bottom:4px solid #F15749;
    margin-bottom:2px;
    z-index:999;
