@@ -134,7 +134,7 @@ import {getCookie} from '@/assets/util'
     methods:{
       getOfferAll(){
         let Id=getCookie('Iud');
-        this.axios.post(this.oUrl+'/quote/getMyQuote',{
+        this.fetch.myPost('/quote/getMyQuote',{
             "uuid":Id,
             "filter":"3",
             "pageSize":this.pageSize,
@@ -169,7 +169,7 @@ import {getCookie} from '@/assets/util'
           }
           console.log(_this.marDay)
         });
-        this.axios.post(this.oUrl+'/quote/getQuoteCount',{
+        this.fetch.myPost('/quote/getQuoteCount',{
             "uuid":Id,
             "filter":"3"
           },

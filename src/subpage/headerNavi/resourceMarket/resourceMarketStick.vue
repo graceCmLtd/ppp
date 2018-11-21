@@ -32,10 +32,13 @@
          <!--   <p style="position:relative;left:-14%;"><input type="radio" style="width:15px;height:15px;" value="" :checked="checked" v-show="radioT" @click="radioTC($event)" ref="b"> 
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保交易协议</p> -->
           <div class="gathering">
-            <ol style="text-align:center;">请确认收款信息:</ol>
-              <ol>{{companyInfo.companyName}}</ol>
-              <ol>{{companyInfo.bankName}}</ol>
-              <ol>{{companyInfo.bankAccount}}</ol>
+            <div class="gather_title">
+              <span>收款账户</span>
+            </div>
+              <ol><span style="font-weight:bold;">交易方式：</span>担保支付</ol>
+              <ol><span style="font-weight:bold;">户名：</span>{{companyInfo.companyName}}</ol>
+              <ol><span style="font-weight:bold;">开户行：</span>{{companyInfo.bankName}}</ol>
+              <ol><span style="font-weight:bold;">账号：</span>{{companyInfo.bankAccount}}</ol>
             
           </div>
           <div class="db_w">*平台担保手续费：担保费万分之5，比如每10万收费50元，每100万收费500元，5000元封顶</div>
@@ -385,7 +388,7 @@
             let XperLakh = item.interest.split("% + ")[1];
             let real_money = (amount-((amount*rate/100*_this.dayRe)/360+(amount/100000*XperLakh))).toFixed(6);
             console.log(real_money+"--"+rate);
-            _this.axios.post(this.oUrl+'/bills/addFromResourceMarket',{
+            _this.fetch.myPost('/bills/addFromResourceMarket',{
               "paramBill":{
                 "billInfo":{
                   "billNumber":paperNumber,
@@ -486,11 +489,30 @@
 
 <style lang="scss">
 .gathering{ 
-  width:51%;
-  text-align:left;
-  margin-left: 22%;
-  ol:first-child{
-    font-weight:600;
+    width: 131%;
+    text-align: left;
+    margin-top: 143px;
+    margin-left: 64px;
+    ol:first-child{
+      font-weight:600;
+    }
+    ol{
+      margin-left:46px;
+    }
+  .gather_title{
+    border-bottom:1px solid #979797;
+    span{
+      font-size: 19px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color:#FE442B;
+      font-weight: bold;
+      width: 88px;
+      height: 37px;
+      text-align: center;
+      line-height: 37px;
+      border-bottom:3px solid #FE442B;
+    }
   }
 }
  .db_w{
@@ -534,7 +556,7 @@
     min-height: 900px;
     .release_paper_con{
       width: 70%;
-      height: 67%;
+      height: 100%;
       margin: 0px auto;
       padding-top: 0%;
       background: rgba(255,255,255,1);
@@ -584,7 +606,7 @@
           p{
             width: 65%;
             text-align: right;
-            margin-top: 2%;
+            margin-top: 4%;
             font-weight: bold;
             input{
               width: 287px;
@@ -621,8 +643,9 @@
           }
         }
         .mes_right{
-          width: 24%;
-          height:100%;
+          width: 26%;
+          height:65%;
+          margin-top: -28px;
           .paper_is{
             width: 86%;
             height:32%;

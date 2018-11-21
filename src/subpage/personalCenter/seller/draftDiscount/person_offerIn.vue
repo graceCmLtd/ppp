@@ -46,7 +46,7 @@
     },
       getPaper(){
         let Id=getCookie('Iud');
-        this.axios.post(this.oUrl+'/bills/getMyBillsQuoted',{
+        this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
             "filter":1,
             "quoteStatus":"报价中",

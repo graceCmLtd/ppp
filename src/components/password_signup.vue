@@ -48,7 +48,7 @@ export default {
       }else{
         _this.sginUpText='';
         _this.loadingSginUp=true;
-        _this.axios.post(_this.oUrl+'/login',
+        _this.fetch.myPost('/login',
         {
           "user_phone":phone,
           "user_passwd":pass,

@@ -252,7 +252,7 @@
       },
       getListTop(){//票据列表
         let _this=this;
-        _this.axios.post(_this.oUrl+'/bills/filterbill',{
+        _this.fetch.myPost('/bills/filterbill',{
           "billType":0,
           "amountType":0,
           "maturityType":0,
@@ -270,7 +270,7 @@
       },
       getListBot(){//资源列表
         let _this=this;
-        _this.axios.post(_this.oUrl+'/resourceMarket/getAllInfo?pageSize=8&currentPage=1').then((res)=>{
+        _this.fetch.myPost('/resourceMarket/getAllInfo?pageSize=8&currentPage=1').then((res)=>{
           _this.roteListLimit=res.data;
         })
       },

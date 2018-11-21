@@ -1,11 +1,22 @@
 <!-- 选择交易 -->
 <template lang="html">
   <div class="person_choseType">
-    <p class="choseType_company">{{billData.acceptor}}</p>
-    <p>票据类型：&nbsp;&nbsp;&nbsp;<span>{{billType}}</span></p>
-    <p>汇票到期日：&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}(剩{{billData.remain_days}}天)</span></p>
-    <p>票面金额：&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
-    <p>出票日期：&nbsp;&nbsp;&nbsp;<span>{{maturityDay}}</span></p>
+      <div class="choseType_payMes">
+        <div class="mes_lefts">
+            <p class="choseType_company">{{billData.acceptor}}</p>
+            <p><i>票据类型：</i>&nbsp;&nbsp;&nbsp;<span>{{billType}}</span></p>
+            <p><i>汇票到期日：</i>&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}(剩{{billData.remain_days}}天)</span></p>
+            <p><i>票面金额：</i>&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
+            <p><i>出票日期：</i>&nbsp;&nbsp;&nbsp;<span>{{maturityDay}}</span></p>
+        </div>
+        <div class="mes_rights">
+          <p><i>贴现利率：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.interest}}</span>%</p>
+          <p><i>每10w加：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.xPerLakh}}</span></p>
+          <p><i>实收金额：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.real_money}}</span>w</p>
+          <p><i>联系人：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.companyName}}</span></p>
+          <p><i>联系电话：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.contactsPhone}}</span></p>
+      </div>
+</div>
     <!-- <p>期望利率：&nbsp;&nbsp;&nbsp;<span>10</span>%</p> -->
     <p class="pic_title">
       <span>汇票图片</span>
@@ -13,22 +24,17 @@
     <div class="paper_pic">
       <img :class="{'active':isChoose}"  src="../../../../../static/img/banner2.jpg" alt="" ref="choseTypePic" @click="imgScc">
     </div>
-    <div style="float:left; margin-left:31%;margin-top:15px;">交易方式： 三方担保支付</div>
+    <!-- <div style="float:left; margin-left:31%;margin-top:15px;">交易方式： 三方担保支付</div> -->
+    <p class="pic_title">
+      <span>收款账户</span>
+    </p>
     <div class="choseType_payMes">
       <div class="mes_left">
         <ul>
-            <li style="font-weight:bold;">票据收款账户:</li>
-            <li>户名：<span>{{billData.companyName}}</span></li>
-            <li>开户行：<span>{{billData.bankName}}</span></li>
-            <li>账号：<span>{{billData.bankAccount}}</span></li>
-
-        </ul>
-      </div>
-      <div class="mes_right">
-        <ul>
-          <li>贴现利率：<span>{{billData.interest}}</span>%</li>
-          <li>每10w加：<span>{{billData.xPerLakh}}</span></li>
-          <li>实收金额：<span>{{billData.real_money}}</span>w<font color="red" size="2px;">(含平台担保费)</font></li>
+            <li><i>交易方式：</i> 担保支付</li>
+            <li><i>户名：</i><span>{{billData.companyName}}</span></li>
+            <li><i>开户行：</i><span>{{billData.bankName}}</span></li>
+            <li><i>账号：</i><span>{{billData.bankAccount}}</span></li>
         </ul>
       </div>
     </div>
@@ -83,7 +89,7 @@ export default {
       if(!this.TypeAgShowT){
         alert('请先接收担保交易条款')
       }else{
-        /*_this.axios.post(this.oUrl+'/quote/submitIntention',{
+        /*_this.fetch.myPost('/quote/submitIntention',{
           "billNumber":_this.billN,
           "quoteStatus":'卖家确认'
         },
@@ -99,7 +105,7 @@ export default {
       console.log("quoterId ........")
       console.log(_this.quoterId)
       console.log(getCookie('Iud'))
-      _this.axios.post(this.oUrl+'/transaction/updateIntentionStatus',{
+      _this.fetch.myPost('/transaction/updateIntentionStatus',{
             "operate":"sop1",
             "InvalidateBody":{
               "billNumber":_this.billN,
@@ -257,6 +263,10 @@ export default {
     .mes_left{
       width: 50%;
       height:100%;
+      i{
+        font-weight:bold;
+        font-style:normal
+      }
       ul{
         width: 100%;
         padding-top:5%;
@@ -266,6 +276,15 @@ export default {
           margin-bottom: 3%;
           padding-left:17%;
         }
+      }
+    }
+    .mes_lefts{
+      width: 50%;
+      height:100%;
+      margin-top: -26px;
+      i{
+        font-weight:bold;
+        font-style:normal
       }
     }
     .mes_right{
@@ -280,6 +299,14 @@ export default {
           margin-bottom: 3%;
           padding-left:17%;
         }
+      }
+    }
+    .mes_rights{
+      width: 50%;
+      height:100%;
+        i{
+        font-weight:bold;
+        font-style:normal
       }
     }
   }

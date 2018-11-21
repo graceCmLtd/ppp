@@ -56,17 +56,14 @@ export default {
       }else{
         _this.sginUpText='';
         _this.loadingSginUp=true;
-        _this.axios.post(_this.oUrl+'/loginBySms',
-        {
+        _this.fetch.httpPost({
+          url:'/loginBySms',
+          data:{
           "user_phone":phone,
           "Sms":pass,
           "picCode":picpass
-        },
-        {header:{
-          'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-        }}
-      ).then((res)=>{
+        }
+      }).then((res)=>{
         console.log(res)
         //console.log(this)
         if(res.data.status === 'success'){
@@ -121,7 +118,7 @@ export default {
         let Phone=_this.Phone;*/
         console.log("the phone number is ")
         console.log(this.Phone)
-        this.axios.post(this.oUrl+'/getPhoneSms',{
+        this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
           {headers:{

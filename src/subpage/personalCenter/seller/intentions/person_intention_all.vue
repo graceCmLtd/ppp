@@ -207,7 +207,7 @@
             let Id=getCookie('Iud');
             _this.isShow = !_this.isShow;
             let billNumberLoca=_this.noteList[index].billNumber;
-            _this.axios.post(this.oUrl+'/transaction/updateTransacIntentionStatus',{
+            _this.fetch.httpPost('/transaction/updateTransacIntentionStatus',{
                 "billNumber":billNumberLoca,
                 "intentionStatus":"卖家已确认"
               },
@@ -289,18 +289,20 @@
           this.isShow = false;
           let _this = this;
           let quoterId = this.currentItem.quoterId;
-          _this.axios.post(_this.oUrl+"/quote/updateRealMoney",{
+          _this.fetch.httpPost({
+            url:"/quote/updateRealMoney",
+            data:{
             "billNumber":_this.currentItem.billNumber,
             "quoterId":_this.currentItem.quoterId,
             "new_money":_this.new_money*10000
-          },{headers:{
-              'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-          }}).then((res)=>{
+          }
+          }).then((res)=>{
             console.log("修改金额")
             console.log(res)
             _this.getIntenTionList()
-            _this.axios.post(_this.oUrl+"/publish/send",{
+            _this.fetch.httpPost({
+              url:"/publish/send",
+              data:{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),
@@ -309,10 +311,8 @@
                   "flag":"0",
                   "path":"/release/orderws/audit"
                 }
-               },{headers:{
-                'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-              }}).then((res)=>{
+               }
+            }).then((res)=>{
                 console.log("send msg for amount modify")
               })
           })
@@ -324,7 +324,9 @@
         let _this = this
         alert("确定删除")
         this.isShow_cancel = !this.isShow_cancel;
-        _this.axios.post(_this.oUrl+"/transaction/cancleOrder",{
+        _this.fetch.httpPost({
+          url:"/transaction/cancleOrder",
+          data:{
             "billInfo":{
               "billId":_this.currentItem.billId,
               "billNumber":_this.currentItem.billNumber
@@ -337,10 +339,8 @@
               "orderId":_this.currentItem.transacType,
               "intentionStatus":"ISD"
             }
-          },{headers:{
-              'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-          }}).then((res)=>{
+          }
+        }).then((res)=>{
             console.log("删除意向")
             console.log(res)
             _this.getIntenTionList()
@@ -369,7 +369,9 @@
         },
         backMarket(){
           console.log(this.currentItem);
-          this.axios.post(this.oUrl+'/quote/updateStatus',{
+          this.fetch.httpPost({
+            url:'/quote/updateStatus',
+            data:{
             "quoteBack":{
               "billNumber":this.currentItem.billNumber,
               "status":"报价中",
@@ -398,7 +400,8 @@
               "msgContent":"有卖家取消了本次交易"+this.currentItem.acceptor+"请到 我是买家->我的接单->已失效中 查看",
               "flag":"0",
               "path":"/release/Receipt/offerInvalid"
-            }}).then((res)=>{
+            }}
+          }).then((res)=>{
                 console.log(res.data.status);
                 if(res.data.status === 'success'){
                     this.getIntenTionList();

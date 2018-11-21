@@ -142,7 +142,7 @@
         let Id=getCookie('Iud');
         console.log("我的接单，所有接单")
         console.log(Id)
-        this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":"4",
             "transaction_filter":["已接单,待支付","待接单","已失效"],
@@ -177,7 +177,7 @@
           }
           console.log(_this.marDay)
         });
-        this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":"4",
             "transaction_filter":["已接单,待支付","待接单","已失效"],

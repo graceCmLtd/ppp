@@ -134,7 +134,7 @@ export default {
       /*submitInfo(){
         let contactsId = getCookie("Iud");
         console.log(contactsId)
-        this.axios.post(this.oUrl+'/addCompany',{
+        this.fetch.myPost('/addCompany',{
         "companyInfo":{
               "companyName":this.$refs.companyName.value,
               "contactsId":contactsId,

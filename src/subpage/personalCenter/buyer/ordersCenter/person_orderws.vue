@@ -132,7 +132,7 @@
       getItemCount(){
         let _this = this;
         let Id = getCookie('Iud');
-        _this.axios.post(this.oUrl+'/transaction/getCountByIntentionStatus',{
+        _this.fetch.myPost('/transaction/getCountByIntentionStatus',{
             "uuid":Id,
             "role":"buyer",
             "filter_str":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"]

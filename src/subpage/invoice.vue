@@ -122,7 +122,7 @@
         let Phone=_this.Phone;*/
         console.log("the phone number is ")
         console.log(this.Phone)
-        this.axios.post(this.oUrl+'/getPhoneSms',{
+        this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
           {headers:{

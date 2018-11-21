@@ -149,7 +149,7 @@
         let Id=getCookie('Iud');
         /*卖家IntentionType状态1或3*/
         console.log(Id);
-        _this.axios.post(this.oUrl+'/bills/getBillsIntentions',{
+        _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
@@ -165,7 +165,7 @@
           _this.noteList=res.data;
           _this.updateTimer();
         });
-        _this.axios.post(this.oUrl+'/bills/getIntentionsCount',{
+        _this.fetch.myPost('/bills/getIntentionsCount',{
             "uuid":Id,
             "IntentionType":'4',
             "transaction_filter":["已接单,待支付","已支付,待背书","已背书,待签收","已签收","已失效"],
@@ -199,7 +199,7 @@
       },
       /*确认签收*/
       submitAccept(item){
-        this.axios.post(this.oUrl+"/transaction/updateTransacIntentionStatus",{
+        this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:item.billNumber,
             orderId:item.transacType,
@@ -250,7 +250,7 @@
               if (a>1200 && _this.noteList[i].intentionStatus =="已背书,待签收") {
                 /*transacType 为 orderid 超时失效*/
                 reloadFlag = true;
-              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -263,7 +263,7 @@
               if(a >1200 && _this.noteList[i].intentionStatus =="已接单,待支付"){
                 /*transacType 为 orderid 超时失效*/
                 reloadFlag = true;
-              _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+              _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:this.noteList[i].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -325,7 +325,7 @@
               
               /*transacType 为 orderid 超时失效*/
               /*if (_this.noteList[index].intentionStatus == "已接单,待支付" || _this.noteList[index].intentionStatus == "已背书,待签收") {
-                _this.axios.post(_this.oUrl+"/transaction/updateTransacIntentionStatusByOrderId",{
+                _this.fetch.myPost("/transaction/updateTransacIntentionStatusByOrderId",{
                 orderId:this.noteList[index].transacType,
                 intentionStatus:"已超时"
               },{headers:{
@@ -410,7 +410,7 @@
           console.log(item.transacType);
           this.dialogTableVisible = true;
           var orderId = item.transacType;
-          this.axios.post(this.oUrl+'/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
+          this.fetch.myPost('/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
               console.log(res.data);
               if(res.data != '')
                 this.pic1 = res.data[0].pic1;
@@ -425,7 +425,7 @@
       },
        fun(e,item){
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
-               this.axios.post(this.oUrl+"/publish/send",{
+               this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",
                   "senderId":getCookie("Iud"),

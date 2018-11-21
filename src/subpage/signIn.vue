@@ -111,7 +111,7 @@
         }else{
           _this.siginInText='';
           _this.loadingSginIn=true;
-          _this.axios.post(_this.oUrl+'/register',
+          _this.fetch.myPost('/register',
             {
               "login_name":"default",
               "user_phone":phone,
@@ -151,7 +151,7 @@
         let Phone=_this.Phone;*/
         console.log("the phone number is ")
         console.log(this.Phone)
-        this.axios.post(this.oUrl+'/getPhoneSms',{
+        this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
           {headers:{
