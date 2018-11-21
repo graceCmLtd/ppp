@@ -156,7 +156,6 @@ export default {
           url:'/getValidatePic',
           responseType: 'arraybuffer'
         }).then((res) => {
-          console.log(res)
             this.imageUrl = 'data:image/png;base64,' + btoa(
                 new Uint8Array(res.data)
                   .reduce((data, byte) => data + String.fromCharCode(byte), '')
