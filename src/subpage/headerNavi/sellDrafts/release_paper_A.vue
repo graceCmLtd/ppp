@@ -48,6 +48,7 @@
             <div class="loading" style="" v-if="gifImg">
               <img src="../../../../static/img/loading.gif">
             </div> 
+            <div  class="tip" v-if="tips">如若未识别完整,请手动添加哦！</div>
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
             <span style="margin-top: 61%;">上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
@@ -128,6 +129,7 @@
         bigImg:false,
         bigImgs:false,
         gifImg:false,
+        tips:false,
       }
     },
     components:{
@@ -220,6 +222,8 @@
             _this.$refs.big_w="block";
             _this.gifImg=true;
             _this.$refs.loading="block";
+            _this.tips=true;
+            _this.$refs.tip="block";
 
           }
         }
@@ -397,14 +401,15 @@
               if(res.data.time == "" || res.data.billNumber== ""){
                   _this.time = null;
                   _this.gifImg=false;
+                  _this.tips=false;
                  
                 
               }
               var date = new Date(res.data.time); //时间对象
               _this.time = date.getTime(); //转换成时间戳
               _this.billNum = res.data.billNumber;
-              _this.gifImg=false
-             
+              _this.gifImg=false;
+              _this.tips=false;
 
           });
           
@@ -421,6 +426,14 @@
 </script>
 
 <style lang="scss">
+.tip{
+    position: absolute;
+    top: -25px;
+    left: 28px;
+    z-index: 999;
+    font-weight: bold;
+    color: red;
+}
 .loading{
   position:absolute; 
   right: 40%;

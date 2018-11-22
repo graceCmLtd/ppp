@@ -60,8 +60,9 @@
             <div class="loading" style="" v-if="gifImg">
               <img src="../../../../static/img/loading.gif">
             </div> 
+            <div  class="tip" v-if="tips">如若未识别完整,请手动添加哦！</div>
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
-            <span style="margin-top: 62%;">上传票据正面</span>
+            <span style="margin-top: 48%;">上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
           </div>
           <div class="paper_the">
@@ -70,7 +71,7 @@
               <img src="../../../../static/img/loading.gif">
             </div>  -->
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
-            <span style="margin-top: 62%;">上传票据反面</span>
+            <span style="margin-top: 48%;">上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
         </div>
@@ -141,8 +142,9 @@
         bigImg:false,
         bigImgs:false,
         gifImg:false,
-        companyInfo:[]
+        companyInfo:[],
         // gifImgs:false,
+        tips:false,
       }
     },
     components:{
@@ -239,6 +241,8 @@
             _this.$refs.big_w="block";
             _this.gifImg=true;
             _this.$refs.loading="block";
+            _this.tips=true;
+            _this.$refs.tip="block";
 
           }
         }
@@ -467,12 +471,14 @@
                   _this.time = null;
                   _this.gifImg=false;
                   // _this.gifImgs=false;
+                  _this.tips=false;
               }
               var date = new Date(res.data.time); //时间对象
               _this.time = date.getTime(); //转换成时间戳
               _this.billNum = res.data.billNumber;
               _this.gifImg=false;
               // _this.gifImgs=false;
+              _this.tips=false;
           });
           
       },
@@ -488,6 +494,15 @@
 </script>
 
 <style lang="scss">
+.tip{
+    position: absolute;
+    top: -25px;
+    left: 28px;
+    z-index: 999;
+    font-weight: bold;
+    color: red;
+    font-size:13px;
+}
 .gathering{ 
     width: 131%;
     text-align: left;
@@ -645,10 +660,9 @@
         .mes_right{
           width: 26%;
           height:65%;
-          margin-top: -28px;
           .paper_is{
             width: 86%;
-            height:32%;
+            height:30%;
             padding-top:13%;
             position: relative;
          img{
@@ -678,7 +692,7 @@
           }
           .paper_the{
             width: 86%;
-            height:32%;
+            height:30%;
             padding-top:13%;
             margin-top: 1%;
             position: relative;

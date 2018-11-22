@@ -31,6 +31,11 @@ const router = new Router({
     name:'Forgetp',
     component:resolve=>require(['@/subpage/forgetp'],resolve)
   },
+ {
+    path:'/yongyi',//甬易支付
+    name:'Yongyi',
+    component:resolve=>require(['@/subpage/yongyi'],resolve)
+  },
  
 // silde
    {
