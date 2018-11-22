@@ -46,6 +46,9 @@
 </script>
 
 <style lang="scss" scoped>
+a{
+  color:#fff;
+}
   *{
     list-style: none;
     padding: 0;

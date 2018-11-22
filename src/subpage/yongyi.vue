@@ -3,14 +3,14 @@
     <div class="yongyi_cn1">
      <p class="release_paper_title"><span>三方备付</span></p>
       <div class="content_1">
-        <p style="text-align:left"><span style="font-weight:bold;">订单编号:</span>596859613456950695</p>
+        <p style="text-align:left"><span style="font-weight:bold;">订单编号:&nbsp;&nbsp;</span>596859613456950695</p>
         <div style="height:311px;">
         <div class="yongyi_left">
           <p style="margin-left:36px;"><img src="../../static/img/yongyi.png"></p>
-          <p><span>付款金额:</span>97,000,00<i style="color:#F15749;font-style:normal;">（含手续费）</i></p>
-          <p><span>账户:</span>62394893*********049</p>
-          <p><span>开户行:</span>甬易支付有限公司客户备付金账户</p>
-          <p><span>户名:</span>中国光大银行*****支行</p>
+          <p><span>付款金额:&nbsp;&nbsp;</span>97,000,00<i style="color:#F15749;font-style:normal;">（含手续费）</i></p>
+          <p><span>账户:&nbsp;&nbsp;</span>62394893*********049</p>
+          <p><span>开户行:&nbsp;&nbsp;</span>甬易支付有限公司客户备付金账户</p>
+          <p><span>户名:&nbsp;&nbsp;</span>中国光大银行*****支行</p>
           <p><i style="color:#F15749;font-style:normal;">（请仔细核对信息）</i></p>
         </div>
         <div class="yongyi_right">
@@ -68,7 +68,7 @@
         }
     },
       imgScc:function () {                     
-      this.isChoose = !this.isChoose     
+        this.isChoose = !this.isChoose     
      },
    }
 

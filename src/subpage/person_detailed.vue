@@ -48,7 +48,7 @@
     <!-- 支付弹框 -->
     <div class="show_w" v-show="isShow">
       <div style="position:absolute;right:7px;top:8px;color:#ccc;"  @click="hiddenShow()">X</div>
-      <span class="yibao"><img class="img-y" src="../../static/img/t-g.png">
+      <span class="yibao">
           <div class="content_y">
             <span>推荐</span>
             <p><img src="../../static/img/yibao.png"></p>
@@ -279,6 +279,10 @@
   }
   .yibao{
     float:left;
+    width:200px;
+    height:150px;
+    border-radius:8px;
+    border:2px solid #ccc;
     .img-y{
       width: 222px;
       height: 171px;
@@ -304,23 +308,26 @@
         color: white;
         line-height: 16px;
         position: absolute;
-        left: -56px;
-        top: -48px;
+        left: -64px;
+        top: -56px;
         background: #0FC55B;
         font-size: 10px;
         display:none;
       }
     }
   }
+  .yibao:hover{
+    border:2px solid red;
+    box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
+  }
+  .yongyi:hover{
+    border:2px solid red;
+    box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
+  }
   .content_y:hover span{
     display:block;
   }
-  .yibao:hover{
-   background-color:#ccc;
-  }
-  .yongyi:hover{
-     background:#eee;
-  }
+
   .sl{
     width: 2px;
     background-color: #F15749;
@@ -333,7 +340,6 @@
     height:150px;
     border-radius:8px;
     border:2px solid #ccc;
-    opacity:0.7px;
     .content_yi{
       margin-top:10px;
       width: 172px;
@@ -342,6 +348,9 @@
       line-height:20px;
       color:#ccc;
       margin-top: 15px;
+      a{
+        color:#ccc;
+      }
     }
   }
   .btn{
