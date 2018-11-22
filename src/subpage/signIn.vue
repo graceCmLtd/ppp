@@ -49,7 +49,7 @@
             <span  style="margin-left:59px; color:#FF0000;">{{passwordCheckValidate.errorText}}</span>
           </li>
           <li class="src_w"><i style="font-style:normal;color: #FF0000;">*</i>图片验证码:&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" maxlength="16" value="" ref="picpass"  v-model.lazy="passwordcheckModel"/> <img :src="imageUrl" @click="getValidatePic">
+            <input type="text" maxlength="16" value="" ref="picpass"/> <img :src="imageUrl" @click="getValidatePic">
           </li>
         </div>
 
