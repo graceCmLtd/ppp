@@ -48,7 +48,7 @@
     <!-- 支付弹框 -->
     <div class="show_w" v-show="isShow">
       <div style="position:absolute;right:7px;top:8px;color:#ccc;"  @click="hiddenShow()">X</div>
-      <span class="yibao">
+      <span class="yibao" @click="acceptOrder()">
           <div class="content_y">
             <span>推荐</span>
             <p><img src="../../static/img/yibao.png"></p>
@@ -71,7 +71,11 @@
       </span>
       <div class="btn">确认选择</div>
     </div>
-
+    
+     <el-dialog title="付款" :visible.sync="showDialog">
+      <el-button @click="paySuccess">确定</el-button>
+      <el-button @click="payCancle" style="background-color:#ccc;margin-left:40px;">取消</el-button>
+    </el-dialog>
     <div class="person_detailed_mask" v-show="detailedMaskShow" @click="closeWarning()">
     </div>
   </div>
@@ -131,11 +135,11 @@
         _this.$router.push({name:'Batch'})
       },
       /*去接单*/
-      // acceptOrder(){
-      //   //alert("person_detailed 页面，接口待完善")
-      //   let _this = this;
-      //   this.showDialog = true;
-      // },
+      acceptOrder(){
+        //alert("person_detailed 页面，接口待完善")
+        let _this = this;
+        this.showDialog = true;
+      },
       /*付款成功  测试*/
       paySuccess(){
         let _this = this;
@@ -317,11 +321,11 @@
     }
   }
   .yibao:hover{
-    border:2px solid red;
+    border:2px solid #F15749;
     box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
   }
   .yongyi:hover{
-    border:2px solid red;
+    border:2px solid #F15749;
     box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
   }
   .content_y:hover span{
