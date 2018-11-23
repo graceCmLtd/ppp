@@ -431,6 +431,7 @@
           line-height:40px;
           color:#fff;
           letter-spacing:1.3px;
+          cursor:pointer;
         }
       }
       input{

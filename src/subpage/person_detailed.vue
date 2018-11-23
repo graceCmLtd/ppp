@@ -16,7 +16,7 @@
         <p>银行账号:<i>{{list.bankAccount}}</i></p>
         <p>户名:<i>{{list.bankAccountName}}</i></p>
         <p>开户行:<i>{{list.bankName}}</i></p>
-        <p>担保交易专席客服联系方式:<i>4001-521-889 </i></p>
+        <!-- <p>担保交易专席客服联系方式:<i>4001-521-889 </i></p> -->
         <p>票号：<i>{{item.billNumber}}</i></p>
         <p>票面总额:<i>{{item.amount}}</i></p>
         <p>承兑方:<i>{{item.acceptor}}</i></p>
@@ -32,7 +32,7 @@
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保支付协议
         </p> --> 
       </div>
-      <div style="position: absolute;top: 41%; left: 67%; cursor:pointer;"><img src="../../static/img/9.18.png">
+      <div style="position: absolute;top: 9%; left: 67%; cursor:pointer;"><img src="../../static/img/phone.png" >
       </div>
     </div>
     <p class="havelook" v-on:click="toggle()">
@@ -48,7 +48,7 @@
     <!-- 支付弹框 -->
     <div class="show_w" v-show="isShow">
       <div style="position:absolute;right:7px;top:8px;color:#ccc;"  @click="hiddenShow()">X</div>
-      <span class="yibao" @click="acceptOrder()">
+      <span class="yibao" @click="acceptOrder()" v-bind:class="{ active: isActive }" v-on:@click="chooseByts">
           <div class="content_y">
             <span>推荐</span>
             <p><img src="../../static/img/yibao.png"></p>
@@ -59,7 +59,7 @@
 
       </span>
       <span class="sl"></span>
-      <span class="yongyi">
+      <span class="yongyi" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
           <router-link to="/yongyi">
             <p><img src="../../static/img/yongyi.png"></p>
@@ -69,9 +69,9 @@
           </router-link>
         </div>
       </span>
-      <div class="btn">确认选择</div>
+      <!-- <div class="btn">确认选择</div> -->
     </div>
-    
+
      <el-dialog title="付款" :visible.sync="showDialog">
       <el-button @click="paySuccess">确定</el-button>
       <el-button @click="payCancle" style="background-color:#ccc;margin-left:40px;">取消</el-button>
@@ -99,6 +99,7 @@
         isChoose:false,
         isChooses:false,
         isShow:false,
+        isActive:true,
       }
     },
     methods:{
@@ -258,14 +259,21 @@
                     var that = this;
                     that.isShow = false;
          }, 
-    },
-    created(){
-      this.getBill();
-    }
+        chooseByts (ev) {
+            console.log(123456)
+            this.isActive = !this.isActive
+          },
+         },
+        created(){
+          this.getBill();
+        }
   }
 </script>
 
 <style lang="scss" scoped>
+.isActive{
+  border:1px solid red;
+}
 .show_w{
   width: 700px;
   height: 300px;
@@ -320,14 +328,7 @@
       }
     }
   }
-  .yibao:hover{
-    border:2px solid #F15749;
-    box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
-  }
-  .yongyi:hover{
-    border:2px solid #F15749;
-    box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);
-  }
+
   .content_y:hover span{
     display:block;
   }
