@@ -48,16 +48,21 @@
     <!-- 支付弹框 -->
     <div class="show_w" v-show="isShow">
       <div style="position:absolute;right:7px;top:8px;color:#ccc;"  @click="hiddenShow()">X</div>
-      <span class="yibao" @click="acceptOrder()" v-bind:class="{ active: isActive }" v-on:@click="chooseByts">
-          <div class="content_y">
-            <span>推荐</span>
-            <p><img src="../../static/img/yibao.png"></p>
-            <p>易保支付</p>
-            <p> T+1（第二个工作日9:00）</p>
-            <p style="color:#F15749;">服务手续费10元 </p>
-          </div>
 
+ 
+      <span class="yibao" @click="acceptOrder()" v-bind:class="{ active: isActive }" v-on:@click="chooseByts">
+        <!--   <router-link to="/third" style="color:#CCC;">   -->
+            <div class="content_y" @click="btn()">
+              <span>推荐</span>
+              <p><img src="../../static/img/yibao.png"></p>
+              <p>易保支付</p>
+              <p> T+1（第二个工作日9:00）</p>
+              <p style="color:#F15749;">服务手续费10元 </p>
+            </div>    
+        <!-- </router-link> -->
       </span>
+ 
+
       <span class="sl"></span>
       <span class="yongyi" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
@@ -107,7 +112,7 @@
         let _this=this;
         _this.fetch.myPost('/transaction/payViaPlatform',{
           "transacStatus":"成功",
-  	       "billNumber":_this.bills
+           "billNumber":_this.bills
         },
         {headers:{
           'Content-Type':'application/json',
@@ -262,6 +267,9 @@
         chooseByts (ev) {
             console.log(123456)
             this.isActive = !this.isActive
+          },
+        btn(){
+            window.open("", "third")
           },
          },
         created(){

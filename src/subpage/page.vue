@@ -4,29 +4,34 @@
     <div class="page_con">
       <!-- 当日交易总额小模块 -->
       <div class="monitoring">
-       <router-link to="/invoice" tag="p" class="page_release">
-        <img src="../../static/img/page_button_top.png" alt="">
-      </router-link>
-       <div class="monitoring_center">
-        <span>
-          <p style="font-size:20px;width: 215px;word-break: break-all;  word-wrap: break-word;">{{new Date()|date}}</p>
-          <!-- <p class="time_1">15:08:38</p> -->
-          <p>交易时间09:00—16:30</p>
-        </span>
-        <span>
-          <h4>今日交易额</h4>
-          <p style="font-weight: bold;color:#333;"><i>1</i>亿<i>2008</i>万<i>1117</i>元</p>
-        </span>
-        <span>
-          <h4>今日交易笔数</h4>
-          <p style="font-weight: bold;color:#333;"><i>105</i>笔</p>
-        </span>
-       </div>
+           <router-link to="/invoice" tag="p" class="page_release">
+            <img src="../../static/img/page_button_top.png" alt="">
+           </router-link>
+         <div class="monitoring_center">
+          <span>
+            <p style="font-size:20px;width: 215px;word-break: break-all;  word-wrap: break-word;">{{new Date()|date}}</p>
+            <!-- <p class="time_1">15:08:38</p> -->
+            <p>交易时间09:00—16:30</p>
+          </span>
+          <span>
+            <h4>今日交易额</h4>
+            <p style="font-weight: bold;color:#333;"><i>1</i>亿<i>2008</i>万<i>1117</i>元</p>
+          </span>
+          <span>
+            <h4>今日交易笔数</h4>
+            <p style="font-weight: bold;color:#333;"><i>105</i>笔</p>
+          </span>
+         </div>
+      </div>
+      <!-- 专属客服 -->
+      <div class="exclusive_3">
+        <img src="../../static/img/三个图标.png" alt="">
       </div>
 
-      <div class="page_title_f">          <!--票据行情标题 -->
+      <!--票据行情标题 -->
+ <!--      <div class="page_title_f">        
         <img src="../../static/img/page_title1.png" alt="">
-      </div>
+      </div>  -->
       <!-- 计算器 -->
             <div class="page_options">
               <ul class="list" style="position:relative;">         
@@ -87,41 +92,66 @@
 
     </div>
   </div>
-
-   <div class="page_w_table">
-      <div class="page_table">
-        <el-row>
-          <el-col :span="4"><div class="table time">发布时间</div></el-col>
-          <el-col :span="3"><div class="table type">票据类型</div></el-col>
-          <el-col :span="8"><div class="table acce">承兑人</div></el-col>
-          <el-col :span="4"><div class="table amount">票据金额</div></el-col>
-          <el-col :span="3"><div class="table data">到期日</div></el-col>
-          <el-col :span="2"><div class="table status">状态</div></el-col>
-        </el-row>
-      </div>
-      <div class="page_table_mes">
-        <el-row v-for="(item,index) in roteList" :key="index" class="page_mark_title">
-          <el-col :span="4"><div class="tableMes time">{{item.releaseDate}}</div></el-col>
-          <el-col :span="3"><div class="tableMes type">
-            <span v-show="item.billType=='电银'">电银</span>
-            <span v-show="item.billType=='纸银'">纸银</span>
-            <span v-show="item.billType=='电商'">电商</span>
-            <span v-show="item.billType=='纸商'">纸商</span>
-          </div></el-col>
-          <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
-          <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
-          <el-col :span="3"><div class="tableMes data">{{item.releaseDate}}</div></el-col>
-          <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
-        </el-row>
-      </div>
-  </div>
+<!-- 模块一 -->
+<div class="model-1">
+  <div class="model-1-1">
+    <p class="model-1-img">
+      <span><img  style="position:relative; top:18px;" src="../../static/img/model1-1.png"></span>
+      <span class="title_shi">实时票据发布行情</span><br>
+      <span class="title_ying">The bank acceptance bill is in real time.</span>
+    </p>
+     <div class="page_w_table">
+        <div class="page_table">
+          <el-row>
+            <el-col :span="4"><div class="table time">发布时间</div></el-col>
+            <el-col :span="3"><div class="table type">票据类型</div></el-col>
+            <el-col :span="8"><div class="table acce">承兑人</div></el-col>
+            <el-col :span="4"><div class="table amount">票据金额</div></el-col>
+            <el-col :span="3"><div class="table data">到期日</div></el-col>
+            <el-col :span="2"><div class="table status">状态</div></el-col>
+          </el-row>
+        </div>
+        <div class="page_table_mes">
+          <el-row v-for="(item,index) in roteList" :key="index" class="page_mark_title">
+            <el-col :span="4"><div class="tableMes time">{{item.releaseDate}}</div></el-col>
+            <el-col :span="3"><div class="tableMes type">
+              <span v-show="item.billType=='电银'">电银</span>
+              <span v-show="item.billType=='纸银'">纸银</span>
+              <span v-show="item.billType=='电商'">电商</span>
+              <span v-show="item.billType=='纸商'">纸商</span>
+            </div>
+          </el-col>
+            <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
+            <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
+            <el-col :span="3"><div class="tableMes data">{{item.releaseDate}}</div></el-col>
+            <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
+          </el-row>
+        </div>
+     </div>
+     <div class="accurate">
+       <p>精准寻票</p>     
+       <p> 留下您的手机号</br>为您匹配专属客服，交易更轻松</p>
+       <p>您的手机号码:</p>
+       <p><input type="tel" name="" maxlength="11"></p>
+       <p>预约客服</p>
+     </div>
       <p class="page_opera_one">
-        <router-link to="/marketpa" tag="button">查看更多>></router-link>
-        </p>
+        <router-link to="/marketpa" tag="button">查看更多</router-link>
+      </p>
+    </div>
+</div>
 
-      <div class="page_title_l">      <!--实时利率标题 -->
+ <!--实时利率标题 -->
+    <!--   <div class="page_title_l">     
         <img src="../../static/img/page_title2.png" alt="">
-      </div>
+      </div> -->
+  <div class="model-2">
+    <div class="model-2-1">
+      <p class="model-2-img">
+        <span><img  style="position:relative; top:18px;" src="../../static/img/model2-1.png"></span>
+        <span class="title_shi">实时票据发布行情</span><br>
+        <span class="title_ying">The bank acceptance bill is in real time.</span>
+      </p>
       <div class="page_w_table">
             <div class="page_table">
               <el-row>
@@ -153,10 +183,29 @@
               </el-row>
                
             </div>
+            <div class="accurate">
+               <p>精准寻价</p>     
+               <p> 留下您的手机号</br>为您匹配专属客服，交易更轻松</p>
+               <p>您的手机号码:</p>
+               <p><input type="tel" name="" maxlength="11"></p>
+               <p>预约客服</p>
+           </div>
+    
       </div>
-      <p class="page_opera_one">
-        <router-link to="/resources" tag="button">查看更多>></router-link>
+        <p class="page_opera_one">
+          <router-link to="/resources" tag="button"  style="background:#fff; color:#f45643;">查看更多</router-link>
         </p>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
     </div>
     <PageBot/>
 
@@ -358,6 +407,151 @@
     }
   }
 }
+.exclusive_3 img{
+  width:500px;
+  height:auto;
+  margin:0 auto;
+  margin-top: 41px;
+}
+.model-1{
+    height: 800px;
+    margin: 0 auto;
+    background: url(../../static/img/model-1.png) no-repeat center;
+    position: relative;
+    background-size: 1200px 800px;
+    margin-top:22px;
+  .model-1-img{
+    width: 482px;
+    height: 120px;
+    margin-top: 40px;
+    .title_shi{
+      font-size:40px;
+      color:#FC5F33;
+      font-weight:bold;
+    }
+    .title_ying{
+       color: #FC5F33;
+       font-size: 18px;
+       font-weight: bold;
+       text-indent: 25%;
+    }
+
+  }
+  .accurate{
+    width:206px;
+    height:250px;
+    box-shadow:0px 0px 6px 0px rgba(242,86,67,0.5);
+    border:6px solid #F25643;
+    z-index:999;
+    position: absolute;
+    top: 37%;
+    right: 7px;
+    line-height:34px;
+    p:nth-child(1){
+      color:#F25643;
+      font-weight:bold;
+      font-size:22px;
+    }
+    p:nth-child(2){
+      color:#9D9D9D;
+      font-size:13px;
+    }
+    p:nth-child(3){
+      color:#333333;
+      font-size:14px;
+    }
+    p:nth-child(4){
+      width:168px;
+      margin:0 auto;
+      border:1px solid #CDCDCD;
+    }
+   p:nth-child(5){
+      width:120px;
+      height:40px;
+      background:rgba(242,86,67,1);
+      box-shadow:0px 2px 4px 0px rgba(242,86,67,0.5);
+      border-radius:2px;
+      color:#fff;
+      line-height:40px;
+      margin:0 auto;
+      font-weight:bold;
+      margin-top: 10px;
+      cursor:pointer;
+    }
+  }
+}
+
+
+.model-2{
+    width: 1200px;
+    height: 800px;
+    margin: 0 auto;
+    background: url(../../static/img/model-2.png) no-repeat center;
+    position: relative;
+    background-size: 1200px 800px;
+    margin-top:22px;
+  .model-2-img{
+    width: 482px;
+    height: 120px;
+    margin-top: 40px;
+    .title_shi{
+      font-size:40px;
+      color:#fff;
+      font-weight:bold;
+    }
+    .title_ying{
+       color:#812A2A;
+       font-size: 18px;
+       font-weight: bold;
+       text-indent: 25%;
+    }
+  }
+  .accurate{
+    width: 197px;
+    height: 250px;
+    box-shadow: 0px 0px 6px 0px rgba(242, 86, 67, 0.5);
+    background: white;
+    border: 5px solid #F25643;
+    z-index: 999;
+    position: absolute;
+    top: 37%;
+    right: 17px;
+    line-height: 34px;
+    p:nth-child(1){
+      color:#F25643;
+      font-weight:bold;
+      font-size:22px;
+    }
+    p:nth-child(2){
+      color:#9D9D9D;
+      font-size:13px;
+    }
+    p:nth-child(3){
+      color:#333333;
+      font-size:14px;
+    }
+    p:nth-child(4){
+      width:168px;
+      margin:0 auto;
+      border:1px solid #CDCDCD;
+    }
+   p:nth-child(5){
+      width:120px;
+      height:40px;
+      background:rgba(242,86,67,1);
+      box-shadow:0px 2px 4px 0px rgba(242,86,67,0.5);
+      border-radius:2px;
+      color:#fff;
+      line-height:40px;
+      margin:0 auto;
+      font-weight:bold;
+      margin-top: 10px;
+      cursor:pointer;
+    }
+  }
+}
+
+
 .show_w{
     width: 480px;
     height: 600px;
@@ -487,15 +681,19 @@
 .page_w_table{
     background:rgba(255,255,255,1);
     box-shadow:0px 2px 10px 0px rgba(0,0,0,0.2);
+    width: 80%; 
+    height: 487px;
+    margin-left: 20px;
     .page_table{
-    width: 100%;
-    margin: 0 auto;
+      width: 100%;
+      margin: 0 auto;
       .table{
         min-height: 40px;
         background: #f45643;
         text-align: center;
         line-height: 40px;
         color:white;
+        font-weight: bold;
       }
     }
     .page_table_mes{
@@ -528,11 +726,15 @@
       margin-top:28px;
       min-height: 34px;
       button{
-        width: 11%;
-        height:100%;
+        width: 13%;
+        height: 105%;
         background: #f45643;
-        border-radius: 18px;
-        color:white;
+        border-radius: 5px; 
+        color: white;
+        height: 47px;
+        font-weight: bold;
+        font-size: 18px;
+
       }
     }
     .page_title_l{
