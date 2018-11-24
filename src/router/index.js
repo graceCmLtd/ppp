@@ -36,6 +36,11 @@ const router = new Router({
     name:'Yongyi',
     component:resolve=>require(['@/subpage/yongyi'],resolve)
   },
+  {
+    path:'/third',//
+    name:'third',
+    component:resolve=>require(['@/subpage/third'],resolve)
+  },
  
 // silde
    {
