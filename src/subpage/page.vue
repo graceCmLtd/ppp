@@ -148,7 +148,7 @@
   <div class="model-2">
     <div class="model-2-1">
       <p class="model-2-img">
-        <span><img  style="position:relative; top:18px;" src="../../static/img/model2-1.png"></span>
+        <span><img  style="position:relative; top:31px;" src="../../static/img/model2-1.png"></span>
         <span class="title_shi">实时票据发布行情</span><br>
         <span class="title_ying">The bank acceptance bill is in real time.</span>
       </p>
@@ -433,7 +433,7 @@
        color: #FC5F33;
        font-size: 18px;
        font-weight: bold;
-       text-indent: 25%;
+       text-indent: 28%;
     }
 
   }
