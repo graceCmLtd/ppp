@@ -13,14 +13,13 @@ import global_ from '@/components/global'
 import * as fetch_ from '@/assets/fetch'
 <<<<<<< HEAD
 import {vueAccordion} from 'vue-accordion'
-=======
+
 import * as util_ from '@/assets/util'
 
 
 
 // import {vueAccordion} from 'vue-accordion'
 
->>>>>>> 2a37f04ac3bb16d7756d415bcac8bff0abdd50e4
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;

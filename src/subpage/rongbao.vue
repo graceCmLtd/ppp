@@ -39,10 +39,10 @@
   //     })
   //   },
 // =======
-      item:'',
-      htmlcontent:''
-    }
-  },
+  //     item:'',
+  //     htmlcontent:''
+  //   }
+  // },
   methods: {
         /*submit: function() {
           var formData = JSON.stringify(this.user);
