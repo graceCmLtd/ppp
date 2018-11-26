@@ -43,7 +43,8 @@
         <el-row v-for="(item,index) in noteList" :key="index" class="aa">
           <el-col :span="4"><div class="table time">{{item.billType}}</div></el-col>
           <el-col :span="5"><div class="table type" style="text-align:left;" ref="acceptor">{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="table acce">{{item.amount/10000 |numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="table acce">{{filterNumber(item.amount)}}</div></el-col>
+          <!-- <el-col :span="3"><div class="table acce">{{item.amount/10000 |numFilter}}w</div></el-col> -->
           <el-col :span="3"><div class="table amount">{{item.maturity}}</div></el-col>
           <el-col :span="2"><div class="table data">{{item.remain_days}}天</div></el-col>
           <el-col :span="2"><div class="table status">{{item.quoteStatus}}</div></el-col>
@@ -72,7 +73,7 @@
 
 <script>
 import {getCookie} from '@/assets/util';
-import {ss} from '@/assets/fetch'
+//import {ss} from '@/assets/fetch'
 export default {
   data(){
     return{
@@ -233,6 +234,10 @@ export default {
           this.$refs.acceptor[v].innerText=this.$refs.acceptor[v].innerText.substring(0,15)+''
         }
       }
+    },
+
+    filterNumber(value){
+      return this.util.formatNumberToStr(value);
     }
 
   },
@@ -257,10 +262,13 @@ export default {
     this.acceptor()
   },
   filters: {
-      numFilter(value) {
+     /* numFilter(value) {
        let realVal = Number(value).toFixed(2)
         return Number(realVal)
-    }
+    }*/
+      numFilter(value){
+        return this.util.formatNumberToStr(value);
+      }
   }
 }
 </script>

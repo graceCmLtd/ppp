@@ -11,7 +11,16 @@ import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 import global_ from '@/components/global'
 import * as fetch_ from '@/assets/fetch'
+<<<<<<< HEAD
 import {vueAccordion} from 'vue-accordion'
+=======
+import * as util_ from '@/assets/util'
+
+
+
+// import {vueAccordion} from 'vue-accordion'
+
+>>>>>>> 2a37f04ac3bb16d7756d415bcac8bff0abdd50e4
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;
@@ -21,7 +30,7 @@ Vue.prototype.GLOBAL = global_;
 //Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 Vue.prototype.fetch = fetch_;
-
+Vue.prototype.util = util_;
 
 // vue.prototype.vueAccordion = vue-accordion_;
 
