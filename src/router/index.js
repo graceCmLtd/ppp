@@ -32,9 +32,9 @@ const router = new Router({
     component:resolve=>require(['@/subpage/forgetp'],resolve)
   },
  {
-    path:'/yongyi',//甬易支付
-    name:'Yongyi',
-    component:resolve=>require(['@/subpage/yongyi'],resolve)
+    path:'/rongbao',//融宝支付
+    name:'rongbao',
+    component:resolve=>require(['@/subpage/rongbao'],resolve)
   },
   {
     path:'/third',//

@@ -50,7 +50,7 @@
             </div> 
             <div  class="tip" v-if="tips">如若未识别完整,请手动添加哦！</div>
             <span><img :class="{'active':isChoose}" src="../../../../static/img/pic_icon_in.png" alt="" title="" ref="Is" /></span>
-            <span style="margin-top: 61%;">上传票据正面</span>
+            <span style="position: absolute;bottom: 11px;left: 37%;">上传票据正面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadIs">
 
           </div>
@@ -59,7 +59,7 @@
           <div class="paper_the">
             <div class="big_w" v-if="bigImgs"  style="position:absolute; right:-7%; top: 84%;z-index: 999;" @click="imgSccs"><img src="../../../../static/img/toggle.png"></div>
             <span><img :class="{'active':isChooses}" src="../../../../static/img/pic_icon.png" alt="" title="" ref="The" /></span>
-            <span style="margin-top:61%;">上传票据反面</span>
+            <span style="position: absolute;bottom: 11px;left: 37%;">上传票据反面</span>
             <input type="file" accept="image/jpeg" name="" value="" @change="upLoadThe">
           </div>
         </div>
@@ -554,7 +554,7 @@
             button:nth-child(1){
               position: absolute;
               top:0;
-              left:40%;
+              left:45%;
             }
             button:nth-child(2){
               margin-left: 250px;

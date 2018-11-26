@@ -53,22 +53,22 @@
       <span class="yibao" @click="acceptOrder()" v-bind:class="{ active: isActive }" v-on:@click="chooseByts">
         <!--   <router-link to="/third" style="color:#CCC;">   -->
             <div class="content_y" @click="btn()">
-              <span>推荐</span>
+          
               <p><img src="../../static/img/yibao.png"></p>
               <p>易保支付</p>
-              <p> T+1（第二个工作日9:00）</p>
-              <p style="color:#F15749;">服务手续费10元 </p>
+              <p> T+1（第二个工作日9:00）到账</p>
             </div>    
         <!-- </router-link> -->
       </span>
  
 
       <span class="sl"></span>
-      <span class="yongyi" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
+      <span class="rongbao" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
-          <router-link to="/yongyi">
-            <p><img src="../../static/img/yongyi.png"></p>
-            <p>甬易支付</p>
+          <router-link to="/rongbao">
+                <span>推荐</span>
+            <p><img src="../../static/img/rongbao.png"></p>
+            <p>融宝支付</p>
             <p>T+0（当天实时）到账</p>
             <p>需自行网银打款</p>
           </router-link>
@@ -268,9 +268,9 @@
             console.log(123456)
             this.isActive = !this.isActive
           },
-        btn(){
-            window.open("", "third")
-          },
+        // btn(){
+        //     window.open("", "third")
+        //   },
          },
         created(){
           this.getBill();
@@ -317,23 +317,9 @@
       p{
         font-weight: bold;
         line-height: 24px;
-        font-size: 13px;
+        font-size: 12px;
       }
-      span{
-        width: 24px;
-        height: 16px;
-        font-size: 14px;
-        font-family: MicrosoftYaHei-Bold;
-        font-weight: bold;
-        color: white;
-        line-height: 16px;
-        position: absolute;
-        left: -64px;
-        top: -56px;
-        background: #0FC55B;
-        font-size: 10px;
-        display:none;
-      }
+
     }
   }
 
@@ -347,12 +333,13 @@
     height: 165px;
     opacity:0.7;
   }
-  .yongyi{
+  .rongbao{
     float:right;
     width:200px;
     height:150px;
     border-radius:8px;
     border:2px solid #ccc;
+
     .content_yi{
       margin-top:10px;
       width: 172px;
@@ -361,10 +348,29 @@
       line-height:20px;
       color:#ccc;
       margin-top: 15px;
+         position:relative;
       a{
         color:#ccc;
       }
+      span{
+        width: 24px;
+        height: 16px;
+        font-size: 14px;
+        font-family: MicrosoftYaHei-Bold;
+        font-weight: bold;
+        color: white;
+        line-height: 16px;
+        position: absolute;
+        left: -58px;
+        top: -58px;
+        background: #0FC55B;
+        font-size: 10px;
+        display:none;
+      }
     }
+  }
+  .content_yi:hover span{
+    display:block;
   }
   .btn{
     width:200px;
