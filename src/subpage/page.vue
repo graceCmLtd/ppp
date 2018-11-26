@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="page" ref="page">
+    <div style="height:550px;">
     <Swiper/>
+    </div>
     <div class="page_con">
       <!-- 当日交易总额小模块 -->
       <div class="monitoring">
@@ -148,7 +150,7 @@
   <div class="model-2">
     <div class="model-2-1">
       <p class="model-2-img">
-        <span><img  style="position:relative; top:18px;" src="../../static/img/model2-1.png"></span>
+        <span><img  style="position:relative; top:31px;" src="../../static/img/model2-1.png"></span>
         <span class="title_shi">实时票据发布行情</span><br>
         <span class="title_ying">The bank acceptance bill is in real time.</span>
       </p>
@@ -252,6 +254,7 @@
       Swiper:resolve=>{
         require(['@/components/swiper_page'],resolve)
       },
+      
       Footer:resolve=>{
         require(['@/components/footer-all'],resolve)
       },
@@ -414,11 +417,12 @@
   margin-top: 41px;
 }
 .model-1{
+    width: 1200px;
     height: 800px;
-    margin: 0 auto;
     background: url(../../static/img/model-1.png) no-repeat center;
     position: relative;
     background-size: 1200px 800px;
+    margin:0 auto;
     margin-top:22px;
   .model-1-img{
     width: 482px;
@@ -433,9 +437,8 @@
        color: #FC5F33;
        font-size: 18px;
        font-weight: bold;
-       text-indent: 25%;
+       text-indent: 28%;
     }
-
   }
   .accurate{
     width:206px;

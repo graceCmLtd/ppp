@@ -14,6 +14,9 @@ import * as fetch_ from '@/assets/fetch'
 import * as util_ from '@/assets/util'
 
 
+
+// import {vueAccordion} from 'vue-accordion'
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;
@@ -25,14 +28,14 @@ Vue.prototype.GLOBAL = global_;
 Vue.prototype.fetch = fetch_;
 Vue.prototype.util = util_;
 
-Vue.prototype.oUrl='https://39.104.140.40/ppp'
+// Vue.prototype.oUrl='https://39.104.140.40/ppp'
 
 
  // Vue.prototype.oUrl='http://localhost:8080/ppp' 
 
 
  //Vue.prototype.oUrl='http://39.104.104.150:8080/ppp'
-//Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
+Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
 
  // Vue.prototype.oUrl='https://pengpengpiao.com/ppp' 
 

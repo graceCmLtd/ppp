@@ -5,7 +5,7 @@
     <div class="topbar">
     <div class="w1180">
         <div class="toplink">
-            <a href="http://pengpengpiao.cn"><img style="width:15px;height:11px;" src="../../static/img/home.png">  碰碰票首页</a>
+            <a href="http://pengpengpiao.com"><img style="width:15px;height:11px;" src="../../static/img/home.png">  碰碰票首页</a>
             <span id="topbar_greet" style="font-size:14px;">欢迎来到碰碰票</span>
             <!-- <a href="" id="topbar_login_btn">请登录</a>
             <a href="" id="topbar_register">免费注册</a> -->
@@ -266,7 +266,7 @@
       width: 10%;
       height:50%;
       position: absolute;
-      right:15%;
+      right:22%;
       top:30%;
       display: flex;
       justify-content: space-around;
