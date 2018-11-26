@@ -65,7 +65,7 @@
       <span class="sl"></span>
       <span class="rongbao" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
-          <router-link to="/rongbao">
+          <router-link :to="{path:'/rongbao',query:{transacId:item.transacId,billNumber:item.billNumber,sellerid:item.sellerId,buyerId:item.buyerId,amout:item.amount}}">
                 <span>推荐</span>
             <p><img src="../../static/img/rongbao.png"></p>
             <p>融宝支付</p>

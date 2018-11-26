@@ -5,9 +5,9 @@ const fetch = axios.create({
   // baseURL: 'http://39.104.140.40/ppp', 
 
 
-baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
+//baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
 
-    // baseURL:'http://localhost:8080/ppp',
+     baseURL:'http://localhost:8080/ppp',
   //baseURL:'http://pengpengpiao.com/ppp',
   //baseURL:'http://39.104.104.150:443/ppp',
 
@@ -81,6 +81,12 @@ export function myPost(url,parambody,headers){
     data:parambody,
     method:'post'
   })
+}
+
+export function formPost(conf){
+  conf['method'] = 'post'
+  conf['Content-Type']='application/x-www-form-urlencoded;charset=UTF-8'
+  return fetch(conf)
 }
 
 
