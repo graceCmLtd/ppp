@@ -5,8 +5,8 @@ const fetch = axios.create({
   // baseURL: 'http://39.104.140.40/ppp', 
 
 
-//baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
-    baseURL:'http://localhost:8080/ppp',
+baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
+    //baseURL:'http://localhost:8080/ppp',
   //baseURL:'http://pengpengpiao.com/ppp',
   //baseURL:'http://39.104.104.150:443/ppp',
 
@@ -49,13 +49,13 @@ fetch.interceptors.response.use(response =>{
   if ( error && error.response.data && error.response.data.status) {
     switch(error.response.data.status){
       case 602:
-      alert("602")
+      //alert("602")
         break;
       case 702:
-      alert("702")
+      //alert("702")
         break;
       case 802:
-      alert("802")
+      //alert("802")
       alert("登录失效，请重新登录")
       default:
         break;

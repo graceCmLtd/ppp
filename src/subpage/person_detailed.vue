@@ -269,7 +269,11 @@
             this.isActive = !this.isActive
           },
         btn(){
-            window.open("", "third")
+          alert("pay")
+          this.fetch.httpGet({
+            url:'/YOP/test'
+          })
+            //window.open("", "third")
           },
          },
         created(){
