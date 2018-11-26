@@ -11,7 +11,6 @@ import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 import global_ from '@/components/global'
 import * as fetch_ from '@/assets/fetch'
-<<<<<<< HEAD
 import {vueAccordion} from 'vue-accordion'
 
 import * as util_ from '@/assets/util'
