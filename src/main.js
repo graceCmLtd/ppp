@@ -11,7 +11,12 @@ import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 import global_ from '@/components/global'
 import * as fetch_ from '@/assets/fetch'
+import * as util_ from '@/assets/util'
+
+
+
 // import {vueAccordion} from 'vue-accordion'
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.prototype.$axios=Api;
@@ -21,7 +26,7 @@ Vue.prototype.GLOBAL = global_;
 //Vue.prototype.oUrl='http://localhost:8080/ppp'
 
 Vue.prototype.fetch = fetch_;
-
+Vue.prototype.util = util_;
 
 // Vue.prototype.oUrl='https://39.104.140.40/ppp'
 
