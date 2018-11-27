@@ -16,41 +16,7 @@
     <!--<div class="Authenticat_w">
       <div class="Authenticat_w_1"><img src="../../static/img/4@.png"></div>
     </div> -->
-    <div class="vue-accordion" :class="accordionClass" :style="divStyles">
-      <!--<ul>
-        <li style="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-        <li style ="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-        <li style =" border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-        <li style ="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-      </ul> -->
-
-     
-        <partial-accordion 
-        v-for="(item,index) in items" 
-        :item="item" 
-        :key="index"
-        :styles="styles"
-      ></partial-accordion>
+    <vue-accordion :items="items" ></vue-accordion>
     </div>
   </div>
 
@@ -58,34 +24,51 @@
 
 <script>
 import {getCookie} from '@/assets/util'
+import {vueAccordion} from 'vue-accordion'
+
   export default {
-    name: 'vue-accordion',
-    props: {
-      items: {
-        type: Array
-      },
-      styles: {
-        type: Object,
-        default: function() {
-          return {
-            accordion:null,
-          }
-        }
-      },
-      accordionClass: {
-        type: String,
-        default: 'vue-accordion-partial'
+    components: { vueAccordion },
+    data(){
+      return {
+        items: [
+                {
+                    title: 'First',
+                    text: 'text',
+                    url: '#',
+                    image: '../../static/img/wu.jpg'
+                },
+                {
+                    title: 'First',
+                    text: 'text',
+                    url: '#',
+                    image: '../../static/img/wu.jpg'
+                },
+                {
+                    title: 'First',
+                    text: 'text',
+                    url: '#',
+                    image: '../../static/img/wu.jpg'
+                },
+                {
+                    title: 'First',
+                    text: 'text',
+                    url: '#',
+                    image: '../../static/img/wu.jpg'
+                },
+                {
+                    title: 'First',
+                    text: 'text',
+                    url: '#',
+                    image: '../../static/img/wu.jpg'
+                },
+                {
+                    title: 'First',
+                    text: 'text',
+                    url: '#',
+                    image: '../../static/img/wu.jpg'
+                }
+              ]
       }
-    },
-    computed: {
-      divStyles() {
-        return this.styles && this.styles.div ? this.styles.div : {};
-      }
-    },
-    components: {
-        accordion:resolve=>{
-        require(['@/components/vue-accordion-partial'],resolve)
-      },
     }
   }
 </script>
