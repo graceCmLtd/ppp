@@ -137,7 +137,7 @@
       },
       /*确认签收*/
       submitAccept(item){
-        console.log("卖家id")
+        /*console.log("卖家id")
         console.log(item.sellerId)
         this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
@@ -158,12 +158,13 @@
           'Content-Type':'application/json',
           'Authorization':getCookie('Too')
         }}).then((res)=>{
-          console.log(res)
+          console.log(res)*/
           //window.clearInterval(time)
           //this.getIntenTionList()
-          if(res.data.status === "success"){
+          //if(res.data.status === "success"){
               
               var data = {
+                "billNumber":item.billNumber,
                 "orderId":item.transacType,
                 "sellerId":item.sellerId,
                 "amount":item.amount
@@ -176,12 +177,13 @@
                     if(res.data.status=="success"){
                         var json = JSON.parse(res.data.result);
                         alert(json.result_msg)
+                        console.log("wwww")
                         this.$router.push({name:'OrderwsCompletes'});
                     }
                 });
-          }
+          //}
 
-        })
+        //})
       },
       /*更新倒计时数组*/
        updateTimer(){
