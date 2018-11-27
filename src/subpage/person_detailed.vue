@@ -50,7 +50,8 @@
       <div style="position:absolute;right:7px;top:8px;color:#ccc;"  @click="hiddenShow()">X</div>
 
  
-      <span class="yibao" @click="acceptOrder()" v-bind:class="{ active: isActive }" v-on:@click="chooseByts">
+      <!-- <span class="yibao" @click="acceptOrder()" v-bind:class="{ active: isActive }" v-on:@click="chooseByts"> -->
+         <span class="yibao" v-bind:class="{ active: isActive }" v-on:@click="chooseByts">
         <!--   <router-link to="/third" style="color:#CCC;">   -->
             <div class="content_y" @click="btn()">
           

@@ -16,7 +16,7 @@
     <!--<div class="Authenticat_w">
       <div class="Authenticat_w_1"><img src="../../static/img/4@.png"></div>
     </div> -->
-    <div class="vue-accordion" :class="accordionClass" :style="divStyles">
+    <div :class="accordionClass" :style="divStyles">
       <!--<ul>
         <li style="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
         <a href="#">
@@ -44,13 +44,14 @@
         </li>
       </ul> -->
 
-     
+     <ul>
         <partial-accordion 
         v-for="(item,index) in items" 
         :item="item" 
         :key="index"
         :styles="styles"
       ></partial-accordion>
+      </ul>
     </div>
   </div>
 
@@ -58,8 +59,9 @@
 
 <script>
 import {getCookie} from '@/assets/util'
+import partialAccordion from './vue-accordion-partial.vue'
   export default {
-    name: 'vue-accordion',
+    name: 'page_bot',
     props: {
       items: {
         type: Array
@@ -67,14 +69,12 @@ import {getCookie} from '@/assets/util'
       styles: {
         type: Object,
         default: function() {
-          return {
-            accordion:null,
-          }
+          return {}
         }
       },
       accordionClass: {
         type: String,
-        default: 'vue-accordion-partial'
+        default: 'vue-accordion'
       }
     },
     computed: {
@@ -83,11 +83,10 @@ import {getCookie} from '@/assets/util'
       }
     },
     components: {
-        accordion:resolve=>{
-        require(['@/components/vue-accordion-partial'],resolve)
-      },
+      partialAccordion
     }
   }
+
 </script>
 
 <style lang="scss" scoped>

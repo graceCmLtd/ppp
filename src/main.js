@@ -11,13 +11,12 @@ import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 import global_ from '@/components/global'
 import * as fetch_ from '@/assets/fetch'
-import {vueAccordion} from 'vue-accordion'
 
 import * as util_ from '@/assets/util'
 
 
-
-// import {vueAccordion} from 'vue-accordion'
+// 
+// import {vueAccordion} from 'accordion'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -48,9 +47,17 @@ Vue.prototype.util = util_;
 
 
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
+  components: { 
+  	 App,
+  
+  	
+  
+   },
+  template: '<App/>',
+
 })
+

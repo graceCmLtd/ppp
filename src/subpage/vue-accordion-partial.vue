@@ -1,12 +1,15 @@
 <template>
+	<div class="vue-accordion">
 		<li :style="liStyles">
 			<a :href="item.url" :style="aStyles">
 				<h2 v-text="item.title" :style="h2Styles"></h2>
 				<p v-text="item.text" :style="pStyles"></p>
 			</a>
 	    </li>
+	</div>
 </template>
 <script>
+import vueAccordion from 'vue-accordion'
 	export default {
 		props: {
 			item: {
