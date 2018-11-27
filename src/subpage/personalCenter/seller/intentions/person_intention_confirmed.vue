@@ -198,14 +198,20 @@
           this.isShow = false;
           let _this = this;
           let quoterId = this.currentItem.quoterId;
-          _this.fetch.myPost("/quote/updateRealMoney",{
-            "billNumber":_this.currentItem.billNumber,
-            "quoterId":_this.currentItem.quoterId,
-            "new_money":_this.new_money*10000
-          },{headers:{
-              'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-          }}).then((res)=>{
+          _this.fetch.httpPost({
+            url:"/quote/updateRealMoney",
+            data:{
+              "quoteBody":{
+                  "billNumber":_this.currentItem.billNumber,
+                  "quoterId":_this.currentItem.quoterId,
+                  "new_money":_this.new_money*10000
+              },
+              "transactionBody":{
+                  "orderId":_this.currentItem.transacType,
+                  "preRealMoney":_this.new_money*10000
+            }
+          }
+          }).then((res)=>{
             console.log("修改金额")
             console.log(res)
             _this.getIntenTionList()
