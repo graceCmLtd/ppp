@@ -51,12 +51,13 @@
         },*/
         sss:function(){
           let _this = this
+          console.log(_this.item)
           _this.fetch.myPost("/transaction/reaPay",{
-              "transacId":"122312",
-              "billNumber":"343243",
-              "sellerId":"5445354",
+              "transacId":_this.item.transacId,
+              "billNumber":_this.item.billNumber,
+              "sellerId":_this.item.sellerId,
               "buyerId":_this.item.buyerId,
-              "amount":Number(_this.item.amount)
+              "amount":_this.item.amount
             },{headers:{
               Authentication:_this.util.getCookie("Too"),
               uuid:_this.util.getCookie('Iud')

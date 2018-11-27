@@ -164,12 +164,9 @@
           if(res.data.status === "success"){
               
               var data = {
-                "batch_amount":"0.01",
-                "batch_count":"2",
-                "batch_no":"123131",
-                "content":"1,62220215080205389633,jack-cooper,工商银行,分行,支行,私,0.01,CNY,北京,北京,18910116131,身份证,420321199202150718,0001,12306,hehe,200100000001422,67180118000001421",
-                "pay_type" :"1",
-                "transactionId":item.transactionId
+                "orderId":item.transacType,
+                "sellerId":item.sellerId,
+                "amount":item.amount
               }
               this.fetch.myPost('/transaction/reaConfirm',data,
                 {headers:{
