@@ -430,7 +430,7 @@
                   "billNumber":paperNumber,
                   "buyerId":item.buyerId,
                   "sellerId":Id,
-                  "amount":amount,
+                  "amount":real_money,
                   "transactionStatus":"on sell",
                   "transacDate":"2018-08-09"
               }
