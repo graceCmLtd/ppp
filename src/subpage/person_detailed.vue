@@ -65,7 +65,7 @@
       <span class="sl"></span>
       <span class="rongbao" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
-          <router-link :to="{path:'/rongbao',query:{transacType:item.transacType,billNumber:item.billNumber,sellerId:item.releaserId,buyerId:item.buyerId,amount:item.amount}}">
+          <router-link :to="{path:'/rongbao',query:{transacType:item.transacType,billNumber:item.billNumber,sellerId:item.releaserId,buyerId:item.buyerId,amount:item.real_money}}">
                 <span>推荐</span>
             <p><img src="../../static/img/rongbao.png"></p>
             <p>融宝支付</p>
