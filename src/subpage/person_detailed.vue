@@ -32,10 +32,10 @@
           <input type="radio" style="width:15px;height:15px;"value="" checked="checked" v-show="radioB" @click="radioBC()" />同意平台担保支付协议
         </p> --> 
       </div>
-      <div style="position: absolute;top: 9%; left: 67%; cursor:pointer;"><img src="../../static/img/phone.png" >
+      <div style="position: absolute;top: 9%; left: 67%; cursor:pointer;" ><img src="../../static/img/phone.png" >
       </div>
     </div>
-    <p class="havelook" v-on:click="toggle()">
+    <p id="theId" class="havelook" v-on:click="toggle()" ref='theDiv'>
       接单去付款
     </p>
     <div class="person_detailed_prompt" ref="detailedPrompt">
@@ -65,7 +65,7 @@
       <span class="sl"></span>
       <span class="rongbao" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
-          <router-link :to="{path:'/rongbao',query:{transacId:item.transacId,billNumber:item.billNumber,sellerid:item.sellerId,buyerId:item.buyerId,amout:item.amount}}">
+          <router-link :to="{path:'/rongbao',query:{transacType:item.transacType,billNumber:item.billNumber,sellerid:item.sellerId,buyerId:item.buyerId,amout:item.amount}}">
                 <span>推荐</span>
             <p><img src="../../static/img/rongbao.png"></p>
             <p>融宝支付</p>
@@ -89,6 +89,7 @@
 <script>
   import {getCookie} from '@/assets/util'
   export default {
+    //el:'#theId',
     data(){
       return{
         detailedMaskShow:false,
@@ -258,6 +259,9 @@
           this.isChooses = !this.isChooses    
          },
         toggle:function(){
+          console.log(this)
+          console.log(this.$refs)
+
                 this.isShow = !this.isShow;
           },
         hiddenShow:function () {
