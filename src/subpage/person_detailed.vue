@@ -332,7 +332,6 @@
 
     }
   }
-
   .content_y:hover span{
     display:block;
   }
@@ -379,6 +378,7 @@
       }
     }
   }
+
   .content_yi:hover span{
     display:block;
   }

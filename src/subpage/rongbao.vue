@@ -2,10 +2,10 @@
 <!--   <div class="rongbao_cn">
    <div class="rongbao_cn1">
     <form id="rongpaysubmit" name="rongpaysubmit" action="">
-      <input type="hidden" name="merchant_id" value="">
-      <input type="hidden" name="data" value="">
-      <input type="hidden" name="encryptkey" value="">
-      <input type="submit" class="button_p2p" value="融宝支付确认付款" @click="btn">
+      <input type="hidden" name="merchant_id" value=""><br>
+      <input type="hidden" name="data" value=""><br>
+      <input type="hidden" name="encryptkey" value=""><br>
+      <input style="background:rgb(241, 87, 73); color:#fff;" type="submit" class="button_p2p" value="融宝支付确认付款" @click="btn"><br>
     </form>
   </div>
   </div>  -->
@@ -17,6 +17,28 @@
  export default {
   data(){
     return{
+// <<<<<<< HEAD
+  //   }
+  // },
+  // methods: {
+  //   btn:function(palce,post,level){
+  //     var self=this;
+  //     this.$http.get({
+  //       url:"/ppp/transaction/reaPay",
+  //       data:{
+  //         place:place,
+  //         post:post,
+  //         level:level
+  //       }
+  //     }).then(function(res){
+  //       self.recruitment=[];
+  //       for(var i=0, len=res.data.result.length;i<len;i++){
+  //         var slefDate=res.data.result[i];
+  //         self.recruitment.push(slefDate);
+  //       }
+  //     })
+  //   },
+// =======
       item:'',
       htmlcontent:''
     }
@@ -80,9 +102,10 @@
     this.item = this.$route.query
     console.log(this.item)
     this.sss();
+
   }
 }
-
+  }}
 </script>
 
 <style lang="scss" scoped>
@@ -95,7 +118,11 @@
      height:800px;
      margin:46px auto;
      input{
-      border:1px soild black;
+      height:30px;
+      width:300px;
+      border:1px soild #ccc;
+      background:#fff;
+      cursor: pointer;
      }
     }
   }
