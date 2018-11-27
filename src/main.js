@@ -11,6 +11,8 @@ import '@/assets/index.css'
 import 'swiper/dist/css/swiper.css';
 import global_ from '@/components/global'
 import * as fetch_ from '@/assets/fetch'
+import vueAccordion from 'vue-accordion'
+
 import * as util_ from '@/assets/util'
 
 
@@ -28,6 +30,9 @@ Vue.prototype.GLOBAL = global_;
 Vue.prototype.fetch = fetch_;
 Vue.prototype.util = util_;
 
+Vue.component('vue-accordion', vueAccordion)
+
+
 // Vue.prototype.oUrl='https://39.104.140.40/ppp'
 
 
@@ -35,7 +40,7 @@ Vue.prototype.util = util_;
 
 
  //Vue.prototype.oUrl='http://39.104.104.150:8080/ppp'
-Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
+ Vue.prototype.oUrl='http://192.168.3.88:8080/ppp' 
 
  // Vue.prototype.oUrl='https://pengpengpiao.com/ppp' 
 
@@ -46,6 +51,8 @@ Vue.prototype.oUrl='http://192.168.3.88:8080/ppp'
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: { 
+    App
+   },
   template: '<App/>'
 })

@@ -1,12 +1,15 @@
 <template>
-	<li :style="liStyles">
-		<a :href="item.url" :style="aStyles">
-			<h2 v-text="item.title" :style="h2Styles"></h2>
-			<p v-text="item.text" :style="pStyles"></p>
-		</a>
-    </li>
+	<div class="vue-accordion">
+		<li :style="liStyles">
+			<a :href="item.url" :style="aStyles">
+				<h2 v-text="item.title" :style="h2Styles"></h2>
+				<p v-text="item.text" :style="pStyles"></p>
+			</a>
+	    </li>
+	</div>
 </template>
 <script>
+import vueAccordion from 'vue-accordion'
 	export default {
 		props: {
 			item: {
@@ -19,8 +22,17 @@
 		computed: {
 			liStyles() {
 				const li = {
-					backgroundImage: 'url(' + this.item.image + ')'
+					backgroundImage: 'url(' + require('../../static/img/wu.jpg') + ')',
+					backgroundImage: 'url(' + require('../../static/img/wu.jpg') + ')',
+                 	backgroundImage: 'url(' + require('../../static/img/wu.jpg') + ')',
+					backgroundImage: 'url(' + require('../../static/img/wu.jpg') + ')',
+					// shouye:'url(' + require('../../static/img/banner1.png') + ')',
+					// backgroundImage: 'url(' + this.item.image + ')'
+					// backgroundImage:url:'#', image: '/img/wu.jpg'
+
+
 				};
+
 
 				if(this.styles && this.styles.li)
 					Object.assign(li, this.styles.li);
