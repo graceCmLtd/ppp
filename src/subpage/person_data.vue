@@ -59,16 +59,17 @@
        
         <p class="person_data_company">
           <span>业务授权</span>
-          </p>
-        <div class="company_mes">
+        </p>
+        <div class="company_mes" style="    position: relative;">
           <p>
            <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsName" ref="contactName"/></span>
           </p>
-          <p class="">
+          <p>
             <span>联系人身份证证件号&nbsp;<input type="" name="" maxlength="18"></span>
           </p>
-          <p class="">
+          <p>
             <span>联系人QQ号码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsQQ" ref="QQ"/></span>
+
             </span>
           </p>
         </div>
