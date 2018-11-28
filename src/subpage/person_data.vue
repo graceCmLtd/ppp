@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="margin-top:20px;">
-         <p><i style="font-style:normal;color:#FF4119;">组织-</i>机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
+         <p><i style="font-style:normal;color:#FF4119;">选填-</i>组织机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
           <div class="company_license">
             <div class="reprod">
               <img src="../../static/img/pic_icon.png" alt="">
@@ -37,19 +37,19 @@
         <div class="id_box">
            <div class="company_id" style="">
                   <div class="reprod_id" >
-                    <img src="../../static/img/ida.png" alt="">
-                    <p>点击上传正面</p>
+                    <img src="../../static/img/ida.png" alt="" >
+                    <!-- <p>点击上传正面</p> -->
                     <input type="file" name="" accept="image/jpg" value="" @change="upLoadIdA">
-                    <img v-bind:src="pic" alt=""  class="showPic"  ref="IdA">
+                    <img  alt=""  class="showPic"  ref="IdA">
                   </div>
               </div>
 
            <div class="company_id">
               <div class="reprod_id" style="position:absolute;top:-100%;right:-3px;">   
-                <img src="../../static/img/idb.png" alt="">
-                <p>点击上传反面</p>
+                <img src="../../static/img/idb.png" alt="" >
+                <!-- <p>点击上传反面</p> -->
                 <input type="file" name="" accept="image/jpg" value="" @change="upLoadIdB">
-                <img v-bind:src="pic" alt=""  class="showPic"  ref="IdB">
+                <img  alt=""  class="showPic"  ref="IdB">
               </div>
           </div>
       </div>
@@ -106,7 +106,7 @@
             </span>
           </p>
           <p class="">
-          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="banksAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
+          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="banksAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
           </p>
         </div>     
         <p style="font-size:13px;">
@@ -118,6 +118,7 @@
     <p class="tishi">
       <span style="font-weight:bold;">温馨提示:</span><br>
       卖方绑定的的电票所在银行账户即交易完成后的收款账户 买方绑定的电票背书账户即交易打款账户
+      <div style="opacity: 0; height:120px;">  </div>
     </p>
     
 
@@ -434,7 +435,7 @@ export default {
     line-height:40px;
     color:#fff;
     margin:0 auto;
-    margin-top:20px;
+    margin-top:24px;
     cursor:pointer;
   }
   .tishi{
@@ -442,7 +443,7 @@ export default {
     margin:0 auto;
     font-size:13px;
     text-align:left;
-    margin-top:20px;
+    margin-top:30px;
     color:red;
   }
   .person_data{
@@ -514,13 +515,13 @@ export default {
     text-align: center;
     position: relative;
     .reprod{
-      width: 60%;
+      width: 50%;
       height: 75%;
       min-width: 390px;
       position: absolute;
-      left: 41%;
-      margin-left: -30%;
-      top: 45%;
+      left: 16%;
+      /* margin-left: -25%; */
+      top: 46%;
       margin-top: -17%;
       border: 1px solid #ccc;
 
@@ -569,7 +570,6 @@ export default {
     .reprod_id{
       width: 45%;
       height: 75%;
-      border: 1px solid #ccc;
       position:absolute;
       float:left;
       img{
@@ -585,11 +585,8 @@ export default {
         left:0;
       }
       img{
-        width: 20%;
-        height:25%;
-        position: absolute;
-        top:25%;
-        left:40%;
+        width: 298px;
+        height: 223px;
       }
       p{
         position: absolute;
