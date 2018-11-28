@@ -322,7 +322,7 @@ export default {
           console.log(res);
           window.localStorage.clear();
           alert("认证信息提交成功,待审核...... ");
-          _this.$router.push('/release/data'); 
+          _this.$router.push('/page'); 
         })
         }
       }else{
@@ -363,7 +363,7 @@ export default {
           console.log(res)
           window.localStorage.clear()
           alert("认证信息提交成功,待审核......");
-          this.$router.push('/release/prise'); 
+          this.$router.push('/page'); 
         });
       }
     },
