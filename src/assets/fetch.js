@@ -53,13 +53,22 @@ fetch.interceptors.response.use(response =>{
   if ( error && error.response.data && error.response.data.status) {
     switch(error.response.data.status){
       case 602:
-      //alert("602")
+      //alert("602") 请求未带token
+      console.log("602????????????????????????") 
+      console.log(this)
         break;
       case 702:
-      //alert("702")
+      //alert("702") //
+      console.log("702????????????????????????????")
+
+      console.log(this)
+
+      //Vue.$router.push({path:'/page'})
+          window.location.href="http://localhost:8090/#/signUp/password"
         break;
       case 802:
-      //alert("802")
+      //alert("802") 用户id 与登录token不匹配
+      console.log("802????????????????????????????")
       alert("登录失效，请重新登录")
       default:
         break;
