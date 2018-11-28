@@ -3,17 +3,8 @@ import axios from 'axios'
 import {getCookie} from '@/assets/util'
 const fetch = axios.create({
   // baseURL: 'http://39.104.140.40/ppp', 
-
-
-<<<<<<< HEAD
-baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
-
-     // baseURL:'http://localhost:8080/ppp',
-=======
 //baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
  baseURL:'http://localhost:8080/ppp',
-
->>>>>>> 023ba9437322a151c48205371952838a2b5b9e4d
   //baseURL:'http://pengpengpiao.com/ppp',
   //baseURL:'http://39.104.104.150:443/ppp',
 
