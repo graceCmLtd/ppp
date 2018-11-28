@@ -91,14 +91,13 @@ export default {
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
               this.contactsName=res.data[0].contactsName;
-              this.contactsPhone=res.data[0].contactsPhone;
-              this.contactsEmail=res.data[0].contactsEmail;
+              this.idCardNum=res.data[0].contactIDCardNo;
               this.contactsQQ=res.data[0].contactsQQ;
-              this.bankAccountName=res.data[0].bankAccountName;
-              this.bankName=res.data[0].bankName;
+              this.banksName=res.data[0].bankName;
+              this.bankCode=res.data[0].bankCode;
               this.bankAccount=res.data[0].bankAccount;
-              this.bankAddr = res.data[0].signUpAddr;
-              this.role=res.data[0].role;
+              this.province = res.data[0].signUpAddr.split("-")[0];
+              this.city = res.data[0].signUpAddr.split("-")[1];
             }
         });
         this.fetch.httpGet({
@@ -109,7 +108,10 @@ export default {
         }).then((res)=>{
             console.log(res.data);
             if(res.data != ''){
-              this.pic = res.data[0].picContent;
+              this.pic1 = res.data[0].pic1Content;
+              this.pic2 = res.data[0].pic2Content;
+              this.IDCardPic1 = res.data[0].pic1IDCard;
+              this.IDCardPic2 = res.data[0].pic2IDCard;
             }
         });
       },

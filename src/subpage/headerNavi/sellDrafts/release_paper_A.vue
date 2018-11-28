@@ -282,7 +282,7 @@
           t = setTimeout(function(){
             _this.authVisible = false;
             
-            _this.$router.push({name:"Servicer"})
+            _this.$router.push({name:"Data"})
           },5000)
           
         }else if(getCookie("isAu") === "false"){
