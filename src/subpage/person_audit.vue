@@ -17,7 +17,7 @@
       <el-row v-for="(item,index) in roteList" :key="index">
         <el-col :span="3"><div class="audit_mes">{{item.type}}</div></el-col>
         <el-col :span="4"><div class="audit_mes bank">{{item.bank}}</div></el-col>
-        <el-col :span="3"><div class="audit_mes">{{item.amount}}</div></el-col>
+        <el-col :span="3"><div class="audit_mes">{{formatNumToStr(item.amount)}}</div></el-col>
         <el-col :span="3"><div class="audit_mes date">{{item.date}}</div></el-col>
         <el-col :span="3"><div class="audit_mes">{{item.time}}</div></el-col>
         <el-col :span="4"><div class="audit_mes results">{{item.status}}</div></el-col>
@@ -35,7 +35,7 @@ export default {
         {
           type:'电银',
           bank:'中国银行',
-          amount:'100W',
+          amount:'100',
           date:'2018-07-30',
           time:'7天',
           status:'审核不通过',
@@ -43,7 +43,12 @@ export default {
         }
       ]
     }
-  }
+  },
+  methods:{
+      formatNumToStr(num){
+        return this.util.formatNumToStr(num)
+      }
+    }
 }
 </script>
 

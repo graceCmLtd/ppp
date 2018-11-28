@@ -1,10 +1,17 @@
+import _vm from '@/main.js'
 import axios from 'axios'
 //import cookie from '@/utils/cookie'
 import {getCookie} from '@/assets/util'
+
 const fetch = axios.create({
   // baseURL: 'http://39.104.140.40/ppp', 
-baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
- // baseURL:'http://localhost:8080/ppp',
+//baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
+  //baseURL:'http://localhost:8080/ppp',
+  baseURL:'http://pengpengpiao.com/ppp',
+//baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
+
+      //baseURL:'http://localhost:8080/ppp',
+
   //baseURL:'http://pengpengpiao.com/ppp',
   //baseURL:'http://39.104.104.150:443/ppp',
 
@@ -47,13 +54,20 @@ fetch.interceptors.response.use(response =>{
   if ( error && error.response.data && error.response.data.status) {
     switch(error.response.data.status){
       case 602:
-      //alert("602")
+      //alert("602") 请求未带token
+      console.log("602????????????????????????") 
+      console.log(this)
         break;
       case 702:
-      //alert("702")
+      //alert("702") //
+
+
+      _vm.$router.push({path:'/signUp/password'})
+          //window.location.href="http://localhost:8090/#/signUp/password"
         break;
       case 802:
-      //alert("802")
+      //alert("802") 用户id 与登录token不匹配
+      console.log("802????????????????????????????")
       alert("登录失效，请重新登录")
       default:
         break;

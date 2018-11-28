@@ -20,7 +20,7 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
@@ -57,7 +57,7 @@
           <div class="message_left">
             <ul>
               <li>票号：<span>6222299993778389939</span></li>
-              <li>票面总额：<span>{{amount/10000}}w</span></li>
+              <li>票面总额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}%</span></li>
@@ -138,6 +138,9 @@
       current_change(currentPage){
         this.currentPage = currentPage;
         this.getIntenTionList();
+      },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/

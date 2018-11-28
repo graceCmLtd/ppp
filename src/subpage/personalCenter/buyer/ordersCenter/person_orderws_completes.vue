@@ -20,7 +20,7 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000 |numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
 
@@ -31,7 +31,7 @@
           </div></el-col> -->
             <!-- 修改前 -->
              <!--   <el-col :span="3"><div class="intention_mes">{{item.status}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes amountMes">{{item.real_money/10000 |numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes amountMes">{{formatNumToStr(item.real_money)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div style="line-height:80px; font-size:15px;">...</div></el-col>
 
@@ -65,7 +65,7 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票面金额：<span>{{amount/10000 |numFilter}}w</span></li>
+              <li>票面金额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
             </ul>
@@ -152,6 +152,9 @@
         let Id=getCookie('Iud');
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
+      },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
       paperMes(index){
         let _this=this;

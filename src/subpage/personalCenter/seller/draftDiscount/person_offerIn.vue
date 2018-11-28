@@ -7,7 +7,7 @@
         <el-row >
           <el-col><div class="person_offerIn_title" id="name_w" style="margin-top: 5px;" :title="getValue(index)">{{item.acceptor}}</div></el-col>
 
-          <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{item.amount/10000 | numFilter}}w</div></el-col>
+          <el-col><div class="person_offerIn_title limit" id="name_w_limit">{{formatNumToStr(item.amount)}}</div></el-col>
           <p style="float:right;width:120px; font-size:14px; height:50px; line-height:25px; padding-top:-5px;">
           <el-col><div class="person_offerIn_title">剩余天数:<i style="font-style:normal; color:#F15749; font-size:15px;">{{item.remain_days}}天</i></div></el-col>
           <el-col><div class="person_offerIn_title time">到期日:<i style="font-style:normal; font-size:14px; font-weight:bold;">{{item.maturity}}</i></div></el-col>
@@ -43,6 +43,9 @@
       /*//console.log("get billNumber in 11.....")*/
       this.$emit("transb",this.billNumber)
       ////console.log(res)
+    },
+    formatNumToStr(num){
+      return this.util.formatNumberToStr(num)
     },
       getPaper(){
         let Id=getCookie('Iud');

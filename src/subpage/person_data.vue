@@ -130,6 +130,7 @@
 
 <script>
 import {getCookie} from '@/assets/util'
+import {setCookie} from '@/assets/util'
 export default {
   data(){
     return{
@@ -270,8 +271,9 @@ export default {
     },
     submitCom(){
       let id=getCookie('Iud');
+      console.log("----"+getCookie("isAu")+"----")
       if(this.TypeAgShowT){
-        if(this.pic1==''){
+        if(getCookie("isAu") != "true"){
         let _this=this;
         let comName=_this.$refs.companyName.value;//公司名称
         let busPic1=window.localStorage.getItem('Business');//多证合一营业执照
@@ -286,10 +288,10 @@ export default {
         let bankId=_this.$refs.bankId.value;//开户行行号
         let bankRess=_this.province+'-'+_this.city;//开户地址
         let bankAccount=_this.$refs.banksAccount.value;//银行账号
-        if(comName==''||contactName==''||contactPhone==''||contactEmail==''||bankId==''||banNumber==''||qq==''){
+        if(comName==''||contactName==''||contactPhone==''||idCardNo==''||qq==''||bankName==''||bankId==''||bankRess==''||bankAccount==''){
           alert('请先完善公司信息! ')
-        }else if(busPic==''){
-          alert('请先上传营业执照！')
+        }else if(busPic1==''||busPic2==''||IDPic1==''||IDPic2==''){
+          alert('请先上传营业执照和身份证正反面！')
         }else{
           _this.fetch.myPost('/addCompany',{
             "companyInfo":{
@@ -322,8 +324,11 @@ export default {
         ).then((res)=>{
           //console.log(res);
           window.localStorage.clear();
-          alert("认证信息提交成功,待审核...... ");
-          _this.$router.push('/page'); 
+          if(res.data.status == "success"){
+              setCookie('isAu',"true");
+              alert("认证信息提交成功,待审核......");
+              this.$router.push('/page'); 
+          }
         })
         }
       }else{
@@ -348,10 +353,10 @@ export default {
               'picId':123
             },
             "companyPics":{
-              "pic1Content":this.pic1,
-              "pic2Content":this.pic2,
-              "pic1IDCard":this.IDCardPic1,
-              "pic2IDCard":this.IDCardPic2,
+              "pic1Content":busPic1,
+              "pic2Content":busPic2,
+              "pic1IDCard":IDPic1,
+              "pic2IDCard":IDPic2,
               "contactsId":id
               }
           },{
@@ -363,8 +368,11 @@ export default {
         ).then((res)=>{
           //console.log(res)
           window.localStorage.clear()
-          alert("认证信息提交成功,待审核......");
-          this.$router.push('/page'); 
+          if(res.data.status == "success"){
+              alert("认证信息提交成功,待审核......");
+              this.$router.push('/page'); 
+          }
+          
         });
       }
       }else{

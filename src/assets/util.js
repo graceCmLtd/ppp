@@ -25,6 +25,11 @@ export function delCookie (name) {
 };
 
 export function formatNumberToStr(num){
+	//alert(num)
+	if (!num || num ==0 || num == 'undefined' || num == 'NAN') {
+		return 0;
+	}
+	num = num+''
 	if (num.indexOf(',') != -1) {
 		alert(num)
 		return num

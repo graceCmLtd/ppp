@@ -20,9 +20,9 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.real_money)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh}}</span></span>
@@ -49,8 +49,8 @@
         <div class="show_w" v-if="isShow" >
         <div class="center_w">
             <p>修改付款金额</p>
-            <p>原实付金额：{{currentItem.real_money/10000}}W</p>
-            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0">W </p>
+            <p>原实付金额：{{formatNumToStr(currentItem.real_money)}}</p>
+            <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0"> </p>
             <a @click="modifyMoneySubmit()">确认修改</a>
             <a @click="showCancel()" style="background:#E4E4E4;  box-shadow:0px 2px 4px 0px #E4E4E4;">取消</a>
         </div>
@@ -95,11 +95,11 @@
           <div class="message_left">
             <ul>
               <li>票号：<span>6222299993778389939</span></li>
-              <li>票面总额：<span>{{amount/10000}}w</span></li>
+              <li>票面总额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}%</span></li>
-              <li>实收金额：<span>{{realMoeny}}W(含平台担保费)</span></li>
+              <li>实收金额：<span>{{formatNumToStr(realMoeny)}}(含平台担保费)</span></li>
             </ul>
           </div>
         </div>
@@ -281,7 +281,7 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         this.buyer = _this.noteList[index].companyName;
         this.rate = _this.noteList[index].interest;
-        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);
+        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)).toFixed(2);
         _this.fetch.httpGet({
           url:'/bills/getbill',
           params:{
@@ -313,7 +313,9 @@
           })
         })
       },
-
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
+      },
       closePics(){
         this.$refs.intention_mes_details.style.top='15%';
         this.$refs.intention_mes_details.style.opacity='0';
