@@ -270,7 +270,8 @@ export default {
     },
     submitCom(){
       let id=getCookie('Iud');
-      if(this.pic==''){
+      if(this.TypeAgShowT){
+        if(this.pic1==''){
         let _this=this;
         let comName=_this.$refs.companyName.value;//公司名称
         let busPic1=window.localStorage.getItem('Business');//多证合一营业执照
@@ -366,6 +367,10 @@ export default {
           this.$router.push('/page'); 
         });
       }
+      }else{
+        alert("请阅读并同意《企业授权委托书》！")
+      }
+      
     },
     cancel(){
       this.$router.push('/release/data');
