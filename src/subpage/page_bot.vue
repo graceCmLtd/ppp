@@ -4,54 +4,18 @@
     <div class="page_title_In"> <!--流程介绍标题 -->
      <img src="../../static/img/page_title3.png" alt="">
    </div>
-    <div class="page_hott">
+    <div class="page_hott" style="position:reactive;">
       <div class="page_hot">
         <div class="bg_alt1"><img src="../../static/img/bg_alt1.png"></div>
         <div class="bg_alt4"><img src="../../static/img/bg_alt4.png"></div>
         <div class="bg_alt5" style="margin-top:109px;"><img src="../../static/img/bg_alt5.png"></div>
         <div class="bg_alt3" style="margin-top:90px;"><img src="../../static/img/bg_alt3.png"></div>
-        <!-- <div class="bg_ys"><img src="../../static/img/ys.png"></div> -->
       </div>
     </div>
-    <!--<div class="Authenticat_w">
-      <div class="Authenticat_w_1"><img src="../../static/img/4@.png"></div>
-    </div> -->
-    <div :class="accordionClass" :style="divStyles">
-      <!--<ul>
-        <li style="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-        <li style ="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-        <li style =" border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-        <li style ="border-color: rgb(255, 255, 255); background-image:url(../../static/img/wu.jpg); border-style: solid; border-width: 0px; padding: 10px;">
-        <a href="#">
-          <h2 style="font-size: 15px; color: white;">1</h2>
-          <p style="font-size: 10px; margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-        </a>
-        </li>
-      </ul> -->
+    <h1>————金融票据一站式服务————</h1>
+    <vue-accordion :items="items" > 
 
-     <ul>
-        <partial-accordion 
-        v-for="(item,index) in items" 
-        :item="item" 
-        :key="index"
-        :styles="styles"
-      ></partial-accordion>
-      </ul>
+    </vue-accordion>
     </div>
   </div>
 
@@ -59,33 +23,44 @@
 
 <script>
 import {getCookie} from '@/assets/util'
-import partialAccordion from './vue-accordion-partial.vue'
+import {vueAccordion} from 'vue-accordion'
+
   export default {
-    name: 'page_bot',
-    props: {
-      items: {
-        type: Array
-      },
-      styles: {
-        type: Object,
-        default: function() {
-          return {}
-        }
-      },
-      accordionClass: {
-        type: String,
-        default: 'vue-accordion'
-      }
-    },
-    computed: {
-      divStyles() {
-        return this.styles && this.styles.div ? this.styles.div : {};
-      }
-    },
-    components: {
-      partialAccordion
+    components: { vueAccordion },
+    data(){
+      return {
+        items: [
+                {
+                    title: '——安全——',
+                    text: '三方存管银行担保支付确保票款安全',
+                    url: '#',
+                    image: '../../static/img/Bitmap4.png',
+                },
+                {
+                    title: '——透明——',
+                    text: '资方实时报价收票价格透明',
+                    url: '#',
+                    image: '../../static/img/Bitmap3.png',
+                },
+                {
+                    title: '——互通——',
+                    text: '交易双方无间沟通想砍价就砍价高价互通',
+                    url: '#',
+                    image: '../../static/img/Bitmap2.png',
+                },
+                  {
+                    title: '——快速——',
+                    text: '票款秒到账极度快速贴现体验',
+                    url: '#',
+                    image: '../../static/img/Bitmap1.png',
+                },
+              ]
+            }
+          }
+
     }
-  }
+
+
 
 </script>
 
@@ -93,22 +68,41 @@ import partialAccordion from './vue-accordion-partial.vue'
   .vue-accordion {
     width: 100%;
     overflow: hidden;
-    height: 200px;
+    height: 400px;
     max-width: 900px;
-    border:1px solid black;
     margin:0 auto;
     }
 
     .vue-accordion ul {
-    width: 100%;
-    height: 100%;
-    display: table;
-    table-layout: fixed;
-    margin: 0;
-    padding: 0;
+      width: 100%;
+      height: 100%;
+      display: table;
+      table-layout: fixed;
+      margin: 0;
+      padding: 0;
     }
+    .vue-accordion ul li a {
+      display: block;
+      width: 100%;
+      z-index: 3;
+      padding: 25px 20px;
+      box-sizing: border-box;
+      color: #fff;
+      text-decoration: none;
+      transition: all .2s ease;
+}
+   .vue-accordion ul li a p {
+    font-size: 13.5px;
+    margin-top: 47px !important;
+  }
 
-
+.vue-accordion ul li a h2 {
+    text-overflow: clip;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    opacity: 1 !important;
+}
 
 .page_bot{
    width: 100%;
