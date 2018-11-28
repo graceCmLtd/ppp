@@ -21,10 +21,10 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="2"><div class="intention_mes">{{item.amount/10000 | numFilter}}w</div></el-col>
+          <el-col :span="2"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="4"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="2"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.real_money)}}</div></el-col>
 
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
@@ -80,7 +80,7 @@
         <div class="intention_mes_message">
           <div class="message_left">
               <ul>
-                <li><p class="money_w">{{billType}}</p><i>{{amount/10000}}w</i></br><span>报价金额</span></li>
+                <li><p class="money_w">{{billType}}</p><i>{{formatNumToStr(amount)}}</i></br><span>报价金额</span></li>
                 <li><i>{{interest}}%</br></i>每10W加:{{xPerLakh}}</br><span>利率</span></li>
                 <li><i>{{maturity}}<br></i>(剩{{remain_days}}天)</br><span>汇票到期日/剩余天数</span></li>
                 <li style="border-right:none;"><i class="bank_w">{{bank}}</i></br><span>承兑方</span></li>
@@ -164,6 +164,9 @@
       current_change(currentPage){
           this.currentPage = currentPage;
           this.getIntenTionList();
+      },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
       toggle:function(){
             this.isShow = !this.isShow;

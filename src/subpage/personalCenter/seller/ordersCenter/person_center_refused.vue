@@ -19,9 +19,9 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.real_money)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3"><div class="intention_mes" id="payment" v-on:click="toggle(item)">上传背书凭证</div></el-col>         
         </el-row>
@@ -71,11 +71,11 @@
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
               <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
-              <li>票面金额：<span>{{amount/10000}}w</span></li>
+              <li>票面金额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
-              <li>实收金额：<span>{{real_money/10000}}w(含平台担保费)</span></li>
+              <li>实收金额：<span>{{formatNumToStr(real_money)}}(含平台担保费)</span></li>
             </ul>
           </div>
 
@@ -167,6 +167,9 @@
       current_change(currentPage){
         this.currentPage = currentPage;
         this.getIntenTionList();
+      },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/

@@ -18,12 +18,12 @@
         <p>开户行:<i>{{list.bankName}}</i></p>
         <!-- <p>担保交易专席客服联系方式:<i>4001-521-889 </i></p> -->
         <p>票号：<i>{{item.billNumber}}</i></p>
-        <p>票面总额:<i>{{item.amount}}</i></p>
+        <p>票面总额:<i>{{formatNumToStr(item.amount)}}</i></p>
         <p>承兑方:<i>{{item.acceptor}}</i></p>
         <p>卖方:<i>{{item.companyName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.contactsPhone}}</i></p>
         <p>贴现利率:<i>{{item.interest}}%</i></p>
         <p>每十万加：<i>{{item.xPerLakh}}</i></p>
-        <p>实付金额 : <i>{{item.real_money}}</i></p>
+        <p>实付金额 : <i>{{formatNumToStr(item.real_money)}}</i></p>
         <p>票据图片</p>  
           <span class="Is"><img v-bind:src="pic1" :class="{'active':isChoose}" width="230px" height="160px" @click="imgScc"></span>
           <span class="The"><img v-bind:src="pic2" :class="{'active':isChooses}" width="230px" height="160px" @click="imgSccs"></span>
@@ -130,6 +130,9 @@
         })
       })
       },*/
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
+      },
       closeWarning(){
         let _this=this;
         _this.$refs.detailedPrompt.style.opacity='0';

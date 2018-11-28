@@ -20,7 +20,7 @@
           <el-col :span="6"><div class="mes bank" ref="person_offer_all_bank"
                                  
           >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="mes">{{item.amount/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="mes amount mes_chose">
@@ -28,7 +28,7 @@
             <!--<p>利率：{{item.interest}}%</p>-->
             <!--</div>-->
             <div class="premium">
-              <p>{{item.real_money/10000| numFilter}}w</p>
+              <p>{{formatNumToStr(item.real_money)}}</p>
             </div>
           </div></el-col>
           <el-col :span="3"><div class="mes pula">
@@ -71,7 +71,7 @@
         <div class="intention_mes_message">
            <div class="message_left">
             <ul>
-              <li><p class="money_w">{{billType}}</p><i>{{amount/10000}}w</i></br><span>报价金额</span></li>
+              <li><p class="money_w">{{billType}}</p><i>{{formatNumToStr(amount)}}</i></br><span>报价金额</span></li>
               <li><i>{{interest}}%</br></i>每10W加:{{xPerLakh}}元</br><span>利率</span></li>
               <li><i>{{maturity}}<br></i>(剩{{remain_days}}天)</br><span>汇票到期日/剩余天数</span></li>
               <li style="border-right:none;"><i class="bank_w">{{bank}}</i></br><span>承兑方</span></li>
@@ -197,6 +197,9 @@
         this.currentPage = currentPage;
         this.getReceiptAll();
       },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
+      },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/
         let _this=this;
@@ -251,6 +254,9 @@
             })
           })
         })
+      },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
       closePics(index){
         console.log(this);

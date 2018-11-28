@@ -19,7 +19,7 @@
           <el-col :span="6">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes">{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}</div></el-col> -->
           <el-col :span="3"><div class="intention_mes amountMes">
@@ -57,7 +57,7 @@
         <div class="intention_mes_message">
           <div class="message_left">
             <ul>
-              <li>票据金额：<span>{{amount/10000}}w</span></li>
+              <li>票据金额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>每10w加：<span>{{xPerLakh}}</span></li>
               <li>出票日期：<span>{{transacDate}}</span></li>
             </ul>
@@ -139,6 +139,9 @@
       current_change(currentPage){
           this.currentPage = currentPage;
           this.getIntenTionList();
+      },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
       linkToA(index){
         /*<a href="'tencent://message/?uin='+{{item.contactsQQ}}+'&Site=pengpengpiao.cn&Menu=yes'" style="text-decoration:none">{{item.contactsQQ}}qq咨询</a>*/

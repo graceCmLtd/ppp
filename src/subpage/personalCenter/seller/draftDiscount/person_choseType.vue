@@ -6,13 +6,13 @@
             <p class="choseType_company">{{billData.acceptor}}</p>
             <p><i>票据类型：</i>&nbsp;&nbsp;&nbsp;<span>{{billType}}</span></p>
             <p><i>汇票到期日：</i>&nbsp;&nbsp;&nbsp;<span>{{releaseDate}}(剩{{billData.remain_days}}天)</span></p>
-            <p><i>票面金额：</i>&nbsp;&nbsp;&nbsp;<span>{{billAmount/10000}}</span>w</p>
+            <p><i>票面金额：</i>&nbsp;&nbsp;&nbsp;<span>{{formatNumToStr(billAmount)}}</span></p>
             <p><i>出票日期：</i>&nbsp;&nbsp;&nbsp;<span>{{maturityDay}}</span></p>
         </div>
         <div class="mes_rights">
           <p><i>贴现利率：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.interest}}</span>%</p>
           <p><i>每10w加：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.xPerLakh}}</span></p>
-          <p><i>实收金额：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.real_money}}</span>w</p>
+          <p><i>实收金额：</i>&nbsp;&nbsp;&nbsp;<span>{{formatNumToStr(billData.real_money)}}</span></p>
           <p><i>联系人：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.companyName}}</span></p>
           <p><i>联系电话：</i>&nbsp;&nbsp;&nbsp;<span>{{billData.contactsPhone}}</span></p>
       </div>
@@ -144,6 +144,9 @@ export default {
 
       }
     },
+    formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
+      },
     receiveBills(){
       let _this=this;
       let bill=this.$route.query.bills
