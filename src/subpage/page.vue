@@ -422,13 +422,13 @@
   margin-top: 41px;
 }
 .model-1{
-    width: 1200px;
+    width: 100%;
     height: 800px;
     background: url(../../static/img/model-1.png) no-repeat center;
     position: relative;
-    background-size: 1200px 800px;
     margin:0 auto;
     margin-top:22px;
+    background-size: 100% 800px;
   .model-1-img{
     width: 482px;
     height: 120px;
@@ -491,13 +491,13 @@
 
 
 .model-2{
-    width: 1200px;
+    width: 100%;
     height: 800px;
     margin: 0 auto;
     background: url(../../static/img/model-2.png) no-repeat center;
     position: relative;
-    background-size: 1200px 800px;
     margin-top:22px;
+    background-size: 100% 800px;
   .model-2-img{
     width: 482px;
     height: 120px;
@@ -765,7 +765,7 @@
       top:40vh;
       min-height: 208px;
       min-width: 70px;
-      z-index:20;
+      z-index:9000;
       .list{
         width: 100%;
         height:100%;

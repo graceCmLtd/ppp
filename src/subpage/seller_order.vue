@@ -11,10 +11,10 @@
       </p>
       <div class="prise_mes">
         <ul class="left">
-          <li>企业名称</li>
+          <li style="font-weight:bold;">企业名称</li>
         </ul>
         <ul class="right">
-          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
 
         </ul>
       </div>
@@ -31,7 +31,7 @@
           <img v-bind:src="pic" style="width:360px;height:240px;">
         </div>
       </div>
-   <div style="margin-top:20px;border:1px solid black;">
+   <div style="margin-top:20px;">
       <p style="padding-top: 25px;"> 上传法人身份证</p>
     
         <div class="prise_pic_a">
@@ -50,14 +50,14 @@
       </p>
       <div class="bank_mes">
         <ul class="bank_left">
-          <li>联系人姓名</li>
-          <li>联系人身份证证件号</li>
-          <li>联系人QQ号码</li>
+          <li style="font-weight:bold;">联系人姓名</li>
+          <li style="font-weight:bold;">联系人身份证证件号</li>
+          <li style="font-weight:bold;">联系人QQ号码</li>
         </ul>
         <ul class="bank_right">
-          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
           <div style="opacity: 0; height:20px;">  </div>
         </ul>
 
@@ -68,19 +68,19 @@
       </p>
       <div class="bank_mes">
         <ul class="bank_left">
-          <li>开户银行</li>
-          <li>开户行行号</li>
-          <li>银行账号</li>
+          <li style="font-weight:bold;">开户银行</li>
+          <li style="font-weight:bold;">开户行行号</li>
+          <li style="font-weight:bold;">银行账号</li>
         </ul>
         <ul class="bank_right">
-          <li><input type="text" v-model:value="bankName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="bankName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
          <div style="opacity: 0; height:120px;">  </div>
         </ul>
 
       </div>
-<!-- 
+     <!-- 
       <button @click="updateInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">认证/修改</button> -->
     </div>
   </div>
@@ -259,9 +259,6 @@ export default {
         li:nth-child(3){
           margin-bottom: 4.8%;
         }
-      }
-      p{
-        font-weight:bold;
       }
     }
     .prise_pic{

@@ -15,20 +15,20 @@
           <p>上传多证合一营业执照或普通营业执照</p>
           <div class="company_license">
             <div class="reprod">
-              <img src="../../static/img/pic_icon.png" alt="">
-              <p>点击上传营业执照</p>
+              <img src="../../static/img/pic_yingye.png" alt="">
+              <!-- <p>点击上传营业执照</p> -->
               <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusiness">
-              <img v-bind:src="pic" alt=""  class="showPic"  ref="Business">
+              <img  alt=""  class="showPic"  ref="Business">
             </div>
           </div>
           <div class="margin-top:20px;">
          <p><i style="font-style:normal;color:#FF4119;">选填-</i>组织机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
           <div class="company_license">
             <div class="reprod">
-              <img src="../../static/img/pic_icon.png" alt="">
-              <p>点击上传营业执照</p>
+              <img src="../../static/img/pic-certificates.png" alt="">
+              <!-- <p>点击上传营业执照</p> -->
               <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusinessB">
-              <img v-bind:src="pic" alt=""  class="showPic"  ref="BusinessB">
+              <img  alt=""  class="showPic"  ref="BusinessB">
             </div>
            </div>
          </div>
@@ -523,7 +523,6 @@ export default {
       /* margin-left: -25%; */
       top: 46%;
       margin-top: -17%;
-      border: 1px solid #ccc;
 
       .showPic{
         width: 100%;
@@ -533,11 +532,9 @@ export default {
         left:0;
       }
       img{
-        width: 20%;
-        height:25%;
-        position: absolute;
-        top:25%;
-        left:40%;
+        width: 390px;
+        height: 225px;
+
       }
       p{
         position: absolute;
