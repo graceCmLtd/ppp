@@ -155,7 +155,7 @@ export default {
       if(role == "vip"){
           this.$router.push("/release/template");
       }else{
-          alert("您还未开通此权限！");
+          //alert("您还未开通此权限！");
           this.$router.push('servicer');
       }
     }

@@ -47,3 +47,21 @@ export function formatNumberToStr(num){
   return str.split('').reverse().join("") + (fractionalPart !=''? '.'+fractionalPart:'');//字符串=>数组=>反转=>字符串  
 
 }
+
+export function formatStrToNumber(str){
+	if (str.indexOf(".")) {
+		let str_integer = str.split(".")[0];
+		let str_decimal = '.'+str.split(".")[1];
+	}else{
+		let str_integer = str;
+		let str_decimal = ''
+	}
+	
+	let integer_arr = str_integer.split(",");
+	let integerPart = '';
+	for (var i = integer_arr.length - 1; i >= 0; i--) {
+		integerPart = integer_arr[i] +integerPart;
+	}
+
+	return Number(integerPart +str_decimal)
+}

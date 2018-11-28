@@ -292,9 +292,15 @@
           _this.fetch.httpPost({
             url:"/quote/updateRealMoney",
             data:{
-            "billNumber":_this.currentItem.billNumber,
-            "quoterId":_this.currentItem.quoterId,
-            "new_money":_this.new_money*10000
+              "quoteBody":{
+                  "billNumber":_this.currentItem.billNumber,
+                  "quoterId":_this.currentItem.quoterId,
+                  "new_money":_this.new_money*10000
+              },
+              "transactionBody":{
+                  "orderId":_this.currentItem.transacType,
+                  "preRealMoney":_this.new_money*10000
+            }
           }
           }).then((res)=>{
             console.log("修改金额")

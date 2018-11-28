@@ -70,7 +70,8 @@ export default {
       quoterId:'',
       orderId:null,
       isChoose:false,
-      acceptor:''
+      acceptor:'',
+      preRealMoney:0
     }
   },
   methods:{
@@ -120,6 +121,7 @@ export default {
             "transactionBody":{
               "quoterId":_this.quoterId,
               "orderId":_this.orderId,
+              "preRealMoney":_this.preRealMoney,
               "intentionStatus":"待接单"
             },
             "message":{
@@ -151,6 +153,7 @@ export default {
         window.localStorage.setItem('item',JSON.stringify(object));
       }
       this.billData = JSON.parse(window.localStorage.getItem('item'));
+      this.preRealMoney = this.billData.real_money
       this.billData.real_money = Number((this.billData.real_money-(this.billData.real_money*5/10000))/10000).toFixed(2);
       this.acceptor = this.billData.acceptor;
       console.log("billData")
