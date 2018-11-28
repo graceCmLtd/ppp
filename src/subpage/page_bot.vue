@@ -32,7 +32,7 @@ import {vueAccordion} from 'vue-accordion'
         items: [
                 {
                     title: '——安全——',
-                    text: '三方存管担保支付 确保票款安全',
+                    text: '三方存管担保支付确保票款安全',
                     url: '#',
                     image: '../../static/img/Bitmap4.png',
                 },
@@ -69,7 +69,7 @@ import {vueAccordion} from 'vue-accordion'
     width: 100%;
     overflow: hidden;
     height: 400px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin:0 auto;
     }
 
@@ -91,17 +91,12 @@ import {vueAccordion} from 'vue-accordion'
       text-decoration: none;
       transition: all .2s ease;
 }
-   .vue-accordion ul li a p {
-    font-size: 13.5px;
-    margin-top: 47px !important;
-  }
 
 .vue-accordion ul li a h2 {
     text-overflow: clip;
-    font-size: 24px;
+    font-size: 35px;
     text-transform: uppercase;
     margin-bottom: 2px;
-    opacity: 1 !important;
 }
 
 .page_bot{
