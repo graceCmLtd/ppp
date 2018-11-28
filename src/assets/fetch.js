@@ -1,11 +1,13 @@
+import _vm from '@/main.js'
 import axios from 'axios'
 //import cookie from '@/utils/cookie'
 import {getCookie} from '@/assets/util'
+
 const fetch = axios.create({
   // baseURL: 'http://39.104.140.40/ppp', 
 //baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
-  baseURL:'http://localhost:8080/ppp',
-  //baseURL:'http://pengpengpiao.com/ppp',
+  //baseURL:'http://localhost:8080/ppp',
+  baseURL:'http://pengpengpiao.com/ppp',
 //baseURL: 'http://192.168.3.88:8080/ppp' ,// api的base_url
 
       //baseURL:'http://localhost:8080/ppp',
@@ -58,12 +60,10 @@ fetch.interceptors.response.use(response =>{
         break;
       case 702:
       //alert("702") //
-      console.log("702????????????????????????????")
 
-      console.log(this)
 
-      //Vue.$router.push({path:'/page'})
-          window.location.href="http://localhost:8090/#/signUp/password"
+      _vm.$router.push({path:'/signUp/password'})
+          //window.location.href="http://localhost:8090/#/signUp/password"
         break;
       case 802:
       //alert("802") 用户id 与登录token不匹配
