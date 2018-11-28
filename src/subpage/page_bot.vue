@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="page_bot">
     <div class="page_title_In"> <!--流程介绍标题 -->
-     <img src="../../static/img/page_title3.png" alt="">
+     <img src="../../static/img/page_title3.png" alt="" style="    width: 100%;">
    </div>
     <div class="page_hott" style="position:reactive;">
       <div class="page_hot">
@@ -32,25 +32,25 @@ import {vueAccordion} from 'vue-accordion'
         items: [
                 {
                     title: '——安全——',
-                    text: '三方存管银行担保支付确保票款安全',
+                    text: '三方存管担保支付 确保票款安全',
                     url: '#',
                     image: '../../static/img/Bitmap4.png',
                 },
                 {
                     title: '——透明——',
-                    text: '资方实时报价收票价格透明',
+                    text: '资方实时报价收票 价格全透明',
                     url: '#',
                     image: '../../static/img/Bitmap3.png',
                 },
                 {
                     title: '——互通——',
-                    text: '交易双方无间沟通想砍价就砍价高价互通',
+                    text: '交易双方无间沟 通想砍价就砍价 高效互通',
                     url: '#',
                     image: '../../static/img/Bitmap2.png',
                 },
                   {
                     title: '——快速——',
-                    text: '票款秒到账极度快速贴现体验',
+                    text: '票款秒到账 极度快速 贴现体验',
                     url: '#',
                     image: '../../static/img/Bitmap1.png',
                 },
@@ -107,8 +107,7 @@ import {vueAccordion} from 'vue-accordion'
 .page_bot{
    width: 100%;
    height: auto;
-    margin-top: 30px;
-    background: #fff;
+   margin-top: 30px;
   .page_hott{
     width:100%;
     height:1250px;

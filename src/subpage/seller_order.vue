@@ -11,48 +11,76 @@
       </p>
       <div class="prise_mes">
         <ul class="left">
-          <li>公司名称</li>
-          <li>联系人姓名</li>
-          <li>联系人电话</li>
-          <li>联系人QQ</li>
-          <li>联系人邮箱</li>
-          <li>审核状态</li>
+          <li style="font-weight:bold;">企业名称</li>
         </ul>
         <ul class="right">
-          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
-          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsPhone" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsEmail" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="role" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
 
         </ul>
       </div>
-      <p class="prise_title">
-        <span>营业执照</span>
-      </p>
+      <p>上传多证合一营业执照或普通营业执照</p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <img v-bind:src="pic" :class="{'active':isChoose}" style="width:360px;height:240px;" @click="imgScc">
+          <img v-bind:src="pic" style="width:360px;height:240px;">
         </div>
       </div>
-      <p class="prise_title" style="margin-top:-2%;">
-        <span>对公银行账户</span>
+
+      <p style="padding-top: 25px;"><i style="font-style:normal;color:#FF4119;">选填-</i>组织机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
+      <div class="prise_pic">
+        <div class="prise_upload">
+          <img v-bind:src="pic" style="width:360px;height:240px;">
+        </div>
+      </div>
+   <div style="margin-top:20px;">
+      <p style="padding-top: 25px;"> 上传法人身份证</p>
+    
+        <div class="prise_pic_a">
+          <span class="prise_upload">
+            <img v-bind:src="pic" style="width:300px;height:240px;">
+          </span>
+          <span class="prise_upload">
+            <img v-bind:src="pic" style="width:300px;height:240px;">
+          </span>
+        </div>
+
+  </div>
+<!-- 业务授权 -->
+      <p class="prise_title">
+        <span>业务授权</span>
       </p>
       <div class="bank_mes">
         <ul class="bank_left">
-          <li>账户名称</li>
-          <li>开户行</li>
-          <li>银行账号</li>
+          <li style="font-weight:bold;">联系人姓名</li>
+          <li style="font-weight:bold;">联系人身份证证件号</li>
+          <li style="font-weight:bold;">联系人QQ号码</li>
         </ul>
         <ul class="bank_right">
-          <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="bankName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-
+          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <div style="opacity: 0; height:20px;">  </div>
         </ul>
+
       </div>
-<!-- 
+
+      <p class="prise_title" style="margin-top:-2%;">
+        <span>绑定账户</span><i style="font-size:12px;font-style:normal;color:#FF4119;">（电票所在银行账户与电票背书账户）</i>
+      </p>
+      <div class="bank_mes">
+        <ul class="bank_left">
+          <li style="font-weight:bold;">开户银行</li>
+          <li style="font-weight:bold;">开户行行号</li>
+          <li style="font-weight:bold;">银行账号</li>
+        </ul>
+        <ul class="bank_right">
+          <li><input type="text" v-model:value="bankName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+         <div style="opacity: 0; height:120px;">  </div>
+        </ul>
+
+      </div>
+     <!-- 
       <button @click="updateInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">认证/修改</button> -->
     </div>
   </div>
@@ -265,6 +293,17 @@ export default {
         }
       }
     }
+    .prise_pic_a{
+      width:80%;  
+      margin:0 auto;
+      .prise_upload{
+        width: 300px;
+        height: 200px;
+        margin: 28px 37px;
+
+      }
+    }
+
     .bank_mes{
       width: 96%;
       margin-left: 6%;

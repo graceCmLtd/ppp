@@ -124,7 +124,7 @@
             </div>
           </el-col>
             <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
-            <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
+            <el-col :span="4"><div class="tableMes amount">{{formatNumToStr(item.amount)}}</div></el-col>
             <el-col :span="3"><div class="tableMes data">{{item.releaseDate}}</div></el-col>
             <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
           </el-row>
@@ -263,6 +263,11 @@
       }
     },
     methods:{
+      formatNumToStr(num){
+        //alert(this.util.formatStrToNumber("1,200,400.000"))
+        //alert(this.util.formatNumberToStr("1,200,400.000"))
+        return this.util.formatNumberToStr(num)
+      },
       Be(){
         let _this=this;
         _this.$refs.CaBe.style.display='none';
@@ -417,13 +422,13 @@
   margin-top: 41px;
 }
 .model-1{
-    width: 1200px;
+    width: 100%;
     height: 800px;
     background: url(../../static/img/model-1.png) no-repeat center;
     position: relative;
-    background-size: 1200px 800px;
     margin:0 auto;
     margin-top:22px;
+    background-size: 100% 800px;
   .model-1-img{
     width: 482px;
     height: 120px;
@@ -486,13 +491,13 @@
 
 
 .model-2{
-    width: 1200px;
+    width: 100%;
     height: 800px;
     margin: 0 auto;
     background: url(../../static/img/model-2.png) no-repeat center;
     position: relative;
-    background-size: 1200px 800px;
     margin-top:22px;
+    background-size: 100% 800px;
   .model-2-img{
     width: 482px;
     height: 120px;
@@ -760,7 +765,7 @@
       top:40vh;
       min-height: 208px;
       min-width: 70px;
-      z-index:20;
+      z-index:9000;
       .list{
         width: 100%;
         height:100%;

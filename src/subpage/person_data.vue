@@ -12,21 +12,21 @@
           <p style="">
             <span>&nbsp;&nbsp;&nbsp;&nbsp;企业名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="companyName" ref="companyName"/></span>
           </p>
-          <p  >上传多证合一营业执照或普通营业执照</p>
+          <p>上传多证合一营业执照或普通营业执照</p>
           <div class="company_license">
             <div class="reprod">
-              <img src="../../static/img/pic_icon.png" alt="">
-              <p>点击上传营业执照</p>
+              <img src="../../static/img/pic_yingye.png" alt="">
+              <!-- <p>点击上传营业执照</p> -->
               <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusiness">
               <img v-bind:src="pic1" alt=""  class="showPic"  ref="Business">
             </div>
           </div>
           <div class="margin-top:20px;">
-         <p><i style="font-style:normal;color:#FF4119;">组织-</i>机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
+         <p><i style="font-style:normal;color:#FF4119;">选填-</i>组织机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
           <div class="company_license">
             <div class="reprod">
-              <img src="../../static/img/pic_icon.png" alt="">
-              <p>点击上传营业执照</p>
+              <img src="../../static/img/pic-certificates.png" alt="">
+              <!-- <p>点击上传营业执照</p> -->
               <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusinessB">
               <img v-bind:src="pic2" alt=""  class="showPic"  ref="BusinessB">
             </div>
@@ -37,8 +37,8 @@
         <div class="id_box">
            <div class="company_id" style="">
                   <div class="reprod_id" >
-                    <img src="../../static/img/ida.png" alt="">
-                    <p>点击上传正面</p>
+                    <img src="../../static/img/ida.png" alt="" >
+                    <!-- <p>点击上传正面</p> -->
                     <input type="file" name="" accept="image/jpg" value="" @change="upLoadIdA">
                     <img v-bind:src="IDCardPic1" alt=""  class="showPic"  ref="IdA">
                   </div>
@@ -46,10 +46,10 @@
 
            <div class="company_id">
               <div class="reprod_id" style="position:absolute;top:-100%;right:-3px;">   
-                <img src="../../static/img/idb.png" alt="">
-                <p>点击上传反面</p>
+                <img src="../../static/img/idb.png" alt="" >
+                <!-- <p>点击上传反面</p> -->
                 <input type="file" name="" accept="image/jpg" value="" @change="upLoadIdB">
-                <img v-bind:src="IDCardPic1" alt=""  class="showPic"  ref="IdB">
+                <img v-bind:src="IDCardPic2" alt=""  class="showPic"  ref="IdB">
               </div>
           </div>
       </div>
@@ -59,16 +59,17 @@
        
         <p class="person_data_company">
           <span>业务授权</span>
-          </p>
-        <div class="company_mes">
+        </p>
+        <div class="company_mes" style="    position: relative;">
           <p>
            <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsName" ref="contactName"/></span>
           </p>
           <p class="">
             <span>联系人身份证证件号&nbsp;<input type="" name="" v-model:value="idCardNum" maxlength="18" ref="idCardNo"></span>
           </p>
-          <p class="">
+          <p>
             <span>联系人QQ号码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsQQ" ref="QQ"/></span>
+
             </span>
           </p>
         </div>
@@ -100,7 +101,7 @@
             </span>
           </p>
           <p class="">
-          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="bankAccount" ref="bankAccount" placeholder="请输入企业账号" /></span>
+          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="bankAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
           </p>
         </div>     
         <p style="font-size:13px;">
@@ -112,6 +113,7 @@
     <p class="tishi">
       <span style="font-weight:bold;">温馨提示:</span><br>
       卖方绑定的的电票所在银行账户即交易完成后的收款账户 买方绑定的电票背书账户即交易打款账户
+      <div style="opacity: 0; height:120px;">  </div>
     </p>
     
 
@@ -145,7 +147,6 @@ export default {
       contactsQQ:'',
       bankAccountName:'',
       banksName:'',
-      // bankAccount:'',
       bankAddr:'',
       idCardNum:'',
       bankAccountName:'',
@@ -283,7 +284,7 @@ export default {
         let bankName=_this.$refs.bankName.value;//开户银行
         let bankId=_this.$refs.bankId.value;//开户行行号
         let bankRess=_this.province+'-'+_this.city;//开户地址
-        let bankAccount=_this.$refs.bankAccount.value;//银行账号
+        let bankAccount=_this.$refs.banksAccount.value;//银行账号
         if(comName==''||contactName==''||contactPhone==''||contactEmail==''||bankId==''||banNumber==''||qq==''){
           alert('请先完善公司信息! ')
         }else if(busPic==''){
@@ -330,6 +331,7 @@ export default {
         let busPic2=window.localStorage.getItem('BusinessB');//组织机构代码证
         let IDPic1=window.localStorage.getItem('IdA');//法人身份证正面照
         let IDPic2=window.localStorage.getItem('IdB');//法人身份证反面照
+        console.log(this.companyName+'-'+this.contactsPhone+'-'+this.bankCode)
         this.fetch.myPost('/updateCompany',{
             "companyInfo":{
               "companyName":this.companyName,
@@ -345,10 +347,10 @@ export default {
               'picId':123
             },
             "companyPics":{
-              "pic1Content":busPic1,
-              "pic2Content":busPic2,
-              "pic1IDCard":IDPic1,
-              "pic2IDCard":IDPic2,
+              "pic1Content":this.pic1,
+              "pic2Content":this.pic2,
+              "pic1IDCard":this.IDCardPic1,
+              "pic2IDCard":this.IDCardPic2,
               "contactsId":id
               }
           },{
@@ -361,7 +363,7 @@ export default {
           console.log(res)
           window.localStorage.clear()
           alert("认证信息提交成功,待审核......");
-          this.$router.push('/release/data'); 
+          this.$router.push('/release/prise'); 
         });
       }
     },
@@ -490,7 +492,7 @@ export default {
     line-height:40px;
     color:#fff;
     margin:0 auto;
-    margin-top:20px;
+    margin-top:24px;
     cursor:pointer;
   }
   .tishi{
@@ -498,7 +500,7 @@ export default {
     margin:0 auto;
     font-size:13px;
     text-align:left;
-    margin-top:20px;
+    margin-top:30px;
     color:red;
   }
   .person_data{
@@ -570,15 +572,14 @@ export default {
     text-align: center;
     position: relative;
     .reprod{
-      width: 60%;
+      width: 50%;
       height: 75%;
       min-width: 390px;
       position: absolute;
-      left: 41%;
-      margin-left: -30%;
-      top: 45%;
+      left: 16%;
+      /* margin-left: -25%; */
+      top: 46%;
       margin-top: -17%;
-      border: 1px solid #ccc;
 
       .showPic{
         width: 100%;
@@ -588,11 +589,9 @@ export default {
         left:0;
       }
       img{
-        width: 20%;
-        height:25%;
-        position: absolute;
-        top:25%;
-        left:40%;
+        width: 390px;
+        height: 225px;
+
       }
       p{
         position: absolute;
@@ -625,7 +624,6 @@ export default {
     .reprod_id{
       width: 45%;
       height: 75%;
-      border: 1px solid #ccc;
       position:absolute;
       float:left;
       img{
@@ -641,11 +639,8 @@ export default {
         left:0;
       }
       img{
-        width: 20%;
-        height:25%;
-        position: absolute;
-        top:25%;
-        left:40%;
+        width: 298px;
+        height: 223px;
       }
       p{
         position: absolute;
