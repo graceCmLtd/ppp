@@ -84,7 +84,7 @@
             </span>
           </p>
             <p>
-            <span>开户行行号&nbsp;&nbsp;<input type="text" name=""  v-model:value="banksAccountName" ref="bankId" placeholder="请输入开户行行号" />
+            <span>开户行行号&nbsp;&nbsp;<input type="text" name=""  v-model:value="bankAccountName" ref="bankId" placeholder="请输入开户行行号" />
             </span>
           </p>
           <p>
@@ -106,7 +106,7 @@
             </span>
           </p>
           <p class="">
-          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="banksAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
+          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="bankAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
           </p>
         </div>     
         <p style="font-size:13px;">
