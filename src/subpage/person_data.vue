@@ -18,7 +18,7 @@
               <img src="../../static/img/pic_yingye.png" alt="">
               <!-- <p>点击上传营业执照</p> -->
               <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusiness">
-              <img  alt=""  class="showPic"  ref="Business">
+              <img v-bind:src="pic1" alt=""  class="showPic"  ref="Business">
             </div>
           </div>
           <div class="margin-top:20px;">
@@ -28,7 +28,7 @@
               <img src="../../static/img/pic-certificates.png" alt="">
               <!-- <p>点击上传营业执照</p> -->
               <input type="file" name="" accept="image/jpg" value="" @change="upLoadBusinessB">
-              <img  alt=""  class="showPic"  ref="BusinessB">
+              <img v-bind:src="pic2" alt=""  class="showPic"  ref="BusinessB">
             </div>
            </div>
          </div>
@@ -40,7 +40,7 @@
                     <img src="../../static/img/ida.png" alt="" >
                     <!-- <p>点击上传正面</p> -->
                     <input type="file" name="" accept="image/jpg" value="" @change="upLoadIdA">
-                    <img  alt=""  class="showPic"  ref="IdA">
+                    <img v-bind:src="IDCardPic1" alt=""  class="showPic"  ref="IdA">
                   </div>
               </div>
 
@@ -49,7 +49,7 @@
                 <img src="../../static/img/idb.png" alt="" >
                 <!-- <p>点击上传反面</p> -->
                 <input type="file" name="" accept="image/jpg" value="" @change="upLoadIdB">
-                <img  alt=""  class="showPic"  ref="IdB">
+                <img v-bind:src="IDCardPic2" alt=""  class="showPic"  ref="IdB">
               </div>
           </div>
       </div>
@@ -64,8 +64,8 @@
           <p>
            <span>联系人姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsName" ref="contactName"/></span>
           </p>
-          <p>
-            <span>联系人身份证证件号&nbsp;<input type="" name="" maxlength="18"></span>
+          <p class="">
+            <span>联系人身份证证件号&nbsp;<input type="" name="" v-model:value="idCardNum" maxlength="18" ref="idCardNo"></span>
           </p>
           <p>
             <span>联系人QQ号码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="contactsQQ" ref="QQ"/></span>
@@ -85,29 +85,23 @@
             </span>
           </p>
             <p>
-            <span>开户行行号&nbsp;&nbsp;<input type="text" name=""  v-model:value="bankAccountName" ref="bankId" placeholder="请输入开户行行号" />
+            <span>开户行行号&nbsp;&nbsp;<input type="text" name=""  v-model:value="bankCode" ref="bankId" placeholder="请输入开户行行号" />
             </span>
           </p>
           <p>
             <span>开户行地址&nbsp;&nbsp;
-              <select>
-              <option value="" disabled selected>请选择省区</option>
-              <option value="1">北京</option>
-              <option value="1">北京</option>
-              <option value="1">北京</option>
-              <option value="1">北京</option>
+              <select v-on:change="indexSelect01" v-model="province">
+              <option value="" disabled selected>请选择省份</option>
+              <option v-for="province in provinces" :value="province.name">{{province.name}}</option>
             </select>
-            <select>
+            <select v-model="city">
               <option value="" disabled selected>城市或区县</option>
-              <option value="1">北京</option>
-              <option value="1">北京</option>
-              <option value="1">北京</option>
-              <option value="1">北京</option>
+              <option v-for="city in citys" :value="city.name">{{city.name}}</option>
             </select>
             </span>
           </p>
           <p class="">
-          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="bankAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
+          <span>银行账号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  name="" v-model:value="bankAccount" ref="banksAccount" placeholder="请输入企业账号" /></span>
           </p>
         </div>     
         <p style="font-size:13px;">
@@ -142,7 +136,10 @@ export default {
       TypeAgShowT:false,
       TypeAgShowB:true,
       checkedB:false,
-      pic : '',
+      pic1 : '',
+      pic2 : '',
+      IDCardPic1 : '',
+      IDCardPic2 : '',
       companyName:'',
       contactsName:'',
       contactsPhone:'',
@@ -150,11 +147,17 @@ export default {
       contactsQQ:'',
       bankAccountName:'',
       banksName:'',
-      // bankAccount:'',
       bankAddr:'',
+      idCardNum:'',
       bankAccountName:'',
       bankAccount:'',
+      bankCode:'',
       isShow:false,
+      provinces:[],
+      citys:[],
+      indexNum:0,
+      province:"",
+      city:""
     }
   },
   methods:{
@@ -270,15 +273,18 @@ export default {
       if(this.pic==''){
         let _this=this;
         let comName=_this.$refs.companyName.value;//公司名称
+        let busPic1=window.localStorage.getItem('Business');//多证合一营业执照
+        let busPic2=window.localStorage.getItem('BusinessB');//组织机构代码证
+        let IDPic1=window.localStorage.getItem('IdA');//法人身份证正面照
+        let IDPic2=window.localStorage.getItem('IdB');//法人身份证反面照
         let contactName=_this.$refs.contactName.value;//联系人姓名
-        let contactPhone=_this.$refs.contactPhone.value;//联系人电话
-        let contactEmail=_this.$refs.contactEmail.value;//联系人邮箱
-        let bankId=_this.$refs.bankId.value;//银行账户名称
-        let banNumber=_this.$refs.bankNumber.value;//银行账号
-        let bankName=_this.$refs.bankName.value;//银行名称
-        let bankRess=_this.$refs.bankAddress.value;//开户地址
-        let qq=_this.$refs.QQ.value;//联系人QQ
-        let busPic=window.localStorage.getItem('Business');//营业执照
+        let contactPhone=getCookie('Nick');//联系人电话
+        let idCardNo=_this.$refs.idCardNo.value;//联系人身份证号码
+        let qq=_this.$refs.QQ.value;//联系人qq
+        let bankName=_this.$refs.bankName.value;//开户银行
+        let bankId=_this.$refs.bankId.value;//开户行行号
+        let bankRess=_this.province+'-'+_this.city;//开户地址
+        let bankAccount=_this.$refs.banksAccount.value;//银行账号
         if(comName==''||contactName==''||contactPhone==''||contactEmail==''||bankId==''||banNumber==''||qq==''){
           alert('请先完善公司信息! ')
         }else if(busPic==''){
@@ -290,17 +296,21 @@ export default {
               "contactsId":id,
               "contactsName":contactName,
               "contactsPhone":contactPhone,
-              "contactsEmail":contactEmail,
               "contactsQQ":qq,
-              "bankAccountName":bankId,
-              "bankAccount":banNumber,
+              "contactIDCardNo":idCardNo,
+              "bankAccount":bankAccount,
               'bankName':bankName,
+              "bankCode":bankId,
               "signUpAddr":bankRess,
               'picId':123
             },
             "companyPics":{
-              "picContent":busPic,
+              "pic1Content":busPic1,
+              "pic2Content":busPic2,
+              "pic1IDCard":IDPic1,
+              "pic2IDCard":IDPic2,
               "contactsId":id
+
               }
           },{
             headers:{
@@ -317,22 +327,30 @@ export default {
         }
       }else{
         console.log("---123");
-        let busPic=window.localStorage.getItem('Business');
+        let busPic1=window.localStorage.getItem('Business');//多证合一营业执照
+        let busPic2=window.localStorage.getItem('BusinessB');//组织机构代码证
+        let IDPic1=window.localStorage.getItem('IdA');//法人身份证正面照
+        let IDPic2=window.localStorage.getItem('IdB');//法人身份证反面照
+        console.log(this.companyName+'-'+this.contactsPhone+'-'+this.bankCode)
         this.fetch.myPost('/updateCompany',{
             "companyInfo":{
               "companyName":this.companyName,
               "contactsId":id,
               "contactsName":this.contactsName,
               "contactsPhone":this.contactsPhone,
-              "contactsEmail":this.contactsEmail,
               "contactsQQ":this.contactsQQ,
-              "bankAccountName":this.bankAccountName,
+              "contactIDCardNo":this.idCardNum,
               "bankAccount":this.bankAccount,
               'bankName':this.banksName,
-              "signUpAddr":this.bankAddr,
+              "bankCode":this.bankCode,
+              "signUpAddr":this.province+'-'+this.city,
+              'picId':123
             },
             "companyPics":{
-              "picContent":busPic,
+              "pic1Content":this.pic1,
+              "pic2Content":this.pic2,
+              "pic1IDCard":this.IDCardPic1,
+              "pic2IDCard":this.IDCardPic2,
               "contactsId":id
               }
           },{
@@ -345,7 +363,7 @@ export default {
           console.log(res)
           window.localStorage.clear()
           alert("认证信息提交成功,待审核......");
-          this.$router.push('/release/data'); 
+          this.$router.push('/release/prise'); 
         });
       }
     },
@@ -364,14 +382,13 @@ export default {
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
               this.contactsName=res.data[0].contactsName;
-              this.contactsPhone=res.data[0].contactsPhone;
-              this.contactsEmail=res.data[0].contactsEmail;
+              this.idCardNum=res.data[0].contactIDCardNo;
               this.contactsQQ=res.data[0].contactsQQ;
-              this.bankAccountName=res.data[0].bankAccountName;
               this.banksName=res.data[0].bankName;
+              this.bankCode=res.data[0].bankCode;
               this.bankAccount=res.data[0].bankAccount;
-              this.bankAddr = res.data[0].signUpAddr;
-              this.role=res.data[0].role;
+              this.province = res.data[0].signUpAddr.split("-")[0];
+              this.city = res.data[0].signUpAddr.split("-")[1];
             }
         });
         this.fetch.httpGet({
@@ -382,7 +399,10 @@ export default {
         }).then((res)=>{
             console.log(res.data);
             if(res.data != ''){
-              this.pic = res.data[0].picContent;
+              this.pic1 = res.data[0].pic1Content;
+              this.pic2 = res.data[0].pic2Content;
+              this.IDCardPic1 = res.data[0].pic1IDCard;
+              this.IDCardPic2 = res.data[0].pic2IDCard;
             }
         });
     },
@@ -393,7 +413,42 @@ export default {
     hiddenShow:function () {
           var that = this;
               that.isShow = false;
-       }, 
+       },
+    getProvince(){
+      this.fetch.httpGet({
+        url:'/areas/getProvince'
+      }).then(res => {
+        console.log("获取到的省份")
+        if(res.data.length > 0){
+          res.data.splice(0,1);
+          this.provinces = res.data;
+          this.indexSelect01();
+        }
+        
+      });
+    },
+    getCity(){
+      this.fetch.myPost('/areas/getCityByPid',
+        {
+            "id":this.provinces[this.indexNum].id,
+            "name":this.provinces[this.indexNum].name,
+            "pid":this.provinces[this.indexNum].pid
+        }
+      ).then(res => {
+          if(res.data.length > 0){
+              this.citys = res.data
+          }
+      });
+    },
+    indexSelect01(){
+        for (let i = 0;i<this.provinces.length;i++) {
+          if (this.provinces[i].name == this.province){
+            this.indexNum = i;
+            break
+          }
+        }
+        this.getCity(); 
+    }  
   },
    filters:{
         date:function(data){
@@ -402,6 +457,7 @@ export default {
       },
     created(){
         this.loadInfo();
+        this.getProvince();
     }
 }
 </script>
