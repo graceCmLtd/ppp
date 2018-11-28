@@ -179,8 +179,8 @@
             "pageSize" : _this.pageSize
           }
         }).then((res)=>{
-          console.log("intention 123")
-          console.log(res)
+          //console.log("intention 123")
+          //console.log(res)
           _this.noteList=res.data;
         });
         this.fetch.httpPost({
@@ -191,7 +191,7 @@
             "transaction_filter":['待接单',"已失效"],
             "quote_filter":["报价完成,进入意向"]
           }}).then((res)=>{
-          console.log('www'+res.data);
+          //console.log('www'+res.data);
           if(res.data != '')
             _this.total = res.data;
           else
@@ -216,8 +216,8 @@
           'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
-              console.log("卖家确认交易操作 返回值：")
-              console.log(res)
+              //console.log("卖家确认交易操作 返回值：")
+              //console.log(res)
               _this.getIntenTionList();
             })
           },*/
@@ -236,7 +236,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
@@ -250,7 +250,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            //console.log(res)
             _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
@@ -303,8 +303,8 @@
             }
           }
           }).then((res)=>{
-            console.log("修改金额")
-            console.log(res)
+            //console.log("修改金额")
+            //console.log(res)
             _this.getIntenTionList()
             _this.fetch.httpPost({
               url:"/publish/send",
@@ -319,7 +319,7 @@
                 }
                }
             }).then((res)=>{
-                console.log("send msg for amount modify")
+                //console.log("send msg for amount modify")
               })
           })
         }
@@ -347,8 +347,8 @@
             }
           }
         }).then((res)=>{
-            console.log("删除意向")
-            console.log(res)
+            //console.log("删除意向")
+            //console.log(res)
             _this.getIntenTionList()
           })
       },
@@ -367,14 +367,14 @@
             this.isShow_cancel = !this.isShow_cancel;
             this.currentItem = item;
 
-            console.log(item)
+            //console.log(item)
             },
       hiddenShow:function () {
           var that = this;
           that.isShow_cancel = false;
         },
         backMarket(){
-          console.log(this.currentItem);
+          //console.log(this.currentItem);
           this.fetch.httpPost({
             url:'/quote/updateStatus',
             data:{
@@ -408,7 +408,7 @@
               "path":"/release/Receipt/offerInvalid"
             }}
           }).then((res)=>{
-                console.log(res.data.status);
+                //console.log(res.data.status);
                 if(res.data.status === 'success'){
                     this.getIntenTionList();
                     this.$router.push('/marketpa');
@@ -426,10 +426,10 @@
     let timer = window.setInterval(function(){
       if (_this.$route.path == '/release/intention/all') {
         _this.getIntenTionList()
-        console.log("in timer")
+        //console.log("in timer")
       }else{
         window.clearInterval(timer)
-        console.log("shutdown timer")
+        //console.log("shutdown timer")
       }
       
     },_this.GLOBAL.flushSeconds)*/

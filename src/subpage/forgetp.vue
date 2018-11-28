@@ -88,7 +88,7 @@
         let pass=_this.$refs.pass.value;//密码
         //let amgrent_w=_this.$refs.amgrent_w.value;
         //||amgrent_w==''
-        console.log(phone+'-'+phoneCode+'-'+pass)
+        //////////console.log(phone+'-'+phoneCode+'-'+pass)
         if(phone==''||phoneCode==''||pass==''){
           alert('请先完善您的个人信息！')
         }else{
@@ -105,7 +105,7 @@
           'Authorization':getCookie('Too')
               }},
           ).then((res)=>{
-            console.log(res.data);
+            //////////console.log(res.data);
             if(res.data.status === "success"){
                 _this.$router.push("/signUp/password")
             }else{
@@ -119,8 +119,8 @@
         //let Phone = this.phone
         /*let _this = this
         let Phone=_this.Phone;*/
-        console.log("the phone number is ")
-        console.log(this.Phone)
+        //////////console.log("the phone number is ")
+        //////////console.log(this.Phone)
         this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
@@ -129,7 +129,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //////////console.log(res)
           //this.noteList=res.data;
         })
       },
@@ -142,7 +142,7 @@
         })
       },
       getCode(){
-        console.log("get code xxxxxxxxxxxxxx")
+        //////////console.log("get code xxxxxxxxxxxxxx")
         this.getPhoneSms();
         const TIME_COUNT = 60;
         if (!this.timer) {
@@ -216,9 +216,9 @@
     created(){
       let token = getCookie("Too");
       if (token) {
-      // console.log("else ,,,,,")
-      //     console.log(this.$route)
-      //     console.log(window.history)
+      // //////////console.log("else ,,,,,")
+      //     //////////console.log(this.$route)
+      //     //////////console.log(window.history)
            window.history.back()
            window.history.back()
       }

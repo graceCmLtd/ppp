@@ -332,9 +332,9 @@
         })
       },
       isReg(){
-        console.log("123");
+        ////console.log("123");
         let isAu = getCookie('isAu');//从cookie中获取用户是否认证
-        console.log(isAu);
+        ////console.log(isAu);
         if(isAu=='true'){
           this.$router.push('/stick');
         }else{
@@ -361,10 +361,10 @@
         if (_this.$route.path == '/page') {
           _this.getListTop();
           _this.getListBot()
-          console.log("in timer")
+          ////console.log("in timer")
         }else{
           window.clearInterval(timer)
-          console.log("shutdown timer")
+          ////console.log("shutdown timer")
         }
         
       },_this.GLOBAL.flushSeconds)

@@ -104,7 +104,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.noteList=res.data;
           _this.updateTimer();
         });
@@ -137,8 +137,8 @@
       },
       /*确认签收*/
       submitAccept(item){
-        /*console.log("卖家id")
-        console.log(item.sellerId)
+        /*//console.log("卖家id")
+        //console.log(item.sellerId)
         this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             billNumber:item.billNumber,
@@ -158,7 +158,7 @@
           'Content-Type':'application/json',
           'Authorization':getCookie('Too')
         }}).then((res)=>{
-          console.log(res)*/
+          //console.log(res)*/
           //window.clearInterval(time)
           //this.getIntenTionList()
           //if(res.data.status === "success"){
@@ -177,7 +177,7 @@
                     if(res.data.status=="success"){
                         var json = JSON.parse(res.data.result);
                         alert(json.result_msg)
-                        console.log("wwww")
+                        //console.log("wwww")
                         this.$router.push({name:'OrderwsCompletes'});
                     }
                 });
@@ -191,15 +191,15 @@
           //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
-          console.log("date ")
-          console.log(date)
+          //console.log("date ")
+          //console.log(date)
           let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
             if(a >1200.0 || _this.noteList[i].intentionStatus !="已背书,待签收"){
-              console.log(i+"  timeout ")
+              //console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
@@ -214,7 +214,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
                 
               })
               }
@@ -225,16 +225,16 @@
               temp["flag"] = true;
             }
             _this.timerArr[i] = temp;
-            console.log("shenemgui ")
-            console.log(_this.timerArr[i])
+            //console.log("shenemgui ")
+            //console.log(_this.timerArr[i])
             
           }
           if (reloadFlag) {
             _this.getIntenTionList()
             reloadFlag = false;
           }
-          console.log("minuete ")
-          console.log(_this.timerArr)
+          //console.log("minuete ")
+          //console.log(_this.timerArr)
        },
        /*倒计时*/
       num(n) {
@@ -244,11 +244,11 @@
         var _this = this
         var time = window.setInterval(function () {
           if (_this.timerArr.length == 0) {
-            console.log("数组为空，倒计时结束")
+            //console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
-          /*console.log("this ....... path ")
-          console.log(_this.$route.path)*/
+          /*//console.log("this ....... path ")
+          //console.log(_this.$route.path)*/
           /*跳转页面时停止计时器*/
           /*if (_this.$route.path == "/release/orderws/audit") {
           }else{
@@ -284,7 +284,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
               })
               /*发送超时消息*/
               this.fetch.myPost("/publish/send",{
@@ -312,12 +312,12 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-                console.log(index +"： index  倒计时结束")
-              console.log(_this.timeout_count)
-              console.log(_this.timerArr.length)
+                //console.log(index +"： index  倒计时结束")
+              //console.log(_this.timeout_count)
+              //console.log(_this.timerArr.length)
               if(_this.timeout_count >= _this.timerArr.length)
               {
-                console.log(_this.timeout_count)
+                //console.log(_this.timeout_count)
                 window.clearInterval(time)
                 _this.timeout_count =0
               }
@@ -334,7 +334,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
@@ -348,7 +348,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res.data.length)
+            //console.log(res.data.length)
             if(res.data.length === 1)
                  _this.$refs.PaperIs.src=res.data[0].pic1;
             else
@@ -371,7 +371,7 @@
         },200)
       },
       checkVoucher(item){
-          console.log(item.transacType);
+          //console.log(item.transacType);
           this.dialogTableVisible = true;
           var orderId = item.transacType;
           this.fetch.httpPost({
@@ -380,13 +380,13 @@
               orderId:orderId
             }
           }).then((res)=>{
-            console.log("获取凭证图片")
-              console.log(res)
-              console.log(res.data);
+            //console.log("获取凭证图片")
+              //console.log(res)
+              //console.log(res.data);
               if(res.data.length > 0)
                 this.pic1 = res.data[0].pic1;
           }).catch((error)=>{
-            console.log(error)
+            //console.log(error)
           });
       }
     },

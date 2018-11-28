@@ -71,14 +71,14 @@ export default {
 	},
 	methods:{
     handleOpen(key, keyPath) {
-       console.log(key, keyPath);
+       //console.log(key, keyPath);
     },
     getDirectory(){
       let thePath = this.$route.path;
       /*let arr = thePath.split("/")
-      console.log(arr[arr.length-1])
+      //console.log(arr[arr.length-1])
       return arr[arr.length-1]*/
-      console.log(thePath.substr(0,thePath.lastIndexOf("/")+1))
+      //console.log(thePath.substr(0,thePath.lastIndexOf("/")+1))
       return thePath.substr(0,thePath.lastIndexOf("/")+1)
     },
     handleClose(key, keyPath) {

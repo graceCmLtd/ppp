@@ -94,7 +94,7 @@ export default {
           quoterId:'b7138b09c85b4bf6a9da174cb165085e'
         }
       }).then((res)=>{
-        console.log(res)
+        //console.log(res)
       })
     }
   },

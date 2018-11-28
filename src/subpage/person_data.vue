@@ -320,19 +320,19 @@ export default {
             }
           }
         ).then((res)=>{
-          console.log(res);
+          //console.log(res);
           window.localStorage.clear();
           alert("认证信息提交成功,待审核...... ");
           _this.$router.push('/page'); 
         })
         }
       }else{
-        console.log("---123");
+        //console.log("---123");
         let busPic1=window.localStorage.getItem('Business');//多证合一营业执照
         let busPic2=window.localStorage.getItem('BusinessB');//组织机构代码证
         let IDPic1=window.localStorage.getItem('IdA');//法人身份证正面照
         let IDPic2=window.localStorage.getItem('IdB');//法人身份证反面照
-        console.log(this.companyName+'-'+this.contactsPhone+'-'+this.bankCode)
+        //console.log(this.companyName+'-'+this.contactsPhone+'-'+this.bankCode)
         this.fetch.myPost('/updateCompany',{
             "companyInfo":{
               "companyName":this.companyName,
@@ -361,7 +361,7 @@ export default {
             }
           }
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           window.localStorage.clear()
           alert("认证信息提交成功,待审核......");
           this.$router.push('/page'); 
@@ -383,7 +383,7 @@ export default {
             contactsId:contactsId
           }
         }).then((res)=>{
-            console.log(res.data);
+            //console.log(res.data);
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
               this.contactsName=res.data[0].contactsName;
@@ -402,7 +402,7 @@ export default {
             contactsId:contactsId
           }
         }).then((res)=>{
-            console.log(res.data);
+            //console.log(res.data);
             if(res.data != ''){
               this.pic1 = res.data[0].pic1Content;
               this.pic2 = res.data[0].pic2Content;
@@ -423,7 +423,7 @@ export default {
       this.fetch.httpGet({
         url:'/areas/getProvince'
       }).then(res => {
-        console.log("获取到的省份")
+        //console.log("获取到的省份")
         if(res.data.length > 0){
           res.data.splice(0,1);
           this.provinces = res.data;

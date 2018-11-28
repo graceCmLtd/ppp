@@ -38,19 +38,19 @@ import {vueAccordion} from 'vue-accordion'
                 },
                 {
                     title: '——透明——',
-                    text: '资方实时报价收票 价格全透明',
+                    text: '资方实时报价收票    价格全透明',
                     url: '#',
                     image: '../../static/img/Bitmap3.png',
                 },
                 {
                     title: '——互通——',
-                    text: '交易双方无间沟 通想砍价就砍价 高效互通',
+                    text: '交易双方无间沟通   想砍价就砍价   高效互通',
                     url: '#',
                     image: '../../static/img/Bitmap2.png',
                 },
                   {
                     title: '——快速——',
-                    text: '票款秒到账 极度快速 贴现体验',
+                    text: '票款秒到账   极度快速 贴现体验',
                     url: '#',
                     image: '../../static/img/Bitmap1.png',
                 },

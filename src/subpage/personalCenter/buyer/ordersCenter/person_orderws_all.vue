@@ -234,7 +234,7 @@
           //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
-          //console.log("date ")
+          ////////console.log("date ")
           //console.log(date)
           let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
@@ -257,7 +257,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
               })
               }
               if(a >1200 && _this.noteList[i].intentionStatus =="已接单,待支付"){
@@ -270,7 +270,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
               })
               }
             }else{
@@ -281,12 +281,12 @@
             _this.timerArr[i] = temp;
           }
           if (reloadFlag) {
-            console.log("有超时，重新加载列表")
+            //console.log("有超时，重新加载列表")
             reloadFlag = false;
             _this.getIntenTionList()
 
           }
-/*          console.log("minuete ")
+/*          //console.log("minuete ")
           console.log(_this.timerArr)*/
        },
        /*倒计时*/
@@ -332,7 +332,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
               })
               }*/
               
@@ -347,7 +347,7 @@
             }else{
               //
 
-              console.log(index +"： index  倒计时结束")
+              //console.log(index +"： index  倒计时结束")
               if(_this.timeout_count >= _this.timerArr.length)
               {
                 window.clearInterval(time)
@@ -366,7 +366,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.orderId = _this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.real_money = _this.noteList[index].real_money;
@@ -386,7 +386,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            //console.log(res)
             if(res.data != '')
                 _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
@@ -407,11 +407,11 @@
         },200)
       },
       checkVoucher(item){
-          console.log(item.transacType);
+          //console.log(item.transacType);
           this.dialogTableVisible = true;
           var orderId = item.transacType;
           this.fetch.myPost('/transaction/getPicsByOrderId',{orderId:orderId}).then((res)=>{
-              console.log(res.data);
+              //console.log(res.data);
               if(res.data != '')
                 this.pic1 = res.data[0].pic1;
           });

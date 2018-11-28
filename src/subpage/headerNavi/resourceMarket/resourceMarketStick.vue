@@ -157,7 +157,7 @@
     },
     watch:{//这里创建一个监听，当time发生变化时就调用choseDate()方法
       time(val,oldVal){
-        //console.log("time"+val,oldVal);
+        //////console.log("time"+val,oldVal);
         if(val != null){
           this.choseDate();
         }
@@ -318,7 +318,7 @@
         }
       },
       getCode(){
-        console.log("get code xxxxxxxxxxxxxx")
+        ////console.log("get code xxxxxxxxxxxxxx")
         //this.getPhoneSms();
         const TIME_COUNT = 5;
         if (!this.timer) {
@@ -338,12 +338,12 @@
 
       getInterest(){
         let object = this.$route.query.item;
-          console.log(object);
+          ////console.log(object);
           if(object instanceof Object){
             window.localStorage.setItem('item',JSON.stringify(object));
           }
           let item = JSON.parse(window.localStorage.getItem('item'));
-          console.log(item);
+          ////console.log(item);
           this.interestItem = item;
       },
       getCompanyInfo(){
@@ -354,7 +354,7 @@
             contactsId:uuid
           }
         }).then((res)=>{
-          console.log(res.data)
+          ////console.log(res.data)
           if(res.data.length > 0){
             this.companyInfo = res.data[0]
           }
@@ -376,8 +376,8 @@
           let typeSelect = _this.$refs.typeSelect.value;
           let item = _this.interestItem;
           
-          console.log("this  refs  aldfjkad")
-          console.log(_this.$refs)
+          ////console.log("this  refs  aldfjkad")
+          ////console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
              alert('请先完善票面信息！')
           }else if(!Is&& !The){
@@ -391,7 +391,7 @@
             let rate = item.interest.split("% + ")[0];
             let XperLakh = item.interest.split("% + ")[1];
             let real_money = (amount-((amount*rate/100*_this.dayRe)/360+(amount/100000*XperLakh))).toFixed(6);
-            console.log(real_money+"--"+rate);
+            ////console.log(real_money+"--"+rate);
             _this.fetch.myPost('/bills/addFromResourceMarket',{
               "paramBill":{
                 "billInfo":{
@@ -440,7 +440,7 @@
                   'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
-              console.log(res)
+              ////console.log(res)
               if(res.data.statusCode==='fail'){
                 _this.releText='提交意向';
                 alert('该票已有发布记录！');
@@ -454,7 +454,7 @@
                 _this.$refs.The.src='';
               }
             }).catch((err)=>{
-              console.log(err)
+              ////console.log(err)
             })
           }
         }

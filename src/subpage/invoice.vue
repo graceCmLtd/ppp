@@ -120,8 +120,8 @@
         //let Phone = this.phone
         /*let _this = this
         let Phone=_this.Phone;*/
-        console.log("the phone number is ")
-        console.log(this.Phone)
+        //console.log("the phone number is ")
+        //console.log(this.Phone)
         this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
@@ -130,12 +130,12 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           //this.noteList=res.data;
         })
       },
        getCode(){
-        console.log("get code xxxxxxxxxxxxxx")
+        //console.log("get code xxxxxxxxxxxxxx")
         this.getPhoneSms();
         const TIME_COUNT = 60;
         if (!this.timer) {

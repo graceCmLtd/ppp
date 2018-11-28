@@ -79,11 +79,11 @@
         sss:function(){
           let _this = this
 
-          console.log(_this.item.transacType)
-          console.log(_this.item.billNumber)
-          console.log(_this.item.sellerId)
-          console.log(_this.item.buyerId)
-          console.log(_this.item.amount)
+          //console.log(_this.item.transacType)
+          //console.log(_this.item.billNumber)
+          //console.log(_this.item.sellerId)
+          //console.log(_this.item.buyerId)
+          //console.log(_this.item.amount)
           _this.fetch.myPost("/transaction/reaPay",{
               "transacId":_this.item.transacType,
               "billNumber":_this.item.billNumber,
@@ -94,22 +94,22 @@
               Authentication:_this.util.getCookie("Too"),
               uuid:_this.util.getCookie('Iud')
             }}).then((res)=>{
-              console.log("[[[[[[[[[[[[[[[[[[[[[[[[[")
-              console.log(res.data)
-              console.log(this)
+              //console.log("[[[[[[[[[[[[[[[[[[[[[[[[[")
+              //console.log(res.data)
+              //console.log(this)
               _this.merchant_id = res.data.merchant_id;
               _this.data = res.data.data;
               _this.encryptkey= res.data.encryptkey;
               _this.theUrl = res.data.url
               //_this.$emit('openWin')
               document.getElementById('rongpaysubmit').action=res.data.url
-              console.log("the url :")
-              console.log(_this.theUrl)
-              console.log("mybutton////////")
+              //console.log("the url :")
+              //console.log(_this.theUrl)
+              //console.log("mybutton////////")
              /* _this.flag = true*/
               //_this.$ref.gggg = res.data.data
              /* let temp = '<!DOCTYPE html> <html> <script>var t=setTimeout("autoclick",3000); function autoclick(){alert("dffccc"); document.getElementById("rongpaysubmit").submit();} window.onload = function(){alert("aaa")}<\/script><body onload="autoclick()">' + res.data.data + '<button>tttttt</button><\/body> <\/html>'
-              console.log(temp)
+              //console.log(temp)
               _this.htmlcontent['content'] = temp*/
               
               /*var timer = window.setInterval(function(){
@@ -140,8 +140,8 @@
           },*/
          /*openWin(){
               var myWindow=window.open();
-              console.log("[[[[[]]]]]]]]]]")
-              console.log(myWindow)
+              //console.log("[[[[[]]]]]]]]]]")
+              //console.log(myWindow)
               myWindow.document.write(this.htmlcontent['content']);
               myWindow.setTimeout(function(){
                 alert('tttttt')
@@ -166,20 +166,20 @@
     },
   created () {
     /*this.$api.get('/ppp/transaction/reaPay', null, r => {
-      console.log(r.data)
+      //console.log(r.data)
     })*/
-    console.log("sfasfallllllllllllllllllllllllll")
+    //console.log("sfasfallllllllllllllllllllllllll")
     
     this.item = this.$route.query
-    console.log(this.item)
+    //console.log(this.item)
     this.sss();
 
-    //console.log("clicktest666666666666666666666666666666")
+    ////console.log("clicktest666666666666666666666666666666")
     //var tt = setTimeout(this.clickIF(),3000)
     //window.open("http://localhost:8080")
    /* let _this = this*/
     /*var time = window.setInterval(function(){
-      console.log("dddddddddddkkkkkkkkkkkkkkkk")
+      //console.log("dddddddddddkkkkkkkkkkkkkkkk")
       _this.clickIF()
     },3000)*/
   }

@@ -131,7 +131,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.noteList=res.data;
           _this.updateTimer();
         });
@@ -158,7 +158,7 @@
       /*环迅支付*/
       toPay(item){
         let _this = this;
-        console.log(item);
+        //console.log(item);
         _this.$router.push({
           name:'Detailed',
           query:{
@@ -179,15 +179,15 @@
           //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
-          console.log("date ")
-          console.log(date)
+          ////console.log("date ")
+          //console.log(date)
           let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
             if(a >1200.0 || _this.noteList[i].intentionStatus !="已接单,待支付"){
-              console.log(i+"  timeout ")
+              //console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
@@ -202,7 +202,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
                 
               })
               }
@@ -212,7 +212,7 @@
               temp["flag"] = true;
             }
             _this.timerArr[i] = temp;
-            console.log("shenemgui ")
+            ////console.log("shenemgui ")
             console.log(_this.timerArr[i])
             
           }
@@ -220,8 +220,8 @@
             _this.getIntenTionList();
             reloadFlag = false;
           }
-          console.log("minuete ")
-          console.log(_this.timerArr)
+          ////console.log("minuete ")
+          ////console.log(_this.timerArr)
        },
        /*倒计时*/
       num(n) {
@@ -232,13 +232,13 @@
          //var count =0;
         var time = window.setInterval(function () {
           //let t1 = {}
-          console.log(_this.timerArr)
+          ////console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
-            console.log("数组为空，倒计时结束")
+            ////console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
-          console.log("this ....... path ")
-          console.log(_this.$route.path)
+          ////console.log("this ....... path ")
+          ////console.log(_this.$route.path)
           /*跳转页面时停止计时器*/
           /*if (_this.$route.path == "/release/orderws/confirmed") {
           }else{
@@ -246,8 +246,8 @@
           }*/
           /*跳转页面时停止计时器 end*/
           for (var index = 0; index < _this.timerArr.length; index++) {
-            //console.log("timer")
-            //console.log(_this.timerArr[index])
+            //////console.log("timer")
+            //////console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
               /*剩余10分钟提醒*/
               if (_this.timerArr[index].minutes == 10) {
@@ -276,7 +276,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                ////console.log(res)
               })
 
               /*发送超时消息*/
@@ -305,12 +305,12 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-                console.log(index +"： index  倒计时结束")
-              console.log(_this.timeout_count)
-              console.log(_this.timerArr.length)
+                ////console.log(index +"： index  倒计时结束")
+              ////console.log(_this.timeout_count)
+              ////console.log(_this.timerArr.length)
               if(_this.timeout_count >= _this.timerArr.length)
               {
-                console.log(_this.timeout_count)
+                ////console.log(_this.timeout_count)
                 window.clearInterval(time)
                 _this.timeout_count =0
               }
@@ -328,7 +328,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          ////console.log(res)
           _this.orderId = _this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.real_money = _this.noteList[index].real_money;
@@ -347,7 +347,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            ////console.log(res)
             if(res.data != '')
               _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;

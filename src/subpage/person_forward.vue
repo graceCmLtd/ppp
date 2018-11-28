@@ -62,7 +62,7 @@ export default {
         localStorage.setItem('item',JSON.stringify(object));
       }
       this.item = JSON.parse(localStorage.getItem('item'));
-      console.log(this.item);
+      //console.log(this.item);
       var billNumber = this.item.billNumber;
       this.fetch.httpGet({
         url:'/bills/getBillPics',
@@ -70,7 +70,7 @@ export default {
           billNumber:billNumber
         }
       }).then((res)=>{
-        console.log(res.data);
+        ////console.log(res.data);
         if(res.data != ''){
           this.pic1 = res.data[0].pic1;
           this.pic2 = res.data[0].pic2;

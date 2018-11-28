@@ -156,8 +156,8 @@
     },
     methods:{
       getIntenTionList(){
-        console.log("this----------------------")
-        console.log(this)
+        //console.log("this----------------------")
+        //console.log(this)
         let _this=this;
         let Id=getCookie('Iud');
         //var count1 = 0;
@@ -175,7 +175,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res.data);
+          //console.log(res.data);
           _this.noteList=res.data;
           _this.updateTimer();
         });
@@ -213,15 +213,15 @@
           //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
-          console.log("date ")
-          console.log(date)
+          //console.log("date ")
+          //console.log(date)
           let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
             if(a >1200.0 || _this.noteList[i].intentionStatus !="已支付,待背书"){
-              console.log(i+"  timeout ")
+              //console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
@@ -236,7 +236,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
               })
               }
             }else{
@@ -245,17 +245,17 @@
               temp["flag"] = true;
             }
             _this.timerArr[i] = temp;
-            console.log("shenemgui ")
-            console.log(_this.timerArr[i])
+            //console.log("shenemgui ")
+            //console.log(_this.timerArr[i])
             
           }
           if (reloadFlag) {
-            console.log("有未刷新超时 item")
+            //console.log("有未刷新超时 item")
             _this.getIntenTionList()
             reloadFalg = false;
           }
-          console.log("minuete ")
-          console.log(_this.timerArr)
+          //console.log("minuete ")
+          //console.log(_this.timerArr)
        },
        /*倒计时*/
       num(n) {
@@ -264,14 +264,14 @@
        timer () {
         var _this = this
         var time = window.setInterval(function () {
-          console.log(_this.timerArr)
+          //console.log(_this.timerArr)
           if (_this.timerArr.length == 0) {
-            console.log("数组为空，倒计时结束")
+            //console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
 
-          console.log("this ....... path ")
-          console.log(_this.$route.path)
+          //console.log("this ....... path ")
+          //console.log(_this.$route.path)
           /*跳转页面时停止计时器*/
           if (_this.$route.path == "/release/center/all") {
           }else{
@@ -309,7 +309,7 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log(res)
+                //console.log(res)
               })
               }*/
               /*发送超时消息*/
@@ -337,10 +337,10 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-              console.log(index +"： index  倒计时结束")
+              //console.log(index +"： index  倒计时结束")
               if(_this.timeout_count >= _this.timerArr.length)
               {
-                console.log(_this.timeout_count)
+                //console.log(_this.timeout_count)
                 window.clearInterval(time)
                 _this.timeout_count =0
               }
@@ -388,10 +388,10 @@
         toggle:function(){
             this.issShow = !this.issShow;
             let Id=getCookie('Iud');
-            console.log(Id);
+            //console.log(Id);
             let message = "我已签收！"
             this.fetch.myPost('/publish/send',{uuid:Id,message:message}).then((res)=>{
-                console.log(res.data);
+                //console.log(res.data);
             });
         },
         hiddenShow:function () {
@@ -442,14 +442,14 @@
           'Content-Type':'application/json',
           'Authorization':getCookie('Too')
         }}).then((res)=>{
-          console.log(res)
+          //console.log(res)
           this.isShow = false;
           this.getIntenTionList();
         })
 
         //let imgIs = window.localStorage.;
-        console.log("inset image ")
-        console.log(window.localStorage.getItem("Is"))
+        //console.log("inset image ")
+        //console.log(window.localStorage.getItem("Is"))
         this.fetch.myPost("/transaction/addBackEndPics",{
           orderId:this.current_item.transacType,
           pic1:window.localStorage.getItem("Is"),
@@ -458,7 +458,7 @@
           'Content-Type':'application/json',
           'Authorization':getCookie('Too')
         }}).then((res)=>{
-          console.log(res)
+          //console.log(res)
           //this.isShow = false;
           //this.getIntenTionList();
         })
@@ -479,7 +479,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.orderId=_this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.companyName=_this.noteList[index].companyName;
@@ -498,7 +498,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            //console.log(res)
             if(res.data != '')
                 _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;

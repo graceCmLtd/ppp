@@ -67,7 +67,7 @@
       <span class="rongbao" v-bind:class="{ active: !isActive }"  v-on:@click="chooseByts">
         <div class="content_yi">
           <router-link :to="{path:'/rongbao',query:{transacType:item.transacType,billNumber:item.billNumber,sellerId:item.releaserId,buyerId:item.buyerId,amount:item.real_money}}">
-                <span>推荐</span>
+            <span>推荐</span>
             <p><img src="../../static/img/rongbao.png"></p>
             <p>融宝支付</p>
             <p>T+0（当天实时）到账</p>
@@ -121,7 +121,7 @@
             'Authorization':getCookie('Too')
         }}
       ).then((res)=>{
-        console.log(res)
+        //console.log(res)
         _this.detailedMaskShow=true;
         _this.$refs.detailedPrompt.style.display='block';
         setTimeout(()=>{
@@ -152,8 +152,8 @@
       paySuccess(){
         let _this = this;
           _this.showDialog = false;
-          console.log("发布者")
-          console.log(_this.item)
+          //console.log("发布者")
+          //console.log(_this.item)
           _this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
             "intentionObj":{
               billNumber:_this.item.billNumber,
@@ -173,7 +173,7 @@
             'Content-Type':'application/json',
             'Authorization':getCookie('Too')
           }}).then((res)=>{
-            console.log(res)
+            //console.log(res)
             if(res.data.status === "success"){
               alert("支付成功")
               _this.$router.push({name:'OrderwsRefused'})
@@ -204,7 +204,7 @@
             'Authorization':getCookie('Too')
           }}).then((res)=>{
             if(res.data.status === "success"){
-                console.log("交易取消")
+                //console.log("交易取消")
                 _this.$router.push({name:'OrderwsConfirmed'})
             }
           }) 
@@ -216,8 +216,8 @@
           localStorage.setItem('item',JSON.stringify(object));
         }
         this.item = JSON.parse(localStorage.getItem('item'));
-        console.log("paogoqi")
-        console.log(this.item);
+        //console.log("paogoqi")
+        //console.log(this.item);
         var billNumber = this.item.billNumber;
         this.fetch.httpGet({
           url:'/bills/getBillPics',
@@ -225,22 +225,22 @@
             billNumber:billNumber
           }
         }).then((res)=>{
-          console.log(res.data);
+          //console.log(res.data);
           if(res.data != ''){
             this.pic1 = res.data[0].pic1;
             this.pic2 = res.data[0].pic2;
           }
         });
         let Id=getCookie('Iud');
-        console.log(Id);
+        //console.log(Id);
         this.fetch.httpGet({
           url:'/getCompany',
           params:{
             contactsId:Id
           }
         }).then((res)=>{
-            console.log("ss");
-            console.log(res);
+            //console.log("ss");
+            //console.log(res);
             this.list = res.data[0];
         });
       },
@@ -260,8 +260,8 @@
           this.isChooses = !this.isChooses    
          },
         toggle:function(){
-          console.log(this)
-          console.log(this.$refs)
+          //console.log(this)
+          //console.log(this.$refs)
 
                 this.isShow = !this.isShow;
           },
@@ -270,7 +270,7 @@
                     that.isShow = false;
          }, 
         chooseByts (ev) {
-            console.log(123456)
+            //console.log(123456)
             this.isActive = !this.isActive
           },
 

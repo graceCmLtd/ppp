@@ -122,7 +122,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          ////console.log(res)
           _this.noteList=res.data;
         });
         _this.fetch.myPost('/bills/getIntentionsCount',{
@@ -161,7 +161,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          ////console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
@@ -175,7 +175,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            ////console.log(res)
             if(res.data != '')
                 _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
@@ -204,8 +204,8 @@
       },
        fun(e,item){
                e.target.style.backgroundColor =  "#"+Math.floor(Math.random()*0xffffff).toString(16);
-               console.log("提醒")
-               console.log(item)
+               ////console.log("提醒")
+               ////console.log(item)
                this.fetch.myPost("/publish/send",{
                 "message":{
                   "msgType":"交易",

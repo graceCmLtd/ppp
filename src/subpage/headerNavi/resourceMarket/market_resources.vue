@@ -227,6 +227,7 @@ export default {
         line-height: 40px;
         background: #f45643;
         color:white;
+        font-weight: bold;
       }
       .market_resources_mes{
         min-height: 40px;

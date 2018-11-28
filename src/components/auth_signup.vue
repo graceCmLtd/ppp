@@ -64,8 +64,8 @@ export default {
           "picCode":picpass
         }
       }).then((res)=>{
-        console.log(res)
-        //console.log(this)
+        //console.log(res)
+        ////console.log(this)
         if(res.data.status === 'success'){
             _this.sginUpText='登录';
             _this.loadingSginUp=false;
@@ -87,16 +87,16 @@ export default {
             }
              _this.$router.push({name:"MarketPa"})
             if(_this.back){
-              console.log("_this  back     ")
-              console.log(window.history)
-              console.log(this.$route)
+              //console.log("_this  back     ")
+              //console.log(window.history)
+              //console.log(this.$route)
               //_this.$router.push({name:"MarketPa"})
               window.history.back()
               setTimeout(()=>{
               window.history.back()
               },0)
             }else{
-              console.log("else ,,,,,")
+              //console.log("else ,,,,,")
               //_this.$router.push({name:"MarketPa"})
               window.history.back()
               }
@@ -116,8 +116,8 @@ export default {
         //let Phone = this.phone
         /*let _this = this
         let Phone=_this.Phone;*/
-        console.log("the phone number is ")
-        console.log(this.Phone)
+        //console.log("the phone number is ")
+        //console.log(this.Phone)
         this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
@@ -126,12 +126,12 @@ export default {
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           //this.noteList=res.data;
         })
       },
   getCode(){
-        console.log("get code xxxxxxxxxxxxxx")
+        //console.log("get code xxxxxxxxxxxxxx")
         this.getPhoneSms();
         const TIME_COUNT = 60;
         if (!this.timer) {

@@ -143,7 +143,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.noteList=res.data;
           _this.updateTimer();
         });
@@ -185,7 +185,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.orderId=_this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.companyName=_this.noteList[index].companyName;
@@ -204,7 +204,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            //console.log(res)
             if(res.data != '')
                  _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
@@ -228,8 +228,8 @@
       toggle:function(item){
          this.isShow = !this.isShow;
          this.current_item = item;
-         console.log("this item")
-          console.log(this.current_item.buyerId)
+         //console.log("this item")
+          //console.log(this.current_item.buyerId)
       },
       hiddenShow:function () {
           var that = this;
@@ -238,8 +238,8 @@
        /*确认*/
        submitImg(){
           //alert("已背书，待签收，图片保存待实现")
-          console.log("this item")
-          console.log(this.item)
+          //console.log("this item")
+          //console.log(this.item)
          this.fetch.myPost("/transaction/updateTransacIntentionStatus",{
           "intentionObj":{
             transacId : this.current_item.transacId,
@@ -260,7 +260,7 @@
           'Content-Type':'application/json',
           'Authorization':getCookie('Too')
         }}).then((res)=>{
-          console.log(res)
+          //console.log(res)
           //this.getIntenTionList();
           if(res.data.status === "success"){
               this.fetch.myPost("/transaction/addBackEndPics",{
@@ -271,11 +271,11 @@
               'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                  console.log(res)
-                  console.log("插入success");
+                  //console.log(res)
+                  //console.log("插入success");
                   //this.isShow = false;
                   //this.getIntenTionList();
-                  console.log("ffdd123")
+                  //console.log("ffdd123")
                   if(res.data.status === "success"){
                         this.isShow = false;
                         this.$router.push({name:'CenterAudit'});
@@ -291,15 +291,15 @@
           //var temp ={};
           var date = new Date().getTime()/1000;
           var timeout = 1200;
-          console.log("date ")
-          console.log(date)
+          //console.log("date ")
+          //console.log(date)
           let reloadFlag = false;
           for (let i = 0; i < _this.noteList.length; i++) {
             let temp ={}
             let a = date - _this.noteList[i].updateTimeStamp
            
             if(a > timeout || _this.noteList[i].intentionStatus != "已支付,待背书"){
-              console.log(i+"  timeout ")
+              //console.log(i+"  timeout ")
               temp["minutes"]= 0;
               temp["seconds"]= 0;
               temp["flag"] = false;
@@ -314,8 +314,8 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log("超时失效")
-                console.log(res)
+                //console.log("超时失效")
+                //console.log(res)
                 
               })
               }
@@ -325,16 +325,16 @@
               temp["flag"] = true;
             }
             _this.timerArr[i] = temp;
-            console.log("shenemgui ")
-            console.log(_this.timerArr[i])
+            //console.log("shenemgui ")
+            //console.log(_this.timerArr[i])
             
           }
           if (reloadFlag) {
             _this.getIntenTionList()
             reloadFlag = false;
           }
-          console.log("minuete ")
-          console.log(_this.timerArr)
+          //console.log("minuete ")
+          //console.log(_this.timerArr)
        },
        /*倒计时*/
       num(n) {
@@ -345,13 +345,13 @@
          //var count =0;
         var time = window.setInterval(function () {
           //let t1 = {}
-          console.log("计时")
+          //console.log("计时")
           if (_this.timerArr.length == 0) {
-            console.log("数组为空，倒计时结束")
+            //console.log("数组为空，倒计时结束")
             window.clearInterval(time)
           }
-          //console.log("this ....... path ")
-          //console.log(_this.$route.path)
+          ////console.log("this ....... path ")
+          ////console.log(_this.$route.path)
           /*跳转页面时停止计时器*/
           /*if (_this.$route.path == "/release/center/refused") {
           }else{
@@ -359,8 +359,8 @@
           }*/
           /*跳转页面时停止计时器 end*/
           for (var index = 0; index < _this.timerArr.length; index++) {
-            //console.log("timer")
-            //console.log(_this.timerArr[index])
+            ////console.log("timer")
+            ////console.log(_this.timerArr[index])
             if (_this.timerArr[index].seconds === 0 && _this.timerArr[index].minutes > 0) {
               /*剩余10分钟提醒*/
               if (_this.timerArr[index].minutes == 10) {
@@ -390,8 +390,8 @@
                 'Content-Type':'application/json',
           'Authorization':getCookie('Too')
               }}).then((res)=>{
-                console.log("超时已失效")
-                console.log(res)
+                //console.log("超时已失效")
+                //console.log(res)
               })
 
               /*发送超时消息*/
@@ -419,12 +419,12 @@
               _this.timerArr.splice(index,1,t1)
               _this.timerArr[index].seconds -= 1 
             }else{
-              console.log(index +"： index  倒计时结束")
-              //console.log(_this.timeout_count)
-              //console.log(_this.timerArr.length)
+              //console.log(index +"： index  倒计时结束")
+              ////console.log(_this.timeout_count)
+              ////console.log(_this.timerArr.length)
               if(_this.timeout_count >= _this.timerArr.length)
               {
-                console.log(_this.timeout_count)
+                //console.log(_this.timeout_count)
                 window.clearInterval(time)
                 _this.timeout_count =0
               }

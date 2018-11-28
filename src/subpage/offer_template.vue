@@ -255,10 +255,10 @@
       },
       getReceiptAll(){
         let Id=getCookie('Iud');
-        console.log(Id)
+        ////console.log(Id)
         /*this.axios.get(this.oUrl+'/resourceMarket/getByBuyerId',{params:{buyerId:Id,pageSize:this.pageSize,currentPage:this.currentPage},headers:{'Authorization':getCookie('Too')}}).then((res)=>{
           let _this=this;
-          console.log(res.data);
+          ////console.log(res.data);
           _this.noteList=res.data;
           //_this.noteInfo = res.data[0].note;
         });*/
@@ -270,7 +270,7 @@
           }
         }).then((res)=>{
           let _this=this;
-          console.log(res.data);
+          ////console.log(res.data);
           _this.noteList=res.data;
           //_this.noteInfo = res.data[0].note;
         })
@@ -317,7 +317,7 @@
           let type2 = this.addForm.type2+"% + "+this.addForm.money2;
           let type3 = this.addForm.type3+"% + "+this.addForm.money3;
           let type4 = this.addForm.type4+"% + "+this.addForm.money4;
-          console.log(type1+"="+type2+"="+type3+"="+type4);
+          ////console.log(type1+"="+type2+"="+type3+"="+type4);
           //alert(this.addForm.amountRange)
           if (this.addForm.amountRange == '' && this.addForm.timeLimit == '' &&(this.addForm.type1==''||this.addForm.type2==''||this.addForm.type3==''||this.addForm.type4=='')) {
             alert("金额、期限必填，四种类型至少填写一种")
@@ -340,8 +340,8 @@
                   }
                 }
               }).then((res)=>{
-              console.log("addForm 返回值");
-              console.log(res);
+              ////console.log("addForm 返回值");
+              ////console.log(res);
               if (res.data.status == 'fail') {
                 alert(res.data.errorMsg)
               }
@@ -371,7 +371,7 @@
           let type2 = this.updateForm.type2+"% + "+this.updateForm.money2;
           let type3 = this.updateForm.type3+"% + "+this.updateForm.money3;
           let type4 = this.updateForm.type4+"% + "+this.updateForm.money4;
-          console.log(this.updateForm.orderId);
+          ////console.log(this.updateForm.orderId);
           this.fetch.myPost('/resourceMarket/updateByOrderId',{
                 "orderId":this.updateForm.orderId,
                 "buyerId":Id,
@@ -391,8 +391,8 @@
           'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
-              console.log("update quote pool")
-              console.log(res);
+              ////console.log("update quote pool")
+              ////console.log(res);
               if (res.data.status == 'fail') {
                 alert(res.data.errorMsg)
               }
@@ -416,7 +416,7 @@
       dialogDeleteQuoteSubmit(){
         let index = this.current_index;
         this.dialogDeleteVisible = false;
-        console.log("dialogDeleteQuoteSubmit")
+        ////console.log("dialogDeleteQuoteSubmit")
         this.fetch.httpGet({
           url:'/resourceMarket/deleteByOrderId',
           params:{
@@ -424,7 +424,7 @@
           }
         }).then((res)=>{
           let _this=this;
-          console.log("delete the quote ")
+          ////console.log("delete the quote ")
 
           this.getReceiptAll();
         })
@@ -451,8 +451,8 @@
           'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
-              console.log("update note ")
-              console.log(res);
+              ////console.log("update note ")
+              ////console.log(res);
               //this.getReceiptAll();
             })
     },

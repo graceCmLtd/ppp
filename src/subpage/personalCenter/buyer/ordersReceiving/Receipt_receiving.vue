@@ -128,8 +128,8 @@
       getIntenTionList(){
         let _this=this;
         let Id=getCookie('Iud');
-        console.log("待接单userid")
-        console.log(Id)
+        //console.log("待接单userid")
+        //console.log(Id)
         _this.fetch.myPost('/bills/getBillsIntentions',{
             "uuid":Id,
             "IntentionType":'4',
@@ -142,7 +142,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.noteList=res.data;
         });
         _this.fetch.myPost('/bills/getIntentionsCount',{
@@ -177,7 +177,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
@@ -193,7 +193,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res)
+            //console.log(res)
             _this.$refs.PaperIs.src=res.data[0].pic1;
             _this.intentionMaskShow=true;
             _this.$refs.intention_mes_details.style.display='block';
@@ -235,9 +235,9 @@
         let _this=this;
         let Id=getCookie('Iud');
         let billNumberLoca=_this.noteList[index].billNumber;
-        console.log("接单操作订单号和用户id：")
-        console.log(billNumberLoca)
-        console.log(Id)
+        //console.log("接单操作订单号和用户id：")
+        //console.log(billNumberLoca)
+        //console.log(Id)
         _this.fetch.myPost('/transaction/updateTransacIntentionStatus',{
             "billNumber":billNumberLoca,
             "intentionStatus":"已接单,待支付",
@@ -248,8 +248,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log("接单操作返回值：")
-          console.log(res)
+          //console.log("接单操作返回值：")
+          //console.log(res)
           _this.getIntenTionList();
         })
       },
@@ -270,8 +270,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log("修改价格操作返回值：")
-          console.log(res)
+          //console.log("修改价格操作返回值：")
+          //console.log(res)
           /*_this.getIntenTionList();*/
           /*_this.noteList=res.data;*/
         })
@@ -287,8 +287,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log("更改quote表中实际价格操作返回值：")
-          console.log(res)
+          //console.log("更改quote表中实际价格操作返回值：")
+          //console.log(res)
           _this.new_money = null;
           _this.getIntenTionList();
           

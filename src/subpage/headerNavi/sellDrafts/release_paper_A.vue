@@ -142,7 +142,7 @@
     },
     watch:{//这里创建一个监听，当time发生变化时就调用choseDate()方法
       time(val,oldVal){
-        //console.log("time"+val,oldVal);
+        ////console.log("time"+val,oldVal);
         if(val != null){
           this.choseDate();
         }
@@ -268,12 +268,12 @@
       // },
       authCheck(){
         let _this = this;
-        console.log("authCheck....")
+        //console.log("authCheck....")
         if (getCookie('role')=="vip" || getCookie('role') == "normal") {
           
           return true;
         }else if(getCookie("isAu") === "true"){
-          console.log("ddd22"+getCookie("isAu"));
+          //console.log("ddd22"+getCookie("isAu"));
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
@@ -286,7 +286,7 @@
           },5000)
           
         }else if(getCookie("isAu") === "false"){
-          console.log("fff11");
+          //console.log("fff11");
           this.authVisible = true;
           //this.$router.push({name:"Prise"})
           _this.getCode();
@@ -300,7 +300,7 @@
         }
       },
       getCode(){
-        console.log("get code xxxxxxxxxxxxxx")
+        //console.log("get code xxxxxxxxxxxxxx")
         //this.getPhoneSms();
         const TIME_COUNT = 5;
         if (!this.timer) {
@@ -330,8 +330,8 @@
           let The=window.localStorage.getItem('The');//票据反面图片
           let Id=getCookie('Iud');
           let typeSelect = _this.$refs.typeSelect.value;
-          console.log("this  refs  aldfjkad")
-          console.log(_this.$refs)
+          //console.log("this  refs  aldfjkad")
+          //console.log(_this.$refs)
           if(paperNumber==''||amount==''||acceptor==''||_this.time==null){
             alert('请先完善票面信息！')
           }else if(!Is && !The){
@@ -371,7 +371,7 @@
                   'Authorization':getCookie('Too')
                 }}
             ).then((res)=>{
-              console.log(res)
+              //console.log(res)
               if(res.data.statusCode==='fail'){
                 _this.releText='发布';
                 alert('该票已有发布记录！');
@@ -385,7 +385,7 @@
                 _this.$refs.The.src='';
               }
             }).catch((err)=>{
-              console.log(err)
+              //console.log(err)
             })
           }
         }

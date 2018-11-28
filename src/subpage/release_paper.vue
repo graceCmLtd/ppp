@@ -128,7 +128,7 @@ export default {
           'Authorization':getCookie('Too')
         }}
       ).then((res)=>{
-        console.log(res)
+        //console.log(res)
         this.PaperMaskShow=true;
         this.$refs.release_paper_prompt.style.display="block";
         setTimeout(()=>{

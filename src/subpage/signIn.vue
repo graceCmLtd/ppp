@@ -124,7 +124,7 @@
           'Authorization':getCookie('Too')
               }},
           ).then((res)=>{
-            console.log(res)
+            //console.log(res)
             if (res.data.status == 'success') {
               _this.siginInText='同意协议并注册';
               _this.loadingSginIn=false;
@@ -149,8 +149,8 @@
         //let Phone = this.phone
         /*let _this = this
         let Phone=_this.Phone;*/
-        console.log("the phone number is ")
-        console.log(this.Phone)
+        //console.log("the phone number is ")
+        //console.log(this.Phone)
         this.fetch.myPost('/getPhoneSms',{
             "phone":this.Phone
           },
@@ -159,7 +159,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log(res)
+          //console.log(res)
           //this.noteList=res.data;
         })
       },
@@ -189,7 +189,7 @@
           { dangerouslyUseHTMLString: true });
       },
       getCode(){
-        console.log("get code xxxxxxxxxxxxxx")
+        //console.log("get code xxxxxxxxxxxxxx")
         this.getPhoneSms();
         const TIME_COUNT = 60;
         if (!this.timer) {
@@ -264,9 +264,9 @@
     created(){
       let token = getCookie("Too");
       if (token) {
-      console.log("else ,,,,,")
-          console.log(this.$route)
-          console.log(window.history)
+      //console.log("else ,,,,,")
+          //console.log(this.$route)
+          //console.log(window.history)
           window.history.back()
            window.history.back()
       }

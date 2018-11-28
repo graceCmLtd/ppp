@@ -44,9 +44,9 @@
 
       getBillNum(){
         //this.billN = this.billN+1;
-      console.log("get billNumber in 11.....")
+      //console.log("get billNumber in 11.....")
       this.$emit("transb",this.billNumber)
-      //console.log(res)
+      ////console.log(res)
     },
       getPaper(){
         let Id=getCookie('Iud');
@@ -60,8 +60,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          // console.log("我的求贴 全部报价 ")
-          console.log(res)
+          // //console.log("我的求贴 全部报价 ")
+          //console.log(res)
           this.noteList=res.data;
         })
       },
@@ -69,14 +69,14 @@
         return this.noteList[index].acceptor
       },
       onSelect(index){
-        // console.log("on select the item ....")
-        // console.log(index)
+        // //console.log("on select the item ....")
+        // //console.log(index)
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
-        //console.log(this.noteList[index])
+        ////console.log(this.noteList[index])
         this.billNumber=this.noteList[index].billNumber;
-        console.log(this.noteList[index].billNumber)
+        //console.log(this.noteList[index].billNumber)
         this.getBillNum()
         //this.$emit("transb")
       },

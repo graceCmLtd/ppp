@@ -42,7 +42,7 @@ export default {
       let phone=_this.$refs.phoneNumber.value;
       let pass=_this.$refs.pass.value;
       let picpass=_this.$refs.picpass.value;
-      console.log(picpass)
+      ////console.log(picpass)
       if(phone==''||pass==''||picpass==''){
         alert('请输入登录信息')
       }else{
@@ -59,7 +59,7 @@ export default {
           'Authorization':getCookie('Too')
         }}
       ).then((res)=>{
-        console.log(res.data)
+        ////console.log(res.data)
         if(res.data.status === "success"){
             _this.sginUpText='登录';
             _this.loadingSginUp=false;
@@ -80,17 +80,17 @@ export default {
               setCookie('role',"unknown")
             }
             if(_this.back){
-              console.log("_this  back     ")
-              console.log(window.history)
-              console.log(this.$route)
+              ////console.log("_this  back     ")
+              ////console.log(window.history)
+              ////console.log(this.$route)
               window.history.back()
               setTimeout(()=>{
               window.history.back()
               },0)
             }else{
-              console.log("else ,,,,,")
-              console.log(this.$route)
-              console.log(window.history)
+              ////console.log("else ,,,,,")
+              ////console.log(this.$route)
+              ////console.log(window.history)
               window.history.back()
               }
           }else if(res.data.status === "fail"){
@@ -106,7 +106,7 @@ export default {
           url:'/getValidatePic',
           responseType: 'arraybuffer'
         }).then((res) => {
-          console.log(res)
+          ////console.log(res)
             this.imageUrl = 'data:image/png;base64,' + btoa(
                 new Uint8Array(res.data)
                   .reduce((data, byte) => data + String.fromCharCode(byte), '')

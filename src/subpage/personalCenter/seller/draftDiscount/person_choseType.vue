@@ -98,14 +98,14 @@ export default {
           'Content-Type':'application/json'
         }}
       ).then((res)=>{
-        console.log(res)
+        //console.log(res)
         window.history.back()
       })*/
       /*sop1 买家操作1 提交意向，等待买家接单*/
-      console.log(_this.orderId);
-      console.log("quoterId ........")
-      console.log(_this.quoterId)
-      console.log(getCookie('Iud'))
+      //console.log(_this.orderId);
+      //console.log("quoterId ........")
+      //console.log(_this.quoterId)
+      //console.log(getCookie('Iud'))
       _this.fetch.myPost('/transaction/updateIntentionStatus',{
             "operate":"sop1",
             "InvalidateBody":{
@@ -138,7 +138,7 @@ export default {
           'Authorization':getCookie('Too')
         }}
       ).then((res)=>{
-        console.log(res)
+        //console.log(res)
         window.history.back()
       })
 
@@ -156,8 +156,8 @@ export default {
       this.preRealMoney = this.billData.real_money
       this.billData.real_money = Number((this.billData.real_money-(this.billData.real_money*5/10000))/10000).toFixed(2);
       this.acceptor = this.billData.acceptor;
-      console.log("billData")
-      console.log(this.billData)
+      //console.log("billData")
+      //console.log(this.billData)
       _this.billN=this.$route.query.bills;
       _this.quoterId = this.$route.query.quoterId;
       _this.fetch.httpGet({
@@ -166,8 +166,8 @@ export default {
           billNumber:bill
         }
       }).then((res)=>{
-        console.log("获取票据信息")
-        console.log(res)
+        //console.log("获取票据信息")
+        //console.log(res)
         //_this.billData = res.data[0];
         _this.billType=res.data[0].billType;
         _this.releaseDate=res.data[0].releaseDate;
@@ -179,7 +179,7 @@ export default {
             billNumber:bill
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.$refs.choseTypePic.src=res.data[0].pic1;
         });
         _this.fetch.httpGet({
@@ -188,7 +188,7 @@ export default {
             billNumber:bill
           }
         }).then((res)=>{
-          console.log(res.data);
+          //console.log(res.data);
             if(res.data.length > 0)
               _this.orderId = res.data[0].transactionType;
         });

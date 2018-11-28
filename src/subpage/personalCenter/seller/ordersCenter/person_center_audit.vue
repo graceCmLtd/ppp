@@ -129,7 +129,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          // console.log(res)
+          // //console.log(res)
           _this.noteList=res.data;
         });
         _this.fetch.myPost('/bills/getIntentionsCount',{
@@ -168,7 +168,7 @@
             billNumber:billNumberLoca
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.orderId=_this.noteList[index].transacType;
           _this.bankAccount = _this.noteList[index].bankAccount;
           _this.companyName=_this.noteList[index].companyName;
@@ -187,7 +187,7 @@
               billNumber:billNumberLoca
             }
           }).then((res)=>{
-            console.log(res.data.length)
+            //console.log(res.data.length)
             if(res.data.length === 1)
                  _this.$refs.PaperIs.src=res.data[0].pic1;
             else

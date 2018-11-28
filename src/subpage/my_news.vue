@@ -78,18 +78,18 @@ export default {
     methods:{
     // 删除
         delItem: function(index,item){
-          // console.log(item)
+          // ////console.log(item)
           // var list = []
           // list.push(item);
           // list.push(1)
-          // console.log(list)
+          // ////console.log(list)
           this.msgList.splice(index,1);
       },
       getMsgList(){
         let _this = this;
         let receiverId = getCookie("Iud");
         let unreadCount = 0;
-        console.log('--'+receiverId);
+        ////console.log('--'+receiverId);
         _this.fetch.httpGet({
           url:'/msg/getUserMsg',
           params:{
@@ -129,7 +129,7 @@ export default {
         this.getMsgList();
       },
       updateFlag(){
-        console.log("1213");
+        ////console.log("1213");
         let receiverId = getCookie("Iud");
         this.fetch.myPost('/msg/updateFlag',
           {
@@ -141,14 +141,14 @@ export default {
             'Authorization':getCookie('Too')
           }
           }).then((res)=>{
-            console.log(res.data);
+            ////console.log(res.data);
             if(res.data.status === "success"){
                 this.$router.go(0);
             }
         });
       },
       updateOneFlag(item){
-        console.log(item.msgId);
+        ////console.log(item.msgId);
         let _this = this;
         let receiverId = getCookie("Iud");
         _this.fetch.myPost('/msg/updateOneFlag',{

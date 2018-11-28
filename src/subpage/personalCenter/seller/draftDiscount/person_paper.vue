@@ -227,8 +227,8 @@
     methods:{
       offerIn(){
         this.color=1;
-        console.log("offerin ")
-        console.log(this.noteL)
+        //console.log("offerin ")
+        //console.log(this.noteL)
       },
       offerBe(){
         this.color=2;
@@ -254,8 +254,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          // console.log("get quoted bills ...")
-           console.log(res)
+          // //console.log("get quoted bills ...")
+           //console.log(res)
           if(res.data.length > 0){
               this.noteL = res.data
               _this.billN=res.data[0].billNumber;
@@ -293,8 +293,8 @@
         this.didOffer=true;
         let _this=this;
         let Id=getCookie('Iud');
-        console.log("billnumer is :")
-        console.log(_this.billNum)
+        //console.log("billnumer is :")
+        //console.log(_this.billNum)
         
         _this.fetch.myPost('/bills/getMyBillsQuoted',{
             "uuid":Id,
@@ -309,7 +309,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          // console.log(res)
+          // //console.log(res)
           this.noteL = res.data
           _this.billN=res.data[0].billNumber;
         });
@@ -348,7 +348,7 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          //console.log(res)
+          ////console.log(res)
           _this.billN=res.data[0].billNumber;
         })
       },*/
@@ -357,8 +357,8 @@
             alert("您的公司信息还没有通过认证！请先填写公司信息或等待审核");
             this.$router.push('/release/data');
         }else{
-            console.log("paper detail info  item")
-            console.log(item)
+            //console.log("paper detail info  item")
+            //console.log(item)
             this.$router.push({
               name:'choseType',
               query:{
@@ -370,20 +370,20 @@
         }
       },
       getBillDetail(item){
-        console.log("get bill detail")
-        console.log(item)
+        //console.log("get bill detail")
+        //console.log(item)
         let _this = this;
         _this.billD[0] = item
-        console.log(item.billNumber)
+        //console.log(item.billNumber)
         _this.fetch.httpGet({
           url:'/bills/getBillPics',
           params:{
             billNumber:item.billNumber
           }
         }).then((res)=>{
-          console.log("get pic1 s 1")
-          console.log(res)
-          //console.log(this)
+          //console.log("get pic1 s 1")
+          //console.log(res)
+          ////console.log(this)
           _this.billDetailPic=res.data[0].pic1;
           _this.dialogBillDetailVisual = true;  
         })
@@ -403,8 +403,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          console.log("get quote auditing    bills ...")
-          console.log(res)
+          //console.log("get quote auditing    bills ...")
+          //console.log(res)
           this.noteL = res.data
           if (this.noteL.length ==0) {
             _this.showAudit = false;
@@ -417,8 +417,8 @@
         });
       },
       getBillNum(billNumber){
-      // console.log("get billNumber in .....")
-      // console.log(billNumber)
+      // //console.log("get billNumber in .....")
+      // //console.log(billNumber)
       this.billNum = billNumber
       if (this.currentTabComponent =="person-offerin") {
         this.havOffer()

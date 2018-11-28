@@ -68,12 +68,12 @@
     methods:{
       ReceiptAll(){
         this.color=1;
-        console.log(this)
+        //console.log(this)
       },
       offerPri(){
         this.color=2;
         // this.$refs.Receipt_triangle_prices.style.right='-9%'
-        console.log(this)
+        //console.log(this)
       },
       offerCan(){
         this.color=3;

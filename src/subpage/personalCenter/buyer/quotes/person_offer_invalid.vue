@@ -145,11 +145,11 @@ import {getCookie} from '@/assets/util'
             }}
         ).then((res)=>{
           let _this=this;
-          console.log("get all quotes")
-          console.log(res)
+          //console.log("get all quotes")
+          //console.log(res)
           _this.noteList=res.data;
           for(let v in res.data){
-            // console.log(res.data[v].maturity)
+            // //console.log(res.data[v].maturity)
             // _this.marDay=res.data[v].maturity;
             let date=new Date();
             let year=date.getFullYear();
@@ -163,10 +163,10 @@ import {getCookie} from '@/assets/util'
             let timeAll=new Date(res.data[v].maturity).getTime();
             let lastDay=timeAll-secDayStamp;
             _this.day=Math.floor(lastDay/86400000)
-            console.log(_this.day)
+            //console.log(_this.day)
             _this.marDay.push(_this.day)
           }
-          console.log(_this.marDay)
+          //console.log(_this.marDay)
         });
         this.fetch.myPost('/quote/getQuoteCount',{
             "uuid":Id,
@@ -214,7 +214,7 @@ import {getCookie} from '@/assets/util'
             billNumber:billNumber
           }
         }).then((res)=>{
-          console.log(res)
+          //console.log(res)
           _this.amount=_this.noteList[index].amount;
           _this.xPerLakh=_this.noteList[index].xPerLakh;
           _this.transacDate=_this.noteList[index].transacDate;
@@ -233,7 +233,7 @@ import {getCookie} from '@/assets/util'
           }).then((res)=>{
             _this.pic=res.data[0].pic1;
             _this.intentionMaskShow=true;
-            console.log(_this)
+            //console.log(_this)
             _this.$refs.intention_mes_details[index].style.display='block';
             setTimeout(()=>{
               _this.$refs.intention_mes_details[index].style.top='20%';
@@ -243,7 +243,7 @@ import {getCookie} from '@/assets/util'
         })
       },
       closePics(index){
-        console.log(this);
+        //console.log(this);
         this.$refs.intention_mes_details[index].style.top='15%';
         this.$refs.intention_mes_details[index].style.opacity='0';
         setTimeout(()=>{

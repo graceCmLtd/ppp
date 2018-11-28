@@ -43,7 +43,7 @@
 
       getBillNum(){
         //this.billN = this.billN+1;
-      //console.log("get billNumber in 11.....")
+      ////console.log("get billNumber in 11.....")
       this.$emit("transb",this.billNumber)
     },
       getPaper(){
@@ -57,8 +57,8 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          //console.log("我的求贴 全部报价 ")
-          //console.log(res)
+          ////console.log("我的求贴 全部报价 ")
+          ////console.log(res)
           this.noteList=res.data;
           if (!this.noteList.length ==0) {
             if (this.index >= this.noteList.length) {
@@ -71,8 +71,8 @@
         })
       },
       onSelect(index){
-        console.log("on select the item ....")
-        console.log(index)
+        //console.log("on select the item ....")
+        //console.log(index)
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
@@ -95,10 +95,10 @@
     let timer = window.setInterval(function(){
       if (_this.$route.path == '/release/paper/offerIn' && _this.$parent.currentTab == 'offerbe') {
         _this.getPaper()
-        console.log("in timer")
+        //console.log("in timer")
       }else{
         window.clearInterval(timer)
-        console.log("shutdown timer")
+        //console.log("shutdown timer")
       }
       
     },_this.GLOBAL.flushSeconds)*/

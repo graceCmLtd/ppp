@@ -204,9 +204,9 @@
       } 
     },
     beforeDestroy() {
-      console.log("ssfff1111");
+      //console.log("ssfff1111");
         clearInterval(this.timer);
-        console.log("vvxxzzz11");
+        //console.log("vvxxzzz11");
     }
   }
 </script>

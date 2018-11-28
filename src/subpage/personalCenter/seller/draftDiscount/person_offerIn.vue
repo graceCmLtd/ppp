@@ -40,9 +40,9 @@
     methods:{
 
       getBillNum(){
-      /*console.log("get billNumber in 11.....")*/
+      /*//console.log("get billNumber in 11.....")*/
       this.$emit("transb",this.billNumber)
-      //console.log(res)
+      ////console.log(res)
     },
       getPaper(){
         let Id=getCookie('Iud');
@@ -57,12 +57,12 @@
           'Authorization':getCookie('Too')
             }}
         ).then((res)=>{
-          // console.log("我的求贴 全部报价 ")
+          // //console.log("我的求贴 全部报价 ")
           if(res.data.length > 0){
-            //console.log(res)
+            ////console.log(res)
             this.noteList=res.data;
             this.billNumber=this.noteList[this.index].billNumber;
-            console.log("transbill1"+this.billNumber);
+            //console.log("transbill1"+this.billNumber);
             this.getBillNum()
           }
         })
@@ -71,14 +71,14 @@
         return this.noteList[index].acceptor
       },
       onSelect(index){
-         console.log("on select the item ....")
-         console.log(index)
+         //console.log("on select the item ....")
+         //console.log(index)
         this.index = index
         var arr = new Array(this.noteList[index])
         this.noteDetail = arr
         this.billNumber=this.noteList[index].billNumber;
-        console.log("transbill2"+this.billNumber);
-        //console.log(this.noteList[index].billNumber)
+        //console.log("transbill2"+this.billNumber);
+        ////console.log(this.noteList[index].billNumber)
         this.getBillNum()
       },
       // 删除
@@ -92,10 +92,10 @@
       let time =  window.setInterval(function(){
         if (_this.$route.path == "/release/paper/offerIn" && _this.$parent.currentTab == 'offerin') {
           _this.getPaper()
-          /*console.log("rrrrrrrrrrrrrrrrrrrrrrr")*/
+          /*//console.log("rrrrrrrrrrrrrrrrrrrrrrr")*/
         }else{
           window.clearInterval(time)
-          console.log("shutdown timer offerin")
+          //console.log("shutdown timer offerin")
         }
       },_this.GLOBAL.flushSeconds)
 

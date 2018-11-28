@@ -122,7 +122,7 @@ export default {
             contactsId:contactsId
           }
         }).then((res)=>{
-            console.log(res.data);
+            //console.log(res.data);
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
               this.contactsName=res.data[0].contactsName;
@@ -140,7 +140,7 @@ export default {
             contactsId:contactsId
           }
         }).then((res)=>{
-            console.log(res.data);
+            //console.log(res.data);
             if(res.data != ''){
               this.pic1 = res.data[0].pic1Content;
               this.pic2 = res.data[0].pic2Content;

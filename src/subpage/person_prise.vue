@@ -87,7 +87,7 @@ export default {
             contactsId:contactsId
           }
         }).then((res)=>{
-            console.log(res.data);
+            ////console.log(res.data);
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
               this.contactsName=res.data[0].contactsName;
@@ -106,7 +106,7 @@ export default {
             contactsId:contactsId
           }
         }).then((res)=>{
-            console.log(res.data);
+            //console.log(res.data);
             if(res.data != ''){
               this.pic1 = res.data[0].pic1Content;
               this.pic2 = res.data[0].pic2Content;
@@ -135,7 +135,7 @@ export default {
       },
       /*submitInfo(){
         let contactsId = getCookie("Iud");
-        console.log(contactsId)
+        ////console.log(contactsId)
         this.fetch.myPost('/addCompany',{
         "companyInfo":{
               "companyName":this.$refs.companyName.value,
@@ -164,8 +164,8 @@ export default {
       }}
       ).then((res)=>{
         this.noteListLed=res.data;
-        console.log("add company info ......")
-        console.log(this.noteListLed)
+        //console.log("add company info ......")
+        //console.log(this.noteListLed)
       })
       }*/
     },
