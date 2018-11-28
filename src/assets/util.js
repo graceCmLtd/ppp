@@ -25,6 +25,10 @@ export function delCookie (name) {
 };
 
 export function formatNumberToStr(num){
+	if (num.indexOf(',') != -1) {
+		alert(num)
+		return num
+	}
 	let str1 = num+'';
 	let fractionalPart = ''; //小数部分
 	let integerPart = '';
@@ -49,12 +53,14 @@ export function formatNumberToStr(num){
 }
 
 export function formatStrToNumber(str){
+	let str_integer = ''
+	let str_decimal = ''
 	if (str.indexOf(".")) {
-		let str_integer = str.split(".")[0];
-		let str_decimal = '.'+str.split(".")[1];
+		str_integer = str.split(".")[0];
+		str_decimal = '.'+str.split(".")[1];
 	}else{
-		let str_integer = str;
-		let str_decimal = ''
+		str_integer = str;
+		str_decimal = ''
 	}
 	
 	let integer_arr = str_integer.split(",");

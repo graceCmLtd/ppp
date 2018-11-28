@@ -124,7 +124,7 @@
             </div>
           </el-col>
             <el-col :span="8"><div class="tableMes acce">{{item.acceptor}}</div></el-col>
-            <el-col :span="4"><div class="tableMes amount">{{item.amount/10000}}w</div></el-col>
+            <el-col :span="4"><div class="tableMes amount">{{formatNumToStr(item.amount)}}</div></el-col>
             <el-col :span="3"><div class="tableMes data">{{item.releaseDate}}</div></el-col>
             <el-col :span="2"><div class="tableMes status">{{item.quoteStatus}}</div></el-col>
           </el-row>
@@ -263,6 +263,11 @@
       }
     },
     methods:{
+      formatNumToStr(num){
+        //alert(this.util.formatStrToNumber("1,200,400.000"))
+        //alert(this.util.formatNumberToStr("1,200,400.000"))
+        return this.util.formatNumberToStr(num)
+      },
       Be(){
         let _this=this;
         _this.$refs.CaBe.style.display='none';
