@@ -27,7 +27,7 @@
       </div>
       <!-- 专属客服 -->
       <div class="exclusive_3">
-        <img src="../../static/img/三个图标.png" alt="">
+        <img src="../../static/img/ico_@3.png" alt="">
       </div>
 
       <!--票据行情标题 -->

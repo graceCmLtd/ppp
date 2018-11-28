@@ -12,9 +12,11 @@
       <div class="prise_mes">
         <ul class="left">
           <li style="font-weight:bold;">企业名称</li>
+          <li style="font-weight:bold;">审核状态</li>
         </ul>
         <ul class="right">
           <li><input type="text" v-model:value="companyName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="role" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
 
         </ul>
       </div>
