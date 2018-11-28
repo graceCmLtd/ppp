@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="page_bot">
     <div class="page_title_In"> <!--流程介绍标题 -->
-     <img src="../../static/img/page_title3.png" alt="">
+     <img src="../../static/img/page_title3.png" alt="" style="    width: 100%;">
    </div>
     <div class="page_hott" style="position:reactive;">
       <div class="page_hot">

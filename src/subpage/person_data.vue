@@ -12,7 +12,7 @@
           <p style="">
             <span>&nbsp;&nbsp;&nbsp;&nbsp;企业名称&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" v-model:value="companyName" ref="companyName"/></span>
           </p>
-          <p  >上传多证合一营业执照或普通营业执照</p>
+          <p>上传多证合一营业执照或普通营业执照</p>
           <div class="company_license">
             <div class="reprod">
               <img src="../../static/img/pic_icon.png" alt="">
