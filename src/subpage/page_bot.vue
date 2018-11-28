@@ -69,7 +69,7 @@ import {vueAccordion} from 'vue-accordion'
     width: 100%;
     overflow: hidden;
     height: 400px;
-    max-width: 900px;
+    max-width: 1200px;
     margin:0 auto;
     }
 
