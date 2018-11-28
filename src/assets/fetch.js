@@ -37,8 +37,8 @@ fetch.interceptors.request.use(config => {
   return config
 }, error => {
  alert("request error")
-  console.log("request error")
-  console.log(error.response)
+  // console.log("request error")
+  // console.log(error.response)
   return Promise.reject(error)
 })
 

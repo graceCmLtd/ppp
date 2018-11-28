@@ -91,31 +91,31 @@
       
       receive_msg(){
         let Id = getCookie('Iud');
-        console.log(Id);
+        //console.log(Id);
         let _this = this;
         const h = _this.$createElement;
         if(typeof GoEasy !== 'undefined'){ 
           var goEasy = new GoEasy({
             appkey:'BC-a9752c0d240f407298d5346075fb6de4',
             onConnected:function(){ 
-                console.log("Connect to GoEasy success."); 
+                //console.log("Connect to GoEasy success."); 
             } , 
             onDisconnected:function(){ 
-                console.log("Disconnect to GoEasy server."); 
+                //console.log("Disconnect to GoEasy server."); 
             } , 
             onConnectFailed:function(error){ 
-                console.log("Connect to GoEasy failed, error code: "+ error.code+" Error message: "+ error.content); 
+                //console.log("Connect to GoEasy failed, error code: "+ error.code+" Error message: "+ error.content); 
             } 
           });
         }
-        console.log("vvvvvvvv")
-        //console.log(goEasy.subscribe)
+        //console.log("vvvvvvvv")
+        ////console.log(goEasy.subscribe)
         goEasy.subscribe({
             channel: Id,
         onMessage: function (message) {
           if(message){
               _this.showPoint = true;
-              console.log(message);
+              //console.log(message);
               let msg_content = JSON.parse(message.content);
               _this.message = msg_content;
               const h = _this.$createElement;
@@ -134,17 +134,17 @@
               
         },
         onSuccess:function(){
-          console.log("success")
+          //console.log("success")
           //alert("success")
         },
         onFailed:function(error){
-          console.log("fail")
+          //console.log("fail")
           //alert(error)
         }
         });
       },
       onClick(){
-        console.log(this.message);
+        //console.log(this.message);
         this.$router.push({path:this.message.path})
       },
       handleMsg(msg_content){

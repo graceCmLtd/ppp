@@ -245,6 +245,7 @@
         interests1 : null,
         interests2 : null,
         sumMoney : null,
+        
       }
     },
     components:{
