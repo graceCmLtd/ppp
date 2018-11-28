@@ -20,14 +20,14 @@
             <div class="intention_mes bankMes"
                  
             >{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
           <!-- <el-col :span="3"><div class="intention_mes">{{item.remain_days}}天</div></el-col> -->
         <!--   <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh/1000}}k</span></span>
           </div></el-col> -->
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 |numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.real_money)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes">{{item.intentionStatus}}</div></el-col>
           <el-col :span="3">
             <div class="intention_mes" v-if="item.intentionStatus==='已签收'||item.intentionStatus==='待接单'||item.intentionStatus==='已失效'">...</div>
@@ -78,12 +78,12 @@
             <ul>
               <li>订单号：<span>{{orderId}}</span></li>
               <!-- <li>银行监管账号：<span>{{bankAccount}}</span></li> -->
-              <li>票面金额：<span>{{amount/10000 |numFilter}}w</span></li>
+              <li>票面金额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>卖方：<span>{{companyName}}</span></li>
               <li>贴现利率：<span>{{interest}}%</span></li>
               <li>每10w加：<span>{{xPerLakh}}</span></li>
-              <li>实付金额：<span>{{real_money/10000 |numFilter}}W</span></li>
+              <li>实付金额：<span>{{formatNumToStr(real_money)}}</span></li>
             </ul>
             </div>
         </div>
@@ -227,6 +227,10 @@
         let Id=getCookie('Iud');
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
+      },
+      /*数字千分位格式化*/
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
       },
        /*更新倒计时数组*/
        updateTimer(){

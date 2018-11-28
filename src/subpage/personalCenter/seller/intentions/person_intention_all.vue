@@ -18,9 +18,9 @@
           <el-col :span="3">
             <!-- :class="item.acceptor.length&&item.acceptor.length>8?'lineHeight':''" -->
             <div class="intention_mes bankMes">{{item.acceptor}}</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.amount/10000}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.amount)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes date">{{item.maturity}}(剩{{item.remain_days}}天)</div></el-col>
-          <el-col :span="3"><div class="intention_mes">{{item.real_money/10000 | numFilter}}w</div></el-col>
+          <el-col :span="3"><div class="intention_mes">{{formatNumToStr(item.real_money)}}</div></el-col>
           <el-col :span="3"><div class="intention_mes amountMes">
             <span class="interest">年化：<span>{{item.interest}}%</span></span>
             <span class="premium">每10w加：<span>{{item.xPerLakh}}</span></span>
@@ -49,7 +49,7 @@
         <div class="show_w" v-if="isShow" >
         <div class="center_w">
             <p>修改付款金额</p>
-            <p>原实付金额：{{currentItem.real_money/10000 |numFilter}}w</p>
+            <p>原实付金额：{{formatNumToStr(currentItem.real_money)}}</p>
             <p><i style="font-style: normal;font-size:12px;color:#A5A5A5;font-weight:bold;">修改为</i>
               实付金额： <input type="" name="" style="border:1px solid #ccc; height:32px; width:110px; color:#F15749; font-weight:bold;font-size:20px;" v-model="new_money" placeholder="0">w</p>
             <a @click="modifyMoneySubmit()">确认修改</a>
@@ -94,12 +94,12 @@
       
           <div class="message_left">
             <ul>
-              <li>票号：<span>6222299993778389939</span></li>
-              <li>票面总额：<span>{{amount/10000}}w</span></li>
+              <li>票号：<span>{{detailBillNumber}}</span></li>
+              <li>票面总额：<span>{{formatNumToStr(amount)}}</span></li>
               <li>承对方：<span>{{bank}}</span></li>
               <li>买方：<span>{{buyer}}</span></li>
               <li>贴现利率：<span>{{rate}}</span></li>
-              <li>实收金额：<span>{{realMoeny}}W(含平台担保费)</span></li>
+              <li>实收金额：<span>{{formatNumToStr(realMoeny)}}(含平台担保费)</span></li>
             </ul>
             </div>
         </div>
@@ -160,7 +160,8 @@
         isShow_cancel:false,
         new_money:0,
         currentItem:null,
-        showBack:true
+        showBack:true,
+        detailBillNumber:''
       }
     },
     methods:{
@@ -229,7 +230,7 @@
         let billNumberLoca=_this.noteList[index].billNumber;
         this.buyer = _this.noteList[index].companyName;
         this.rate = _this.noteList[index].interest;
-        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)/10000).toFixed(2);
+        this.realMoeny = ((_this.noteList[index].real_money-_this.noteList[index].real_money*5/10000)).toFixed(2);
         _this.fetch.httpGet({
           url:'/bills/getbill',
           params:{
@@ -244,6 +245,7 @@
           _this.releaseDate=_this.noteList[index].releaseDate;
           _this.maturity = _this.noteList[index].maturity;
           _this.remain_days = _this.noteList[index].remain_days;
+          _this.detailBillNumber = _this.noteList[index].billNumber;
           _this.fetch.httpGet({
             url:'/bills/getBillPics',
             params:{
@@ -268,10 +270,13 @@
         _this.linka = "tencent://message/?uin="+_this.noteList[index].contactsQQ+"&Site=pengpengpiao.cn&Menu=yes"
         //alert(index)
       },
+      formatNumToStr(num){
+        return this.util.formatNumberToStr(num)
+      },
       /*修改金额*/
       modifyAmount(item){
         if(item.real_money){
-          this.new_money =item.real_money/10000;
+          this.new_money =item.real_money;
         }else{
           this.new_money=0
         }
@@ -295,11 +300,11 @@
               "quoteBody":{
                   "billNumber":_this.currentItem.billNumber,
                   "quoterId":_this.currentItem.quoterId,
-                  "new_money":_this.new_money*10000
+                  "new_money":_this.new_money
               },
               "transactionBody":{
                   "orderId":_this.currentItem.transacType,
-                  "preRealMoney":_this.new_money*10000
+                  "preRealMoney":_this.new_money
             }
           }
           }).then((res)=>{

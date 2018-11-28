@@ -6,7 +6,7 @@
         <div class="mes">
           <p><i style="font-weight:bold; font-style:normal;">票据号码</i>:<span>{{billType}}</span></p>
           <p><i style="font-weight:bold; font-style:normal;">汇票到期日</i>:<span>{{billDate}}</span></p>
-          <p><i style="font-weight:bold; font-style:normal;">票面总额</i>:<span>{{amount}}元</span></p>
+          <p><i style="font-weight:bold; font-style:normal;">票面总额</i>:<span>{{formatNumberToStr(amount)}}元</span></p>
           <p><i style="font-weight:bold; font-style:normal;">出票日期</i>:<span>{{billTime}}</span></p>
           <p><i style="font-weight:bold; font-style:normal;">剩余天数</i>:<span>{{remainDays}}</span></p>
           <!-- <p>期望利率:<span></span></p> -->
@@ -19,7 +19,7 @@
             <p style="font-weight:bold;">调整天数&nbsp;:<input type="text" v-model:value="quoteItems.adjustDays"/>天</p>
             <!--<p>计算金额:<input type="text" value="" alt="" ref="amount"/>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
             <p style="text-align:left; font-weight:bold; padding-left:5px;" ref="amount">
-              交易金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{interest_rate}}元</i> &nbsp;&nbsp;&nbsp;
+              交易金额:<i style=" font-style:normal; color:#f15749; font-size:16px;letter-spacing:1;">{{formatNumberToStr(interest_rate)}}元</i> &nbsp;&nbsp;&nbsp;
                 <!-- <i style="background:#f15749;width:100px;height:30px;display:inline-block;font-style:normal;color:white;line-height:30px;text-align:center;border-radius:5px;"><button @click="calculate()" style="background:#f15749;width:100px;height:30px;">计算</button></i> -->
             </p>
             <p><button type="button" @click="detailSprompt()">确认报价</button></p>
@@ -92,6 +92,9 @@ export default {
         let realValue = Number(amount - interest).toFixed(2);
         this.interest_rate = realValue;
       }
+    },
+    formatNumberToStr(num){
+      return this.util.formatNumberToStr(num)
     },
     detailSprompt(){
       let amount=this.$refs.amount.value;
