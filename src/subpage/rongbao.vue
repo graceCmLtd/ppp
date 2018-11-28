@@ -78,6 +78,7 @@
   methods: {
         sss:function(){
           let _this = this
+
           console.log(_this.item.transacType)
           console.log(_this.item.billNumber)
           console.log(_this.item.sellerId)
@@ -86,9 +87,9 @@
           _this.fetch.myPost("/transaction/reaPay",{
               "transacId":_this.item.transacType,
               "billNumber":_this.item.billNumber,
-              "sellerId":_this.item.sellerId+'',
+              "sellerId":_this.item.sellerId,
               "buyerId":_this.item.buyerId,
-              "amount":_this.item.amount+''//_this.item.amount
+              "amount":_this.item.amount//_this.item.amount
             },{headers:{
               Authentication:_this.util.getCookie("Too"),
               uuid:_this.util.getCookie('Iud')
@@ -183,6 +184,7 @@
     },3000)*/
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
