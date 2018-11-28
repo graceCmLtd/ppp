@@ -32,7 +32,7 @@ import {vueAccordion} from 'vue-accordion'
         items: [
                 {
                     title: '——安全——',
-                    text: '三方存管担保支付\n 确保票款安全',
+                    text: '三方存管担保支付确保票款安全',
                     url: '#',
                     image: '../../static/img/Bitmap4.png',
                 },
