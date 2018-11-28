@@ -11,48 +11,78 @@
       </p>
       <div class="prise_mes">
         <ul class="left">
-          <li>公司名称</li>
-          <li>联系人姓名</li>
-          <li>联系人电话</li>
-          <li>联系人QQ</li>
-          <li>联系人邮箱</li>
-          <li>审核状态</li>
+          <li style="font-weight:bold;">企业名称</li>
+          <li style="font-weight:bold;">审核状态</li>
         </ul>
         <ul class="right">
-          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px;"></li>
-          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsPhone" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsEmail" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="role" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
+          <li><input type="text" v-model:value="companyName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="role" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
 
         </ul>
       </div>
-      <p class="prise_title">
-        <span>营业执照</span>
-      </p>
+      <p>上传多证合一营业执照或普通营业执照</p>
       <div class="prise_pic">
         <div class="prise_upload">
-          <img v-bind:src="pic" :class="{'active':isChoose}" style="width:360px;height:240px;" @click="imgScc">
+          <img v-bind:src="pic1" style="width:360px;height:240px;">
         </div>
       </div>
-      <p class="prise_title" style="margin-top:-2%;">
-        <span>对公银行账户</span>
+
+      <p style="padding-top: 25px;"><i style="font-style:normal;color:#FF4119;">选填-</i>组织机构代码证<i style="font-style:normal;color:#FF4119;">（普通营业执照必填）</i></p>
+      <div class="prise_pic">
+        <div class="prise_upload">
+          <img v-bind:src="pic2" style="width:360px;height:240px;">
+        </div>
+      </div>
+   <div style="margin-top:20px;">
+      <p style="padding-top: 25px;"> 上传法人身份证</p>
+    
+        <div class="prise_pic_a">
+          <span class="prise_upload">
+            <img v-bind:src="IDCardPic1" style="width:300px;height:240px;">
+          </span>
+          <span class="prise_upload">
+            <img v-bind:src="IDCardPic2" style="width:300px;height:240px;">
+          </span>
+        </div>
+
+  </div>
+<!-- 业务授权 -->
+      <p class="prise_title">
+        <span>业务授权</span>
       </p>
       <div class="bank_mes">
         <ul class="bank_left">
-          <li>账户名称</li>
-          <li>开户行</li>
-          <li>银行账号</li>
+          <li style="font-weight:bold;">联系人姓名</li>
+          <li style="font-weight:bold;">联系人身份证证件号</li>
+          <li style="font-weight:bold;">联系人QQ号码</li>
         </ul>
         <ul class="bank_right">
-          <li><input type="text" v-model:value="bankAccountName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="bankName" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="border: 1px solid #ccc; height: 30px; width: 310px; "></li>
-
+          <li><input type="text" v-model:value="contactsName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" placeholder="" v-model:value="idCardNum" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="contactsQQ" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <div style="opacity: 0; height:20px;">  </div>
         </ul>
+
       </div>
-<!-- 
+
+      <p class="prise_title" style="margin-top:-2%;">
+        <span>绑定账户</span><i style="font-size:12px;font-style:normal;color:#FF4119;">（电票所在银行账户与电票背书账户）</i>
+      </p>
+      <div class="bank_mes">
+        <ul class="bank_left">
+          <li style="font-weight:bold;">开户银行</li>
+          <li style="font-weight:bold;">开户行行号</li>
+          <li style="font-weight:bold;">银行账号</li>
+        </ul>
+        <ul class="bank_right">
+          <li><input type="text" v-model:value="banksName" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="bankCode" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+          <li><input type="text" v-model:value="bankAccount" placeholder="" disabled style="background:#fff; height: 30px; width: 310px;"></li>
+         <div style="opacity: 0; height:120px;">  </div>
+        </ul>
+
+      </div>
+     <!-- 
       <button @click="updateInfo()"  style="width:420px;height:45px;background:#F15749;box-shadow:0px 2px 4px 0px rgba(241,87,73,0.5);border-radius:8px; color:#fff;">认证/修改</button> -->
     </div>
   </div>
@@ -63,14 +93,19 @@ export default {
 
     data(){
     return{
-      pic : '',
+      pic1 : '',
+      pic2 : '',
+      IDCardPic1 : '',
+      IDCardPic2 : '',
       companyName : '',
       contactsName : '',
       contactsPhone : '',
       contactsEmail : '',
       contactsQQ : '',
+      idCardNum:'',
+      bankCode:'',
       bankAccountName : '',
-      bankName : '',
+      banksName : '',
       bankAccount : '',
       bankAddr : '',
       role : '',
@@ -91,14 +126,12 @@ export default {
             if(res.data != ''){
               this.companyName=res.data[0].companyName;
               this.contactsName=res.data[0].contactsName;
-              this.contactsPhone=res.data[0].contactsPhone;
-              this.contactsEmail=res.data[0].contactsEmail;
+              this.idCardNum=res.data[0].contactIDCardNo;
               this.contactsQQ=res.data[0].contactsQQ;
-              this.bankAccountName=res.data[0].bankAccountName;
-              this.bankName=res.data[0].bankName;
+              this.banksName=res.data[0].bankName;
+              this.bankCode=res.data[0].bankCode;
               this.bankAccount=res.data[0].bankAccount;
-              this.bankAddr = res.data[0].signUpAddr;
-              this.role=res.data[0].role;
+              this.role = res.data[0].role;
             }
         });
         this.fetch.httpGet({
@@ -109,63 +142,14 @@ export default {
         }).then((res)=>{
             console.log(res.data);
             if(res.data != ''){
-              this.pic = res.data[0].picContent;
+              this.pic1 = res.data[0].pic1Content;
+              this.pic2 = res.data[0].pic2Content;
+              this.IDCardPic1 = res.data[0].pic1IDCard;
+              this.IDCardPic2 = res.data[0].pic2IDCard;
             }
         });
-      },
-      updateInfo(){
-        var data = {
-          "companyName":this.companyName,
-          "contactsName":this.contactsName,
-          "contactsPhone":this.contactsPhone,
-          "contactsEmail":this.contactsEmail,
-          "contactsQQ":this.contactsQQ,
-          "bankAccountName":this.bankAccountName,
-          "bankName":this.bankName,
-          "bankAccount":this.bankAccount,
-          "pic":this.pic,
-          "bankAddr":this.bankAddr
-        };
-        this.$router.push({path:"/release/data",query:{"data":data}});
-      },
-      imgScc:function () {                     
-        this.isChoose = !this.isChoose     
-     }
-      /*submitInfo(){
-        let contactsId = getCookie("Iud");
-        console.log(contactsId)
-        this.axios.post(this.oUrl+'/addCompany',{
-        "companyInfo":{
-              "companyName":this.$refs.companyName.value,
-              "contactsId":contactsId,
-              "contactsName":this.$refs.contactsName.value,
-              "contactsPhone":this.$refs.contactsPhone.value,
-              "contactsEmail":this.$refs.contactsEmail.value,
-              "contactsQQ":this.$refs.contactsQQ.value,
-              "bankAccountName":this.$refs.bankAccountName.value,
-              "bankAccount":this.$refs.bankAccount.value,
-              "bankName":this.$refs.bankName.value,
-              "picId":4342424,
-              "signUpAddr":"双井支行",
-              "updateDate":"2018-07-29"
-        },
-        "companyPics":{
-          
-          "picContent":"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-          "updateDate":"2018-08-02",
-          "contactsId":contactsId
-        }
-      },
-      {headers:{
-        'Content-Type':'application/json',
-          'Authorization':getCookie('Too')
-      }}
-      ).then((res)=>{
-        this.noteListLed=res.data;
-        console.log("add company info ......")
-        console.log(this.noteListLed)
-      })
-      }*/
+      }
+      
     },
     created(){
       this.getCompany()
@@ -265,6 +249,17 @@ export default {
         }
       }
     }
+    .prise_pic_a{
+      width:80%;  
+      margin:0 auto;
+      .prise_upload{
+        width: 300px;
+        height: 200px;
+        margin: 28px 37px;
+
+      }
+    }
+
     .bank_mes{
       width: 96%;
       margin-left: 6%;
