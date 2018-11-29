@@ -151,8 +151,8 @@
     <div class="model-2-1">
       <p class="model-2-img">
         <span><img  style="position:relative; top:31px;" src="../../static/img/model2-1.png"></span>
-        <span class="title_shi">实时票据发布行情</span><br>
-        <span class="title_ying">The bank acceptance bill is in real time.</span>
+        <span class="title_shi">实时票据利率行情</span><br>
+        <span class="title_ying">Real time acceptance rate of interest.</span>
       </p>
       <div class="page_w_table">
             <div class="page_table">
@@ -456,6 +456,7 @@
     top: 37%;
     right: 7px;
     line-height:34px;
+    background: #fff;
     p:nth-child(1){
       color:#F25643;
       font-weight:bold;
