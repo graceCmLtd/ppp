@@ -34,25 +34,25 @@ import {vueAccordion} from 'vue-accordion'
                     title: '——安全——',
                     text: '三方存管担保支付确保票款安全',
                     url: '#',
-                    image: '../../static/img/Bitmap4.png',
+                    image: '../../static/img/Bitmap4-min.png',
                 },
                 {
                     title: '——透明——',
                     text: '资方实时报价收票    价格全透明',
                     url: '#',
-                    image: '../../static/img/Bitmap3.png',
+                    image: '../../static/img/Bitmap3-min.png',
                 },
                 {
                     title: '——互通——',
                     text: '交易双方无间沟通   想砍价就砍价   高效互通',
                     url: '#',
-                    image: '../../static/img/Bitmap2.png',
+                    image: '../../static/img/Bitmap2-min.png',
                 },
                   {
                     title: '——快速——',
                     text: '票款秒到账   极度快速 贴现体验',
                     url: '#',
-                    image: '../../static/img/Bitmap1.png',
+                    image: '../../static/img/Bitmap1-min.png',
                 },
               ]
             }
