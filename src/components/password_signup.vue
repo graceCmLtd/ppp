@@ -59,7 +59,7 @@ export default {
           'Authorization':getCookie('Too')
         }}
       ).then((res)=>{
-        ////console.log(res.data)
+        console.log(res.data)
         if(res.data.status === "success"){
             _this.sginUpText='登录';
             _this.loadingSginUp=false;
@@ -106,11 +106,13 @@ export default {
           url:'/getValidatePic',
           responseType: 'arraybuffer'
         }).then((res) => {
-          ////console.log(res)
+          //console.log(res)
             this.imageUrl = 'data:image/png;base64,' + btoa(
                 new Uint8Array(res.data)
                   .reduce((data, byte) => data + String.fromCharCode(byte), '')
               );
+          }).catch((error)=>{
+            console.log(error)
           })
         },
   getQuery(){
